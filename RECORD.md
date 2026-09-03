@@ -161,3 +161,27 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   parity run, so the pinned npkc is 950bb1d's own build. PIN.md says so;
   orchestrate §3 now asks the compiler session when the tree is dirty and
   records a `binary` line. Landed against 0.2.2
+- **writer takeover: `0a61670c-03a4-47dd-a063-44fd216c25b5`** by
+  `6fb2f48d-250b-4880-879f-083132155bd9` at 18:16, the first orchestrator
+  session (`/npk:orchestrate width=1 start=nitpick-time 0.0.0` — 0.2.7 §2's
+  invocation verbatim). Grounds: `ListAgents` showed two peers, `nitpick-01`
+  and `nitpick-76`, both compiler sessions, and **no `nitpick-libs-…` peer**;
+  the predecessor's work was committed and the tree clean at `59821a4`. The
+  one departure from orchestrate §2.1's takeover test is that its last entry
+  was **three minutes old**, not hours — recorded because the test says hours.
+  `ListAgents` lists idle sessions (`nitpick-01` is idle and listed), so an
+  idle predecessor would have appeared; and the author starting an
+  orchestrator here is itself the handoff. Noted as the one judgement call of
+  the startup
+- finding: orchestrate §2.1 tells the taker to write the marker first and the
+  board second, and the guard refuses exactly that — the marker write is a
+  redirection into the workbench and the board still named the predecessor.
+  The refusal was correct and its message said what to do ("take the lock:
+  set the `Workbench writer:` line ... the board itself is always writable").
+  **The order in §2.1 is backwards for a takeover**: board first, then
+  marker. Landed against 0.2.2; seen at 0.2.7's dry run one. Not a run
+  failure — the guard refused nothing the run needed, it refused a
+  mis-ordered step and named the fix
+- pin: no re-pin. `950bb1d` stands, `SHA256SUMS` verified at startup, the
+  compiler still at that commit; W-18's "never re-pin while a claim is in
+  flight" and 0.2.7 §8 both point the same way

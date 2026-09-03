@@ -9,16 +9,17 @@ blocked, what is done. The durable plan is
 > when the stream leaves the repository. That is what keeps two agents out of
 > one repository and removes every merge conflict by construction.
 
-**Last updated:** 2026-09-03 · **Width:** 0 — no loop running ·
+**Last updated:** 2026-09-03 · **Width:** 1 — stream 2 ·
 **Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03
-**Workbench writer:** `0a61670c-03a4-47dd-a063-44fd216c25b5` since 2026-09-03 17:11 —
-the author's session continuing the execution of `meta/roadmap/0.2/` (cloud
-id `session_011Ens7KaDohzYsQU2YGyTxu`), which took the lock from the planning
-session `19afbe0e-…` after it ended with its work committed (`02d4f61`). One
-writer here (W-16, P-19): if this names a session that is not you, do not
-write in this repository.
-**Phase:** planning complete; the working system is being made to run
-(cycle 0.2); library implementation not started.
+**Workbench writer:** `6fb2f48d-250b-4880-879f-083132155bd9` since 2026-09-03 18:16 —
+the first orchestrator session (`/npk:orchestrate width=1 start=nitpick-time
+0.0.0`, cloud id `session_01FKJJPtsjVRxqDSPVsvh1nn`), which took the lock from
+`0a61670c-…` after `ListAgents` showed no live `nitpick-libs-…` peer and that
+session's work was committed (`59821a4`). One writer here (W-16, P-19): if this
+names a session that is not you, do not write in this repository.
+**Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
+first library cycle to be worked, and the loop is being judged against
+[`meta/roadmap/0.2/0.2.7.md`](meta/roadmap/0.2/0.2.7.md) §2's pass mark.
 
 ---
 
