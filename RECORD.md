@@ -476,3 +476,11 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   What does not stand is any absolute number in our README as a baseline
 - the verifier wrote nothing under `REPO` — its reconstructions went to the
   session scratchpad, as its own report says and as `git status` confirms
+- dispatch `s2-ntime-0.0.0-2003` — two commits in a fixed order, the record
+  corrections before any probe. Ordered rather than split into two dispatches
+  because both are the same subcycle (W-15) and a third record-only errand
+  would cost a round trip; ordered rather than left to the worker's judgement
+  because this run has already shown a worker skipping the record half when
+  it had interesting work beside it. The nine probes are commit 2, carrying
+  Q-3's answer. The subcycle's status stays STOPPED on O-N4 however the nine
+  come out, and a second stop among them is to be reported, not worked through

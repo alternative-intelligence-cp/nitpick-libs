@@ -38,7 +38,7 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1902` | 2026-09-03 19:02 | `claude-opus-5` | **STOPPED on O-N4** (W-11) for probe 04 only. The live worker lands the record; the nine unaffected probes follow it (Q-3 answered: work them) |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-2003` | 2026-09-03 20:03 | `claude-opus-5` | **STOPPED on O-N4** (W-11) for probe 04 only. Verifier FAIL on two record claims — the committed reproduction's magnitude and probe 04's uncommitted IR evidence; both being corrected in commit 1, then the nine probes (Q-3) in commit 2 |
 
 ## Questions for the author
 
