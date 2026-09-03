@@ -43,7 +43,13 @@ Skipped in `tick` mode.
 1. Mark the session, for the compaction hook and for the board:
    `mkdir -p .internal && echo "${CLAUDE_SESSION_ID}" > .internal/orchestrator.session`.
    Put the same id on the board's `Workbench writer:` line (W-16) — one
-   commit, `board: writer <id>`.
+   commit, `board: writer <id>`. **If the line names another session:**
+   `ListAgents` cannot see other sessions, so read `RECORD.md`'s last
+   entries and the board's date. If that session's work is committed and
+   it has been silent for hours, take the lock — the board itself is always
+   writable — and write `writer takeover: <old id>` in `RECORD.md`. If it
+   may be live, stop and ask the author; two writers here is the one
+   failure the whole design exists to prevent.
 2. Read, in order: `BOARD.md`; `WORKSTREAMS.md` §3 and §5; `LIBRARIES.md`;
    `../nitpick-apps/APPS.md`; `git -C ../nitpick log --oneline -3`.
 3. The toolchain: if the board's header names no pin, or the pinned
@@ -229,4 +235,5 @@ and why an ecosystem-wide audit runs after every third close (W-22).
 
 `WORKSTREAMS.md` durable · `BOARD.md` live, yours · `RECORD.md` past, yours ·
 `meta/audits/` yours · `.internal/toolchain/` yours and untracked ·
-`.internal/orchestrator.session` your marker; remove it at a clean stop.
+`.internal/orchestrator.session` your marker; at a clean stop remove it and
+set the board's writer line to `none`.

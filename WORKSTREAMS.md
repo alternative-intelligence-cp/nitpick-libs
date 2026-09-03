@@ -134,7 +134,8 @@ enforceable.
 
 **Rule W-7 — one writer per repository, always.** A stream claims a repository
 in `BOARD.md` before touching it and releases it when the cycle closes. A
-repository with no claim is nobody's.
+repository with no claim is nobody's. Enforced by the guard for sessions
+started outside the repository (0.2.5).
 
 **Rule W-8 — the orchestrator owns `BOARD.md`.** Agents do not edit it. That
 removes every merge conflict by construction and matches the compiler's
@@ -176,7 +177,9 @@ A worker, planner, auditor or researcher writes nothing under `nitpick-libs/`
 or `nitpick-apps/` roots. Findings for the playbook travel in the report and
 the orchestrator lands them. The writer is named on the board's header
 (`Workbench writer:`); a session that finds another named does not write
-here. (P-2, P-19)
+here. `BOARD.md` itself is the lock and is always writable: a session that
+finds another writer named *and gone* takes the lock and records the
+takeover in `RECORD.md`. Enforced by the guard (0.2.5). (P-2, P-19)
 
 **Rule W-17 — workers commit to `main`.** Nothing is branched and nothing is
 merged; one writer per repository makes both redundant. (P-3)

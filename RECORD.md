@@ -36,3 +36,9 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
 - 0.2.4 in progress: five agent definitions written; their live tests
   (names, skill preload, web tools, the auditor's inability to write, nesting,
   and 0.2.2's dry read) wait for a fresh session in the workbench
+- 0.2.5 done: the guard scopes on the project directory, follows `cd`
+  anywhere, enforces claims and the workbench writer; 73 cases, 29 ms a call.
+  Two design findings: the board is the lock and must stay writable, and the
+  hook's session id is the UUID, not the cloud id. The board's writer line
+  was rewritten once through the interpreter hole to recover from the
+  lockout the first rule caused — recorded here so it is never a precedent

@@ -29,7 +29,10 @@ expensive.
 ## The guard
 
 `tools/guard_compiler_tree.py` runs as a `PreToolUse` hook on every `Bash`,
-`Write` and `Edit`, and refuses writes into the compiler tree from any session
-outside it. `tools/test_guard.py` is its control; it prints its case count,
-and more than a third of the cases are false-positive controls, because a
-guard with false positives gets disabled — which is worse than no guard.
+`Write` and `Edit`. It refuses writes into the compiler tree from any session
+outside it, writes into a library or application the board does not show
+claimed, and writes into the workbench by any session but the one the board
+names as its writer — the board itself excepted, because it is the lock.
+`tools/test_guard.py` is its control; it prints its case count, and more than
+a third of the cases are false-positive controls, because a guard with false
+positives gets disabled — which is worse than no guard.

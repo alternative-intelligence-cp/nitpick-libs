@@ -92,14 +92,24 @@ a guarantee. Hard constraints — the compiler tree being read-only above all �
 belong in `settings.json` permissions or a hook, where they are enforced rather
 than requested.
 
-## The compiler tree is enforced read-only
+## The guard
 
-`tools/guard_compiler_tree.py` runs as a `PreToolUse` hook on `Bash`, `Write`
-and `Edit`, and refuses writes into `REPOS/nitpick` from any session outside it.
-It is **self-scoping**: a session whose working directory is inside the compiler
-is allowed everything, so work on the compiler itself is untouched.
+`tools/guard_compiler_tree.py` runs as a `PreToolUse` hook on `Bash`, `Write`,
+`Edit` and `NotebookEdit`, and enforces three rules by the **target** of a
+write, never by what a command mentions:
 
-Install it once, in `~/.claude/settings.json`:
+1. **The compiler tree is read-only** from any session started outside it.
+2. **A library or application repository is written only when `BOARD.md`
+   shows it claimed** (W-7), unless the session was started inside that
+   repository.
+3. **The workbench's own files are written only by the session the board's
+   `Workbench writer:` line names** (W-16). The board itself is exempt — it
+   is the lock, taking it is always possible and always in the history, and
+   the session refused afterwards is the one that lost it.
+
+It scopes on the session's project directory, not on the shell's current
+directory, because the latter follows `cd`. Install it once, in
+`~/.claude/settings.json`:
 
 ```json
 { "hooks": { "PreToolUse": [ {
@@ -109,11 +119,13 @@ Install it once, in `~/.claude/settings.json`:
 } ] } }
 ```
 
-`tools/test_guard.py` is its control — 36 cases, **21 of them false-positive
-controls**, because the first version refused a write to `START.md` when that
-file's heredoc body mentioned the compiler. A guard with false positives gets
-disabled, which is worse than no guard.
+`tools/test_guard.py` is its control. It builds a fixture in a temporary
+directory and prints its case count; more than a third of the cases are
+false-positive controls, because the first version refused a write to
+`START.md` when that file's heredoc body mentioned the compiler, and a guard
+with false positives gets disabled — which is worse than no guard.
 
-**The limit, stated:** an interpreter heredoc that writes cannot be classified
-by inspecting the command text. The airtight mechanism is the sandbox's
-`filesystem.denyWrite`.
+**The limits, stated:** an interpreter heredoc that writes cannot be classified
+from the command text, and a target containing an unexpanded variable cannot be
+resolved and is not judged. The airtight mechanism for the first is the
+sandbox's `filesystem.denyWrite`.

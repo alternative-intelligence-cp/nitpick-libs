@@ -11,8 +11,9 @@ blocked, what is done. The durable plan is
 
 **Last updated:** 2026-09-03 · **Width:** 0 — no orchestrator running ·
 **Toolchain:** none pinned yet (W-18)
-**Workbench writer:** `session_017B21dLeQkeSBq3irxofXNJ` since 2026-09-03 —
-the author's planning session, executing `meta/roadmap/0.2/`. One writer here
+**Workbench writer:** `19afbe0e-419e-49e5-86db-c4d8260e417a` since 2026-09-03 —
+the author's planning session (cloud id `session_017B21dLeQkeSBq3irxofXNJ`),
+executing `meta/roadmap/0.2/`. One writer here
 (W-16, P-19): if this names a session that is not you, do not write in this
 repository.
 **Phase:** planning complete; the working system is being made to run
