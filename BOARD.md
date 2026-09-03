@@ -38,7 +38,7 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| — | — | — | — | — | — | nothing in flight |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1817` | 2026-09-03 18:17 | `claude-opus-5` | first library subcycle; 0.2.7 §2's dry run one |
 
 ## Questions for the author
 
@@ -82,7 +82,7 @@ what and when, which is the thing the compiler's R8 says the orchestrator owns.
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-time` | 0.0 … 1.0 (10) | — | independent. Smallest first item; finishes early and can take slack |
+| 1 | `nitpick-time` | 0.0 … 1.0 (10) | `CLAIMED s2` | independent. Smallest first item; finishes early and can take slack |
 | 2 | `nitpick-parse` | 0.0 … 1.0 (15) | — | independent |
 | 3 | `nitpick-conflint` | — | `BLOCKED on nitpick-parse 0.11` | repository not created; created at `nparse` 0.12's open (PA-103) |
 

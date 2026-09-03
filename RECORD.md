@@ -185,3 +185,7 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
 - pin: no re-pin. `950bb1d` stands, `SHA256SUMS` verified at startup, the
   compiler still at that commit; W-18's "never re-pin while a claim is in
   flight" and 0.2.7 §8 both point the same way
+- dispatch `s2-ntime-0.0.0-1817` — `nitpick-time` 0.0.0, the eleven language
+  probes, stream 2, `npk:worker` on `claude-opus-5`, toolchain `950bb1d`,
+  tree clean. The first library subcycle in the ecosystem, and 0.2.7 §2's
+  dry run one
