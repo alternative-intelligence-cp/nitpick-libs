@@ -422,3 +422,10 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   Found by `check_refs.py`, which also caught that O-N4 and O-N8 were cited
   in three documents and defined in none — both now registered. The check has
   now paid for itself twice on the day it went live
+- the O-N7 misnumber **never propagated**: the compiler session confirms its
+  `OPEN_DECISIONS.md` §2f had only ever cited O-N4, for DEF-1, and DEF-2 now
+  carries "their O-N8" as a cross-reference. So the cost of the mistake was
+  one message and three renumbered lines, caught inside the hour by
+  `check_refs.py` rather than by a reader six weeks later. It also agrees the
+  exit-code discipline generalises — two unrelated fast-fail causes under one
+  rule — and will cite it when 1.5.1b's measurement stage is written
