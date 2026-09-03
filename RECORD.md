@@ -31,3 +31,5 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
 - 0.2.2 done: the orchestrate skill carries the loop, the stop list, the
   dispatch template, the pin, recovery and escalation; `START.md` is one line
   plus arguments
+- 0.2.3 done: the research skill, the currency table in planning and
+  auditing, the first research request written for the POSIX edition (Q-1)

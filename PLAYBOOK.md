@@ -404,3 +404,6 @@ design fresh.
 - Every cross-reference resolves, every decision cited is defined, every
   decision defined is cited.
 - **No cycle is blocked on a decision.**
+- Every external dependency — a standard, a data release, a corpus, a
+  reference implementation — is a row in `meta/research/CURRENCY.md` with the
+  date it was checked (`skills/research/SKILL.md` §7).

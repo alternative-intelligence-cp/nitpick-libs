@@ -10,7 +10,9 @@ allowed-tools: Bash(git *) Bash(gh *) Bash(mkdir *) Bash(python3 *) Read Write E
 **A repository is not finished at `git init`.** The complete unit is: the local
 scaffold and a first commit, the GitHub repository created under
 `alternative-intelligence-cp` and pushed, and a description and topics set. Do
-all three in one pass.
+all three in one pass. **Repository creation is never delegated** (W-26): the
+orchestrator or the author runs this skill, because it is outward-facing and
+it edits the registry.
 
 ## 1. Claim the names first
 
@@ -36,8 +38,8 @@ tools/          generators; everything they emit is committed and
                 regeneration-checked
 examples/       built AND run by the harness, so a broken example is a red run
 docs/           written at 1.0
-meta/           specs/, DECISIONS.md, OPEN_QUESTIONS.md, roadmap/, research/,
-                scratch/
+meta/           specs/, DECISIONS.md, OPEN_QUESTIONS.md, roadmap/, research/
+                (with CURRENCY.md — skills/research/SKILL.md §7), scratch/
 ```
 
 **`.gitignore`** — build output, `*.o`, `*.ll` (negating any committed

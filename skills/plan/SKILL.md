@@ -2,7 +2,7 @@
 name: plan
 description: Write an execution-grade plan for a Nitpick ecosystem cycle or a whole new repository — the specification set, the decision log, the open questions, the cycle map, and cycle 0.0. Use when opening a new cycle folder, when planning a library or application from scratch, or when a cycle's subcycle files need writing ahead of the work.
 argument-hint: "[repo] [cycle]"
-allowed-tools: Bash(python3 *) Bash(git *) Bash(grep *) Read Write Edit Grep Glob
+allowed-tools: Bash(python3 *) Bash(git *) Bash(grep *) Read Write Edit Grep Glob WebFetch WebSearch
 ---
 
 # Planning
@@ -60,6 +60,26 @@ Two more that follow from it:
 - **Open items with a recommendation each**, or a stated reason they stay open:
   it is a measurement, it is data, it is gated, it waits for a consumer. "Open"
   with no reason is "forgotten".
+
+## Currency
+
+A plan asserts things about the world outside the compiler tree — a
+standard's edition, a data release, a corpus revision, a reference
+implementation — and every one of them moves. The plan writes
+`meta/research/CURRENCY.md`: one row per such dependency, with the version
+pinned, the date it was checked, the source, and the decision that pins it.
+The shape, the sources that count, and the request and digest formats are
+`skills/research/SKILL.md` §7, §2, §3 and §5; cite them, do not restate them.
+
+- **A cycle whose currency rows are unchecked is not ready to start**, the
+  same rule as for open questions.
+- **A security-sensitive library** has three mandatory research items before
+  its cycle map — known defects in the prior art and reference
+  implementations, the standards body's current guidance, the current test
+  vectors — re-run at hardening (`skills/research/SKILL.md` §8). A finding
+  there is a cycle-0.0 probe before it is anything else.
+- **The model's knowledge is months old.** Anything the plan calls "current"
+  without a date beside it is a currency row waiting to be found.
 
 ## Probes, spikes, and the difference
 

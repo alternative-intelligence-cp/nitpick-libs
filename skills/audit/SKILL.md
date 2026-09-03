@@ -1,7 +1,7 @@
 ---
 name: audit
 description: Adversarially audit a Nitpick ecosystem repository or the whole ecosystem — diff every document against the thing it describes, re-verify every claim about the compiler against its actual source, find dormant rules, stale cross-references and cross-repository contradictions, and REPORT without fixing. Use before a cycle close, before a release, when two documents seem to disagree, or on a schedule.
-allowed-tools: Bash(python3 *) Bash(git *) Bash(grep *) Bash(rg *) Read Grep Glob
+allowed-tools: Bash(python3 *) Bash(git *) Bash(grep *) Bash(rg *) Read Grep Glob WebFetch WebSearch
 ---
 
 # Auditing
@@ -50,6 +50,21 @@ source and check it**. `REPOS/nitpick/` is read-only and entirely readable.
 
 **A claim that cites only another document in this ecosystem is not verified.**
 Follow it to the primary source or record it as unverified.
+
+### 1b. Claims about the world outside the compiler
+
+The same discipline, pointed outward. Every claim of an external version,
+edition, release or known defect is re-verified at its **primary** source —
+the standards body, the registry, the upstream tracker — with one fetch
+inline, or a RESEARCH REQUEST to the researcher agent beyond that
+(`skills/research/SKILL.md` §2, §3). Then:
+
+- a `meta/research/CURRENCY.md` row unchecked for six months is `stale`
+- a `security` digest older than ninety days is `stale`
+- an external claim with no digest or currency row behind it is an
+  `unverified claim`
+- a plan that names an edition or version without a date beside it is an
+  `unverified claim`, because "current" is not a date
 
 ### 2. Cross-repository contradiction
 
