@@ -66,6 +66,17 @@ list of the ones that reach a library.
 | there is no format-specifier language | D-053 | no `printf`, no `strftime`. Formatting is ordinary functions returning `string`, spliced by `&{ }` |
 | `Default` and `Display` are not derivable | D-123 | a default that carries meaning is a value nobody chose |
 | operator overloading is forbidden | OP_REFERENCE | `a.eq(b)`, not `==`, on anything that is not a scalar |
+| **the runtime installs no signal disposition, for anything** | measured: no `rt_sigaction` in `npkrt.ll` | **every signal's default is live.** `SIGPIPE` terminates the process. A write to a pipe or socket whose peer died is lethal unless you passed `MSG_NOSIGNAL` (`send` only) or blocked the signal |
+
+> **The last row cost this ecosystem a shipped specification error.** `ntui`
+> stated that `SIGPIPE` could be left unblocked *"because the floor already
+> returns `EPIPE`"* — true of the case being thought about (a hung-up **tty**
+> returns `EIO`) and false in general. `nitpick-sockets` caught it by grepping
+> the runtime instead of accepting the claim; `ntui`'s T-113 is the correction.
+> **Check the disposition, do not assume it**, and note that the right answer
+> differs by library: a passive library passes `MSG_NOSIGNAL` and must not
+> alter its host's signal state, while one that already owns the process's
+> signals blocks it.
 
 **Read `../nitpick/meta/specs/` rather than trusting this table.** It is a
 summary of documents that are themselves the summary, and the compiler is
@@ -124,6 +135,15 @@ The two properties that make a library in this ecosystem worth the trouble.
   reverse and check the round trip.* A parser has one for free (parse ∘ print).
   This catches the bugs that produce plausible-looking output, and nothing else
   does.
+- **Where a library has several implementations of one operation, require them
+  to agree.** `nitpick-regex` has four engines plus a deliberately naive
+  reference, and their agreement is a stronger oracle than any written
+  expectation could be: **an optimisation that changes an answer is caught by
+  the run that disables it, and by nothing else.** The reference implementation
+  is written to be obviously correct and never to be fast.
+- **The oracle stage is named for what it does, not for `ntui`'s.** "Golden" is
+  a terminal library's word. A parser's is `roundtrip`, a regex library's is
+  `agree`. Name yours after the property it checks.
 - **A real conformance corpus is the gate**, where one exists. `nitpick-tui`'s
   segmenter is gated on the UCD's own `GraphemeBreakTest.txt`, not on
   hand-written cases, because hand-written cases test the rules the author
@@ -137,9 +157,18 @@ Most of these libraries parse or receive bytes somebody else controls. In a
 language whose selling point is that a failure is a controlled stop, an input
 that can stop the program is a defect.
 
+- **An accumulator over attacker-controlled digits is the highest-risk line in
+  any of these libraries.** `acc = acc * 10 + d` traps on overflow (D-210), so
+  a 23-digit number in a JSON document, a length prefix on a socket, or a year
+  in a timestamp is a **remote denial of service** — a failure C and Rust do
+  not have, because both wrap. Route every input-derived multiply through one
+  checked helper, and grep for the ones that are not.
 - **No native recursion on attacker-controlled depth.** A recursive-descent
   parser on `[[[[[…` blows the stack, and the language has no stack guard. Use
-  an explicit stack with a stated depth limit.
+  an explicit stack with a stated depth limit — **and remember the walk, the
+  compare, the print and the drop**, because a tree built by a depth-bounded
+  parser and freed by a recursive drop overflows at the end of a *successful*
+  parse.
 - **Every bound is a named constant in one file**, every one is exercised by a
   case sitting exactly on it and one exceeding it, and none of them is a
   `while` loop over attacker-controlled length without one.
@@ -197,6 +226,13 @@ meta/      specs, DECISIONS.md, OPEN_QUESTIONS.md, roadmap, research, scratch
 own — because an entry naming an empty directory is a suite that reports green
 while checking nothing.
 
+**Reserved-word substitutions are ecosystem-wide, not per library.** §10's
+table says which ordinary-looking names are taken; the replacements are shared
+so the fourth library does not invent a fourth spelling: **`descr`** for a raw
+descriptor number, **`sink`** for a byte destination, **`src`** for a byte
+origin, **`hi`** for an upper bound, **`bound`** for a constraint,
+**`cap_set`** for a capability set, **`mode_bits`** for a mode mask.
+
 **Decision prefixes** are per library and distinct, because single letters are
 already used for *rule* prefixes inside spec documents (`S-1` in a safety doc,
 `X-1` in a text doc, and so on):
@@ -210,6 +246,12 @@ already used for *rule* prefixes inside spec documents (`S-1` in a safety doc,
 | `nitpick-time` | `TM-` |
 
 `D-nnn` always means the **compiler's** decisions and is never ours to amend.
+
+**A specification's internal rule prefix must not collide with `O-N`, `O-x` or
+`Q-` either.** Rule prefixes are single letters scoped to their document (`S-1`
+in a safety doc, `X-1` in a text one), and it is easy to reach for `Q-` in a
+verification document or `O-N` in an "options" one — `nitpick-sockets` did
+both, and had to renumber. Check before you number.
 
 **Open-question prefixes**: `O-x` is ours, `O-N` is a gap in the compiler or
 its tooling to be raised as a request, `Q-` is a question for the project's
@@ -230,6 +272,13 @@ was reached.
 - **The riskiest thing early**, not the thing most depends on. Everything above
   a device boundary is testable against a double, so the device goes early
   because it is where the unknowns are.
+- **A probe answers "is this spellable"; a spike answers "how big is this
+  actually".** When a cycle-0.0 risk is a *measurement* rather than a language
+  question — how large is the compiled tzdb, what does the event stream cost
+  per byte, how many steps does this engine take — the instrument is a spike,
+  with **the thresholds decided in advance**, so that a bad number produces a
+  stop rather than an improvisation. `nitpick-time` added one as 0.0.5 and it
+  is what turned "compile the tzdb in" from a preference into a decision.
 - **Instruments precede the constructs they guard.** The oracle is written and
   tested before the thing it judges, so the thing is developed against a
   checker that already works.

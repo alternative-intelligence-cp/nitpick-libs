@@ -8,11 +8,16 @@ neither is taken twice.
 
 | Repository | Package | Decisions | What it is | State |
 |---|---|---|---|---|
-| [`nitpick-tui`](https://github.com/alternative-intelligence-cp/nitpick-tui) | `ntui` | `T-` | terminal user interface | **planned** — 16 specs, 66 decisions, 18 cycles mapped, cycle 0.0 execution-grade. No code. |
-| [`nitpick-parse`](https://github.com/alternative-intelligence-cp/nitpick-parse) | `nparse` | `PA-` | multi-format parsing over one event stream, with format plugins | planning |
-| [`nitpick-regex`](https://github.com/alternative-intelligence-cp/nitpick-regex) | `nregex` | `RX-` | regular expressions | planning |
-| [`nitpick-sockets`](https://github.com/alternative-intelligence-cp/nitpick-sockets) | `nsockets` | `SK-` | the BSD socket surface — AF_UNIX, TCP and UDP over IPv4/IPv6 | planning |
-| [`nitpick-time`](https://github.com/alternative-intelligence-cp/nitpick-time) | `ntime` | `TM-` | dates, times, durations and zones | planning |
+| [`nitpick-tui`](https://github.com/alternative-intelligence-cp/nitpick-tui) | `ntui` | `T-` | terminal user interface | **planned** — 16 specs, 67 decisions, 18 cycles, 0.0 execution-grade |
+| [`nitpick-parse`](https://github.com/alternative-intelligence-cp/nitpick-parse) | `nparse` | `PA-` | multi-format parsing over one event stream, with format plugins | **planned** — 13 specs, 43 decisions, 15 cycles, 0.0 execution-grade |
+| [`nitpick-regex`](https://github.com/alternative-intelligence-cp/nitpick-regex) | `nregex` | `RX-` | regular expressions, linear time guaranteed | **planned** — 14 specs, 37 decisions, 16 cycles, 0.0 execution-grade |
+| [`nitpick-sockets`](https://github.com/alternative-intelligence-cp/nitpick-sockets) | `nsockets` | `SK-` | the BSD socket surface — AF_UNIX, TCP and UDP over IPv4/IPv6 | **planned** — 14 specs, 35 decisions, 12 cycles, 0.0 execution-grade |
+| [`nitpick-time`](https://github.com/alternative-intelligence-cp/nitpick-time) | `ntime` | `TM-` | dates, times, durations and zones | **planned** — 13 specs, 30 decisions, 10 cycles, 0.0 execution-grade |
+
+**No library has any code yet.** "Planned" means the specification set, the
+decision log and the cycle map are written and cycle 0.0 is execution-grade.
+Implementation waits on the compiler, and is deliberately serial — one library
+at a time, beside the compiler's own work.
 
 ## Why the prefixes are what they are
 
@@ -54,6 +59,39 @@ recorded as an open question in **both**, and resolved when resolution lands.
 |---|---|---|
 | Unicode tables — character classes, case folding, property lookups | `ntui`, `nregex` | an `O-x` in each |
 | datetime scanning — TOML carries four datetime types | `nparse`, `ntime` | an `O-x` in each |
+| generated, version-pinned data tables committed as source | `ntui` (UCD), `nregex` (UCD), `ntime` (IANA tzdb) | one shape, three instances — the pattern is `ntui`'s T-021 |
+| an accumulator over untrusted digits | all five | the playbook's §5, because it is a language-wide hazard rather than a library one |
+
+## What the first five taught
+
+Findings from the planning passes that outlived the library that found them.
+Each is now in `PLAYBOOK.md`; they are listed here because they are the
+evidence for why it says what it says.
+
+- **The runtime installs no signal disposition, for anything.** Measured by
+  `nitpick-sockets` — no `rt_sigaction` in `npkrt.ll` — after `ntui` had
+  already shipped a specification claiming the opposite. `SIGPIPE`'s default is
+  live and it terminates the process. `ntui`'s T-113 is the correction, and the
+  right answer differs by library: a passive one passes `MSG_NOSIGNAL`, one
+  that already owns the process's signals blocks it.
+- **`acc = acc * 10 + d` is a remote denial of service.** D-210 traps on
+  overflow, so a 23-digit number in a document, a length prefix on a socket or
+  a year in a timestamp stops the program. C and Rust both wrap; this ecosystem
+  does not. Found by `nitpick-parse`.
+- **A backtracking regex cannot be rescued by a timeout here**, because D-062
+  leaves no way to name a task and therefore nothing to cancel — and a
+  CPU-bound loop never reaches an `await` to observe a wind-up request, so the
+  scope-exit join hits its deadline and traps the whole program. Found by
+  `nitpick-regex`, and it is why that library is automata-only.
+- **An `arena<T>` element may not own anything.** `get` returns a copy (D-152)
+  and owning values are move-only (TYPE-046), so a node holding a `string` does
+  not compile — it is not a performance question. Found by `nitpick-parse`,
+  raised as a request for one clarifying sentence in the compiler's
+  `MEMORY_REFERENCE.md`.
+- **The prototype's parsers are unbuildable, not merely unfashionable**: they
+  keep their state in bare mutable module-level bindings, which D-211 has
+  refused since 1.4.2b. Stronger evidence for "rewrite, do not port" than the
+  duplication argument alone.
 
 ## Prior art
 
