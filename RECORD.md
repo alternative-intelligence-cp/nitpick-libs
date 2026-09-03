@@ -317,3 +317,27 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   (W-7, W-15): a second worker into `nitpick-time` now would be the exact
   collision the board exists to prevent, so the answer is queued rather than
   acted on immediately
+- report `s2-ntime-0.0.0-1902` **STOPPED** (unchanged status, the record
+  errand only), 66,911 tokens, 5.2 minutes, 25 tool uses. Commit `8066e62`
+  on `main`, subject `cycle 0.0.0:`, trailer exactly the attribution passed
+  in the dispatch and no model of its own
+- check `s2-ntime-0.0.0-1902` **PASS** — `check_record.py nitpick-time 0.0.0`
+  exits 0, "record clean". The re-dispatch closed the W-20 gap it was sent
+  for and did nothing else: no probe written, no verdict changed, the
+  30 000-row case not re-run
+- **write scope held.** `git status --porcelain` in `nitpick-parse`,
+  `nitpick-regex`, `nitpick-sockets`, `nitpick-tui` and
+  `nitpick-apps/nitpick-posix`: zero changes in every one. Every write of
+  this subcycle landed under `nitpick-time/`, which is 0.2.7 §2's line and
+  the guard's whole purpose
+- dispatch `verify-ntime-0.0.0` — the verifier on `8066e62`, six checks.
+  Dispatched **after** the record worker rather than beside it: both would
+  have been in `nitpick-time` at once, and a verifier that runs `git status`
+  while a worker writes gets a spurious FAIL. W-7 costs two minutes here and
+  is worth them. Two constraints in the brief that are worth keeping for
+  every later verification of this kind: it is **barred** from compiling
+  probe 04 (281 s, 30.9 GiB would drive this machine into swap while other
+  sessions work on it) and capped at ~2 GiB RSS with `/usr/bin/time` on
+  every compile; and it is asked to **regenerate O-N4's curve independently**
+  at 1 000/2 000/4 000 rows, because those numbers have already gone to the
+  compiler session and a wrong defect report costs that session real time
