@@ -291,3 +291,13 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   working another probe or re-running the 30 000-row case
 - dispatch `s2-ntime-0.0.0-1902` — the record only, tree dirty. The stream is
   stopped on O-N4 either way; this is W-20, not progress
+- **Q-2 routed, not relayed.** O-N4 and Q-4's narrow resolver defect sent to
+  peer session `nitpick-76` over `SendMessage` at 19:06 — the compiler
+  session, identified as the `nitpick-…` peer that was in `shell` state
+  mid-harness at startup and that answered the pin-provenance question at
+  18:08. Sent with all three curves, the three locating controls, the
+  measurement-discipline warning about PICK-003/REACH-002 early exits, and
+  the reproduction path; explicitly asking for no schedule. It is told to say
+  so if it is not the session working `npkc`'s frontend. The author's
+  standing instruction is to ask the implementing agent rather than route a
+  question through him, and W-11's escalation is the orchestrator's to make
