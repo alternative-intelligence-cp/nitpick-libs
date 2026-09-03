@@ -16,8 +16,9 @@ neither is taken twice.
 
 **No library has any code yet.** "Planned" means the specification set, the
 decision log and the cycle map are written and cycle 0.0 is execution-grade.
-Implementation waits on the compiler, and is deliberately serial — one library
-at a time, beside the compiler's own work.
+Implementation is partitioned into streams by [`WORKSTREAMS.md`](WORKSTREAMS.md);
+the number of streams running at once is a per-session choice, and one is
+always a coherent plan (W-5).
 
 ## Why the prefixes are what they are
 

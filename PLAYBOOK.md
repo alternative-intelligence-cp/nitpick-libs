@@ -292,7 +292,9 @@ both, and had to renumber. Check before you number.
 its tooling to be raised as a request, `Q-` is a question for the project's
 author. A question that gets answered is **struck through with its decision
 number, never deleted** — the question is part of the record of how the answer
-was reached.
+was reached. An `O-N` id used outside its repository is the workbench
+registry's id (`meta/OPEN_QUESTIONS.md` §"For the compiler"), because the
+per-repository numbers collide.
 
 ---
 

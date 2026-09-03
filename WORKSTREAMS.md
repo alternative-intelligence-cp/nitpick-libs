@@ -26,6 +26,10 @@ What the compiler *does* gate, exhaustively:
 | **O-N5** — `npkg` builds many artifacts | `nitpick-posix`'s build | nothing; the harness does it |
 | ~~**O-N6**~~ — a macro can splice a `pick` into a function body | **`nitpick-posix`'s entire shape** (PX-010) | **CLOSED 2026-09-03, negative.** It cannot, and a macro cannot be shared between modules at all. `failsafe` is generated (PX-100). The one real unknown is now a known |
 
+The `O-N` ids above are the workbench registry's —
+[`meta/OPEN_QUESTIONS.md`](meta/OPEN_QUESTIONS.md) §"For the compiler" —
+because each repository numbers its own requests and the numbers collide.
+
 **Rule W-1 — DISCHARGED 2026-09-03.** *O-N6 was answered before `nitpick-posix` was scheduled into a stream, which is what the rule asked for; the answer was negative and cost part of one day at cycle 0.0. Kept below as written, because the next repository with a load-bearing unknown gets the same treatment.* — O-N6 is answered before `nitpick-posix` is scheduled into a
 stream.** It is one probe, it takes an afternoon, and a negative answer
 replans a fourteen-cycle repository. Run it early and out of band.
@@ -162,6 +166,65 @@ first.
 **Rule W-13 — independently green is not green.** R3. Where two streams have
 touched anything shared — the playbook, a registry, a workbench document — the
 orchestrator merges and re-checks rather than collecting green branches.
+
+**Rule W-15 — the unit of delegation is the subcycle.** One fresh worker per
+subcycle; the claim covers the repository for the cycle; the handoff between
+subcycles is the execution record. (`meta/roadmap/0.2/README.md` P-1)
+
+**Rule W-16 — the workbench repositories have one writer: the orchestrator.**
+A worker, planner, auditor or researcher writes nothing under `nitpick-libs/`
+or `nitpick-apps/` roots. Findings for the playbook travel in the report and
+the orchestrator lands them. The writer is named on the board's header
+(`Workbench writer:`); a session that finds another named does not write
+here. (P-2, P-19)
+
+**Rule W-17 — workers commit to `main`.** Nothing is branched and nothing is
+merged; one writer per repository makes both redundant. (P-3)
+
+**Rule W-18 — the toolchain is pinned.** The orchestrator copies `npkc` and
+`npkrt.o` out of the compiler's `build/` into `.internal/toolchain/<commit>/`,
+records the commit on the board, and passes the paths to every worker. A
+worker never reads `../nitpick/build/` and never builds the compiler. A re-pin
+happens between cycles, by the orchestrator, and is recorded. (P-4)
+
+**Rule W-19 — a claim is recoverable.** The board's in-flight table names the
+subcycle, the agent label, the start time and the model for every claim. A
+claim with no live agent in the current session is stale, and the orchestrate
+skill's recovery procedure runs before any dispatch. (P-5)
+
+**Rule W-20 — a report has one shape, in two places.** The worker's final
+message and the subcycle's committed execution record both carry the REPORT
+block the worker skill defines; `check_record.py` verifies the committed one.
+(P-6)
+
+**Rule W-21 — release needs a verifier.** Before a claim is released or a
+subcycle is marked done on the board, a verifier re-runs the reference check,
+the record check and the harness or probe commands on the committed tree.
+Independently green is not green; reported green is not green either. (P-7)
+
+**Rule W-22 — the audit precedes the close.** A cycle's last subcycle reports
+READY-TO-CLOSE; the auditor runs and writes nothing; the orchestrator files the
+report under `meta/audits/`; the close worker triages every finding. After
+every third cycle close, an ecosystem-wide audit. (P-8)
+
+**Rule W-23 — a stop stops its stream.** A compiler defect, a missing
+decision, a wrong specification, a contested repository, a negative probe, or
+an ambiguity stops the stream that found it and nothing else. Questions are
+batched with a recommendation each and sent when every running stream is
+stopped, the batch holds three, or four hours have passed. (P-11)
+
+**Rule W-24 — width is an argument.** Default one; never more than one worker
+per stream; helper agents do not count and never run two of a kind. (P-12)
+
+**Rule W-25 — research has a shape.** One fetch may be inline; more goes to
+the researcher agent, who never writes into a repository. The requesting
+writer files the digest under `meta/research/` with the date checked; a
+decision cites the digest; a security-sensitive digest is stale after ninety
+days; language facts are never researched on the web. (P-14)
+
+**Rule W-26 — repository creation is never delegated.** It is outward-facing
+and it edits the registry, so the orchestrator or the author runs
+`/npk:new-repo`. (P-18)
 
 ---
 

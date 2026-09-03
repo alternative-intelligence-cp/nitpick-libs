@@ -2,15 +2,21 @@
 
 **Live state.** What each stream is working on, what is claimed, what is
 blocked, what is done. The durable plan is
-[`WORKSTREAMS.md`](WORKSTREAMS.md).
+[`WORKSTREAMS.md`](WORKSTREAMS.md); the past is [`RECORD.md`](RECORD.md).
 
 > **The orchestrator owns this file** (W-8). An agent working a stream does not
-> edit it — the orchestrator claims before the session starts and releases when
-> the cycle closes. That is what keeps two agents out of one repository and
-> removes every merge conflict by construction.
+> edit it — the orchestrator claims before a worker is dispatched and releases
+> when the stream leaves the repository. That is what keeps two agents out of
+> one repository and removes every merge conflict by construction.
 
-**Last updated:** 2026-09-03 · **Streams running:** 0 · **Phase:** planning
-complete, implementation not started
+**Last updated:** 2026-09-03 · **Width:** 0 — no orchestrator running ·
+**Toolchain:** none pinned yet (W-18)
+**Workbench writer:** `session_017B21dLeQkeSBq3irxofXNJ` since 2026-09-03 —
+the author's planning session, executing `meta/roadmap/0.2/`. One writer here
+(W-16, P-19): if this names a session that is not you, do not write in this
+repository.
+**Phase:** planning complete; the working system is being made to run
+(cycle 0.2); library implementation not started.
 
 ---
 
@@ -19,21 +25,42 @@ complete, implementation not started
 | State | Means |
 |---|---|
 | `—` | not started, not claimed, nothing blocking it |
-| `CLAIMED s1` | stream 1 owns this repository right now; nobody else touches it |
-| `BLOCKED on X` | cannot start until X closes; the reason is always a named cycle, never "waiting" |
-| `DONE` | closed, archived to `done/`, and the next cycle's file written |
+| `CLAIMED sN` | stream N owns this repository; the in-flight table says what it is doing |
+| `BLOCKED on <repo> <cycle>` | cannot start until that cycle is DONE; the reason is always a named cycle, never "waiting" |
+| `DONE` | every cycle closed and archived to `done/` |
+
+---
+
+## In flight
+
+| Stream | Repository | Subcycle | Agent label | Since | Model | Note |
+|---|---|---|---|---|---|---|
+| — | — | — | — | — | — | nothing in flight |
+
+## Questions for the author
+
+| # | Stream | Raised | Question | Recommendation |
+|---|---|---|---|---|
+| — | — | — | nothing pending | — |
 
 ---
 
 ## Claim protocol
 
-1. The orchestrator writes `CLAIMED sN` against the **repository**, not the
-   cycle — a stream owns the whole repository while it works on it (W-7).
-2. The agent works the cycle named in `WORKSTREAMS.md`'s order for that stream.
-3. The cycle closes: full harness green, findings recorded, the next subcycle
-   file written execution-grade.
-4. The orchestrator moves the row to `DONE`, releases the claim, and checks
-   whether any `BLOCKED` row just became available (W-9).
+1. The orchestrator writes `CLAIMED sN` against the **repository** in its
+   stream table — a stream owns the whole repository while it works on it
+   (W-7) — and a row in the in-flight table naming the subcycle, the agent
+   label (`s<N>-<pkg>-<cycle>.<sub>-<HHMM>`), the time and the model. One
+   commit: `board: claim <repo> <cycle>.<sub> for sN`.
+2. One worker works that subcycle (W-15). When it reports, the verifier runs
+   (W-21).
+3. On PASS the in-flight row advances to the next subcycle. At a cycle's
+   close the claim advances to the repository's next cycle if its gate is
+   ready, else to its next ungated cycle (W-9), else it is released and the
+   row removed: `board: release <repo>`. Then check whether any `BLOCKED`
+   row just became free.
+4. A claim with no live agent in the current session is stale — the
+   orchestrate skill's recovery procedure runs before any dispatch (W-19).
 
 **A claim is a commit.** The history of this file is the record of who worked
 what and when, which is the thing the compiler's R8 says the orchestrator owns.
@@ -61,7 +88,7 @@ what and when, which is the thing the compiler's R8 says the orchestrator owns.
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
 | 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | independent |
-| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | `READY` | **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready |
+| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | — | **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready |
 
 ---
 
@@ -88,7 +115,9 @@ still finishing it. If stream 3 arrives first it takes `nitpick-posix` 0.12
 ## Compiler dependencies
 
 Nothing here blocks implementation. Recorded so that a stream reaching its
-hardening cycle knows what it is waiting for.
+hardening cycle knows what it is waiting for. The ids are the workbench
+registry's ([`meta/OPEN_QUESTIONS.md`](meta/OPEN_QUESTIONS.md) §"For the
+compiler"), because `O-N` numbers are per repository and collide.
 
 | Compiler | Needed by | State |
 |---|---|---|
