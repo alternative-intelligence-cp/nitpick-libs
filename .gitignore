@@ -11,6 +11,9 @@
 !/.claude-plugin/
 !/skills/
 !/tools/
+!/meta/
+!/agents/
+!/hooks/
 
 # Gitignored scratch. Never commit anything from here.
 .internal
