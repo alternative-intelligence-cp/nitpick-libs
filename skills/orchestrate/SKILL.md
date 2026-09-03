@@ -85,8 +85,13 @@ from uncommitted changes: its label is the nearest commit, not its
 provenance, and nothing can tell them apart afterwards. Prefer a clean
 moment when one is near; when none is — the compiler session works for
 hours at a time — pin anyway and carry the word, because a fixed binary
-with a recorded hash is still what W-18 wants. Copying *out* of the
-compiler tree is a read; the guard allows it. The **absolute** paths go to
+with a recorded hash is still what W-18 wants. A dirty tree is not by
+itself a dirty binary — `build/` may predate the edits — and the session
+working the compiler tree is the one that knows: with `tree dirty`, ask it
+over `SendMessage` (the busy `nitpick-…` peer in `ListAgents`) whether
+`build/` was written since the edits began, and record its answer as a
+`binary` line in `PIN.md`. Copying *out* of the compiler tree is a read;
+the guard allows it. The **absolute** paths go to
 workers in the prompt; the board carries the relative one, because it is
 tracked and public.
 

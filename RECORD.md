@@ -155,3 +155,9 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   and nothing can tell afterwards. §3 now writes `tree clean|dirty` into
   PIN.md and onto the `pin` line; the existing pin is marked `tree
   unknown`. Landed against 0.2.2; seen at 0.2.7's precondition check
+- question answered (the pin's provenance, asked of the compiler session
+  over SendMessage): the tree was dirty at 17:12 with uncommitted 1.5.1
+  frontend edits, but build/ had not been rewritten since the 1.5.0 close's
+  parity run, so the pinned npkc is 950bb1d's own build. PIN.md says so;
+  orchestrate §3 now asks the compiler session when the tree is dirty and
+  records a `binary` line. Landed against 0.2.2
