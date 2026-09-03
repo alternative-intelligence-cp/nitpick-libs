@@ -215,7 +215,7 @@ later reader will propose. The durable ones become `W-` rules in 0.2.0.
 - [x] 0.2.3 — `skills/research/SKILL.md`; request and digest shapes; currency items in `plan`; external claims in `audit`; the inline threshold in `worker`
 - [x] 0.2.4 — five agent definitions; each preloads its skill; web tools listed where needed; names confirmed in a live session; the six live tests passed 2026-09-03
 - [x] 0.2.5 — guard scopes on `CLAUDE_PROJECT_DIR`; the `cd`-then-write case blocked; claim enforcement with fixture boards; no `/home/` in a tracked file; docs no longer carry a case count
-- [ ] 0.2.6 — `hooks/hooks.json` with the compaction re-injection; `CLAUDE.md` at the workbench root; the plugin loads without `--plugin-dir`; manifest at 0.2.0 — **done but the live compaction test; version bump waits for 0.2.7**
+- [x] 0.2.6 — `hooks/hooks.json` with the compaction re-injection; `CLAUDE.md` at the workbench root; the plugin loads without `--plugin-dir`; manifest at 0.2.0 — **the live compaction test passed 2026-09-03, both cases; the version bump waits for 0.2.7**
 - [ ] 0.2.7 — dry run one passed its pass mark; dry run two passed or its failure is a recorded finding; measurements recorded; cycle closed to `done/`
 
 ## Gate

@@ -143,3 +143,9 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   (§2.1) said it could not; the step now consults it first — a
   `nitpick-libs-…` peer that is not you is a stop-and-ask, none is the
   takeover path. Landed against 0.2.2; seen in 0.2.6's loud case
+- 0.2.6 done: the silent case passed — the author's second `/compact` in
+  this session, the marker holding no session's id, restored the context
+  with nothing from the hook. Same session, same registration, only the
+  marker changed, so the marker check is what keeps the hook silent
+  elsewhere. The marker holds this session's id again. Next: 0.2.7 §1's
+  preconditions, then dry run one
