@@ -127,6 +127,20 @@ repository would otherwise rediscover them. The first two come from
   **a view is a parameter, never a return value**, and it wants a harness
   check rather than vigilance — any library whose functions take `uint8[]`
   (every parser) is one careless `return` from a silent use-after-free.
+- **`f(g(x))` LEAKS when `g`'s result owns memory, and every Nitpick program
+  pays it today.** Bisected by the compiler session on 2026-09-03 while
+  chasing O-N4: an owning **temporary** that is never bound is never dropped.
+  `t = string_concat(t, "b")` twenty thousand times peaks at 260 KiB, because
+  the overwritten binding frees its old body; `t = string_concat(string_concat(t,
+  "b"), "c")` twenty thousand times peaks at **429 740 KiB**, because the inner
+  result is an unbound temporary passed as an argument and nothing ever frees
+  it. This is D-183's "statement-end temporaries" debt, recorded at the
+  compiler's cycle 1.2 and never scheduled; the fix is proposed as its D-246.
+  **Until it lands, bind the intermediate**: `let a = g(x); f(a)` rather than
+  `f(g(x))`, wherever the inner call returns something owning. It is not a
+  style preference — it is the difference between linear and quadratic memory
+  in any loop that does it per element, and it is why `npkc` itself peaks at
+  11 GiB compiling its own `src/main.npk`.
 - **`_~argv` marks a parameter DISCARDED, not merely unused.** Reading it is
   `NITPICK-TYPE-007`. A probe or program that wants `argv.len` must spell the
   parameter `cstring[]:argv`. Cheap, and it cost a probe a rewrite.

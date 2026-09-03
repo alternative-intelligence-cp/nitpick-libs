@@ -31,6 +31,37 @@ deleted.
   default of one. *Recommendation:* keep one as the default and pass a
   larger width explicitly per session, so the wide case is always a choice.
 
+*The four below were raised by the first orchestrator session on 2026-09-03,
+during cycle 0.2's dry run one. **They were first numbered Q-2, Q-3, Q-4 and
+Q-5 on the board, which collided with Q-2, Q-3 and Q-4 above** — the
+orchestrator numbered from an empty questions table rather than from this
+registry. `check_refs.py` did not catch it, because a re-used number resolves:
+the check finds a question referenced and never defined, not one defined
+twice. That gap is itself a finding. The live documents use the numbers below;
+`RECORD.md` keeps the wrong ones in the entries written before the correction,
+because it is append-only.*
+
+- ~~**Q-5 — should O-N4 be raised against the compiler?**~~ — **ANSWERED
+  2026-09-03, yes**, by W-11 and the author: raised with the compiler session
+  the same hour, accepted as its DEF-1, and never worked around. Numbered
+  `Q-2` on the board when raised.
+- ~~**Q-6 — work `nitpick-time`'s nine O-N4-unaffected probes, or idle the
+  stream?**~~ — **ANSWERED 2026-09-03: work the nine**, at width one, against
+  the current pin; only probe 04's cost waits on the re-pin. Numbered `Q-3`
+  on the board when raised.
+- ~~**Q-7 — should O-N8's narrow resolver defect be raised alongside
+  O-N4?**~~ — **ANSWERED 2026-09-03, yes**, blocking nothing; accepted as the
+  compiler's DEF-2 and scheduled first in 1.5.1b because it is independent.
+  Numbered `Q-4` on the board when raised.
+- ~~**Q-8 — does O-N9 block `nitpick-time` the way O-N4 does?**~~ —
+  **ANSWERED 2026-09-03: yes, blocking**, by the author and **against the
+  orchestrator's recommendation**, which read it as conformance rather than a
+  block. The author's ground: a rule enforced only by a harness check the
+  library writes for itself is a thin guarantee for a use-after-free and
+  protects no consumer. The `SAFETY.md` rule and `check_no_view_returns` are
+  kept as a belt rather than as the guarantee. Numbered `Q-5` on the board
+  when raised.
+
 ## For the compiler — the registry
 
 `O-N` numbering is **per repository**, and the numbers collide: `O-N2` is the

@@ -543,3 +543,37 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   discarded, `NITPICK-TYPE-007` if read. §6 gains **evidence a claim at the
   size you can afford**, with the rule that a committed verbatim transcript
   is evidence and a prose summary is not — which is what failed here
+- **question Q-5-as-numbered (registry Q-8) answered by the author: O-N9 is
+  BLOCKING, against this orchestrator's recommendation.** The recommendation
+  was that obeying a documented language rule is conformance rather than a
+  workaround, so O-N9 need not block. The author ruled otherwise and the
+  ground is a good one: a rule enforced only by a harness check the library
+  writes for itself is a thin guarantee for a use-after-free, it protects
+  only the code that remembers it, and it protects no consumer at all. So
+  `src/fmt/` work waits for the compiler, probes 09 and 10 are held, and the
+  `SAFETY.md` rule plus `check_no_view_returns` are kept as a **belt, not as
+  the guarantee**. Recorded as an override, which is what R8's record is for.
+  The ruling was made **before** the compiler session's scheduling message
+  arrived, so it was decided on the merits and not on the timeline — and it
+  turned out cheap, because DEF-3 lands in 1.5.1b hours out
+- **correction, and a worse one than O-N7 because it resolved silently: the
+  board's questions Q-2, Q-3 and Q-4 collided with three existing questions.**
+  `meta/OPEN_QUESTIONS.md` already held Q-1 (the POSIX edition), Q-2 (the
+  plugin symlink, answered), Q-3 (the sandbox's `denyWrite`) and Q-4 (the
+  default width). I numbered from the board's empty questions table instead of
+  from the registry, so this session's four questions took Q-2, Q-3, Q-4 and
+  Q-5, and three of them silently meant something else. They are now **Q-5,
+  Q-6, Q-7 and Q-8** in the registry, each struck with its answer and each
+  naming the number it briefly carried. `RECORD.md` keeps the wrong numbers
+  in the entries above, being append-only
+- **finding, against `check_refs.py`: it catches a question referenced and
+  never defined, and not a question defined twice.** A re-used number
+  resolves, so the collision above passed every run of the check until a
+  human — this orchestrator, looking at the registry for an unrelated reason —
+  noticed that Q-1 meant the POSIX edition in one file and something else on
+  the board. The `O-N` section of that same file already carries a paragraph
+  explaining that `O-N` numbers collide across repositories and must be
+  registered centrally; the `Q-` section has no such paragraph and needed one.
+  A duplicate-declaration check belongs beside the existing
+  `[duplicate-decision]` rule, which does exactly this for `D-` numbers.
+  Recorded against the check skill (0.2.1) for the workbench's next cycle

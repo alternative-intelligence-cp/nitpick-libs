@@ -38,20 +38,24 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-2003` | 2026-09-03 20:03 | `claude-opus-5` | **STOPPED on O-N4** (W-11) for probe 04 only. Verifier FAIL on two record claims — the committed reproduction's magnitude and probe 04's uncommitted IR evidence; both being corrected in commit 1, then the nine probes (Q-3) in commit 2 |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-2003` | 2026-09-03 20:03 | `claude-opus-5` | **STOPPED on O-N4** (W-11) for probe 04 only. Verifier FAIL on two record claims — the committed reproduction's magnitude and probe 04's uncommitted IR evidence; both being corrected in commit 1, then the nine probes (Q-6) in commit 2 |
 
 ## Questions for the author
 
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
-| Q-5 | s2 | 2026-09-03 20:31 | **O-N9 — a `uint8[]` view escapes its owning frame silently.** `string_bytes` on a local returns a view that outlives its owner with no diagnostic and reads freed memory; the same position with an `@`-borrow is refused (`NITPICK-BORROW-001`, D-004 rule 2). Does this block `nitpick-time` the way O-N4 does, or is it a conformance rule plus a raised defect? Every parser in `src/fmt/` takes a `uint8[]` | **A conformance rule, not a block** — and the worker that found it reads it the same way. Obeying "a view is a parameter, never a return value" is compliance with a *documented* language rule the compiler under-enforces for one type; it is not reshaping the library to dodge a defect, which is what W-11 forbids. Contrast O-N4, where no correct code avoids the cost. So: raise O-N9, add the rule to `SAFETY.md`, and put `check_no_view_returns` on 0.0.3's harness list so it is enforced rather than remembered |
+| — | — | — | nothing pending | — |
 
-**Q-3 answered 2026-09-03 by the author: work the nine.** Probes 02, 03 and
-05–11 proceed against the current `950bb1d` pin; only probe 04's *cost* waits
-on the re-pin. Width stays 1, because [`0.2.7`](meta/roadmap/0.2/0.2.7.md) §5
-gates width two on dry run one passing and dry run one is still open.
-**Q-2 and Q-4 left this table by being raised** — they are with the compiler
-session and are tracked below as O-N4 and O-N8.
+**Q-8 — answered 2026-09-03 by the author: O-N9 is BLOCKING**, like O-N4 —
+**against the recommendation on this board**, which read it as conformance
+rather than a block. Recorded as an override because that is what this table
+is for. The reason it is defensible: a rule enforced only by a harness check
+the library writes for itself is a thin guarantee for a use-after-free, and it
+protects no consumer. So `src/fmt/` work waits for the compiler, probes 09 and
+10 are held, and the `SAFETY.md` rule and `check_no_view_returns` are kept as
+a belt rather than as the guarantee. **Cheaper than it looked when decided:**
+the compiler session has since scheduled the fix as DEF-3 in 1.5.1b, in the
+same batch as O-N4's, hours out.
 
 ---
 
@@ -136,8 +140,8 @@ compiler"), because `O-N` numbers are per repository and collide.
 | O-N1 (`clone_exec` signal mask) | `ntui` 0.1.6, cosmetically | request raised |
 | O-N5 (`npkg` multi-artifact) | `nitpick-posix`'s build | request raised |
 | ~~O-N6~~ (macro splices a `pick`) | `nitpick-posix`'s **shape** | **ANSWERED 2026-09-03: no.** Probe 02, seven programs. A macro is not shareable across modules at all (`MACRO-007`); `failsafe` is generated instead (PX-100). Shape changed, schedule did not |
-| **O-N4** (`npkc` quadratic in one declaration's size) | `nitpick-time` **0.0.5** (the tzdb size spike must compile a real emitted table) and **0.5** (the generator). TM-007's 26 838-row table costs 281 s and 30.9 GiB, so a 16 GiB machine and CI cannot build the library in its shipping shape, and every consumer pays it. It does **not** block 0.0.1–0.0.4, which carry no large declaration | **ACCEPTED 2026-09-03** by the compiler session, which owns `npkc`'s frontend. Recorded there as **DEF-1** (`meta/roadmap/OPEN_DECISIONS.md` §2f) with our numbers, controls and the exit-0 discipline. Proposed: a dedicated subcycle **1.5.1b** after 1.5.1 closes and before 1.5.2, one commit per defect under a full harness, **measured before it is touched so the fix is a number**, `big_fixed_array_cost.npk` as the regression case. Cause not yet confirmed and deliberately not guessed. **The schedule is the author's call.** That session messages us when 1.5.1b opens and again with the re-pin commit |
-| **O-N9** (D-004's escape rule unenforced for slice views) | `nitpick-time` in principle — every `src/fmt/` parser takes a `uint8[]` — but **not blocking**: the house rule "a view is a parameter, never a return value" is conformance, not a workaround | **RAISED 2026-09-03.** `string_bytes(local)` returns a view that outlives its owner at exit 0 and reads freed memory; `@`-borrows in the same position are refused, so the rule is documented and under-enforced for one type. Disposition is Q-5 |
+| **O-N4** (`npkc` quadratic in one declaration's size) | `nitpick-time` **0.0.5** (the tzdb size spike must compile a real emitted table) and **0.5** (the generator). TM-007's 26 838-row table costs 281 s and 30.9 GiB, so a 16 GiB machine and CI cannot build the library in its shipping shape, and every consumer pays it. It does **not** block 0.0.1–0.0.4, which carry no large declaration | **BISECTED 2026-09-03** — the frontend is *linear* on all three axes; the quadratic is three text builders in `src/backend/` that re-concatenate an accumulator per element, per trap site and per byte, compounded by D-183's never-dropped owning temporaries. Neither of the workbench's two relayed hypotheses (identifier length, then total source bytes) survived measurement. Scheduled in **1.5.1b**. **ACCEPTED 2026-09-03** by the compiler session, which owns `npkc`'s frontend. Recorded there as **DEF-1** (`meta/roadmap/OPEN_DECISIONS.md` §2f) with our numbers, controls and the exit-0 discipline. Proposed: a dedicated subcycle **1.5.1b** after 1.5.1 closes and before 1.5.2, one commit per defect under a full harness, **measured before it is touched so the fix is a number**, `big_fixed_array_cost.npk` as the regression case. Cause not yet confirmed and deliberately not guessed. **The schedule is the author's call.** That session messages us when 1.5.1b opens and again with the re-pin commit |
+| **O-N9** (D-004's escape rule unenforced for slice views) | `nitpick-time` in principle — every `src/fmt/` parser takes a `uint8[]` — and **BLOCKING by the author's ruling** — `src/fmt/` work and probes 09/10 wait for the compiler; the house rule "a view is a parameter, never a return value" is kept as a belt, not as the guarantee | **RAISED 2026-09-03.** `string_bytes(local)` returns a view that outlives its owner at exit 0 and reads freed memory; `@`-borrows in the same position are refused, so the rule is documented and under-enforced for one type. **Q-8: the author ruled it BLOCKING.** Accepted by the compiler as **DEF-3**, second of 1.5.1b's five commits — the borrow walk learns that a view-maker's result borrows its operand. The analyses currently name neither `string_bytes` nor `string_from_bytes`; the only view they know is the range-view `arr[lo...hi]` |
 | **O-N8** (`mod:`/basename mismatch merges two files) | nobody — raised for correctness | **ACCEPTED 2026-09-03** as the compiler's **DEF-2**, same §2f, same owner and same 1.5.1b slot. Emits two `define i32 @main` at exit 0 and `llc` refuses the IR; the `NITPICK-RESOLVE-005` diagnostic for the same rule already exists and simply is not applied here. Costs `ntime` nothing |
 
 ---
@@ -149,7 +153,7 @@ into a fact (W-14):
 
 - [x] `nitpick-posix` 0.0.0 **probe 02** — gated a fourteen-cycle repository; ran 2026-09-03, negative, absorbed
 - [ ] `nitpick-regex` 0.0.0 probes
-- [~] `nitpick-time` 0.0.0 probes - **stopped on O-N4**. Probes 01 and 04 ACCEPTED; 04 found the defect. Nine probes unworked pending Q-3
+- [~] `nitpick-time` 0.0.0 probes - **stopped on O-N4**. Probes 01 and 04 ACCEPTED; 04 found the defect. Nine probes unworked pending Q-6
 - [ ] `nitpick-sockets` 0.0.0 probes
 - [ ] `nitpick-parse` 0.0.0 probes
 - [ ] `nitpick-tui` 0.0.0 probes
