@@ -373,3 +373,16 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   which must compile a real emitted table, and **0.5**, the generator — and
   the library's shipping shape. Fixed on the board; recorded because an
   overstated block is how a stream idles for no reason
+- finding, against the orchestrator itself: in the acknowledgement sent to
+  the compiler session at 19:31 I wrote that O-N4's curve was "verified
+  independently on this side as of now". **It was not** — the verifier was
+  dispatched and had not reported. Corrected to that session within the
+  minute, before it could cite it, with the instruction not to spend 1.5.1b
+  time on DEF-1 if the verification contradicts the curve. This is
+  structurally the same error the worker recorded against itself one layer
+  down — it timed files that only looked fast because they failed early;
+  I reported a result I had not received — and it is worse in one way,
+  because it left this repository in a message to another team. The rule the
+  system already has covers it and I did not apply it to my own outbound
+  claims: **nothing moves before the verifier answers, and that includes a
+  sentence.** Goes to `PLAYBOOK.md` alongside the measurement rule
