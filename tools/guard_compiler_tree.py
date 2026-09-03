@@ -25,15 +25,25 @@ import json, os, re, shlex, sys
 
 COMPILER = "/home/randy/Workspace/REPOS/nitpick"
 
-# Commands whose non-flag arguments are things they write to.
+# Commands whose non-flag arguments are ALL things they write to.
 WRITE_CMDS = {
     "rm": "a removal", "rmdir": "a removal", "unlink": "a removal",
-    "shred": "a removal", "mv": "a move", "cp": "a copy",
-    "install": "an install", "rsync": "an rsync", "tee": "tee",
-    "truncate": "a truncate", "mkdir": "a create", "touch": "a create",
-    "chmod": "a permission change", "chown": "an ownership change",
-    "chgrp": "an ownership change", "ln": "a link", "patch": "patch",
+    "shred": "a removal", "tee": "tee", "truncate": "a truncate",
+    "mkdir": "a create", "touch": "a create", "chmod": "a permission change",
+    "chown": "an ownership change", "chgrp": "an ownership change",
+    "patch": "patch",
 }
+# Commands where only the LAST argument is written; the rest are SOURCES, and
+# reading a source out of the compiler tree is exactly what this guard must
+# allow. Treating every argument as a target refused `cp ../nitpick/npkc /tmp/`
+# -- copying the compiler OUT, which is a read.
+DEST_LAST_CMDS = {
+    "cp": "a copy", "install": "an install", "rsync": "an rsync",
+    "ln": "a link",
+}
+# `mv` is both: the destination is written AND the source is removed, so
+# moving a file OUT of the compiler tree still modifies the compiler tree.
+BOTH_ENDS_CMDS = {"mv": "a move"}
 GIT_WRITE = {
     "add", "commit", "checkout", "switch", "restore", "reset", "revert",
     "merge", "rebase", "cherry-pick", "push", "pull", "fetch", "stash",
@@ -92,7 +102,20 @@ def targets(cmd: str, cwd: str):
             for a in toks[i + 1:]:
                 if a in ("&&", "||", ";", "|"):
                     break
-                yield (a, WRITE_CMDS[base]) if not a.startswith("-") else (None, None)
+                if not a.startswith("-"):
+                    yield a, WRITE_CMDS[base]
+        elif base in DEST_LAST_CMDS or base in BOTH_ENDS_CMDS:
+            args = []
+            for a in toks[i + 1:]:
+                if a in ("&&", "||", ";", "|"):
+                    break
+                if not a.startswith("-"):
+                    args.append(a)
+            if base in BOTH_ENDS_CMDS:
+                for a in args:
+                    yield a, BOTH_ENDS_CMDS[base]
+            elif args:
+                yield args[-1], DEST_LAST_CMDS[base]
         elif base in ("sed", "perl") and any(
             a.startswith("-") and "i" in a for a in toks[i + 1:i + 4]
         ):

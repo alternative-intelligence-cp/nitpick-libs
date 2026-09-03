@@ -24,9 +24,9 @@ What the compiler *does* gate, exhaustively:
 | **O-N2** — `npkg` builds a library, `[dependencies]` resolves | retiring each Python harness; making cross-repo imports non-relative | **nothing**. Both are worked around by design, and the workaround is the plan |
 | **O-N1** — `clone_exec` takes a signal mask | removing `ntui`'s unblock-around-spawn window | `ntui` 0.1.6 only, and it has a working answer already |
 | **O-N5** — `npkg` builds many artifacts | `nitpick-posix`'s build | nothing; the harness does it |
-| **O-N6** — a macro can splice a `pick` into a function body | **`nitpick-posix`'s entire shape** (PX-010) | `nitpick-posix` 0.0.0 probe 02. **The one real unknown** |
+| ~~**O-N6**~~ — a macro can splice a `pick` into a function body | **`nitpick-posix`'s entire shape** (PX-010) | **CLOSED 2026-09-03, negative.** It cannot, and a macro cannot be shared between modules at all. `failsafe` is generated (PX-100). The one real unknown is now a known |
 
-**Rule W-1 — O-N6 is answered before `nitpick-posix` is scheduled into a
+**Rule W-1 — DISCHARGED 2026-09-03.** *O-N6 was answered before `nitpick-posix` was scheduled into a stream, which is what the rule asked for; the answer was negative and cost part of one day at cycle 0.0. Kept below as written, because the next repository with a load-bearing unknown gets the same treatment.* — O-N6 is answered before `nitpick-posix` is scheduled into a
 stream.** It is one probe, it takes an afternoon, and a negative answer
 replans a fourteen-cycle repository. Run it early and out of band.
 

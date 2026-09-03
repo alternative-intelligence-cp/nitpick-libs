@@ -61,7 +61,7 @@ what and when, which is the thing the compiler's R8 says the orchestrator owns.
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
 | 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | independent |
-| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | `BLOCKED on O-N6` | **probe 02 must be answered before this is scheduled** (W-1). Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready |
+| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | `READY` | **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready |
 
 ---
 
@@ -96,7 +96,7 @@ hardening cycle knows what it is waiting for.
 | O-N2 (`npkg` builds a library) | retiring six Python harnesses | **not on the compiler's 1.5 or 1.6 map** — a request, not a date |
 | O-N1 (`clone_exec` signal mask) | `ntui` 0.1.6, cosmetically | request raised |
 | O-N5 (`npkg` multi-artifact) | `nitpick-posix`'s build | request raised |
-| O-N6 (macro splices a `pick`) | `nitpick-posix`'s **shape** | **unanswered — probe 02** |
+| ~~O-N6~~ (macro splices a `pick`) | `nitpick-posix`'s **shape** | **ANSWERED 2026-09-03: no.** Probe 02, seven programs. A macro is not shareable across modules at all (`MACRO-007`); `failsafe` is generated instead (PX-100). Shape changed, schedule did not |
 
 ---
 
@@ -105,7 +105,7 @@ hardening cycle knows what it is waiting for.
 Independent of everything, roughly a day each, and each converts an unknown
 into a fact (W-14):
 
-- [ ] `nitpick-posix` 0.0.0 **probe 02** — gates a fourteen-cycle repository
+- [x] `nitpick-posix` 0.0.0 **probe 02** — gated a fourteen-cycle repository; ran 2026-09-03, negative, absorbed
 - [ ] `nitpick-regex` 0.0.0 probes
 - [ ] `nitpick-time` 0.0.0 probes
 - [ ] `nitpick-sockets` 0.0.0 probes

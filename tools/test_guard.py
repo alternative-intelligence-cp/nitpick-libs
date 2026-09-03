@@ -54,6 +54,17 @@ CASES = [
     ("Write", LIBS, "../nitpick-apps/APPS.md", False),
     ("Edit",  TUI,  "meta/DECISIONS.md", False),
 
+    # --- source-vs-destination: reading OUT of the tree is a read ---------
+    ("Bash", LIBS, "cp ../nitpick/.internal/quickemit/npkc /tmp/npkc", False),
+    ("Bash", LIBS, "cp ../nitpick/runtime/npkrt.ll /tmp/", False),
+    ("Bash", LIBS, "rsync -a ../nitpick/meta/ /tmp/specs/", False),
+    ("Bash", LIBS, "install -m755 ../nitpick/build/npkc /tmp/npkc", False),
+    ("Bash", LIBS, "ln -s ../nitpick/runtime/npkrt.ll /tmp/rt.ll", False),
+    ("Bash", LIBS, "cp /tmp/x ../nitpick/meta/x", True),
+    ("Bash", LIBS, "rsync -a /tmp/specs/ ../nitpick/meta/", True),
+    ("Bash", LIBS, "mv ../nitpick/meta/x /tmp/x", True),   # removes from the tree
+    ("Bash", LIBS, "mv /tmp/x ../nitpick/meta/x", True),
+
     # --- MUST ALLOW: the compiler's own session ---------------------------
     ("Bash",  COMP, "sed -i s/a/b/ src/main.npk", False),
     ("Bash",  COMP + "/src", "echo x > frontend/lexer.npk", False),

@@ -84,6 +84,41 @@ moving.
 
 ---
 
+### Two facts that only measurement produced
+
+Both come from `nitpick-posix`'s probe 02 on 2026-09-03, and both had already
+been written into shipped plans the other way round. They are here because
+every repository would otherwise rediscover them.
+
+- **A macro is invocable only in the module that declares it**
+  (`NITPICK-MACRO-007`, on D-124: an invocation's meaning depends on which
+  module it is in). **A macro cannot be shared across a codebase.** Any plan
+  whose shape is "one macro definition, many call sites in other modules" does
+  not work, and `nitpick-posix` lost its headline mechanism to this. Where you
+  want one definition serving many modules, the answer in this ecosystem is a
+  **generator** writing a committed file, checked by regenerating and diffing —
+  the instrument `ntui` already uses for the Unicode tables.
+- **`failsafe`'s `pick` must be at the TOP LEVEL of the body.** The reachability
+  walk reads only the body block's immediate statements — `reach.npk`'s comment
+  says *"Find the ONE top-level pick over the parameter in failsafe's body"*. A
+  `pick` inside an `if`, a `loop`, a bare block, or a statement-position macro
+  expansion (which *becomes* a block, `MACRO_REFERENCE.md` §4) is invisible to
+  it, and the program is refused `NITPICK-REACH-001` — a diagnostic that says
+  there is no `pick` while one is plainly in view.
+
+### A file's name is part of the language
+
+A file's `mod:` declaration must equal its basename, and **no identifier may
+begin with a decimal digit** — D-147 reserves that opening for numeric literals
+so a lexer's first character decides. So no source file may be named
+`01_thing.npk`; `mod:01_thing;` is `NITPICK-LEX-003` with `NITPICK-RESOLVE-005`
+behind it. Probes are `probeNN_topic.npk` and conformance cases `caseNN_*`.
+
+*Every one of the first six plans wrote `01_name.npk` before anybody compiled
+one.* It is the cheapest possible bug and it survived six planning passes.
+
+---
+
 ## 3. The error budget
 
 **The single most important API constraint in this ecosystem, and it has no
