@@ -189,3 +189,8 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   probes, stream 2, `npk:worker` on `claude-opus-5`, toolchain `950bb1d`,
   tree clean. The first library subcycle in the ecosystem, and 0.2.7 §2's
   dry run one
+- dispatch `research-posix-edition` — `npk:researcher` on `claude-opus-5`
+  with 0.2.3 §5's request verbatim (Q-1, the POSIX edition). 0.2.7 §4: sent
+  after the worker was dispatched and before its report, so the run measures
+  a helper running alongside a worker. A helper does not count against
+  `width=` (W-24)
