@@ -84,11 +84,13 @@ moving.
 
 ---
 
-### Two facts that only measurement produced
+### Facts that only measurement produced
 
-Both come from `nitpick-posix`'s probe 02 on 2026-09-03, and both had already
-been written into shipped plans the other way round. They are here because
-every repository would otherwise rediscover them.
+Every one of these was found by a probe, and every one had already been
+written into a shipped plan the other way round. They are here because every
+repository would otherwise rediscover them. The first two come from
+`nitpick-posix`'s probe 02 and the rest from `nitpick-time`'s, both on
+2026-09-03.
 
 - **A macro is invocable only in the module that declares it**
   (`NITPICK-MACRO-007`, on D-124: an invocation's meaning depends on which
@@ -105,6 +107,29 @@ every repository would otherwise rediscover them.
   expansion (which *becomes* a block, `MACRO_REFERENCE.md` §4) is invisible to
   it, and the program is refused `NITPICK-REACH-001` — a diagnostic that says
   there is no `pick` while one is plainly in view.
+
+- **There is no checked narrowing cast.** `=>!` is the *unchecked* one and it
+  **truncates silently** — `nitpick-time` probe 02 pinned four shapes of it,
+  including a **positive `int128` narrowing to a negative `int64`**, because
+  what is discarded is everything above the destination's sign bit. And `=>`
+  at a narrowing is not a runtime check either: it is refused at compile time,
+  `NITPICK-TYPE-009`. So a range check before a narrowing is **ordinary
+  library code you must write**, not a belt the language provides, and
+  `VERIFICATION.md` P-5's `prove` is the only other thing standing between a
+  caller and a wrong answer. In a time library a silently negative narrowing
+  is a future instant reported as long past.
+- **D-004's escape rule is enforced for `@`-borrows and NOT for slice views.**
+  Returning `@x` is `NITPICK-BORROW-001` — "a borrow cannot travel up" — and so
+  is a struct literal holding `@local`. But `string_bytes` on a local `string`
+  yields a `uint8[]` that returns out of its owning frame **with no
+  diagnostic**, and reading it afterwards reads freed memory. Raised as
+  **O-N9**. Until it lands, the house rule everywhere in this ecosystem is
+  **a view is a parameter, never a return value**, and it wants a harness
+  check rather than vigilance — any library whose functions take `uint8[]`
+  (every parser) is one careless `return` from a silent use-after-free.
+- **`_~argv` marks a parameter DISCARDED, not merely unused.** Reading it is
+  `NITPICK-TYPE-007`. A probe or program that wants `argv.len` must spell the
+  parameter `cstring[]:argv`. Cheap, and it cost a probe a rewrite.
 
 ### A file's name is part of the language
 
@@ -268,6 +293,16 @@ that can stop the program is a defect.
   only by not generating enormous single declarations yet — never by
   reshaping a library's data to dodge it**, which buys the number back and
   buries a compiler bug in library code that outlives it.
+
+**Evidence a claim at the size you can afford.** An emission *form* — what a
+declaration is lowered to — is a property of the lowering and not of the
+element count, so 300 rows evidences what 30 000 rows cost 281 s and 30.9 GiB
+to observe once. Split a probe's questions by what each actually requires:
+"do 30 000 rows compile" needs 30 000 rows, "is it emitted as a read-only
+constant with no startup work" does not. And commit the transcript verbatim
+with every command's exit code, rather than a prose summary of it — a summary
+is not evidence, and `nitpick-time` 0.0.0 had its emission claims failed by
+its own verifier for exactly that.
 
 **A timing not paired with an exit code is not a measurement.** A source file
 that fails to compile stops early and looks fast, so a failing configuration

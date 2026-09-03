@@ -72,6 +72,21 @@ file existed — the check works.
   append-only and is never rewritten. That is why this line exists — so the
   reference resolves and the mistake stays visible. `check_refs.py` caught it,
   which is the second time this file's existence has paid for itself.
+- **O-N9 — D-004's escape rule is enforced for `@`-borrows and not for slice
+  views.** Raised by `nitpick-time` 0.0.0 while mapping probes 09 and 10's
+  borrow edges. `string_bytes` on a local `string` yields a `uint8[]` that can
+  be **returned out of its owning frame with no diagnostic**, and reading it
+  afterwards reads freed memory — measured, the caller gets something other
+  than the byte it wrote. The same position with an explicit borrow *is*
+  caught: returning `@x` is `NITPICK-BORROW-001`, "a borrow cannot travel up …
+  (D-004 rule 2)", and so is a struct literal holding `@local`. So the rule
+  exists, is documented, and is under-enforced for one type; D-186's inventory
+  of view-makers names `string_from_bytes` as "the one remaining view-maker"
+  without accounting for this direction. Bites `nitpick-time` broadly in
+  principle — every parser in `src/fmt/` takes a `uint8[]` — but **is not
+  O-N4-style blocking**, because obeying "a view is a parameter, never a
+  return value" is conformance with a documented language rule rather than a
+  workaround for a defect. Disposition is Q-5.
 - **O-N8 — `npkc` silently merges two files when a `mod:` name mismatches its
   basename.** Raised by `nitpick-time` 0.0.0 alongside O-N4, but never given a
   local id there, so it is a new ecosystem-wide request and takes the next

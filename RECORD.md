@@ -484,3 +484,62 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   it had interesting work beside it. The nine probes are commit 2, carrying
   Q-3's answer. The subcycle's status stays STOPPED on O-N4 however the nine
   come out, and a second stop among them is to be reported, not worked through
+- report `s2-ntime-0.0.0-2003` **STOPPED** (a second stop, a different one),
+  231,505 tokens, 27.4 minutes, 93 tool uses. Commit 1 landed as `4b35886`;
+  commit 2 is built and uncommitted
+- verify follow-up: the worker **re-measured the committed reproduction
+  itself** — 6.11 s / 593 796 KiB, exit 0 — agreeing with the verifier's
+  three runs to within 0.1%, so the magnitude correction rests on two
+  independent agents rather than on one contradicting another. The 4.19 s /
+  473 MiB attribution is corrected in the defect README, the reproduction's
+  own header, the execution record and the previous REPORT block, the last
+  **marked as corrected rather than silently rewritten**, which is the right
+  instinct and is now the house pattern
+- **the worker beat its brief on the evidence item.** Told to evidence probe
+  04's emission shape at an affordable size, it split the probe's two
+  questions — whether 30 000 rows compile needs 30 000 rows; what the
+  declaration is *lowered to* does not — and committed
+  `probe04b_emission_shape.npk` at 300 rows (0.16 s, 28 MiB) with
+  `probe04b_emission_shape.txt`, the whole transcript verbatim, every
+  command's exit code included. It shows **more** than the original prose
+  claimed: `= constant [300 x …]` with the `global` spelling returning zero
+  hits, no `llvm.global_ctors`/`global_dtors`/`appending` globals, `.rodata`
+  flagged `A` and not `W`, and — the part the prose never reached — in the
+  **linked** program the symbol at `0x200790` inside a LOAD segment mapped
+  `R` alone with no `.init_array` anywhere. Symbol size 4800 = 300 × 16
+- **and it argued against the finding I had just relayed.** The verifier's
+  generic 4 000-row figure (398 036 KiB) does not reconcile with the curve's
+  own generic 4 000-row cell (473 MiB); and the committed file differs from
+  the middle reconstruction by only a nine-character module name and two
+  comment lines yet costs ~8% more. Both point at **total source bytes**
+  rather than identifier length — which would make it axis 3 again rather
+  than a fourth axis, and would *unify* the three axes instead of adding to
+  them. Recorded in the defect README beside the verifier's numbers. Relayed
+  to the compiler session, which has the better instruments and whose
+  `string_concat` suspect this fits even better
+- **probe 02 is a NEGATIVE verdict, and it changes the library.** `=>!` from
+  `int128` to `int64` does **not** trap on a value that does not fit — it
+  truncates silently, pinned in four shapes including a *positive* `int128`
+  narrowing to a *negative* `int64`. And `=>` at a narrowing is not a runtime
+  check but a compile error, `NITPICK-TYPE-009`. **There is no checked
+  narrowing in the language.** So each of `SPAN_MODEL.md` §5's three `int128`
+  sites needs an explicit runtime range check as ordinary library code, which
+  is TM-105 plus `SAFETY.md` S-15b and `SPAN_MODEL.md` N-20b. This is 0.2.7
+  §2's case exactly: a negative probe verdict is the subcycle doing its job,
+  not the dry run failing
+- **O-N9 raised — the second stop.** `string_bytes` on a local `string`
+  yields a `uint8[]` that returns out of its owning frame with no diagnostic
+  and reads freed memory; measured, the caller reading byte 0 gets something
+  other than what was written. The same position with an `@`-borrow is
+  refused (`NITPICK-BORROW-001`, "a borrow cannot travel up … (D-004 rule
+  2)"), and so is a struct literal holding `@local`. So D-004's rule is
+  documented, enforced for one form and not the other, and D-186's inventory
+  of view-makers does not account for this direction. Registered as **O-N9**
+  — checked against the registry's rule this time rather than invented
+- `PLAYBOOK.md` §2's "Two facts that only measurement produced" is now
+  "Facts…" and carries three more: no checked narrowing exists; D-004 is
+  unenforced for slice views, with "a view is a parameter, never a return
+  value" as the house rule until O-N9 lands; and `_~argv` marks a parameter
+  discarded, `NITPICK-TYPE-007` if read. §6 gains **evidence a claim at the
+  size you can afford**, with the rule that a committed verbatim transcript
+  is evidence and a prose summary is not — which is what failed here
