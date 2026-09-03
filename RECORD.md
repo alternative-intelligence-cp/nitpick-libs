@@ -386,3 +386,39 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   system already has covers it and I did not apply it to my own outbound
   claims: **nothing moves before the verifier answers, and that includes a
   sentence.** Goes to `PLAYBOOK.md` alongside the measurement rule
+- **O-N4 confirmed independently by the compiler session**, on a different
+  build and a different tree — `main`'s `efd6a4d` (1.5.1 step 1) plus 1.5.1
+  steps 2–5, on a machine running four harnesses — using our committed
+  4 000-row file and three regenerated from its shape, every point checked
+  for exit 0: 1 000 rows 0.49 s / 56 MiB · 2 000 1.31 s / 148 MiB · 4 000
+  5.88 s / 580 MiB · 8 000 17.49 s / 1.86 GiB. Ratios ×2.7/×4.5/×3.0 in time
+  and ×2.6/×3.9/×3.3 in memory. Quadratic, and matching our curve within the
+  load noise. **DEF-1 no longer rests on one agent's numbers**, which is what
+  my premature "verified" claim had wrongly asserted an hour early and what
+  is now actually true, by a better route than the one I claimed
+- **the measurement trap caught the compiler session on its first attempt**,
+  which is the finding's real evidence. Its regenerated files kept the
+  original `mod:` header, so every one "compiled" in 0.04 s at exit 1 —
+  `RESOLVE-005`, a *different* diagnostic from the `PICK-003`/`REACH-002`
+  that caught our worker, and the identical failure mode. Two independent
+  agents, two different diagnostics, one week. That generalises the rule from
+  an anecdote about `failsafe` into a rule about measuring anything with
+  `npkc`, and it is why it went into `PLAYBOOK.md` §6 as its own paragraph
+  rather than as a footnote to the error budget
+- `PLAYBOOK.md` amended in three places (W-16, the orchestrator lands these):
+  §2's file-name subsection gains O-N8's silent-merge case, so that "a build
+  that mysteriously grows a second `main` is this, not your program"; §3's
+  error budget gains item 6, that `(*)` and the named arms discharge each
+  other's obligation not at all, with the fast-failure consequence spelled
+  out; §6 gains O-N4 with its three axes and controls, and the measurement
+  rule as a standing paragraph
+- **correction: `O-N7` never existed.** I numbered the resolver defect `O-N7`
+  on the board and in the playbook before reading this ecosystem's own rule —
+  `meta/OPEN_QUESTIONS.md` §"For the compiler" says a new ecosystem-wide
+  request takes the next free number **from O-N8 on**. It is **O-N8**. The
+  live documents are renumbered; the `O-N7` in the RECORD entries above
+  stands, because this file is append-only and is never rewritten, and the
+  registry carries a struck `O-N7` entry so the reference still resolves.
+  Found by `check_refs.py`, which also caught that O-N4 and O-N8 were cited
+  in three documents and defined in none — both now registered. The check has
+  now paid for itself twice on the day it went live

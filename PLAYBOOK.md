@@ -117,6 +117,18 @@ behind it. Probes are `probeNN_topic.npk` and conformance cases `caseNN_*`.
 *Every one of the first six plans wrote `01_name.npk` before anybody compiled
 one.* It is the cheapest possible bug and it survived six planning passes.
 
+**And when it does go wrong it does not always say so.** `nitpick-time` 0.0.0
+found that a root file whose `mod:` name mismatches its basename **while a
+sibling file carries that basename** is not diagnosed at all: `npkc` compiles
+the sibling too, merges both files into one module, emits IR with two
+`define i32 @main`, and **exits 0**. `llc` then refuses the IR, a long way
+from the cause. Delete the sibling and the diagnostic is exemplary —
+`NITPICK-RESOLVE-005` names the rule and even anticipates the self-header
+case — so the resolver knows the rule and simply does not apply it when the
+name it was given happens to resolve to a different file. Raised as **O-N8**
+(the compiler's DEF-2); until it lands, *a build that mysteriously grows a
+second `main` is this, not your program*.
+
 ---
 
 ## 3. The error budget
@@ -147,6 +159,18 @@ So:
    policy.
 5. **A harness check enforces it**: the count and names of public `error:`
    declarations, diffed against the specification's table.
+6. **A `failsafe`'s `pick` needs `(*)` AND every reachable named arm — the
+   wildcard discharges neither obligation for the other.** They are two
+   different rules failing two different ways, and the budget above is only
+   the second of them. `Error` has more values than a `pick` can list, so
+   omitting the wildcard is `NITPICK-PICK-003` (exhaustiveness); omitting a
+   reachable identity is `NITPICK-REACH-002`, and `(*)` does **not** cover it.
+   This matters far beyond tidiness: **a file that trips either one compiles
+   fast, because it stops early.** `nitpick-time` 0.0.0 timed five such files
+   and drew the wrong conclusion from them before checking exit codes, and the
+   compiler session hit the same class of trap on its first attempt to
+   reproduce the curve — a different diagnostic (`RESOLVE-005`, exit 1 in
+   0.04 s) and the identical failure. Two independent agents, same week.
 
 ---
 
@@ -230,6 +254,28 @@ that can stop the program is a defect.
   `ORCHESTRATION.md` §6 says so.
 - **Every import is relative** until that closes, and every such site carries a
   comment naming the open question so the day it lands the change is greppable.
+- **`npkc` is quadratic in the size of ONE declaration** — not in the number of
+  declarations, in the size of a single one — on three independent axes:
+  elements in a module-level `fixed` array initialiser, statements in one
+  function body, and bytes in one string literal. At 30 000 array rows that is
+  **281 s and 30.9 GiB**; at 480 000 literal bytes, **308 s with memory flat**,
+  which makes the string axis a separate pathology rather than the same one
+  seen through the lexer. Controls place the cost in the *declaration*: an
+  unread table costs what a read one costs, and 4 000 **separate** `fixed
+  int64` bindings cost 0.61 s against one 4 000-element array's 4.19 s.
+  Raised as **O-N4** (the compiler's DEF-1), reproduced independently by the
+  compiler session on a different build, and owned there. **Plan around it
+  only by not generating enormous single declarations yet — never by
+  reshaping a library's data to dodge it**, which buys the number back and
+  buries a compiler bug in library code that outlives it.
+
+**A timing not paired with an exit code is not a measurement.** A source file
+that fails to compile stops early and looks fast, so a failing configuration
+is indistinguishable from a quick one on wall-clock alone — and it will be the
+*fastest* row in your table, which is exactly the row a curve is most sensitive
+to. Record `npkc`'s exit status beside every number, and treat any timing
+without one as absent. Both agents who measured O-N4 fell into this before
+they were finished; neither would have caught it by reading the output.
 
 ---
 

@@ -51,6 +51,37 @@ file existed — the check works.
   has a long lead time. Not on the compiler's 1.5 or 1.6 map.
 - **O-N5 — `npkg` cannot build more than one artifact.** Raised by
   `nitpick-posix` (its O-N5). Blocks nothing; the harness does it.
+- **O-N4 — `npkc` is quadratic in the size of one declaration.** Raised by
+  `nitpick-time` (its O-N4), which is also the local id, so this section keeps
+  it. Three independent axes — array-initialiser elements, function-body
+  statements, string-literal bytes — with the string axis flat in memory and
+  therefore a separate pathology. TM-007's 26 838-row tzdb costs 281 s and
+  30.9 GiB, so the library is unbuildable in its shipping shape on a 16 GiB
+  machine or in CI. **Blocks `nitpick-time` 0.0.5 and 0.5 only**; 0.0.1–0.0.4
+  carry no large declaration. Reproduction committed at `nitpick-time`
+  `8066e62`, `tests/probe/defect/`. **ACCEPTED by the compiler session
+  2026-09-03** as its **DEF-1**, owned, and independently reproduced there on
+  a different build; a subcycle 1.5.1b is proposed and the schedule is the
+  author's. Re-pin the workbench toolchain when it lands.
+- ~~**O-N7 — never existed; a misnumber by the orchestrator on
+  2026-09-03.**~~ The resolver defect above was numbered `O-N7` on the board and
+  in the playbook before this section's own rule was read: a new
+  ecosystem-wide request takes the next free number **from O-N8 on**. The live
+  documents were renumbered to **O-N8** within the hour; `RECORD.md` still
+  says `O-N7` in the entries written before the correction, because it is
+  append-only and is never rewritten. That is why this line exists — so the
+  reference resolves and the mistake stays visible. `check_refs.py` caught it,
+  which is the second time this file's existence has paid for itself.
+- **O-N8 — `npkc` silently merges two files when a `mod:` name mismatches its
+  basename.** Raised by `nitpick-time` 0.0.0 alongside O-N4, but never given a
+  local id there, so it is a new ecosystem-wide request and takes the next
+  free number under this section's own rule. When a root file's `mod:` differs
+  from its basename **and a sibling carries that basename**, `npkc` compiles
+  the sibling too, merges both into one module, emits two `define i32 @main`,
+  and exits 0; `llc` then refuses the IR. Without the sibling the
+  `NITPICK-RESOLVE-005` diagnostic is exemplary, so the rule is known and
+  merely not applied here. Blocks nothing and costs `nitpick-time` nothing.
+  **ACCEPTED 2026-09-03** as the compiler's **DEF-2**, same owner and slot.
 - ~~**O-N6 — a macro can splice a `pick` into a function body.**~~ —
   **ANSWERED 2026-09-03, negatively**, by `nitpick-posix` probe 02: a macro is
   invocable only in the module that declares it (`NITPICK-MACRO-007`), and
