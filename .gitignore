@@ -1,0 +1,22 @@
+# Every subdirectory here is a library checkout with its own git history and
+# its own remote (`nitpick-tui`, `nitpick-parse`, …). This repository is the
+# workbench: it tracks the shared documents at the root and nothing else, so
+# that a library is never accidentally embedded here as a gitlink or a copy.
+/*/
+
+# Un-ignore the workbench's own directories as they appear, e.g.:
+# !/tools/
+# !/meta/
+
+# Gitignored scratch. Never commit anything from here.
+.internal
+
+# Editor and OS residue.
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Claude Code local settings (machine-specific).
+.claude/settings.local.json
