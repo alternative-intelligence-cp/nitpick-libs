@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/tools/reinject_orchestrator.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

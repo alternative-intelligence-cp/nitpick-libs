@@ -1,6 +1,8 @@
 {
   "name": "npk",
-  "description": "Working skills for the Nitpick ecosystem — the worker and orchestrator roles, the reference-integrity checker, the adversarial auditor, and repository setup.",
+  "description": "Working skills for the Nitpick ecosystem — the orchestrator, worker, planner, auditor, verifier and researcher roles as skills and agents, the reference-integrity and record checks, the research procedure, repository setup, and the compaction hook.",
   "version": "0.1.0",
-  "author": { "name": "Randy" }
+  "author": {
+    "name": "Randy"
+  }
 }

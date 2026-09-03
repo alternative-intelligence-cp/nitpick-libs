@@ -17,9 +17,14 @@ gitlink or a copy. Clone this beside the libraries, not around them.
 | [`LIBRARIES.md`](LIBRARIES.md) | the registry — every library, its package name, its decision prefix, and its status. Read it before starting a new one, so a name or a prefix is not taken twice |
 | [`WORKSTREAMS.md`](WORKSTREAMS.md) | **the dependency graph across every repository, and the three streams it partitions into** — what the compiler actually gates (almost nothing), which work can run at once, and the rules that keep two agents out of one repository |
 | [`BOARD.md`](BOARD.md) | the live state: what is claimed, what is blocked, what is done. The orchestrator owns it |
-| [`skills/`](skills/) | the **`npk` plugin** — six working skills: `plan`, `worker`, `orchestrate`, `audit`, `check` and `new-repo`. §"Using the skills" below |
-| [`START.md`](START.md) | the paste-able orchestrator startup prompt, and what the loop will and will not do unattended |
-| [`tools/`](tools/) | the guard that makes the compiler tree read-only from these repositories, and its 36-case control |
+| [`RECORD.md`](RECORD.md) | the orchestrator's execution record — what was dispatched, what came back, what it cost, every question answered. Append-only |
+| [`CLAUDE.md`](CLAUDE.md) | who a session here is, and the three write rules |
+| [`skills/`](skills/) | the **`npk` plugin** — seven skills: `plan`, `worker`, `orchestrate`, `audit`, `check`, `research` and `new-repo`. §"Using the skills" below |
+| [`agents/`](agents/) | the five agent roles the orchestrator dispatches: worker, planner, auditor, verifier, researcher — each preloading its skill, tools explicit |
+| [`hooks/`](hooks/) | the plugin's session-start hook that gives a compacted orchestrator its bearings back |
+| [`START.md`](START.md) | how to start the orchestrator — one line and its arguments |
+| [`tools/`](tools/) | the guard that enforces the three write rules, its fixture-based control, and the compaction hook's script |
+| [`meta/`](meta/README.md) | the workbench's own roadmap (the plugin's cycles), open questions, the registry of compiler requests, and filed audits |
 
 ## The working layout
 
@@ -58,26 +63,34 @@ Apache 2.0, matching the compiler and every library. See [`LICENSE`](LICENSE).
 ## Using the skills
 
 This repository is also a Claude Code **plugin**, so one versioned copy of the
-working skills serves all the sibling checkouts instead of eight drifting ones.
+working skills, agents and hooks serves all the sibling checkouts instead of
+eight drifting ones. It loads in every session from a symlink in the personal
+skills directory, with no flag:
 
 ```bash
-claude --plugin-dir ~/Workspace/REPOS/nitpick-libs
+ln -s ~/Workspace/REPOS/nitpick-libs ~/.claude/skills/npk     # once
 ```
 
-An alias is worth setting, since forgetting the flag silently loses the skills:
-
-```bash
-alias nclaude='claude --plugin-dir ~/Workspace/REPOS/nitpick-libs'
-```
+The flag form, `claude --plugin-dir ~/Workspace/REPOS/nitpick-libs`, is the
+fallback — never both, or the plugin loads twice.
 
 | Skill | For |
 |---|---|
-| `/npk:plan` | writing a cycle's or a repository's plan — specs, decisions, open questions, cycle map |
-| `/npk:worker` | working one cycle — the claim check, the read order, the discipline, the close checklist |
-| `/npk:orchestrate` | assigning, gating, merging, rebalancing, and keeping the record. Writes no code |
-| `/npk:audit` | adversarially diffing documents against what they describe, and re-verifying every claim about the compiler at its source. Reports, never fixes |
-| `/npk:check` | the mechanical half of that, as a script: links, decision citations, duplicates, leaks |
-| `/npk:new-repo` | creating a repository, including the GitHub side, in one pass |
+| `/npk:orchestrate` | the loop: pin, claim, dispatch, verify, record, escalate. Reads `width=`, `streams=`, `start=`, `tick`. Writes no code |
+| `/npk:worker` | one subcycle of one repository, as dispatched — the inputs, the checks, the discipline, the REPORT block |
+| `/npk:plan` | a cycle's or a repository's plan — specs, decisions, open questions, the cycle map, the currency table |
+| `/npk:research` | an up-to-date fact from outside the compiler tree, as a dated, sourced digest |
+| `/npk:audit` | adversarially diffing documents against what they describe, inside the compiler and out. Reports, never fixes |
+| `/npk:check` | the mechanical half: links, citations, duplicates, leaks — and a worker's committed REPORT block |
+| `/npk:new-repo` | creating a repository, including the GitHub side, in one pass. Never delegated |
+
+| Agent | Preloads | Cannot |
+|---|---|---|
+| `worker` | worker | write outside its `REPO` (discipline; the guard enforces the claim) |
+| `planner` | plan, research | write code |
+| `auditor` | audit | write files — no `Write`, no `Edit` |
+| `verifier` | check | write anything; runs on a smaller model |
+| `researcher` | research | write files; the requester files the digest |
 
 **What the skills deliberately do not contain.** They carry *procedure and
 pointers*, never content. The language constraints live in
@@ -86,11 +99,11 @@ decisions in its `meta/DECISIONS.md`. A skill that copied any of that would be
 a second home for one fact, and this ecosystem's whole discipline is that a
 fact has one.
 
-**And what they cannot enforce.** A skill's tool restrictions last one turn,
-not a session, so "the orchestrator writes no code" is a discipline rather than
-a guarantee. Hard constraints — the compiler tree being read-only above all —
-belong in `settings.json` permissions or a hook, where they are enforced rather
-than requested.
+**And what they can and cannot enforce.** A skill's `allowed-tools` only
+pre-approves; it never restricts. An agent definition's tool list does
+restrict, which is why the auditor and researcher genuinely cannot write. The
+orchestrator is the main session, so "the orchestrator writes no code" is a
+discipline. The three write rules are enforced by the guard below.
 
 ## The guard
 

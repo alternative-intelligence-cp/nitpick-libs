@@ -42,3 +42,7 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   hook's session id is the UUID, not the cloud id. The board's writer line
   was rewritten once through the interpreter hole to recover from the
   lockout the first rule caused — recorded here so it is never a precedent
+- 0.2.6 in progress: the compaction hook with a 4-case control, the workbench
+  `CLAUDE.md`, the README current; the live compaction test waits for the
+  author's session. Remaining for the cycle: the live tests of 0.2.4 and
+  0.2.6, then 0.2.7's dry runs
