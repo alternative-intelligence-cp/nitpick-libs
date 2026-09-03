@@ -91,7 +91,7 @@ what and when, which is the thing the compiler's R8 says the orchestrator owns.
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
 | 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | independent |
-| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | — | **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready |
+| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | — | **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready. **Q-1 answered 2026-09-03:** POSIX.1-2024 (Issue 8) is current and its utility table moved by 19 entries — the first worker here files the digest and amends `SCOPE.md`, `CONFORMANCE.md` K-1 and `GLOSSARY.md`; the syntax guidelines are unchanged |
 
 ---
 

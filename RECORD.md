@@ -194,3 +194,48 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   after the worker was dispatched and before its report, so the run measures
   a helper running alongside a worker. A helper does not count against
   `width=` (W-24)
+- report `research-posix-edition` PASS, 28,571 tokens, 3.4 minutes, 15 tool
+  uses. 0.2.7 §4's pass condition met: the skill's shape, eight primary
+  sources, a retrieval date on every one
+- **question Q-1 answered: yes, POSIX.1-2024 (IEEE Std 1003.1-2024, Issue 8)
+  is current** — published 14 June 2024, Active at IEEE SA, freely readable
+  without login at `pubs.opengroup.org/onlinepubs/9799919799`. The
+  `would-change-the-plan-if` trigger **fired, on one half of two**:
+  - the **utility table changed by 19 entries** — seven added (`gettext`,
+    `msgfmt`, `ngettext`, `readlink`, `realpath`, `timeout`, `xgettext`),
+    twelve removed (`fort77` and the whole eleven-utility Batch Environment
+    `q*` set, obsolescent in Issue 7), one renamed (`c99` → `c17`). 160
+    utilities in Issue 7, 155 in Issue 8. Derived two independent ways that
+    agree: XRAT's own change history and a diff of the two utility indexes
+  - the **fourteen Utility Syntax Guidelines did not change** — G3, G5, G8,
+    G11, G13, G14 byte-identical across editions, `-W` reservation and all.
+    So anything in `nitpick-posix` resting on the guidelines survives the
+    edition bump untouched, which is most of `CONFORMANCE.md` K-1
+  Two gaps the digest names and did not close, each worth its own request:
+  XCU chapter 2's shell-language additions, and per-utility option changes.
+  One inference rather than a quotation: the `c99` → `c17` rename. Citation
+  advice recorded with the digest — cite the frozen
+  `/9799919799.2024edition/` path in a conformance corpus and the rolling
+  `/9799919799/` path for "the current standard", because Cor 1 is an active
+  IEEE project and will move the rolling one. The full digest is in this
+  session's transcript; **the next `nitpick-posix` worker files it at
+  `nitpick-posix/meta/research/posix-edition.md`** and amends `SCOPE.md`,
+  `CONFORMANCE.md` K-1 and `GLOSSARY.md` from it. Not a stop: no stream is
+  on `nitpick-posix`, so this is a fact waiting at the door rather than a
+  question
+- **the takeover's anomaly, explained by the author.** The predecessor's last
+  entry being three minutes old rather than hours had a cause: 0.2.7 §2's
+  invocation is printed as a bare fenced command under "Invocation, in the
+  workbench", the predecessor handed it over at its close, and the author
+  read it as an instruction to run it fresh — **restarting the terminal**,
+  which ended that session, and opening this one. So the predecessor was not
+  merely absent from `ListAgents`; it was killed, deliberately if not
+  knowingly, before this session existed. The takeover was correct and the
+  judgement call is discharged
+- finding: **a command handed to the author must say which session to run it
+  in.** 0.2.7 §2's did not, and cost a live session mid-cycle. Three cases
+  and they are not interchangeable — here in this session (say so; do not
+  rely on it being obvious), in a second session with this one left running
+  (say why it must stay alive), or in a fresh session because this one is
+  finished. Landed against 0.2.7 §2; the same fix belongs in any close
+  handoff a worker writes
