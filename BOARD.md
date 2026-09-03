@@ -38,13 +38,15 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1817` | 2026-09-03 18:17 | `claude-opus-5` | first library subcycle; 0.2.7 §2's dry run one |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1902` | 2026-09-03 19:02 | `claude-opus-5` | **STOPPED on O-N4** (W-11). The re-dispatch lands the record only; the stream does not proceed until Q-3 is answered |
 
 ## Questions for the author
 
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
-| — | — | — | nothing pending | — |
+| Q-2 | s2 | 2026-09-03 19:02 | **O-N4 — `npkc` is quadratic in the size of one declaration**, on three independent axes (array-initialiser elements, function-body statements, string-literal bytes). TM-007's tzdb is 26 838 rows: 281 s and **30.9 GiB** to compile. A 16 GiB machine cannot build `ntime`; CI cannot; every consumer pays it. Reproduction: [`nitpick-time/tests/probe/defect/README.md`](nitpick-time/tests/probe/defect/README.md) | **Raise against the compiler** (W-11). Nothing in the language changes — it is `npkc`'s implementation. Never worked around: shrinking, splitting or blob-encoding the table each buys the number back and buries a compiler bug in library code that would outlive it. **Do not let O-N4 settle O-Z1 as "ship a subset"** |
+| Q-3 | s2 | 2026-09-03 19:02 | Probes **02, 03, 05-11 are unaffected** by O-N4 - it is a resource cost, not a semantics change. Work the nine against the current pin while O-N4 is open, or idle the stream until it lands? | **Work the nine.** They convert nine unknowns into facts at no risk, and O-N4 changes none of their answers. Probe 04's verdict is already recorded; only its *cost* waits on the re-pin. Idling stream 2 buys nothing |
+| Q-4 | s2 | 2026-09-03 19:02 | A second, narrow `npkc` defect met by accident: a root file whose `mod:` differs from its basename, with a sibling carrying that basename, **silently merges both files and emits two `define i32 @main` at exit 0**; `llc` then refuses the IR. Six-line reproduction in the same README | **Raise alongside O-N4, blocking nothing.** It costs `ntime` nothing (the house rule is already `mod:` = basename). The resolver already has the exact diagnostic and simply does not apply it when the name resolves to a different file |
 
 ---
 
@@ -139,7 +141,7 @@ into a fact (W-14):
 
 - [x] `nitpick-posix` 0.0.0 **probe 02** — gated a fourteen-cycle repository; ran 2026-09-03, negative, absorbed
 - [ ] `nitpick-regex` 0.0.0 probes
-- [ ] `nitpick-time` 0.0.0 probes
+- [~] `nitpick-time` 0.0.0 probes - **stopped on O-N4**. Probes 01 and 04 ACCEPTED; 04 found the defect. Nine probes unworked pending Q-3
 - [ ] `nitpick-sockets` 0.0.0 probes
 - [ ] `nitpick-parse` 0.0.0 probes
 - [ ] `nitpick-tui` 0.0.0 probes

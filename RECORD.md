@@ -239,3 +239,55 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   (say why it must stay alive), or in a fresh session because this one is
   finished. Landed against 0.2.7 §2; the same fix belongs in any close
   handoff a worker writes
+- report `s2-ntime-0.0.0-1817` **STOPPED**, 164,583 tokens, 40.9 minutes, 67
+  tool uses. The first library subcycle in the ecosystem, and it stopped the
+  stream on a compiler defect — which is W-11 working, not W-11 failing
+- **O-N4 raised: `npkc` is quadratic in the size of one declaration.** Three
+  independent axes, every point checked at `npkc` exit 0: array-initialiser
+  elements (500→30 000 rows: 0.19 s/31 MiB → **281.35 s/30.9 GiB**, a ratio
+  near 4 per doubling in both columns), statements in one function body
+  (1 000/2 000/4 000 → 0.87/2.27/7.03 s), and bytes in one string literal
+  (60 k→480 k → 5.24/22.72/78.11/**308.12 s**, memory flat, so a second
+  pathology rather than the first seen through a lexer). Controls locate it
+  precisely: an unread table costs the same as a read one, so the cost is in
+  the *declaration*; and 4 000 separate `fixed int64` bindings cost 0.61 s
+  against 4 000 elements in one array's 4.19 s, so it is the size of **one**
+  declaration and not the count of constants. TM-007's tzdb is 26 838 rows.
+  Consequence: a 16 GiB machine cannot build `ntime`, CI cannot, and every
+  consumer pays it. Q-2 on the board; the reproduction is
+  `nitpick-time/tests/probe/defect/`
+- verdicts recorded: **probe 01 ACCEPTED** — `#[derive(Ord)]` follows
+  declaration order, proven rather than observed by a reversed-field twin
+  holding width, alignment, signedness and name constant. TM-011 stands.
+  **probe 04 ACCEPTED** on semantics — the table is emitted as
+  `constant [30000 x …]` in `.rodata` at 0x75300 = 480 000 B = 30 000 × 16,
+  with zero `llvm.global_ctors`, so TM-007, Z-7 and S-19 stand as written.
+  Probe 04's *answer* is yes; only its *cost* is the defect
+- finding: **a timing without an exit code is not a measurement.** The
+  worker's own first pass recorded five "fast" configurations that were
+  `NITPICK-PICK-003` and `NITPICK-REACH-002` failures stopping early, and
+  drew the wrong conclusion before checking. It caught itself and rebuilt the
+  table with exit 0 on every point. Goes to `PLAYBOOK.md` as a measurement
+  rule — this will recur in every library that measures anything
+- finding: **`failsafe`'s `pick` over `Error` must carry `(*)` AND name every
+  reachable identity.** The wildcard discharges PICK-003 exhaustiveness and
+  counts for nothing against REACH-002. `PLAYBOOK.md` §3's error-budget
+  section states the second half and not the first; the orchestrator lands
+  the amendment (W-16)
+- Q-4 raised, blocking nothing: `npkc` accepts a root file whose `mod:`
+  differs from its basename when a sibling carries that basename, silently
+  merges both files into one module, and emits two `define i32 @main` at
+  exit 0; `llc` refuses the IR. The resolver's `NITPICK-RESOLVE-005`
+  diagnostic for the same rule is exemplary — it simply is not applied when
+  the given name resolves to a different file. Costs `ntime` nothing
+- check `s2-ntime-0.0.0-1817` **FAIL** — `check_record.py` exit 1,
+  `[no-report] no REPORT block under '## Execution record'`. The worker left
+  the whole subcycle uncommitted by design, reading the worker skill's §4 as
+  wanting a dirty tree for its successor; but W-20 wants the report in the
+  tree as well as in the message, and a session loss would have taken both
+  probe verdicts, the O-N4 reproduction and the defect README with it. Per
+  orchestrate §7 the finding precedes the status: re-dispatched as
+  `s2-ntime-0.0.0-1902` to land the record **only**, explicitly barred from
+  working another probe or re-running the 30 000-row case
+- dispatch `s2-ntime-0.0.0-1902` — the record only, tree dirty. The stream is
+  stopped on O-N4 either way; this is W-20, not progress
