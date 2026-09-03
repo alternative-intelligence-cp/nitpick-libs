@@ -128,3 +128,9 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   ## Confidence and gaps
   **High.** Two iana.org primaries fetched today agree on the version and date: the landing page and the release's own NEWS file (whose first entry is the current release). Budget of 2 fetches exhausted; the tarball directory listing at `data.iana.org/time-zones/releases/` was not opened, but the NEWS file is served from the current release's unpacked contents, so the artifact's existence is not in doubt. Note for TM-100: tzdata releases are frequent (2026a/b/c already this year) and Morocco's 2026-09-20 change may prompt a 2026d; this digest is routine, so it is re-checked at the repository's hardening cycle per §6, not on a 90-day clock.
   ```
+- 0.2.6 pre-check: the marker holds this session's id, written by the
+  orchestrate startup through substitution and equal to the transcript's
+  name; the hook script prints the block for this id and nothing for
+  another, by hand. The live test — the author's `/compact` in this
+  session, loud with the marker and silent with it changed — is next;
+  its procedure is in `meta/roadmap/0.2/0.2.6.md`
