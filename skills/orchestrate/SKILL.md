@@ -46,12 +46,14 @@ Skipped in `tick` mode.
    `mkdir -p .internal && echo "${CLAUDE_SESSION_ID}" > .internal/orchestrator.session`.
    Put the same id on the board's `Workbench writer:` line (W-16) — one
    commit, `board: writer <id>`. **If the line names another session:**
-   `ListAgents` cannot see other sessions, so read `RECORD.md`'s last
-   entries and the board's date. If that session's work is committed and
-   it has been silent for hours, take the lock — the board itself is always
-   writable — and write `writer takeover: <old id>` in `RECORD.md`. If it
-   may be live, stop and ask the author; two writers here is the one
-   failure the whole design exists to prevent.
+   `ListAgents` lists this machine's peer sessions by a short name derived
+   from their directory and an idle/busy state — not by id. A
+   `nitpick-libs-…` peer that is not you means that session may be live:
+   stop and ask the author; two writers here is the one failure the whole
+   design exists to prevent. No such peer, that session's work committed
+   and `RECORD.md`'s last entries hours old → take the lock — the board
+   itself is always writable — and write `writer takeover: <old id>` in
+   `RECORD.md`.
 2. Read, in order: `BOARD.md`; `WORKSTREAMS.md` §3 and §5; `LIBRARIES.md`;
    `../nitpick-apps/APPS.md`; `git -C ../nitpick log --oneline -3`.
 3. The toolchain: if the board's header names no pin, or the pinned

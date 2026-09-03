@@ -134,3 +134,12 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   another, by hand. The live test — the author's `/compact` in this
   session, loud with the marker and silent with it changed — is next;
   its procedure is in `meta/roadmap/0.2/0.2.6.md`
+- 0.2.6 loud case passed: the author's `/compact` in this session restored
+  the context with `SessionStart:compact hook success:` and the block
+  verbatim — the hook is registered from the symlink-loaded plugin and the
+  id it sees is the marker's. The silent case is next
+- finding: `ListAgents` lists peer sessions on this machine by directory
+  name and idle/busy state, which the orchestrate skill's takeover step
+  (§2.1) said it could not; the step now consults it first — a
+  `nitpick-libs-…` peer that is not you is a stop-and-ask, none is the
+  takeover path. Landed against 0.2.2; seen in 0.2.6's loud case
