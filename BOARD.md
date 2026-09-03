@@ -11,11 +11,12 @@ blocked, what is done. The durable plan is
 
 **Last updated:** 2026-09-03 · **Width:** 0 — no orchestrator running ·
 **Toolchain:** none pinned yet (W-18)
-**Workbench writer:** `19afbe0e-419e-49e5-86db-c4d8260e417a` since 2026-09-03 —
-the author's planning session (cloud id `session_017B21dLeQkeSBq3irxofXNJ`),
-executing `meta/roadmap/0.2/`. One writer here
-(W-16, P-19): if this names a session that is not you, do not write in this
-repository.
+**Workbench writer:** `0a61670c-03a4-47dd-a063-44fd216c25b5` since 2026-09-03 17:11 —
+the author's session continuing the execution of `meta/roadmap/0.2/` (cloud
+id `session_011Ens7KaDohzYsQU2YGyTxu`), which took the lock from the planning
+session `19afbe0e-…` after it ended with its work committed (`02d4f61`). One
+writer here (W-16, P-19): if this names a session that is not you, do not
+write in this repository.
 **Phase:** planning complete; the working system is being made to run
 (cycle 0.2); library implementation not started.
 

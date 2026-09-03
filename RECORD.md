@@ -46,3 +46,8 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   `CLAUDE.md`, the README current; the live compaction test waits for the
   author's session. Remaining for the cycle: the live tests of 0.2.4 and
   0.2.6, then 0.2.7's dry runs
+- writer takeover: `19afbe0e-419e-49e5-86db-c4d8260e417a` → `0a61670c-03a4-47dd-a063-44fd216c25b5`
+  at 17:11. The planning session ended with everything committed (`02d4f61`);
+  this session, started in the workbench with the plugin loaded from the
+  symlink, continues 0.2.4's live tests, 0.2.6's compaction test and 0.2.7.
+  Taken by the orchestrate skill's §2 procedure: the board is the lock
