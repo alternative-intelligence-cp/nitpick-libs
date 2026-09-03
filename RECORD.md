@@ -341,3 +341,35 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   every compile; and it is asked to **regenerate O-N4's curve independently**
   at 1 000/2 000/4 000 rows, because those numbers have already gone to the
   compiler session and a wrong defect report costs that session real time
+- **O-N4 and O-N7 accepted by the compiler session**, replying at 19:26. It
+  confirms it is the right recipient — the `src/` writer on `npkc`'s frontend
+  for 1.5.1 under D-228 R2 — so the routing guess from `ListAgents` state was
+  correct. Both are recorded on that side as **DEF-1** and **DEF-2** in
+  `meta/roadmap/OPEN_DECISIONS.md` §2f, each with an owner and a
+  recommendation: a dedicated subcycle **1.5.1b** immediately after 1.5.1
+  closes and before 1.5.2, `src/` work, one commit per defect under a full
+  harness, **DEF-1 measured before it is touched so the fix is a number**,
+  our `big_fixed_array_cost.npk` as the regression case, and the workbench
+  re-pins when it lands. **Provenance caveat, recorded in the same spirit as
+  the pin's `tree dirty` line:** that text is in the compiler's working tree
+  and not on `main` — its docs commit rides with 1.5.1's close, a few hours
+  out, with four prefix harnesses running on 1.5.1's remaining steps now. So
+  DEF-1 and DEF-2 are real commitments by a live session but are not yet
+  citable at a commit
+- the compiler session **declined to guess a cause**, which is the right
+  answer and worth recording as the shape of a good defect hand-off. Its
+  three suspects, to be measured rather than assumed: an accumulating
+  `string_concat` per element or per byte (the shape 1.4.8's process-capture
+  bug had), a per-node window copy in the AST scratch pool, and a
+  per-statement re-walk in the checker or the obligation walk. It agrees the
+  flat-memory string axis is a separate pathology
+- **the schedule is the author's**, and that session says it is telling him
+  directly rather than through this one — the same standing instruction that
+  sent the defect there in the first place. Nothing here waits on it: Q-3's
+  answer stands and the nine probes proceed against the current pin
+- correction to this board's own O-N4 row: it said "blocks `ntime` 0.0.1
+  onward", which was wrong. Cycles 0.0.1–0.0.4 carry no large declaration
+  and are unaffected. What O-N4 blocks is **0.0.5**, the tzdb size spike,
+  which must compile a real emitted table, and **0.5**, the generator — and
+  the library's shipping shape. Fixed on the board; recorded because an
+  overstated block is how a stream idles for no reason
