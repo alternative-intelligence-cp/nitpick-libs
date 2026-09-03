@@ -25,3 +25,7 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
 - finding: the "Where you are" bullet of every `0.0.0.md` also pointed at the
   compiler's `build/` ("whichever is current"); edited with the §2 command.
   `nitpick-posix/CLAUDE.md` had no build section, so it gained "The toolchain"
+- 0.2.1 done: the worker skill rewritten for delegation from the workbench;
+  `check_record.py` with an 11-case control; the reference check's promised
+  control now exists, 7 cases. Both controls green on first run
+
