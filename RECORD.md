@@ -51,3 +51,8 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   this session, started in the workbench with the plugin loaded from the
   symlink, continues 0.2.4's live tests, 0.2.6's compaction test and 0.2.7.
   Taken by the orchestrate skill's §2 procedure: the board is the lock
+- pin 950bb1d: compiler 1.5.0 closed (`950bb1d`), LLVM 20.1.2,
+  `.internal/toolchain/950bb1d/`, `sha256sum -c` OK. Made at 17:12 by the
+  orchestrate skill's startup, run as 0.2.4's test 6 (the dry read): the
+  startup ran through the picture and stopped before dispatch, because
+  0.2.7 §1 wants 0.2.4 and 0.2.6 closed before the first worker

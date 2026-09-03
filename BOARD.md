@@ -9,8 +9,8 @@ blocked, what is done. The durable plan is
 > when the stream leaves the repository. That is what keeps two agents out of
 > one repository and removes every merge conflict by construction.
 
-**Last updated:** 2026-09-03 · **Width:** 0 — no orchestrator running ·
-**Toolchain:** none pinned yet (W-18)
+**Last updated:** 2026-09-03 · **Width:** 0 — no loop running ·
+**Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03
 **Workbench writer:** `0a61670c-03a4-47dd-a063-44fd216c25b5` since 2026-09-03 17:11 —
 the author's session continuing the execution of `meta/roadmap/0.2/` (cloud
 id `session_011Ens7KaDohzYsQU2YGyTxu`), which took the lock from the planning
