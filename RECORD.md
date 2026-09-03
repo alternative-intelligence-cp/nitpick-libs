@@ -429,3 +429,50 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   `check_refs.py` rather than by a reader six weeks later. It also agrees the
   exit-code discipline generalises — two unrelated fast-fail causes under one
   rule — and will cite it when 1.5.1b's measurement stage is written
+- verify `s2-ntime-0.0.0` **FAIL**, 138,518 tokens, 17.4 minutes, 32 tool
+  uses, on commit `8066e62`. Six checks: 1 tree/commit **confirmed**, 2 both
+  reference checks **confirmed**, 3 probe 01 **confirmed**, 4 probe 04's IR
+  claims **unverifiable**, 5 O-N4's committed magnitude **falsified**, 6 the
+  quadratic shape **independently corroborated**. The FAIL is on two record
+  defects; the subcycle's conclusion survives all six
+- **check 3, the one that matters most for the library: probe 01 is real.**
+  The verifier read the probe rather than trusting its exit code and worked
+  out for itself that `Flip`'s reversed twin makes the result unreachable by
+  any width-, alignment-, signedness- or name-based ordering, because each of
+  those is fixed per field and would pick `a` in *both* structs. Declaration
+  order is proven, not merely consistent with. TM-011, S-14 and M-6 stand
+- **check 4: probe 04's IR claims are not backed by anything in the tree.**
+  The record states `constant [30000 x …]` in `.rodata` and zero
+  `llvm.global_ctors` as narrative prose; `git ls-files` shows no `.ll`, no
+  `readelf` output, no log anywhere in the repository — and probe 04's own
+  header comment promises the record "records what they showed". Row count
+  (30 000) and the 16-byte row arithmetic are confirmed by inspection; the
+  emission-shape claims are unverifiable without paying 281 s and 30.9 GiB.
+  **I repeated those claims to the author as established.** They are not
+- **check 5: the committed file does not cost what the record says.** Three
+  runs of the exact harness line, exit 0 every time: 6.19 / 5.30 / 5.34 s,
+  593 992 / 593 620 / 593 592 KiB — memory reproducible to under 0.1%, so
+  this is not the CPU contention the verifier also documented (four
+  `builder` processes at ~100%, load 4.6–5.7). The record says 4.19 s /
+  473 MiB. The cause is a **conflation**: 4.19 s / 473 MiB is the
+  *generic-recipe* 4 000-row point, and the committed file carries the real
+  long identifiers. Two different measurements, one number
+- **the verifier found something nobody had controlled for: identifier
+  length changes the cost.** Same 4 000 rows, diff-confirmed identical row
+  data, names alone varying — generic `R`/`T`/`a`/`b` 388.7 MiB; real
+  `ZoneTransition`/`TRANSITIONS`/`at_utc`/`type_index` 534–542 MiB; the
+  committed file, differing from that only by a nine-character-longer module
+  name and two comments, 579.8 MiB. A ~33% swing from names at fixed element
+  count. Relayed to the compiler session **explicitly labelled as one
+  unreproduced measurement**, not as established, because it fits its
+  `string_concat`-per-element suspect and would also explain the third
+  axis being quadratic in time with flat memory — same accumulation, nothing
+  structural retained. Aiming its measurement stage is worth more than
+  waiting to be certain, provided the uncertainty travels with it
+- **check 6: the phenomenon is now corroborated three independent ways** —
+  our worker, the compiler session on a different build, and this verifier:
+  1 000 → 0.37 s / 49 856 KiB · 2 000 → 1.03 s / 121 456 KiB · 4 000 →
+  3.95 s / 397 940 KiB, ratios 2.78×/2.44× then 3.83×/3.28×. O-N4 stands.
+  What does not stand is any absolute number in our README as a baseline
+- the verifier wrote nothing under `REPO` — its reconstructions went to the
+  session scratchpad, as its own report says and as `git status` confirms
