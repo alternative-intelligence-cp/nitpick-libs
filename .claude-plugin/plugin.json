@@ -1,0 +1,6 @@
+{
+  "name": "npk",
+  "description": "Working skills for the Nitpick ecosystem — the worker and orchestrator roles, the reference-integrity checker, the adversarial auditor, and repository setup.",
+  "version": "0.1.0",
+  "author": { "name": "Randy" }
+}

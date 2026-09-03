@@ -4,9 +4,13 @@
 # that a library is never accidentally embedded here as a gitlink or a copy.
 /*/
 
-# Un-ignore the workbench's own directories as they appear, e.g.:
+# Un-ignore the workbench's own directories. `/*/` above ignores every
+# top-level directory including dot-directories, so each of these must be
+# named explicitly or it vanishes silently — which is exactly what happened
+# on the first attempt to add the plugin.
+!/.claude-plugin/
+!/skills/
 # !/tools/
-# !/meta/
 
 # Gitignored scratch. Never commit anything from here.
 .internal
