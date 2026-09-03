@@ -64,6 +64,8 @@ documentation lookup and can be re-verified the same way; a fact marked
 | three decisions (`T-100`, `RX-100`, `TM-100`) pin "the latest release at cycle N" and nothing equips a worker to find out what that is | measured: `grep -rn 'latest' */meta/DECISIONS.md` | P-14 |
 | `nitpick-posix` names POSIX.1-2017 throughout and never mentions the 2024 edition | measured | Q-1 |
 | the compiler already ran the research → decision-grade digest → ratified-decisions pattern (D-210…D-221) | read: `../nitpick/CLAUDE.md` | P-14 |
+| `skills/check/SKILL.md` promises a negative control ("known to catch all six classes") and none exists in the tree; an ad-hoc fixture built by the first flagless test session showed all six classes fire | measured by that session, 2026-09-03 | 0.2.1 step 5b |
+| two sessions were writing in the workbench at once with nothing on the board saying so; the second stopped by discipline when a commit landed under it | observed 2026-09-03 | 0.2.0 step 2, 0.2.5 |
 | `O-N` ids collide across repositories: `O-N2` is the `npkg` gap in three and something else in three; the workbench references four such ids and defined none | measured: `check_refs.py .` once `meta/OPEN_QUESTIONS.md` existed | 0.2.0 step 1b |
 
 ---
@@ -167,6 +169,15 @@ later reader will propose. The durable ones become `W-` rules in 0.2.0.
   the repository claimed. It stays in `~/.claude/settings.json`, not the
   plugin, so a session started without the plugin is still guarded.
   *Declined:* moving the guard into the plugin's hooks.
+- **P-19 — the workbench names its writer on the board.** The board header
+  carries `Workbench writer:` — a session id and a time, or `none`. The
+  orchestrate skill sets it at startup and clears it at a clean stop; an
+  author's session executing a plan sets it by hand. Any other session that
+  finds a writer named does not write here. The guard enforces it from 0.2.5
+  by comparing the hook's session id. *Why:* the first flagless test session
+  found a commit landing under it and had nothing but discipline to go on.
+  *Declined:* claiming the workbench in the stream tables (it is not a
+  stream's repository).
 - **P-16 — three status vocabularies, each defined once.** A subcycle file's
   title line: `PLANNED`, `RUNNING (since <date>, sN)`, `DONE (<date>)`. A
   report: `DONE`, `READY-TO-CLOSE`, `BLOCKED`, `STOPPED`, `NEEDS-DECISION`,
