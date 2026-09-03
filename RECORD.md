@@ -149,3 +149,9 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   marker changed, so the marker check is what keeps the hook silent
   elsewhere. The marker holds this session's id again. Next: 0.2.7 §1's
   preconditions, then dry run one
+- finding: the pin procedure (orchestrate §3) recorded no tree state; the
+  950bb1d pin, taken at 17:12 from a tree that by 17:49 had eighteen
+  modified files and a rebuilt npkc, may not be that commit's own build,
+  and nothing can tell afterwards. §3 now writes `tree clean|dirty` into
+  PIN.md and onto the `pin` line; the existing pin is marked `tree
+  unknown`. Landed against 0.2.2; seen at 0.2.7's precondition check
