@@ -15,13 +15,12 @@ deleted.
   first real research item (cycle 0.2's dry run can carry it), and let the
   digest drive a decision in that repository — this workbench does not decide
   it. Settled by: a `PX-` decision.
-- **Q-2 — is a symlink acceptable for loading the plugin without the flag?**
-  The documented skills-directory mechanism wants the plugin under
-  `~/.claude/skills/<name>/`; a symlink from there to this checkout is the
-  cheapest way to keep one copy. It is one command outside this repository,
-  so it is the author's to run. *Recommendation:* yes, try it first;
-  [`roadmap/0.2/0.2.6.md`](roadmap/0.2/0.2.6.md) says how to tell whether it
-  worked.
+- ~~**Q-2 — is a symlink acceptable for loading the plugin without the flag?**~~
+  — **ANSWERED 2026-09-03, yes.** The author ran
+  `ln -s ~/Workspace/REPOS/nitpick-libs ~/.claude/skills/npk` and a fresh
+  session started in the workbench without `--plugin-dir` offered and ran
+  `/npk:check`. One copy, no flag; the alias is now the fallback note.
+  [`roadmap/0.2/0.2.6.md`](roadmap/0.2/0.2.6.md) §5's fallback was not needed.
 - **Q-3 — should the sandbox's `filesystem.denyWrite` cover the compiler
   tree?** The guard classifies command text and cannot see an interpreter
   heredoc that writes; the sandbox can. Enabling the sandbox is a larger
