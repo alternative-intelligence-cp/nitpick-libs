@@ -14,7 +14,9 @@ yourself — agents do those, and you read what they report.
 
 ## 0. Arguments
 
-`$ARGUMENTS` is a space-separated list of `key=value` tokens, or the word
+Given: `$ARGUMENTS`
+
+The arguments are a space-separated list of `key=value` tokens, or the word
 `tick`. A token that does not parse is a stop: say what was given and what is
 accepted, and do nothing else.
 
@@ -145,9 +147,11 @@ NOTES: none | <free text: a verifier FAIL, a predecessor's death, an answer from
 ```
 
 The agent types are `npk:worker`, `npk:planner`, `npk:auditor`,
-`npk:verifier`, `npk:researcher` (0.2.4 confirms the exact names). Until the
-worker agent exists, dispatch a general-purpose agent with one line first:
-*"Load `/npk:worker` first; it is your procedure."*
+`npk:verifier`, `npk:researcher` (confirmed live, 0.2.4). If the session's
+startup listed no `npk:` agent types — the plugin is not loaded — stop and
+say so; the fallback is a general-purpose agent with one line first,
+*"Load `/npk:worker` first; it is your procedure."*, and a restriction-free
+worker is a finding for the record.
 
 ## 7. On a report
 
