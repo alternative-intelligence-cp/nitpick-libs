@@ -28,4 +28,6 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
 - 0.2.1 done: the worker skill rewritten for delegation from the workbench;
   `check_record.py` with an 11-case control; the reference check's promised
   control now exists, 7 cases. Both controls green on first run
-
+- 0.2.2 done: the orchestrate skill carries the loop, the stop list, the
+  dispatch template, the pin, recovery and escalation; `START.md` is one line
+  plus arguments
