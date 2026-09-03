@@ -10,7 +10,7 @@
 # on the first attempt to add the plugin.
 !/.claude-plugin/
 !/skills/
-# !/tools/
+!/tools/
 
 # Gitignored scratch. Never commit anything from here.
 .internal
