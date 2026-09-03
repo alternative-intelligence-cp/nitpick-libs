@@ -38,15 +38,20 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1902` | 2026-09-03 19:02 | `claude-opus-5` | **STOPPED on O-N4** (W-11). The re-dispatch lands the record only; the stream does not proceed until Q-3 is answered |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1902` | 2026-09-03 19:02 | `claude-opus-5` | **STOPPED on O-N4** (W-11) for probe 04 only. The live worker lands the record; the nine unaffected probes follow it (Q-3 answered: work them) |
 
 ## Questions for the author
 
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
-| Q-2 | s2 | 2026-09-03 19:02 | **O-N4 — `npkc` is quadratic in the size of one declaration**, on three independent axes (array-initialiser elements, function-body statements, string-literal bytes). TM-007's tzdb is 26 838 rows: 281 s and **30.9 GiB** to compile. A 16 GiB machine cannot build `ntime`; CI cannot; every consumer pays it. Reproduction: [`nitpick-time/tests/probe/defect/README.md`](nitpick-time/tests/probe/defect/README.md) | **Raise against the compiler** (W-11). Nothing in the language changes — it is `npkc`'s implementation. Never worked around: shrinking, splitting or blob-encoding the table each buys the number back and buries a compiler bug in library code that would outlive it. **Do not let O-N4 settle O-Z1 as "ship a subset"** |
-| Q-3 | s2 | 2026-09-03 19:02 | Probes **02, 03, 05-11 are unaffected** by O-N4 - it is a resource cost, not a semantics change. Work the nine against the current pin while O-N4 is open, or idle the stream until it lands? | **Work the nine.** They convert nine unknowns into facts at no risk, and O-N4 changes none of their answers. Probe 04's verdict is already recorded; only its *cost* waits on the re-pin. Idling stream 2 buys nothing |
-| Q-4 | s2 | 2026-09-03 19:02 | A second, narrow `npkc` defect met by accident: a root file whose `mod:` differs from its basename, with a sibling carrying that basename, **silently merges both files and emits two `define i32 @main` at exit 0**; `llc` then refuses the IR. Six-line reproduction in the same README | **Raise alongside O-N4, blocking nothing.** It costs `ntime` nothing (the house rule is already `mod:` = basename). The resolver already has the exact diagnostic and simply does not apply it when the name resolves to a different file |
+| — | — | — | nothing pending | — |
+
+**Q-3 answered 2026-09-03 by the author: work the nine.** Probes 02, 03 and
+05–11 proceed against the current `950bb1d` pin; only probe 04's *cost* waits
+on the re-pin. Width stays 1, because [`0.2.7`](meta/roadmap/0.2/0.2.7.md) §5
+gates width two on dry run one passing and dry run one is still open.
+**Q-2 and Q-4 left this table by being raised** — they are with the compiler
+session and are tracked below as O-N4 and O-N7.
 
 ---
 
@@ -131,6 +136,8 @@ compiler"), because `O-N` numbers are per repository and collide.
 | O-N1 (`clone_exec` signal mask) | `ntui` 0.1.6, cosmetically | request raised |
 | O-N5 (`npkg` multi-artifact) | `nitpick-posix`'s build | request raised |
 | ~~O-N6~~ (macro splices a `pick`) | `nitpick-posix`'s **shape** | **ANSWERED 2026-09-03: no.** Probe 02, seven programs. A macro is not shareable across modules at all (`MACRO-007`); `failsafe` is generated instead (PX-100). Shape changed, schedule did not |
+| **O-N4** (`npkc` quadratic in one declaration's size) | **`nitpick-time` NOW** — TM-007's 26 838-row tzdb costs 281 s and 30.9 GiB; a 16 GiB machine and CI cannot build the library, and every consumer pays it | **RAISED 2026-09-03** with the compiler session over `SendMessage`, with three curves, three locating controls and a four-second reproduction (`nitpick-time/tests/probe/defect/`). Blocks `ntime` 0.0.1 onward; the nine unaffected probes proceed meanwhile (Q-3). Re-pin when it lands, and probe 04 becomes its regression case |
+| **O-N7** (`mod:`/basename mismatch merges two files) | nobody — raised for correctness | **RAISED 2026-09-03** alongside O-N4. Emits two `define i32 @main` at exit 0 and `llc` refuses the IR; the `NITPICK-RESOLVE-005` diagnostic for the same rule already exists and simply is not applied here. Costs `ntime` nothing |
 
 ---
 

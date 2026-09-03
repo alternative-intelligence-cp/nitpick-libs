@@ -301,3 +301,19 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   so if it is not the session working `npkc`'s frontend. The author's
   standing instruction is to ask the implementing agent rather than route a
   question through him, and W-11's escalation is the orchestrator's to make
+- **question Q-3 answered by the author: work the nine.** Probes 02, 03 and
+  05–11 proceed against the current `950bb1d` pin; only probe 04's cost waits
+  on the re-pin. Width stays 1 — 0.2.7 §5 gates width two on dry run one
+  passing, and dry run one is still open, so going wide now would jump its
+  own plan. The two alternatives offered were idling stream 2 (buys no
+  correctness, costs the calendar, since the nine are genuinely independent
+  of a resource defect) and opening stream 1 alongside
+- Q-2 and Q-4 leave the author's table by being raised: tracked on the board
+  as **O-N4** and **O-N7** under compiler dependencies, where the other
+  outstanding compiler requests already live. The questions table is empty
+  again
+- the nine-probe dispatch waits on `s2-ntime-0.0.0-1902`, which is still
+  landing the record. One worker per subcycle and one writer per repository
+  (W-7, W-15): a second worker into `nitpick-time` now would be the exact
+  collision the board exists to prevent, so the answer is queued rather than
+  acted on immediately
