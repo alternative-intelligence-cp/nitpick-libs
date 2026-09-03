@@ -33,3 +33,6 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   plus arguments
 - 0.2.3 done: the research skill, the currency table in planning and
   auditing, the first research request written for the POSIX edition (Q-1)
+- 0.2.4 in progress: five agent definitions written; their live tests
+  (names, skill preload, web tools, the auditor's inability to write, nesting,
+  and 0.2.2's dry read) wait for a fresh session in the workbench
