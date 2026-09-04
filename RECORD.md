@@ -1163,3 +1163,66 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
     rather than derived
   - its four leak-gate sites are fixed **on this claim**, which is what the
     author's Q-10 answer scheduled and what W-7 requires
+- **compiler status, 22:40, sent unprompted at the author's request so this
+  board does not rest on a stale picture.** 1.5.1 is CLOSED and pushed
+  (`e668f6a`). 1.5.1b runs as cumulative prefixes, each behind a ~3 h harness:
+  step 0 committed (21:34), step 1 / DEF-2+D-248 committed (22:05), step 1b /
+  DEF-5 committed (22:11), step 2 / DEF-3 written and sweeping the compiler's
+  own `src/`. Nothing owed to us changes; the landing message still comes
+- **D-248 has a consequence nobody had told us, and it is the kind that breaks
+  every file at once: a module name is an IDENTIFIER.** A `.npk` file named
+  after a reserved word, or beginning with a digit, refuses. The compiler
+  renamed five of its own (`00_minimal.npk` → `c00_minimal.npk`, plus
+  `derive`, `arena`, `assoc`, `wildx`). **Swept all six repositories against
+  `PLAYBOOK.md` §10's list: zero violations** — and the reason is luck plus one
+  earlier catch, `nitpick-regex`'s `d6fb0ce`, "probe filenames cannot begin
+  with a digit". The rule now binds every new file and is on the board
+- **two shapes DEF-3 distinguishes that our own six cases did not**, and
+  `src/fmt/` planning turns on both. A view of a **temporary** —
+  `string_bytes(string_concat(a, b))` returned — is refused outright as
+  `NITPICK-BORROW-012`; bind the intermediate. It is doubly wrong today, since
+  that `string_concat` temporary also leaks under D-246, and the answer to both
+  is the same bind. But a view whose root is a **pointer-shaped binding** — a
+  wild pointer, a slice, a cstring — is the *pointee's* borrow and not a frame
+  borrow, so `string_from_bytes(buf, n)` over an alloc'd block, returned,
+  **stays legal**. **Consequence for `nitpick-time`: its house rule "a view is
+  a parameter, never a return value" is CONSERVATIVE rather than true.** It was
+  written with no way to tell those apart; there now is one, and `src/fmt/`
+  should not be built on the stricter reading as though it were the rule.
+  Relayed immediately to the live `nitpick-regex` worker, whose probe 07 is
+  `string_bytes` at the borrow edges and would otherwise have concluded the
+  strong form
+- **DEF-4 widened after measurement and is now D-250, step 3b**, inserted
+  between the builders and D-246. Our O-N10 was reported as a payload-enum
+  defect; it is not only that — a derived `Eq`/`Ord` over a **struct with a
+  derived-struct field** fails the same way inside `<derived-1>`. So step 3b
+  covers named types in structs and enums alike, and an owning payload will
+  refuse the derive **by name** rather than silently generate. Worth noting for
+  its own sake: **we reported the narrow case and the compiler's measurement
+  found the general one**, which is the same service our sweep did for the leak
+  gate in the other direction
+- **DEF-5's diagnostic is known before it lands: `NITPICK-REACH-003` at `main`,
+  listing every identity the handler owes** — for our own `case1` that is six,
+  the four system identities every executable carries plus the user's plus
+  `IntOverflow` from a guarded `+`. That is the after-value the two
+  `missing_failsafe` transcripts must record at the re-pin, so the re-pin task
+  is now fully specified rather than merely flagged
+- **three playbook corrections from the same message, two of them numbers we
+  had subtly wrong:**
+  - the compiler's root file is **`src/npkc.npk`**, renamed from
+    `src/main.npk` at step 1; our §2 still spelled the old path
+  - **two figures circulate for the compiler's self-build and they measure
+    different things** — 11 GiB peak RSS, and 10.39 GiB peak *live* managed
+    from the new instrument. Neither supersedes the other, and the playbook now
+    says which is which, because a later reader quoting "10.39" as an RSS
+    figure would be wrong by the whole difference
+  - **the 480 000-byte literal's flat memory is explained: escaping that one
+    string requests 107 GiB in total.** The cost is churn rather than
+    retention, which is exactly why RSS said nothing about it and wall time
+    said everything — and it is a caution about the `cost` stage we are about
+    to adopt, since a peak-RSS budget would not have caught this axis at all
+  - and **the identifier-length observation is resolved rather than dismissed**:
+    not a fourth axis, but a real amplifier, because the builders copy
+    accumulated *text* and a longer identifier lengthens every copied prefix.
+    Our earlier "did not survive measurement" was right about the axis and
+    wrong to leave the 11% unexplained

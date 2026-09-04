@@ -141,7 +141,12 @@ repository would otherwise rediscover them. The first two come from
   type — and once bound, `a` drops at scope exit like every other bound owner.
   It is not a style preference: it is the difference between linear and
   quadratic memory in any loop that does it per element, and it is why `npkc`
-  itself peaks at 11 GiB compiling its own `src/main.npk`.
+  itself peaks at 11 GiB compiling its own root file — **`src/npkc.npk`,
+  renamed from `src/main.npk` at the compiler's 1.5.1b step 1**. Two figures
+  circulate for that build and they measure different things: **11 GiB peak
+  RSS**, and **10.39 GiB peak *live* managed** from the `NPK_HEAP_STATS`
+  instrument built at 1.5.1b step 0. Neither supersedes the other; quote the
+  one you mean.
 
   **The rule is needed only at OWNING intermediates, and the test is exact.**
   A temporary leaks if and only if its type drops — the checker's
@@ -364,9 +369,19 @@ that can stop the program is a defect.
   function body, and bytes in one string literal. At 30 000 array rows that is
   **281 s and 30.9 GiB**; at 480 000 literal bytes, **308 s with memory flat**,
   which makes the string axis a separate pathology rather than the same one
-  seen through the lexer. Controls place the cost in the *declaration*: an
+  seen through the lexer — and the compiler's step-0 baseline explains that
+  flat memory: escaping that one string **requests 107 GiB in total**, so the
+  cost is churn rather than retention, which is why RSS says nothing about it
+  and wall time says everything. Controls place the cost in the *declaration*: an
   unread table costs what a read one costs, and 4 000 **separate** `fixed
   int64` bindings cost 0.61 s against one 4 000-element array's 4.19 s.
+  **Identifier length is not a fourth axis, but it is an amplifier, and the
+  mechanism is now known:** a 4 000-row file using this library's real
+  identifiers peaks 11% above the same file built from a generic recipe,
+  because the builders copy the accumulated *text* and a longer identifier
+  lengthens every copied prefix. The earlier reading — that the
+  identifier-length hypothesis "did not survive measurement" — was right that
+  it is not an independent axis and wrong to leave the 11% unexplained.
   Raised as **O-N4** (the compiler's DEF-1), reproduced independently by the
   compiler session on a different build, and owned there. **Plan around it
   only by not generating enormous single declarations yet — never by
