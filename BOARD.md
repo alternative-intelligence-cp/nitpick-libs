@@ -9,7 +9,7 @@ blocked, what is done. The durable plan is
 > when the stream leaves the repository. That is what keeps two agents out of
 > one repository and removes every merge conflict by construction.
 
-**Last updated:** 2026-09-03 · **Width:** 1 — **stream 1** (stream 2 parked: `nitpick-time` stays claimed and stopped on 1.5.1b, with no live agent) ·
+**Last updated:** 2026-09-03 · **Width:** 2 — streams 1 and 2 ·
 **Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03
 **Workbench writer:** `3e1777c3-c237-4c90-920c-a4a6b9df1e66` — session
 `nitpick-libs-88`, the second orchestrator, took the lock 2026-09-03 20:56.
@@ -39,8 +39,8 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | *(parked — no live agent)* | 2026-09-03 21:52 | `claude-opus-5` | **STOPPED on O-N4, O-N9, O-N10, O-N11 — all four now batched into the compiler's 1.5.1b.** The miscount FAIL is fixed at `4dcd204` and **VERIFIED PASS** (on a smaller model per §12 — 71k tokens against the full verifier's 150k). Nine of eleven probes worked; **09 and 10 held for 1.5.1b**, so 0.0.0 cannot close and §5.1 keeps this stream's item here. Waiting on the compiler's landing message. **Owed at the re-pin:** re-record `missing_failsafe`'s two transcripts, which DEF-5 moves from an `llc` failure to an `npkc` refusal |
-| s1 | `nitpick-regex` | **0.0.1 — the skeleton** | *(next dispatch)* | 2026-09-03 23:10 | `claude-opus-5` | **0.0.0 DONE and VERIFIED PASS** at `9b80d69` — the ecosystem's first completed subcycle. 23 probes, 6 commits, all 23 re-run by the verifier with every exit code and diagnostic matching, and the four weightiest claims independently re-derived from the compiler's source rather than re-read. Produced **RX-111** (below), **O-N12** (sent), and `stack` for the playbook. Small debts for the next dispatch here: the record's prose says "five commits" where the list and `git log` say six, and the local `O-N1…O-N4` want renumbering to `O-C` so they stop colliding with the registry |
+| s2 | `nitpick-time` | 0.0.0 — record and specification debts | `s2-ntime-0.0.0-2315` | 2026-09-03 23:15 | `claude-opus-5` | **Still STOPPED on O-N4, O-N9, O-N10, O-N11 — all four in 1.5.1b — and this dispatch does not touch any of them.** It clears the debts that do NOT need the re-pin, so that when the landing message arrives the next dispatch is probes 09/10 and the transcript re-recording and nothing else: **RX-111**'s false bounds promise at `specs/SAFETY.md:21`; the O-N10 and O-N11 *(provisional)* hedges, now that both numbers are allocated and accepted as DEF-4/D-250 and DEF-5; a 0.0.2 checklist line for the nine-probe leak-comment residue; and the record that the house view rule is **conservative rather than true**, which `src/fmt/` must not be planned against. **Still owed at the re-pin:** probes 09 and 10, and re-recording `missing_failsafe`'s two transcripts to `NITPICK-REACH-003` |
+| s1 | `nitpick-regex` | **0.0.1 — the skeleton** | `s1-nregex-0.0.1-2315` | 2026-09-03 23:15 | `claude-opus-5` | **0.0.0 DONE and VERIFIED PASS** at `9b80d69` — the ecosystem's first completed subcycle. 23 probes, 6 commits, all 23 re-run by the verifier with every exit code and diagnostic matching, and the four weightiest claims independently re-derived from the compiler's source rather than re-read. Produced **RX-111** (below), **O-N12** (sent), and `stack` for the playbook. Small debts for the next dispatch here: the record's prose says "five commits" where the list and `git log` say six, and the local `O-N1…O-N4` want renumbering to `O-C` so they stop colliding with the registry |
 
 ## Questions for the author
 
