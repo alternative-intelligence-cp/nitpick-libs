@@ -172,6 +172,21 @@ behind it. Probes are `probeNN_topic.npk` and conformance cases `caseNN_*`.
 *Every one of the first six plans wrote `01_name.npk` before anybody compiled
 one.* It is the cheapest possible bug and it survived six planning passes.
 
+**This is about to be enforced harder, and the ecosystem should write to it
+now.** The compiler's **D-248**, ratified 2026-09-03 and landing in its cycle
+1.5.1b, makes `mod:<basename>;` the **mandatory first declaration** of every
+source file, and permits `main` and `failsafe` **only in the root file of a
+program**. Both are already this ecosystem's house rules, so the cost of
+complying early is nothing and the cost of not is that every file breaks at
+the re-pin: at the time D-248 was ratified, all seventeen `.npk` files in
+`nitpick-time` and all eight in `nitpick-posix` already led with
+`mod:<basename>;` and needed no change. Write new files that way and the
+re-pin is free. The one shape D-248 forbids that this ecosystem has actually
+written is a **macro in a shared module that expands to a `failsafe`** —
+`nitpick-posix`'s `tests/probe/shared/pxfail.npk`, which is a *negative*
+probe recording a refusal (O-N6, `MACRO-007`) rather than live code, and
+which PX-100 already replaced with a generator.
+
 **And when it does go wrong it does not always say so.** `nitpick-time` 0.0.0
 found that a root file whose `mod:` name mismatches its basename **while a
 sibling file carries that basename** is not diagnosed at all: `npkc` compiles

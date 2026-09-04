@@ -620,3 +620,37 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   and two of those existed only to make a worker commit work it had already
   done. W-4's recalibration should count dispatches, not subcycles, or it
   will estimate the next repository from a number that was never true here
+- **the compiler session handed off: `nitpick-76` → `nitpick-36`.** Every
+  reference to `nitpick-76` in this record means "the compiler session as of
+  2026-09-03". The successor has this workbench's address and a standing
+  instruction to message it at 1.5.1b's landing with the commit, the `build/`
+  fact the re-pin needs, and the after-numbers on our own recipes — so the
+  re-pin should need no round trip, which is what the fourth rider asked for
+- **1.5.1b is planned and ratified by the author**, `meta/roadmap/1.5/1.5.1b.md`
+  at the compiler's `4bf3e47`, starting when 1.5.1's last four steps land.
+  Five commits: **DEF-2** (our O-N8) first because it is independent, **DEF-3**
+  (our O-N9), **DEF-1**'s three backend text builders (our O-N4), then
+  **D-246** statement-end temporaries and **D-247** `List<T>` as owning. All
+  three of this workbench's defects are in one batch, which is why the
+  author's ruling that O-N9 blocks turned out to cost almost nothing
+- **D-248 lands with them and touches every library: `mod:<basename>;` becomes
+  the mandatory FIRST declaration of every source file, and `main`/`failsafe`
+  may be declared only in a program's root file.** Checked the exposure rather
+  than assuming it: all seventeen `.npk` files in `nitpick-time` and all eight
+  in `nitpick-posix` already lead with `mod:<basename>;`, so the ecosystem
+  complies today and the re-pin is free if new files keep to it. The one shape
+  D-248 forbids that anybody here has written is `nitpick-posix`'s
+  `tests/probe/shared/pxfail.npk` — a macro in a shared module expanding to a
+  `failsafe` — and that is a **negative** probe recording `MACRO-007`'s
+  refusal rather than live code, already replaced by PX-100's generator. Its
+  recorded diagnostic will change after 1.5.1b, which is a note for stream 3
+  and not a problem. Landed in `PLAYBOOK.md` §2 as a write-to-it-now rule,
+  because complying early costs nothing and not complying breaks every file
+  at once
+- finding: the worker has meanwhile committed more than its last report
+  covered — `tests/probe/defect/view_escape/` now holds six cases, and
+  `probe02d_wide_literal_refused.npk` exists. Seen incidentally while sizing
+  D-248's exposure. Noted because it means O-N9's reproduction is already in
+  the tree at a citable commit, which is what the compiler session asked for;
+  the hash goes to `nitpick-36` once the worker reports and the record check
+  has run, not before
