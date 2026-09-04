@@ -157,6 +157,40 @@ repository would otherwise rediscover them. The first two come from
   with `move` into something that leaks it further — but that is ordinary
   ownership rather than this defect, and it is your bug instead of the
   compiler's.
+- **Freeing a generic container's block does NOT drop its elements, and
+  `exit 0` does not notice.** D-151's leak trap watches `wild` allocations; a
+  `string` body is *managed*, so a `Vec<string>` freed without dropping its
+  elements retained **125 MiB over two million elements and still exited 0**,
+  and hit `HeapOom` under a 64 MiB cap. **"The suite's programs exit 0, so a
+  missing `free` is a trap rather than a pass" is a claim about `wild` only** —
+  it is written as an unqualified gate in more than one cycle plan in this
+  ecosystem and it is not one. A container's `free` must drop each element,
+  and the test for it is a memory cap, not an exit code.
+- **The runtime poisons freed bytes with `0xAA` on every free** (`npkrt.ll`,
+  D-183). A stale read is therefore loud and deterministic rather than
+  probabilistic, which is what makes a dangling view *reproducible evidence*
+  instead of a flake. Use it: a use-after-free probe asserts the poison.
+- **`int64`'s MINIMUM cannot be spelled as a literal in any width** —
+  `NITPICK-LEX-004`, because the literal envelope is 64-bit and the magnitude
+  is one too large. The MAXIMUM is fine. So **a bound pair written by symmetry
+  from a working upper bound is exactly what stops compiling**; build the
+  minimum arithmetically instead.
+- **Measure `#size_of`; never derive it from field widths.** A `string` is
+  **24** bytes, not a slice's 16, and `enum { Literal(uint16); … }` is **8**,
+  not 6, because the payload aligns. Two drafts in one subcycle asserted the
+  arithmetic answer and both were wrong.
+- **Three spellings that fail with unhelpful diagnostics.** An explicit
+  generic argument at a call site is a **turbofish**, `f::<int64>(x)`; plain
+  `f<int64>(x)` is `NITPICK-PARSE-002` with no hint. A `pick` arm's variant
+  must be **qualified**, `(Part.Year4)` and never `(Year4)`, which is
+  `NITPICK-RESOLVE-002` — a `failsafe`'s bare `(HeapOom)` is not a
+  counter-example, because those names are the prelude's. And a **lending
+  `pick` may not bind a payload that owns heap storage**, `NITPICK-TYPE-046`;
+  use `pick (move(v))`, or bind nothing and read through the selector.
+- **`#[derive(Eq)]` on a payload enum does not compile, and `#[derive(Ord)]`
+  on the same declaration silently compares tags only** — so
+  `Literal(7).cmp(Literal(9))` is `Equal`. Raised as **O-N10**. Until it
+  lands, do not derive either on an enum with payloads; write the comparison.
 - **`_~argv` marks a parameter DISCARDED, not merely unused.** Reading it is
   `NITPICK-TYPE-007`. A probe or program that wants `argv.len` must spell the
   parameter `cstring[]:argv`. Cheap, and it cost a probe a rewrite.

@@ -676,3 +676,52 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   orchestrator does not rewrite plans (W-16, and §1 of the orchestrate skill).
   It also wants the author's word, because it adds a stage to a cycle whose
   checklist is already execution-grade
+- report `s2-ntime-0.0.0-2035` **STOPPED** (a third stop), 330,666 tokens,
+  50.1 minutes, 156 tool uses. Four commits — `ef14210` probes 02/03/07/08 and
+  twins plus TM-105, `0667ecb` O-N9 reproduced with the contrast, `eb8d6b4`
+  probes 05/06 plus TM-106 and the third stop, `9113487` the execution record.
+  `check_record.py` **exit 0**, `check_refs` clean, `nitpick-time` tree clean,
+  and every other repository at zero changes — write scope held for the
+  fourth dispatch running
+- **ten of eleven probes are worked.** 01, 02, 03, 04, 05, 06, 07 and 08
+  accepted, several with negative twins that pin a refusal (02c `TYPE-009`,
+  02d `LEX-004`+`PARSE-002`, 05b `TYPE-034`). Probes 09 and 10 held on O-N9;
+  **probe 11 was not worked and is independent of every open disposition**, so
+  it is the next dispatch's first item
+- **O-N10 raised, the third stop, and its quiet half is the serious one.**
+  `#[derive(Eq)]` on a payload enum does not compile (`NITPICK-TYPE-034`,
+  reported inside `<derived-1>`); `#[derive(Ord)]` on the *same declaration*
+  compiles and produces a tag-only `cmp`, so `Literal(7).cmp(Literal(9))` is
+  **`Equal`**. A refusal is an inconvenience; silently reporting two different
+  values as equal is a wrong answer. No file in the compiler's own tree
+  derives on a payload enum, so the gap is coverage and the ask includes a
+  test there. **Not blocking `nitpick-time`** — one payload enum is exposed
+  and no rule needs a derive on it — so no author decision is pending; it
+  blocks the first library that wants one. The worker flagged its own id as
+  provisional and told me to check the registry, which was the right instinct
+  after this session's two numbering errors: `O-N10` was free
+- **the finding that contradicts a written gate, and it is in more than one
+  plan: freeing a generic container's block does NOT drop its elements, and
+  `exit 0` does not notice.** D-151's trap watches `wild` allocations; a
+  `string` body is managed. A `Vec<string>` freed without dropping elements
+  retained **125 MiB over two million elements and exited 0**, and hit
+  `HeapOom` under a 64 MiB cap. Cycle 0.0.4's checklist says "the suite's
+  programs exit 0, so a missing `free` on any path is a trap rather than a
+  pass (D-151)" — **that is true of `wild` only**, and as written it is a gate
+  that cannot fail. Landed in `PLAYBOOK.md`; the plan text itself is the next
+  worker's to amend, not mine
+- seven more playbook facts landed from this report: the runtime poisons freed
+  bytes with `0xAA` (D-183), which is why a dangling-view probe is
+  deterministic evidence rather than a flake; `int64`'s **minimum** cannot be
+  spelled as a literal (`LEX-004`) though its maximum can, so a bound pair
+  written by symmetry is exactly what breaks; `#size_of` must be measured, a
+  `string` being 24 bytes and a `uint16`-payload enum 8; and three unhelpful
+  diagnostics — the turbofish `f::<int64>(x)`, the qualified `pick` arm
+  `(Part.Year4)`, and `NITPICK-TYPE-046` on a lending `pick` binding an owning
+  payload
+- **verification is OWED and deliberately not run.** W-21 wants a verifier on
+  `9113487` before anything advances. Nothing is advancing — the subcycle stays
+  `STOPPED` — and a verifier dies with the session that spawned it, so
+  starting a twenty-minute run immediately before a planned handoff would
+  have thrown the work away. It is the successor's first action and is on the
+  board

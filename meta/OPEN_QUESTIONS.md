@@ -103,6 +103,18 @@ file existed — the check works.
   append-only and is never rewritten. That is why this line exists — so the
   reference resolves and the mistake stays visible. `check_refs.py` caught it,
   which is the second time this file's existence has paid for itself.
+- **O-N10 — `#[derive(…)]` on a payload enum is refused one way and silently
+  wrong the other.** Raised by `nitpick-time` 0.0.0's probe 05. `#[derive(Eq)]`
+  on an enum with a payload does **not** compile — `NITPICK-TYPE-034`, reported
+  inside `<derived-1>` — while `#[derive(Ord)]` on the same declaration
+  compiles and produces a **tag-only** `cmp`, so `Literal(7).cmp(Literal(9))`
+  is `Equal`. The loud half is an inconvenience; **the quiet half reports two
+  different values as equal** and is the one to raise loudest. No file in the
+  compiler's own tree derives anything on a payload enum, so the gap is
+  coverage rather than a decision. **Not blocking `nitpick-time`** — one
+  payload enum is exposed and no rule needs either derive on it — but it
+  blocks the first library that wants one, and it should be raised with a
+  request for a test in the compiler's tree.
 - **O-N9 — D-004's escape rule is enforced for `@`-borrows and not for slice
   views.** Raised by `nitpick-time` 0.0.0 while mapping probes 09 and 10's
   borrow edges. `string_bytes` on a local `string` yields a `uint8[]` that can
