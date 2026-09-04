@@ -1305,3 +1305,50 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   is over-cautious. Under verification as a judgement call. **Flagging it was
   right**: a plan instruction silently not followed is the thing an audit finds
   three cycles later
+- **verify `s1-nregex-0.0.0-verify-2257` PASS** on `9b80d69`, 11.1 minutes,
+  173 899 tokens, 78 tool uses. It re-ran all 23 probes with every exit code and
+  diagnostic matching byte for byte, checked the toolchain's SHA-256 against the
+  transcript's declared pin, ran BOTH check scripts' negative controls before
+  trusting their clean results, and **wrote its own probes** to reproduce three
+  claims rather than re-reading them. **The first subcycle in this ecosystem to
+  close.** `advance nitpick-regex 0.0.0 → 0.0.1`
+- **RX-111 resolved, and the answer is that it is OURS.** The mechanism is
+  confirmed in the compiler's source with citations — `parse_type.npk:14-17`, a
+  qualifier is not part of the type so `wild T->:x` is bare `TY_POINTER`; and
+  `ir_expr.npk`'s `ExprIndexExpr`, where the `TY_SLICE` branch calls
+  `emit_bounds_guard` at ~8667 and `TY_ARRAY` at ~8701 while the `TY_POINTER`
+  branch at ~8676-8685 goes straight to `getelementptr`. **That is correct
+  behaviour, not a defect**, and I confirmed the compiler's documentation says
+  so in as many words: **D-070's own title is "`T[]` is a slice: bounds live in
+  the array type, NOT the pointer type"**, and `list.npk` marks `List<T>.items`
+  "WILD, DELIBERATELY"
+- **so four of our repositories cite D-070 in the direction opposite to its
+  title.** That is the finding worth keeping, above the fix itself: the
+  citation *resolves*, so `check_refs.py` passes it, and four independent
+  authors read a decision by number without reading its scope. It is the same
+  failure mode as the Q- collision — a reference check finds what does not
+  resolve, never what resolves to the wrong thing
+- **the inference has a nuance the verifier was right to flag: there is no
+  compiler-prelude `Vec<T>` at all.** `grep -rn "struct:Vec"` over the compiler
+  tree is empty. `nitpick-regex`'s RX-006 fixes its `Vec<T>` to the shape of the
+  compiler's `List<T>` (D-209, `wild T->:items`), and the other libraries do the
+  same **by convention**. So "every `Vec<T>` in this ecosystem is unchecked" is
+  true today and is a statement about a shared convention rather than about a
+  single enforced type — which means a library that later defines `Vec`
+  differently gets a different safety property, silently. Worth a line in each
+  `SAFETY.md` alongside the correction
+- **O-N12 confirmed from the compiler's tree by this session, not relayed**:
+  `TYPE_REFERENCE.md:1799` carries `| >>> | right shift (unsigned) | lshr |`,
+  `BUILTIN_REFERENCE.md:166` documents `string_repeat(str, n)`, and
+  `string_repeat` appears nowhere in `src/` or `runtime/`. **Sent to
+  `nitpick-36` with RX-111's disposition attached** so they do not chase a
+  defect that is not theirs — and with the note that four readers here were
+  misled by "D-070 guarantees bounds checking" as shorthand, which is
+  documentation-legibility feedback even though the document itself is right
+- **the author's standing instruction, recorded because it governs timing:**
+  when a compiler-end fix is needed we message the compiler session so they can
+  roadmap it, and the ecosystem is deliberately collecting every defect found
+  so far **before** the compiler moves to 1.5.2, so as not to keep building on
+  known bugs. That is why O-N11 went over the moment it was verified rather
+  than at the subcycle's close — and it landed as DEF-5 in the open batch,
+  which it would not have done a cycle later
