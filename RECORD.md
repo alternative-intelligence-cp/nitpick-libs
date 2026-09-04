@@ -1494,3 +1494,53 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   load-bearing — on 0.0.3's list rather than built. No code exists yet, so
   nothing is broken; but the gap between "the language checks this" and "we
   check this" is now a named item rather than an assumption
+- **CORRECTION TO THE CORRECTION, and the second one is the instructive one:
+  `NITPICK-BORROW-012` DOES exist.** The entries above saying it does not stand
+  as written and are wrong. DEF-3's **step 2 allocates it**, and it lives only
+  in the compiler's unlanded step-2 worktree — entered in `analysis_codes.npk`
+  there, with its own case in `view_escape.npk`, a README row and a D-249
+  landing note. Our pinned tree at `950bb1d` cannot show it, by construction
+- **so the observation was right and the conclusion was wrong**, and the
+  difference is the whole lesson. `git grep` over the pin genuinely returned
+  nothing; from that this orchestrator concluded "the code does not exist" and
+  pushed that into a worker dispatch, a verifier dispatch, the board and this
+  record. **The pin is a snapshot of what has LANDED. Absence in it proves "not
+  landed", never "not real"** — and while the compiler is mid-cycle, fixing four
+  defects this workbench raised, those are wholly different facts. Landed in
+  `PLAYBOOK.md` §6 as a rule with the procedure: establish which tree a claim is
+  about before checking it; the pin is authoritative for current behaviour and
+  silent by construction for a fix in flight; and a document referencing a
+  diagnostic the pin lacks is a finding **only if it states it as current fact**
+- **why the plan and the message disagreed, which was a real thing to find and
+  not a slip.** DEF-3's plan said it adds no new code, and that held for every
+  refusal shaped like "as if `@` had been written at that argument" — a view of
+  a local returned, held in a literal, laundered through a call, stored through
+  a pointer parameter, all `BORROW-001`/`002`. **Writing the rule found one
+  shape the `@`-equivalence has no arm for: a view of a TEMPORARY.** `@` of a
+  temporary cannot be spelled, so no existing code's text is true of it and
+  tracking it would need a root with no name. Hence a new code, and hence §4 of
+  their plan gets a dated note at the landing recording that the "no new code"
+  sentence held for the `@`-shaped refusals and not for this one
+- **the corollary worth keeping: a challenge can be worth making and still be
+  wrong.** This query was answered with a distinction the plan had not known and
+  a documentation fix on their side. Being wrong out loud, to a peer who can
+  check, cost a worker one reverted edit; the silence would have cost the note
+- three messages went out to unwind it: the `nitpick-regex` worker told to
+  restore all four sites **and to label the code as introduced by step 2 and
+  absent from the pin**, which is better than either version this workbench had;
+  the running verifier told to drop that check entirely, since neither presence
+  nor absence is a fault; and the compiler session told the number checks out
+- **the two other corrections HELD and are now independently corroborated.**
+  The compiler session confirms the `buffer` finding is right and by design —
+  §23's "deliberately NOT landed" is exactly that — so `Bytes` is unchecked as
+  `Vec<T>` is. And the "six identities" was its reading of `tests/accept/
+  borrows.npk`, not our `case1`: **four stands**, and the count is whatever the
+  diagnostic prints at the re-pin, which is why the worker wrote none down
+- **a finding from their step 3, relevant because every formatter we ship goes
+  through a byte sink:** the compiler's own escaper allocated a one- or
+  three-byte `wild` block **per byte of every string literal** and never freed
+  it, and its two callers concatenated those onto a growing prefix. Both are
+  gone in step 3 — bytes go straight into the module stream — and the axis-3
+  recipe measures it. That is the mechanism behind the 480 000-byte literal
+  requesting 107 GiB while RSS stayed flat, and it means the after-numbers on
+  our own recipes should move a long way, not marginally

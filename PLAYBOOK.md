@@ -398,6 +398,35 @@ with every command's exit code, rather than a prose summary of it — a summary
 is not evidence, and `nitpick-time` 0.0.0 had its emission claims failed by
 its own verifier for exactly that.
 
+**The pinned tree cannot falsify a claim about unlanded compiler work.** The
+pin is a snapshot of what has *landed*. Grepping it and finding nothing proves
+"not landed yet" and never "not real" — and while the compiler is mid-cycle
+those are wholly different facts. This workbench learned it the expensive way:
+told that a view of a temporary refuses as `NITPICK-BORROW-012`, it grepped the
+pin, found the highest allocated borrow code was `011`, announced that
+`BORROW-012` did not exist, pushed that "correction" into a worker dispatch, a
+verifier dispatch, the board and the record — and was wrong. The code is real,
+allocated by DEF-3's step 2, living in an unlanded worktree the pin by
+definition cannot show.
+
+So when a claim concerns compiler behaviour, **establish which tree it is about
+before checking it**, and write the answer down that way:
+
+- **current behaviour** — check the pin, cite `file:line`, and it is authoritative;
+- **behaviour of a fix in flight** — the pin is silent by construction. Only
+  the session doing the work can confirm it, so ask, and label the fact as
+  unlanded wherever it is recorded, naming the step that brings it;
+- and when a document here references a diagnostic or rule the pin does not
+  have, **that is a finding only if it is stated as current fact.** Stated as
+  forward-looking, it is correct and useful.
+
+The corollary is about challenges rather than checks: **a challenge can be
+worth making and still be wrong.** The query above was answered with "the plan
+said no new code, and writing the rule found one shape the `@`-equivalence has
+no arm for" — a thing the plan had not known, now getting a dated note at its
+landing. Being wrong out loud, to a peer who can check, cost less than the
+silence would have.
+
 **The bounds guard is emitted for THREE type kinds, and `Vec` is not one of
 them.** `../nitpick/src/backend/ir/ir_expr.npk`'s `ExprIndexExpr` calls
 `emit_bounds_guard` on `TY_SLICE` (~8667), `TY_ARRAY` (~8701) and **`TY_SIMD`**
