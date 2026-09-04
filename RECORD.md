@@ -2321,3 +2321,71 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   O-N4's discharge.** It is reported at 400× less peak and not yet measured
   here, it gates `nitpick-time` 0.0.5 and 0.5, and it now costs seconds where
   yesterday it cost 281 s and 30.9 GiB
+
+### O-N4 discharged on our own measurement — 2026-09-04 12:35
+
+`nitpick-libs-44`, the third orchestrator, takes the writer lock and makes the
+verification its predecessor named as the first thing to do.
+
+- **the lock.** Taken from a free line (`none`) at a clean stop, **board line
+  first, then the marker file**, which is the order the guard enforces and the
+  reverse of orchestrate §2.1. Two of §2.1's instructions are wrong and both
+  were carried onto the board rather than rediscovered: the guard permits *any*
+  session while the writer line reads `none`, so the refusal §2.1 promises never
+  fires and **its absence is not evidence the lock was free**; and
+  `CLAUDE_SESSION_ID` is **empty in a Bash tool call**, so §2.1's marker command
+  writes a 0-byte file. The id was read from this session's own
+  `~/.claude/projects/<slug>/<uuid>.jsonl` and **cross-checked against the
+  scratchpad path**, which carries the same uuid — two independent sources
+  rather than one mtime — and `ListAgents` then confirmed this session is
+  `nitpick-libs-44`, the successor the outgoing board line names. Marker is 37
+  bytes, not 0
+- **O-N4 is DISCHARGED.** Both recipes, three runs each, against pin `94874ce`,
+  using the command `tests/probe/defect/README.md:196` records for the
+  before-numbers — `/usr/bin/time -f "%e s  %M KiB" "$NPKC" <file> -o <out>.ll`:
+
+  | recipe | rows | before | **measured here** |
+  |---|---|---|---|
+  | `defect/big_fixed_array_cost.npk` | 4 000 | 5.30–6.19 s · ~593 592–593 992 KiB | **0.24–0.25 s · 28 768–28 960 KiB** |
+  | `probe04_big_fixed_table.npk` | 30 000 | 281 s · 30.9 GiB | **1.19–1.32 s · 74 936–74 996 KiB** |
+
+  **~430× less peak and ~227× less time** on the large table, against a reported
+  1.15 s / 75.2 MB — reproduced. The relation is no longer quadratic: 7.5× the
+  rows costs 5.0× the time and 2.6× the peak, where quadratic would be ~56×
+- **the check that would have made this a hollow green, and why it was run.**
+  A compiler can be made fast by emitting less, and *`npkc` exit 0 is not
+  well-formedness* — O-N11 is exactly that shape, a program that exits 0 while
+  emitting calls to an undefined `@npk_failsafe` that only `llc` refuses. So
+  exit 0 was paired every run with an `.ll` actually written (2 672 442 B)
+  carrying `@"npk.probe04_big_fixed_table.TRANSITIONS" = constant [30000 x …]`
+  with **30 000 `i64` rows present**, and then `llc -filetype=obj` was run on it:
+  **exit 0**, 0.61 s, a 660 360 B object, with the symbol in **`.rodata`, flags
+  `A` and not `W`, size 0x75300 = 480 000 B = 30 000 × 16**. That last line
+  independently re-confirms **S-19** — `fixed` module state is read-only, with no
+  startup initialisation — as a free by-product of measuring something else
+- **the instrument was commissioned before it was trusted**, positive and
+  negative: a real tree file (`probe11d_floor_only.npk`) at exit 0 with an `.ll`
+  written, and a malformed file at exit 1 with none. The first positive control
+  was **hand-written and failed on invented syntax** — `fn main() -> int32` is
+  not Nitpick — which is its own small lesson: take a control from the tree,
+  where the syntax is known good, rather than composing one from memory
+- **and the grep for the table found nothing on its first phrasing.**
+  `@[A-Za-z_.]*TRANSITIONS` misses `@"npk.…TRANSITIONS"` because the symbol is
+  *quoted*. Had that been the whole check, this entry would record the opposite
+  conclusion — the table read as absent, the discharge read as hollow. §6's
+  "run it twice with different phrasings" earned its place on a check that was
+  about to be believed
+- **a citation drift, corrected in form only.** The 281 s / 30.9 GiB figure is
+  `probe04`'s **30 000** rows — `[30000 x ZoneTransition]` in the emitted IR —
+  not TM-007's tzdb, which is 26 838. `BOARD.md`'s O-N4 row and `RECORD.md:2275`
+  had attributed the probe's cost to the tzdb's row count. The board is live
+  state and is corrected; **line 2275 is left exactly as it stands**, because it
+  records what a correspondent reported and what this workbench believed at the
+  time, and that is not a thing a later session rewrites. No conclusion moves
+  either way: the probe is the *larger* of the two, so the real table was always
+  going to cost less than the number quoted for it
+- **still stopped, and deliberately.** O-N9, O-N10 and O-N11 have *landed* at
+  this pin but are **not measured here**. They get the same treatment O-N4 just
+  got before the work they hold is released — that a defect landed is a
+  correspondent's report, and this entry exists because the workbench does not
+  discharge blocking defects on those
