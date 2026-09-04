@@ -35,7 +35,7 @@ first library cycle to be worked, and the loop is being judged against
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
 | s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-1243` | 2026-09-04 12:43 | `claude-opus-5` | **RE-DISPATCHED 12:43 at the re-pin.**  **STOPPED on ~~O-N4~~, O-N9, O-N10, O-N11 — all four landed in the compiler's 1.5.1b and the pin `94874ce` carries them. **O-N4 is DISCHARGED, verified here 2026-09-04 on this workbench's own measurement** (see its row below), so **0.0.5 and 0.5 are unblocked**. The other three are landed-but-unverified-here: each needs its own measurement before the work it holds is released, on the same rule that applied to O-N4 — a blocking defect is discharged on our own measurement.** Maintenance dispatch **VERIFIED PASS** at `5b2e0c8`: RX-111/TM-108's bounds correction landed as *narrow-read-as-broad* rather than false, the `buffer` finding **enlarged** (`Bytes` is unchecked exactly as `Vec<T>` is, and every formatter goes through one), O-N10/O-N11 de-hedged at all nine current-fact sites, the 0.0.2 residue checklist line added, and the house view rule recorded as a belt stricter than the language. **Every debt that does not need the compiler is now cleared.** **`probe06_generic_vec.npk`'s `free_names` is the same shape and matters more: its own comment says "this is the difference between 125 MiB and nothing", so it IS the remedy half of the leak finding, and its measurement is a before-number.** **Owed at the re-pin — and see also the DEF-8 re-check on `nitpick-regex`'s stream-1 row. Three things here:** probes 09 and 10; re-recording `missing_failsafe`'s two transcripts to `NITPICK-REACH-003`; and correcting **SIX** sites that state *DEF-3 adds no new diagnostic code* — **the list was five and is short by one, verified 2026-09-04**: the sixth is `meta/roadmap/0.0/0.0.0.md:1446`, which writes "introduces **NO** new diagnostic code" in capitals and so fell outside the phrasing that built the list. It sits in **the very subcycle file this dispatch is working**. That makes seven sweep lists in this ecosystem wrong on their first telling — `meta/DECISIONS.md:952`, `meta/OPEN_QUESTIONS.md:212`, `meta/specs/SAFETY.md:432`, `tests/probe/defect/view_escape/README.md:120`, and `meta/roadmap/0.4/README.md:102`, the last sitting in a **future cycle's** planning checklist. DEF-3's step 2 does add one, `NITPICK-BORROW-012`. These belong at the re-pin rather than now, because they are claims about DEF-3's landed behaviour and the landing is when a worker can check them against a real compiler instead of a worktree |
-| s1 | `nitpick-regex` | 0.0.3 — the harness, part 2 | `s1-nregex-0.0.3-1243` | 2026-09-04 12:43 | `claude-opus-5` | **DISPATCHED 12:43.**  **Owed at the re-pin (S-26 too):** `probe03_generic_move.npk`'s `free_owning` moves every element out of a `Vec<T>` and then `vec_free`s it. It does **not** put an element back, so it has no part of S-26's double-free shape — but S-26 changes what a move out of an element does to the aggregate's drop flag, and D-247 makes the container own, **both in the same re-pin**. Re-run it and read the result rather than predicting it. **Owed at the re-pin (DEF-8):** `probe04_inherent_generic_impl.npk:89` does `pass self.count` over a `Vec<T>` **by value**, which is the compiler's DEF-8 shape exactly — the `pass` clear cleared the root binding's drop flag for a *copyable* field of an owning local. `probe08_sparse_set.npk:121` is the same family through a nested container. **Neither leaks at this pin**, because `Vec<T>` does not own until D-247, which is step 5 — the same commit that fixes DEF-8 — so no measurement of ours is wrong today and both simply need re-running after the re-pin. `probe01` (POD `Inst`) and `probe07` (a slice parameter) were checked and are clear; `probe03`/`probe06` `move` an *owning* element, which is the legitimate case. **0.0.2 DONE and VERIFIED PASS** at `e35ba16`, pushed, CI green. 0.0.3 is planned, unblocked and amended in place by 0.0.2 (§3's case list seven → eleven, §4's `check_no_syscalls` row rewritten against RX-116/RX-120, §5's acceptance). **It is the next dispatch when work resumes** |
+| s1 | `nitpick-regex` | 0.0.3 — the harness, part 2 | `s1-nregex-0.0.3-1243` | 2026-09-04 12:43 | `claude-opus-5` | **DISPATCHED 12:43.**  **Owed at the re-pin (S-26 too):** `probe03_generic_move.npk`'s `free_owning` moves every element out of a `Vec<T>` and then `vec_free`s it. It does **not** put an element back, so it has no part of S-26's double-free shape — but S-26 changes what a move out of an element does to the aggregate's drop flag, and D-247 makes the container own, **both in the same re-pin** — **THE D-247 HALF IS FALSE, see RX-126 above: `decl_is_list` never matches a library container. S-26's half stands**. Re-run it and read the result rather than predicting it. **Owed at the re-pin (DEF-8):** `probe04_inherent_generic_impl.npk:89` does `pass self.count` over a `Vec<T>` **by value**, which is the compiler's DEF-8 shape exactly — the `pass` clear cleared the root binding's drop flag for a *copyable* field of an owning local. `probe08_sparse_set.npk:121` is the same family through a nested container. **Neither leaks at this pin**, because `Vec<T>` does not own until D-247, which is step 5 — the same commit that fixes DEF-8 — so no measurement of ours is wrong today and both simply need re-running after the re-pin. **CORRECTED (RX-126): `Vec<T>` does not own AT ALL, not merely "until D-247". The three probes re-ran clean, which places the shape OUTSIDE DEF-8's scope rather than confirming the fix for it**. `probe01` (POD `Inst`) and `probe07` (a slice parameter) were checked and are clear; `probe03`/`probe06` `move` an *owning* element, which is the legitimate case. **0.0.2 DONE and VERIFIED PASS** at `e35ba16`, pushed, CI green. 0.0.3 is planned, unblocked and amended in place by 0.0.2 (§3's case list seven → eleven, §4's `check_no_syscalls` row rewritten against RX-116/RX-120, §5's acceptance). **It is the next dispatch when work resumes** |
 
 ## Questions for the author
 
@@ -60,6 +60,48 @@ ran immediately, and **the unfalsifiable gate is in all five repositories** —
 the site list is in `RECORD.md` and the per-repository notes are in the stream
 tables below. Each fix waits for its own stream's claim (W-7); `nitpick-time`'s
 two lagging sites go to the worker now, because that repository is claimed.
+
+**RX-126 — D-247 DOES NOT MAKE A LIBRARY'S CONTAINER OWN, AND THIS BOARD SAID
+IT DID. Found by stream 1, 2026-09-04; confirmed by the orchestrator against the
+pin's own source before the board moved.** `decl_is_list`
+(`../nitpick/src/frontend/type_layout.npk`, the `list_scope` / name / field
+walk) recognises a `List` only when **all** of these hold: the declaration is
+homed in the compiler's own `list` scope; it is a struct named **exactly
+`List`**; and it has **exactly three fields, in order, named `items` (of pointer
+type), `count`, `cap`**. D-247's owning behaviour keys on that predicate.
+
+**No library here has such a type.** Every container in this ecosystem is
+hand-written, differently named and differently scoped, so **D-247 changes
+nothing for any of them.**
+
+**What this board asserted and what is actually true:**
+
+| The board said | The pin says |
+|---|---|
+| "`Vec<T>` does not own **until** D-247" | `Vec<T>` does not own, **full stop**. D-247 is not a date after which it does |
+| "S-26 changes the drop flag and **D-247 makes the container own**, both in the same re-pin" | S-26's half stands; D-247's half never applied to us |
+| the 125 MiB managed-body leak is a **before-number** that the re-pin moves | **it is not closed, and it is not going to be.** Stream 2 measured `probe06b` at **125 184 KiB, three times, at this pin** — independently corroborating stream 1's reading from the other direction |
+
+**Impact, stated plainly.** The managed-body gap is permanent for
+hand-written containers until a library closes it itself. **`RX-110` and
+`RX-123` therefore stand at FULL strength** — the `exit 0` leak gate covers the
+`wild` block alone, and the acceptance checkbox correction is not a temporary
+measure pending a compiler fix. **0.0.4's leak acceptance needs a MEMORY CAP for
+the managed half in every repository**, not just in `nitpick-regex` where it has
+now been added. `nitpick-time`, `nitpick-parse` and `nitpick-tui` all carry
+hand-written containers of the same shape and **all three inherit this
+correction at their next claim.**
+
+**And the three probes owed at the re-pin re-ran CLEAN — which is evidence the
+shape is OUTSIDE DEF-8's scope, not evidence the fix is right for it.** Those
+are different conclusions and only the first is supported. This distinction is
+the finding; the clean result on its own would have read as the second.
+
+**How it got here, which is the durable part.** The premise came off this board,
+went into *both* of today's dispatches in the orchestrator's own words, and was
+caught only because a worker checked a premise it had been handed instead of
+building on it. **A dispatch's stated premises are claims, and a worker is the
+last line that can falsify them.**
 
 **Q-10 RESIDUE — THE SWEEP CORRECTED THE PROSE AND LEFT THE ACCEPTANCE
 CHECKLISTS.** *(Deliberately NOT given an `RX-` number here: `RX-121` and
