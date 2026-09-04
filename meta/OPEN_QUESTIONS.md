@@ -116,8 +116,7 @@ file existed — the check works.
   and touches no schedule. *Recommendation:* file it at low priority. This
   repository's own `harness/expect.py` already refuses such a value (RX-122),
   so nothing here waits on it, and the same guard is the right shape for every
-  library harness. **Under verification at the time of writing; the number is
-  allocated but the claim is not yet independently confirmed.**
+  library harness. **INDEPENDENTLY VERIFIED 2026-09-04** from the compiler's source at the pin: `expect_read`'s `expect-exit:` handling checks only `text_int`'s `is_error` with no upper bound, and `run_binary` compares the OS-truncated one-byte status against that unbounded value with `!=`. Sent to the compiler session.
 - **O-N14 — there is no library object: `npkc` emits calls to `@npk_failsafe`
   and never a `declare`.** Raised by `nitpick-regex` 0.0.1, 2026-09-03, against
   the pinned `950bb1d`. Any translation unit that is not a program root compiles

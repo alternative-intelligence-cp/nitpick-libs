@@ -2033,3 +2033,58 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   `date` read 01:52 when the claim was written and the harness reports
   37.9 minutes elapsed. **`git log` timestamps are the authority** for anything
   that has to be compared across sessions; a worker's local clock is not
+- **verify `s1-nregex-0.0.2-verify-0155` PASS** on `e35ba16`, 10.5 minutes,
+  136 494 tokens, 80 tool uses — and **every claim was checked by execution
+  rather than reading**, which is the discipline this repository spent the night
+  learning. It re-ran the harness itself (24/24, 23.0 s, 80 580 KiB, against the
+  report's 22.79 s and 80 328 KiB — ordinary variance, stated as such rather
+  than flagged); built both halves of the syscall pair and diffed their symbol
+  sets; **reconstructed the pre-fix `reaches_src` and ran it against four
+  members whose answers were known**, two true and two false, reproducing the
+  silent failure and confirming the fix on all four; and **proved B-7
+  behaviourally** by building a fixture naming a wrong diagnostic code and
+  getting the two failures code-set equality should produce
+- **RX-120 confirmed in both halves, and the second half is the useful one.**
+  The symbol differential genuinely cannot see a syscall — 29 undefined symbols
+  each way, sorted sets differing by nothing. **And the proposed remedy works**:
+  the same pair through an IR call-edge scan flags `main` calling `npk_sys6` and
+  passes the baseline. A named gap with a working remedy is worth far more than
+  a named gap, and the dispatch asked for the second half precisely because a
+  remedy that also failed would have been worse than none
+- **relayed to the four other library streams on their board rows**, with the
+  instruction to treat the acceptance item naming the symbol diff as **unmet**
+  rather than merely imprecise. `nitpick-posix` carries it too and is outside
+  this workbench's write scope, so it is recorded here and on stream 3's row
+- **the three "cannot fail" findings of the night now name a pattern**, and it
+  is in `PLAYBOOK.md` as one: the `exit 0` leak gate, the `SAFETY.md` bounds
+  promise, and a predicate that silently answered "no" for every program. All
+  three are **a check whose NAME describes the property while its MECHANISM
+  covers something narrower** — and all three passed every run they were ever
+  part of. The rule that follows is the one the worker wrote: a predicate that
+  gates a check gets a positive and a negative case against known members
+- **a nuance the verifier added and was right to**: the scanned-count guard is
+  informational — `run.py` prints which members were scanned but nothing
+  hard-fails if that regresses. It noted the report claims only a prescriptive
+  lesson and not a regression guard, so nothing overclaims, but flagged that
+  **printing is exactly what "green because it never ran" looks like**. Recorded
+  as a preference in the playbook: prefer a runner that fails on a regressed
+  scan count over one that prints it
+- **RX-119 discharged cleanly, and the method is the precedent**: seven files
+  moved as **pure renames**, `0.0.0.md` not touched at all — `git diff` against
+  the preceding commit is empty — and a dated, marked note in
+  `tests/probe/TRANSCRIPT.txt` naming all seven moves, so a verified artifact's
+  citations resolve without the artifact being edited. That is the redirect
+  pattern 0.0.1 invented, applied a second time by a different subcycle
+- **0.0.3 amended in place, and the verifier gave the right reason it is
+  allowed**: its status line reads `PLANNED`. An unexecuted plan is amended; a
+  verified execution record is not. That distinction is sharper than the rule
+  this workbench affirmed earlier — which said "a committed REPORT block is
+  history" — and it generalises it: **what may be edited depends on whether the
+  document records something that happened**
+- **O-N15 verified from the compiler's source and sent.** `expect_read` checks
+  only `text_int`'s `is_error` with no upper bound; `run_binary` compares the
+  OS-truncated one-byte status against that unbounded value with `!=`. And the
+  counter-claim holds by execution: this repository's `harness/expect.py` has
+  `EXIT_MAX = 255` and `SIGNAL_MIN = -64`, accepting 255 and −11, refusing 256,
+  321 and −65
+- `advance nitpick-regex 0.0.2 → 0.0.3`

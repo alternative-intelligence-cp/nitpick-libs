@@ -545,6 +545,38 @@ be looking at. `nitpick-posix`'s `probe02g_cross_module.npk` says
 it says a repository's shape depends on macro-generated `failsafe` visibility,
 which is the opposite of what the probe established. Read the table.
 
+**A differential check is only as wide as the thing it diffs — and the
+undefined-symbol scan every repository here plans CANNOT SEE A SYSCALL.**
+Measured, and independently reproduced: a program with `sys(39i64)` in `main`
+has **the same 29 undefined symbols** as one without, the sorted sets differing
+by nothing, because `npk_sys6` is already the prelude's and the symbol was never
+undefined. A scan named "no syscalls" that diffs undefined symbols therefore
+passes a program that makes syscalls, silently and for ever.
+
+**The remedy works and is cheap, so use it: scan the IR's CALL EDGES.** The same
+pair, run through a call-edge scan, flags the syscaller — `main` calls
+`npk_sys6` — and passes the baseline. Every `meta/specs/BUILD.md` in this
+ecosystem plans the symbol-diff version; the acceptance item that names it
+should be read as unmet until the call-edge scan is what stands behind it.
+
+**And measure the instrument before adopting it.** Counting `@npk_sys6` call
+sites gives 2/3 at `-O0` and **5/6 after `opt -O2`**, because inlining
+duplicates the floor's own sites. **An IR-shape claim measured only after
+optimisation is a claim about the optimiser.** Take the number at both levels
+or say which one you took.
+
+**A CHECK THAT DID NOT APPLY READS EXACTLY LIKE ONE THAT PASSED.** A predicate
+gating those scans answered "no" for every program when handed a relative path
+— silently — so the scans would never have run while the suite stayed green.
+This is the **third** shape of the same failure in this ecosystem, after the
+`exit 0` leak gate and the `SAFETY.md` bounds promise, and the three together
+name the pattern: **a check whose NAME describes the property while its
+MECHANISM covers something narrower.** So a predicate that gates a check gets a
+positive and a negative case, run against members you already know the answer
+for — and prefer a runner that fails when the scanned count regresses over one
+that merely prints it, because printing is what "green because it never ran"
+looks like.
+
 **`npkc`'s exit codes are an ALPHABET, they are nowhere documented, and rule
 B-6 tells every harness here to assert on them.** Read out of `src/main.npk`
 and `src/driver/pipeline.npk` at the pin:
@@ -554,6 +586,11 @@ and `src/driver/pipeline.npk` at the pin:
 | `0` | success |
 | `1` | **REFUSED**, with diagnostics — the compiler judged the program and said no |
 | `2` | the driver **could not proceed and judged nothing** |
+
+A `2` also arrives with an **empty stderr** — silent by construction. So a
+runner that logs only what the compiler said shows *no reason at all* for a
+failing test, which is the worst possible presentation of the one code that
+means the run is broken. Print the code itself, always.
 | `3` | a `failsafe` trap |
 
 **`2` IS NOT A REFUSAL.** A test that expects `1` and receives `2` was never
