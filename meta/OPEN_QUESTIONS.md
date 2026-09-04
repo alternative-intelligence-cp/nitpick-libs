@@ -107,6 +107,39 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N14 — there is no library object: `npkc` emits calls to `@npk_failsafe`
+  and never a `declare`.** Raised by `nitpick-regex` 0.0.1, 2026-09-03, against
+  the pinned `950bb1d`. Any translation unit that is not a program root compiles
+  at `npkc` exit 0 and is then refused by `llc` for an undefined
+  `@npk_failsafe`. **Confirmed at the emitter by this orchestrator**: the symbol
+  is emitted as a `call` from `ir_func.npk` and `ir_stmt.npk` (three sites) and
+  no `declare` for it exists anywhere in `src/backend/ir/`. **This is every
+  library in this ecosystem, not one** — a library reaches the compiler only by
+  being imported from a program root, and `BUILD_REFERENCE` §4.1's "each module
+  compiles to its own object" is not achievable at this pin. **W-27: it BLOCKS**
+  a per-module object, a `libnregex.o`, and separate compilation as documented;
+  it **INCONVENIENCES** cycle 0.0.2's harness, which builds through a program
+  root instead, and RX-008's symbol scan, which becomes differential; it
+  **TOUCHES** nothing else — no rule, no API, no layering, and nothing was
+  reshaped to dodge it. **Close kin to O-N11/DEF-5, and cheap:** one emitted
+  `declare i32 @npk_failsafe(i32)` closes it outright and strengthens DEF-5's
+  own case, since both are about a root's obligation to supply that symbol.
+  Reproduction: `nitpick-regex/tests/conformance/TRANSCRIPT.txt` §A. Under
+  verification at the time of writing.
+- **O-N13 — a `pub use` is SILENTLY downgraded to a plain `use`.** Raised by
+  `nitpick-regex` 0.0.1, 2026-09-03. When the same path was plain-`use`d earlier
+  in the same file, `symtab_bind_import` declines a name already bound and
+  returns the prior binding **without merging `SYM_PUB`**, at no severity and
+  with no diagnostic. The re-export silently does not happen; the failure
+  surfaces in the *consumer* as "cannot find X in this scope", a file away from
+  the cause. **The same two lines in the opposite order are correct.** **W-27:
+  it BLOCKS nothing** — the working order exists; it **INCONVENIENCES** once and
+  expensively for each person who meets it, because nothing points at the cause;
+  it **TOUCHES** nothing that compiles. **Every library with an umbrella module
+  is one redundant `use` away from it**, and this ecosystem has six umbrellas
+  planned. Same family as O-N10's quiet half: the loud failure is an
+  inconvenience and the silent wrong answer is the defect. Reproduction:
+  `tests/conformance/TRANSCRIPT.txt` §E2 against §E3. Under verification.
 - **O-N12 — `>>>` and `string_repeat` are documented in the compiler's
   references and absent from the compiler.** Raised by `nitpick-regex` 0.0.0,
   2026-09-03, against the pinned toolchain `950bb1d`. `>>>` does not parse;
@@ -153,7 +186,7 @@ file existed — the check works.
 - **O-N2 — `npkg` cannot build a library, and `[dependencies]` resolves to
   nothing.** Raised by every repository: `nitpick-tui` O-N2, `nitpick-sockets`
   O-N2, `nitpick-posix` O-N2, `nitpick-time` O-N1, `nitpick-parse` O-N1,
-  `nitpick-regex` O-N3. Blocks nothing — the Python harness is the plan — and
+  `nitpick-regex` **O-G3** (renumbered from its local `O-N3` at 0.0.1, so `O-N` there now means this registry alone). Blocks nothing — the Python harness is the plan — and
   has a long lead time. Not on the compiler's 1.5 or 1.6 map.
 - **O-N5 — `npkg` cannot build more than one artifact.** Raised by
   `nitpick-posix` (its O-N5). Blocks nothing; the harness does it.

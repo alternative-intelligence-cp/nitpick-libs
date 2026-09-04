@@ -1611,3 +1611,56 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   provisional worktree commit that has not passed its harness. Adding them there
   costs almost nothing beside probes 09/10 and the transcript re-recording,
   which are the same subject
+- report `s1-nregex-0.0.1-2315` **DONE** — 330 910 tokens, 120 tool uses, four
+  commits, **~1h15m measured from `BOARD.md`'s claim line and `git log` rather
+  than estimated**, which is the previous report's wall-clock error corrected
+  without being asked twice. Both checks clean, tree clean
+- **the worker landed the pin lesson as its own finding before I told it**:
+  "a fact about an unlanded compiler commit cannot be checked against the pin,
+  and *I grepped the pinned tree and it is not there* is not a refutation… two
+  sessions drew the same wrong conclusion from the same correct observation
+  within an hour". It also names the fix — mark such a claim
+  unverifiable-until-repin — which is what the playbook now says
+- **O-N14 raised, and it is the widest finding of the night: there is no
+  library object.** `npkc` emits `call i32 @npk_failsafe(...)` into every
+  translation unit and never a `declare`, so any module that is not a program
+  root compiles at `npkc` exit 0 and is refused by `llc`. **Confirmed at the
+  emitter by this orchestrator against the pin** — three `call` sites in
+  `ir_func.npk` and `ir_stmt.npk`, no `declare` anywhere in `src/backend/ir/` —
+  which is a legitimate use of the pin, the claim being about *current*
+  behaviour. **It is every library in this ecosystem**, and
+  `BUILD_REFERENCE` §4.1's per-module object model is not achievable at this
+  pin. The cheap part: **one emitted `declare i32 @npk_failsafe(i32)` closes it
+  and strengthens DEF-5's case**, both being about a root's obligation to
+  supply that symbol
+- **O-N13 raised: a `pub use` is silently downgraded to a plain `use`** when the
+  same path was plain-`use`d earlier in the file — `symtab_bind_import` declines
+  a name already bound and returns the prior binding without merging `SYM_PUB`,
+  at no severity. The failure appears a file away, in the consumer, as "cannot
+  find X in this scope"; the same two lines reversed are correct. **Every
+  library with an umbrella module is one redundant `use` from it**, and six are
+  planned here. Same family as O-N10's quiet half — the loud failure is the
+  inconvenience and the silent wrong answer is the defect
+- **the `O-C` prefix I passed on would have recreated the collision it was
+  meant to remove**, and the worker caught it: `O-C1` and `O-C2` already exist
+  in that repository as compilation questions, cited in five files. It used
+  **`O-G`** ("a Gap in the compiler"), one-for-one and in order, with a row
+  added to the prefix table. **Confirmed as orchestrator.** That is the fourth
+  numbering collision of the day and **the first caught before it landed** —
+  by a worker checking a recommendation instead of applying it
+- **the registry edit the worker correctly could not make (W-16) is made**:
+  `O-N2`'s entry listed `nitpick-regex O-N3` as a local id; it is `O-G3` now
+- **confirmed: `meta/roadmap/0.0/0.0.0.md` was right not to be renumbered.** It
+  is a verified artifact, two redirect entries keep its citations resolving, and
+  the single change made to it is the "Five commits" → "Six commits" correction
+  it was directed to make. That is exactly the boundary this workbench affirmed
+  hours earlier for committed REPORT blocks, arrived at independently by a
+  different worker in a different repository — which is the sign a rule is the
+  right one rather than merely stated
+- **CI is written and has not run, and the acceptance box is STRUCK rather than
+  ticked.** It needs a push, which is the author's, and a compiler build, which
+  W-18 refuses from here. Everything checkable was checked — YAML and triggers,
+  the pinned commit's presence on the public remote, the LLVM asset name against
+  the release API, `quickemit.py`'s output paths read from its source at the
+  pin, and the stub run green and red. **A struck box with a reason is the right
+  answer; a ticked box for an unrun step would have been a FAIL**
