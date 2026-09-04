@@ -1993,3 +1993,43 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   diagnostic-code *set*. It also carries RX-119, the deferred manifest entry,
   since 0.0.2 owns the runner and can move the seven probe paths and fix
   0.0.0's citations in one commit
+- report `s1-nregex-0.0.2-0152` **DONE** — the harness. One commit `e35ba16`,
+  295 467 tokens, 111 tool uses, **24/24 units passing in 22.79 s at 80 328 KiB
+  peak RSS**. Both checks clean, tree clean. 0.0.3 amended in place rather than
+  rewritten. `advance` waits on the verifier
+- **the finding that leaves this repository: a differential check is only as
+  wide as the thing it diffs.** RX-116's undefined-symbol difference is correct
+  and **cannot see a syscall** — measured, a program with `sys(39i64)` in `main`
+  has the same 29 undefined symbols as one without, because `npk_sys6` is
+  already the prelude's. **Confirmed here that all six repositories plan that
+  same scan**, it being in every `meta/specs/BUILD.md`. So five others are on
+  course to tick an acceptance item for a check that cannot do what its name
+  promises. **Under verification, and deliberately NOT yet landed in
+  `PLAYBOOK.md` nor noted on the other streams' rows** — the same restraint that
+  paid twice tonight, and no stream is about to start, so waiting costs nothing
+- **three more findings, all held pending the same verification**, and all of
+  them about instruments rather than about the language:
+  - **a check that did not apply reads exactly like one that passed.**
+    `reaches_src` answered "no" for every program when handed a relative path,
+    silently — the scans would never have run while the suite stayed green.
+    **This is the third instance tonight of a gate that cannot fail**, after the
+    `exit 0` leak gate and the `SAFETY.md` bounds promise, and the worker's own
+    rule is the right one: a predicate that gates a check needs a positive and a
+    negative case run against known members, not a reading
+  - **measure the instrument before adopting it.** Counting `@npk_sys6` call
+    sites is 2/3 at `-O0` and **5/6 after `opt -O2`**, because inlining
+    duplicates the floor's own sites — so an IR-shape claim measured only after
+    optimisation is a claim about the optimiser
+  - **exit 2 arrives with an EMPTY stderr**, so a runner that logs only what the
+    compiler said shows no reason at all for a failing test — which is the
+    practical half of the exit alphabet and belongs beside it
+- **O-N15 raised and its number allocated** (`O-N14` was the highest): `npkg`'s
+  `expect_read` accepts an `expect-exit:` above 255 and `run_binary` compares it
+  against a one-byte status, so such a test fails forever with a true and
+  useless message. Blocks nothing, and this repository's `harness/expect.py`
+  already refuses the value, so nothing waits on it
+- a clock note, since W-4 consumes these numbers: the worker reports 33 minutes
+  measured 01:15 → 01:48 on the clock its checkout sees, while this session's
+  `date` read 01:52 when the claim was written and the harness reports
+  37.9 minutes elapsed. **`git log` timestamps are the authority** for anything
+  that has to be compared across sessions; a worker's local clock is not

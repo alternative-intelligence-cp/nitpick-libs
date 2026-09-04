@@ -107,6 +107,17 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N15 — `npkg` accepts an `expect-exit:` above 255, which no run can
+  satisfy.** Raised by `nitpick-regex` 0.0.2, 2026-09-04, against the pinned
+  `950bb1d`. `expect_read` accepts the value and `run_binary` then compares it
+  against a one-byte process status, so the test fails forever with a message
+  that is true and useless. **W-27: blocks nothing, inconveniences nobody
+  today** — swept, and nothing in this ecosystem expects an exit above 255 —
+  and touches no schedule. *Recommendation:* file it at low priority. This
+  repository's own `harness/expect.py` already refuses such a value (RX-122),
+  so nothing here waits on it, and the same guard is the right shape for every
+  library harness. **Under verification at the time of writing; the number is
+  allocated but the claim is not yet independently confirmed.**
 - **O-N14 — there is no library object: `npkc` emits calls to `@npk_failsafe`
   and never a `declare`.** Raised by `nitpick-regex` 0.0.1, 2026-09-03, against
   the pinned `950bb1d`. Any translation unit that is not a program root compiles
