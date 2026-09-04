@@ -9,7 +9,7 @@ blocked, what is done. The durable plan is
 > when the stream leaves the repository. That is what keeps two agents out of
 > one repository and removes every merge conflict by construction.
 
-**Last updated:** 2026-09-03 · **Width:** 1 — stream 2 ·
+**Last updated:** 2026-09-03 · **Width:** 1 — **stream 1** (stream 2 parked: `nitpick-time` stays claimed and stopped on 1.5.1b, with no live agent) ·
 **Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03
 **Workbench writer:** `3e1777c3-c237-4c90-920c-a4a6b9df1e66` — session
 `nitpick-libs-88`, the second orchestrator, took the lock 2026-09-03 20:56.
@@ -39,7 +39,8 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-2141` | 2026-09-03 21:41 | `claude-opus-5` | **STOPPED on O-N4, O-N9, O-N10, O-N11.** Verifier on `0f86d6e` returned **FAIL — and the scope is the point**: all four weight-bearing claims CONFIRMED, including O-N11's mechanism read out of the compiler's own source (`reach.npk:503` returns early at `failsafe_decl == 0i32`, before the loop that raises `REACH_UNNAMED`). The FAIL is a **miscount in a deferred work item** — the report says eight probe files still carry the false leak comment and the tree has nine, the missed one being `probe04_big_fixed_table.npk`, the file nobody ever compiles. **Re-dispatched to fix the number**, nothing else re-opened. Probes 09 and 10 stay held for 1.5.1b, so 0.0.0 cannot close |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | *(parked — no live agent)* | 2026-09-03 21:52 | `claude-opus-5` | **STOPPED on O-N4, O-N9, O-N10, O-N11 — all four now batched into the compiler's 1.5.1b.** The miscount FAIL is fixed at `4dcd204` and **VERIFIED PASS** (on a smaller model per §12 — 71k tokens against the full verifier's 150k). Nine of eleven probes worked; **09 and 10 held for 1.5.1b**, so 0.0.0 cannot close and §5.1 keeps this stream's item here. Waiting on the compiler's landing message. **Owed at the re-pin:** re-record `missing_failsafe`'s two transcripts, which DEF-5 moves from an `llc` failure to an `npkc` refusal |
+| s1 | `nitpick-regex` | 0.0.0 — the language probes | `s1-nregex-0.0.0-2205` | 2026-09-03 22:05 | `claude-opus-5` | **Fresh start**, tree clean at `c056ae1`, plan PLANNED, fourteen probes, no probe files yet. Started because stream 2 is stopped on 1.5.1b and W-14 says a probe run is the cheapest risk reduction there is. It inherits everything `nitpick-time` paid for: **probe 07 is `string_bytes` at the borrow edges, which is O-N9's territory** — already confirmed, already the compiler's DEF-3 — so it must not be rediscovered as new. Its four leak-gate sites are fixed on this claim (Q-10) |
 
 ## Questions for the author
 
@@ -104,7 +105,7 @@ what and when, which is the thing the compiler's R8 says the orchestrator owns.
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-regex` | 0.0 … 1.0 (16) | — | independent; nothing gates it. **Q-10 sweep — the leak gate that cannot fail:** 4 sites — `0.0/README.md:130`, `0.0/0.0.4.md:14`, `specs/SAFETY.md:25`, `0.0/0.0.0.md:314`. Fix at this stream's claim |
+| 1 | `nitpick-regex` | 0.0 … 1.0 (16) | `CLAIMED s1` | independent; nothing gates it. **Q-10 sweep — the leak gate that cannot fail:** 4 sites — `0.0/README.md:130`, `0.0/0.0.4.md:14`, `specs/SAFETY.md:25`, `0.0/0.0.0.md:314`. Fix at this stream's claim |
 | 2 | `nitpick-tui` | 0.0 … 1.0 (18) | — | independent. Inherits stream 1's Unicode approach from `nregex`. **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:125`, `0.0/0.0.4.md:16`, `specs/SAFETY.md:27,216`, `0.0/0.0.0.md:353`. Fix at this stream's claim |
 | 3 | `nitpick-logview` | — | `BLOCKED on nitpick-tui 0.14` | repository not created; created at `ntui` 0.15's open (T-115) |
 

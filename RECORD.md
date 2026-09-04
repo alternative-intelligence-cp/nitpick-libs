@@ -1126,3 +1126,40 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   half a file and leave it inconsistent, which is the right instinct. Neither
   blocks anything. O-N10's hedges are deliberately excluded: nothing on file
   says that number is allocated
+- **verify `s2-ntime-0.0.0-verify-2152` PASS** on `4dcd204` — the count is nine,
+  named in all three carrying sites including `tests/probe/README.md`, and
+  `git show --name-only` lists two markdown files and zero `.npk`, so the nine
+  comments were not swept early. It also disambiguated fifteen `git grep`
+  hits for "eight" and confirmed none is a remaining residue claim — the
+  legitimate ones are `weight`, the eighth selfcheck case, the eight-row
+  isolation and `readlink`'s first eight bytes
+- **the §12 override paid off and the numbers are worth keeping.** The smaller
+  model cost **71 483 tokens, 2.3 minutes, 12 tool uses**; the full verifier on
+  the previous commit cost **149 956 tokens, 9.2 minutes, 42 tool uses**. Half
+  the tokens and a quarter of the time, on a task where every check is a
+  command with an exit code — and it still did the careful part, the fifteen-hit
+  disambiguation nobody asked for by name. The rule this suggests: **the model
+  follows the kind of check, not the importance of the commit.** The expensive
+  verifier earned its cost on `0f86d6e` because it had to read the compiler's
+  source and judge whether a mechanism claim was true; this one had nothing to
+  judge
+- **question answered by the author: start `nitpick-regex` at width 1.** Stream
+  2 stays parked and claimed rather than released — the claim is what records
+  that its subcycle is unfinished
+- **claim `nitpick-regex` 0.0.0 for s1**, and dispatch `s1-nregex-0.0.0-2205`.
+  Tree clean at `c056ae1`, plan PLANNED, fourteen probes, no probe files yet.
+  **This is the first dispatch in this ecosystem to start from a full
+  playbook**, and the difference is the whole point of having written one:
+  - **probe 07 is `string_bytes` at the borrow edges — O-N9's exact territory.**
+    Without the playbook this worker would have spent a day rediscovering a
+    defect that is already confirmed, already the compiler's DEF-3, and already
+    scheduled. It is told instead, and told not to build on the unenforced rule
+  - probes 03 and 08 are container work, so the leak finding applies —
+    `Vec<int32>`'s elements are POD and need no drop, which is exactly the
+    distinction that took `nitpick-time` a two-million-element measurement to
+    establish
+  - and it inherits the whole syntax ledger: no `let`, the turbofish, the
+    qualified `pick` arm, `int64`'s unspellable minimum, `#size_of` measured
+    rather than derived
+  - its four leak-gate sites are fixed **on this claim**, which is what the
+    author's Q-10 answer scheduled and what W-7 requires
