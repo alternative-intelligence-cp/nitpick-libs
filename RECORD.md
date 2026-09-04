@@ -2294,3 +2294,30 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   and it is cheap now: what cost 281 s and 30.9 GiB is claimed to cost 1.15 s
   and 75 MB, so the verification is seconds rather than the hours it would have
   been yesterday
+
+### Handover to `nitpick-libs-44` — 2026-09-04 08:55
+
+- **clean stop and writer release.** `.internal/orchestrator.session` removed
+  and the board's writer line set to `none`, naming `nitpick-libs-44` as the
+  successor, per orchestrate §15. Done in that order and *before* briefing the
+  successor, so an abrupt close cannot leave the lock naming a dead session —
+  the same courtesy this session was shown by its predecessor
+- **state at the handover.** Pin `94874ce`, **tree clean**, both binaries
+  verified by sha before copying. Stream 1 holds `nitpick-regex` with 0.0.0,
+  0.0.1 and 0.0.2 all DONE and independently VERIFIED; 0.0.3 is planned,
+  unblocked and **not dispatched**. Stream 2 holds `nitpick-time`, parked and
+  STOPPED, with its held work still held. Stream 3 has never run. Every
+  repository is committed and pushed; both checks clean everywhere; the
+  questions table is empty
+- **a constraint from the author that changes what a successor does with a
+  defect: the compiler session is near its usage limit and is being brought to
+  a stopping point. Bugs found from here are CATALOGUED, not raised for a fix,
+  until the quota resets.** That inverts the batching rule this session worked
+  under all night — the reason to raise a defect immediately was that the batch
+  was open, and it is closing. Record them properly against the registry so the
+  batch can be reconstructed when it reopens; do not send them one at a time to
+  a session that cannot act on them
+- **the one thing this session would want its successor to do first: verify
+  O-N4's discharge.** It is reported at 400× less peak and not yet measured
+  here, it gates `nitpick-time` 0.0.5 and 0.5, and it now costs seconds where
+  yesterday it cost 281 s and 30.9 GiB
