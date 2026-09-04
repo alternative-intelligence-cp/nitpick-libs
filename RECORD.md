@@ -1390,3 +1390,52 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   count dispatches rather than subcycles** — W-15's "one fresh worker per
   subcycle" held exactly once out of two, and the once it held was the one with
   a playbook
+- **O-N12 settled the way this workbench recommended — documents, not
+  implementation** — landing inside 1.5.1b step 2's commit, and the compiler's
+  fix is better than the ask. We reported an absent operator; they replaced the
+  row with the rule that makes the table coherent: **`>>` is arithmetic on a
+  SIGNED operand and logical on an UNSIGNED one, the operand's signedness
+  decides**, confirmed against the single shift arm in their emitter (`ashr` if
+  signed else `lshr`), which also confirms `>>>` would have been a pure synonym.
+  And they fixed the trap rather than the instance: `BUILTIN_REFERENCE` §2's
+  sentence calling those names "fast compiler intrinsics" — under a header
+  saying they are the *planned* surface — now says none resolves without a row
+  in a marked table, which repairs every name in the list and not only the one
+  we tripped over. Landed in `PLAYBOOK.md` sourced to their emitter rather than
+  to our probe, which measured only the unsigned half
+- **asked whether to strike `string_repeat`, this workbench said keep it**, on
+  two grounds checked rather than assumed: the harm was the intrinsics sentence,
+  now fixed for the whole list; and **no library here plans a string-utility
+  surface** — grepped all six, and `nitpick-regex` and `nitpick-parse`, the two
+  that touch strings hardest, claim no such surface. So "planned library
+  surface" is an accurate category and should not imply anyone is building it.
+  Striking it would have traded a fixed problem for a lost intention
+- **RX-111 sharpened by reading the emitter directly, and my own dispatch was
+  too blunt.** I told the `nitpick-time` worker the SAFETY.md bounds line "is
+  false"; it is not. `ExprIndexExpr` guards **three** kinds — `TY_SLICE`,
+  `TY_ARRAY` and **`TY_SIMD`**, the last being a lane's constant bound that
+  nobody here knew about — and not `TY_POINTER`. So "array, slice and buffer
+  indexing is bounds-checked" is **true about the types it names, omits SIMD,
+  and reaches `buffer` by a route it does not state** (a `buffer` is the managed
+  owning byte cell, D-200; indexed through a `uint8[]` view, which is a slice).
+  **The defect is what it omits**, not what it asserts. Corrected to the worker
+  mid-flight, because "the old line was false" invites a reader to distrust the
+  rest of the table, while "it was true and narrow and you read it as broad" is
+  the mistake that will actually recur. **`nitpick-regex`'s Rule S-23 table has
+  three rows and needs a fourth** — noted for that repository, not edited, since
+  another stream holds it
+- **three DEF-3 refinements from step 2's first whole-tree sweep**, none of them
+  in our six cases and all bearing on `src/fmt/`: a view over `#ptr_add` looks
+  through to the pointer; a `for` over a range cannot carry a borrow whatever
+  its bound reads; a struct literal is rooted where its field values are
+- **the dividend, and it is the strongest evidence this ecosystem has for
+  raising defects early rather than at a subcycle's close.** Step 2's sweep
+  found that **thirteen files in the compiler's own tree — twelve
+  `tests/accept/` roots and one rejection test — had a `main` with no
+  `failsafe` from the day they were written**, and every one was passing. That
+  is O-N11 exactly. Step 1b's prefix harness was stopped, the thirteen gained
+  the handler `REACH-003` dictates, and the prefix is re-running. Our probe 11
+  was four lines of Nitpick; the thirteen files were already there and would
+  have stayed there. **The defect we raised was worth more to the compiler's
+  own test suite than to us**, which is not an argument anyone could have made
+  in advance and is worth keeping for the next time a stop looks expensive

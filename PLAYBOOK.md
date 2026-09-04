@@ -398,6 +398,34 @@ with every command's exit code, rather than a prose summary of it — a summary
 is not evidence, and `nitpick-time` 0.0.0 had its emission claims failed by
 its own verifier for exactly that.
 
+**The bounds guard is emitted for THREE type kinds, and `Vec` is not one of
+them.** `../nitpick/src/backend/ir/ir_expr.npk`'s `ExprIndexExpr` calls
+`emit_bounds_guard` on `TY_SLICE` (~8667), `TY_ARRAY` (~8701) and **`TY_SIMD`**
+(~8722, a lane's constant bound). The `TY_POINTER` branch (~8676-8685) has
+none — it goes straight to `getelementptr`. A qualifier is not part of a type
+(`parse_type.npk:14-17`), so `wild T->:x` is a bare `TY_POINTER`; and every
+`Vec<T>` in this ecosystem is modelled on the compiler's `List<T>`, whose
+`items` is `wild T->` and commented "WILD, DELIBERATELY". **So an out-of-range
+index into a `Vec` is a silently wrong value, not a trap**, and a library's
+`Vec` access is checked by that library or not at all.
+
+Two things about how this was got wrong, which matter more than the fact:
+**four repositories wrote "array, slice and buffer indexing is bounds-checked
+and traps" and cited D-070** — whose own title is "`T[]` is a slice: bounds
+live in the array type, **not the pointer type**". The sentence is *true about
+the types it names* and was read as a general guarantee it never made, which is
+the failure to guard against: not a false claim but a narrow one used broadly.
+And `check_refs.py` passed all four, because **a wrong citation still
+resolves** — a reference check finds what does not resolve, never what resolves
+to the wrong thing. Read a decision's scope before citing its number.
+
+**`>>` is arithmetic on a SIGNED operand and logical on an UNSIGNED one — the
+operand's signedness decides.** There is one shift arm in the emitter, `ashr`
+if signed else `lshr`. There is no `>>>`: it was a documented row that never
+lexed, and it would have been a pure synonym if it had. Sourced from the
+compiler's own emitter at 1.5.1b step 2, not from a probe — a probe here
+measured only the unsigned half, at bit 63.
+
 **A list of files is produced by `git grep`, never by recall.** A count taken
 from what a dispatch *compiled* is not a count of what is *in the tree*, and
 the gap is not random: the files that fall out of working memory are exactly
