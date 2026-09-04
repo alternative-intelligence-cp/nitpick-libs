@@ -466,6 +466,26 @@ lexed, and it would have been a pure synonym if it had. Sourced from the
 compiler's own emitter at 1.5.1b step 2, not from a probe — a probe here
 measured only the unsigned half, at bit 63.
 
+**Every sweep list in this ecosystem has been short by one on its first
+telling. Three for three, so assume yours is too.** The misses were not
+careless; each came from a command that did not cover its subject:
+
+- *eight probes carrying a stale comment, and there were nine* — the missed one
+  was the file every dispatch is told to skip, so it appeared in no transcript;
+- *a `provisional` sweep that missed `Provisionally`* — the pattern was
+  case-sensitive and the missed site was the most prominent hedge in the
+  repository;
+- *four sites claiming "DEF-3 adds no new diagnostic code", and there were
+  five* — the fifth used a different wording of the same claim.
+
+So the rule below is necessary and not sufficient. **Run the grep at least
+twice with different phrasings, make it case-insensitive (`-i`), and check the
+count against a member you already know belongs.** A list is a claim like any
+other and gets the same treatment: it is evidence only when a command produced
+it and the command is written down beside it. And when the sweep is a
+*deferral* — work handed to a later cycle — an undercount is invisible forever,
+because the later worker sweeps exactly the list it is given.
+
 **A list of files is produced by `git grep`, never by recall.** A count taken
 from what a dispatch *compiled* is not a count of what is *in the tree*, and
 the gap is not random: the files that fall out of working memory are exactly

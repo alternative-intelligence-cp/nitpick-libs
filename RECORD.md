@@ -1578,3 +1578,36 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   it to the next ungated cycle in the same repository, and there is none;
   releasing the claim would lose the record that 0.0.0 is unfinished. It did not
   need deciding tonight because stream 1 is still working
+- **verify `s2-ntime-0.0.0-verify-2345` PASS, re-confirmed after the
+  correction** — and it did the thing this orchestrator failed to do: **it
+  verified the relayed fact instead of taking it on trust.** Told by me that
+  `BORROW-012` is real after all, it went and found it — the compiler's step-2
+  worktree at `.internal/wt/b2`, `pub func:BORROW_VIEW_OF_TEMPORARY` in
+  `analysis_codes.npk`, a rejection case with an `// expect-error` header, a
+  README row, and D-249 recorded SETTLED by the author. That is the whole
+  difference between my failure and its absence of one, on the same fact,
+  hours apart
+- **and it found a debt the maintenance dispatch itself created.** That commit
+  lands the unhedged claim that **DEF-3 introduces no new diagnostic code**,
+  which is now false. The verifier deliberately did not score it — the worker
+  read DEF-3's plan as it stood, exactly as I read the pin and concluded the
+  code was unreal, so it is the same category of gap and not a new error — and
+  flagged it because `0.4/README.md`'s planner will meet it. Correct call on
+  both counts
+- **the verifier said four sites; there are five.** `git grep` here finds a
+  fifth at `tests/probe/defect/view_escape/README.md:120`, phrased "and DEF-3
+  adds **no new diagnostic code**" where the others say "introduces". **That is
+  the third sweep list tonight to be short by one**, after eight-versus-nine and
+  the `Provisionally` case-sensitivity miss — three for three, by three
+  different agents including a verifier that had just been warned about the
+  second one. Landed in `PLAYBOOK.md` as a rule rather than an anecdote: run the
+  grep twice with different phrasings, use `-i`, check the count against a known
+  member, and treat a list as a claim that needs a command written beside it.
+  **The reason it matters most for a deferral is that an undercount there is
+  invisible forever** — the later worker sweeps exactly the list it is given
+- **the five go to the re-pin dispatch, not to another maintenance pass.** They
+  are claims about DEF-3's *landed* behaviour, and the landing is precisely when
+  a worker can check them against a real compiler rather than against a
+  provisional worktree commit that has not passed its harness. Adding them there
+  costs almost nothing beside probes 09/10 and the transcript re-recording,
+  which are the same subject
