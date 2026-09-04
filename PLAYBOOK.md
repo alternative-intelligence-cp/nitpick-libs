@@ -568,6 +568,18 @@ The full table is `../nitpick/CLAUDE.md`. The ones a library reaches for:
 `Handle` `arena` `shared_arena` `Future` `Channel` `OwnedFd` `simd`
 `complex` `array` `func` `range` `struct` `enum` `assoc` `opaque` `trait`
 `impl` `Rules` `fixed` `NIL` `comptime` `derive` `macro` `inline` `noinline`
+**`stack`** — a MemoryQualifier beside `wild`, `wildx` and `defer`
+(`../nitpick/meta/specs/LEXICAL_REFERENCE.md:52`), confirmed against that file
+rather than reported.
+
+**`stack` is the one that costs an hour, because it does not fail where you
+wrote it.** It is the natural name for an explicit-stack parser's local, and
+using it produces `PARSE-002` at the declaration followed by "this `{` is never
+closed" pointing at `main`'s closing brace — so it reads as a brace imbalance
+dozens of lines away, and it is bisected as one. `nitpick-regex` 0.0.0 lost
+about an hour to exactly that. If a parse error claims an unclosed brace and
+the braces are balanced, check whether a local is named after a qualifier
+before you touch the braces.
 
 Three shapes that surprise a C or Rust habit: adjacent string literals do not
 concatenate; `discard(x);` takes parentheses and `defer { … }` takes no

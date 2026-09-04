@@ -1226,3 +1226,82 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
     accumulated *text* and a longer identifier lengthens every copied prefix.
     Our earlier "did not survive measurement" was right about the axis and
     wrong to leave the 11% unexplained
+
+### Stream 1 — `nitpick-regex` 0.0.0
+
+- report `s1-nregex-0.0.0-2205` **DONE** — the ecosystem's **first completed
+  subcycle** — 332 735 tokens, 158 tool uses, six commits, twenty-three probe
+  programs, `check_record.py` exit 0, `check_refs` clean, tree clean at
+  `9b80d69`. Every one of the twenty-three was re-run fresh from the committed
+  tree and matched its `expect-` header, which is the discipline this workbench
+  wrote down two hours ago already being followed unprompted
+- **correction to the report's own cost figure, and it is not a nitpick: it
+  says "wall clock ~9 h" and the six commits span 34 minutes**, with the agent
+  running 50. Checked from `git log --date=format:%H:%M:%S` and the harness's
+  own duration. **W-4's rebalancing consumes exactly this number**, so a
+  nine-hour figure for a fifty-minute subcycle would have mis-sized every
+  remaining repository in the partition. Recorded here rather than sent to the
+  verifier, since establishing it needed no re-run
+- **`stack` is a reserved word and was missing from the playbook.** Confirmed
+  against `../nitpick/meta/specs/LEXICAL_REFERENCE.md:52` — a MemoryQualifier
+  beside `wild`, `wildx`, `defer` — rather than taken from the report, per the
+  rule about landing language facts. **Landed with its failure mode, which is
+  the expensive part:** it does not fail where you write it. `PARSE-002` at the
+  declaration, then "this `{` is never closed" at `main`'s closing brace, so it
+  reads as a brace imbalance dozens of lines away and gets bisected as one. It
+  cost this dispatch about an hour and was its single largest cost
+- **RX-111, and it is the most serious finding this workbench has produced.**
+  The report says D-070's bounds check attaches only to types that **carry a
+  length** — a slice `T[]` and a fixed array `T[N]` trap — while a `wild T->`
+  block is unchecked raw pointer arithmetic; and that every `Vec<T>` here is a
+  `wild T->`, so **no container access in any of these libraries is
+  bounds-checked unless the library checks it, and an out-of-range index is a
+  silently wrong value rather than a trap.** Under verification now, split into
+  the measurement, the mechanism, and — the part everything rests on — whether
+  the prelude's `Vec` really is a `wild T->`
+- **the exposure, which needed no verifier and is confirmed here directly:
+  four repositories' `SAFETY.md` state the opposite as a promise.** This is a
+  worse shape than the leak gate: those were gates that could not fail, and
+  these are **affirmative safety claims that are false**, two of them about
+  adversarial input:
+  - **`nitpick-parse:22`** — "Indexing is bounds-checked and traps ... An index
+    derived from input is a *crash*, not a smear." A parser's index is
+    attacker-influenced by definition. **This is the worst one in the
+    ecosystem**
+  - **`nitpick-sockets:28`** — "an out-of-range read into a `sockaddr` is a
+    *crash*, not a leak of adjacent memory". A claim that there is no
+    information disclosure
+  - **`nitpick-tui:24`** — "An out-of-range cell index is a *crash*, not a
+    smear"
+  - **`nitpick-time:21`** — "A zone-table index out of range is a *crash*, not
+    a wrong offset"
+  - **`nitpick-regex` has already corrected itself** — its `SAFETY.md:20` now
+    reads "Indexing **a type that carries a length** is bounds-checked ... **a
+    `wild T->` block does not** — and `Vec<T>.items` is one", with Rule S-23 and
+    a per-type table at :224. That is the wording the other four should take
+- **`O-N` numbering collides INSIDE `nitpick-regex`** — its local
+  `meta/OPEN_QUESTIONS.md` carries legacy local `O-N1…O-N4` beside the
+  registry's `O-N9…O-N12`, so `O-N9` would mean two different things in one
+  file. The worker added a warning block and defined the registry ids locally
+  so citations resolve, and did **not** renumber settled entries, which is the
+  right instinct. It recommends moving the four legacy ids to a local `O-C`
+  prefix and reserving `O-N` for the registry alone. **This is the third
+  numbering collision in one day** — Q- on the board, O-N7's misnumber, and now
+  this — and the first two were caught by a human reading rather than by
+  `check_refs.py`, which finds an undefined reference and not a doubly-defined
+  one
+- **O-N12 proposed and confirmed free** (highest allocated was O-N11): `>>>`
+  and `string_repeat` are documented in the compiler's references and absent
+  from the compiler. The worker recommends the **documentation** fix rather
+  than the implementation, since `>>` on an unsigned operand is already `lshr`
+  — measured at bit 63 — so `>>>` would be a pure synonym. A reader who sees
+  `>>` described as `ashr` and `>>>` as `lshr` reaches for the one that does
+  not exist, which is exactly what happened here
+- **RX-112, an override of a plan instruction, flagged by the worker for
+  confirmation rather than buried.** `0.0.0.md` §5 said to stop and re-plan
+  `API.md` §2 if probe 06 accepted a slice return. It accepted; the worker did
+  not stop, on the ground that the acceptance is O-N9 / DEF-3 — the escape rule
+  is known to be unenforced for slice views — rather than evidence that RX-050
+  is over-cautious. Under verification as a judgement call. **Flagging it was
+  right**: a plan instruction silently not followed is the thing an audit finds
+  three cycles later
