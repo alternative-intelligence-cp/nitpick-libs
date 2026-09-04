@@ -1861,3 +1861,54 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   release — the only floating inputs it has, and the source of the run's only
   annotation. Recommended for the commit that next bumps the compiler pin, so
   one deliberate commit runs the full suite for both
+- **verify `s1-nregex-0.0.1-verify-0055` FAIL — on exactly the claim the
+  dispatch told it to attack, and it was right.** §F's causal claim, *"a `use`
+  naming a path that is not there exits 2, not 1"*, is **false**. A missing
+  import exits **1** with `NITPICK-RESOLVE-005: cannot find …`. Reproduced three
+  times by the verifier — including on a byte-faithful copy of this
+  repository's own `import.npk` with only the path typo'd — and twice more here
+  directly. Only a missing **root argument on the command line** reaches
+  `pass 2i32`: `npkc no_such_root.npk` prints nothing and exits 2
+- **why, and the mechanism is worth recording because the wrong version was
+  plausible:** `graph_load_all`'s return is fed **only** by its own direct call
+  on the command-line file. Every `use` reached transitively goes through
+  `resolve_use`, which does its own existence check, pushes a diagnostic and
+  returns not-found — `graph_load` is never called — so the pipeline's generic
+  "diagnostics exist" branch produces the ordinary refusal
+- **this one is MINE, not the worker's, and it went furthest.** I confirmed
+  `pipeline.npk`'s `pass 2i32` and `main.npk`'s pass-through myself, called the
+  finding "real", **and landed it in `PLAYBOOK.md`** — the document six
+  libraries read — inside an hour of receiving it. The worker wrote it; I
+  amplified it and gave it authority
+- **the shape of the error, stated plainly because it is the third of the night:
+  confirming a code path EXISTS is not confirming that your scenario REACHES
+  it.** `BORROW-012` grepped in the pinned tree when the claim was about an
+  unlanded one; line numbers taken from the compiler's HEAD and quoted as the
+  pin's; and now a `pass 2i32` correctly found and wrongly reached. Each time
+  the observation was accurate and the inference was not. **The cure is cheap
+  and I did not apply it: produce the behaviour.** One four-line file and one
+  command settle it in under a minute — which is exactly what settled it, once
+  someone ran it. Landed in `PLAYBOOK.md` as its own rule
+- **what survives, and it is most of it.** The verifier independently
+  enumerated `src/main.npk` at the pin: **fifteen `exit 2` sites**, matching the
+  corrected §F site for site and confirming the "short by two" claim
+  numerically; two `exit 0`; three `exit 1`; and **`3` is real rather than
+  inferred** — it is npkc's own `failsafe`, 36 named arms plus `(*)` and a
+  trailing `exit 3i32`. The alphabet stands and "2 is not a refusal" stands
+- **and the corrected hazard is SHARPER than the false one, which is the part
+  worth having.** A missing import produces exit **1** — *the very code a
+  rejection fixture expects*. So a rejection test whose fixture path is typo'd
+  or later moved **passes for the wrong reason**: it wanted a refusal, it got a
+  refusal, and the refusal was about the path rather than the thing under test.
+  Nothing reports it. The rule is therefore stronger than "assert the specific
+  integer": **a rejection fixture asserts the diagnostic CODE as well as the
+  exit code**, because exit 1 alone cannot separate "refused for the reason this
+  test is about" from "the file was not there". Every library imports by
+  relative path until O-N2 closes, so this is the ordinary case
+- **the restraint paid for itself exactly as intended.** This alphabet was
+  deliberately NOT sent to the compiler while the enumeration was unconfirmed,
+  on the ground that shipping an incomplete version would be the `BORROW-012`
+  failure in a new costume. The enumeration turned out fine and **the causal
+  claim beside it did not** — so the thing withheld was wrong for a reason
+  nobody had predicted. Waiting cost forty minutes. It goes over once the
+  correction lands and is verified

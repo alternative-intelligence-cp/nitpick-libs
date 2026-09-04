@@ -483,6 +483,17 @@ careless; each came from a command that did not cover its subject:
   rule, and caught only by re-reading the source line by line rather than
   grepping it again.
 
+**Confirming that a code path EXISTS is not confirming that your scenario
+REACHES it.** Three failures in this ecosystem on one night were the same shape
+wearing different clothes: a diagnostic code grepped for in the pinned tree when
+the claim was about an unlanded one; line numbers taken from the compiler's HEAD
+and quoted as the pin's; and a `pass 2i32` found in the driver, correctly, from
+which a conclusion was drawn about imports that never go near it. In each the
+observation was accurate and the inference was not. **Before citing a mechanism
+as the cause of a behaviour, produce the behaviour** — one four-line file and
+one command would have settled the last of the three in under a minute, and did,
+once someone ran it.
+
 **And a transcript that claims to be verbatim must show where it was later
 touched.** Correcting a wrong number in a committed transcript is the corrected
 number **plus a dated note saying what it previously said and how the
@@ -531,19 +542,41 @@ and `src/driver/pipeline.npk` at the pin:
 | `2` | the driver **could not proceed and judged nothing** |
 | `3` | a `failsafe` trap |
 
-**`2` IS NOT A REFUSAL, and this is the trap.** A rejection test that expects
-`1` and receives `2` was never compiled at all — nothing was judged, so the
-test proved nothing while reporting that it did. And the reachable case is not
-a malformed command line: **a `use` naming a path that is not there exits 2.**
-`graph_load_all` returning `< 0` makes `front_run` `pass 2i32`, and `main`
-passes it through. **Every library here imports by relative path until O-N2
-closes**, so a typo'd or moved import is exactly this case — and a harness
-reading "nonzero means refused" scores a **missing file** as a passing
-rejection test, forever, silently.
+**`2` IS NOT A REFUSAL.** A test that expects `1` and receives `2` was never
+compiled at all — nothing was judged, so it proved nothing while reporting that
+it did. `2` is reached by a **malformed command line**, the clearest case being
+a root argument naming a file that is not there: `npkc no_such_root.npk` prints
+nothing and exits 2.
 
-So a harness asserts the *specific* integer, never `!= 0`; a rejection fixture
-expects `1` and treats `2` as a broken fixture rather than a pass; and when a
-whole rejection suite starts passing after a file move, suspect this first.
+> **Corrected 2026-09-04, and the correction matters more than the fact.** This
+> entry first said "a `use` naming a path that is not there exits 2", and that
+> is **false**. A missing *import* exits **1** with
+> `NITPICK-RESOLVE-005: cannot find …` — measured three times by a verifier and
+> again here. Only the *root argument* reaches the `pass 2i32` path:
+> `graph_load_all`'s return is fed solely by its own direct call on the
+> command-line file, while every `use` goes through `resolve_use`, which does
+> its own existence check, pushes a diagnostic and returns not-found — so the
+> generic "diagnostics exist" branch produces the ordinary refusal. **The
+> mechanism was confirmed and the reachability was assumed**, which is the whole
+> error: *finding the code path that returns 2 is not finding out what gets
+> there.*
+
+**And the real hazard is the opposite of the one first written here, which is
+why it was worth getting right.** A missing import produces exit `1` — **the
+very code a rejection fixture expects.** So a rejection test whose fixture path
+is typo'd, or whose file is later moved, **passes for the wrong reason**: it
+wanted a refusal, it got a refusal, and the refusal was about the path rather
+than about the thing under test. Nothing anywhere reports this.
+
+So a harness in this ecosystem:
+
+- asserts the **specific integer**, never `!= 0` — `2` means the run is broken,
+  not that the program was rejected;
+- and for any rejection fixture, **asserts the diagnostic CODE as well as the
+  exit code**. Exit `1` alone cannot distinguish "refused for the reason this
+  test is about" from "the file was not there". Every library here imports by
+  relative path until O-N2 closes, so moved and mistyped paths are the ordinary
+  case rather than the exotic one.
 
 **An exit status is ONE BYTE, so any expectation above 255 is silently wrong.**
 A program that computes 321 and exits with it reports **65** — 321 mod 256 —
