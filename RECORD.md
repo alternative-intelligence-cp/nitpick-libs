@@ -2508,3 +2508,49 @@ chosen deliberately to conserve the author's weekly quota.
   clearing of an owning local's drop flag cannot reach it. Right answer, wrong
   reason, and the wrong reason is the one a later reader would check themselves
   against
+
+### 1.5.1b's landing recorded, and a paragraph restored — 2026-09-04 14:10
+
+Received after this session had already reached its clean stop and released the
+writer lock. Recorded rather than acted on, so the next session inherits facts
+instead of a notification it has to chase.
+
+- **the lock was briefly re-taken and released inside a single commit**, with the
+  board's `Workbench writer:` line reading `none` before and after. Nothing was
+  in flight and no peer held it. Recorded here because the net state hides the
+  event, and a reader of the board alone would not know a write happened between
+  two releases
+- **1.5.1b is COMPLETE.** Compiler `main` at `8dbef43` (docs only above
+  `25e555c`); `build/npkc` rebuilt at 14:01, 7 014 696 bytes, sha256
+  `5af0d06e…f81810`, *larger* than its predecessor because the compiler is now
+  built by a builder carrying the step-4 and step-5 machinery
+- **the re-pin is OWED and was deliberately not taken here.** Re-pinning at a
+  stopping session would leave a fresh toolchain with no verified measurement
+  against it and discard the one this session paid for: O-N4, O-N9, O-N10 and
+  O-N11 were all measured against `94874ce`, and that is the pin those verdicts
+  belong to. **`npkrt.o` must be taken again and checked, not assumed** — DEF-12
+  caught this ecosystem once already on that assumption
+- **D-239 swept: no collision in any of the five libraries.** Step 5b moved
+  `List<T>` into the prelude and a program's own `List` is now refused by the
+  loader. Nothing here declares a `struct:List`, a `mod:list`, or any `list_*`
+  function; all five occurrences of the token are **comments** naming the
+  compiler's type as the shape our containers imitate. The residue is that they
+  cite `src/frontend/list.npk`, which no longer exists
+- **O-N16 was closed upstream the same day it was catalogued**, by a docs commit
+  correcting DEF-8's closing sentence to give the reason instead of the false
+  premise. Worth keeping because it prices the author's constraint: cataloguing
+  rather than raising cost **nothing** here — the item was registered properly,
+  the correspondent read it at its own convenience, and no session was
+  interrupted to act on it
+- **A PARAGRAPH WAS SILENTLY DELETED BY THIS ORCHESTRATOR AND IS RESTORED.** The
+  13:40 clean-stop edit replaced the board's `PAUSED` block with a `STOPPED`
+  one using a span that ran to the next blank line — and the `**Phase:**`
+  paragraph lived inside that span. It was recovered verbatim from `d91d0ca` and
+  put back, with a dated note in place saying so. **The failure mode is worth
+  more than the fix:** `check_refs.py` returned **clean** across the deletion,
+  because a removed paragraph breaks no reference; the only reason it was caught
+  is that a later edit tried to anchor on the very text that had gone. A
+  boundary-matched replacement deletes whatever happens to sit inside its span,
+  and nothing in this workbench's checks can see it. **Prefer replacing an exact
+  known string over replacing a span to the next blank line**, and when a span
+  must be used, print what it consumed

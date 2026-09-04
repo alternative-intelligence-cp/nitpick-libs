@@ -12,6 +12,60 @@ blocked, what is done. The durable plan is
 **Last updated:** 2026-09-03 · **Width:** 2 — streams 1 and 2, confirmed by the author 2026-09-04 ·
 **Toolchain:** 94874ce · .internal/toolchain/94874ce/ · pinned 2026-09-04 · **tree clean** — the first clean pin this workbench has had. 1.5.1b is landed in full and `build/` was rebuilt from it at 08:48; verified here by sha256 and size before copying, `sha256sum -c` OK, LLVM 20.1.2. **`npkrt.o` differs from the 950bb1d pin** — DEF-12 made the main thread's TLS block a raw mapping — so this is a toolchain change in both halves, not just the compiler. **The re-pin blockage is resolved**; the stale binary that was sitting in `build/` is recorded in `PIN.md` so nobody mistakes this pin for it
 **Workbench writer:** `none` — released 2026-09-04 13:40 at a clean stop by `9e3c29db-a219-4274-b87b-eefa9b4a88a8`, session `nitpick-libs-44`, the third orchestrator. **Nothing is in flight; no claim has a live agent; every repository is committed and pushed.** Marker file removed first, then this line, so an abrupt close cannot leave the lock naming a dead session. **To take it: this line first, then the marker** — the order the guard enforces and the reverse of orchestrate §2.1. Two corrections to §2.1, both confirmed again this session: the guard permits **any** session while this line reads `none`, so §2.1's refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from `~/.claude/projects/<slug>/<uuid>.jsonl` and cross-check it against your scratchpad path, which carries the same uuid. One writer here (W-16, P-19).
+**Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
+first library cycle to be worked, and the loop is being judged against
+[`meta/roadmap/0.2/0.2.7.md`](meta/roadmap/0.2/0.2.7.md) §2's pass mark.
+*(This paragraph was accidentally deleted by the orchestrator's 13:40 edit — a
+replacement span that ran to the next blank line and swallowed it — and restored
+verbatim from `d91d0ca` at 14:10.)*
+
+**1.5.1b IS COMPLETE AND THE RE-PIN IS OWED — landing notice received 2026-09-04
+from `nitpick-36`, recorded here and deliberately NOT acted on.** The compiler's
+`main` is at **`8dbef43`** (docs only above `25e555c`, identical code);
+`build/npkc` was rebuilt by `npkg build` at 14:01, **7 014 696 bytes**, sha256
+`5af0d06e744ffff17bcfe39dc6bd0f8ee5b5c346d21039602100a09441f81810`. It is
+*larger* than the previous binary because the compiler is now built by a builder
+carrying the step-4 and step-5 machinery; their parity stage asserted it
+byte-identical to the harness's build of the same tree.
+
+**Why the re-pin was NOT done at this stopping session:** it would leave a fresh
+toolchain with **no verified measurement against it**, discarding the one this
+session paid for. Everything verified today — O-N4, O-N9, O-N10, O-N11 — was
+measured against **`94874ce`**, and that is the pin those verdicts belong to.
+**The next session re-pins as its first action** (§3), and **takes `npkrt.o`
+again and checks it rather than assuming it unchanged** — DEF-12 already caught
+this ecosystem once assuming the runtime half was identical.
+
+**D-239 — step 5b moved `List<T>` and its functions into the PRELUDE, deleted
+`src/frontend/list.npk` and its 46 imports, and a program's own `List` is now
+refused by the loader. SWEPT ACROSS ALL FIVE LIBRARIES: NO COLLISION.** Nothing
+here declares a `struct:List`, a `mod:list`, or any `list_init` / `list_push` /
+`list_reserve`. Five occurrences of the token exist and **every one is a
+comment** describing the compiler's `List<T>` as the shape our containers are
+modelled on: `nitpick-time/tests/probe/probe06_generic_vec.npk` lines 14, 49, 60
+and 107, and `nitpick-regex/tests/probe/probe01_pod_inst_array.npk:24`. **No
+rename is required anywhere.** The residue is that those five comments cite
+`src/frontend/list.npk`, **which no longer exists** — stale citations to correct
+at the re-pin, each at its own stream's claim (W-7). Note
+`probe06_generic_vec.npk:60` already says D-247 makes *the COMPILER's* `List<T>`
+owning, which is exactly right and consistent with RX-126.
+
+**~~O-N16~~ — CLOSED UPSTREAM 2026-09-04, same day it was catalogued.** The
+compiler session corrected DEF-8's closing sentence in its `OPEN_DECISIONS.md`
+§2f to give the reason rather than the false premise — our recipes *do* pass
+copyable fields out of locals; a hand-written container never drops, so the old
+clear skipped no drop; we are outside the recognition, not outside the shape.
+Their commit `8dbef43`, docs only. **Catalogued rather than raised, and closed
+anyway** — worth noting for the next session that the catalogue-don't-raise rule
+cost nothing here.
+
+**Awaiting the author on the COMPILER side** (their `OPEN_DECISIONS.md` §7),
+none of it blocking us, two being semantics this ecosystem already builds
+against: **S-24** derived comparisons over a generic parameter; **S-25**
+`List<T>` in the prelude as struct and functions, implemented in step 5b;
+**S-26** a partial move leaves the vacant value; **S-27** `exit` after
+`wild_release_all()`, `TYPE-062`.
+
 **STOPPED 2026-09-04 13:40 at the author's request, at a clean stop**, to conserve a weekly quota being spread across several sessions. Both streams closed their subcycles and both were independently VERIFIED PASS. **Resume points:** s1 `nitpick-regex` **0.0.4** (`src/core/`), s2 `nitpick-time` **0.0.1** (the skeleton) — both planned, unblocked, and NOT dispatched. Stream 3 has still never run. The questions table has **two** entries for the author, neither blocking.
 
 ---
