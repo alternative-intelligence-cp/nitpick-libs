@@ -978,3 +978,67 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   4 of the handoff: when landing a language fact a worker reports, the prose
   may be the worker's but the syntax must come from a compiled example. The
   verifier is recompiling exactly these
+- **verify `s2-ntime-0.0.0-verify-2131` FAIL** on `0f86d6e`, 9.2 minutes,
+  149 956 tokens, 42 tool uses — **and read the scope before reading the
+  verdict.** All four weight-bearing claims are **CONFIRMED**, three of them
+  live and one by reading. The one failure is a miscount in a deferral list
+- **what the verifier confirmed, and it is the substance:**
+  - **O-N11's defect and its control.** case1 `npkc` exit 0 / `llc` exit 1 on
+    `@npk_failsafe`; case2 the contrast; and the support-module control
+    emitting **0** `define i32 @main` with **7** calls to an undefined
+    `@npk_failsafe`, which is what makes the defect about the missing handler
+    rather than about library-versus-executable
+  - **the mechanism, read out of the compiler's own source rather than
+    inferred** — `../nitpick/src/frontend/analysis/reach.npk`: `failsafe_decl`
+    is the sentinel `0i32` at line 88, set only when a function literally named
+    `failsafe` is found at line 147, and **`reach_settle` returns early at line
+    503**, `if (x.failsafe_decl == 0i32) { pass NIL; }`, *strictly before* the
+    named-coverage loop at 529–585 that raises `REACH_UNNAMED`
+    (`analysis_codes.npk:273`). The claim this workbench was most exposed on is
+    now a citation, which is what the dispatch asked for and why it asked
+  - **the import-cost comparison is genuinely controlled** — a `diff` of
+    `probe11c`'s and `probe11d`'s `failsafe` blocks is byte-identical, so the
+    four extra arms are attributable to the import and nothing else. TM-107 and
+    `SAFETY.md` S-4b/S-4c are landed in the same commit, not merely narrated
+  - the superset claim, and both amended leak-gate sites in the
+    `nitpick-sockets` phrasing, and O-N11 occurring exactly once tree-wide
+  - the `ulimit -v` cap did not bind; peak was ~76 MiB, under `llc` rather than
+    `npkc`
+- **the FAIL: the report says eight deferred inline comments and there are
+  nine.** The literal `// D-151: exit 0 additionally asserts that nothing
+  leaked.` is in nine `.npk` files. The missing one is
+  **`probe04_big_fixed_table.npk`** — almost certainly because it is the file
+  nobody ever compiles, being the 281 s / 30.9 GiB one, so it drops out of every
+  mental list of "the probes". But `tests/probe/README.md:47` lists it as a
+  first-class probe row, not an excluded file the way `support/` and `defect/`
+  are. Confirmed here independently: `git grep -l` returns nine
+- **why a one-word miscount is worth a dispatch rather than a shrug.** The
+  count is not decoration — it is the size of a work item deferred to 0.0.2,
+  and a later worker reading "eight" would sweep eight files and leave the
+  ninth carrying a comment this ecosystem has just spent a night establishing
+  is false. The verifier also checked the deferral's *reasoning* against all
+  nine and found it sound — none allocates a leak-risking managed container,
+  and it read `probe05_payload_enum.npk` in full because it builds a `Vec<Part>`
+  — so only the number is wrong. That is exactly the standard the first
+  verifier set on this subcycle and it is being held to
+- dispatch `s2-ntime-0.0.0-2141` — the sixth into this subcycle, and the
+  smallest: correct eight to nine, name `probe04_big_fixed_table.npk` in the
+  deferral list with the reason it was missed so the 0.0.2 worker does not
+  repeat the omission, and re-open nothing else. The NOTES enumerate what the
+  verifier already confirmed precisely so that none of it is re-run
+- **O-N11 sent to `nitpick-36`** with its verification status stated exactly
+  rather than rounded: the four claims confirmed, the overall report FAIL named
+  as an unrelated miscount now being fixed. Sent rather than held to the
+  subcycle's close because it is **kin to an open item on their side** — their
+  note that D-014's injected `ensures result > 0` on `failsafe` and its
+  non-empty-body check "both currently exist nowhere" is the same missing pass,
+  and one walk over the root's declarations answers all three. If they are in
+  that code for step 0 anyway the marginal cost is small; if not, it keeps.
+  W-27 applied: stated as ordering information, with "blocks nothing of ours"
+  said plainly and no reschedule requested
+- **the W-4 number, now hard to ignore: six dispatches on one subcycle**, of
+  which three were re-dispatches and two of those were caused by a worker's own
+  bookkeeping rather than by the work. W-15's "one fresh worker per subcycle"
+  has not survived contact once. Recalibration must count **dispatches**, and
+  the estimate for the next repository must not be taken from `nitpick-time`
+  0.0.0's subcycle count
