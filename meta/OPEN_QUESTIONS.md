@@ -107,6 +107,20 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N12 — `>>>` and `string_repeat` are documented in the compiler's
+  references and absent from the compiler.** Raised by `nitpick-regex` 0.0.0,
+  2026-09-03, against the pinned toolchain `950bb1d`. `>>>` does not parse;
+  `string_repeat` is documented and not there. **Blocks nothing** (W-27): both
+  have working substitutes, and the substitute for `>>>` is that **`>>` on an
+  unsigned operand is already logical**, measured at bit 63 — so `>>>` would be
+  a pure synonym if it existed. *Recommendation, and it is the unusual one:*
+  **fix the documentation, not the implementation.** The harm here is not a
+  missing feature, it is a reference that describes `>>` as `ashr` and `>>>` as
+  `lshr`, so a reader reaches for the operator that does not exist — which is
+  precisely what happened, and cost a probe. Adding `>>>` would make the
+  documentation true at the cost of a redundant operator; deleting it makes the
+  documentation true and the language smaller. Settled by: the compiler session.
+  Under verification at the time of writing.
 - **O-N11 — a program with `main` and no `failsafe` compiles at `npkc` exit 0,
   and the REACH-002 arm contract is discharged by deleting the handler.**
   Raised by `nitpick-time` 0.0.0 probe 11 (its local O-N5), 2026-09-03, against
