@@ -2389,3 +2389,51 @@ verification its predecessor named as the first thing to do.
   got before the work they hold is released — that a defect landed is a
   correspondent's report, and this entry exists because the workbench does not
   discharge blocking defects on those
+
+### The Q-10 sweep's residue — the checkbox, not the prose — 2026-09-04 12:50
+
+Found while assembling stream 1's dispatch, by checking the site list the board
+handed over instead of working from it. Two of the four line numbers the board
+named for `nitpick-regex` no longer pointed at the leak gate at all — 0.0.2's
+landing moved them — which is `PLAYBOOK.md` §6's "cite the kind, not the line
+number" arriving as a live inconvenience rather than as a maxim.
+
+- **the finding: seven live sites in five repositories.** Every repository's
+  *narrative* text now carries the correct formulation — *D-151 counts `wild`
+  blocks, D-188 counts live drivers, and neither sees a managed body*. The
+  **acceptance checkbox a worker ticks** still states the unfalsifiable gate.
+  `nitpick-regex/…/0.0/README.md:170` is the sharpest: it names **`vec_free`**,
+  asserting the gate for exactly the managed case D-151 cannot see, inside the
+  cycle that builds `Vec<T>` and `Bytes`. `nitpick-parse/…/0.0/README.md:104` is
+  the worst ecosystem-wide: it cites **`(D-151)` in support of** the broad claim
+- **why the sweep missed it, which is the part worth keeping.**
+  `nitpick-regex/meta/DECISIONS.md:550` records that its site list was *"produced
+  by `git grep -n 'D-151'` and not from recall"* — the correct instinct, applied
+  honestly, and it still under-counted, because **five of the seven checklist
+  lines never cite D-151**. The prose was corrected *because the prose is where
+  the citations live*. That repository's note says "four sites stated, and two
+  more implied"; the tree holds two more it could not see. **A generating command
+  is only as wide as its pattern, and a pattern built from citations finds only
+  cited claims**
+- **the fifth instance of §6's shape, and the first in acceptance criteria.**
+  Prose is read; a checkbox is ticked. This one would have been ticked green in
+  five repositories on the case it cannot see
+- **the finder's own first sweep was short by one**, and by a mechanism worth
+  recording: it filtered out every line mentioning `D-151` on the assumption that
+  citing the decision meant being *qualified* by it. Site 6 cites D-151 **as
+  support for the false claim**. That is `PLAYBOOK.md` §6's "a wrong citation
+  still resolves" met from the other direction — not a checker fooled by a
+  resolving reference, but a *sweeper* fooled by one. Three phrasings were
+  needed; the third found it
+- **and a numbering collision caught before it landed.** This was first written
+  onto the board as `RX-121`, which is **already allocated** in
+  `nitpick-regex/meta/DECISIONS.md:1113` to an unrelated decision, as is
+  `RX-122`. `check_refs.py` returned **clean** on it, exactly as its contract
+  says it must — it catches an undefined reference and never a re-used one. The
+  finding is recorded as a **Q-10 residue** with no `RX-` number, because `RX-`
+  is one repository's namespace and this spans five; each allocates its own when
+  its stream fixes it, and `nitpick-regex`'s next free is RX-123
+- **routing (W-7).** `nitpick-regex`'s two sites and `nitpick-time`'s one go to
+  the dispatches opening now, because those repositories are claimed.
+  `nitpick-tui`, `nitpick-parse` (two) and `nitpick-sockets` wait for their own
+  streams' claims and are on the board so the next claim inherits them

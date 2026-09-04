@@ -61,6 +61,51 @@ the site list is in `RECORD.md` and the per-repository notes are in the stream
 tables below. Each fix waits for its own stream's claim (W-7); `nitpick-time`'s
 two lagging sites go to the worker now, because that repository is claimed.
 
+**Q-10 RESIDUE — THE SWEEP CORRECTED THE PROSE AND LEFT THE ACCEPTANCE
+CHECKLISTS.** *(Deliberately NOT given an `RX-` number here: `RX-121` and
+`RX-122` are already allocated in `nitpick-regex/meta/DECISIONS.md` and this
+board nearly took one of them. `RX-` is one repository's namespace and this
+finding spans five, so each repository allocates its own number when its stream
+fixes it — `nitpick-regex`'s next free is **RX-123**. `check_refs.py` returned
+clean on the collision, because it catches an undefined reference and never a
+re-used one.)* Found 2026-09-04 by `nitpick-libs-44`; seven live sites in five
+repositories.** Every repository's narrative text now carries the correct
+formulation — *D-151 counts `wild` blocks, D-188 counts live drivers, and
+neither sees a managed body*. But the **checkbox a worker actually ticks** still
+states the unfalsifiable gate, in all five:
+
+| # | Site | Note |
+|---|---|---|
+| 1 | `nitpick-regex/meta/roadmap/0.0/0.0.4.md:113` | s1 — fix at this claim |
+| 2 | `nitpick-regex/meta/roadmap/0.0/README.md:170` | s1 — **names `vec_free`**, so it asserts the gate for precisely the managed case it cannot see, in the cycle that builds `Vec<T>` and `Bytes` |
+| 3 | `nitpick-time/meta/roadmap/0.0/0.0.4.md:122` | s2 — fix at this claim |
+| 4 | `nitpick-tui/meta/roadmap/0.0/0.0.4.md:103` | deferred to stream 1's claim (W-7) |
+| 5 | `nitpick-parse/meta/roadmap/0.0/0.0.4.md:110` | deferred to stream 2's claim (W-7) |
+| 6 | `nitpick-parse/meta/roadmap/0.0/README.md:104` | deferred — **the worst instance: it cites `(D-151)` in SUPPORT of the broad claim.** A wrong citation still resolves |
+| 7 | `nitpick-sockets/meta/roadmap/0.0/0.0.4.md:91` | deferred to stream 3's claim (W-7) |
+
+**Not findings, checked:** `nitpick-regex/meta/DECISIONS.md:539` quotes the false
+form and immediately corrects it; `nitpick-time/…/0.0/README.md:83` is about
+probe comments; `nitpick-tui/…/0.13/README.md:48` is a different sense of "leak".
+
+**Why the sweep missed them, which is the durable part.** `nitpick-regex`'s
+`meta/DECISIONS.md:550` records that its site list was *"produced by `git grep -n
+'D-151'` and not from recall"* — the right instinct, and it still under-counted,
+because **five of these seven checklist lines do not cite D-151 at all**. That
+repository's own correction note says "four sites stated, and two more implied";
+the tree holds two more it never saw. A generating command is only as wide as
+its pattern, and the prose was corrected *because* the prose is where the
+citations live.
+
+**This is the fifth instance of the shape** `PLAYBOOK.md` §6 names — a check
+whose NAME describes the property while its MECHANISM covers something
+narrower — and the first found in **acceptance criteria** rather than in prose,
+which is the worse place for it: prose is read, a checkbox is ticked.
+**And the finder's own first sweep was short by one** (site 6), by filtering out
+every line that mentioned D-151 on the assumption that citing it meant being
+qualified. Three phrasings were needed. **Fix each at its own stream's claim
+(W-7); do not fix another stream's repository.**
+
 **Q-8 — answered 2026-09-03 by the author: O-N9 is BLOCKING**, like O-N4 —
 **against the recommendation on this board**, which read it as conformance
 rather than a block. Recorded as an override because that is what this table
