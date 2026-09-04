@@ -2088,3 +2088,38 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   `EXIT_MAX = 255` and `SIGNAL_MIN = -64`, accepting 255 and −11, refusing 256,
   321 and −65
 - `advance nitpick-regex 0.0.2 → 0.0.3`
+
+### A clean pause — 2026-09-04 02:20
+
+- **paused at the author's request with nothing in flight.** No agent of this
+  session is live; all six repositories are committed **and pushed**; both
+  checks are clean everywhere; the questions table is empty; nothing is owed to
+  the compiler session. The writer lock is **held rather than released**,
+  because the same session resumes — §15's clean-stop procedure applies at a
+  session's end, not at a pause inside one, and releasing it would make a
+  successor take a lock nobody had left
+- **what is unblocked when work resumes: `nitpick-regex` 0.0.3, and nothing
+  else.** Stream 2 is parked on the compiler's landing message. Stream 3 has
+  never run
+- **what is owed, in one place**, so no successor has to reconstruct it:
+  - **at the re-pin, in `nitpick-time`** — probes 09 and 10, held by the
+    author's ruling on O-N9; re-recording `missing_failsafe`'s two transcripts
+    to `NITPICK-REACH-003`; and correcting the five sites that state *DEF-3 adds
+    no new diagnostic code*, which step 2 falsified by allocating
+    `NITPICK-BORROW-012`
+  - **from the compiler** — the 1.5.1b landing message with the commit, whether
+    `build/` was written after it, and the after-numbers on our recipes. Six of
+    this workbench's defects are in that batch: O-N4, O-N8, O-N9, O-N10, O-N11,
+    plus O-N13 and O-N14 at step 3c, with O-N12 settled in step 2 and O-N15
+    filed at low priority
+  - **at each stream's next claim** — RX-111's false bounds promise in four
+    `SAFETY.md` files, and **RX-120's undefined-symbol scan in all six**, whose
+    acceptance item should be read as unmet until an IR call-edge scan stands
+    behind it
+- **a measurement worth having before it is forgotten: CI's cost collapsed
+  after the first run.** 8m48s, then 1m02s, then 1m35s — `actions/cache@v4`
+  is doing its job on the compiler build, so a green run costs about a minute
+  in the ordinary case and the eight-minute figure is the cold-cache one. That
+  matters for how freely this ecosystem can push, and it is the strongest
+  practical argument for the Node 20 bump being scheduled rather than urgent:
+  the cache action is the one earning its keep every run
