@@ -1086,3 +1086,43 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   workbench came within one message of telling the compiler session that a
   repository's shape was at risk on the strength of a comment. Checking cost
   two reads
+- report `s2-ntime-0.0.0-2141` **STOPPED**, 69 220 tokens, 5.2 minutes,
+  28 tool uses, one commit `4dcd204`. **It ran no compiler at all** — two
+  markdown files, one `git grep`, both checks — which is what a correctly
+  scoped FAIL re-dispatch should cost, and is the counter-example to the two
+  earlier re-dispatches that existed only to make a worker commit. The count is
+  nine and `probe04_big_fixed_table.npk` is now named with its reason in all
+  three places the deferral is carried, including `tests/probe/README.md`,
+  which is where the 0.0.2 worker will actually meet it
+- dispatch `s2-ntime-0.0.0-verify-2152` **on a smaller model, deliberately** —
+  §12's case, since every check in it is a command with an exit code: the
+  count, the two check scripts, the three carrying sites, and that
+  `git show --name-only` lists no `.npk`. The expensive verifier's confirmations
+  on `0f86d6e` are explicitly out of scope and must not be re-run. First time
+  this workbench has used §12's model override; recorded so the cost comparison
+  exists
+- **two playbook facts landed from this dispatch (W-16), both about how a claim
+  is produced rather than about the language:**
+  - **a list of files is produced by `git grep`, never by recall**, and the gap
+    is not random — the files that fall out of working memory are exactly the
+    ones every dispatch is instructed to skip, so they are absent from every
+    transcript and therefore from every list. That is the whole mechanism of
+    this FAIL: `probe04_big_fixed_table.npk` is skipped because it costs 281 s
+    and 30.9 GiB. A deferral that under-counts leaves work silently undone, and
+    the next worker skips the same file for the same reason
+  - **a probe's `expect-` header is a hypothesis, not a verdict.** They agree on
+    a probe that confirmed its guess and disagree on every probe that found
+    something — which is the case a later reader is most likely to be looking
+    at. From this session's own near-miss on `probe02g_cross_module.npk`
+- **two items the worker scoped OUT and was right to, both now owed to a later
+  dispatch here.** (a) There is **no checklist item** for the residue sweep:
+  `0.0/README.md`'s 0.0.2 section is what the 0.0.2 worker's read order lands
+  on, and the deferral lives only in 0.0.0's record and `tests/probe/README.md`.
+  (b) **Nine sites still hedge O-N11 as *(provisional)*** — `specs/SAFETY.md`,
+  the repository's own `OPEN_QUESTIONS.md`, `0.0/README.md`,
+  two `defect/` READMEs and four places in `0.0.0.md` — though the number is
+  allocated and the defect is now the compiler's DEF-5. Both are one-pass jobs
+  for the next dispatch that opens those files, and the worker declined to sweep
+  half a file and leave it inconsistent, which is the right instinct. Neither
+  blocks anything. O-N10's hedges are deliberately excluded: nothing on file
+  says that number is allocated
