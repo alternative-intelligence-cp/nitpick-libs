@@ -10,7 +10,7 @@ blocked, what is done. The durable plan is
 > one repository and removes every merge conflict by construction.
 
 **Last updated:** 2026-09-03 · **Width:** 2 — streams 1 and 2 ·
-**Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03
+**Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03 — **and the re-pin is BLOCKED, not merely pending.** 1.5.1b landed on the compiler's main 2026-09-04 (`94874ce`, step 5 at `39e69cc`), but **main's `build/npkc` has an mtime of 2026-09-03 18:40 — fourteen hours BEFORE step 5 was committed** — and its sha matches neither our pin nor the landing. The validations built into worktrees that were then removed, so main's own `build/` was never rewritten. Copying it now would produce a pin labelled `94874ce` holding a pre-1.5.1b binary, which is worse than the `tree dirty` case §3 warns about, because the label would be confidently wrong. **W-18 forbids building the compiler from here**, so the rebuild is the compiler session's or the author's; asked which. **Nothing re-pins and no held work resumes until `build/npkc` is from `39e69cc`'s `src/`.**
 **Workbench writer:** `3e1777c3-c237-4c90-920c-a4a6b9df1e66` — session
 `nitpick-libs-88`, the second orchestrator, took the lock 2026-09-03 20:56.
 **Not a takeover:** the line read `none`, released at a clean stop by

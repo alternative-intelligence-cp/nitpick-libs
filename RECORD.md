@@ -2201,3 +2201,48 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   exposure. The count that is right is the one confirmed against a member you
   already know belongs — and I knew probe03 belonged only because an earlier,
   looser grep had shown it
+
+### 1.5.1b lands — and the re-pin does not
+
+- **1.5.1b is on the compiler's main**, ten commits, each a cumulative prefix
+  validated by its own full harness (58/58, parity green, `npkc` byte-identical)
+  before landing: `cd8a429` step 0, `953fa83` step 1 (D-248), `5da8d24`
+  step 1b (REACH-003), `0758b2f` step 2 (D-249), `6dff555` step 3 (the Sink
+  builders), `7e0a465` step 3b (D-250), `4521b55` step 3c (library units as
+  objects, `pub use` re-export), `281caaf` step 4 (D-246), `39e69cc` step 5
+  (D-247 plus the five findings), `94874ce` the docs landing. **All seven of
+  this workbench's defects are in it**, and O-N12 and O-N15 with them
+- **the re-pin is BLOCKED, and the `build/` question is exactly why it was
+  asked.** Their answer was "Yes: build/ was written" followed by the operative
+  clause — *the validations built into worktrees that were then removed, and
+  main's own `build/` is untouched by the landings.* **Verified here rather than
+  read: `build/npkc`'s mtime is 2026-09-03 18:40 and `39e69cc` was committed
+  2026-09-04 08:24 — the binary predates the landing by fourteen hours**, and
+  its sha256 (`1c3bea4b…`) matches neither our pinned `950bb1d` (`fbb7d022…`)
+  nor anything post-landing. It is an intermediate build from yesterday evening
+- **so copying it would produce a pin labelled `94874ce` holding a pre-1.5.1b
+  binary.** That is worse than the `tree dirty` case §3 already warns about: not
+  an imprecise label but a confidently wrong one, and **nothing afterwards can
+  tell a stale binary from a fresh one** — which is the entire reason `PIN.md`
+  carries a `binary` line. **W-18 forbids building the compiler from here**, so
+  the rebuild is the compiler session's or the author's, and has been asked for.
+  **Nothing re-pins and no held work resumes until `build/npkc` is from
+  `39e69cc`'s `src/`**
+- **the pin procedure's `build/` question earned its place tonight.** The
+  predecessor orchestrator called it "the one thing our pin procedure cannot
+  determine from outside its tree" and made it a standing item on the landing
+  message. Had it not been asked, this workbench would have re-pinned from a
+  fourteen-hour-old binary and attributed every subsequent measurement to
+  1.5.1b — including the after-numbers that decide whether O-N4 still blocks
+- **and a second question raised, because their own figures argue against the
+  obvious reading.** DEF-1's fix cut the compiler's own build's **allocation** by
+  a fifth (14.24 GB → 11.75 GB) while its **peak live memory went UP** (11.16 GB
+  → 11.63 GB), for the stated reason that *every table lives until emission ends,
+  so drops shorten nothing in one compilation*. **O-N4 blocks `nitpick-time`
+  0.0.5 and 0.5 on PEAK, not on churn** — `probe04_big_fixed_table.npk` cost 281 s
+  and **30.9 GiB peak**, and a 16 GiB machine and CI still cannot build the
+  library in its shipping shape unless that number moved. The landing message
+  carried DEF-1's self-numbers rather than the promised after-numbers on our two
+  recipes, which is not the same thing. Asked for both, with the note that
+  "peak is unchanged by design" is a perfectly good answer — **what cannot be
+  done is closing a blocking defect on an inference**
