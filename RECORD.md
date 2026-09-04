@@ -2246,3 +2246,51 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   recipes, which is not the same thing. Asked for both, with the note that
   "peak is unchanged by design" is a perfectly good answer — **what cannot be
   done is closing a blocking defect on an inference**
+- **`build/` rebuilt and both answers came back as measurements.** The compiler
+  session ran `npkg build` from main's root at 08:48 on `94874ce`, and states
+  that rebuilding main's `build/` after a landing is theirs to do from now on —
+  it had not been done before our check, and they say the check was correct
+- **pin 94874ce, tree clean** — and **verified before copying rather than
+  after**: `build/npkc` at 5 491 224 bytes and sha256 `0f8c4678…84`, matching
+  what that session computed, mtime 08:48:30, against a landing committed at
+  08:24:50. `cmp` identical both files, `sha256sum -c` OK, LLVM 20.1.2. **The
+  first clean-tree pin this workbench has had**; `950bb1d` was `tree dirty`
+- **`npkrt.o` changed too, and asking was worth it.** DEF-12 made the main
+  thread's TLS block a raw mapping, so the runtime is not untouched this time —
+  its sha differs from the `950bb1d` pin (`c9ddbcff…` against `869c490d…`) and
+  its mtime is 08:43, after the landing. The previous pin's `PIN.md` had
+  recorded "npkrt.o byte-identical because the runtime is untouched"; that was
+  true then and would have been a wrong assumption now. **A re-pin checks both
+  halves**
+- **§3's mid-rebuild guard fired and was obeyed.** `find -mmin -2` refused the
+  first attempt because the binary was ninety seconds old. It was waited out
+  rather than overridden — the guard exists for a binary still being written,
+  and "we know it finished because someone told us" is exactly the reasoning
+  this workbench has been wrong about three times tonight
+- **O-N4 REPORTED DISCHARGED ON PEAK, and the numbers are extraordinary.** Our
+  two recipes, compiled by that binary under `NPK_HEAP_STATS` and
+  `/usr/bin/time`:
+  - `defect/big_fixed_array_cost.npk` (4 000 rows): **~6 s and 580 MiB → 0.24 s
+    and 28.97 MB max RSS**, peak_live 22.18 MB
+  - `probe04_big_fixed_table.npk` (26 838 rows): **281 s and 30.9 GiB → 1.15 s
+    and 75.2 MB max RSS**, peak_live 70.30 MB
+  About **400× less peak and 240× less time** on the real table's size, and the
+  relation between the two sizes is now linear rather than quadratic: 6.7× the
+  rows costs 3.2× the peak and 4.8× the time
+- **and they explained why their own earlier figure argued the other way, which
+  is the part worth keeping.** The compiler-over-itself number was the wrong
+  instrument for our question: *its* peak is the retained tables of a 200-file
+  compilation, which nothing frees before emission ends, so a drop-shortening
+  fix cannot move it. *Our* recipes' peak was the quadratic builder itself —
+  transient buffers reallocated per row — and step 3's Sink removed exactly
+  that. Two peaks, two different causes, one number quoted for both. **Asking
+  the second question was right, and the answer changed a blocking defect's
+  disposition**
+- **NOT yet acted on: this is reported, not verified here.** O-N4 blocks
+  `nitpick-time` 0.0.5 and 0.5, and a blocking defect is discharged on our own
+  measurement, not on a correspondent's — however good the correspondent has
+  been all night. **The held work stays held** until a verifier re-runs both
+  recipes against the new pin. That is the first dispatch when work resumes,
+  and it is cheap now: what cost 281 s and 30.9 GiB is claimed to cost 1.15 s
+  and 75 MB, so the verification is seconds rather than the hours it would have
+  been yesterday
