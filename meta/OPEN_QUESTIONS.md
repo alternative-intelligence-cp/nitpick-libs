@@ -62,6 +62,40 @@ because it is append-only.*
   kept as a belt rather than as the guarantee. Numbered `Q-5` on the board
   when raised.
 
+*Raised by the second orchestrator session (`nitpick-libs-88`) on 2026-09-03,
+numbered from this registry rather than from the board — which is the error the
+note above records.*
+
+- **Q-9 — should this workbench stop hedging when it escalates a defect?** The
+  compiler session reports an author rule on its side that **a defect a real
+  program finds is fixed before planned work**, which is why O-N10 became a
+  step in 1.5.1b rather than a backlog row. Every escalation this workbench sent
+  on 2026-09-03 was framed "no schedule pressure implied" — under that rule,
+  more deferential than the author actually wants, and the hedge costs
+  information: it hides which defects are blocking. **Heard second-hand from
+  the compiler session, never from the author**, which is why it is a question
+  and not a practice. *Recommendation:* confirm the rule, and let the workbench
+  state plainly what a defect blocks and what it does not, leaving the schedule
+  to the author. Settled by: the author, and a line in `WORKSTREAMS.md` beside
+  W-11 and W-23.
+- **Q-10 — does `nitpick-time` 0.0.3 gain a cost-and-heap harness stage?** The
+  compiler's 1.5.1b step 0 builds an `NPK_HEAP_STATS` instrument and a `cost`
+  harness stage measuring compile time and peak RSS per test. This library's
+  stage list (`parse`, `accept`, `check`, `golden`, `sweep`, `program`, `repro`)
+  has neither, and **O-N4 was found by accident** because one probe happened to
+  be enormous — a monitored budget would have caught it as a property. The same
+  stage would carry `NPK_HEAP_STATS`, which is the only instrument that can
+  express 0.0.4's leak gate: that gate currently reads "the suite's programs
+  exit 0, so a missing `free` on any path is a trap", and **as written it cannot
+  fail**, because D-151 watches `wild` allocations and a managed `string` body
+  is invisible to it. The compiler measured our own probe pair at peak_live
+  41 321 against 400 101 320 bytes, both exiting 0. *Recommendation:* yes, and
+  fold 0.0.4's gate rewrite into the same amendment — but it adds a stage to an
+  execution-grade checklist and amends another cycle's gate, so it is a plan
+  change the orchestrator does not make (W-16). Nothing is blocked meanwhile:
+  neither can be built until the re-pin lands. Settled by: the author, then a
+  worker amending `0.0.3.md` and `0.0.4.md`.
+
 ## For the compiler — the registry
 
 `O-N` numbering is **per repository**, and the numbers collide: `O-N2` is the

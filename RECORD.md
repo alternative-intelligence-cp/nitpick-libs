@@ -732,3 +732,89 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   through the stale-takeover path for no reason. Nothing is in flight; no
   claim has a live agent; `nitpick-time` is `CLAIMED s2` and stays claimed,
   because the subcycle is unfinished and the claim is the thing that says so
+
+### The second orchestrator — `nitpick-libs-88`, from 20:56
+
+- **writer `3e1777c3-c237-4c90-920c-a4a6b9df1e66`** took the lock at 20:56.
+  **Not a takeover, and no takeover entry is owed:** the line read `none` after
+  the first orchestrator's clean stop, so no session was displaced. Taken board
+  line first, then the marker file
+- **that finding refined, from the guard's source rather than from the
+  handoff.** `writer_allows()` matches `\bnone\b` and returns True *before* it
+  ever compares session ids, so while the board says `none` the workbench is
+  open to any session, and the marker write is refused only when the board
+  names a **different** one. The entry above — "backwards **for a takeover**" —
+  is exactly right; the handoff brief's wider phrasing, that the guard refuses
+  the §2.1 order as such, is not, and a successor acting on the wider version
+  waits for a refusal that never comes. The §2.1 fix is still owed against
+  0.2.2
+- **the marker command in §2.1 writes an empty file.** `CLAUDE_SESSION_ID` is
+  empty in a Bash tool call — the guard does not use it either, reading
+  `session_id` from the hook payload instead — so
+  `echo "${CLAUDE_SESSION_ID}" > .internal/orchestrator.session` produces a
+  blank marker and a silent compaction hook. This session recovered its id from
+  the transcript directory (`~/.claude/projects/<slug>/<uuid>.jsonl`, the one
+  being written) and cross-checked it against the outgoing session's id, which
+  the board named. A second finding against 0.2.2
+- **stale claim `nitpick-time`: found `CLAIMED s2` with no live agent, left
+  claimed.** Every claim is stale after a session restart (§4), and this one is
+  bookkeeping rather than loss — four commits and a full report are in the tree,
+  `check_record.py` exits 0, the tree is clean. **Third finding against §4's
+  recovery table: it has no row for a subcycle that stopped legitimately.** The
+  table keys on the subcycle file's title, which still reads `RUNNING`, while
+  the report reads `STOPPED` — so the `RUNNING` + clean row instructs a literal
+  successor that "the work was lost" and to re-dispatch, which would redo four
+  committed commits. The report is the authority, not the title
+- dispatch `s2-ntime-0.0.0-verify-2056` — the verifier W-21 owes on `9113487`,
+  and the successor's first action as the board said. Bounded rather than
+  trusted: `probe04_big_fixed_table.npk` forbidden by name, and
+  `big_fixed_array_cost.npk` with it (no claim in the report rests on either),
+  every `npkc`/`llc` under `ulimit -v 4194304` against a measured ceiling of
+  37.6 MiB, and no parallelism, because the compiler's four 1.5.1 parity
+  harnesses are live on this machine at load ~6
+- **a premise in the handoff brief corrected by measurement: this machine is
+  157 GiB with NO swap**, 65 GiB free at 20:53. "Re-running probe 04 will drive
+  this machine into swap" is not true of this box — there is no swap to drive it
+  into, and 30.9 GiB would fit. The exclusion is still right, for two better
+  reasons: the report claims no result for probe 04, so re-running it verifies
+  nothing; and 281 s of CPU beside four live parity harnesses is a bad
+  neighbour. The board's separate claim that a 16 GiB machine and CI cannot
+  build the library in its shipping shape is about **consumers'** machines and
+  is untouched by this
+- the outgoing session's last entries are timestamped ~21:31 against a system
+  clock reading 20:47 when it wrote them. Noted only so a successor comparing
+  timestamps is not misled; the record is append-only and those entries stand
+
+- **`nitpick-36` → the workbench, relayed by the outgoing session after it had
+  released the lock, and landed here by its successor.** Four items:
+  - **O-N10 is the compiler's DEF-4**, recorded at our commit `eb8d6b4`, with a
+    step proposed in 1.5.1b awaiting the author's ratification. It does **not**
+    displace the DEF-2 → DEF-3 → DEF-1 order, so all four of this workbench's
+    defects may land in one batch
+  - **the instrument that closes the gate we could not close.** 1.5.1b step 0
+    builds `NPK_HEAP_STATS`, measuring **managed** memory from the allocator —
+    allocated, peak_live, count — because, in their words, "the gate 'exit 0
+    proves no leak' cannot be for managed bodies". They have already run it on
+    our two container probes: **peak_live 41 321 bytes against 400 101 320
+    bytes**, the same pair that both exited 0. That is our finding quantified at
+    roughly ten thousand to one, by an instrument rather than by inference.
+    Consequence for 0.0.4: its checklist item does not need weakening into
+    something vaguer — it needs the right instrument, a `peak_live` assertion,
+    once the re-pin lands
+  - our container-free finding **is D-247 in library form** (`List<T>` as an
+    owning managed structure, already ratified for 1.5.1b), so the library-side
+    rule "a container's `free` must drop each element" and the compiler-side fix
+    are two halves of one thing. The library rule stays necessary until D-247
+    lands
+  - case 5's `0xAA` poison assertion goes into their rejection test's companion
+    program, so the technique is now shared in both directions
+- **Q-9 raised** (registry numbering, not the board's): the compiler side's
+  standing rule, heard second-hand, that **a defect a real program finds is
+  fixed before planned work**. Every escalation this workbench sent tonight was
+  framed "no schedule pressure implied", which under that rule is more
+  deferential than the author wants. Recommendation: confirm it, and let the
+  workbench state plainly what a defect blocks
+- **Q-10 raised**: whether `nitpick-time` 0.0.3 gains a `cost` harness stage,
+  now widened by item 2 above to carry `NPK_HEAP_STATS` as well. It adds a stage
+  to an execution-grade checklist and amends 0.0.4's gate, so it is a plan
+  change and the orchestrator does not make it (W-16, §1)
