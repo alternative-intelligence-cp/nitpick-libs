@@ -2163,3 +2163,41 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   662 515, ratio **1.00** against a bound of 2; the temporaries probe stays
   **×3.0** against a bound of 4; the program sweep is 217 programs, 0 failures.
   Eight cumulative-prefix harnesses (steps 0–4) are running; step 5's follows
+- **compiler round 2: step 0 has LANDED on main as `cd8a429`**, the first
+  cumulative-prefix run having come back red at step 3 for four fixable causes.
+  Steps 1–4 are rebased and running, step 5 behind them. Useful for us: **the
+  nine landings after step 0 are fast-forwards of validated prefixes**, so main
+  does not move under anything built against it today
+- **S-27 / TYPE-062 — the statement after `wild_release_all()` must be `exit`.**
+  Three unit tests released the heap and then *returned* from `main`; once
+  `List<T>` owned, their scope-exit drops ran over unmapped memory and the
+  refusal's own trap route died in a segmentation fault. **Our exposure: none.**
+  Swept both workbenches — **nothing here calls `wild_release_all()` at all**,
+  which is what the compiler predicted, a library never calling the release
+- **S-26 — a `move`/`pass` out of a FIELD or ELEMENT now leaves the canonical
+  vacant value and the aggregate stays live.** Before, a field move cleared the
+  **whole root's** drop flag, so every sibling leaked; and because a field
+  overwrite drops unconditionally, a field moved out and then reassigned was a
+  **double free**. **Our exposure, read rather than assumed:** two sites move
+  out of an element — `nitpick-regex`'s `probe03_generic_move.npk` `free_owning`
+  and `nitpick-time`'s `probe06_generic_vec.npk` `free_names`. **Neither puts an
+  element back**, so neither carries the double-free shape at all
+- **but the re-pin consequence is larger than DEF-8's, and this is the part to
+  carry**: `free_names`'s own comment reads *"Measured above: this is the
+  difference between 125 MiB and nothing"* — **it is the remedy half of the leak
+  finding**, the function that proved a container's elements must be moved out
+  to be dropped. Its semantics change at the re-pin in **two independent ways at
+  once**: S-26 alters what a move out of an element does to the aggregate's drop
+  flag, and D-247 makes the container own. **So the 125 MiB figure is a
+  before-number, and both `free_*` functions must be re-run and READ rather than
+  predicted.** Recorded on both streams' rows. This is the strongest re-pin item
+  the workbench has, because it is the measurement the leak rule rests on
+- **DEF-12 — the main thread's TLS block was an internal heap allocation the
+  release unmapped**, so any trap after a release segfaulted; it is a raw
+  mapping now, in no table. No action here, since nothing of ours releases
+- **and the sweep rule caught me again, in the same minute I invoked it.** My
+  first pattern for S-26's sites returned **two**; a second, narrower one
+  returned **nothing**, and had I run only the second I would have reported no
+  exposure. The count that is right is the one confirmed against a member you
+  already know belongs — and I knew probe03 belonged only because an earlier,
+  looser grep had shown it
