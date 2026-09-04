@@ -881,3 +881,15 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   the board, so each stream meets its own list at its claim instead of
   rediscovering the defect the way `nitpick-time` did — by writing a two-million
   element probe and noticing 125 MiB that `exit 0` had blessed
+- dispatch `s2-ntime-0.0.0-2103` — the fifth into this subcycle. Two items:
+  **probe 11**, the `failsafe` arm contract and the last unworked probe; and
+  **Q-10's correction applied to the one claimed repository**, amending
+  `0.0/README.md:100` and `0.0/0.0.0.md:299` to say what D-151's trap actually
+  covers, with `nitpick-sockets`' correctly-scoped wording as the model and a
+  hook left for the `peak_live` assertion the re-pin will make possible. The
+  NOTES carry all four disciplines this subcycle has paid for — commit as you
+  go and before reporting, an exit code beside every timing, the transcript
+  verbatim rather than summarised, and the two forbidden files — plus W-27 and
+  the standing hold on probes 09 and 10. **W-15's "one fresh worker per
+  subcycle" is now five workers on one subcycle**; W-4's recalibration must
+  count dispatches, not subcycles
