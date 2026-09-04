@@ -577,3 +577,27 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   A duplicate-declaration check belongs beside the existing
   `[duplicate-decision]` rule, which does exactly this for `D-` numbers.
   Recorded against the check skill (0.2.1) for the workbench's next cycle
+- **D-246's scope, answered precisely by the compiler session: the leak is at
+  OWNING temporaries only.** A temporary leaks iff its type drops (the
+  checker's `type_drops`). It does for a `string` whose body is on the heap —
+  `string_concat`, **`string_slice`, an owned copy since D-186**,
+  interpolation, `ToString` — and for a `buffer`, a struct or enum with an
+  owning field or payload, a `dyn` (it owns its cell), and an `OwnedFd`. It
+  does not for a `uint8[]` from `string_bytes`, a `string` from
+  `string_from_bytes`, a range-view `arr[lo...hi]`, a plain pointer or any
+  scalar. So `f(string_bytes(s))` needs no binding and
+  `f(string_concat(a, b))` leaks the whole concatenation. That `string_slice`
+  allocates is worth its own attention in a parsing library
+- **correction to my own playbook entry, caught by the compiler session: I
+  wrote `let a = g(x)` into the Nitpick playbook and there is no `let`.** The
+  bound form is `T:a = g(x);`, naming the type. Fixed. It is a small error
+  and an instructive one — the playbook exists so that six libraries do not
+  each rediscover the language, and an entry that spells a keyword the
+  language does not have would have taught the opposite. The general lesson:
+  when landing a language fact reported by an agent, the *prose* is the
+  agent's but the *syntax* must come from a compiled example or a
+  specification, never from the summary
+- the caution that came with it, kept in the playbook's wording: binding does
+  not help if the bound value is then passed with `move` into something that
+  leaks it further — but that is ordinary ownership rather than D-246, and it
+  is the library's bug instead of the compiler's

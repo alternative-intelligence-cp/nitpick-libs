@@ -136,11 +136,27 @@ repository would otherwise rediscover them. The first two come from
   result is an unbound temporary passed as an argument and nothing ever frees
   it. This is D-183's "statement-end temporaries" debt, recorded at the
   compiler's cycle 1.2 and never scheduled; the fix is proposed as its D-246.
-  **Until it lands, bind the intermediate**: `let a = g(x); f(a)` rather than
-  `f(g(x))`, wherever the inner call returns something owning. It is not a
-  style preference — it is the difference between linear and quadratic memory
-  in any loop that does it per element, and it is why `npkc` itself peaks at
-  11 GiB compiling its own `src/main.npk`.
+  **Until it lands, bind the intermediate**: `T:a = g(x);` and then `f(a)`,
+  rather than `f(g(x))`. **There is no `let`** — the bound form names the
+  type — and once bound, `a` drops at scope exit like every other bound owner.
+  It is not a style preference: it is the difference between linear and
+  quadratic memory in any loop that does it per element, and it is why `npkc`
+  itself peaks at 11 GiB compiling its own `src/main.npk`.
+
+  **The rule is needed only at OWNING intermediates, and the test is exact.**
+  A temporary leaks if and only if its type drops — the checker's
+  `type_drops`. It **does**: a `string` whose body is on the heap
+  (`string_concat`, **`string_slice`, which has been an owned copy since
+  D-186**, interpolation, `ToString`); a `buffer`; a struct or enum with an
+  owning field or payload; a `dyn`, which owns its cell; an `OwnedFd`. It
+  **does not**: a `uint8[]` from `string_bytes`, a `string` from
+  `string_from_bytes`, a range-view `arr[lo...hi]`, a plain pointer, any
+  scalar. So `f(string_bytes(s))` leaks nothing and needs no binding, while
+  `f(string_concat(a, b))` leaks the whole concatenation. One caution on the
+  wording: binding does **not** save you if the bound value is then passed
+  with `move` into something that leaks it further — but that is ordinary
+  ownership rather than this defect, and it is your bug instead of the
+  compiler's.
 - **`_~argv` marks a parameter DISCARDED, not merely unused.** Reading it is
   `NITPICK-TYPE-007`. A probe or program that wants `argv.len` must spell the
   parameter `cstring[]:argv`. Cheap, and it cost a probe a rewrite.
