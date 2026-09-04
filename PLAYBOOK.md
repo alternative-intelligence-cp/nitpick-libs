@@ -466,9 +466,13 @@ lexed, and it would have been a pure synonym if it had. Sourced from the
 compiler's own emitter at 1.5.1b step 2, not from a probe — a probe here
 measured only the unsigned half, at bit 63.
 
-**Every sweep list in this ecosystem has been short on its first telling.
-Four for four, so assume yours is too — and the fourth was written by the
-session that had just been told the rule, and was short by TWO.** The misses were not
+**Every sweep list in this ecosystem has been wrong on its first telling —
+five running.** Four were short and one was **over-long**, so "assume yours is
+short" is itself too narrow: assume it is *wrong*. The fourth was written by a
+session that had just been handed this rule and was short by two; the fifth was
+an orchestrator's dispatch naming four sites a claim had reached, where the tree
+held three and one named site did not carry it at all — caught only because the
+worker checked the list it was given instead of working from it. The misses were not
 careless; each came from a command that did not cover its subject:
 
 - *eight probes carrying a stale comment, and there were nine* — the missed one
@@ -493,6 +497,16 @@ observation was accurate and the inference was not. **Before citing a mechanism
 as the cause of a behaviour, produce the behaviour** — one four-line file and
 one command would have settled the last of the three in under a minute, and did,
 once someone ran it.
+
+**A commit subject names a CHANGE, not a FINDING — because a subject cannot be
+corrected once it is pushed.** This ecosystem pushed
+`cycle 0.0.1: the exit-2 list was short by two, and one of them bites
+libraries`, and the six words after the comma are a claim that turned out to be
+false. The file was corrected within the hour; the subject is permanent, CI has
+run on the tree above it, and every `git log` from now on carries it. A subject
+saying what the commit *did* — "the exit-2 list corrected" — would have aged
+into a true sentence instead. Put the finding in the body, where a later commit
+can answer it.
 
 **And a transcript that claims to be verbatim must show where it was later
 touched.** Correcting a wrong number in a committed transcript is the corrected

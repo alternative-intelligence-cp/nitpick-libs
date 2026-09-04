@@ -1912,3 +1912,55 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   claim beside it did not** — so the thing withheld was wrong for a reason
   nobody had predicted. Waiting cost forty minutes. It goes over once the
   correction lands and is verified
+- report `s1-nregex-0.0.1-0110` **DONE**, 134 592 tokens, 59 tool uses, one
+  commit `3679bf8`. The claim is corrected and, more usefully, **measured** —
+  a control tree and a typo'd twin differing in one line, the typo'd one exiting
+  1 with `RESOLVE-005` three times, and a missing root argument exiting 2 with
+  zero bytes on both streams, checked by `wc -c` rather than by eye
+- **the worker checked MY list and it was over-long.** The re-dispatch named
+  four places the false claim had travelled to; swept in six phrasings with
+  `-i`, the tree held **three**, and one site I named — the first REPORT block —
+  did not carry it at all. **So sweep lists here have now been wrong five times
+  running: short four times and OVER-LONG once**, which retires the shorthand
+  "assume yours is short" in favour of "assume yours is wrong". Landed in the
+  playbook. It was caught only because a worker checked the list it was handed
+  rather than working from it, which is the second time today that habit has
+  paid — the first being the `O-C` prefix that would have recreated its own
+  collision
+- **the two copies it flagged as outside its scope were already corrected**, and
+  its flag was a stale read: `BOARD.md`'s only remaining mention of the claim is
+  inside the sentence declaring it false, and `RECORD.md`'s is the correction
+  entry itself. Flagging them anyway was right — the cost of a redundant flag is
+  one check, and the cost of the last surviving copy being the wrong one is
+  permanent
+- **a rule this session had not thought of, and it is already too late to
+  apply: a commit subject names a CHANGE, not a FINDING.** `e478a6a`'s subject
+  ends "and one of them bites libraries", which is the false claim in six words.
+  It is pushed, CI has run on the tree above it, and every `git log` carries it
+  from now on. The file was corrected within the hour; the subject cannot be.
+  A subject saying what the commit *did* would have aged into a true sentence.
+  Landed in `PLAYBOOK.md`
+- **the worker made the same class of error again inside the correction, and
+  caught it before committing**: a first draft of §F's note said "five runs
+  across two sessions" without counting; it is eight across three. Its own
+  formulation is the right one — **an assertion about your own evidence is an
+  assertion, and gets checked like one**
+- **it also put the measurements in a NEW section §G rather than folding them
+  into §F**, on the ground that §F is a *reading of source* and §G is a
+  *measurement*, and that a section which says of itself "this is a reading, not
+  a measurement" is naming its own failure mode. That is a better instinct than
+  the dispatch asked for: it stops a reading borrowing a measurement's authority,
+  which is precisely how the false claim acquired its
+- **and the finding that shrinks the whole episode: `BUILD.md` rule B-7 (D-237)
+  already requires a rejection fixture to assert the diagnostic code.** Under
+  verification. If it holds, the ecosystem already had the rule that makes the
+  corrected hazard unreachable, and the false claim's real cost was that it
+  pointed a harness author at the exit code **alone**, in the one place where
+  B-7 is what saves them. Recommended to 0.0.2 as a load-bearing check rather
+  than a nicety, and §F now says so addressed to that cycle by name
+- **nothing goes to the compiler from this episode.** The exit-1/exit-2 split is
+  correct behaviour, not a defect — the earlier claim was a misreading of it.
+  The only residue is that the alphabet is undocumented, which is a small
+  documentation gap of O-N12's shape, and after being wrong twice on this
+  subject in one night this workbench will raise it only once the verifier has
+  passed the corrected text, if at all
