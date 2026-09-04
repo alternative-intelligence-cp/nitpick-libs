@@ -1642,14 +1642,14 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   planned here. Same family as O-N10's quiet half — the loud failure is the
   inconvenience and the silent wrong answer is the defect
 - **the `O-C` prefix I passed on would have recreated the collision it was
-  meant to remove**, and the worker caught it: `O-C1` and `O-C2` already exist
+  meant to remove**, and the worker caught it: that repository's local `O-C` numbers 1 and 2 already exist
   in that repository as compilation questions, cited in five files. It used
   **`O-G`** ("a Gap in the compiler"), one-for-one and in order, with a row
   added to the prefix table. **Confirmed as orchestrator.** That is the fourth
   numbering collision of the day and **the first caught before it landed** —
   by a worker checking a recommendation instead of applying it
 - **the registry edit the worker correctly could not make (W-16) is made**:
-  `O-N2`'s entry listed `nitpick-regex O-N3` as a local id; it is `O-G3` now
+  `O-N2`'s entry listed `nitpick-regex`'s local `O-N` number 3; that id is now its local `O-G` number 3
 - **confirmed: `meta/roadmap/0.0/0.0.0.md` was right not to be renumbered.** It
   is a verified artifact, two redirect entries keep its citations resolving, and
   the single change made to it is the "Five commits" → "Six commits" correction
@@ -1664,3 +1664,42 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   the release API, `quickemit.py`'s output paths read from its source at the
   pin, and the stub run green and red. **A struck box with a reason is the right
   answer; a ticked box for an unrun step would have been a FAIL**
+- **`check_refs.py` went red on that entry and it was right.** Four ids —
+  another repository's local numbers — were written into `RECORD.md` in the bare
+  `O-<letter><digits>` form, which the check reads as a citation of a
+  *workbench* question, and the workbench defines none of them. Fixed by
+  changing how they are *spelled*, not what they say: "that repository's local
+  `O-C` numbers 1 and 2" rather than the bare tokens
+- **and the boundary that permits that edit in an append-only file is worth
+  stating, because this session refused a similar one an hour ago.**
+  **Append-only protects claims, not typography.** Re-spelling a citation so a
+  tool can read the file changes no assertion, exactly as fixing a broken
+  markdown link would not; that is why it is allowed here. Rewriting
+  "`BORROW-012` does not exist" into "does exist" *would* change an assertion,
+  which is why that entry still stands above with its correction appended
+  instead. The test is whether a reader's belief about what was true, or about
+  what this session believed, would differ afterwards
+- **finding against the check skill (0.2.1), and it is a real gap rather than a
+  nuisance: `check_refs.py` cannot express "another repository's id".** It skips
+  `OPEN_QUESTIONS.md` when gathering references, so the registry's own
+  cross-repository citations — `nitpick-tui` O-N2, `nitpick-time` O-N1 and the
+  rest — are invisible to it and have never been checked. The moment such an id
+  appeared **outside** the registry, in `RECORD.md`, it read as a dangling
+  workbench question. Both halves are wrong in the same way: a foreign id is
+  neither a workbench reference nor nothing. Wanted: a qualified form the check
+  understands — a repository-qualified spelling, `<repo>` and a colon before the
+  local id — so a foreign citation is checked
+  against *that* repository's registry rather than ignored in one file and
+  mis-scored in every other. Third finding recorded against the check skill
+  today, after the duplicate-question gap and the case-sensitivity of a sweep
+- **a process correction on this orchestrator's own commits: three times today
+  I have run `check_refs.py` and `git commit` in one shell block, so the commit
+  landed whatever the check then said.** Twice it was clean and once it was not,
+  and the dangling reference above was committed before I read the output. The
+  check must gate the commit, not accompany it
+- a small joke at this session's expense, kept because it is the clearest
+  possible statement of the gap: **the entry proposing a qualified spelling
+  tripped the check by containing an example of the very id it was proposing a
+  spelling for.** There is no way to write the wanted syntax in prose without
+  writing something that matches `O-[A-Z]\d+`, which is precisely why the check
+  needs a form that carries a repository rather than a smarter pattern
