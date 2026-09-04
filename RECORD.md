@@ -654,3 +654,25 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   the tree at a citable commit, which is what the compiler session asked for;
   the hash goes to `nitpick-36` once the worker reports and the record check
   has run, not before
+- `nitpick-36` acknowledges and confirms the sequence: **1.5.1b's order stands
+  — DEF-2 step 1, DEF-3 step 2, DEF-1's builders step 3** — so DEF-3 does not
+  slip behind DEF-1 and the author's blocking ruling changes nothing about the
+  compiler's plan. 1.5.1's four prefix harnesses are at the parity stage. The
+  DEF-3 hash goes into `1.5.1b.md` §4 and `OPEN_DECISIONS` §2f verbatim, and
+  our six-case contrast set is the shape its planned
+  `tests/analysis/rejection/view_escape.npk` will carry — so the reproduction
+  becomes the compiler's own regression case, which is the best outcome a
+  raised defect has here
+- **finding worth feeding into `nitpick-time` 0.0.3, from the compiler's plan
+  rather than from our own:** 1.5.1b's step 0 is an `NPK_HEAP_STATS`
+  instrument and a **`cost` stage** — a harness stage that measures compile
+  cost. This library's harness stage list (`parse`, `accept`, `check`,
+  `golden`, `sweep`, `program`, `repro`) has no such stage, and O-N4 was found
+  by accident, because one probe happened to be enormous. A `cost` stage
+  recording `npkc` wall time and peak RSS per test against a budget would have
+  caught it as a *monitored property* instead, and this is a library that will
+  compile a 26 838-row generated table on every run. Recorded as a suggestion
+  for whoever works 0.0.3, not acted on: the stage list is a plan and the
+  orchestrator does not rewrite plans (W-16, and §1 of the orchestrate skill).
+  It also wants the author's word, because it adds a stage to a cycle whose
+  checklist is already execution-grade
