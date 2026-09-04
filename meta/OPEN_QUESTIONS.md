@@ -107,6 +107,33 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N11 — a program with `main` and no `failsafe` compiles at `npkc` exit 0,
+  and the REACH-002 arm contract is discharged by deleting the handler.**
+  Raised by `nitpick-time` 0.0.0 probe 11 (its local O-N5), 2026-09-03, against
+  the pinned toolchain `950bb1d`. **The number is allocated; the finding is
+  PROVISIONAL until the verifier answers**, and it has not been sent to the
+  compiler session — nothing moves before the verifier, including a sentence.
+  Two halves. The loud one: `npkc` accepts a root file declaring `main` and no
+  `failsafe` at exit 0, emitting IR whose trap paths call an undefined
+  `@npk_failsafe`, and only `llc` refuses it. The compiler's own D-013 requires
+  exactly one `failsafe` per executable. The quiet one, and the serious one:
+  `reach_settle` is reported to return early when `failsafe_decl == 0`, so the
+  whole arm contract is enforced against programs that HAVE a handler and asked
+  of nothing that has none. **W-27 status: blocks nothing here** — every program
+  this library ships has a handler, and `llc` catches a missing one in the next
+  step of the same recipe. It **inconveniences** cycle 0.0.3's harness, which
+  must stop reading `npkc` exit 0 as "well-formed" and gains an eighth selfcheck
+  case. It does **not** touch the arm contract where a handler exists, nor any
+  other analysis, nor any measurement this cycle took. The ask includes the
+  diagnostic naming the arms the absent handler would owe — `reach_settle` has
+  just computed that set at the line where it returns early — and notes it is
+  close kin to the compiler's own open item that D-014's injected
+  `ensures result > 0` on `failsafe` and its non-empty-body check "both
+  currently exist nowhere": one pass over the root's declarations answers all
+  three. Reproduction:
+  `nitpick-time/tests/probe/defect/missing_failsafe/` (three cases, a
+  transcript, and a support-module control that rules out the
+  library-versus-executable diagnosis).
 - **O-N1 — `clone_exec` has no signal-mask slot.** Raised by `nitpick-tui`
   (its O-N1). Bites `ntui` 0.1.6 only, and it has a working answer already.
 - **O-N2 — `npkg` cannot build a library, and `[dependencies]` resolves to

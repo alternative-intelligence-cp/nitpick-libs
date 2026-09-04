@@ -920,3 +920,61 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   buggy instrument would be no better
 - 1.5.1's four prefix harnesses are at the parity stage. The landing message,
   with the commit and the `build/` fact the re-pin needs, comes to this session
+- report `s2-ntime-0.0.0-2103` **STOPPED** — the fourth stop — 215 321 tokens,
+  24.3 minutes, 95 tool uses. Two commits, `b092a9e` probe 11 and the defect,
+  `0f86d6e` the record. `check_record.py` exit 0, `check_refs` clean,
+  `nitpick-time` tree clean. Six probe-11 programs plus three defect cases and
+  a support-module control; probes 01–08 deliberately **not** re-run, being
+  settled by the 20:56 verifier, which is the first time this subcycle's
+  verification has saved a dispatch work rather than costing it
+- **O-N11 confirmed free in the registry** — the worker proposed it as
+  provisional and asked, which is now twice in a row that instinct has been
+  right. Highest allocated was O-N10. **Held as provisional pending the
+  verifier**, and not sent to the compiler: W-21, and the standing rule that
+  nothing moves before the verifier answers, including a sentence
+- dispatch `s2-ntime-0.0.0-verify-2131`, the second verifier on this subcycle,
+  pointed at the four claims that carry weight rather than at all ten lines:
+  the defect and its library-vs-executable control, the mechanism claim about
+  `reach_settle` (to be confirmed against the compiler's own source, read-only,
+  because being wrong about a mechanism in front of the compiler session is
+  worse than naming none), the controlled comparison behind the measured import
+  cost, and the superset claim. Plus the two amended leak-gate sites and the
+  eight inline comments deliberately deferred to 0.0.2
+- **what probe 11 reports, pending verification.** The positive contract holds:
+  a missing arm is `NITPICK-REACH-002`, so TM-017's error budget is a
+  constraint and not a convention, and `SAFETY.md` §2 survives. But three
+  findings around it are larger than the probe's own question:
+  - **an import charges the consumer for the imported module's ARITHMETIC, not
+    only for its error identities.** A module declaring no error at all, but
+    dividing, indexing and adding, cost an importing program with no arithmetic
+    of its own four arms — DivByZero, DivOverflow, IntOverflow, OutOfBounds —
+    measured against a floor twin whose `failsafe` it copies character for
+    character. Any published per-import arm table listing identities only
+    understates every row that imports arithmetic, and `cal` divides and
+    indexes constantly. Landed in the repository as TM-107 / S-4b, S-4c
+  - **`npkc` exit 0 does not mean a program is well-formed.** A root file with
+    `main` and no `failsafe` compiles at exit 0 and is refused only by `llc`,
+    at a generated line naming `@npk_failsafe`. **This is the same class of
+    error as "a timing without an exit code is not a measurement", one stage
+    further down the pipeline:** a harness that compiles to `.ll` and reads
+    `npkc`'s status passes a program with no handler at all. Run all four
+    steps, or grep the IR for one `define i32 @npk_failsafe`
+  - **and the trap inside the trap — the whole REACH-002 arm contract is
+    discharged by DELETING the `failsafe`**, `reach_settle` returning early at
+    `failsafe_decl == 0`. So the error budget is enforced against consumers
+    that have a handler and asked of nothing that has none. That is the half
+    worth raising loudest, exactly as O-N10's quiet half was
+  - a **superset** of the required arms compiles: `probe07_negative_div.npk`
+    names `(OutOfBounds)`, contains no index expression and exits 0. So
+    "exactly these arms and no more" can only ever be a harness assertion, and
+    a published arm table that OVERstates would never be caught by a build
+  - a `pub error:` **declaration** arms nothing — the set comes from `fail`,
+    `?!` and `!!!` sites — so a library may declare an identity before raising
+    it at no cost to consumers, and any generator counting declarations
+    overstates the bill. The arm is owed by the **import**, not by the call:
+    importing a module and calling only its infallible half is still
+    REACH-002 for the identity it never touches
+- **the playbook edits these imply are HELD until the verifier answers.** Trap
+  4 of the handoff: when landing a language fact a worker reports, the prose
+  may be the worker's but the syntax must come from a compiled example. The
+  verifier is recompiling exactly these
