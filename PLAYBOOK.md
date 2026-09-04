@@ -508,6 +508,25 @@ be looking at. `nitpick-posix`'s `probe02g_cross_module.npk` says
 it says a repository's shape depends on macro-generated `failsafe` visibility,
 which is the opposite of what the probe established. Read the table.
 
+**An exit status is ONE BYTE, so any expectation above 255 is silently wrong.**
+A program that computes 321 and exits with it reports **65** — 321 mod 256 —
+and nothing anywhere says so. The compiler is not involved; it is what `exit`
+on a one-byte status does. The compiler session hit this writing a regression
+program for DEF-4 and the value it wanted was a sum of comparison results.
+**This ecosystem uses exit codes to carry probe results** — `0xAA`/170 for a
+poison read, 94 for a bounds trap, 221 and 107 in the derive probes — so it is
+our trap and not a curiosity, and it is the same family as the rule below: a
+measurement channel narrower than the thing measured, failing silently rather
+than loudly.
+
+Two ways out, and pick before you write the probe. **Compose small weights that
+cannot sum past 255** — the compiler's own regression pins 121 as
+Less 100 + Equal 20 + Less 1, so each contribution is readable from the total
+and every other comparison is checked by its own exit code instead. Or **use a
+wider channel**: print the value and assert on stdout, keeping the status for
+pass/fail alone. Swept 2026-09-04: no `expect-exit` header or recorded exit
+claim in this ecosystem exceeds 255, so nothing needs correcting today.
+
 **A timing not paired with an exit code is not a measurement.** A source file
 that fails to compile stops early and looks fast, so a failing configuration
 is indistinguishable from a quick one on wall-clock alone — and it will be the

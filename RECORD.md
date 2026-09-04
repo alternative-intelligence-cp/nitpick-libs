@@ -1758,3 +1758,55 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   subject from opposite ends — DEF-5 makes a root's obligation to *supply*
   `failsafe` a refusal at `main`, and this makes a non-root's *reference* to it
   well-formed. Today the compiler enforces neither half
+- **O-N13 and O-N14 both ACCEPTED and taken into 1.5.1b as step 3c**, after 3b,
+  and O-N14's fix is the one this workbench proposed: **a unit that does not
+  define `@npk_failsafe` declares it.** They reproduced it on the compiler under
+  test — `lib/nsys.npk`, a module with no `main`, seven calls and no `declare`,
+  `llc` refusing with our exact line — and confirmed the root does emit
+  `define i32 @npk_failsafe(i32 %a0)`, which is what makes "declare it
+  elsewhere" the whole of the fix
+- **step 3c goes further than the ask, and this is the outcome to want from a
+  raised defect: it adds an `object` stage to both runners** (D-238's single
+  `[[test]]` table) whose units are non-root modules compiled to objects that
+  `llc` must accept — **including a comment-only one, our `core` shape**. So
+  `BUILD_REFERENCE` §4.1's per-module-object model stops being documented and
+  starts being *measured on every run*. That is the second time today a defect
+  we raised became a monitored property in their harness rather than a fixed
+  bug, after DEF-5's thirteen files
+- O-N13's fix upgrades the prior binding's visibility when a repeated import
+  carries `pub`, so the two orders come to mean the same thing, with a positive
+  resolve unit shaped on our §E2/§E3 contrast pair
+- **a correction aimed at us that turned out not to bite, and the sweep is the
+  point.** They warned that a corrected expectation of "321" is above the
+  exit-status range — their own step-3b program computed 321 and the process
+  reported **65**, which is 321 mod 256 — and asked whether our transcripts
+  record anything similar. **Swept: they do not.** No `expect-exit` header and
+  no recorded exit claim anywhere in the six repositories exceeds 255, and the
+  only `321`s in our trees are a byte figure (`peak_live` 41 321) and a token
+  count (215 321), neither an exit status. Three patterns, per the rule that
+  every sweep here has been short by one
+- **the fact is kept anyway, because it is our trap more than theirs.** An exit
+  status is one byte, so any expectation above 255 is silently taken mod 256 —
+  and **this ecosystem carries probe results in exit codes**: 170 for a `0xAA`
+  poison read, 94 for a bounds trap, 221 and 107 in the derive probes. Landed in
+  `PLAYBOOK.md` beside the timing rule, being the same family — a measurement
+  channel narrower than the thing measured, failing silently. With the two ways
+  out named: compose weights that cannot sum past 255, the way their regression
+  pins 121 as Less 100 + Equal 20 + Less 1 so each contribution is readable from
+  the total; or print the value and assert on stdout, keeping the status for
+  pass/fail alone
+- **DEF-4 landed at step 3b as ratified (D-250)**: a payload enum compares tag
+  then payload; a named field or payload goes through its own `eq`/`cmp`/
+  `partial_cmp`; an owning payload or an array **refuses by name at the
+  declaration**, `NITPICK-DERIVE-006` — so O-N10's quiet half, `Literal(7)`
+  comparing equal to `Literal(9)`, is gone in both directions
+- **one deviation from their plan, recorded there and worth a note here because
+  it touches a library shape: a generic parameter field keeps the operator
+  form.** The prelude implements `Eq`/`Ord` for no scalar, so `Box<int32>` has
+  no method to call; `Eq` over `T` derives and an order over `T` is refused by
+  the checker exactly as before. Raised on their side as **S-24** for the
+  author: whether the prelude should grow scalar impls so a synthesized bound
+  could serve. **Nothing here is blocked** — no library has yet wanted an
+  ordering over a generic parameter — but `nitpick-regex`'s probes 03 and 04 are
+  the generic-container and generic-impl shapes, so stream 1 is the first that
+  would meet it
