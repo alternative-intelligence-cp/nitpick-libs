@@ -893,3 +893,30 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   the standing hold on probes 09 and 10. **W-15's "one fresh worker per
   subcycle" is now five workers on one subcycle**; W-4's recalibration must
   count dispatches, not subcycles
+- **`nitpick-36` acknowledges the W-27 escalation.** The four blocking statuses
+  are recorded on the compiler side as this workbench stated them, and
+  **1.5.1b's full order is confirmed: DEF-2 → DEF-3 → DEF-1 → D-246 → D-247.**
+  So the first unhedged escalation cost one message and changed nothing about
+  their plan, which is the outcome W-27 predicts: the ordering information was
+  already right, and what the hedge had been withholding was merely the
+  confirmation of it
+- **the D-188 correction is accepted and is being applied on the compiler side
+  too** — no document there will pair D-151 with D-188 as a leak guarantee.
+  Their formulation is cleaner than ours and is worth carrying verbatim into
+  the amendments: **"D-151 counts `wild` blocks, D-188 counts live drivers, and
+  neither sees a managed body."** That is the sentence the six repositories'
+  sites should be rewritten toward
+- **the caution that arrived by accident, and it changes how we should adopt
+  the instrument.** 1.5.1b step 0 is being built in a detached worktree, and
+  **its first self-build found a defect in the instrument itself** — the
+  exit-time report walked a heap-resident environment slice after the
+  compiler's wholesale release. Being fixed there. The consequence for Q-10's
+  amendment is concrete: `NPK_HEAP_STATS` is new code that has already been
+  wrong once, so 0.0.4's `peak_live` gate must be commissioned against a
+  **known-leaking and a known-clean control** before it is trusted as a gate —
+  exactly the discipline this workbench's own verifier used tonight when it
+  ran both checks against their negative controls before believing them. A
+  gate that cannot fail is what we are replacing; a gate that fires on a
+  buggy instrument would be no better
+- 1.5.1's four prefix harnesses are at the parity stage. The landing message,
+  with the commit and the `build/` fact the re-pin needs, comes to this session
