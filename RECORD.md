@@ -1439,3 +1439,58 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   have stayed there. **The defect we raised was worth more to the compiler's
   own test suite than to us**, which is not an argument anyone could have made
   in advance and is worth keeping for the next time a stop looks expensive
+- report `s2-ntime-0.0.0-2315` **STOPPED**, 171 166 tokens, 22.7 minutes,
+  100 tool uses, two commits, **nothing compiled**. It corrected the
+  orchestrator three times, and every correction was checked against the
+  compiler's source rather than argued
+- **CORRECTION, appended rather than edited above, because this record is
+  append-only: `NITPICK-BORROW-012` DOES NOT EXIST.** The entry above citing it
+  stands as written and is wrong. The highest allocated borrow code is
+  `NITPICK-BORROW-011` (`BORROW_WILD_STORE`, `analysis_codes.npk:106`);
+  `BORROW-012` appears nowhere in the compiler's `src/` or `meta/`; and DEF-3's
+  own plan adds **no new diagnostic code**, every refusal it introduces being
+  `NITPICK-BORROW-001` (`BORROW_RETURNED`, `analysis_codes.npk:24`). Verified
+  here directly. **Provenance matters for the lesson:** the number came from
+  the compiler session's status message and this orchestrator relayed it into a
+  worker dispatch, the board and this record **without checking it** — the
+  exact "do not cite a code or decision by number without reading its scope"
+  failure the playbook had gained six hours earlier, committed by the session
+  that wrote the rule. It reached four files in `nitpick-regex`; its live worker
+  has the correction and the site list
+- **the `buffer` correction went the OTHER way and ENLARGES the finding.** I
+  told the worker a `buffer` is reached through a `uint8[]` view and therefore
+  guarded. It is not: `buffer_bytes` is among `TYPE_REFERENCE.md` §23's
+  "deliberately NOT landed" items, so **no slice route exists** and a `buffer`
+  is indexed as `buf.ptr[i]`, a `uint8->`, on the unguarded pointer branch.
+  **So `Bytes` is unchecked exactly as `Vec<T>` is, and every formatter in this
+  library goes through a `Bytes`** — and any sibling with a `buffer`-backed sink
+  has the same gap. Under verification. I was wrong in the direction that
+  understated a safety hole, which is the direction that matters
+- **`case1` owes FOUR arms, not six**, and the six was mine — carried onto the
+  board from the compiler session's message. `case1` has no import, no
+  arithmetic and no allocation, so its bill is S-4b's floor. The worker wrote
+  **no count into any document**, recording the diagnostic's shape and leaving
+  the numbers to the re-pin, which is right for a number nothing yet depends on
+- **my own sweep command was short by one, and the failure mode is now twice
+  observed.** I dispatched `git grep -n 'provisional\|PROVISIONAL'`, which is
+  case-sensitive and misses `Provisionally` — the most prominent hedge in the
+  repository, at `missing_failsafe/README.md:3`. The worker found it with `-i`.
+  This is the *same* shape as the eight-versus-nine miscount: a list taken from
+  a command that did not cover its subject. The playbook rule "take lists from
+  `git grep`" is necessary and not sufficient; **the grep must be
+  case-insensitive and its pattern checked against a known member**
+- **a record-discipline ruling, and the worker's instinct was right.** It left
+  four `(provisional)` occurrences standing inside committed REPORT blocks at
+  `0.0.0.md` lines 960, 1237, 1240, 1244, on the ground that rewriting a report
+  falsifies the record and the hedge was accurate when written. **Affirmed as
+  the rule: a committed REPORT block is history and is not amended in place;
+  sites stating current fact are corrected.** It matches `RECORD.md`'s own
+  append-only discipline — and this session has just applied the same rule to
+  itself, leaving the `BORROW-012` entry above standing with a correction
+  appended rather than quietly fixing it. `check_record.py` verifies committed
+  reports, so an amendable report is a moving target for the check as well.
+  Noted for the author rather than blocking on it
+- **TM-108 changes a published safety promise** and `check_raw_index` is now
+  load-bearing — on 0.0.3's list rather than built. No code exists yet, so
+  nothing is broken; but the gap between "the language checks this" and "we
+  check this" is now a named item rather than an assumption
