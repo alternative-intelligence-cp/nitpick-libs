@@ -466,8 +466,9 @@ lexed, and it would have been a pure synonym if it had. Sourced from the
 compiler's own emitter at 1.5.1b step 2, not from a probe — a probe here
 measured only the unsigned half, at bit 63.
 
-**Every sweep list in this ecosystem has been short by one on its first
-telling. Three for three, so assume yours is too.** The misses were not
+**Every sweep list in this ecosystem has been short on its first telling.
+Four for four, so assume yours is too — and the fourth was written by the
+session that had just been told the rule, and was short by TWO.** The misses were not
 careless; each came from a command that did not cover its subject:
 
 - *eight probes carrying a stale comment, and there were nine* — the missed one
@@ -477,6 +478,17 @@ careless; each came from a command that did not cover its subject:
   repository;
 - *four sites claiming "DEF-3 adds no new diagnostic code", and there were
   five* — the fifth used a different wording of the same claim.
+- *an enumeration of `npkc`'s `exit 2` sites, short by **two**, with one line
+  number off by one* — written by a worker that had just been handed this very
+  rule, and caught only by re-reading the source line by line rather than
+  grepping it again.
+
+**And a transcript that claims to be verbatim must show where it was later
+touched.** Correcting a wrong number in a committed transcript is the corrected
+number **plus a dated note saying what it previously said and how the
+correction was obtained** — never a silent edit, which leaves a file asserting
+it faithfully records a run that reported something else. Same principle as the
+record being append-only: a correction is added, not substituted.
 
 So the rule below is necessary and not sufficient. **Run the grep at least
 twice with different phrasings, make it case-insensitive (`-i`), and check the
@@ -507,6 +519,31 @@ be looking at. `nitpick-posix`'s `probe02g_cross_module.npk` says
 `// expect-exit: 71` and was **REFUSED** `NITPICK-MACRO-007`; read as a verdict
 it says a repository's shape depends on macro-generated `failsafe` visibility,
 which is the opposite of what the probe established. Read the table.
+
+**`npkc`'s exit codes are an ALPHABET, they are nowhere documented, and rule
+B-6 tells every harness here to assert on them.** Read out of `src/main.npk`
+and `src/driver/pipeline.npk` at the pin:
+
+| code | means |
+|---|---|
+| `0` | success |
+| `1` | **REFUSED**, with diagnostics — the compiler judged the program and said no |
+| `2` | the driver **could not proceed and judged nothing** |
+| `3` | a `failsafe` trap |
+
+**`2` IS NOT A REFUSAL, and this is the trap.** A rejection test that expects
+`1` and receives `2` was never compiled at all — nothing was judged, so the
+test proved nothing while reporting that it did. And the reachable case is not
+a malformed command line: **a `use` naming a path that is not there exits 2.**
+`graph_load_all` returning `< 0` makes `front_run` `pass 2i32`, and `main`
+passes it through. **Every library here imports by relative path until O-N2
+closes**, so a typo'd or moved import is exactly this case — and a harness
+reading "nonzero means refused" scores a **missing file** as a passing
+rejection test, forever, silently.
+
+So a harness asserts the *specific* integer, never `!= 0`; a rejection fixture
+expects `1` and treats `2` as a broken fixture rather than a pass; and when a
+whole rejection suite starts passing after a file move, suspect this first.
 
 **An exit status is ONE BYTE, so any expectation above 255 is silently wrong.**
 A program that computes 321 and exits with it reports **65** — 321 mod 256 —

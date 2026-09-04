@@ -1810,3 +1810,54 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   ordering over a generic parameter — but `nitpick-regex`'s probes 03 and 04 are
   the generic-container and generic-impl shapes, so stream 1 is the first that
   would meet it
+- report `s1-nregex-0.0.1-0019` **DONE** — 121 958 tokens, 70 tool uses, four
+  commits, about three quarters of an hour and "almost all verification rather
+  than editing", which is the right ratio for a FAIL re-dispatch. All three
+  items done: the exit code corrected, the CI box ticked with run
+  `33835762747` cited as evidence, the Node 20 annotation recorded as a dated
+  future maintenance item
+- **and the one wrong number sat on an ecosystem-wide gap. Nothing documents
+  what `npkc`'s exit codes MEAN, while `BUILD.md` rule B-6 orders every harness
+  in this ecosystem to assert on exactly those integers.** The alphabet, read
+  out of the compiler's source at the pin and confirmed here directly: **0**
+  success; **1** REFUSED, with diagnostics, the compiler having judged the
+  program; **2** the driver could not proceed and judged **nothing**; **3** a
+  `failsafe` trap
+- **the dangerous half, and it is reachable through ordinary use rather than a
+  malformed command line: a `use` naming a path that is not there exits 2, not
+  1.** `graph_load_all` returning `< 0` makes `front_run` `pass 2i32`, and
+  `main` passes it through — both confirmed here at the pin. **Every library
+  imports by relative path until O-N2 closes**, so a typo'd or moved import is
+  exactly this case, and **a harness reading "nonzero means refused" scores a
+  MISSING FILE as a passing rejection test** — silently, and for as long as
+  nobody looks. All six repositories are about to write that harness; 0.0.2 is
+  the cycle that writes the first one. Landed in `PLAYBOOK.md` with the rule:
+  assert the specific integer, never `!= 0`, and treat a 2 where 1 was expected
+  as a broken fixture rather than a pass
+- **"short by one" is now FOUR FOR FOUR, and the fourth is the most
+  instructive.** The worker's own enumeration of the `exit 2` sites was short by
+  **two**, with one line number off by one — written by a session that had just
+  been handed the rule in its own dispatch, and caught only by re-reading the
+  source line by line rather than grepping it again. Recorded in the playbook as
+  a fourth entry, because a rule with four instances and no counter-example is
+  no longer a caution
+- **a good refinement of a rule this session made earlier today: a transcript
+  that claims to be verbatim must show where it was later touched.** The fix for
+  a wrong number is the corrected number **plus a dated note** saying what it
+  previously said and how the correction was obtained — never a silent edit,
+  which leaves a file asserting it faithfully records a run that reported
+  something else. That is the append-only principle applied to evidence rather
+  than to the record, arrived at independently by a worker
+- **the alphabet is NOT yet raised with the compiler, deliberately.** It is a
+  documentation gap of exactly O-N12's shape and the batch is open, so it should
+  go — but the enumeration behind it was short by two on its first telling, and
+  sending an incomplete alphabet would be the `BORROW-012` failure again in a
+  new costume. It goes when the verifier confirms §F is complete. **Waiting
+  costs minutes; being wrong in front of the compiler session costs their time
+  and our credit**
+- one more finding, small and true: **the one thing a pinning workflow forgets
+  to pin is its own actions.** `actions/checkout@v4` and `actions/cache@v4` are
+  moving tags in a file that pins a compiler by full SHA and LLVM by exact patch
+  release — the only floating inputs it has, and the source of the run's only
+  annotation. Recommended for the commit that next bumps the compiler pin, so
+  one deliberate commit runs the full suite for both
