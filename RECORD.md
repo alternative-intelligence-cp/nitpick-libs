@@ -725,3 +725,10 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   starting a twenty-minute run immediately before a planned handoff would
   have thrown the work away. It is the successor's first action and is on the
   board
+- **clean stop at 21:31.** `Workbench writer:` set to `none` and
+  `.internal/orchestrator.session` removed, per the orchestrate skill §15.
+  Done *before* the successor was briefed rather than after, so that an abrupt
+  close cannot leave the lock naming a dead session and force the successor
+  through the stale-takeover path for no reason. Nothing is in flight; no
+  claim has a live agent; `nitpick-time` is `CLAIMED s2` and stays claimed,
+  because the subcycle is unfinished and the claim is the thing that says so

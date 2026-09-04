@@ -11,12 +11,13 @@ blocked, what is done. The durable plan is
 
 **Last updated:** 2026-09-03 · **Width:** 1 — stream 2 ·
 **Toolchain:** 950bb1d · .internal/toolchain/950bb1d/ · pinned 2026-09-03
-**Workbench writer:** `6fb2f48d-250b-4880-879f-083132155bd9` since 2026-09-03 18:16 —
-the first orchestrator session (`/npk:orchestrate width=1 start=nitpick-time
-0.0.0`, cloud id `session_01FKJJPtsjVRxqDSPVsvh1nn`), which took the lock from
-`0a61670c-…` after `ListAgents` showed no live `nitpick-libs-…` peer and that
-session's work was committed (`59821a4`). One writer here (W-16, P-19): if this
-names a session that is not you, do not write in this repository.
+**Workbench writer:** `none` — released 2026-09-03 21:31 at a clean stop by
+`6fb2f48d-250b-4880-879f-083132155bd9`, the first orchestrator session, which
+is being restarted for an update. Nothing is in flight and no claim has a live
+agent. The successor is session `nitpick-libs-88`, briefed directly; it takes
+the lock per the orchestrate skill §2.1 — **board line first, then the marker
+file**, which is the order the guard enforces and the reverse of what §2.1
+still says. One writer here (W-16, P-19).
 **Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
 first library cycle to be worked, and the loop is being judged against
 [`meta/roadmap/0.2/0.2.7.md`](meta/roadmap/0.2/0.2.7.md) §2's pass mark.
