@@ -1703,3 +1703,58 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   spelling for.** There is no way to write the wanted syntax in prose without
   writing something that matches `O-[A-Z]\d+`, which is precisely why the check
   needs a form that carries a repository rather than a smarter pattern
+
+### CI, and the first green run
+
+- **the author pushed, and CI ran green.** `nitpick-regex` run `33835762747`,
+  conclusion **success**, 8m48s, job `build`. Three repositories went up —
+  `nitpick-regex` `c056ae1..c7b8711`, `nitpick-time` `aad6e45..5b2e0c8`, and the
+  workbench `02d4f61..6db0370`, 56 commits being the whole of this session's
+  record, which until then existed on one disk. `check_refs.py` was run on each
+  before publishing, its rule 5 being the machine-specific-path leak check; all
+  three clean
+- **what the green run proves is small and the workflow says so itself**, which
+  is why it is worth trusting: the pinned compiler builds from a clean checkout
+  and LLVM is exactly 20.1.2. It proves **nothing about the library**, because
+  `harness/run.py` is a toolchain-pin stub until 0.0.2. The value today is that
+  **the one unrehearsable step is now rehearsed** — CI builds the compiler, and
+  W-18 forbids building it from here, which is exactly why the worker struck
+  that acceptance box instead of ticking it. A struck box became a tested fact
+  by the only route that could ever have tested it
+- one annotation, recorded rather than fixed: `actions/cache@v4` and
+  `actions/checkout@v4` target Node.js 20 and are being forced onto Node 24.
+  Not a failure. A library whose CI pins its compiler by full SHA and its LLVM
+  to three digits should not be surprised by its actions ageing out
+- **verify `s1-nregex-0.0.1-verify-0000` FAIL**, 19.6 minutes, 171 866 tokens,
+  71 tool uses — **and the scope is one wrong exit code.** `TRANSCRIPT.txt` §A2
+  records `npkc --help -> exit 1`; it is **exit 2**, three times for the
+  verifier and twice for me against the sha256-verified pinned binary. The
+  substantive point that block supports — that `npkc`'s usage line offers no
+  library or module mode — is untouched and correct; `--help` is simply not a
+  recognised flag
+- **everything else passed, and two things passed harder than they were
+  reported.** O-N14's **reach was attacked and held**: asked to find a module
+  trivial enough to link clean, the verifier found none — `core.npk` is
+  `mod:core;` plus comments, zero functions and zero fallible constructs, and it
+  fails identically, because **seven `@npk_failsafe` call sites sit inside
+  unconditional prelude coroutine-resume scaffolding** (`npk.resume.prelude.sleep`,
+  `.io_ready`, `.io_ready2`, `ByteReader:Reader.read`) that `npkc` emits into
+  every translation unit whatever the module contains. So it is not "modules
+  that can trap" but every module that is not a root. And O-N13's mechanism was
+  read out of `symtab_bind_import` in `src/frontend/symbols.npk`: on a name
+  already bound with the same origin it executes `pass prior;`, returning the
+  pre-existing symbol and **silently discarding the `flags` argument that
+  carries `SYM_PUB`**
+- **the detail that makes O-N13 worth raising rather than filing: the comment
+  above that branch documents it as the intentional *idempotent re-import*
+  case.** Idempotence is right for two plain `use`s. It is wrong exactly when
+  the second is `pub`, because then the two calls are not the same request. That
+  is a deliberate rule with one unconsidered input, not an oversight in a corner
+  — and it is the third defect this ecosystem has raised whose quiet half
+  matters more than its loud one, after O-N10 and O-N11
+- **O-N13 and O-N14 sent to `nitpick-36`** with the verification status stated
+  exactly, the FAIL named as unrelated, and O-N14's kinship to DEF-5 argued: one
+  emitted `declare i32 @npk_failsafe(i32)` closes it, and the two are the same
+  subject from opposite ends — DEF-5 makes a root's obligation to *supply*
+  `failsafe` a refusal at `main`, and this makes a non-root's *reference* to it
+  well-formed. Today the compiler enforces neither half
