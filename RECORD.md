@@ -2123,3 +2123,43 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   matters for how freely this ecosystem can push, and it is the strongest
   practical argument for the Node 20 bump being scheduled rather than urgent:
   the cache action is the one earning its keep every run
+- **compiler status: O-N15 taken as a rider on step 5, and step 5 found two
+  defects it asked us to check ourselves against.** Both checked, read-only, and
+  the answer is small
+- **DEF-8 — the `pass` clear cleared the ROOT binding's drop flag for a
+  COPYABLE field of an owning local**, latent since 1.2.3 and invisible until
+  `List<T>` began to own. `pass xs.count` leaked every list. **Our exposure,
+  measured rather than assumed:** `nitpick-regex`'s
+  `probe04_inherent_generic_impl.npk:89` does `pass self.count` over a `Vec<T>`
+  **by value** — the shape exactly — and `probe08_sparse_set.npk:121` is the
+  same family through a nested container. **Neither leaks at this pin**, because
+  `Vec<T>` does not own until D-247, which is step 5 — *the same commit that
+  fixes DEF-8* — so **no measurement of ours is wrong today** and both simply
+  want re-running after the re-pin. Added to stream 1's row
+- **and three sites that looked like it and are not**, checked rather than
+  waved through: `probe01`'s `pass i.a` is over `Inst`, a pure-POD
+  `{ InstKind; uint32; uint32 }`; `probe07`'s `pass src.len + n` is over a
+  `uint8[]` **parameter**, which does not own; and `probe03`/`probe06`'s
+  `move(v.items[i])` moves an **owning element**, which is the legitimate case
+  DEF-8 is not about. Four sites reduced to two by reading the declarations
+- **DEF-9 — the session's soft `RLIMIT_NOFILE` of 1 048 576 made every
+  descriptor-exhaustion proof pass against a leaking build.** Both runners now
+  lower their own soft limit to `nitpick.toml`'s new `[limits] nofile` (1024)
+  before spawning. **Our exposure: none.** Swept for `EMFILE`, `ulimit`,
+  `nofile`, `rlimit` and descriptor-exhaustion wording across both workbenches —
+  no such proof exists anywhere here, and no manifest carries a `[limits]`
+  table, which is correct since an absent table means 1024. If a library ever
+  writes an "opens until `EMFILE`" proof, `(ulimit -n 1024; ./prog)` is the
+  spelling that matches the runners
+- **the general lesson from DEF-9 is worth more to us than the defect**, and it
+  is the fourth of its kind tonight: **a proof that consumes an environment
+  limit is a proof about the environment.** A descriptor-exhaustion test under a
+  1M soft limit exhausts nothing and passes; it joins the `exit 0` leak gate,
+  the `SAFETY.md` bounds promise and the silent `reaches_src` predicate as a
+  check whose name described the property while its mechanism covered something
+  narrower — except this one's mechanism was *outside the program entirely*
+- step 5's final numbers, recorded for the re-pin comparison: `list_drop` (100
+  rounds of 10 000 strings) peaks at 662 515 bytes live against `list_once`'s
+  662 515, ratio **1.00** against a bound of 2; the temporaries probe stays
+  **×3.0** against a bound of 4; the program sweep is 217 programs, 0 failures.
+  Eight cumulative-prefix harnesses (steps 0–4) are running; step 5's follows
