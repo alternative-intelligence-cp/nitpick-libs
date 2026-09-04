@@ -66,7 +66,7 @@ because it is append-only.*
 numbered from this registry rather than from the board — which is the error the
 note above records.*
 
-- **Q-9 — should this workbench stop hedging when it escalates a defect?** The
+- ~~**Q-9 — should this workbench stop hedging when it escalates a defect?**~~ — **ANSWERED 2026-09-03: yes, state what it blocks.** The author confirmed the compiler side's rule and it is now **W-27** in `WORKSTREAMS.md`: an escalation says what is blocked, what is inconvenienced and what is unaffected, and drops "no schedule pressure implied", which reads as modesty and is a withheld fact. Sequencing stays the author's. Original text: The
   compiler session reports an author rule on its side that **a defect a real
   program finds is fixed before planned work**, which is why O-N10 became a
   step in 1.5.1b rather than a backlog row. Every escalation this workbench sent
@@ -78,7 +78,7 @@ note above records.*
   state plainly what a defect blocks and what it does not, leaving the schedule
   to the author. Settled by: the author, and a line in `WORKSTREAMS.md` beside
   W-11 and W-23.
-- **Q-10 — does `nitpick-time` 0.0.3 gain a cost-and-heap harness stage?** The
+- ~~**Q-10 — does `nitpick-time` 0.0.3 gain a cost-and-heap harness stage?**~~ — **ANSWERED 2026-09-03: yes, both, and sweep every repository for the gate.** 0.0.3 gains the cost-and-heap stage and 0.0.4's gate becomes a `peak_live` assertion, both when the re-pin lands; and the read-only sweep for the same unfalsifiable gate ran immediately — **it is in all five repositories**, see `RECORD.md`. Each repository's fix waits for its own stream's claim (W-7). Original text: The
   compiler's 1.5.1b step 0 builds an `NPK_HEAP_STATS` instrument and a `cost`
   harness stage measuring compile time and peak RSS per test. This library's
   stage list (`parse`, `accept`, `check`, `golden`, `sweep`, `program`, `repro`)

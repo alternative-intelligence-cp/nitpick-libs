@@ -229,6 +229,21 @@ days; language facts are never researched on the web. (P-14)
 and it edits the registry, so the orchestrator or the author runs
 `/npk:new-repo`. (P-18)
 
+**Rule W-27 — an escalation states what the defect blocks, and stops there.**
+Refines W-11 and W-23. When this workbench raises a defect against the
+compiler it says plainly what is blocked, what is merely inconvenienced, and
+what is unaffected — and it does **not** append "no schedule pressure
+implied", which reads as modesty and is actually a withheld fact. The
+sequencing is the author's and the compiler side's; the blocking status is
+*ours*, because only the stream that hit the defect knows what it cannot do
+without the fix. **Answered by the author 2026-09-03 (Q-9), confirming the
+rule the compiler side works to: a defect a real program finds is fixed
+before planned work.** The evidence that hedging costs something is O-N9 —
+this workbench recommended it as conformance rather than a block, the author
+overrode that, and the override cost nothing because the fix batched with
+three others. Had the recommendation been followed, `src/fmt/` would have
+been built on an unenforced escape rule.
+
 ---
 
 ## 6. What could start today

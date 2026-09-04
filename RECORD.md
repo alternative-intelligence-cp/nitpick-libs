@@ -818,3 +818,66 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   now widened by item 2 above to carry `NPK_HEAP_STATS` as well. It adds a stage
   to an execution-grade checklist and amends 0.0.4's gate, so it is a plan
   change and the orchestrator does not make it (W-16, §1)
+- **verify `s2-ntime-0.0.0-verify-2056` PASS** on `9113487`, 5.8 minutes,
+  99 066 tokens, 53 tool uses. The W-21 debt the handoff carried is discharged.
+  It ran both checks against their negative controls *before* trusting them,
+  re-compiled all twelve runnable probes and matched every exit code, every
+  diagnostic and every memory figure, reproduced both defect transcripts
+  verbatim — including case 5's deterministic `exit 170` across four runs — and
+  independently re-derived probe04b's emission claims from its own artifacts
+  rather than reading the committed `.txt`. It found no unevidenced prose claim,
+  and confirmed that the predecessor verifier's one FAIL is corrected in this
+  commit. **The `ulimit -v 4194304` cap never bound**, as the 37.6 MiB ceiling
+  predicted; the two forbidden files were not compiled
+- **`nitpick-libs-02` had already exited** when this session tried to send it
+  the two corrections above. They live here instead, which is where they were
+  going to matter anyway. Nothing was outstanding from it
+- **question Q-9 answered by the author: state what it blocks.** Landed as
+  **W-27** in `WORKSTREAMS.md`, refining W-11 and W-23. The compiler side's rule
+  is confirmed — *a defect a real program finds is fixed before planned work* —
+  so an escalation from here says what is blocked, what is inconvenienced and
+  what is unaffected, and drops "no schedule pressure implied". The hedge reads
+  as modesty and is really a withheld fact: only the stream that hit the defect
+  knows what it cannot do without the fix. O-N9 is the standing evidence — read
+  here as conformance rather than a block, overridden by the author, and the
+  override cost nothing because the fix batched with three others
+- **question Q-10 answered by the author: both, and sweep for the gate.** 0.0.3
+  gains the cost-and-heap stage and 0.0.4's gate becomes a `peak_live`
+  assertion, both once the re-pin makes `NPK_HEAP_STATS` real
+- **the sweep, run read-only the same minute, and it is worse than "more than
+  one plan": the unfalsifiable leak gate is in ALL SIX repositories.** The
+  claim takes the form *"the suite's programs exit 0, so a missing `free` on any
+  path is a trap rather than a pass (D-151)"*, and it is false for every managed
+  body — D-151 watches `wild` allocations only. Sites, by repository:
+  - **`nitpick-parse` is the worst, 9 sites** — `0.0/README.md:104,135`,
+    `0.0/0.0.4.md:20`, **`0.4/README.md:43`**, `specs/SAFETY.md:35,237,283`,
+    `specs/VALUE_MODEL.md:214`, `0.0/0.0.0.md:354`. It is a *parsing* library:
+    managed bodies are its subject matter, and `string_slice` allocates an owned
+    copy since D-186. `0.4/README.md:43` puts the gate on `doc_destroy` — "every
+    test exiting 0 so a missed destroy is a trap" — which is precisely an owning
+    structure D-151 cannot see. That gate is not weak, it is inert
+  - **`nitpick-tui` 5 sites** — `0.0/README.md:125`, `0.0/0.0.4.md:16`,
+    `specs/SAFETY.md:27,216`, `0.0/0.0.0.md:353`
+  - **`nitpick-sockets` 5 sites** — `0.0/README.md:134`, `0.0/0.0.4.md:14`,
+    `specs/SAFETY.md:26`, `specs/VERIFICATION.md:48`, `0.0/0.0.0.md:328`
+  - **`nitpick-regex` 4 sites** — `0.0/README.md:130`, `0.0/0.0.4.md:14`,
+    `specs/SAFETY.md:25`, `0.0/0.0.0.md:314`
+  - **`nitpick-posix` 2 sites** — `0.0/0.0.0.md:37,226`, in `nitpick-apps` and
+    outside this workbench's write scope
+  - **`nitpick-time` 2 sites and furthest along** — its `specs/SAFETY.md`,
+    `meta/DECISIONS.md` and `0.0/0.0.4.md` already carry the correction the
+    worker wrote; only `0.0/README.md:100` and `0.0/0.0.0.md:299` lag
+- **the one repository that already had it right, and it is the model:**
+  `nitpick-sockets`' `ANCILLARY_MODEL.md:67` and `SAFETY.md:221` say the
+  ancillary path "takes no `wild` bytes, so it cannot trip D-151 on any exit
+  path" — a statement about what the trap *covers*, not a claim that exiting 0
+  proves cleanliness. That is the shape the other sites should take.
+  **D-188, which `nitpick-sockets` and `nitpick-tui` cite beside D-151, does
+  not help:** it is the driver and process registry — a clean exit refuses to
+  abandon a live child — and it sees managed heap bodies no better than D-151
+- **why this was worth the author's minute rather than the orchestrator's
+  judgement.** Every fix is a plan edit in a repository no stream has claimed,
+  so W-7 forbids making them now; the sweep is read-only and the notes are on
+  the board, so each stream meets its own list at its claim instead of
+  rediscovering the defect the way `nitpick-time` did — by writing a two-million
+  element probe and noticing 125 MiB that `exit 0` had blessed

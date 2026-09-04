@@ -39,14 +39,31 @@ first library cycle to be worked, and the loop is being judged against
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-verify-2056` — verifier | 2026-09-03 20:56 | `claude-opus-5` | **STOPPED on O-N4, O-N9, O-N10.** Ten probes worked, four commits, both checks clean, tree clean. **The W-21 verifier on `9113487` is RUNNING** — `probe04_big_fixed_table` and `big_fixed_array_cost` forbidden by name (the report claims no result for either), everything else serial under `ulimit -v 4194304` against a measured 37.6 MiB ceiling, because the compiler's four 1.5.1 parity harnesses are live on this machine. **Nothing moves until it reports.** Then probe 11; 09 and 10 stay held for 1.5.1b |
+| s2 | `nitpick-time` | 0.0.0 — the language probes | `s2-ntime-0.0.0-2103` | 2026-09-03 21:03 | `claude-opus-5` | **W-21 VERIFIED on `9113487` — PASS** (verifier `…-verify-2056`, 5.8 min): both checks re-run against negative controls first, all twelve runnable probes re-compiled with every exit code, diagnostic and memory figure matching, both defect transcripts reproduced verbatim including case 5's deterministic `exit 170`, and probe04b's emission claims independently re-derived. The `ulimit -v` cap never bound. **Working now: probe 11** — the `failsafe` arm cost of importing this library, the last unworked probe and independent of every open disposition. Probes 09 and 10 stay held for 1.5.1b |
 
 ## Questions for the author
 
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
-| **Q-9** | — | 2026-09-03 20:58 | **Should this workbench stop hedging when it escalates a defect?** The compiler session reports an author rule on its side that *a defect a real program finds is fixed before planned work* — which is why O-N10 became a 1.5.1b step rather than a backlog row. Every escalation sent tonight was framed "no schedule pressure implied". **Heard second-hand from the compiler session, never from the author** | Confirm the rule, and let this workbench state plainly what a defect blocks and what it does not, leaving the schedule to the author. The hedge is not modesty — it withholds the one fact the compiler needs to order its work |
-| **Q-10** | s2 | 2026-09-03 20:58 | **Does `nitpick-time` 0.0.3 gain a `cost` + `NPK_HEAP_STATS` harness stage?** O-N4 was found by accident, because one probe happened to be enormous. And **0.0.4's leak gate as written cannot fail**: it reads "the suite's programs exit 0, so a missing `free` is a trap", but D-151 watches `wild` allocations and a managed `string` body is invisible to it — the compiler measured our own probe pair at peak_live 41 321 against 400 101 320 bytes, both exiting 0 | Yes, and fold 0.0.4's gate rewrite into the same amendment. But it adds a stage to an execution-grade checklist and amends another cycle's gate, so a worker makes the change, not the orchestrator (W-16). **Blocks nothing meanwhile** — neither instrument exists before the re-pin |
+| — | — | — | nothing pending | — |
+
+**Q-9 — answered 2026-09-03 by the author: state what it blocks.** Landed as
+**W-27** in `WORKSTREAMS.md`. The compiler side's rule is confirmed — *a defect
+a real program finds is fixed before planned work* — so this workbench now says
+plainly what a defect blocks, what it merely inconveniences and what it does not
+touch, and drops "no schedule pressure implied", which reads as modesty and is
+really a withheld fact. Sequencing stays the author's. O-N9 is the evidence the
+hedge costs something: recommended here as conformance rather than a block,
+overridden by the author, and the override cost nothing because the fix batched
+with three others.
+
+**Q-10 — answered 2026-09-03 by the author: both, and sweep for the gate.**
+0.0.3 gains the cost-and-heap stage and 0.0.4's gate becomes a `peak_live`
+assertion, both once the re-pin makes `NPK_HEAP_STATS` real. The read-only sweep
+ran immediately, and **the unfalsifiable gate is in all five repositories** —
+the site list is in `RECORD.md` and the per-repository notes are in the stream
+tables below. Each fix waits for its own stream's claim (W-7); `nitpick-time`'s
+two lagging sites go to the worker now, because that repository is claimed.
 
 **Q-8 — answered 2026-09-03 by the author: O-N9 is BLOCKING**, like O-N4 —
 **against the recommendation on this board**, which read it as conformance
@@ -87,24 +104,24 @@ what and when, which is the thing the compiler's R8 says the orchestrator owns.
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-regex` | 0.0 … 1.0 (16) | — | independent; nothing gates it |
-| 2 | `nitpick-tui` | 0.0 … 1.0 (18) | — | independent. Inherits stream 1's Unicode approach from `nregex` |
+| 1 | `nitpick-regex` | 0.0 … 1.0 (16) | — | independent; nothing gates it. **Q-10 sweep — the leak gate that cannot fail:** 4 sites — `0.0/README.md:130`, `0.0/0.0.4.md:14`, `specs/SAFETY.md:25`, `0.0/0.0.0.md:314`. Fix at this stream's claim |
+| 2 | `nitpick-tui` | 0.0 … 1.0 (18) | — | independent. Inherits stream 1's Unicode approach from `nregex`. **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:125`, `0.0/0.0.4.md:16`, `specs/SAFETY.md:27,216`, `0.0/0.0.0.md:353`. Fix at this stream's claim |
 | 3 | `nitpick-logview` | — | `BLOCKED on nitpick-tui 0.14` | repository not created; created at `ntui` 0.15's open (T-115) |
 
 ## Stream 2 — data
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-time` | 0.0 … 1.0 (10) | `CLAIMED s2` | independent. Smallest first item; finishes early and can take slack |
-| 2 | `nitpick-parse` | 0.0 … 1.0 (15) | — | independent |
+| 1 | `nitpick-time` | 0.0 … 1.0 (10) | `CLAIMED s2` | independent. Smallest first item; finishes early and can take slack. **Q-10 sweep — the leak gate that cannot fail:** **furthest along — the specs, `DECISIONS.md` and `0.0.4.md` already carry the correction**; only `0.0/README.md:100` and `0.0/0.0.0.md:299` lag, and both are in the worker's NOTES now |
+| 2 | `nitpick-parse` | 0.0 … 1.0 (15) | — | independent. **Q-10 sweep — the leak gate that cannot fail:** **the worst case, 9 sites** — `0.0/README.md:104,135`, `0.0/0.0.4.md:20`, **`0.4/README.md:43`**, `specs/SAFETY.md:35,237,283`, `specs/VALUE_MODEL.md:214`, `0.0/0.0.0.md:354`. It is a parsing library, so managed bodies are everywhere and `string_slice` allocates (D-186); `0.4/README.md:43` puts the false gate on `doc_destroy`, which is exactly an owning structure D-151 cannot see. Fix at this stream's claim |
 | 3 | `nitpick-conflint` | — | `BLOCKED on nitpick-parse 0.11` | repository not created; created at `nparse` 0.12's open (PA-103) |
 
 ## Stream 3 — system
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | independent |
-| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | — | **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready. **Q-1 answered 2026-09-03:** POSIX.1-2024 (Issue 8) is current and its utility table moved by 19 entries — the first worker here files the digest and amends `SCOPE.md`, `CONFORMANCE.md` K-1 and `GLOSSARY.md`; the syntax guidelines are unchanged |
+| 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | independent. **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:134`, `0.0/0.0.4.md:14`, `specs/SAFETY.md:26`, `specs/VERIFICATION.md:48`, `0.0/0.0.0.md:328`. Its `ANCILLARY_MODEL.md:67` and `SAFETY.md:221` are correctly scoped already ("takes no `wild` bytes") and are the model for the rest. D-188 covers the driver/process registry, not managed bodies. Fix at this stream's claim |
+| 2 | `nitpick-posix` | 0.0 … 1.0 (14) | — | **Q-10 sweep — the leak gate that cannot fail:** 2 sites, both in `0.0/0.0.0.md:37,226` (`nitpick-apps/nitpick-posix`, outside this workbench's write scope). **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready. **Q-1 answered 2026-09-03:** POSIX.1-2024 (Issue 8) is current and its utility table moved by 19 entries — the first worker here files the digest and amends `SCOPE.md`, `CONFORMANCE.md` K-1 and `GLOSSARY.md`; the syntax guidelines are unchanged |
 
 ---
 
