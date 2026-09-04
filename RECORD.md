@@ -1352,3 +1352,41 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   known bugs. That is why O-N11 went over the moment it was verified rather
   than at the subcycle's close — and it landed as DEF-5 in the open batch,
   which it would not have done a cycle later
+- dispatch `s1-nregex-0.0.1-2315` — the skeleton, its gate satisfied by the
+  verified close. Carries two 0.0.0 debts that live in files it will have open
+  anyway: the record's "five commits" where there are six, and the renumbering
+  of the local `O-N1…O-N4` to an `O-C` prefix so they stop colliding with the
+  registry inside one file
+- dispatch `s2-ntime-0.0.0-2315` — **document-only, compiles nothing**, and the
+  reason for its existence is scheduling rather than urgency: `nitpick-time` is
+  claimed and idle behind four defects, and four debts against it need no
+  re-pin. Clearing them now means the landing-message dispatch is probes 09/10
+  and the transcript re-recording **and nothing else**, instead of five
+  unrelated chores riding on top of the work that actually needed the compiler.
+  RX-111's false promise; the O-N10/O-N11 de-hedging, both being accepted now;
+  the missing 0.0.2 checklist line; and the record that the house view rule is
+  conservative rather than true. Explicitly forbidden: touching probes 09/10,
+  re-recording `missing_failsafe`'s transcripts — **that would destroy the
+  before-half of a before-and-after the compiler wants** — and sweeping the nine
+  stale comments, which stays deferred
+- **width 2 from 23:15**, the author having delegated the next step. Both
+  streams own disjoint repositories and neither writes the workbench
+
+- **rebalance measurement, and it is the one the whole partition rests on:
+  `nitpick-time` 0.0.0 took SIX dispatches; `nitpick-regex` 0.0.0 took ONE.**
+  Same subcycle name, same shape of work, comparable size — 11 probes against
+  23 — and the second was the larger. The difference is not the repository and
+  not the model. It is that the first one had no playbook and the second
+  inherited a full one, including `stack`, the whole syntax ledger, the leak
+  rule, the measurement discipline, and a mid-flight relay about DEF-3 that
+  changed what it concluded. The first repository paid the discovery cost for
+  all six.
+  **The consequence for W-4 is concrete and it cuts against the obvious
+  reading:** `nitpick-time` 0.0.0's cost is *not* the per-subcycle estimate for
+  this ecosystem and must not be used as one — it is the one-off price of going
+  first. Nor is `nitpick-regex` 0.0.0 the estimate, because it spent nothing on
+  language discovery and later subcycles will spend on other things. **Estimate
+  the remaining repositories from the SECOND observation, not the first, and
+  count dispatches rather than subcycles** — W-15's "one fresh worker per
+  subcycle" held exactly once out of two, and the once it held was the one with
+  a playbook
