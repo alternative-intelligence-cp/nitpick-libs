@@ -1042,3 +1042,47 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   has not survived contact once. Recalibration must count **dispatches**, and
   the estimate for the next repository must not be taken from `nitpick-time`
   0.0.0's subcycle count
+- **O-N11 accepted as the compiler's DEF-5, and taken into 1.5.1b now rather
+  than kept.** The kinship argument was the whole reason: step 1 (D-248) is
+  already the whole-graph pass over the root's declarations that makes
+  `main`/`failsafe` the root's alone, and this finding is the same pass's
+  missing question, so DEF-5 lands as its own commit immediately after it.
+  **The ask was granted in full** — a root declaring `main` and no `failsafe`
+  is refused *at `main`*, with the diagnostic **listing the error identities**
+  the absent handler would have to name; `reach_settle` will report the set it
+  currently computes and throws away. A root with **neither** stays legal,
+  since a library file checked alone is a partial compile the closed-world link
+  never sees as-is; a `failsafe` in any module but the root is refused by
+  step 1; and the reach loop's early return survives only for the no-`main`
+  case, where there is nothing to settle against. **Raising it immediately
+  rather than at the subcycle's close is what put it in this batch**
+- **DEF-5's exposure across the ecosystem, measured rather than assumed** —
+  the same discipline D-248 got, and it changed the conclusion twice. Files
+  declaring `func:main` with no `func:failsafe`, all six repositories:
+  **exactly three, and every one is a negative probe.**
+  - `nitpick-time`'s `case1_no_failsafe.npk` and `case3_arm_contract_evaded.npk`
+    — deliberate, they *are* DEF-5's reproduction. **Their transcripts change
+    at the re-pin**: today they record `npkc` exit 0 then `llc` exit 1, and
+    afterwards they must record an `npkc` refusal carrying the arm list. That
+    is a re-pin task, and it is exactly the kind of thing that gets missed
+    because the files still "work"
+  - `nitpick-posix`'s `probe02g_cross_module.npk`, and **the first reading of
+    it was wrong.** Its header says `// expect-exit: 71` and its `failsafe`
+    comes from a macro, which looked like an entire repository's shape resting
+    on a macro-generated handler being visible after expansion — a real risk to
+    `nitpick-posix` if DEF-5's check ran pre-expansion. It is not: the header
+    is the *hypothesis*, and the recorded verdict is **REFUSED
+    `NITPICK-MACRO-007`** — a macro is invocable only in the module that
+    declares it. That refusal is what killed PX-010, and **PX-100 supersedes
+    it: the `failsafe` is GENERATED, so `nitpick-posix`'s real shape writes a
+    literal `func:failsafe` into each utility's root**, which is exactly what
+    DEF-5 and D-248 want. Its recorded diagnostic may move, like
+    `pxfail.npk`'s; nothing else does
+  - **so DEF-5 costs this ecosystem nothing in live code.** Every `main` in
+    every repository already has a `failsafe` beside it
+- **the finding about the finding: `expect-exit:` is a hypothesis header, not a
+  verdict**, and reading it as a verdict is how a negative probe gets mistaken
+  for a positive one. The verdict lives in the subcycle's results table. This
+  workbench came within one message of telling the compiler session that a
+  repository's shape was at risk on the strength of a comment. Checking cost
+  two reads
