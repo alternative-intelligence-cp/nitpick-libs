@@ -601,3 +601,22 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   not help if the bound value is then passed with `move` into something that
   leaks it further — but that is ordinary ownership rather than D-246, and it
   is the library's bug instead of the compiler's
+- **peer handoff notice from the author.** The compiler session is handing off
+  to a fresh session so an update installed there can be applied; this
+  workbench will do the same at a quieter moment, when nothing is running in
+  the background. The outgoing compiler session will name its successor to
+  this session. Consequence for the record: **`nitpick-76` is a session name,
+  not a durable address** — every reference to it above means "the compiler
+  session as of 2026-09-03", and a future session must re-identify its peer
+  from `ListAgents` and the announcement rather than reusing the name
+- 0.2.7's §3 measurements moved out of the session scratchpad and into that
+  file's execution record, ahead of either handoff. The scratchpad lives under
+  a session-specific path in `/tmp` and a successor would not inherit it —
+  the same "finished work left outside the tree" failure this run has already
+  recorded three times against workers, and it would have been mine
+- **the measurement that should change a plan: one subcycle has cost four
+  worker dispatches and is not finished.** W-15's "one fresh worker per
+  subcycle" did not survive contact — three of the four were re-dispatches,
+  and two of those existed only to make a worker commit work it had already
+  done. W-4's recalibration should count dispatches, not subcycles, or it
+  will estimate the next repository from a number that was never true here
