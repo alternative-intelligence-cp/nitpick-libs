@@ -107,6 +107,32 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N16 — DEF-8's landing note states a premise about this workbench that is
+  false, and reaches the right conclusion by the wrong route.** Raised by
+  `nitpick-regex` 0.0.3, 2026-09-04, against the pinned `94874ce`; its local id
+  is also `O-N16`. **CATALOGUED, NOT RAISED** — the compiler session is near its
+  usage limit and its fix batch is closing; this is registered so the batch can
+  be reconstructed when the quota resets. **This is a defect in a NOTE, not in
+  the compiler**, and it is registered because the note is a reason a later
+  reader would rely on. The compiler's `meta/roadmap/OPEN_DECISIONS.md` closes
+  DEF-8 with *"Blocks nothing of the workbench's: their recipes pass values, not
+  fields, out of owning locals."* **The premise is false.**
+  `nitpick-regex/tests/probe/probe04_inherent_generic_impl.npk` has
+  `func:len2 = int64(Vec<T>:self) never fails { pass self.count; }` — a `pass` of
+  a **field**, out of a by-value local — and `probe08_sparse_set.npk`'s
+  `sset_has` takes a `SparseSet` by value and reads through two nested `Vec`s.
+  **The conclusion nevertheless holds, for a reason the note does not give:**
+  DEF-8 clears the drop flag of an *owning* local, and by RX-126 a library's
+  hand-written `Vec<T>` never owns — `decl_is_list` matches only a struct named
+  exactly `List`, homed in the compiler's `list` scope, with fields `items`
+  (pointer), `count`, `cap`. So the workbench is untouched because its
+  containers are outside D-247's recognition, **not** because it does not write
+  the shape. **W-27: blocks nothing, inconveniences nobody, and touches no
+  schedule.** Its cost is entirely to a future reader: anyone checking their own
+  exposure against the stated reason would check the wrong property, and the
+  three probes re-running clean would confirm them in it. *Recommendation:*
+  correct the note's reason rather than its verdict, and fold it into whatever
+  batch reopens — it is one sentence and needs no code.
 - **O-N15 — `npkg` accepts an `expect-exit:` above 255, which no run can
   satisfy.** Raised by `nitpick-regex` 0.0.2, 2026-09-04, against the pinned
   `950bb1d`. `expect_read` accepts the value and `run_binary` then compares it

@@ -2437,3 +2437,74 @@ number" arriving as a live inconvenience rather than as a maxim.
   the dispatches opening now, because those repositories are claimed.
   `nitpick-tui`, `nitpick-parse` (two) and `nitpick-sockets` wait for their own
   streams' claims and are on the board so the next claim inherits them
+
+### Both streams closed, and the board corrected its own premise — 2026-09-04 13:40
+
+Width 2, at the author's direction. Both subcycles DONE and independently
+VERIFIED PASS; verifiers run on a smaller model per orchestrate §12, which is
+sound because every check they run is a command with an exit code, and was
+chosen deliberately to conserve the author's weekly quota.
+
+- **`nitpick-time` 0.0.0 DONE, VERIFIED PASS at `1c43872`.** **All four stops
+  are down**, each discharged on this workbench's own measurement rather than on
+  a correspondent's report: O-N4 (this orchestrator, then re-confirmed by the
+  worker re-running probe 04 whole), O-N9 (TM-110), O-N10 (TM-111), O-N11
+  (TM-112). No compiler defect found. **0.0.5 and 0.5 unblocked**
+- **`nitpick-regex` 0.0.3 DONE, VERIFIED PASS at `91657eb`**, harness 63/63 in
+  37.5 s against the worker's reported 37.6 s
+- **THE FINDING OF THE SESSION IS THAT A WORKER CORRECTED THIS BOARD'S PREMISE,
+  WHICH THE ORCHESTRATOR HAD PUT IN ITS OWN DISPATCH.** The board said `Vec<T>`
+  "does not own **until** D-247". Stream 1 found `decl_is_list`
+  (`../nitpick/src/frontend/type_layout.npk`) matches only a struct named
+  **exactly `List`**, homed in the compiler's `list` scope, with exactly three
+  fields `items` (pointer), `count`, `cap`. **No container in this ecosystem is
+  that**, so D-247 changes nothing for any of them: `Vec<T>` does not own, full
+  stop. Confirmed by this orchestrator against the pin's source before the board
+  moved. **The 125 MiB managed-body leak is therefore not closed and will not
+  be** — and stream 2, working a different repository and not looking for this,
+  measured `probe06b` at **125 184 KiB three times at this pin**. Two streams,
+  opposite directions, same conclusion
+- **the consequence is larger than the correction.** `RX-110` and `RX-123` are
+  **permanent, not interim**: the `exit 0` leak gate covers the `wild` block
+  alone and no compiler fix is coming to widen it. 0.0.4's leak acceptance needs
+  a **memory cap for the managed half in every repository**. `nitpick-time`,
+  `nitpick-parse` and `nitpick-tui` inherit this at their next claim
+- **and the distinction stream 1 drew is the transferable part:** the three
+  probes owed at the re-pin **re-ran clean**, which is evidence the shape is
+  *outside* DEF-8's scope — **not** evidence the fix is right for it. A less
+  careful report would have written the second, and it would have passed
+- **how the false premise travelled.** It came off this board, into *both*
+  dispatches in the orchestrator's own words, and was caught only because a
+  worker checked a premise it had been handed instead of building on it.
+  **A dispatch's stated premises are claims, and the worker is the last line
+  that can falsify them.** Dispatches should say so explicitly
+- **accepted with a known overstatement, recorded rather than re-dispatched.**
+  `nitpick-regex`'s mutation-test **transcripts are not committed** — §4 holds a
+  per-case attribution summary table, which is what the acceptance criterion
+  required and is why this is a PASS — but `harness/README.md` claims "§4 has
+  the transcripts" and it does not. `PLAYBOOK.md` §6 says a summary is not
+  evidence, and `nitpick-time` 0.0.0 was once FAILED by its own verifier for
+  exactly that, so the precedent cuts against the sentence. Carried to 0.0.4
+  because the session is stopping, **not** because it is acceptable
+- **a residue the verifier's DENOMINATOR exposed**, which is the same lesson
+  stream 1 raised independently. `nitpick-time`'s expect-header sweep covered
+  **36 of 42** tracked `.npk`. Three uncovered are support libraries and
+  correctly headerless; **the other three are the `missing_failsafe`
+  reproductions, which carry no `expect-` header at all** — and they are exactly
+  the files whose expected behaviour changed today. The strengthened sweep
+  cannot see the three files it most needed to
+- **two numbering errors by this orchestrator, both caught before they landed.**
+  A finding was first written onto the board as `RX-121`, already allocated to
+  an unrelated decision; and `RX-127` was cited for a finding nobody had
+  numbered. `check_refs.py` passed the first — its contract is undefined
+  references, never re-used ones — and caught neither, because both resolved or
+  were removed. What did catch the second class was the check firing on a bare
+  `O-N16` cited on the board while the workbench registry had no such entry
+- **O-N16 registered in the workbench registry**, catalogued and deliberately
+  not raised. DEF-8's landing note says the workbench's *"recipes pass values,
+  not fields, out of owning locals"*; two probes here `pass` a field out of a
+  by-value local, so the premise is false. **The verdict still holds, by the
+  route the note does not give** — a library `Vec<T>` never owns, so DEF-8's
+  clearing of an owning local's drop flag cannot reach it. Right answer, wrong
+  reason, and the wrong reason is the one a later reader would check themselves
+  against
