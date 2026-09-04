@@ -1544,3 +1544,37 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   recipe measures it. That is the mechanism behind the 480 000-byte literal
   requesting 107 GiB while RSS stayed flat, and it means the after-numbers on
   our own recipes should move a long way, not marginally
+- **verify `s2-ntime-0.0.0-verify-2345` PASS** on `5b2e0c8`, 7 minutes,
+  108 472 tokens, 45 tool uses. Both check scripts run against their negative
+  controls first; `git show --name-only` on both commits confirms markdown only
+  and no `.npk`; the nine stale leak comments still nine and unswept; the
+  `missing_failsafe` transcripts untouched at `b092a9e`. **Every `nitpick-time`
+  debt that does not need the compiler is now cleared**
+- **it also caught something about this orchestrator's dispatches, and it is
+  the more useful half.** My NOTES cited `ir_expr.npk`'s guards at
+  8667/8701/8722 — **taken from the compiler's HEAD, while every worker here
+  works against the pinned `950bb1d`, where the same code sits twelve lines
+  earlier** because an unrelated 1.5.1 insertion landed in between. The verifier
+  checked both trees, found the structure identical and the numbers off, and
+  correctly ruled it a property of how the dispatch was sourced rather than a
+  defect in the committed record — because **the worker had cited `TY_SLICE`,
+  `TY_ARRAY`, `TY_SIMD` and `TY_POINTER` by name and no line numbers at all**,
+  which is true at both trees. Landed in `PLAYBOOK.md` beside the pin rule:
+  cite the kind, the branch or the symbol; a line number is a convenience beside
+  a name, never instead of one. Same family as the `BORROW-012` error — *which
+  tree is this claim about* — and it caught me twice in one hour
+- **the verifier's own judgement is worth recording as the standard**: it did
+  not FAIL a report over line numbers that pointed truly at one tree and not
+  another, and it did not wave them through either. It established which tree
+  each was right for, said so, and located the defect in the dispatch rather
+  than in the repository. That is the difference between checking and
+  adjudicating
+- **stream 2 parks.** `nitpick-time` stays `CLAIMED s2` with no live agent —
+  the claim is the thing recording that its subcycle is unfinished — and there
+  is now genuinely nothing left in it that does not need the compiler. A
+  structural question is noted for when it next matters, and it is not urgent:
+  the rules do not cleanly cover a stream whose repository is blocked on an
+  external dependency and which wants to start its *next* repository. W-9 sends
+  it to the next ungated cycle in the same repository, and there is none;
+  releasing the claim would lose the record that 0.0.0 is unfinished. It did not
+  need deciding tonight because stream 1 is still working

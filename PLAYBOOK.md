@@ -420,6 +420,17 @@ before checking it**, and write the answer down that way:
   have, **that is a finding only if it is stated as current fact.** Stated as
   forward-looking, it is correct and useful.
 
+**And cite the KIND, the branch or the symbol — not the line number.** Line
+numbers are a property of one tree and the reader is in another. The dispatch
+that carried this rule cited `ir_expr.npk` guards at 8667/8701/8722, taken from
+the compiler's HEAD; at the pinned `950bb1d` the same code sits twelve lines
+earlier, because an unrelated 1.5.1 insertion landed in between. The structure
+was identical and the numbers were wrong, which is the worst combination —
+right enough to be believed, wrong enough to send a reader to the wrong place.
+`nitpick-time`'s own committed text cites `TY_SLICE`, `TY_ARRAY`, `TY_SIMD` and
+`TY_POINTER` by name and is therefore true at both trees. Give a line number as
+a convenience beside a name, never instead of one.
+
 The corollary is about challenges rather than checks: **a challenge can be
 worth making and still be wrong.** The query above was answered with "the plan
 said no new code, and writing the rule found one shape the `@`-equivalence has
