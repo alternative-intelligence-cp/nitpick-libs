@@ -1964,3 +1964,32 @@ Entry vocabulary: `dispatch <label>` · `report <label> <status> <tokens>
   documentation gap of O-N12's shape, and after being wrong twice on this
   subject in one night this workbench will raise it only once the verifier has
   passed the corrected text, if at all
+- **verify `s1-nregex-0.0.1-verify-0140` PASS** on `3679bf8`, 12.3 minutes,
+  137 892 tokens, on a **smaller model per §12** — the second use of that
+  override, and it reproduced both measurements from a fresh scratch tree with
+  **its own fixture name** (`lib_NOPE.npk`, not the worker's `lib_MISSING.npk`),
+  ran a control alongside to isolate the single-line change, counted stdout and
+  stderr in bytes rather than eyeballing them, swept seven phrasings for the
+  false claim, and spot-checked **every** compiler line number the commit cites
+  against the pin. `advance nitpick-regex 0.0.1 → 0.0.2`
+- **and it settled the open question: `BUILD.md` rule B-7 (D-237) already says
+  it.** Verbatim: *"unexpected diagnostics fail a test as surely as missing ones
+  … the set of codes a rejection test reports must **equal** the set its
+  expectations name."* So the ecosystem already had the rule that makes the
+  corrected hazard unreachable, and **the false claim's entire cost was that it
+  pointed a harness author at the exit code alone**, in the one place where B-7
+  is what saves them. An hour of three sessions' work to end up where a rule
+  written at planning already stood — which is an argument for reading the
+  specification before measuring, and equally an argument for measuring, since
+  nobody had connected B-7 to this until the wrong claim forced the question
+- **0.0.1 closed after three re-dispatches and four verifications**, one of them
+  a FAIL this orchestrator caused. Its cost is the honest number for W-4: the
+  skeleton itself was, in the worker's words, "twenty minutes of typing"
+- `advance` — and **0.0.2 is where the night is spent**. It builds
+  `harness/run.py`, whose `program` stage judges a test **by its exit code** at
+  -O0 and again under `opt -O2`. Every exit-code finding of the last four hours
+  lands in that one file: the alphabet, `2` meaning nothing was judged, the
+  one-byte ceiling, and B-7's requirement that a rejection fixture assert the
+  diagnostic-code *set*. It also carries RX-119, the deferred manifest entry,
+  since 0.0.2 owns the runner and can move the seven probe paths and fix
+  0.0.0's citations in one commit
