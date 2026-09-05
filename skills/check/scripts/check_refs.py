@@ -55,20 +55,42 @@ def tracked_md(repo: Path):
     The missing ones are RETURNED rather than silently dropped, because
     quietly narrowing the file set is how a check comes to report "All clean"
     over a denominator it never states.
+
+    Returns (files, missing, how) -- `how` names which enumeration ran, and it
+    is REPORTED, because the paragraph above was true of narrowing and this
+    function then WIDENED the set by ten without saying so. Measured
+    2026-09-05 from the workbench root: `git ls-files` sees 34 markdown files,
+    the rglob fallback sees 334 -- the root's own 34, plus 297 belonging to
+    five separate library checkouts, plus 3 under a gitignored `.internal/`.
+    With git absent from PATH this check reported "57 finding(s)" against a
+    true answer of clean-over-34, under the SAME repository label, so every
+    one of those 57 read as this repository's fault when each belonged to a
+    repository W-7 forbids the running session to touch.
+
+    So the fallback is not wrong, it is a different denominator, and the whole
+    rule of this workbench is that a denominator is stated rather than
+    implied. `git ls-files` cannot fail at a repository root; the reachable
+    trigger is git missing from PATH, which is a CI shape, not a local one.
     """
     try:
         out = subprocess.run(["git", "-C", str(repo), "ls-files", "*.md", "**/*.md"],
                              capture_output=True, text=True, check=True).stdout
         listed = [repo / p for p in out.split("\n") if p.strip()]
+        how = "git ls-files"
     except (subprocess.CalledProcessError, FileNotFoundError):
         listed = [p for p in repo.rglob("*.md") if ".git/" not in str(p)]
+        how = "rglob FALLBACK -- git unavailable; may span nested checkouts"
     files = [p for p in listed if p.exists()]
-    return files, [p for p in listed if not p.exists()]
+    return files, [p for p in listed if not p.exists()], how
 
 
 def check(repo: Path):
+    """Returns (findings, denominator). The denominator is returned, not
+    printed here, because a caller that reports findings without reporting
+    what was examined is the failure this function's own docstring warns of."""
     findings = []
-    files, missing = tracked_md(repo)
+    files, missing, how = tracked_md(repo)
+    denom = f"{len(files)} files via {how}"
     # Not a fault in the repository — a tracked file deleted and not yet
     # staged — but it narrows what every check below examined, so it is
     # reported rather than absorbed.
@@ -77,7 +99,7 @@ def check(repo: Path):
                          f"{p.relative_to(repo)}: tracked but not on disk — "
                          "deleted and not staged? Not scanned by any check below"))
     if not files:
-        return [("no-markdown", f"{repo}: no tracked markdown — wrong directory?")]
+        return [("no-markdown", f"{repo}: no tracked markdown — wrong directory?")], denom
 
     # 1. every relative link resolves
     for f in files:
@@ -127,7 +149,7 @@ def check(repo: Path):
         for m in LEAK.finditer(f.read_text(encoding="utf-8", errors="replace")):
             findings.append(("leak", f"{f.relative_to(repo)}: {m.group(0)[:40]}"))
 
-    return findings
+    return findings, denom
 
 
 def main(argv):
@@ -137,13 +159,16 @@ def main(argv):
         if not repo.is_dir():
             print(f"!! {repo}: not a directory", file=sys.stderr)
             return 2
-        fs = check(repo)
+        fs, denom = check(repo)
         name = repo.name
+        # The denominator prints on EVERY line, clean or not. "Swept and found
+        # nothing" and "swept nothing" are otherwise byte-identical, which is
+        # the failure this ecosystem has now met six times (PLAYBOOK.md 6).
         if not fs:
-            print(f"  {name:<18} clean")
+            print(f"  {name:<18} clean            ({denom})")
             continue
         total += len(fs)
-        print(f"  {name:<18} {len(fs)} finding(s)")
+        print(f"  {name:<18} {len(fs)} finding(s)    ({denom})")
         for kind, msg in fs:
             print(f"      [{kind}] {msg}")
     if total:

@@ -89,10 +89,31 @@ CASES = [
 # inventing an agreement nothing requires.
 
 
-def run(repo):
-    r = subprocess.run([sys.executable, str(SCRIPT), str(repo)], capture_output=True, text=True)
+def run(repo, env=None):
+    r = subprocess.run([sys.executable, str(SCRIPT), str(repo)], capture_output=True, text=True,
+                       env=env)
     kinds = {l.strip()[1:].split("]")[0] for l in r.stdout.splitlines() if l.strip().startswith("[")}
-    return r.returncode, kinds
+    return r.returncode, kinds, r.stdout
+
+
+# The CASES table above checks WHICH FAULTS are found. These two check WHAT WAS
+# EXAMINED, which is a different property and was the unchecked one: check_refs
+# enumerates with `git ls-files` but silently falls back to a recursive rglob
+# when git is unavailable, and from the workbench root those denominators are
+# 34 files and 334 -- the second spanning five separate library checkouts. The
+# fallback is not wrong; reporting either one without saying which is. Measured
+# 2026-09-05: with git absent the check said "57 finding(s)" under the same
+# repository label as a true clean-over-34.
+def denominator_cases(repo, nogit_dir):
+    out = []
+    _, _, with_git = run(repo)
+    out.append(("denominator-stated",
+                "git ls-files" in with_git and "files via" in with_git))
+    # python is found via sys.executable, so emptying PATH removes git alone.
+    _, _, no_git = run(repo, env=dict(os.environ, PATH=str(nogit_dir)))
+    out.append(("fallback-announces-itself",
+                "rglob FALLBACK" in no_git))
+    return out
 
 
 def main():
@@ -104,9 +125,15 @@ def main():
             repo = tmp / name / "fx"
             shutil.copytree(b, repo)
             mutate(repo)
-            rc, kinds = run(repo)
+            rc, kinds, _ = run(repo)
             ok = kinds == expected and (rc == 0) == (not expected)
             print(f"  {'ok ' if ok else 'FAIL'} {name:<20} expected {sorted(expected) or 'clean'}, got {sorted(kinds) or 'clean'} (exit {rc})")
+            if not ok:
+                fails.append(name)
+        nogit = tmp / "nogit-bin"
+        nogit.mkdir()
+        for name, ok in denominator_cases(b, nogit):
+            print(f"  {'ok ' if ok else 'FAIL'} {name:<20} {'denominator reported' if ok else 'DENOMINATOR NOT REPORTED'}")
             if not ok:
                 fails.append(name)
     print()
@@ -114,8 +141,10 @@ def main():
         print(f"{len(fails)} FAILURE(S): {', '.join(fails)}")
         return 1
     neg = sum(1 for _, _, expected in CASES if not expected)
-    print(f"All {len(CASES)} cases correct ({len(CASES) - neg} fault classes, "
-          f"{neg} false-positive control{'' if neg == 1 else 's'}).")
+    total = len(CASES) + 2  # + the two denominator cases
+    print(f"All {total} cases correct ({len(CASES) - neg} fault classes, "
+          f"{neg} false-positive control{'' if neg == 1 else 's'}, "
+          f"2 denominator cases).")
     return 0
 
 
