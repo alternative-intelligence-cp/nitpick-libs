@@ -2932,3 +2932,34 @@ a new CI workflow and guarantee an immediate bump commit, while steps 2 and 5
 would accept against a compiler about to be discarded. That is the previous
 session's own argument — a measurement belongs to a pin — pointed the other
 way.
+
+**Every session renamed to a convention, 2026-09-05.** The author renamed all
+live sessions to `<project>_s<N>` — the project segment naming the work area,
+`N` the handoff generation — *"to help me keep things in order."* This session
+is `nitpick-libs_s0`; it appears above and in earlier entries as
+`nitpick-libs-c6`, which was its name for the first hour. **Earlier names in
+this record are left as written**, because they were correct on their dates and
+this file records what happened.
+
+The rename **answered an inherited open question** rather than merely tidying.
+The fourth orchestrator recorded an unidentified idle peer, `nitpick-e3`, noted
+that its name shape *weakly* suggested compiler-side, and explicitly declined
+to rest the writer lock on that inference — *"that is inference, not evidence."*
+After the rename the same `ListAgents` ref, `[0dc3d1]`, reads
+**`nitpick-compiler_s1`**: the compiler's own waiting successor, working
+another repository, which will not write here. The instinct to refuse the guess
+was right, and the convention is what converted it into a fact.
+
+**What the convention changes for a later session.** Earlier boards and briefs
+carried *"names are not durable; `ListAgents` is the address book."* That was
+true of machine-assigned labels and is now half true: **the project segment and
+the generation number are stable and worth reading**, while `ListAgents`
+remains the authority on who is alive and the `[ref]` is what disambiguates.
+Recorded in `BOARD.md`'s peer roster and in orchestrate §2.1, where the "is
+another session live?" check is made.
+
+**And an idle peer is parked on purpose.** The `claud-skills-devTeam_s0`/`_s1`
+pair is held idle deliberately, in the author's words *"to conserve on tokens so
+we don't run short on the main project (compiler) or this one."* Waking one has
+a cost he is actively managing, so idleness there is a decision rather than a
+stall.

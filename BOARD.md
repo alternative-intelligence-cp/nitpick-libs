@@ -11,7 +11,33 @@ blocked, what is done. The durable plan is
 
 **Last updated:** 2026-09-05 · **Width:** 1 — stream 2 only, confirmed by the author 2026-09-05 (question 4 answered; the dial turned down for quota, not a change of plan — `parallel-planning-serial-implementation`) ·
 **Toolchain:** 94874ce · .internal/toolchain/94874ce/ · pinned 2026-09-04 · **tree clean** — the first clean pin this workbench has had. 1.5.1b is landed in full and `build/` was rebuilt from it at 08:48; verified here by sha256 and size before copying, `sha256sum -c` OK, LLVM 20.1.2. **`npkrt.o` differs from the 950bb1d pin** — DEF-12 made the main thread's TLS block a raw mapping — so this is a toolchain change in both halves, not just the compiler. **The re-pin blockage is resolved**; the stale binary that was sitting in `build/` is recorded in `PIN.md` so nobody mistakes this pin for it
-**Workbench writer:** `60371281-2e64-47e7-b208-6a273b2eaff7` — session `nitpick-libs-c6`, **the fifth orchestrator**, taken 2026-09-05 13:37 from `nitpick-libs-42` (the fourth) at a briefed handover, board line first and then the marker. **Verified free two ways before taking, not one:** this line read `none` *and* `.internal/` held only `toolchain/`. Two corrections to orchestrate §2.1, now confirmed by four orchestrators: the guard permits **any** session while this line reads `none`, so its refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from the `~/.claude/projects/<slug>/<uuid>.jsonl` path and cross-check it against your scratchpad path, which carries the same uuid. **A THIRD HAZARD, MEASURED AT THIS HANDOVER: the lock being free is not the same as the tree being yours.** The incoming session asked the outgoing one *"are you done writing?"* rather than reading the `none` and taking it. The outgoing session nearly answered from memory, ran `git status` instead, and found an **uncommitted deletion** it had not made — the author had moved a tracked file out from under it. Had the lock been taken and committed on that reading, another session's deletion would have been swept into this one's commit. **So during any handover overlap: ask the outgoing session directly, and have it confirm from `git status` rather than from memory.** One writer here (W-16, P-19).
+**Workbench writer:** `60371281-2e64-47e7-b208-6a273b2eaff7` — session `nitpick-libs_s0` (renamed from `nitpick-libs-c6` mid-session, 2026-09-05), **the fifth orchestrator**, taken 2026-09-05 13:37 from `nitpick-libs-42` (the fourth) at a briefed handover, board line first and then the marker. **Verified free two ways before taking, not one:** this line read `none` *and* `.internal/` held only `toolchain/`. Two corrections to orchestrate §2.1, now confirmed by four orchestrators: the guard permits **any** session while this line reads `none`, so its refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from the `~/.claude/projects/<slug>/<uuid>.jsonl` path and cross-check it against your scratchpad path, which carries the same uuid. **A THIRD HAZARD, MEASURED AT THIS HANDOVER: the lock being free is not the same as the tree being yours.** The incoming session asked the outgoing one *"are you done writing?"* rather than reading the `none` and taking it. The outgoing session nearly answered from memory, ran `git status` instead, and found an **uncommitted deletion** it had not made — the author had moved a tracked file out from under it. Had the lock been taken and committed on that reading, another session's deletion would have been swept into this one's commit. **So during any handover overlap: ask the outgoing session directly, and have it confirm from `git status` rather than from memory.** One writer here (W-16, P-19).
+**THE PEER SESSIONS, AND THEIR NAMES ARE NOW A CONVENTION RATHER THAN A
+LABEL.** The author renamed every session on 2026-09-05 to `<project>_s<N>`,
+where the project segment names the work area and `N` is the handoff
+generation. Earlier boards and briefs warned that *"names are not durable,
+`ListAgents` is the address book"* — true of the old machine-assigned labels
+(`nitpick-bc`, `nitpick-36`, `nitpick-e3`), and now only half true: **the
+project segment and the generation number are stable and worth reading.**
+`ListAgents` remains the authority on who is *alive*, and the bracketed `[ref]`
+is what disambiguates.
+
+| Session | Was | Role |
+|---|---|---|
+| `nitpick-libs_s0` | `nitpick-libs-c6` | **this workbench's orchestrator — the current writer** |
+| `nitpick-libs_s1` | — | this workbench's **successor**, open and idle, waiting for the handoff |
+| `nitpick-compiler_s0` | `nitpick-bc` | the compiler session — **who to ask about `build/` and the pin** |
+| `nitpick-compiler_s1` | `nitpick-e3` | the compiler's successor, open and idle |
+| `claud-skills-devTeam_s0` / `_s1` | — | the `devteam` project pair, **idle to conserve quota** (note the project segment is spelled `claud-`, without the final `e`) |
+
+**Two consequences worth acting on.** The unidentified idle peer the fourth
+orchestrator declined to rest the lock on — `nitpick-e3` — is
+`nitpick-compiler_s1`, the compiler's own waiting successor, confirmed by the
+same `ListAgents` ref across the rename. It works another repository and will
+not write here. And **an idle peer is parked on purpose, not stalled**: the
+author is holding the `devteam` pair idle so the compiler and this workbench do
+not run short of quota, so waking one has a cost he is actively managing.
+
 **Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
 first library cycle to be worked, and the loop is being judged against
 [`meta/roadmap/0.2/0.2.7.md`](meta/roadmap/0.2/0.2.7.md) §2's pass mark.
@@ -20,7 +46,7 @@ replacement span that ran to the next blank line and swallowed it — and restor
 verbatim from `d91d0ca` at 14:10.)*
 
 **THE RE-PIN IS ANSWERED, AND THE ANSWER IS *WAIT*. Settled 2026-09-05 13:35 by
-`nitpick-bc`, the compiler session, in reply to the one message the previous
+`nitpick-compiler_s0` (then named `nitpick-bc`), the compiler session, in reply to the one message the previous
 board said to send.** Everything above this line in earlier revisions was the
 open question; this is the answer, and the working out is in `RECORD.md`.
 

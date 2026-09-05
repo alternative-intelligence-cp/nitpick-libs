@@ -46,9 +46,14 @@ Skipped in `tick` mode.
    `mkdir -p .internal && echo "${CLAUDE_SESSION_ID}" > .internal/orchestrator.session`.
    Put the same id on the board's `Workbench writer:` line (W-16) — one
    commit, `board: writer <id>`. **If the line names another session:**
-   `ListAgents` lists this machine's peer sessions by a short name derived
-   from their directory and an idle/busy state — not by id. A
-   `nitpick-libs-…` peer that is not you means that session may be live:
+   `ListAgents` lists this machine's peer sessions by name and an idle/busy
+   state — not by id. **Since 2026-09-05 those names follow a convention the
+   author set: `<project>_s<N>`**, where the project segment names the work
+   area and `N` is the handoff generation — `nitpick-libs_s0` is this
+   workbench, `nitpick-libs_s1` its waiting successor, `nitpick-compiler_s0`
+   the compiler. So a name now tells you which repository a peer works on,
+   and the bracketed `[ref]` is what disambiguates. A **`nitpick-libs…`**
+   peer that is not you means that session may be live:
    stop and ask the author; two writers here is the one failure the whole
    design exists to prevent. No such peer, that session's work committed
    and `RECORD.md`'s last entries hours old → take the lock — the board
@@ -107,7 +112,8 @@ when the check was added: it fires on that real case and stays silent on a
 binary newer than `HEAD`.
 
 **With `tree dirty` OR `tree unknown`, ask before you pin** — over
-`SendMessage`, to the busy `nitpick-…` peer in `ListAgents` — what `build/`
+`SendMessage`, to `nitpick-compiler_s0` (the compiler session; `ListAgents`
+ confirms who is alive) — what `build/`
 was built from and whether there is a stable point to pin at all, and record
 the answer as a **`binary` line in `PIN.md`**. Requiring that line in only one
 of the two branches is what let the gap exist; `unknown` is precisely the case
