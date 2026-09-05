@@ -2963,3 +2963,23 @@ pair is held idle deliberately, in the author's words *"to conserve on tokens so
 we don't run short on the main project (compiler) or this one."* Waking one has
 a cost he is actively managing, so idleness there is a decision rather than a
 stall.
+
+**pin 0dfddac, tree clean — 2026-09-05 15:58.** The 1.5.2c close, landed and
+pushed by `nitpick-compiler_s0` at 15:47 with `build/` rebuilt from the pushed
+main checkout 15:52–15:56. **The provenance branch added to orchestrate §3 this
+afternoon was exercised on both sides in one day:** it refused the 19:42 binary
+as `tree unknown` (mtime seventeen hours *before* `HEAD`) and passed this one as
+`tree clean` (mtime 15:56:34, nine minutes *after* `HEAD`'s 15:47:09). A check
+that has fired and stayed silent, each on a real case, is commissioned rather
+than merely written. Every number in the landing notice was verified here before
+copying rather than taken on report: 7 304 552 B, sha256 `38e48973…`,
+`sha256sum -c` OK, LLVM 20.1.2, tree clean, level with `origin/main`, and
+`94874ce` an ancestor of `0dfddac` so the pin moves forward. `npkrt.o` byte-
+identical to the previous pin's, **taken again and checked** — DEF-12 is the
+precedent for what assuming that costs. The pinned compiler was then
+commissioned positive and negative before any measurement was believed: a real
+tree file exits 0 with an 845 282 B `.ll` written, a malformed file exits 1 with
+none. The negative control was incidentally refused at `NITPICK-RESOLVE-012`
+for a `mod:`/basename mismatch rather than for its syntax, which is **O-N8's
+fix (the compiler's DEF-2) observed live** — the defect this workbench raised on
+2026-09-03, where a mismatch silently merged two files at exit 0.
