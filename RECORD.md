@@ -2803,3 +2803,132 @@ listed. Eleven items; four ported at his direction. The list is
   simplifications in its history came from people who declined to use it, and
   its `unnecessary` reporting category has never once been used. Every item on
   our list makes this workbench stricter too. None makes it smaller
+
+### The fifth orchestrator takes the lock; the re-pin is answered, and every cross-repository sweep is found blind — 2026-09-05
+
+**Handover.** `nitpick-libs-c6` (`60371281-2e64-47e7-b208-6a273b2eaff7`) takes
+the workbench writer lock at 13:37 from `nitpick-libs-42`, the fourth
+orchestrator, on a briefed overlap the author arranged. Board line first, then
+the marker (37 bytes, cross-checked against the transcript path, because
+`CLAUDE_SESSION_ID` is empty in a Bash call). Freedom verified **two ways** —
+the writer line read `none` *and* `.internal/` held only `toolchain/` — because
+the guard permits any session while that line reads `none`, so its silence is
+not evidence.
+
+**`stale claim`, W-19.** After a session restart every claim is formally stale,
+because `ListAgents` shows only the current session's agents. Both `CLAIMED`
+rows were checked rather than assumed: `nitpick-time` (s2) and `nitpick-regex`
+(s1) each name their next subcycle as PLANNED with **no live agent**, so §4's
+table resolves to *"the worker never started: re-dispatch"* with nothing to
+recover. Both trees verified **clean and level with `origin/main`** at exactly
+the commits the handover named — `nitpick-time` `1c43872`, `nitpick-regex`
+`91657eb` — and so were `nitpick-tui` (`e5439ee`), `nitpick-parse` (`3cad08c`),
+`nitpick-sockets` (`d385991`) and `../nitpick-apps/nitpick-posix` (`948d9b6`).
+The claims stay: `CLAIMED` is **ownership** under W-7 and survives a session
+gap by design.
+
+**Asking the outgoing session whether it was done paid for itself in one
+message.** The lock read free and the brief said it was free; the incoming
+session asked anyway. The outgoing one nearly answered from memory, ran `git
+status` instead, and found an **uncommitted deletion it had not made** — the
+author had moved a tracked file out from under it. Committing on the "lock is
+free" reading would have swept another session's deletion into this session's
+commit. **The lock's failure mode is not two writers fighting; it is one writer
+inheriting another's dirty tree.** Chasing that also turned up a live crash in
+`check_refs.py` on an unstaged deletion — `git ls-files` reads the index, so
+the file is listed while `open()` raises — which is *precisely* the pre-`git
+add` state the workbench's own rule mandates. Fixed in `7da5c2d` as a
+`tracked-file-missing` finding. And the gate that should have caught it read
+`check_refs … | tail -2; G=$?`, which is **`tail`'s** status: the gate passed
+vacuously.
+
+**The re-pin: answered, and the answer is to wait.** One message to `nitpick-bc`
+settled what two sessions could not resolve by inspection. `build/npkc` is an
+`npkg` build/parity run from the **main checkout at 19:42 on 2026-09-04**, when
+`main` was at `99bbccd` and the working tree carried 1.5.2 step 0's uncommitted
+changes (committed at 19:53 as `593c554`). **It is a build of no commit that has
+ever been on `main`** — so there was no commit to name it by, and inspection
+could never have resolved it. This session's independent measurement placed the
+19:42:54 mtime between those two commits before the reply arrived, and the reply
+confirmed it exactly. The pin point is the **1.5.2c close**, ~15:30, and that
+session sends the identity.
+
+**The pin procedure would have mislabelled it, and that is a defect in §3.**
+Run today, §3 yields `COMMIT=8c69ee4` and `TREE=clean` — the tree *is* clean —
+and its mid-rebuild guard passes trivially on a seventeen-hour-old binary. It
+would have written `compiler 8c69ee4 / tree clean` into `PIN.md`: a confident,
+false provenance. **`tree clean` describes the SOURCE tree and says nothing
+about what `build/` was built from**, and §3 asks for a `binary` line only in
+the `tree dirty` branch — the branch this case does not take. §6's shape, found
+in our own pin procedure. The fix is one command: compare `build/npkc`'s mtime
+against `HEAD`'s commit date and treat *older* as `tree unknown`.
+
+**THE SESSION'S LARGEST FINDING: a cross-repository sweep run from the
+workbench root sees none of the five libraries, and reports that as silence.**
+Two independent causes, one result. `grep` here is **`ugrep` 7.8.4 installed at
+`/usr/bin/grep`** — `grep --version` says so, `which grep` does not — and it
+honours ignore files in recursive mode; the root `.gitignore` opens with
+**`/*/`**, ignoring every top-level directory, which is exactly how this
+repository avoids embedding a library as a gitlink. Separately, **`git grep`
+from the root cannot see a library either**, because each is a separate
+checkout and none of its files are in this index. Measured on one pattern:
+`grep -r --include='*.npk'` from the root → **0**; `git grep` → **0**; the same
+grep pointed at `nitpick-time` → 7; `--no-ignore-files` → **14**;
+`find … -print0 | xargs -0 grep` → **14**. The two tools that see everything
+were diffed against each other and agree, so 14 is a measurement rather than
+one tool's opinion.
+
+**Why it is the worst instance of §6's shape yet found here.** `check_refs .`
+at least prints the name `nitpick-libs`, so its denominator of one is visible.
+**A sweep that matches nothing prints nothing.** There is no verdict to doubt
+and no count to interrogate: "swept, no violations" and "swept nothing" are
+byte-identical. Both of this workbench's stated disciplines — *a list of files
+is produced by `git grep`, never by recall*, and *ask for the denominator, not
+the verdict* — route straight through the one failure that yields no number.
+**And the same `.gitignore` line has bitten this project before:** its own
+comment records that a directory must be un-ignored by name *"or it vanishes
+silently — which is exactly what happened on the first attempt to add the
+plugin."* The note was about tracking; nobody carried it across to searching.
+
+**What it invalidated.** Checklist item 6's site list, demonstrably: the stale
+citations to the deleted `src/frontend/list.npk` are **six sites in three
+files**, not five in two. The old sweep matched the token `List` while the
+property is *"cites the deleted `list.npk`"* — so it caught
+`probe06_generic_vec.npk:107` by accident (that line says `list_init`, not
+`List`), **missed every basename citation**, and never saw
+`nitpick-regex/tests/probe/probe04_inherent_generic_impl.npk` at all, which
+holds two. It also counted `:49` and `:60`, which cite no deleted path and are
+not findings — the board itself calls `:60` "exactly right". **One board
+paragraph simultaneously counts the `list_init` line among its `List`
+occurrences and asserts that nothing here declares a `list_init`.** Two halves
+of one paragraph, contradicting each other, neither re-derived.
+
+**What it did not invalidate, checked rather than assumed.** D-239's
+substantive conclusion holds — no `struct:List`, `mod:list`, `list_push` or
+`list_reserve` anywhere, so no rename is required. D-248's *"swept all six
+repositories: zero violations"* re-verified: **0 violations over a stated
+denominator of 87 `.npk` files**, a denominator the original claim never gave.
+`check_refs.py` run naming each target: **clean over seven** — the root, the
+five library checkouts and `../nitpick-apps/nitpick-posix`. Controls green:
+`112 cases, 50 false-positive (44%)`.
+
+**The compiler session's steers, folded into checklist item 4** so the
+re-measurement is executable without re-reading this entry. **O-N11 is now a
+compile-time refusal, not a runtime verdict** — `NITPICK-REACH-003` at `main`
+whatever the exit code — so a verdict phrased as an exit code measures the
+wrong thing. **O-N10's shape moved with D-258**: a derived body reaches every
+member through the trait it derives, refused at the **call** as `TYPE-017`
+naming the derive, the parameter and the bound, never at the declaration; a
+`string` payload is `DERIVE-006` at the derive while a `string` field derives
+fine. A path containing `<derived-` in any output is a compiler defect that
+session has asked us to report.
+
+**No worker dispatched, and the reason is specific rather than caution.** Width
+is **1**, confirmed by the author today. `nitpick-time` 0.0.1's gate is
+satisfied — 0.0.0 is `DONE` and the probes it names (01, 04, 06) have recorded
+verdicts — but **step 4 of that subcycle pins the compiler by commit in CI
+(P-10)**. Dispatching before the pin lands would write the stale `94874ce` into
+a new CI workflow and guarantee an immediate bump commit, while steps 2 and 5
+would accept against a compiler about to be discarded. That is the previous
+session's own argument — a measurement belongs to a pin — pointed the other
+way.

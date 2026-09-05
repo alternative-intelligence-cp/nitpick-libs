@@ -9,9 +9,9 @@ blocked, what is done. The durable plan is
 > when the stream leaves the repository. That is what keeps two agents out of
 > one repository and removes every merge conflict by construction.
 
-**Last updated:** 2026-09-03 · **Width:** 2 — streams 1 and 2, confirmed by the author 2026-09-04 ·
+**Last updated:** 2026-09-05 · **Width:** 1 — stream 2 only, confirmed by the author 2026-09-05 (question 4 answered; the dial turned down for quota, not a change of plan — `parallel-planning-serial-implementation`) ·
 **Toolchain:** 94874ce · .internal/toolchain/94874ce/ · pinned 2026-09-04 · **tree clean** — the first clean pin this workbench has had. 1.5.1b is landed in full and `build/` was rebuilt from it at 08:48; verified here by sha256 and size before copying, `sha256sum -c` OK, LLVM 20.1.2. **`npkrt.o` differs from the 950bb1d pin** — DEF-12 made the main thread's TLS block a raw mapping — so this is a toolchain change in both halves, not just the compiler. **The re-pin blockage is resolved**; the stale binary that was sitting in `build/` is recorded in `PIN.md` so nobody mistakes this pin for it
-**Workbench writer:** `none` — taken and released 2026-09-05 by `189dd185-e776-4b8f-8fcb-5357cfaeaea7`, session `nitpick-libs-42`, the fourth orchestrator, to port four mechanisms from the `devteam` experiment into this workbench's tooling (marker removed first, then this line). Previously released 2026-09-05 at a clean stop (first released 2026-09-04 13:40; briefly re-taken twice since, to record an inbound landing notice and the `devteam` read, each time released in the same commit) by `9e3c29db-a219-4274-b87b-eefa9b4a88a8`, session `nitpick-libs-44`, the third orchestrator. **Nothing is in flight; no claim has a live agent; every repository is committed and pushed.** Marker file removed first, then this line, so an abrupt close cannot leave the lock naming a dead session. **To take it: this line first, then the marker** — the order the guard enforces and the reverse of orchestrate §2.1. Two corrections to §2.1, both confirmed again this session: the guard permits **any** session while this line reads `none`, so §2.1's refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from `~/.claude/projects/<slug>/<uuid>.jsonl` and cross-check it against your scratchpad path, which carries the same uuid. One writer here (W-16, P-19).
+**Workbench writer:** `60371281-2e64-47e7-b208-6a273b2eaff7` — session `nitpick-libs-c6`, **the fifth orchestrator**, taken 2026-09-05 13:37 from `nitpick-libs-42` (the fourth) at a briefed handover, board line first and then the marker. **Verified free two ways before taking, not one:** this line read `none` *and* `.internal/` held only `toolchain/`. Two corrections to orchestrate §2.1, now confirmed by four orchestrators: the guard permits **any** session while this line reads `none`, so its refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from the `~/.claude/projects/<slug>/<uuid>.jsonl` path and cross-check it against your scratchpad path, which carries the same uuid. **A THIRD HAZARD, MEASURED AT THIS HANDOVER: the lock being free is not the same as the tree being yours.** The incoming session asked the outgoing one *"are you done writing?"* rather than reading the `none` and taking it. The outgoing session nearly answered from memory, ran `git status` instead, and found an **uncommitted deletion** it had not made — the author had moved a tracked file out from under it. Had the lock been taken and committed on that reading, another session's deletion would have been swept into this one's commit. **So during any handover overlap: ask the outgoing session directly, and have it confirm from `git status` rather than from memory.** One writer here (W-16, P-19).
 **Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
 first library cycle to be worked, and the loop is being judged against
 [`meta/roadmap/0.2/0.2.7.md`](meta/roadmap/0.2/0.2.7.md) §2's pass mark.
@@ -19,132 +19,243 @@ first library cycle to be worked, and the loop is being judged against
 replacement span that ran to the next blank line and swallowed it — and restored
 verbatim from `d91d0ca` at 14:10.)*
 
-**1.5.1b IS COMPLETE AND THE RE-PIN IS OWED — landing notice received 2026-09-04
-from `nitpick-36`, recorded here and deliberately NOT acted on.** The compiler's
-`main` is at **`8dbef43`** (docs only above `25e555c`, identical code);
-`build/npkc` was rebuilt by `npkg build` at 14:01, **7 014 696 bytes**, sha256
-`5af0d06e744ffff17bcfe39dc6bd0f8ee5b5c346d21039602100a09441f81810`. It is
-*larger* than the previous binary because the compiler is now built by a builder
-carrying the step-4 and step-5 machinery; their parity stage asserted it
-byte-identical to the harness's build of the same tree.
+**THE RE-PIN IS ANSWERED, AND THE ANSWER IS *WAIT*. Settled 2026-09-05 13:35 by
+`nitpick-bc`, the compiler session, in reply to the one message the previous
+board said to send.** Everything above this line in earlier revisions was the
+open question; this is the answer, and the working out is in `RECORD.md`.
 
-**STOP — THE RE-PIN TARGET IS NOT `8dbef43` AND THE BINARY'S PROVENANCE IS
-UNKNOWN. Checked 2026-09-05, after the landing notice above was already stale.**
-The compiler's HEAD is **`8c69ee4`**: **1.5.2 and 1.5.2b have both CLOSED** since
-that notice and **1.5.2c is planned and ratified** (D-260, D-261; DEF-19,
-DEF-20). And `build/npkc` is **not** the binary the notice describes — it
-reported 7 014 696 bytes, sha256 `5af0d06e744ffff17…`, built 14:01; the tree now
-holds **7 014 920 bytes, sha256 `2f786437ad5e3644…`, mtime 2026-09-04 19:42**.
+**DO NOT PIN `../nitpick/build/npkc`. It is a build of no commit that has ever
+existed on `main`.** Our own measurement and the compiler session's account
+agree exactly: it is an `npkg build`/parity run taken from the **main checkout
+at 19:42 on 2026-09-04**, when `main`'s `HEAD` was `99bbccd` (the 1.5.2
+planning commit, 17:21) and the working tree carried **1.5.2 step 0's
+uncommitted changes** — committed eleven minutes later as `593c554`. So it is a
+*working-tree intermediate*, and it predates 1.5.2 steps 1–5, all of 1.5.2b
+(D-256…D-259) and all of 1.5.2c. **There is no commit to name it by**, which is
+why no amount of inspection here could have resolved it — only asking could.
+`HEAD` (`8c69ee4`) is plan/docs only; the compiler source at `HEAD` is
+`4806025`'s, the 1.5.2b close.
 
-**A HARNESS IS RUNNING.** Live processes at the time of writing:
-`bootstrap/harness/harness.py --verdicts` in the worktree
-`../nitpick/.internal/wt/q0`, plus `quickemit.py`, plus an active edit to
-`src/backend/ir/ir_stmt.npk`. The compiler session is `nitpick-bc` in
-`ListAgents` (busy; names are not durable — re-identify it).
+**The pin point is the 1.5.2c close.** Three step commits — `533fcb2` (the
+TYPE-065 refusal), `fe78c5d` (generic enums live), `90e4e4a` (the docs) — each
+under a full harness in its own worktree (`.internal/wt/q0`, `q1`, `q2`,
+started 12:07, 12:46 and 12:52). When all three are green they land on `main`
+in order and are pushed; **then that session runs the ladder on `main` so
+`build/npkc` is the close's compiler, and messages us the commit, the byte
+count and the sha256 for both `npkc` and `npkrt.o`**, in the 1.5.1b notice's
+shape. A full harness is ~75 min alone and three concurrent ones are slower;
+landing plus the ladder adds ~20 min. **Expect the notice around 15:30 on
+2026-09-05.** Wait for it. Pin nothing in between.
 
-**`git status` on `../nitpick` is CLEAN and that is misleading here** — the work
-is in a *worktree*, so a clean root says nothing about what `build/` was built
-from. §3's mid-rebuild guard also passes, and is also insufficient: it catches a
-binary still being written, not one built from a tree nobody told you about.
-**Ask the compiler session what `build/` holds and whether it is a stable point
-to pin**, and record the answer as a `binary` line in `PIN.md`, as the previous
-pin did. That is one message.
+**THE PIN PROCEDURE ITSELF WOULD HAVE MISLABELLED THIS, AND THAT IS A DEFECT IN
+§3, NOT A CLOSE CALL.** Run today, `skills/orchestrate/SKILL.md` §3 computes
+`COMMIT=$(git -C ../nitpick log -1 --format=%h)` → `8c69ee4` and
+`TREE=clean` (the tree *is* clean), and its mid-rebuild guard
+(`find ../nitpick/build/npkc -mmin -2`) passes trivially on a binary seventeen
+hours old. It would have written **`compiler 8c69ee4 / tree clean`** into
+`PIN.md` — a confident, false provenance for a binary from a tree nobody
+committed. **`tree clean` is a statement about the SOURCE tree and says nothing
+about what `build/` was built from**, yet it is the only provenance field §3
+records, and §3 asks for a `binary` line *only* in the `tree dirty` branch —
+which is exactly the branch this case does not take. **This is `PLAYBOOK.md`
+§6's shape found in our own pin procedure: the check's name describes the
+property, its mechanism covers something narrower, and it passes.** The fix §3
+needs: **compare `build/npkc`'s mtime against the commit date of `HEAD` and
+treat *older* as `tree unknown`, requiring the `binary` line on both branches.**
+That comparison is one command and it is what actually caught this.
 
-**AND THE FOUR DISCHARGED STOPS DO NOT INHERIT ACROSS THE PIN.** Their verdicts
-are facts about **`94874ce`**. Two concrete reasons, not general caution:
-**DEF-13 landed AFTER our pin** (verified: `94874ce` is an ancestor of
-`8d49ffe`) and its symptom is *"a zeroed diagnostic and a lost one"* — while
-**O-N11's verdict is an identity COUNT read out of a diagnostic**, measured
-while that defect was present. And **1.5.2b rewrote derives wholesale**
-(D-256…D-259, DEF-15…DEF-18) — while **O-N10 IS a derive defect**, so its
-verdict is two cycles old against machinery rebuilt underneath it. **Re-measure
-at least O-N10 and O-N11**; O-N4 and O-N9 are lower risk and cost seconds now.
+**`npkrt.o` was byte-identical to the pin's at 2026-09-05 13:27** — `build/npkrt.o`
+and `.internal/toolchain/94874ce/npkrt.o` both **55 576 B**, both sha256
+`c9ddbcffd32eccc7787bd71c39ebefd25913170a9fae48de32eb53ca68b2239e` — and the
+compiler session expects it to stay so, since `runtime/npkrt.ll` is untouched
+in 1.5.2c. **That is a measurement with a timestamp, not a licence to skip it.**
+`build/` will be rewritten by the ladder before we pin. Take it again and check
+it; DEF-12 is the precedent for what assuming the runtime half costs.
 
-**SHARPENING THE ABOVE — `build/npkc` DID NOT MERELY COME FROM SOMEWHERE
-UNKNOWN, IT CANNOT HAVE BEEN BUILT FROM `HEAD`.** Measured 2026-09-05 by
-`nitpick-libs-42`, the fourth orchestrator, independently of the notice above
-and of `nitpick-libs-44`'s check. `build/npkc` was written **2026-09-04
-19:42:54**; `HEAD` (`8c69ee4`) was committed **2026-09-05 11:54:03**, *sixteen
-hours later*. So it is a build of some intermediate commit at or before 19:42 on
-the 4th, and **the current tree is not a candidate for what produced it.** This
-changes the question to put to the compiler session: not *"is this a stable
-point to pin"* but *"what commit is this, and is there a stable point to pin at
-all, or should we wait for the running harness to land 1.5.2c."* A reader who
-sees "provenance unknown" may resolve it by asking and then pinning; a reader
-who sees "predates `HEAD` by sixteen hours" knows the answer before asking.
-
-**AND THE HARNESS HAS HOURS LEFT, NOT MINUTES.** `ps -o etime` is
-`[[DD-]hh:]mm:ss`, so the `harness.py --verdicts` run measured at **`16:41` was
-16 minutes 41 seconds old, not 16 hours** — the `nitpick-bc` *session* is ~10 h
-old, but that harness invocation had just started. Against this board's own ~3 h
-figure for a full harness, it finishes around **15:10 on 2026-09-05**. The
-practical consequence is the opposite of what a misread gives: the compiler tree
-is unsafe to pin from **for hours yet**, rather than a run being nearly done.
-*(Recorded because both sessions initially misread the field the same way; the
-board never stated a duration, so this corrects a reading, not a line.)*
-
-**`npkrt.o` IS BYTE-IDENTICAL TO THE PIN'S AS MEASURED AT 2026-09-05 12:2x —
-AND THAT IS A MEASUREMENT, NOT A LICENCE TO SKIP IT.** `build/npkrt.o` and
-`.internal/toolchain/94874ce/npkrt.o` are both **55 576 B** and both sha256
-`c9ddbcffd32eccc7787bd71c39ebefd25913170a9fae48de32eb53ca68b2239e`. The
-instruction below — take it again and check it rather than assume it unchanged —
-**stands unweakened**: `build/` can be rewritten between now and the re-pin, so
-this number belongs to its timestamp and not to the pin. It is recorded with the
-timestamp deliberately, because the runtime half is the one someone might now be
-tempted to skip, and DEF-12 is the precedent for what that costs.
+**Reading `ps -o etime` cost two sessions a factor of sixty.** The field is
+`[[DD-]hh:]mm:ss`, so `16:41` is sixteen minutes, not sixteen hours. Recorded
+because it was misread the same way twice; the compiler session's own timings
+have since replaced our estimates, so nothing now rests on it.
 
 **THE RE-PIN CHECKLIST — assembled 2026-09-05 because none existed and the
 re-pin was being carried as a one-line instruction.** §3 has the general
 procedure; this is what *this* re-pin owes on top of it:
 
-1. **Establish the target commit and the binary's provenance before anything
-   else** — one message to the compiler session (`ListAgents` is the address
-   book; `nitpick-36` is gone, `nitpick-bc` was it on 2026-09-05). Record the
-   answer as a `binary` line in `PIN.md`, as the previous pin did.
+1. ~~**Establish the target commit and the binary's provenance**~~ — **DONE
+   2026-09-05 13:35.** The answer is in the block above: `build/npkc` is a
+   working-tree intermediate of 1.5.2 step 0, the pin point is the 1.5.2c
+   close, and the compiler session sends the identity. **Still owed: write its
+   reply into `PIN.md` as a `binary` line when the pin is taken**, as the
+   previous pin did.
 2. **Do not pin while a harness is running against the tree the binary came
    from**, and do not write into that tree — `library-sessions-write-scope`.
+   Three are running as of 13:27; the notice at ~15:30 is the all-clear.
 3. **Take `npkrt.o` again and check it.** Do not carry the identical-hash
    measurement above forward as an assumption.
-4. **Re-measure O-N10 and O-N11** against the new pin (reasons above); re-run
-   **O-N4** and **O-N9** too — probe 04 now costs ~1.24 s, which is the point
-   of its discharge.
+4. **Re-measure O-N10 and O-N11 against the new pin — and note the compiler
+   session's steers, which change what "correct" looks like for both.**
+   Re-run **O-N4** and **O-N9** too; probe 04 now costs ~1.24 s, which is the
+   point of its discharge.
+   - **O-N11 is now a COMPILE-TIME refusal, not a runtime verdict.** A root
+     with `main` and no `failsafe` is `NITPICK-REACH-003` **at `main`**,
+     whatever the exit code (1.5.1b step 1b), and D-256…D-261 do not touch it.
+     A verdict phrased as an exit code is measuring the wrong thing now.
+   - **O-N10's shape moved with D-258.** A derived body reaches every member
+     *through the trait it derives*, so a payload's type must implement that
+     trait — asked at the **call** of `eq`/`cmp`/`clone` and refused there as
+     `TYPE-017` naming the derive, the parameter and the bound (D-256),
+     **never at the declaration**. A `string` PAYLOAD under the four that bind
+     it (Eq, Ord, PartialOrd, Clone) is **`DERIVE-006` at the derive** — a
+     lending `pick` cannot bind an owning payload — while a `string` FIELD of
+     a struct derives fine through the prelude's four (D-257). `Hash` on an
+     enum is the tag's; `ToString`/`Debug` render the variant name. Every
+     derived diagnostic reports **at the derive's declaration** (D-259), and
+     **a path containing `<derived-` in any output is a compiler defect the
+     compiler session has asked us to report.**
+   - **New surface to probe at the same time (1.5.2c):** a generic enum now
+     derives as a generic struct does, so `Opt<T>` under a derive is legal and
+     `Opt<Point>` compares only if `Point: Eq`, asked at the call.
 5. **Re-record `nitpick-time`'s two DEF-5 transcripts** — an `npkc`
    `NITPICK-REACH-003` refusal replaces the `llc` failure — and note the
    identity count for `case1` is **four**, not six.
-6. **Correct the five comments citing the deleted `src/frontend/list.npk`**
-   (D-239 swept: comments only, no rename needed anywhere), each at its own
-   stream's claim (W-7).
+6. **Correct the stale comments citing the deleted `src/frontend/list.npk`.
+   THE COUNT IS SIX, IN THREE FILES — NOT FIVE IN TWO.** Re-derived
+   2026-09-05 with an instrument that can actually see the library checkouts
+   (see the sweep-blindness block below); the old list was produced by a sweep
+   that could not. **The board's previous list was wrong in both directions.**
+   The six real sites, each fixed at its own stream's claim (W-7):
+
+   | # | Site | What it cites |
+   |---|---|---|
+   | 1 | `nitpick-regex/tests/probe/probe01_pod_inst_array.npk:24` | `src/frontend/list.npk` by path |
+   | 2 | **`nitpick-regex/tests/probe/probe04_inherent_generic_impl.npk:18`** | `src/frontend/list.npk` by path — **a file the old sweep never saw at all** |
+   | 3 | **`nitpick-regex/tests/probe/probe04_inherent_generic_impl.npk:47`** | `list.npk` by basename — **same unseen file** |
+   | 4 | `nitpick-time/tests/probe/probe06_generic_vec.npk:14` | `src/frontend/list.npk` by path |
+   | 5 | **`nitpick-time/tests/probe/probe06_generic_vec.npk:92`** | `list.npk` by basename — **missed by the old sweep** |
+   | 6 | `nitpick-time/tests/probe/probe06_generic_vec.npk:107` | `list_init`, a function the deleted file defined |
+
+   **And two the old list counted that are NOT findings:**
+   `probe06_generic_vec.npk:49` and `:60` reference `List<T>` and D-246/D-247
+   semantically and cite **no deleted path**; the board itself calls `:60`
+   "exactly right". Leave them.
+
+   **The mechanism of the error is the durable part.** The old sweep searched
+   for the token **`List`** while the property is *"cites the deleted
+   `list.npk`"*. Those are different sets: it caught `:107` by accident (that
+   line says `list_init`, not `List`) and **missed every `list.npk` basename
+   citation**. The same board paragraph asserts *"nothing here declares any
+   `list_init`"* while its own count includes the line that names `list_init`
+   — **the two halves of one paragraph contradict each other**, and neither
+   half was re-derived. D-239's substantive conclusion is unchanged and was
+   re-verified: no `struct:List`, no `mod:list`, no `list_push`, no
+   `list_reserve`, so **no rename is required anywhere**; only the citations
+   are stale.
 7. **`probe04b_emission_shape.npk` exists as a 300-row stand-in *because probe
    04 cost 281 s*.** That reason is gone. Keep the file; record its rationale as
    historical rather than current.
-8. **Run `check_refs.py` across all six repositories after the comment
-   corrections, before `git add`**, and gate the commit on it. **It takes one
-   directory and checks only that one** — `python3 skills/check/scripts/check_refs.py .`
-   from the workbench root prints `All clean` having examined **the root
-   alone**. Name each repository (`… check_refs.py nitpick-time`, and so on for
-   all six) or the verdict covers a denominator of one while reading like a
-   sweep. Measured 2026-09-05; this is `PLAYBOOK.md` §6's shape found in the
-   ecosystem's own reference checker.
+8. **Run `check_refs.py` naming EACH repository, after the comment corrections
+   and before `git add`**, and gate the commit on it — **reading the check's
+   own exit status, not a pipeline's.** **It takes one directory and checks
+   only that one:** `check_refs.py .` from the root prints `All clean` having
+   examined the root alone (it does at least name `nitpick-libs` in its
+   output, which is the one thing that keeps it honest). **Ran clean
+   2026-09-05 13:33 over a denominator of seven** — the workbench root, the
+   five library checkouts, and `../nitpick-apps/nitpick-posix` — all exit 0.
+   Two traps live in this item: *if you pipe it, `$?` is the pipe's last
+   command*, which let an ungated commit through on 2026-09-05 (use
+   `${PIPESTATUS[0]}`); and **`check_refs` reports a `tracked-file-missing`
+   finding** as of `7da5c2d`, so an unstaged deletion is a finding rather than
+   a crash — which is the state the mandated pre-`git add` order puts it in.
+
+**A CROSS-REPOSITORY SWEEP RUN FROM THE WORKBENCH ROOT SEES NONE OF THE FIVE
+LIBRARIES, AND SAYS NOTHING ABOUT IT. BOTH OF THIS ECOSYSTEM'S CANONICAL SWEEP
+TOOLS ARE AFFECTED. Measured 2026-09-05 by the fifth orchestrator; this is how
+checklist item 6's site list was found to be wrong.**
+
+Two independent causes land on the same silence:
+
+- **`grep` on this machine is `ugrep` 7.8.4, installed at `/usr/bin/grep`.**
+  `grep --version` says so; `which grep` does not. ugrep honours ignore files
+  in recursive mode, and the workbench's own root `.gitignore` opens with
+  **`/*/`** — it ignores *every* top-level directory, which is exactly how this
+  repository avoids embedding a library as a gitlink. So the ignore rule that
+  makes the workbench correct is the rule that makes its sweeps blind.
+- **`git grep` from the root cannot see a library either**, and for a
+  different reason: each library is a **separate checkout**, so its files are
+  not in this repository's index at all. `git grep -l -i derive -- '*.npk'`
+  from the root returns **nothing**, correctly and uselessly.
+
+**The measurement, one pattern, five tools, same tree:**
+
+| Invocation | `.npk` files matching `derive` |
+|---|---|
+| `grep -rl -i derive --include='*.npk' .` (from the root) | **0** |
+| `git grep -l -i derive -- '*.npk'` (from the root) | **0** |
+| `grep -rl -i derive --include='*.npk' nitpick-time` | 7 |
+| `grep -rl -i derive --include='*.npk' --no-ignore-files .` | **14** |
+| `find . -name '*.npk' -not -path '*/.git/*' -print0 \| xargs -0 grep -l -i derive` | **14** |
+
+**The instrument was commissioned before it was believed:** the two tools that
+see everything were diffed against each other and agree on the same 14 files,
+so 14 is a measurement rather than one tool's opinion.
+
+**Why this is the worst instance of `PLAYBOOK.md` §6's shape yet found here —
+the sixth — and worse than `check_refs .`'s.** A `check_refs .` run at least
+prints the name `nitpick-libs`, so its denominator of one is visible to a
+reader who looks. **A sweep that matches nothing prints nothing at all.** There
+is no verdict to be sceptical of, no count to ask for the denominator of, and
+the output of "swept, no violations" is byte-for-byte the output of "swept
+nothing". Every discipline this workbench has built — *a list of files is
+produced by `git grep`, never by recall*; *ask for the denominator, not the
+verdict* — routes straight through the one failure mode that produces no
+number to interrogate.
+
+**And this project has already been bitten by the same `.gitignore` line
+once.** That file's own comment says each workbench directory must be
+un-ignored by name *"or it vanishes silently — which is exactly what happened
+on the first attempt to add the plugin."* The note was written about tracking;
+nobody carried it across to searching.
+
+**What it actually invalidated, and what it did not.** Checklist item 6's site
+list: **wrong**, three sites missed including two in a whole file
+(`nitpick-regex/.../probe04_inherent_generic_impl.npk`) that no previous sweep
+had ever seen. D-248's *"swept all six repositories: zero violations"*:
+**re-verified and correct** — 0 violations over a stated denominator of **87**
+`.npk` files, a denominator the original claim never gave. Every other
+cross-repository count on this board was produced before this was known and
+**should be re-derived at the sweep that next touches it**, not trusted.
+
+**THE RULE, and it is cheap: a sweep across libraries is run per repository by
+name, or with `find … -print0 | xargs -0 grep`, or with `--no-ignore-files`.
+Never with a bare `grep -r` or `git grep` from the workbench root.** State the
+denominator with every result. A sweep that reports no matches must also report
+how many files it opened, or it has reported nothing.
 
 **Why the re-pin was NOT done at this stopping session:** it would leave a fresh
 toolchain with **no verified measurement against it**, discarding the one this
 session paid for. Everything verified today — O-N4, O-N9, O-N10, O-N11 — was
 measured against **`94874ce`**, and that is the pin those verdicts belong to.
-**The next session re-pins as its first action** (§3), and **takes `npkrt.o`
-again and checks it rather than assuming it unchanged** — DEF-12 already caught
+~~**The next session re-pins as its first action**~~ — **superseded 2026-09-05:
+there is nothing to pin yet.** The re-pin is now *scheduled*, not owed on
+sight: wait for the compiler session's 1.5.2c landing notice (expected ~15:30
+on 2026-09-05), then run §3 with the checklist above. **Take `npkrt.o` again
+and check it rather than assuming it unchanged** — DEF-12 already caught
 this ecosystem once assuming the runtime half was identical.
 
 **D-239 — step 5b moved `List<T>` and its functions into the PRELUDE, deleted
 `src/frontend/list.npk` and its 46 imports, and a program's own `List` is now
 refused by the loader. SWEPT ACROSS ALL FIVE LIBRARIES: NO COLLISION.** Nothing
 here declares a `struct:List`, a `mod:list`, or any `list_init` / `list_push` /
-`list_reserve`. Five occurrences of the token exist and **every one is a
-comment** describing the compiler's `List<T>` as the shape our containers are
-modelled on: `nitpick-time/tests/probe/probe06_generic_vec.npk` lines 14, 49, 60
-and 107, and `nitpick-regex/tests/probe/probe01_pod_inst_array.npk:24`. **No
-rename is required anywhere.** The residue is that those five comments cite
-`src/frontend/list.npk`, **which no longer exists** — stale citations to correct
-at the re-pin, each at its own stream's claim (W-7). Note
+`list_reserve` — **re-verified 2026-09-05 over a stated denominator of 87 `.npk`
+files, so this conclusion stands and no rename is required anywhere.** ~~Five
+occurrences of the token exist~~ — **that count was wrong, and so was the site
+list built from it.** The property is *"cites the deleted `list.npk`"*, the old
+sweep matched the token *`List`*, and the two sets differ: **six sites in three
+files**, one of them a file no earlier sweep had ever seen. The corrected table
+is checklist item 6 above; the reason the sweep could not see it is the
+sweep-blindness block above. Every one is still **a comment**, so the residue is
+stale citations to correct at the re-pin, each at its own stream's claim (W-7).
+Note
 `probe06_generic_vec.npk:60` already says D-247 makes *the COMPILER's* `List<T>`
 owning, which is exactly right and consistent with RX-126.
 
@@ -188,7 +299,7 @@ stripping inline spans because `` `RX-126` `` is how a real citation is written
 here. The rule that implies — verbatim output belongs in a fence — is item 5's
 business, not a check's.
 
-**STOPPED 2026-09-04 13:40 at the author's request, at a clean stop**, to conserve a weekly quota being spread across several sessions. Both streams closed their subcycles and both were independently VERIFIED PASS. **Resume points:** s1 `nitpick-regex` **0.0.4** (`src/core/`), s2 `nitpick-time` **0.0.1** (the skeleton) — both planned, unblocked, and NOT dispatched. Stream 3 has still never run. The questions table has **four** entries for the author, none blocking — a third was added 2026-09-05 on the write guard, a fourth on width. **But the first action is neither resume point: it is settling the re-pin with the compiler session**, per the re-pin checklist above. The commit and binary the 1.5.1b landing notice names are both stale, and `build/npkc` predates the compiler's `HEAD` by sixteen hours.
+**STOPPED 2026-09-04 13:40 at the author's request, at a clean stop**, to conserve a weekly quota being spread across several sessions. Both streams closed their subcycles and both were independently VERIFIED PASS. **Resume points:** s1 `nitpick-regex` **0.0.4** (`src/core/`), s2 `nitpick-time` **0.0.1** (the skeleton) — both planned, unblocked, and NOT dispatched. Stream 3 has still never run. **UPDATED 2026-09-05 by the fifth orchestrator: the re-pin question that stood in front of both resume points is ANSWERED and the answer is to wait until ~15:30** (see the block at the top). Width is **1**, so one stream runs; the board recommends **s2 `nitpick-time` 0.0.1**, whose gate is satisfied — 0.0.0 is `DONE` and the probes it names (01, 04, 06) have recorded verdicts — **but it is deliberately NOT dispatched before the pin lands**, because step 4 of that subcycle *pins the compiler by commit in CI* (P-10). Dispatching now would write the stale `94874ce` into a new CI workflow and guarantee an immediate bump commit, and steps 2 and 5 accept against a compiler we are about to discard. That is the same argument the previous session used for not re-pinning at a stopping point — a measurement belongs to a pin — pointed the other way. The questions table has **four** entries; question 4 (width) is answered, three stand.
 
 ---
 
