@@ -69,6 +69,10 @@ Skipped in `tick` mode.
 ```bash
 COMMIT=$(git -C ../nitpick log -1 --format=%h)
 TREE=$([ -z "$(git -C ../nitpick status --porcelain)" ] && echo clean || echo dirty)   # dirty: the label is the nearest commit, not the provenance
+# PROVENANCE IS NOT TREE STATE. `clean` describes the SOURCE; it says nothing about
+# what build/ was built from. A binary OLDER than HEAD's commit cannot be a build of it.
+BIN_T=$(stat -c %Y ../nitpick/build/npkc); HEAD_T=$(git -C ../nitpick log -1 --format=%ct)
+[ "$BIN_T" -ge "$HEAD_T" ] || TREE=unknown   # build/ predates HEAD: ASK, do not label
 [ -z "$(find ../nitpick/build/npkc -mmin -2)" ] || echo "NOT YET"   # mid-rebuild: do something else, retry
 PIN=.internal/toolchain/$COMMIT && mkdir -p "$PIN"
 cp ../nitpick/build/npkc ../nitpick/build/npkrt.o "$PIN"/
@@ -80,17 +84,36 @@ printf 'compiler %s\nllvm %s\npinned %s\ntree %s\n' "$COMMIT" "$(llvm-config --v
 
 Then the board's header — `**Toolchain:** <commit> · .internal/toolchain/<commit>/ · pinned <date>` —
 committed as `board: pin toolchain <commit>`, and a `pin <commit>, tree
-clean|dirty` line in `RECORD.md`. **`tree dirty`** means the binary was built
-from uncommitted changes: its label is the nearest commit, not its
+clean|dirty|unknown` line in `RECORD.md`. **`tree dirty`** means the binary was
+built from uncommitted changes: its label is the nearest commit, not its
 provenance, and nothing can tell them apart afterwards. Prefer a clean
 moment when one is near; when none is — the compiler session works for
 hours at a time — pin anyway and carry the word, because a fixed binary
 with a recorded hash is still what W-18 wants. A dirty tree is not by
 itself a dirty binary — `build/` may predate the edits — and the session
-working the compiler tree is the one that knows: with `tree dirty`, ask it
-over `SendMessage` (the busy `nitpick-…` peer in `ListAgents`) whether
-`build/` was written since the edits began, and record its answer as a
-`binary` line in `PIN.md`. Copying *out* of the compiler tree is a read;
+working the compiler tree is the one that knows.
+
+**`tree unknown` is the third case, added 2026-09-05 after §3 was measured
+against a real tree and would have written a confident falsehood.** It fires
+when `build/npkc` is **older than `HEAD`'s commit**, which means the binary
+cannot be a build of `HEAD` whatever `git status` says. **`clean` is a
+statement about the SOURCE tree and says nothing about what `build/` was built
+from**, and the mid-rebuild guard does not help: `find -mmin -2` passes
+trivially on a binary seventeen hours old. On 2026-09-05 the compiler tree was
+genuinely clean at `8c69ee4` while `build/npkc` was a **working-tree
+intermediate of a commit that never existed on `main`** — the old procedure
+would have recorded `compiler 8c69ee4 / tree clean`. Both controls were run
+when the check was added: it fires on that real case and stays silent on a
+binary newer than `HEAD`.
+
+**With `tree dirty` OR `tree unknown`, ask before you pin** — over
+`SendMessage`, to the busy `nitpick-…` peer in `ListAgents` — what `build/`
+was built from and whether there is a stable point to pin at all, and record
+the answer as a **`binary` line in `PIN.md`**. Requiring that line in only one
+of the two branches is what let the gap exist; `unknown` is precisely the case
+that cannot be resolved by inspection, because there may be **no commit to name
+the binary by**. The right answer is sometimes *wait*. Copying *out* of the
+compiler tree is a read;
 the guard allows it. The **absolute** paths go to
 workers in the prompt; the board carries the relative one, because it is
 tracked and public.

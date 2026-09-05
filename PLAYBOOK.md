@@ -725,6 +725,70 @@ and note the specific gap: nothing in this workbench detects *deleted content*.
 Replace an exact known string rather than a span to the next blank line, and
 when a span must be used, print what it consumed.
 
+**`grep -r` AND `git grep` FROM THE WORKBENCH ROOT BOTH SEE ZERO LIBRARY FILES,
+AND BOTH REPORT IT AS SILENCE.** Measured 2026-09-05, on `derive` in `*.npk`
+across the tree: `grep -rl --include='*.npk' .` from the root → **0**;
+`git grep -l -- '*.npk'` → **0**; the same grep aimed at `nitpick-time` → 7;
+`grep -r --no-ignore-files` → **14**; `find … -print0 | xargs -0 grep -l` →
+**14**. Two independent causes converge on one silence:
+
+- **`grep` on this machine is `ugrep` 7.8.4, installed at `/usr/bin/grep`.**
+  `grep --version` reveals it; `which grep` does not. ugrep honours ignore
+  files in recursive mode, and this repository's root `.gitignore` opens with
+  **`/*/`** — every top-level directory ignored, which is precisely how the
+  workbench avoids embedding a library as a gitlink. **The rule that makes the
+  repository correct is the rule that makes its sweeps blind.**
+- **`git grep` from the root cannot see a library either**, for an unrelated
+  reason: each library is a *separate checkout*, so none of its files are in
+  this repository's index.
+
+**This is the worst form of the name-versus-mechanism shape, because it
+produces no output to be sceptical of.** A `check_refs .` run at least prints
+the name `nitpick-libs`, so a reader can see the denominator is one. **A sweep
+that matches nothing prints nothing**: *"swept, no violations"* and *"swept
+nothing"* are byte-identical, and there is no count to demand the denominator
+of. Both of this workbench's own disciplines — *a list of files is produced by
+`git grep`, never by recall*, and *ask for the denominator, not the verdict* —
+route straight through it.
+
+**It has already cost a real site list.** The stale citations to the deleted
+`src/frontend/list.npk` were recorded as five sites in two files; re-derived
+with a working instrument they are **six in three**, including two in a file no
+sweep had ever opened. The old sweep matched the token `List` while the
+property was *"cites the deleted `list.npk`"* — so it caught one line by
+accident and missed every basename citation. **And the `.gitignore` that causes
+this documents the same failure once already**, in its own comment: a directory
+must be un-ignored by name *"or it vanishes silently — which is exactly what
+happened on the first attempt to add the plugin."* That note was about
+tracking. Nobody carried it across to searching.
+
+**DO NOT GENERALISE THE RATIO — GENERALISE THE ASYMMETRY. The compiler
+repository shows the same mechanism with the opposite consequence, and the raw
+numbers there look identical to a bug.** Measured independently 2026-09-05:
+from `../nitpick`'s root a plain sweep sees **19** `.npk` while
+`--no-ignore-files` sees **76**, a 75% gap that reads exactly like ours. It is
+not one. **All 57 of the difference are under `.internal/wt`** — live worktrees,
+which are *copies* of the source — and excluding duplicate checkouts from a
+source sweep is correct. `src/` itself is fully visible: 81 either way, 80
+tracked. **Here the ignored directories ARE the subject matter; there they are
+duplicate copies of it.** Same mechanism, opposite meaning, and only the first
+is a defect. *"The compiler has a 75% blind spot"* would have been true as
+arithmetic and false as a claim.
+
+**Where it does bite over there**, and it is worth knowing rather than assuming:
+a sweep meaning *"is this fix present in all three in-flight worktrees?"* would
+silently see none of them, because those are exactly the ignored paths. The
+question decides whether the ignore is right: **ask whether the ignored
+directories are copies of your subject or instances of it.**
+
+**THE RULE.** A sweep spanning libraries is run **per repository by name**, or
+with `find … -print0 | xargs -0 grep`, or with `--no-ignore-files`. Never a
+bare `grep -r` or `git grep` from the workbench root. **Commission the
+instrument before believing it** — two independent tools agreeing on the same
+file set is a measurement; one tool's silence is not. And **state the
+denominator with every sweep result**: a sweep reporting no matches must also
+report how many files it opened, or it has reported nothing.
+
 ## 7. Repository conventions
 
 **`.gitignore`** — build output, `*.o`, `*.ll` (negating any committed
