@@ -677,6 +677,102 @@ no matches. **Use `/usr/bin/time -o <file>` and redirect; capture `$?`
 immediately, on its own line, with nothing between.** A pipeline is for
 looking; it is never for measuring.
 
+**FOURTH OCCURRENCE, AND THE ONE THAT SETTLES WHAT KIND OF PROBLEM THIS IS: the
+0.0.3 worker hit it in its FIRST measurement, in a dispatch whose text told it
+not to, in the paragraph it was working from.** `$NPKC --help 2>&1 | head -30;
+echo $?` reported **0**; redirected with the status on its own line the same
+command is **2** — re-confirmed by the orchestrator. Four sessions, four
+warnings, four violations, each by someone who had just read the warning.
+
+**Stop treating this as a thing to remember.** A rule violated by the person
+reading it is not under-stated, it is **mis-formed**: the habit of appending
+`| head` to look at output is older and faster than any instruction, and it
+fires before the rule is recalled. **The fix is mechanical, and the check
+already exists in this ecosystem's own vocabulary — pair every status with the
+artefact it should have produced**, because a pipeline's borrowed `0` is
+falsified the moment you ask what it wrote. Every one of the four was caught
+that way and none by recall. **Where a harness records statuses, it should
+refuse a captured status that has no artefact assertion beside it**, which
+converts the rule from something a session must remember into something a run
+cannot omit.
+
+---
+
+**AN EXHAUSTIVE TEST THAT RETURNS EARLY EXITS 0 EXACTLY LIKE ONE THAT RAN — AND
+NOTHING ELSE DISTINGUISHES THEM EITHER.** Found by `nitpick-time` 0.0.3 and
+worth more than its size suggests, because it is `§6`'s shape in the one place
+this ecosystem had assumed it was safe: **the test program itself.** A probe
+that sweeps a domain and returns early — a `break` on a boundary, a loop bound
+computed one short — exits **0**, writes its artefact, and takes **no less wall
+time worth noticing**. Every instrument this workbench has built asks for an
+exit code and an artefact; both are present and both are correct. *"Swept the
+domain and found nothing"* and *"swept three of it"* are once again
+byte-identical.
+
+**The program is the only witness, so make it testify: declare the domain in
+the header and require the program to PRINT THE COUNT IT VISITED**, with the
+harness comparing that against the declaration and failing on a mismatch. Four
+lines of harness. `nitpick-time`'s self-check case 7 is built on exactly this
+and its red message names **both** numbers — *"swept 3 of the 10 its header
+declares"*. **Any library whose strongest claim rests on a sweep needs it**,
+and every library here has one.
+
+---
+
+**A CHECK OVER SOURCE MUST NOT READ PROSE, AND THE FILE MOST LIKELY TO BREAK IT
+IS THE ONE THAT DOCUMENTS THE RULE.** The module explaining a prohibition names
+the prohibited thing while explaining it: `src/host/host.npk` says `mono_now()`
+and `src/lib.npk` says `host_now_utc`, both in comments, so a grep-shaped
+purity check **fails the repository on its own documentation**. The failure is
+maximally confusing because the flagged line is the line arguing for the rule.
+**Blank comments and string literals before scanning — and make the CLEAN
+CONTROL a file where the banned form appears in a comment**, so the exemption
+is proven rather than assumed. A purity check that passes only because nothing
+in the tree documents itself has not been commissioned; it has been lucky.
+
+---
+
+**A NAMED-EXEMPTION LIST IS A STATEMENT ABOUT ONE TREE.** The both-directions
+diff that makes such a list safe — every name still present, every present name
+still named — is correct for the repository it describes and **fires on every
+run against any other tree**. That is not hypothetical: a self-check that
+points the runner at scratch trees does it constantly. **Scope the list to the
+repository it describes**, and have the check say which tree it is asserting
+about.
+
+---
+
+**THE COMPILER'S FRONTEND TOOLS ARE `.npk` SOURCE, NOT BINARIES — SO A HARNESS
+PLAN THAT NAMES THEM CANNOT BE EXECUTED AS WRITTEN.** `tools/parse_check.npk`
+imports twenty frontend modules and `tools/check.npk` the whole driver
+pipeline. *"Build the compiler's tools once per run from the pinned checkout"*
+therefore means **building the compiler**, from a tree that is routinely ahead
+of the pin. **Any sibling whose harness plan names those tools has a step that
+will not run**, and this is the third planning defect of the same family found
+in three consecutive subcycles (TM-114's shared stage table, TM-117's assumed
+separate compilation, this).
+
+**The substitute, and it is better than the thing it replaces:** `npkc` has no
+parse-only mode, but **a diagnostic's CODE FAMILY answers the question** — LEX
+and PARSE are the parse phase and every other family is later, so **a file
+refused at TYPE, BORROW or REACH necessarily parsed.** No extra tool, no build,
+and it reads the compiler's own classification rather than a second
+implementation of it.
+
+---
+
+**`NITPICK-REACH-003` LISTS THE IDENTITIES OWED, WHICH MAKES THE COMPILER AN
+ORACLE FOR ANY LIBRARY'S ARM TABLE.** Compile a program that imports one module
+and has no `failsafe`; the refusal names **every arm a consumer of that module
+will owe**. That is the mechanically checkable form of *"and no more"* — the
+half no build can catch, because **a superset of the required arms compiles and
+runs perfectly**. `nitpick-time` 0.0.3 verified its bills in both directions
+against this on three specimens (floor 4; `arms_lib` 5; `calc_lib` 8, which is
+S-4b's predicted "four extra arms" measured rather than argued). **Remember the
+count is PER PROGRAM** — the same diagnostic names four identities for one
+fixture and six for another — so read each program's own bill and never
+generalise one.
+
 ---
 
 **READ THE COMPILER AT THE PIN, NEVER IN ITS WORKING TREE — AND THE GAP IS NOW
