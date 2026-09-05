@@ -3081,3 +3081,46 @@ same way.** O-N16 was catalogued rather than raised and was closed upstream the
 same day regardless; S-38 was raised and became a decision item with a
 recommendation inside twenty minutes. Neither cost the compiler session anything
 it minded, and the second produced work the author now gets to schedule.
+
+### Released at a clean stop for handoff to `nitpick-libs_s1` — 2026-09-05 16:2x
+
+**Released rather than dispatched, by the author's decision.** The re-pin was
+done and all four stops re-measured, so `nitpick-time` 0.0.1 was genuinely
+dispatchable at width 1 — its gate is satisfied, and the one reason to hold it
+(step 4 pins the compiler by commit in CI, and the pin was stale) had just been
+removed. It was put to the author with the two facts that made it his call
+rather than the orchestrator's: **a subagent dies with the session that spawned
+it**, so a worker dispatched into a session about to hand off loses its output;
+and quota is a constraint he is actively managing, having parked the
+`claud-skills-devTeam` pair for exactly that reason. He chose the clean handoff.
+**No worker was dispatched and no claim moved.**
+
+**State at release.** Pin `0dfddac`, `sha256sum -c` passing, `PIN.md` carrying a
+full `binary` line. Every repository committed, pushed and level with
+`origin/main`; the workbench likewise. Both `CLAIMED` rows stand — W-7 ownership
+survives a session gap — with their next subcycles PLANNED and no live agent, so
+§4 recovery resolves to "dispatch the next subcycle" with nothing to recover.
+Marker removed first, then the writer line set to `none`.
+
+**What `nitpick-libs_s1` inherits as its first item.** `nitpick-time` 0.0.1,
+carrying four things that accrued to that repository today and belong to its
+stream under W-7: the two DEF-5 transcripts re-recorded against the measured
+after-value (`NITPICK-REACH-003`, **four** identities); checklist item 6's three
+stale `list.npk` citations in `probe06_generic_vec.npk` (lines 14, 92, 107);
+`probe09b`'s undocumented `TZ=Europe/Kiev` precondition, on
+`probe09_environ_split`'s self-announcing pattern; and the board's existing
+0.0.1 residue — `expect-` headers for the three `missing_failsafe` cases and a
+sweep that asserts its denominator. Checklist items 7 and 8 remain; item 6's
+other three sites are `nitpick-regex`'s and wait for stream 1's claim.
+
+**One decision sits with the author and is not ours: S-38.** The compiler
+session has reported it to him directly as well.
+
+**What this session would tell its successor if it could only say one thing.**
+Every finding today came from the same move: **running the command instead of
+writing the sentence.** The sweep blindness, the six-not-five citations, the §3
+mislabelling, the prelude constant, the `probe09b` precondition, and the one
+method error — `${PIPESTATUS[0]}` after a command substitution reading `tail`'s
+status — were each one command away, and the ones that were caught were caught
+because somebody ran it. **The tell, every time, was a claim standing where no
+command had been.**
