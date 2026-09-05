@@ -169,6 +169,47 @@ and not yet pushed**, so **`0dfddac` remains our pin and is still an ancestor of
 their `main`**). **Its step 2 moves our canary**, and the landing notice carries
 the before and after. Nothing here waits on it.
 
+**1.5.2d's STEP STATUS, as of 2026-09-05 evening:** step 1 (the frontend's
+three scaling defects) **committed and under its harness**; step 2 (the prelude
+trim) **implemented and passing both runners' self-checks**, about to go under
+its harness; **the allowlist fix (DEF-21, below) is the step after**; then docs
+and the landing notice. **We re-pin when it lands, then re-measure — in that
+order**, because a number taken against the old pin proves nothing about the
+new one.
+
+**DEF-21 — THE ALLOWLIST FINDING WAS ACCEPTED, AND IT WAS NOT KNOWN.** Raised
+by this workbench 2026-09-05 under the lifted constraint and taken up the same
+evening as the compiler's **DEF-21**, carrying our measurement with
+attribution, **with a harness of its own** as a step in 1.5.2d. **The fix is
+exactly the model our arithmetic implied: the allowlist is the runtime's
+EXPORTS** — the non-internal `define`s plus the `module asm`'s `.globl` names —
+**not every `define`.** Both halves move: the **57** internal defines leave the
+list, so a program naming one is refused *at scan time by name* as D-206 meant
+rather than at `ld.lld`; and the **2** `.globl` names enter it, since
+`npk_clone_raw` was **a false refusal of a legal program**, the worse half.
+They are checking whether the harness's `check_zero_dependency` builds its list
+the same way and fixing it in the same step, and `BUILD_REFERENCE` §4.1's prose
+will say *exports*.
+
+**What made it a finding rather than a report, in their words, is the
+arithmetic** — 109 + 2 = 111 identified the object as the authority and showed
+the list had been built from the wrong side of it. **A measurement that pins
+down the mechanism is worth more than a count that only shows something is
+off**, and the difference cost one extra command.
+
+**SEPARATE COMPILATION IS AN OPEN OFFER, DELIBERATELY NOT TAKEN UP YET.** That
+session confirmed P-16's failure is not a compiler defect — *a program is one
+object plus the runtime; a library is consumed as source through the module
+graph* — and offered to put **separate compilation of library objects** to the
+author as a design decision with its own row, with a recommendation, **if the
+libraries need it. This workbench's answer is NOT YET, and the reason is a
+number about to change.** The entire cost of the one-object model is that every
+program re-emits the whole prelude, and step 2 removes ~94% of exactly that.
+**Asking for a design change now would rest the case on a measurement we are
+days from invalidating.** Re-pin when 1.5.2d lands, re-measure the 30-program
+spread, and decide against real numbers. **If the case survives the trim, raise
+it then; the offer is on the record and does not expire.**
+
 **THE RE-PIN CHECKLIST — assembled 2026-09-05 because none existed and the
 re-pin was being carried as a one-line instruction.** §3 has the general
 procedure; this is what *this* re-pin owes on top of it:
@@ -438,10 +479,14 @@ with its own before/after. **One canary is kept:
 `nitpick-time/tests/probe/probe11d_floor_only.npk`, whose `.ll` is 845 282 B at
 `0dfddac`** — that is the number to watch, and a change in it is the signal.
 
-**THE CANARY IS NOW EXPECTED TO MOVE, AND WHEN IT DOES THAT IS SUCCESS RATHER
-THAN A REGRESSION.** 1.5.2d is in flight to shrink exactly this number, so the
-next session to see 845 282 change must not read it as a defect — read it as
-the landing. `nitpick-compiler_s0` sends the before/after at that point and has
+**THE CANARY IS NOW EXPECTED TO MOVE, AND WE KNOW ROUGHLY WHERE TO — WHICH
+MAKES IT A REAL TEST RATHER THAN A TRIPWIRE.** `nitpick-compiler_s0` measured
+1.5.2d step 2 on the same probe on their side: **845 282 B → about 50 000 B**,
+a ~94% cut. So the next session must not read the change as a defect — read it
+as the landing — **and must check the VALUE, not merely that it moved.** A drop
+to ~50 000 confirms the trim; **a drop to something else, or no drop at all, is
+the finding**, and it is one we could not have stated yesterday because we had
+no expected value. **An expected number turns a canary into a prediction.** `nitpick-compiler_s0` sends the before/after at that point and has
 asked for our 30-program re-measure afterwards, **which we should run**: it is
 the only per-program evidence either side has, and re-running a measurement we
 already know how to take is the cheapest confirmation available. **Re-pin
