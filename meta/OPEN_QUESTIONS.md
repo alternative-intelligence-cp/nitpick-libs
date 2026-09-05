@@ -110,9 +110,14 @@ file existed — the check works.
 - **O-N16 — DEF-8's landing note states a premise about this workbench that is
   false, and reaches the right conclusion by the wrong route.** Raised by
   `nitpick-regex` 0.0.3, 2026-09-04, against the pinned `94874ce`; its local id
-  is also `O-N16`. **CATALOGUED, NOT RAISED** — the compiler session is near its
-  usage limit and its fix batch is closing; this is registered so the batch can
-  be reconstructed when the quota resets. **This is a defect in a NOTE, not in
+  is also `O-N16`. ~~**CATALOGUED, NOT RAISED**~~ — **the catalogue-don't-raise
+  constraint was LIFTED by the author on 2026-09-05 ("raise as found"), and
+  O-N16 itself is the evidence that cataloguing bought nothing: the compiler
+  session closed it upstream the same day it was catalogued.** New defects go
+  to that session as they are found, with their measurements and with W-27's
+  statement of what they block. The original reason recorded here — the
+  compiler session was near its usage limit and its fix batch was closing — had
+  expired. **This is a defect in a NOTE, not in
   the compiler**, and it is registered because the note is a reason a later
   reader would rely on. The compiler's `meta/roadmap/OPEN_DECISIONS.md` closes
   DEF-8 with *"Blocks nothing of the workbench's: their recipes pass values, not

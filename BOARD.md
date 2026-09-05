@@ -259,6 +259,20 @@ Note
 `probe06_generic_vec.npk:60` already says D-247 makes *the COMPILER's* `List<T>`
 owning, which is exactly right and consistent with RX-126.
 
+**CATALOGUE-DON'T-RAISE IS LIFTED. Ruled by the author 2026-09-05: "raise as
+found."** Defects met in library work now go to the compiler session **as they
+are found, with their measurements**, rather than being held for a batch. The
+constraint's original rationale — a closing fix batch on the compiler side —
+had expired, and two orchestrators in a row declined to lift it on their own
+judgment, which is the right instinct and is also how an expired rule survives
+for days. **It was resolved by asking.** The evidence pointed the same way
+before the ruling: **~~O-N16~~ was catalogued rather than raised and the
+compiler session closed it the same day anyway**, so cataloguing bought nothing
+there; and that session has since **asked us explicitly** to report one class on
+sight — any output path containing `<derived-`. Raising still means what W-27
+made it mean: **state what the defect blocks**, what it merely inconveniences,
+and what it does not touch. Sequencing remains the author's.
+
 **~~O-N16~~ — CLOSED UPSTREAM 2026-09-04, same day it was catalogued.** The
 compiler session corrected DEF-8's closing sentence in its `OPEN_DECISIONS.md`
 §2f to give the reason rather than the false premise — our recipes *do* pass
