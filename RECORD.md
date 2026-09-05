@@ -2652,3 +2652,80 @@ had just been given, which is the entry worth keeping.
   board question 3, because the two findings pull in opposite directions — one
   write form is unwatched, one read form is refused — and a fix should address
   both or it will trade one for the other
+
+### The fourth orchestrator onboards, and two sessions nearly wrote the same paragraph — 2026-09-05
+
+`nitpick-libs-42` stood up as successor to `nitpick-libs-44` for a handoff, was
+told to onboard and stand down without taking the lock, and did stand down —
+except for this one bounded commit, taken because the board was carrying an
+instruction that had gone dangerous and the outgoing session closed before it
+could receive the corrections.
+
+- **THE NEAR-COLLISION IS THE PART WORTH KEEPING.** Both orchestrators
+  independently judged that the stale re-pin target had to be corrected, and
+  both began editing **the same paragraph of `BOARD.md` at the same time**. The
+  outgoing session committed `62ad168`; the incoming session had an uncommitted
+  `Edit` to the same block. **Nothing in this workbench detected the overlap** —
+  `BOARD.md`'s `Workbench writer:` line read `none` throughout, so the guard
+  permitted both, exactly as its known §2.1 defect predicts. What caught it was
+  an **editing tool warning that the file had changed on disk**, which is a
+  property of the harness and not of the workbench. The incoming session
+  discarded its own edit rather than reconcile two versions of one paragraph.
+  **The lock's failure mode is not two writers fighting; it is two writers
+  agreeing, arriving at the same conclusion, and silently duplicating.** A board
+  line reading `none` is an invitation to exactly this whenever a handoff
+  overlaps
+- **three deltas measured independently and added on top of `62ad168`**, which
+  had already recorded the compiler's move to `8c69ee4` and the changed binary:
+  - **`build/npkc` cannot have been built from `HEAD`, which is stronger than
+    "provenance unknown".** It was written 2026-09-04 19:42:54; `HEAD` was
+    committed 2026-09-05 11:54:03, sixteen hours later. The question to put to
+    the compiler session changes shape accordingly — not *is this stable to
+    pin*, but *what commit is this, and is there a stable point at all*
+  - **`npkrt.o` is byte-identical to the pin's**, both 55 576 B and both sha256
+    `c9ddbcff…2239e`, measured 2026-09-05. Recorded **with its timestamp**,
+    because the standing instruction to take it again and check it is unweakened
+    and this is the half someone would now be tempted to skip
+  - **`ps -o etime` is `[[DD-]hh:]mm:ss`, so the harness reading `16:41` was 16
+    minutes old, not 16 hours.** Both sessions misread it the same way at first.
+    The consequence inverts: the compiler tree is unsafe to pin from for hours
+    yet, rather than a run being nearly finished. **A unit misread makes a
+    number wrong by a factor of sixty while it still looks like a measurement**
+- **the re-pin checklist now exists**, eight items on `BOARD.md`, assembled
+  because the re-pin had been carried as a one-line instruction across three
+  sessions and no session had ever written down what it owed
+- **AND WRITING ITEM 8 CAUGHT A NINTH INSTANCE OF §6's SHAPE, THIS TIME IN THIS
+  ECOSYSTEM'S OWN REFERENCE CHECKER.** The item said "run `check_refs.py` across
+  all six repositories". Asked for its **denominator** rather than its verdict —
+  the discipline the outgoing session named as the finding it would most hate to
+  see missed — `check_refs.py .` from the workbench root prints
+  `nitpick-libs  clean` / **`All clean`** having examined **one** repository.
+  It takes a single directory. So the sweep an orchestrator believes it ran
+  covers a denominator of one, and the word "All" is doing work the mechanism
+  does not support. The checklist item now says to name each repository. **The
+  check was run before this commit and is honest for it** — only root files
+  changed — but it would have been silently insufficient the moment the D-239
+  comment corrections landed in two library trees, which is precisely when item
+  8 is meant to fire
+- **claims checked rather than assumed**, which is what §4 asks after a session
+  restart: `nitpick-regex` at `91657eb` and `nitpick-time` at `1c43872`, both
+  trees clean, both level with `origin/main`, both matching the commits the
+  board names. `CLAIMED` is *ownership* and persists across a session gap by
+  design (W-7); what makes a claim stale for dispatch is an in-flight row with
+  no live agent, and both rows already read their next subcycle as `PLANNED`
+  and not dispatched. So recovery resolves to "dispatch the next subcycle" with
+  nothing to recover
+- **width put to the author as question 4**, recommending **1** for the next
+  session and a return to 2 when quota recovers — the dial turned down, not a
+  change of plan. Workers stay on `claude-opus-5`; verifiers stay on the small
+  model
+- **the lock was taken and released inside this single commit**, marker written
+  and removed, `Workbench writer:` reading `none` before and after — the same
+  pattern the third orchestrator used twice on 2026-09-04, and recorded here for
+  the same reason: the net state hides the event
+- **written through `Edit` rather than a heredoc, deliberately.** This harness's
+  standing instruction prefers heredocs and `sed`; board question 3 records that
+  the write guard cannot judge an interpreter heredoc. Choosing the judged form
+  for a board edit costs nothing and is the only way the guard sees the write at
+  all. It is not a fix — the fix is the author's call — but a session need not
+  route its own writes through the unwatched path while waiting for one

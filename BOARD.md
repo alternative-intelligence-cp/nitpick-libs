@@ -60,6 +60,72 @@ while that defect was present. And **1.5.2b rewrote derives wholesale**
 verdict is two cycles old against machinery rebuilt underneath it. **Re-measure
 at least O-N10 and O-N11**; O-N4 and O-N9 are lower risk and cost seconds now.
 
+**SHARPENING THE ABOVE — `build/npkc` DID NOT MERELY COME FROM SOMEWHERE
+UNKNOWN, IT CANNOT HAVE BEEN BUILT FROM `HEAD`.** Measured 2026-09-05 by
+`nitpick-libs-42`, the fourth orchestrator, independently of the notice above
+and of `nitpick-libs-44`'s check. `build/npkc` was written **2026-09-04
+19:42:54**; `HEAD` (`8c69ee4`) was committed **2026-09-05 11:54:03**, *sixteen
+hours later*. So it is a build of some intermediate commit at or before 19:42 on
+the 4th, and **the current tree is not a candidate for what produced it.** This
+changes the question to put to the compiler session: not *"is this a stable
+point to pin"* but *"what commit is this, and is there a stable point to pin at
+all, or should we wait for the running harness to land 1.5.2c."* A reader who
+sees "provenance unknown" may resolve it by asking and then pinning; a reader
+who sees "predates `HEAD` by sixteen hours" knows the answer before asking.
+
+**AND THE HARNESS HAS HOURS LEFT, NOT MINUTES.** `ps -o etime` is
+`[[DD-]hh:]mm:ss`, so the `harness.py --verdicts` run measured at **`16:41` was
+16 minutes 41 seconds old, not 16 hours** — the `nitpick-bc` *session* is ~10 h
+old, but that harness invocation had just started. Against this board's own ~3 h
+figure for a full harness, it finishes around **15:10 on 2026-09-05**. The
+practical consequence is the opposite of what a misread gives: the compiler tree
+is unsafe to pin from **for hours yet**, rather than a run being nearly done.
+*(Recorded because both sessions initially misread the field the same way; the
+board never stated a duration, so this corrects a reading, not a line.)*
+
+**`npkrt.o` IS BYTE-IDENTICAL TO THE PIN'S AS MEASURED AT 2026-09-05 12:2x —
+AND THAT IS A MEASUREMENT, NOT A LICENCE TO SKIP IT.** `build/npkrt.o` and
+`.internal/toolchain/94874ce/npkrt.o` are both **55 576 B** and both sha256
+`c9ddbcffd32eccc7787bd71c39ebefd25913170a9fae48de32eb53ca68b2239e`. The
+instruction below — take it again and check it rather than assume it unchanged —
+**stands unweakened**: `build/` can be rewritten between now and the re-pin, so
+this number belongs to its timestamp and not to the pin. It is recorded with the
+timestamp deliberately, because the runtime half is the one someone might now be
+tempted to skip, and DEF-12 is the precedent for what that costs.
+
+**THE RE-PIN CHECKLIST — assembled 2026-09-05 because none existed and the
+re-pin was being carried as a one-line instruction.** §3 has the general
+procedure; this is what *this* re-pin owes on top of it:
+
+1. **Establish the target commit and the binary's provenance before anything
+   else** — one message to the compiler session (`ListAgents` is the address
+   book; `nitpick-36` is gone, `nitpick-bc` was it on 2026-09-05). Record the
+   answer as a `binary` line in `PIN.md`, as the previous pin did.
+2. **Do not pin while a harness is running against the tree the binary came
+   from**, and do not write into that tree — `library-sessions-write-scope`.
+3. **Take `npkrt.o` again and check it.** Do not carry the identical-hash
+   measurement above forward as an assumption.
+4. **Re-measure O-N10 and O-N11** against the new pin (reasons above); re-run
+   **O-N4** and **O-N9** too — probe 04 now costs ~1.24 s, which is the point
+   of its discharge.
+5. **Re-record `nitpick-time`'s two DEF-5 transcripts** — an `npkc`
+   `NITPICK-REACH-003` refusal replaces the `llc` failure — and note the
+   identity count for `case1` is **four**, not six.
+6. **Correct the five comments citing the deleted `src/frontend/list.npk`**
+   (D-239 swept: comments only, no rename needed anywhere), each at its own
+   stream's claim (W-7).
+7. **`probe04b_emission_shape.npk` exists as a 300-row stand-in *because probe
+   04 cost 281 s*.** That reason is gone. Keep the file; record its rationale as
+   historical rather than current.
+8. **Run `check_refs.py` across all six repositories after the comment
+   corrections, before `git add`**, and gate the commit on it. **It takes one
+   directory and checks only that one** — `python3 skills/check/scripts/check_refs.py .`
+   from the workbench root prints `All clean` having examined **the root
+   alone**. Name each repository (`… check_refs.py nitpick-time`, and so on for
+   all six) or the verdict covers a denominator of one while reading like a
+   sweep. Measured 2026-09-05; this is `PLAYBOOK.md` §6's shape found in the
+   ecosystem's own reference checker.
+
 **Why the re-pin was NOT done at this stopping session:** it would leave a fresh
 toolchain with **no verified measurement against it**, discarding the one this
 session paid for. Everything verified today — O-N4, O-N9, O-N10, O-N11 — was
@@ -98,7 +164,7 @@ against: **S-24** derived comparisons over a generic parameter; **S-25**
 **S-26** a partial move leaves the vacant value; **S-27** `exit` after
 `wild_release_all()`, `TYPE-062`.
 
-**STOPPED 2026-09-04 13:40 at the author's request, at a clean stop**, to conserve a weekly quota being spread across several sessions. Both streams closed their subcycles and both were independently VERIFIED PASS. **Resume points:** s1 `nitpick-regex` **0.0.4** (`src/core/`), s2 `nitpick-time` **0.0.1** (the skeleton) — both planned, unblocked, and NOT dispatched. Stream 3 has still never run. The questions table has **two** entries for the author, neither blocking.
+**STOPPED 2026-09-04 13:40 at the author's request, at a clean stop**, to conserve a weekly quota being spread across several sessions. Both streams closed their subcycles and both were independently VERIFIED PASS. **Resume points:** s1 `nitpick-regex` **0.0.4** (`src/core/`), s2 `nitpick-time` **0.0.1** (the skeleton) — both planned, unblocked, and NOT dispatched. Stream 3 has still never run. The questions table has **four** entries for the author, none blocking — a third was added 2026-09-05 on the write guard, a fourth on width. **But the first action is neither resume point: it is settling the re-pin with the compiler session**, per the re-pin checklist above. The commit and binary the 1.5.1b landing notice names are both stale, and `build/npkc` predates the compiler's `HEAD` by sixteen hours.
 
 ---
 
@@ -127,6 +193,7 @@ against: **S-24** derived comparisons over a generic parameter; **S-25**
 | 1 | s2 | 2026-09-04 | **Is a committed `REPORT` block immutable?** A worker left one of the six DEF-3 sites unedited because it sits inside a committed REPORT block, arguing a report records what a worker said on a date and must not be rewritten — correcting it in a later record entry instead. **This is the second dispatch to meet the question; the first left it open.** | **Ratify it, and write it into `WORKSTREAMS.md`.** The worker's reasoning matches this workbench's existing append-only rule and the finer form of it in `PLAYBOOK.md` §6 — what may be amended depends on whether the document records something that *happened*. Making it explicit costs one rule and stops a third dispatch re-deciding it |
 | 3 | — | 2026-09-05 | **Should `filesystem.denyWrite` be configured?** The write guard cannot judge an interpreter heredoc (`python3 - <<PY` … `open(path,'w')` …) — measured, four controls, the other three forms refuse correctly. The guard's own docstring names the sandbox's `filesystem.denyWrite` as the airtight mechanism for exactly this, and **it is configured nowhere**. Meanwhile this harness ships a standing instruction preferring heredocs and `sed` over `Write`/`Edit`, so a session writes through the unjudged form *by default*. The real exposure is a library worker reaching `../nitpick` and invalidating a multi-hour verification run | **The author's call, and deliberately not acted on here** — this is a permissions/settings change and no session should make one on its own analysis. Options: configure `denyWrite` for `../nitpick`; or teach the guard to refuse `python3`/`perl`/`node` invocations that carry a heredoc at all when a compiler path appears anywhere in the payload (cruder, more false positives, and a guard with false positives gets disabled — the guard's own docstring warns of this); or accept it and say so in `CLAUDE.md`, which today claims enforcement "where they can be" without saying where those are . **A SECOND, OPPOSITE DEFECT IN THE SAME GUARD, found 2026-09-05: it refuses `git worktree list`, which is a READ**, as "a mutating git subcommand" — its `GIT_WRITE` set contains `worktree`, which has both read (`list`) and write (`add`/`remove`) subcommands. The guard's own docstring warns that *"a guard with false positives gets disabled, which is worse than no guard"*, so this is the failure mode it named. The two findings pull in opposite directions and should be fixed together: one form is unwatched, another is refused for reading |
 | 2 | s1 | 2026-09-04 | **O-N10's verification is complete for `nitpick-regex` and cannot be completed for `nitpick-time`.** Two of the thirteen properties measured need an enum with more than one payload field per variant, which `nitpick-time`'s does not have | **No action needed now**, recorded so a later session does not read `nitpick-time`'s partial verification as an omission. The gap is a property of that library's types, not of the work |
+| 4 | — | 2026-09-05 | **What width should the next session run?** The board carries **width 2**, confirmed by you on 2026-09-04, and both streams have a planned, undispatched subcycle ready (`nitpick-regex` 0.0.4, `nitpick-time` 0.0.1). Since that confirmation the binding constraint changed: the weekly quota is low and an experiment overspent it. Stream 3 has still never run | **Width 1 for the next session, then back to 2 when quota recovers** — this is `parallel-planning-serial-implementation`'s dial turned down, not a change of plan. The arithmetic is the argument: width 2 is two workers plus two verifiers, so **four dispatches before anything is verified**, and the re-pin has to be settled with the compiler session before either stream can be trusted anyway. Width 1 also puts the whole re-pin on one stream rather than duplicating it. **Model split, unchanged and working:** workers on `claude-opus-5` (stream 1's worker produced RX-126 by reading compiler source and drawing a distinction nobody asked for), verifiers on the small model per orchestrate §12 — both of 2026-09-04's verifiers returned PASS with real substance and one caught an overstatement the orchestrator would have let through |
 
 **Q-9 — answered 2026-09-03 by the author: state what it blocks.** Landed as
 **W-27** in `WORKSTREAMS.md`. The compiler side's rule is confirmed — *a defect
