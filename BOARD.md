@@ -45,67 +45,95 @@ first library cycle to be worked, and the loop is being judged against
 replacement span that ran to the next blank line and swallowed it — and restored
 verbatim from `d91d0ca` at 14:10.)*
 
-**THE RE-PIN IS ANSWERED, AND THE ANSWER IS *WAIT*. Settled 2026-09-05 13:35 by
-`nitpick-compiler_s0` (then named `nitpick-bc`), the compiler session, in reply to the one message the previous
-board said to send.** Everything above this line in earlier revisions was the
-open question; this is the answer, and the working out is in `RECORD.md`.
+**THE RE-PIN IS DONE. Pinned `0dfddac` at 2026-09-05 15:58 — the 1.5.2c close —
+and all four discharged stops were re-measured against it.** The morning's
+question (*what is `build/npkc`, and is there a stable point to pin?*) was
+settled by one message to `nitpick-compiler_s0` at 13:35 and the pin followed
+its landing notice at 15:47. The working out is in `RECORD.md`; what a reader
+needs now is below.
 
-**DO NOT PIN `../nitpick/build/npkc`. It is a build of no commit that has ever
-existed on `main`.** Our own measurement and the compiler session's account
-agree exactly: it is an `npkg build`/parity run taken from the **main checkout
-at 19:42 on 2026-09-04**, when `main`'s `HEAD` was `99bbccd` (the 1.5.2
-planning commit, 17:21) and the working tree carried **1.5.2 step 0's
-uncommitted changes** — committed eleven minutes later as `593c554`. So it is a
-*working-tree intermediate*, and it predates 1.5.2 steps 1–5, all of 1.5.2b
-(D-256…D-259) and all of 1.5.2c. **There is no commit to name it by**, which is
-why no amount of inspection here could have resolved it — only asking could.
-`HEAD` (`8c69ee4`) is plan/docs only; the compiler source at `HEAD` is
-`4806025`'s, the 1.5.2b close.
+**The provenance test added to §3 this afternoon was exercised on both sides
+within one day, which is what makes it commissioned rather than merely
+written.** It **refused** the morning's binary as `tree unknown` — mtime
+2026-09-04 19:42:54, seventeen hours *before* `HEAD` — and **passed** this one
+as `tree clean`, mtime 15:56:34, nine minutes *after* `HEAD`'s 15:47:09. Every
+number in the landing notice was verified here before copying rather than taken
+on report; `94874ce` is an ancestor of `0dfddac`, so the pin moved forward.
+`npkrt.o` is byte-identical to the previous pin's and was **taken again and
+checked** rather than assumed. Full provenance, the three commits and their
+harness numbers are in `.internal/toolchain/0dfddac/PIN.md`'s `binary` line.
 
-**The pin point is the 1.5.2c close.** Three step commits — `533fcb2` (the
-TYPE-065 refusal), `fe78c5d` (generic enums live), `90e4e4a` (the docs) — each
-under a full harness in its own worktree (`.internal/wt/q0`, `q1`, `q2`,
-started 12:07, 12:46 and 12:52). When all three are green they land on `main`
-in order and are pushed; **then that session runs the ladder on `main` so
-`build/npkc` is the close's compiler, and messages us the commit, the byte
-count and the sha256 for both `npkc` and `npkrt.o`**, in the 1.5.1b notice's
-shape. A full harness is ~75 min alone and three concurrent ones are slower;
-landing plus the ladder adds ~20 min. **Expect the notice around 15:30 on
-2026-09-05.** Wait for it. Pin nothing in between.
+**THE FOUR RE-MEASUREMENTS — the reason the pin was not taken this morning.**
+All four were facts about `94874ce`; here is what they are against `0dfddac`.
 
-**THE PIN PROCEDURE ITSELF WOULD HAVE MISLABELLED THIS, AND THAT IS A DEFECT IN
-§3, NOT A CLOSE CALL.** Run today, `skills/orchestrate/SKILL.md` §3 computes
-`COMMIT=$(git -C ../nitpick log -1 --format=%h)` → `8c69ee4` and
-`TREE=clean` (the tree *is* clean), and its mid-rebuild guard
-(`find ../nitpick/build/npkc -mmin -2`) passes trivially on a binary seventeen
-hours old. It would have written **`compiler 8c69ee4 / tree clean`** into
-`PIN.md` — a confident, false provenance for a binary from a tree nobody
-committed. **`tree clean` is a statement about the SOURCE tree and says nothing
-about what `build/` was built from**, yet it is the only provenance field §3
-records, and §3 asks for a `binary` line *only* in the `tree dirty` branch —
-which is exactly the branch this case does not take. **This is `PLAYBOOK.md`
-§6's shape found in our own pin procedure: the check's name describes the
-property, its mechanism covers something narrower, and it passes.** The fix §3
-needs: **compare `build/npkc`'s mtime against the commit date of `HEAD` and
-treat *older* as `tree unknown`, requiring the `binary` line on both branches.**
-That comparison is one command and it is what actually caught this.
+| Stop | Verdict at the new pin |
+|---|---|
+| **O-N11** | **FIXED.** `case1_no_failsafe` and `case3_arm_contract_evaded` are now `npkc` **exit 1, `NITPICK-REACH-003`, no `.ll`** — where before it was `npkc` exit 0 and `llc` exit 1 on an undefined `@npk_failsafe`. `case2_failsafe_present` still exits 0 and emits. **The diagnostic says "4 identities: Unreachable, HeapOom, HeapBadRequest, WildLeak" — this board's correction against the six we were told is confirmed by the compiler's own output.** This is the after-value checklist item 5 owes the two DEF-5 transcripts |
+| **O-N10** | **UNCHANGED.** All three `derive_payload_enum` cases behave identically on both pins through the full four-step recipe and match their `expect-exit` headers exactly (0, 121, 107). 1.5.2b's wholesale derive rewrite did **not** move it — which is precisely what had to be measured rather than assumed |
+| **O-N9** | **UNCHANGED.** `probe10b` → `NITPICK-BORROW-012`, `probe10c` → `NITPICK-BORROW-001`, identical on both pins. `probe09b` exits 0 on both — *once its precondition is met; see below* |
+| **O-N4** | **STILL DISCHARGED, BUT SLOWER.** `probe04` is **2.03–2.06 s at ~119 MB**, was **1.18 s at 74 624 KiB**. Against the original 281 s / 30.9 GiB it is still ~136× better, so nothing reopens |
 
-**`npkrt.o` was byte-identical to the pin's at 2026-09-05 13:27** — `build/npkrt.o`
-and `.internal/toolchain/94874ce/npkrt.o` both **55 576 B**, both sha256
-`c9ddbcffd32eccc7787bd71c39ebefd25913170a9fae48de32eb53ca68b2239e` — and the
-compiler session expects it to stay so, since `runtime/npkrt.ll` is untouched
-in 1.5.2c. **That is a measurement with a timestamp, not a licence to skip it.**
-`build/` will be rewritten by the ladder before we pin. Take it again and check
-it; DEF-12 is the precedent for what assuming the runtime half costs.
+**THE COMPILER GAINED A FIXED PER-PROGRAM COST, AND IT IS PAID BY PROGRAMS THAT
+USE NONE OF THE NEW SURFACE. Measured differentially — both pinned compilers on
+disk, same inputs, same machine.** A 14-line program that only does `exit 0i32`
+with a `failsafe` (`probe11d_floor_only`):
 
-**Reading `ps -o etime` cost two sessions a factor of sixty.** The field is
-`[[DD-]hh:]mm:ss`, so `16:41` is sixteen minutes, not sixteen hours. Recorded
-because it was misread the same way twice; the compiler session's own timings
-have since replaced our estimates, so nothing now rests on it.
+| | `94874ce` | `0dfddac` | factor |
+|---|---|---|---|
+| wall | 0.10 s | **0.85 s** | **8.5×** |
+| peak RSS | 21 456 KiB | **102 404 KiB** | **4.8×** |
+| `.ll` emitted | 456 517 B | **845 282 B** | **+388 765 B** |
+
+**The `.ll` delta is exactly 388 765 B for both the floor program and the
+30 000-row one — identical to the byte**, so it is a fixed prelude increase and
+not a compile-time regression. Widened across **30 programs** in two libraries
+that compile clean under both: **22 of 30 sit at exactly 388 765**, and all 8
+that differ are derive or enum programs, where 1.5.2b/1.5.2c genuinely changed
+semantics. Almost certainly D-257's price — the prelude implementing the
+derivable traits for every scalar. **Impact, W-27: blocks nothing; inconveniences
+every harness run in this ecosystem**, because our libraries compile *many small
+programs* per run so a fixed per-program cost multiplies by program count rather
+than by size — `nitpick-regex` 0.0.3's harness was 63/63 in 37.5 s, and +0.75 s
+per program roughly doubles it — and raises per-compile peak ~5×, which matters
+if a harness compiles in parallel; **does not touch correctness.** **Raised to
+`nitpick-compiler_s0` 2026-09-05**, under the lifted constraint, with no ask
+attached beyond confirming whether the price was known.
+
+**`probe09b_environ_view_returned` CANNOT PASS WITHOUT AN ENVIRONMENT VARIABLE
+THAT IS WRITTEN DOWN NOWHERE, AND IT FAILS WITH A CODE THAT LOOKS LIKE A REAL
+VERDICT.** Its header says `expect-exit: 0`. Run bare it exits **10**, on both
+pins. Exit 10 is its own `string_byte_length(hit) != 14i64` — **a substantive
+code from the probe's own map**, so the failure reads as a finding about the
+language rather than a missing precondition. It needs **`TZ=Europe/Kiev`**
+exported; with that it exits 0 on both pins. The string `Europe/Kiev` appears in
+the probe file **0 times**, in `0.0.0.md` **0 times**, and `tests/probe/` has no
+`README.md`. **Extent established rather than fixed only where found:** three
+program-stage probes read state outside the program. `probe08_readlink` exits 0
+bare — no hidden precondition. **`probe09_environ_split` is the model and the
+contrast**: it documents *"PRECONDITION: run with `TZ=Europe/Kyiv` exported"*
+**and exits a dedicated `30` when it is missing, so an unmet precondition
+announces itself.** Same author, same afternoon; one probe made its precondition
+self-describing and the neighbouring one reused a substantive failure code and
+said nothing. **This is stream 2's to fix at `nitpick-time` 0.0.1** — give
+`probe09b` a dedicated precondition exit code and a `PRECONDITION:` line, on
+`probe09_environ_split`'s pattern. It blocks nothing today because no harness
+runs yet; **it will produce a false failure the first time 0.0.2's `program`
+stage runs, and the failure will look like a compiler regression.**
 
 **THE RE-PIN CHECKLIST — assembled 2026-09-05 because none existed and the
 re-pin was being carried as a one-line instruction.** §3 has the general
 procedure; this is what *this* re-pin owes on top of it:
+
+**STATUS 2026-09-05 16:0x — items 1–5 are DISCHARGED; 6, 7 and 8 remain and
+belong to the streams.** 1: answered and the `binary` line is written. 2: the
+harnesses finished and the pin was taken after them. 3: `npkrt.o` taken again
+and checked — byte-identical, verified not assumed. 4: all four re-measured,
+results in the table above. 5: the after-value is measured
+(`NITPICK-REACH-003`, **four** identities) and the two transcripts can now be
+re-recorded — **that write belongs to `nitpick-time`'s stream at its claim
+(W-7)**, not to the orchestrator. **6** (the six stale `list.npk` citations,
+three files, two streams), **7** (`probe04b`'s rationale as historical) and
+**8** (`check_refs` naming each repository) are unchanged and outstanding.
 
 1. ~~**Establish the target commit and the binary's provenance**~~ — **DONE
    2026-09-05 13:35.** The answer is in the block above: `build/npkc` is a

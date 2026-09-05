@@ -2983,3 +2983,65 @@ none. The negative control was incidentally refused at `NITPICK-RESOLVE-012`
 for a `mod:`/basename mismatch rather than for its syntax, which is **O-N8's
 fix (the compiler's DEF-2) observed live** — the defect this workbench raised on
 2026-09-03, where a mismatch silently merged two files at exit 0.
+
+### The pin moves to 0dfddac, and the four stops are re-measured — 2026-09-05
+
+**The pin.** `0dfddac`, the 1.5.2c close, taken 15:58 after
+`nitpick-compiler_s0`'s landing notice at 15:47 and its ladder run 15:52–15:56.
+Recorded above as its own `pin` line. The mid-rebuild guard did its job on the
+first attempt — the binary was 96 seconds old and the guard said retry, which is
+the one thing that guard is for.
+
+**All four re-measurements, the reason the pin waited.** **O-N11 is FIXED**:
+`npkc` now exits 1 with `NITPICK-REACH-003` and no `.ll`, where it previously
+exited 0 and left `llc` to refuse an undefined `@npk_failsafe`. **The
+diagnostic names four identities — `Unreachable`, `HeapOom`, `HeapBadRequest`,
+`WildLeak` — confirming this board's correction against the six the compiler
+session had told us**, out of the compiler's own mouth rather than by argument.
+**O-N10 is UNCHANGED**: all three `derive_payload_enum` cases run identically on
+both pins through the full four-step recipe and match their headers (0, 121,
+107), so 1.5.2b's wholesale derive rewrite did not move it — which is exactly
+what could not be assumed. **O-N9 unchanged**: `BORROW-012` and `BORROW-001`
+identical on both pins. **O-N4 still discharged but slower**: 2.03–2.06 s at
+~119 MB against 1.18 s at 74 624 KiB, still ~136× better than the original 281 s.
+
+**A FIXED PER-PROGRAM COST, MEASURED DIFFERENTIALLY BECAUSE BOTH COMPILERS ARE
+ON DISK.** Comparing a remembered number against a fresh one would have
+confounded compiler version with everything else; running both pinned binaries
+on the same inputs does not. A 14-line program that only exits 0 went from
+**0.10 s / 21 456 KiB / 456 517 B** to **0.85 s / 102 404 KiB / 845 282 B** —
+8.5× the time, 4.8× the peak. **The `.ll` delta is exactly 388 765 bytes for
+both that program and the 30 000-row one, identical to the byte**, which is what
+turns "the compiler got slower" into "the prelude got bigger": a constant
+independent of the input cannot be a compile-time regression. Widened to 30
+programs across two libraries, **22 sit at exactly 388 765** and all 8 exceptions
+are derive or enum programs where semantics genuinely changed. Raised to the
+compiler session the same afternoon under the lifted constraint, with the W-27
+statement and no ask beyond confirming the price was known.
+
+**A METHOD ERROR I MADE AND CAUGHT ONE STEP LATER, which is the reason the
+numbers above are trustworthy.** The first extent sweep captured exit status as
+`${PIPESTATUS[0]}` after `t=$(cmd | tail -1)`. **That is not the compiler's
+status** — the pipeline ran inside a command substitution, so the value read
+back was `tail`'s, and every program reported `exit=0`. It was the exact trap
+the outgoing orchestrator had warned about, committed within the hour, by the
+session that had written the warning onto the board. The tell was two *refusal*
+probes reporting `exit=0` with no `.ll` written — **a status that disagreed with
+an artefact**. Re-run with `/usr/bin/time -o` and no pipeline, both refuse
+correctly at exit 1. Nothing above rests on the broken capture.
+
+**AND A FALSE FINDING I ALMOST REPORTED.** `probe09b_environ_view_returned`
+exits **10** against a header saying `expect-exit: 0`, on both pins. That reads
+as a defect and is not one: exit 10 is its own `string_byte_length(hit) != 14`
+and the probe requires **`TZ=Europe/Kiev`** exported. With it, exit 0 on both
+pins. **The precondition is written nowhere** — 0 occurrences in the probe, 0 in
+`0.0.0.md`, and `tests/probe/` has no `README.md`. **The danger is the code it
+chose**: a substantive failure code from its own map, indistinguishable from a
+real verdict about the language. Extent established rather than patched where
+found: three program-stage probes read outside state; `probe08_readlink` exits 0
+bare and is fine; **`probe09_environ_split` is the model** — it states
+*"PRECONDITION: run with `TZ=Europe/Kyiv` exported"* **and exits a dedicated
+`30`, so an unmet precondition announces itself as one.** Same author, same
+afternoon, neighbouring files: one precondition self-describing, one silent.
+Given to stream 2 for `nitpick-time` 0.0.1. It blocks nothing now and will
+produce a false failure the first time 0.0.2's `program` stage runs it.
