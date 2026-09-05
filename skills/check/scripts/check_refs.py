@@ -18,6 +18,29 @@ OQ_REF = re.compile(r'\b(O-[A-Z]\d+|Q-\d+)\b')
 LEAK = re.compile(r'/home/[a-z_][a-z0-9_-]*|ghp_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY')
 
 
+FENCE = re.compile(r"^```.*?^```", re.S | re.M)
+
+
+def prose(text: str) -> str:
+    """The part of a document that CITES, with fenced blocks removed.
+
+    A fenced block is quoted material -- sample output, a transcript, a
+    verbatim check finding -- not this document citing a decision. Scanning it
+    reported `cited-undefined` against a file that had merely pasted evidence,
+    and this workbench REQUIRES a worker to paste check output verbatim into
+    its committed REPORT block. So the check fired on the behaviour the
+    protocol mandates, which puts the correct response and the safe response
+    in opposite directions: the lesson it teaches is to paraphrase evidence.
+
+    Inline code spans are deliberately NOT stripped. `RX-126` in backticks is
+    how a real citation is written throughout this workbench, so removing them
+    would turn genuine citations into `defined-uncited`. That leaves verbatim
+    output quoted INLINE still miscounted -- a stated limit, not a closed one.
+    The rule it implies is that verbatim output belongs in a fence.
+    """
+    return FENCE.sub("", text)
+
+
 def tracked_md(repo: Path):
     """Markdown files git actually tracks — an untracked scratch file is not a finding."""
     try:
@@ -55,7 +78,7 @@ def check(repo: Path):
         for f in files:
             if f.name == "DECISIONS.md":
                 continue
-            txt = f.read_text(encoding="utf-8", errors="replace")
+            txt = prose(f.read_text(encoding="utf-8", errors="replace"))
             for pre in prefixes:
                 cited |= set(re.findall(rf'\b{pre}-\d+\b', txt))
         for d in sorted(cited - defined, key=lambda s: (s.split("-")[0], int(s.split("-")[1]))):
@@ -71,11 +94,13 @@ def check(repo: Path):
         for f in files:
             if f.name == "OPEN_QUESTIONS.md":
                 continue
-            refs |= set(OQ_REF.findall(f.read_text(encoding="utf-8", errors="replace")))
+            refs |= set(OQ_REF.findall(prose(f.read_text(encoding="utf-8", errors="replace"))))
         for q in sorted(refs - defined_q):
             findings.append(("undefined-question", f"{q} is referenced and never defined"))
 
-    # 5. nothing machine-specific in a tracked file
+    # 5. nothing machine-specific in a tracked file. Deliberately NOT run
+    # through prose(): a home directory pasted inside a fence is still leaked,
+    # and quoting is exactly how one gets there.
     for f in files:
         for m in LEAK.finditer(f.read_text(encoding="utf-8", errors="replace")):
             findings.append(("leak", f"{f.relative_to(repo)}: {m.group(0)[:40]}"))

@@ -34,7 +34,8 @@ def main():
     if fails:
         print(f"{len(fails)} FAILURE(S): {', '.join(fails)}")
         return 1
-    print("All 4 cases correct.")
+    print(f"All {len(cases)} cases correct "
+          f"({sum(1 for c in cases if not c[-1])} of them checking it stays quiet).")
     return 0
 
 

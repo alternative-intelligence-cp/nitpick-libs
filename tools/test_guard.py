@@ -91,6 +91,26 @@ def main():
             ("read", B, S, "Bash", L, L, "python3 tools/check_refs.py . nitpick-tui", False),
             ("read", B, S, "Bash", L, L, "find ../compiler -name '*.npk' | head", False),
             ("read", B, S, "Bash", L, L, "diff ../compiler/CLAUDE.md /tmp/old.md", False),
+            # --- MUST ALLOW: git subcommands that both read AND write ----------
+            # `worktree`, `stash`, `remote`, `tag` and `config` are in GIT_WRITE
+            # because they can write. Each also has a read form, and refusing
+            # one of those is the false positive that gets a guard switched off.
+            # `git worktree list` was refused as "a mutating git subcommand"
+            # until 2026-09-05; it had no control, which is why it survived.
+            ("git-read", B, S, "Bash", L, L, "git -C ../compiler worktree list", False),
+            ("git-read", B, S, "Bash", L, L, "git -C ../compiler stash list", False),
+            ("git-read", B, S, "Bash", L, L, "git -C ../compiler remote -v", False),
+            ("git-read", B, S, "Bash", L, L, "git -C ../compiler tag -l", False),
+            ("git-read", B, S, "Bash", L, L, "git -C ../compiler config --get remote.origin.url", False),
+            ("git-read", B, S, "Bash", L, L, "git -C ../compiler remote", False),
+            # --- MUST BLOCK: the write twin of every read form above -----------
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler worktree add /tmp/wt", True),
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler worktree remove /tmp/wt", True),
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler stash", True),
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler stash pop", True),
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler remote add x url", True),
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler tag -d v1", True),
+            ("git-write", B, S, "Bash", L, L, "git -C ../compiler config user.name x", True),
             # --- MUST ALLOW: writes elsewhere, incl. ones DESCRIBING the compiler
             ("elsewhere", B, S, "Bash", L, L, "git add -A && git commit -m 'note about ../compiler'", False),
             ("elsewhere", B, S, "Bash", L, L, "sed -i 's/a/b/' nitpick-tui/README.md", False),
@@ -164,7 +184,8 @@ def main():
                 print(f"  {label} {tool} {p!r}: expected {'block' if should else 'allow'}, got {'block' if got else 'allow'} {out}")
             return 1
         blocks = sum(1 for c in CASES if c[7])
-        print(f"All {len(CASES)} cases correct ({blocks} block, {len(CASES) - blocks} allow).")
+        print(f"All {len(CASES)} cases correct ({blocks} block, {len(CASES) - blocks} allow"
+              f" — {100 * (len(CASES) - blocks) // len(CASES)}% false-positive controls).")
         return 0
 
 

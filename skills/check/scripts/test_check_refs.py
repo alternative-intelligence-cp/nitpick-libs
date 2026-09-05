@@ -51,7 +51,33 @@ CASES = [
     ("defined-uncited", lambda r: append(r, "meta/DECISIONS.md", "\n### X-2 — nobody cites this\n\nDead.\n"), {"defined-uncited"}),
     ("undefined-question", lambda r: append(r, "meta/specs/A.md", "\nSee Q-2.\n"), {"undefined-question"}),
     ("leak", lambda r: append(r, "meta/specs/A.md", "\nMeasured at /home/someone/secret.\n"), {"leak"}),
+    # --- FALSE-POSITIVE CONTROLS: content that must NOT produce a finding ----
+    # Until 2026-09-05 this control had one negative case ("clean") and six
+    # planted faults, so nothing here could ever fail by over-reporting. A
+    # check whose controls are all faults can only get stricter.
+    #
+    # `quoted-finding` is the one that matters most. This workbench REQUIRES a
+    # worker to paste check output verbatim into its committed REPORT block,
+    # so if the check reads an identifier inside its own quoted finding as a
+    # citation, it reports a fault against the file that obeyed it. That is
+    # the worst class of check defect -- it puts the correct response and the
+    # safe response in opposite directions, and the lesson an agent learns is
+    # to paraphrase the evidence next time.
+    ("fenced-id", lambda r: append(r, "meta/specs/A.md", "\n```\n### X-9 — an example inside a fence\n```\n"), set()),
+    ("quoted-finding", lambda r: append(r, "meta/specs/A.md", "\n```\n[cited-undefined] meta/specs/A.md:4 X-9 is cited and never declared\n```\n"), set()),
+    # A real citation written the way this workbench writes them -- in
+    # backticks, in bold -- must still COUNT, or stripping quoted material
+    # would silently turn genuine citations into `defined-uncited`.
+    ("backticked-citation-still-counts", lambda r: append(r, "meta/DECISIONS.md", "\n### X-3 — cited only in backticks\n\nBecause.\n") or append(r, "meta/specs/A.md", "\nSee **`X-3`** for the rule.\n"), set()),
 ]
+
+# KNOWN GAP, stated rather than closed: verbatim check output quoted INLINE
+# (single backticks, not a fence) is still read as a citation. It is not
+# fixable by stripping inline spans, because `X-3` in backticks is how a real
+# citation is written here -- the case directly above asserts that. The rule
+# this implies is that verbatim output belongs in a fence, and a rule is what
+# it needs; a check that guessed which backticks were quotations would be
+# inventing an agreement nothing requires.
 
 
 def run(repo):
@@ -78,7 +104,9 @@ def main():
     if fails:
         print(f"{len(fails)} FAILURE(S): {', '.join(fails)}")
         return 1
-    print(f"All {len(CASES)} cases correct ({len(CASES) - 1} fault classes and one clean run).")
+    neg = sum(1 for _, _, expected in CASES if not expected)
+    print(f"All {len(CASES)} cases correct ({len(CASES) - neg} fault classes, "
+          f"{neg} false-positive control{'' if neg == 1 else 's'}).")
     return 0
 
 

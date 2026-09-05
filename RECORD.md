@@ -2729,3 +2729,77 @@ could receive the corrections.
   for a board edit costs nothing and is the only way the guard sees the write at
   all. It is not a fix — the fix is the author's call — but a session need not
   route its own writes through the unwatched path while waiting for one
+
+### The `devteam` import — four mechanisms landed, and one worst-class defect found doing it — 2026-09-05
+
+The author asked for a **second, independent pass** over the `devteam`
+experiment that the third orchestrator had already read — *"two heads are
+generally better than one"* — and for anything worth bringing over to be
+listed. Eleven items; four ported at his direction. The list is
+`meta/audits/devteam-import-2026-09-05.md`.
+
+- **THE ITEM THAT PAID FOR THE WHOLE READ, and it was found by porting a
+  discipline rather than by looking for a bug.** Adding false-positive controls
+  to `check_refs` immediately failed two of them. **`check_refs` read an
+  identifier inside a fenced block, and inside its own quoted output, as a
+  citation**, reporting `cited-undefined` against a file that had merely pasted
+  evidence. This workbench **requires** verbatim check output in a committed
+  REPORT block, so the check fired on the behaviour the protocol mandates.
+  `devteam` names that the worst category and the reason is not cost: **it puts
+  the correct response and the safe response in opposite directions**, and the
+  lesson it teaches is to paraphrase the evidence next time. Fixed by
+  `prose()`, which strips fences before the citation scans and deliberately
+  **not** before the leak scan — a home directory pasted inside a fence is
+  still leaked, and quoting is exactly how one gets there
+- **the fix stops where the rule stops.** Verbatim output quoted *inline* is
+  still miscounted, and stripping inline spans would break genuine citations —
+  `` `RX-126` `` in backticks is how this workbench writes them, and a new
+  control asserts that form still counts. So the gap is **stated rather than
+  closed**: the rule it implies is that verbatim output belongs in a fence, and
+  a check that guessed which backticks were quotations would be inventing an
+  agreement nothing requires
+- **the guard's known heredoc limit now lives in its REFUSAL MESSAGE**, not
+  only its docstring. `devteam`'s most reliable design lesson is that
+  **guidance goes where the temptation is, not where the documentation is** — a
+  docstring is read by whoever edits the file, a refusal by whoever just met
+  it — and it has measured evidence: a verifier that had never seen the finding
+  met such a message and reported it did not use the workaround *because the
+  message named it*. Ours also says the part `devteam` need not: it has
+  `check_scope` as a backstop and **we have none**, so the refusal is the only
+  mechanism watching
+- **`git worktree list` is no longer refused as a write.** Judged on the token
+  *after* the subcommand, with bare-form reads named explicitly because bare
+  `git stash` **creates** one and the bare form therefore cannot be inferred.
+  **Why it survived 73 passing controls: no case covered it** — and that is the
+  general lesson rather than the specific bug. A check whose controls are all
+  planted faults can only ever get stricter, because nothing ever fails when it
+  over-refuses. Thirteen new controls, each read form with its write twin,
+  verified against the real compiler path and not only the fixture
+- **`tools/run_controls.py`**, and the detail worth copying is its failure
+  mode: *"no controls found — that is itself a finding"*. The controls had been
+  four files invoked from a remembered list, and **a list held in someone's
+  head has no failure mode anyone can see**
+- **every control now reports its denominator and false-positive share** —
+  `111 cases, 50 of them false-positive controls (45%)`, where before it was
+  `All 7 cases correct`
+- **AN INSTANCE OF §6 COMMITTED WHILE WRITING THIS UP, AND CAUGHT ONE STEP
+  LATER.** This session asserted that the workbench's `check_refs.py` had no
+  controls — while measuring `devteam`'s side properly by running its suite.
+  `test_check_refs.py` had existed all along. It is exactly `devteam`'s finding
+  that **a sentence written to justify a measurement does not itself get
+  measured**: the measurement licenses the paragraph, and the paragraph then
+  acquires claims the measurement never covered. The tell was that the claim
+  was one command away and no command was run
+- **seven items left open**, ordered in the list file. The two most valuable
+  are structural: audit every check against *name the rule whose two sides it
+  compares* (if you cannot name one, the check is proposing a rule rather than
+  enforcing one), and sweep for **pairs of rules that cannot both be
+  satisfied** — of which this workbench has at least one live, the harness's
+  standing preference for heredocs against a guard that can only judge
+  `Write`/`Edit`. Framing that as a rule *pair* rather than as a guard
+  limitation changes what a fix has to do
+- **and one bias to expect, from `devteam`'s own report:** everything found so
+  far has made that pipeline stricter and **nothing has made it simpler**; both
+  simplifications in its history came from people who declined to use it, and
+  its `unnecessary` reporting category has never once been used. Every item on
+  our list makes this workbench stricter too. None makes it smaller

@@ -111,7 +111,9 @@ def main():
     if fails:
         print(f"{len(fails)} FAILURE(S): {', '.join(fails)}")
         return 1
-    print(f"All {len(CASES)} cases correct ({len(CASES) - 1} fault classes and one clean run).")
+    neg = sum(1 for c in CASES if not c[-1])
+    print(f"All {len(CASES)} cases correct ({len(CASES) - neg} fault classes, "
+          f"{neg} false-positive control{'' if neg == 1 else 's'}).")
     return 0
 
 

@@ -31,7 +31,15 @@ guard with false positives gets disabled, which is worse than no guard.
 Known limits, stated: an interpreter heredoc that writes (`python3 - <<PY`)
 cannot be classified from the command text; a target containing an
 unexpanded variable (`"$REPO"`) cannot be resolved and is not judged. The
-airtight mechanism for the first is the sandbox's `filesystem.denyWrite`.
+airtight mechanism for the first is the sandbox's `filesystem.denyWrite`,
+which is configured nowhere (BOARD.md question 3, the author's call).
+
+The heredoc limit is ALSO named in the compiler refusal message itself, not
+only here. Guidance resists a temptation only where somebody is standing when
+it matters: a docstring is read by whoever edits this file, and a refusal is
+read by whoever just met it. The `devteam` run measured this working -- a
+verifier that had never seen the finding met such a message and reported it
+did not use the workaround because the message named it.
 
 Reads the PreToolUse JSON on stdin. Prints a deny decision, or nothing.
 """
@@ -67,9 +75,35 @@ GIT_WRITE = {
     "clean", "rm", "mv", "apply", "am", "init", "gc", "prune", "worktree",
     "tag", "remote", "config",
 }
+# Several GIT_WRITE members have READ-ONLY forms, and refusing one of those is
+# a false positive -- this guard refused `git worktree list`, a read, as "a
+# mutating git subcommand" until 2026-09-05, because the set is keyed on the
+# subcommand and `worktree` covers both `list` and `add`. The subcommand alone
+# cannot decide it, so the token AFTER it does. Anything not named here stays a
+# write: the default is refusal and this table only ever narrows one.
+GIT_READ_FORMS = {
+    "worktree": {"list"},
+    "stash": {"list", "show"},
+    "remote": {"-v", "--verbose", "show", "get-url"},
+    "tag": {"-l", "--list", "--contains", "--points-at", "--merged", "--no-merged"},
+    "config": {"--get", "--get-all", "--get-regexp", "--list", "-l"},
+}
+# Bare `git tag` and `git remote` LIST. Bare `git stash` CREATES one, so the
+# bare form is not a read for every subcommand and cannot be inferred.
+GIT_BARE_READS = {"tag", "remote"}
 HEREDOC = re.compile(r"<<-?\s*(['\"]?)(\w+)\1.*?^\s*\2\s*$", re.S | re.M)
 SEPARATORS = {"&&", "||", ";", ";;", "|", "|&", "&"}
 REDIRECTS = {">", ">>", "&>", "&>>"}
+
+
+def git_is_read(sub: str, rest) -> bool:
+    """True when a GIT_WRITE subcommand was invoked in one of its read forms."""
+    if sub not in GIT_READ_FORMS:
+        return False
+    after = rest[rest.index(sub) + 1:]
+    if not after:
+        return sub in GIT_BARE_READS
+    return bool(GIT_READ_FORMS[sub] & set(after))
 
 
 def strip_heredocs(cmd: str) -> str:
@@ -165,7 +199,7 @@ def targets(cmd: str, cwd: str):
                 if len(rest) >= 2 and rest[0] == "-C":
                     gdir, rest = rest[1], rest[2:]
                 sub = next((r for r in rest if not r.startswith("-")), None)
-                if sub in GIT_WRITE:
+                if sub in GIT_WRITE and not git_is_read(sub, rest):
                     yield resolve(gdir if gdir is not None else ".", eff), "a mutating git subcommand"
     # (a trailing segment is judged by the loop above on its last token)
 
@@ -217,7 +251,21 @@ def judge(target, what, project, session_id, lines):
             "measured in hours, and editing a tree while a harness runs on it "
             "invalidates the run. Reading, grepping and listing it are fine. If "
             "the compiler genuinely needs a change, record it as an O-N open "
-            "question and raise it; do not make the edit.")
+            "question and raise it; do not make the edit.\n\n"
+            "Do not reach for an interpreter to do the same write. A heredoc "
+            "like `python3 - <<PY` ... open(path,'w') ... PY cannot be "
+            "classified from the command text, so it is NOT refused -- that is "
+            "a KNOWN LIMIT of this guard, not permission. It is the first thing "
+            "anyone finds after this message and it does not feel like evasion, "
+            "which is exactly why it is named here rather than only in this "
+            "file's docstring. This harness also ships a standing instruction "
+            "preferring heredocs and `sed` over Write/Edit, so the unjudged "
+            "form is the one you will reach for by default; prefer Write or "
+            "Edit here, which this guard can actually see. And note what the "
+            "backstop is NOT: nothing in this workbench reports the write "
+            "afterwards. The refusal you are reading is the only mechanism "
+            "watching, so going around it leaves a harness run of several hours "
+            "invalidated with no record of what did it.")
     hit = repo_of(target)
     if not hit:
         return None

@@ -11,7 +11,7 @@ blocked, what is done. The durable plan is
 
 **Last updated:** 2026-09-03 · **Width:** 2 — streams 1 and 2, confirmed by the author 2026-09-04 ·
 **Toolchain:** 94874ce · .internal/toolchain/94874ce/ · pinned 2026-09-04 · **tree clean** — the first clean pin this workbench has had. 1.5.1b is landed in full and `build/` was rebuilt from it at 08:48; verified here by sha256 and size before copying, `sha256sum -c` OK, LLVM 20.1.2. **`npkrt.o` differs from the 950bb1d pin** — DEF-12 made the main thread's TLS block a raw mapping — so this is a toolchain change in both halves, not just the compiler. **The re-pin blockage is resolved**; the stale binary that was sitting in `build/` is recorded in `PIN.md` so nobody mistakes this pin for it
-**Workbench writer:** `none` — released 2026-09-05 at a clean stop (first released 2026-09-04 13:40; briefly re-taken twice since, to record an inbound landing notice and the `devteam` read, each time released in the same commit) by `9e3c29db-a219-4274-b87b-eefa9b4a88a8`, session `nitpick-libs-44`, the third orchestrator. **Nothing is in flight; no claim has a live agent; every repository is committed and pushed.** Marker file removed first, then this line, so an abrupt close cannot leave the lock naming a dead session. **To take it: this line first, then the marker** — the order the guard enforces and the reverse of orchestrate §2.1. Two corrections to §2.1, both confirmed again this session: the guard permits **any** session while this line reads `none`, so §2.1's refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from `~/.claude/projects/<slug>/<uuid>.jsonl` and cross-check it against your scratchpad path, which carries the same uuid. One writer here (W-16, P-19).
+**Workbench writer:** `none` — taken and released 2026-09-05 by `189dd185-e776-4b8f-8fcb-5357cfaeaea7`, session `nitpick-libs-42`, the fourth orchestrator, to port four mechanisms from the `devteam` experiment into this workbench's tooling (marker removed first, then this line). Previously released 2026-09-05 at a clean stop (first released 2026-09-04 13:40; briefly re-taken twice since, to record an inbound landing notice and the `devteam` read, each time released in the same commit) by `9e3c29db-a219-4274-b87b-eefa9b4a88a8`, session `nitpick-libs-44`, the third orchestrator. **Nothing is in flight; no claim has a live agent; every repository is committed and pushed.** Marker file removed first, then this line, so an abrupt close cannot leave the lock naming a dead session. **To take it: this line first, then the marker** — the order the guard enforces and the reverse of orchestrate §2.1. Two corrections to §2.1, both confirmed again this session: the guard permits **any** session while this line reads `none`, so §2.1's refusal never fires and **its absence is not evidence the lock is free**; and **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file — take your id from `~/.claude/projects/<slug>/<uuid>.jsonl` and cross-check it against your scratchpad path, which carries the same uuid. One writer here (W-16, P-19).
 **Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
 first library cycle to be worked, and the loop is being judged against
 [`meta/roadmap/0.2/0.2.7.md`](meta/roadmap/0.2/0.2.7.md) §2's pass mark.
@@ -163,6 +163,30 @@ against: **S-24** derived comparisons over a generic parameter; **S-25**
 `List<T>` in the prelude as struct and functions, implemented in step 5b;
 **S-26** a partial move leaves the vacant value; **S-27** `exit` after
 `wild_release_all()`, `TYPE-062`.
+
+**THE `devteam` IMPORT — FOUR MECHANISMS LANDED 2026-09-05, SEVEN MORE LISTED.**
+The full list, with what each costs and why it matters here, is
+[`meta/audits/devteam-import-2026-09-05.md`](meta/audits/devteam-import-2026-09-05.md).
+Landed: the guard now names the interpreter-heredoc limit **in its refusal
+message** rather than only in its docstring (guidance goes where the temptation
+is — `devteam` measured this changing an agent's behaviour); **`git worktree
+list` is no longer refused as a write**, with thirteen new controls covering
+each read form and its write twin; `tools/run_controls.py` finds and runs every
+control and treats *"no controls found"* as a finding; and every control now
+reports its **case count and false-positive share** — `111 cases, 50 of them
+false-positive controls (45%)`.
+
+**Doing that found a live defect of the worst class, now fixed.** `check_refs`
+read an identifier inside a fenced block, and inside its own quoted output, as a
+citation — so it reported `cited-undefined` against a file that had pasted
+evidence, **which this workbench requires a worker to do**. A check that fires
+on mandated behaviour puts the correct response and the safe response in
+opposite directions. `prose()` now strips fences before the citation scans
+(deliberately **not** before the leak scan). **Stated gap, not closed:**
+verbatim output quoted *inline* is still miscounted, and cannot be fixed by
+stripping inline spans because `` `RX-126` `` is how a real citation is written
+here. The rule that implies — verbatim output belongs in a fence — is item 5's
+business, not a check's.
 
 **STOPPED 2026-09-04 13:40 at the author's request, at a clean stop**, to conserve a weekly quota being spread across several sessions. Both streams closed their subcycles and both were independently VERIFIED PASS. **Resume points:** s1 `nitpick-regex` **0.0.4** (`src/core/`), s2 `nitpick-time` **0.0.1** (the skeleton) — both planned, unblocked, and NOT dispatched. Stream 3 has still never run. The questions table has **four** entries for the author, none blocking — a third was added 2026-09-05 on the write guard, a fourth on width. **But the first action is neither resume point: it is settling the re-pin with the compiler session**, per the re-pin checklist above. The commit and binary the 1.5.1b landing notice names are both stale, and `build/npkc` predates the compiler's `HEAD` by sixteen hours.
 
