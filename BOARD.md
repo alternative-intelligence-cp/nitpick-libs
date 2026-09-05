@@ -336,6 +336,39 @@ Their commit `8dbef43`, docs only. **Catalogued rather than raised, and closed
 anyway** — worth noting for the next session that the catalogue-don't-raise rule
 cost nothing here.
 
+**S-38 — THE PRELUDE'S PER-PROGRAM COST IS AN OPEN DECISION FOR THE AUTHOR, NOT
+A SETTLED PRICE. Raised by this workbench 2026-09-05 and taken up the same
+afternoon** as the compiler's `OPEN_DECISIONS` **S-38** (their `a882188` —
+verified here as docs-only, one file, one insertion, no `src/` or `runtime/`,
+so **our pin at `0dfddac` is unaffected** and `sha256sum -c` still passes).
+**The compiler session explicitly declined to close it as the price of D-257**
+and asked that we carry it as open. It confirmed the mechanism: D-257's
+generated scalar impls are **348 rows in thirteen families**, and 1.5.2b had
+already recorded that *"every prelude impl body is emitted whether reached or
+not"* with **+2.2% IR and +14% frontend time** measured on the compiler's own
+tree. **What nobody had measured is the fixed per-program cost — which is
+exactly what a per-program harness pays, and is why this workbench saw it and
+they did not.** Their three options, for the author: **(1)** reachability-driven
+emission of non-generic prelude bodies via the demand walk the emitter already
+runs for generic instances — deterministic, semantics-neutral, and *"worth doing
+before 1.5.3 hangs contract obligations on every prelude function"*; **(2)**
+measure the frontend's share first, since parsing and typing the prelude is paid
+per compile whatever is emitted, and if that is most of the 0.75 s the real
+answer is a checked-once prelude, a larger design; **(3)** accept by decision and
+record it in D-257.
+
+**We stop measuring this per program.** The two data points and the
+22-of-30 constancy argument are what the decision needs, and any fix arrives
+with its own before/after. **One canary is kept:
+`nitpick-time/tests/probe/probe11d_floor_only.npk`, whose `.ll` is 845 282 B at
+`0dfddac`** — that is the number to watch, and a change in it is the signal.
+
+**Why this is worth reading twice: it is the second time in two days that
+raising cost nothing and bought something.** O-N16 was catalogued rather than
+raised and was closed upstream the same day anyway; S-38 was raised under the
+lifted constraint and became a decision item with a recommendation within
+twenty minutes. Both point the same way, and the constraint is now lifted.
+
 **Awaiting the author on the COMPILER side** (their `OPEN_DECISIONS.md` §7),
 none of it blocking us, two being semantics this ecosystem already builds
 against: **S-24** derived comparisons over a generic parameter; **S-25**

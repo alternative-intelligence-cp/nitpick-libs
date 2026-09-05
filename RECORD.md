@@ -3045,3 +3045,39 @@ bare and is fine; **`probe09_environ_split` is the model** — it states
 afternoon, neighbouring files: one precondition self-describing, one silent.
 Given to stream 2 for `nitpick-time` 0.0.1. It blocks nothing now and will
 produce a false failure the first time 0.0.2's `program` stage runs it.
+
+**S-38 opened on the compiler side within twenty minutes of the raise —
+2026-09-05 16:08.** The prelude-cost measurement went to
+`nitpick-compiler_s0` under the just-lifted constraint and came back as their
+`OPEN_DECISIONS` **S-38** (`a882188`, verified here docs-only: one file, one
+insertion, no `src/` or `runtime/`, our pin unaffected and `sha256sum -c` still
+passing). **They explicitly declined to close it as the price of D-257 and
+asked us to carry it as open**, which is the right call and not the one we
+would have been entitled to make for them. They confirmed the mechanism —
+D-257's generated scalar impls are 348 rows in thirteen families — and supplied
+the half we could not see: 1.5.2b had already measured *"every prelude impl body
+is emitted whether reached or not"* at **+2.2% IR and +14% frontend time on the
+compiler's own tree**. **The number nobody had is the fixed per-program cost,
+and the reason we found it is structural rather than clever: their harness
+compiles a fixed set once per run, ours compiles many small programs, so a
+per-program constant is invisible from their side and dominant from ours.**
+A measurement's visibility depends on the shape of the thing doing the
+measuring.
+
+Their recommendation to the author is reachability-driven emission of
+non-generic prelude bodies through the demand walk the emitter already runs for
+generic instances — semantics-neutral, and *"worth doing before 1.5.3 hangs
+contract obligations on every prelude function"* — with the caveat that the
+frontend's share should be measured first, because parsing and typing the
+prelude is paid per compile whatever is emitted.
+
+**We stop measuring it per program at their request**, keeping one canary:
+`probe11d_floor_only.npk`'s `.ll` at **845 282 B**. Two data points and the
+constancy argument are what the decision needs; further sampling is cost without
+information.
+
+**The constraint's lifting is now evidenced twice in two days, both pointing the
+same way.** O-N16 was catalogued rather than raised and was closed upstream the
+same day regardless; S-38 was raised and became a decision item with a
+recommendation inside twenty minutes. Neither cost the compiler session anything
+it minded, and the second produced work the author now gets to schedule.
