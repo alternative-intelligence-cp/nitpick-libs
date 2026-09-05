@@ -656,6 +656,47 @@ to. Record `npkc`'s exit status beside every number, and treat any timing
 without one as absent. Both agents who measured O-N4 fell into this before
 they were finished; neither would have caught it by reading the output.
 
+**AND THE RULE IS "NO PIPELINE AT ALL WHEN A STATUS IS BEING RECORDED" — NOT
+"BEWARE `${PIPESTATUS[0]}`".** Stating it as one idiom's trap is why it keeps
+being paid. `$?` after *any* pipeline is the LAST command's status, so a
+trailing `| head`, `| tail`, `| sed`, `| wc` silently reports the filter's
+success as the measured command's. And `${PIPESTATUS[0]}` does **not** rescue
+you inside a command substitution: `t=$(cmd | tail -1)` runs the pipeline in a
+subshell, so the array you read afterwards belongs to the outer shell and is
+`tail`'s. Three sessions in two days hit this, each having been warned by the
+last, and one of them **had written the warning onto the board within the
+hour**. The 0.0.1 worker hit it twice: once on a `grep` that matched nothing
+and still reported `exit=0`, and once **inside a transcript generator**, where
+`ls <missing> | sed` wrote `exit=0` into a file whose entire purpose is
+verbatim evidence — caught only because an older recording of the same command
+said `exit=2`.
+
+**The tell, in every instance, is a status that disagrees with an artefact:**
+a refusal that wrote no `.ll` reporting exit 0, a `grep` reporting success on
+no matches. **Use `/usr/bin/time -o <file>` and redirect; capture `$?`
+immediately, on its own line, with nothing between.** A pipeline is for
+looking; it is never for measuring.
+
+---
+
+**READ THE COMPILER AT THE PIN, NEVER IN ITS WORKING TREE — AND THE GAP IS NOW
+NON-ZERO BY DEFAULT.** Our pin and the compiler checkout are routinely at
+different commits: on 2026-09-05 the pin was `0dfddac` while `../nitpick` sat
+at `daa5057`, **two commits ahead** — from `git -C ../nitpick rev-list --count
+0dfddac..HEAD`, run rather than estimated, after this very paragraph first said
+"four" from memory and was corrected by the command it exists to recommend.
+A `grep` in that
+working tree answers a question nobody asked — *what does the compiler say
+today* — while every claim this workbench makes is about **the compiler we
+pinned and measured against**. The two failure directions are symmetric and
+both silent: grepping the working tree can **confirm a stale claim as current**,
+and grepping it for something a later cycle removed can **"prove" a fact the
+pin still has**. Use `git -C ../nitpick grep <pat> <pin> -- '*.npk'` and
+`git -C ../nitpick show <pin>:<path>`. Both cost nothing, both are exact, and
+neither can drift. This is the same shape as everything else in this section —
+an instrument whose name says "the compiler" while its mechanism says "the
+compiler's tree at whatever commit somebody left it on."
+
 ---
 
 **THE WRITE GUARD CANNOT SEE AN INTERPRETER HEREDOC, AND THIS HARNESS TELLS
