@@ -2554,3 +2554,55 @@ instead of a notification it has to chase.
   and nothing in this workbench's checks can see it. **Prefer replacing an exact
   known string over replacing a span to the next blank line**, and when a span
   must be used, print what it consumed
+
+### What the `devteam` experiment gives back — 2026-09-05
+
+The author offered the `devteam` pipeline's first-run data, `devteam` having
+been derived from this system. Read read-only; nothing outside `nitpick-libs`
+was written. Its failure modes are worth more to this workbench than its
+successes, because a system derived from ours fails where ours is weak.
+
+- **THE FINDING WORTH THE WHOLE READ: the write guard cannot see an interpreter
+  heredoc, and this harness instructs sessions to use one.** Measured directly
+  by feeding `tools/guard_compiler_tree.py` PreToolUse payloads on stdin.
+  A redirection, a `sed -i`, and a `Write` at the same existing compiler-tree
+  file are all **DENIED**; `python3 - <<PY` … `open(<same file>,'w')` … `PY` is
+  **ALLOWED, silently**. The guard documents this limit and names the sandbox's
+  `filesystem.denyWrite` as its airtight mitigation — **and `denyWrite` is
+  configured nowhere.** `permissions.defaultMode` is `auto` and the guard is the
+  only hook wired
+- **why it is more than a documented limit.** A harness may ship a standing
+  instruction preferring `sed`, heredocs and short scripts over `Write`/`Edit`.
+  **This one does**, so a session under it writes through the one unjudged form
+  by default, for every write, leaving no refusal and no record. `CLAUDE.md`
+  says the write rules are "enforced by the guard where they can be" and a
+  reader cannot tell which writes those were. **Every board and record edit this
+  session made went through the unjudged path.** Nothing improper happened — the
+  lock was held and the compiler tree was never targeted — but the mechanism was
+  not watching, which is a different fact from the writes being correct
+- **the exposure that actually matters** is a library *worker* following the
+  same ambient instruction into `../nitpick`, which is what
+  `library-sessions-write-scope` exists to prevent and what can invalidate a
+  verification run of several hours. **Filed as question 3 for the author and
+  deliberately not acted on: it is a permissions change, and no session should
+  make one on its own analysis**
+- **a retraction that is part of the finding.** The first pass recorded `sed -i`
+  as a second gap. It was a bad test — the probe path did not exist, and the
+  `sed` branch requires `os.path.exists` precisely so a sed *expression* is not
+  read as a filename. That check is correct. **A guard test must use a target
+  that exists, or it measures the test rather than the guard**
+- **"is compliance visible in the product?"** — `devteam`'s best contribution
+  and a test this workbench did not have. A rule asking for care is not a
+  mechanism; a rule that puts the command beside the number it produced is,
+  because a reader checks it without re-running anything. It is why
+  `meta/DECISIONS.md:550` was worth writing even though its list was short
+- **"awareness is not immunity", evidenced from our own tree.** `devteam`
+  collected five instances of somebody committing a failure *in the artifact
+  where they documented it*. This workbench supplied two more on 2026-09-04
+  without needing to look: `RX-121` invented minutes after writing the rule that
+  numbers come from the registry, and a nonexistent `RX-127` cited in the very
+  note recording that collision — plus a **silently deleted `BOARD.md`
+  paragraph** that `check_refs.py` passed clean, because a removed paragraph
+  breaks no reference. **Nothing here detects deleted content.** All of it is now
+  in `PLAYBOOK.md` §6, which is the argument for mechanical checks over written
+  rules — including over that section itself

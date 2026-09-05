@@ -658,6 +658,73 @@ they were finished; neither would have caught it by reading the output.
 
 ---
 
+**THE WRITE GUARD CANNOT SEE AN INTERPRETER HEREDOC, AND THIS HARNESS TELLS
+SESSIONS TO USE ONE.** Measured 2026-09-05 by feeding `tools/guard_compiler_tree.py`
+PreToolUse payloads on stdin, four controls against one existing compiler-tree
+file:
+
+| form | verdict |
+|---|---|
+| `echo x > <compiler file>` | **DENIED** |
+| `sed -i s/a/b/ <compiler file>` | **DENIED** |
+| `Write` tool at `<compiler file>` | **DENIED** |
+| `python3 - <<PY` … `open('<compiler file>','w')` … `PY` | **ALLOWED, silently** |
+
+The guard's own docstring states this limit and names the mitigation: *"The
+airtight mechanism for the first is the sandbox's `filesystem.denyWrite`."*
+**That mitigation is not deployed.** `denyWrite` appears nowhere in
+`~/.claude/settings.json` or any project settings; `permissions.defaultMode` is
+`auto` and the only hook wired is the guard itself. So the compensating control
+the limit is documented against does not exist in this installation.
+
+**What makes it matter rather than merely exist:** a harness may ship a standing
+instruction to prefer `sed`, heredocs and short scripts over the `Write` and
+`Edit` tools — for its own reasons, unrelated to any of this. **This one does.**
+A session under that instruction writes through the single form the guard cannot
+judge, *by default and for every write*, and leaves no trace that it was not
+watched: no refusal, no finding, nothing in any record. `CLAUDE.md` says the
+write rules are "enforced by the guard where they can be", and a later reader has
+no way to tell which writes those were.
+
+The exposure that matters is not the orchestrator's own board edits — those are
+writes it is entitled to make — but a **library worker** following the same
+ambient instruction into `../nitpick`, which is the one thing
+`library-sessions-write-scope` exists to prevent and which can invalidate a
+verification run that has been going for hours.
+
+**Do not read this as "the guard is broken."** Three of its four forms refuse
+correctly, and a first draft of this very finding wrongly recorded `sed -i` as a
+gap — the test used a path that did not exist, and the `sed` branch requires
+`os.path.exists` precisely so a sed *expression* is not mistaken for a filename.
+That check is correct and the retraction is the point: **a guard test must use a
+target that exists, or it measures the test rather than the guard.**
+
+*Sourced from the `devteam` pipeline's own finding "an ambient harness
+instruction can silently disarm the guard", which was derived from this system
+and met the same shape from the other side.*
+
+**IS COMPLIANCE VISIBLE IN THE PRODUCT?** The most useful design test this
+workbench did not have, and the one to apply to every rule written here. A rule
+that asks somebody to be careful is not a mechanism; a rule that puts the
+command beside the number it produced is, because a reader can check it without
+re-running anything and whether or not the author was careful. This is why
+`meta/DECISIONS.md:550`'s *"produced by `git grep -n 'D-151'` and not from
+recall"* was worth writing even though the list it produced was still short —
+the command was visible, so the gap was findable.
+
+**AWARENESS IS NOT IMMUNITY — and this workbench keeps proving it in the
+artifact where it documents the rule.** The 2026-09-04 session invented `RX-121`
+minutes after writing the rule that numbers must come from the registry, and
+then cited a nonexistent `RX-127` in the very note recording that collision. In
+the same session it **silently deleted a paragraph of `BOARD.md`** with a
+boundary-matched replacement, and `check_refs.py` was **clean straight across the
+deletion**, because a removed paragraph breaks no reference. Every one of those
+was committed by the session most steeped in the discipline at the moment it was
+most steeped in it. **Prefer a check that fails to a rule that asks for care**,
+and note the specific gap: nothing in this workbench detects *deleted content*.
+Replace an exact known string rather than a span to the next blank line, and
+when a span must be used, print what it consumed.
+
 ## 7. Repository conventions
 
 **`.gitignore`** — build output, `*.o`, `*.ll` (negating any committed
