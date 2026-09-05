@@ -2606,3 +2606,49 @@ successes, because a system derived from ours fails where ours is weak.
   breaks no reference. **Nothing here detects deleted content.** All of it is now
   in `PLAYBOOK.md` §6, which is the argument for mechanical checks over written
   rules — including over that section itself
+
+### The handoff, and the landing notice that was already stale — 2026-09-05
+
+`nitpick-libs-42` briefed and onboarded; it asked five questions, verified the
+lock free on two sources rather than on the guard's silence, and stood down
+without taking it. Answering its fifth question invalidated part of the brief it
+had just been given, which is the entry worth keeping.
+
+- **A CORRESPONDENT'S LANDING NOTICE IS A SNAPSHOT, AND IT AGES.** `nitpick-36`'s
+  "final landing notice for 1.5.1b" named `25e555c`/`8dbef43` and a `build/npkc`
+  of 7 014 696 bytes, sha256 `5af0d06e…`. Checked at the handoff, one day later:
+  HEAD is **`8c69ee4`** — **1.5.2 and 1.5.2b have both CLOSED and 1.5.2c is
+  planned and ratified** — and `build/npkc` is **7 014 920 bytes, sha256
+  `2f786437…`, mtime 19:42**, a different binary five hours after the one
+  described. Nothing was wrong when it was written; it was simply believed for a
+  day longer than it was true. **This board had carried it forward as the re-pin
+  target and would have pinned an unknown binary**
+- **`git status --porcelain` was CLEAN on the compiler tree and that was
+  misleading**, which is the transferable half. The work is happening in a
+  *worktree* (`.internal/wt/q0`), so a clean root tree says nothing about what
+  `build/` was built from. A live `harness.py --verdicts` and `quickemit.py` were
+  running at the moment the root read clean. **§3's mid-rebuild guard passes too
+  and is also insufficient** — it catches a binary still being written, not one
+  built from a tree nobody told you about. The remedy is the one §3 already
+  prescribes for uncertain provenance and this workbench nearly skipped because
+  the tree *looked* clean: **ask the session that owns the tree, and record the
+  answer in `PIN.md`**
+- **a verdict is a fact about a pin and does not inherit across a re-pin.**
+  **DEF-13 landed after `94874ce`** (verified by ancestry) and its symptom is *"a
+  zeroed diagnostic and a lost one"* — while **O-N11's verdict is an identity
+  COUNT read out of a diagnostic**, measured while that defect was present. And
+  **1.5.2b rewrote derives wholesale** while **O-N10 is a derive defect**. Both
+  are to be re-measured at the re-pin. The general rule: *when the thing you
+  measured with has changed, the measurement is a historical fact rather than a
+  current one* — the same shape as the pin proving "not landed" and never "not
+  real"
+- **A SECOND DEFECT IN THE WRITE GUARD, opposite in sign to the first.** It
+  refuses **`git worktree list`** — a read — as "a mutating git subcommand",
+  because its `GIT_WRITE` set contains `worktree`, which has both read and write
+  subcommands. **It was not worked around**: the command was dropped and the
+  information obtained another way, then recorded. The guard's own docstring
+  warns that *"a guard with false positives gets disabled, which is worse than no
+  guard"*, so this is exactly the failure mode it named for itself. Filed beside
+  board question 3, because the two findings pull in opposite directions — one
+  write form is unwatched, one read form is refused — and a fix should address
+  both or it will trade one for the other

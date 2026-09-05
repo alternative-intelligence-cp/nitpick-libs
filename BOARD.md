@@ -28,6 +28,38 @@ from `nitpick-36`, recorded here and deliberately NOT acted on.** The compiler's
 carrying the step-4 and step-5 machinery; their parity stage asserted it
 byte-identical to the harness's build of the same tree.
 
+**STOP — THE RE-PIN TARGET IS NOT `8dbef43` AND THE BINARY'S PROVENANCE IS
+UNKNOWN. Checked 2026-09-05, after the landing notice above was already stale.**
+The compiler's HEAD is **`8c69ee4`**: **1.5.2 and 1.5.2b have both CLOSED** since
+that notice and **1.5.2c is planned and ratified** (D-260, D-261; DEF-19,
+DEF-20). And `build/npkc` is **not** the binary the notice describes — it
+reported 7 014 696 bytes, sha256 `5af0d06e744ffff17…`, built 14:01; the tree now
+holds **7 014 920 bytes, sha256 `2f786437ad5e3644…`, mtime 2026-09-04 19:42**.
+
+**A HARNESS IS RUNNING.** Live processes at the time of writing:
+`bootstrap/harness/harness.py --verdicts` in the worktree
+`../nitpick/.internal/wt/q0`, plus `quickemit.py`, plus an active edit to
+`src/backend/ir/ir_stmt.npk`. The compiler session is `nitpick-bc` in
+`ListAgents` (busy; names are not durable — re-identify it).
+
+**`git status` on `../nitpick` is CLEAN and that is misleading here** — the work
+is in a *worktree*, so a clean root says nothing about what `build/` was built
+from. §3's mid-rebuild guard also passes, and is also insufficient: it catches a
+binary still being written, not one built from a tree nobody told you about.
+**Ask the compiler session what `build/` holds and whether it is a stable point
+to pin**, and record the answer as a `binary` line in `PIN.md`, as the previous
+pin did. That is one message.
+
+**AND THE FOUR DISCHARGED STOPS DO NOT INHERIT ACROSS THE PIN.** Their verdicts
+are facts about **`94874ce`**. Two concrete reasons, not general caution:
+**DEF-13 landed AFTER our pin** (verified: `94874ce` is an ancestor of
+`8d49ffe`) and its symptom is *"a zeroed diagnostic and a lost one"* — while
+**O-N11's verdict is an identity COUNT read out of a diagnostic**, measured
+while that defect was present. And **1.5.2b rewrote derives wholesale**
+(D-256…D-259, DEF-15…DEF-18) — while **O-N10 IS a derive defect**, so its
+verdict is two cycles old against machinery rebuilt underneath it. **Re-measure
+at least O-N10 and O-N11**; O-N4 and O-N9 are lower risk and cost seconds now.
+
 **Why the re-pin was NOT done at this stopping session:** it would leave a fresh
 toolchain with **no verified measurement against it**, discarding the one this
 session paid for. Everything verified today — O-N4, O-N9, O-N10, O-N11 — was
@@ -93,7 +125,7 @@ against: **S-24** derived comparisons over a generic parameter; **S-25**
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
 | 1 | s2 | 2026-09-04 | **Is a committed `REPORT` block immutable?** A worker left one of the six DEF-3 sites unedited because it sits inside a committed REPORT block, arguing a report records what a worker said on a date and must not be rewritten — correcting it in a later record entry instead. **This is the second dispatch to meet the question; the first left it open.** | **Ratify it, and write it into `WORKSTREAMS.md`.** The worker's reasoning matches this workbench's existing append-only rule and the finer form of it in `PLAYBOOK.md` §6 — what may be amended depends on whether the document records something that *happened*. Making it explicit costs one rule and stops a third dispatch re-deciding it |
-| 3 | — | 2026-09-05 | **Should `filesystem.denyWrite` be configured?** The write guard cannot judge an interpreter heredoc (`python3 - <<PY` … `open(path,'w')` …) — measured, four controls, the other three forms refuse correctly. The guard's own docstring names the sandbox's `filesystem.denyWrite` as the airtight mechanism for exactly this, and **it is configured nowhere**. Meanwhile this harness ships a standing instruction preferring heredocs and `sed` over `Write`/`Edit`, so a session writes through the unjudged form *by default*. The real exposure is a library worker reaching `../nitpick` and invalidating a multi-hour verification run | **The author's call, and deliberately not acted on here** — this is a permissions/settings change and no session should make one on its own analysis. Options: configure `denyWrite` for `../nitpick`; or teach the guard to refuse `python3`/`perl`/`node` invocations that carry a heredoc at all when a compiler path appears anywhere in the payload (cruder, more false positives, and a guard with false positives gets disabled — the guard's own docstring warns of this); or accept it and say so in `CLAUDE.md`, which today claims enforcement "where they can be" without saying where those are |
+| 3 | — | 2026-09-05 | **Should `filesystem.denyWrite` be configured?** The write guard cannot judge an interpreter heredoc (`python3 - <<PY` … `open(path,'w')` …) — measured, four controls, the other three forms refuse correctly. The guard's own docstring names the sandbox's `filesystem.denyWrite` as the airtight mechanism for exactly this, and **it is configured nowhere**. Meanwhile this harness ships a standing instruction preferring heredocs and `sed` over `Write`/`Edit`, so a session writes through the unjudged form *by default*. The real exposure is a library worker reaching `../nitpick` and invalidating a multi-hour verification run | **The author's call, and deliberately not acted on here** — this is a permissions/settings change and no session should make one on its own analysis. Options: configure `denyWrite` for `../nitpick`; or teach the guard to refuse `python3`/`perl`/`node` invocations that carry a heredoc at all when a compiler path appears anywhere in the payload (cruder, more false positives, and a guard with false positives gets disabled — the guard's own docstring warns of this); or accept it and say so in `CLAUDE.md`, which today claims enforcement "where they can be" without saying where those are . **A SECOND, OPPOSITE DEFECT IN THE SAME GUARD, found 2026-09-05: it refuses `git worktree list`, which is a READ**, as "a mutating git subcommand" — its `GIT_WRITE` set contains `worktree`, which has both read (`list`) and write (`add`/`remove`) subcommands. The guard's own docstring warns that *"a guard with false positives gets disabled, which is worse than no guard"*, so this is the failure mode it named. The two findings pull in opposite directions and should be fixed together: one form is unwatched, another is refused for reading |
 | 2 | s1 | 2026-09-04 | **O-N10's verification is complete for `nitpick-regex` and cannot be completed for `nitpick-time`.** Two of the thirteen properties measured need an enum with more than one payload field per variant, which `nitpick-time`'s does not have | **No action needed now**, recorded so a later session does not read `nitpick-time`'s partial verification as an omission. The gap is a property of that library's types, not of the work |
 
 **Q-9 — answered 2026-09-03 by the author: state what it blocks.** Landed as
