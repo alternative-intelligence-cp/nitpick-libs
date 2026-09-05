@@ -63,6 +63,15 @@ CASES = [
     # the worst class of check defect -- it puts the correct response and the
     # safe response in opposite directions, and the lesson an agent learns is
     # to paraphrase the evidence next time.
+    # A tracked file deleted and NOT staged. `git ls-files` reads the index so
+    # it is still listed, and opening it used to raise FileNotFoundError and
+    # take the whole check down with a traceback — in exactly the state the
+    # rule mandates, since check_refs is required to run BEFORE `git add`.
+    # Removing A.md also breaks README's link to it and orphans X-1, which is
+    # correct and is why all three kinds are expected: the point of the case is
+    # that the check REPORTS instead of dying, and still reaches every later
+    # check on the files that do exist.
+    ("tracked-file-missing", lambda r: (r / "meta" / "specs" / "A.md").unlink(), {"tracked-file-missing", "broken-link", "defined-uncited"}),
     ("fenced-id", lambda r: append(r, "meta/specs/A.md", "\n```\n### X-9 — an example inside a fence\n```\n"), set()),
     ("quoted-finding", lambda r: append(r, "meta/specs/A.md", "\n```\n[cited-undefined] meta/specs/A.md:4 X-9 is cited and never declared\n```\n"), set()),
     # A real citation written the way this workbench writes them -- in

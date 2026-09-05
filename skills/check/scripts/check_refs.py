@@ -42,18 +42,40 @@ def prose(text: str) -> str:
 
 
 def tracked_md(repo: Path):
-    """Markdown files git actually tracks — an untracked scratch file is not a finding."""
+    """Markdown files git actually tracks AND that exist on disk.
+
+    Returns (files, missing). `git ls-files` reads the INDEX, so a tracked file
+    deleted but not yet staged is still listed while `open()` on it raises
+    FileNotFoundError. This crashed the whole check with a traceback -- and it
+    crashed it in exactly the state this workbench MANDATES, because the rule
+    is "run check_refs BEFORE `git add` and gate the commit on it", and an
+    unstaged deletion is precisely the pre-`git add` state. A rule and a tool
+    that cannot both be satisfied is a defect in one of them (PLAYBOOK.md 6).
+
+    The missing ones are RETURNED rather than silently dropped, because
+    quietly narrowing the file set is how a check comes to report "All clean"
+    over a denominator it never states.
+    """
     try:
         out = subprocess.run(["git", "-C", str(repo), "ls-files", "*.md", "**/*.md"],
                              capture_output=True, text=True, check=True).stdout
-        return [repo / p for p in out.split("\n") if p.strip()]
+        listed = [repo / p for p in out.split("\n") if p.strip()]
     except (subprocess.CalledProcessError, FileNotFoundError):
-        return [p for p in repo.rglob("*.md") if ".git/" not in str(p)]
+        listed = [p for p in repo.rglob("*.md") if ".git/" not in str(p)]
+    files = [p for p in listed if p.exists()]
+    return files, [p for p in listed if not p.exists()]
 
 
 def check(repo: Path):
     findings = []
-    files = tracked_md(repo)
+    files, missing = tracked_md(repo)
+    # Not a fault in the repository — a tracked file deleted and not yet
+    # staged — but it narrows what every check below examined, so it is
+    # reported rather than absorbed.
+    for p in sorted(missing):
+        findings.append(("tracked-file-missing",
+                         f"{p.relative_to(repo)}: tracked but not on disk — "
+                         "deleted and not staged? Not scanned by any check below"))
     if not files:
         return [("no-markdown", f"{repo}: no tracked markdown — wrong directory?")]
 
