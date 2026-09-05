@@ -149,12 +149,25 @@ could prove `HEAD` did not move during the 15:52–15:56 build but **could not
 prove the tree was clean during it**, and advised writing the weaker claim.
 That session then answered it directly: **the tree was clean at 15:47** — `git
 status` printed nothing before the push, and the ladder ran after the push from
-the tree root. **So the strong claim is now supported and may be written**, and
-a fresh detached worktree at `0dfddac` was re-running the ladder to answer with
-a measurement rather than a design argument. **Record the sha it returns
-against the pinned `38e48973…`; if it differs, CI cannot pin by commit and P-10
-needs revisiting.** Until that number lands, the honest form is *"reproducible
-by decision (D-204, D-236, repro and parity stages); direct rebuild pending"*.
+the tree root. **So the strong claim is now supported and may be written.**
+
+**AND IT IS NO LONGER AN ARGUMENT — IT IS A MEASUREMENT. 2026-09-05: a fresh
+detached worktree at `0dfddac`, nothing uncommitted, run through the same
+ladder (`npkg build` from the tree root) reproduced BOTH pinned artefacts
+byte-for-byte** — `npkc` **7 304 552 B, sha256 `38e48973…`** and `npkrt.o`
+sha256 `c9ddbcff…`. **Checked here against our own pinned files rather than
+read off their message: `sha256sum` over `.internal/toolchain/0dfddac/` returns
+exactly those two digests.** So *"built from commit `0dfddac`"* is now exactly
+as strong a claim as the pin itself, and **`nitpick-time` 0.0.1 step 4 may
+write it plainly** — provided it also writes the two conditions above, which
+are what the reproduction depended on. Had the rebuild differed, CI could not
+have pinned by commit at all and P-10 would have needed revisiting; it did not.
+
+**1.5.2d IS PLANNED AND RATIFIED AS D-262** (their `daa5057`, 16:44 — **verified
+here as docs-only: four files, all under `meta/`, no `src/` and no `runtime/`,
+and not yet pushed**, so **`0dfddac` remains our pin and is still an ancestor of
+their `main`**). **Its step 2 moves our canary**, and the landing notice carries
+the before and after. Nothing here waits on it.
 
 **THE RE-PIN CHECKLIST — assembled 2026-09-05 because none existed and the
 re-pin was being carried as a one-line instruction.** §3 has the general
@@ -488,7 +501,7 @@ business, not a check's.
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | **0.0.0 DONE — VERIFIED PASS** at `1c43872`, pushed. Next: 0.0.1 (the skeleton), **not dispatched** — this session is stopping | *(no live agent)* | 2026-09-04 | `claude-opus-5` | **ALL FOUR STOPS ARE DOWN**, each on our own measurement: O-N4 (orchestrator, re-confirmed by the worker re-running probe 04 whole), O-N9 (TM-110), O-N10 (TM-111), O-N11 (TM-112). No compiler defect found. **0.0.5 and 0.5 unblocked.** **RESIDUE FOR 0.0.1, found by the orchestrator reading the verifier's denominator:** the expect-header sweep covered **36 of 42** tracked `.npk`. Three of the six uncovered are support libraries and correctly have no header. **The other three are `tests/probe/defect/missing_failsafe/case1`, `case2` and `case3` — defect reproductions with NO `expect-` header at all**, and they are precisely the files whose expected behaviour changed today (an `npkc` `NITPICK-REACH-003` refusal replaced an `llc` failure). The worker's own finding is that a defect reproduction's header goes stale the day its defect is fixed and that the sweep is the check; these three sit OUTSIDE that sweep, so the strengthened check cannot see the files it most needed to. Give them headers at 0.0.1 and make the sweep assert its DENOMINATOR (stream 1's denominator finding — no number invented for it here; `nitpick-regex` allocated RX-123 through RX-126 today, verified by `git grep '^### RX-'`, so its next free is RX-127) so an uncovered file is a finding rather than a silence
+| s2 | `nitpick-time` | **0.0.1 — the skeleton — DISPATCHED 2026-09-05 16:46** against pin `0dfddac`. 0.0.0 is DONE — VERIFIED PASS at `1c43872`, pushed | `s2-ntime-0.0.1-1646` | 2026-09-05 16:46 | `claude-opus-5` | **SIX THINGS RIDE THIS DISPATCH, five of them accrued after 0.0.1 was planned** — the subcycle's own six steps, plus: the two DEF-5 transcripts re-recorded against the measured after-value (`NITPICK-REACH-003`, **four** identities, not six); `expect-` headers for the three `missing_failsafe` cases; the three stale `list.npk` citations in `probe06_generic_vec.npk` (lines **14, 92, 107** — re-derived with an instrument that can see the checkouts); `probe09b`'s undocumented `TZ=Europe/Kiev` precondition, on `probe09_environ_split`'s self-announcing pattern; and **step 4's CI pin, which now has a measured answer** — `0dfddac`, LLVM **20.1.2 exactly** (patch release included), ladder from the tree root. **ALL FOUR STOPS ARE DOWN**, each on our own measurement: O-N4 (orchestrator, re-confirmed by the worker re-running probe 04 whole), O-N9 (TM-110), O-N10 (TM-111), O-N11 (TM-112). No compiler defect found. **0.0.5 and 0.5 unblocked.** **RESIDUE FOR 0.0.1, found by the orchestrator reading the verifier's denominator:** the expect-header sweep covered **36 of 42** tracked `.npk`. Three of the six uncovered are support libraries and correctly have no header. **The other three are `tests/probe/defect/missing_failsafe/case1`, `case2` and `case3` — defect reproductions with NO `expect-` header at all**, and they are precisely the files whose expected behaviour changed today (an `npkc` `NITPICK-REACH-003` refusal replaced an `llc` failure). The worker's own finding is that a defect reproduction's header goes stale the day its defect is fixed and that the sweep is the check; these three sit OUTSIDE that sweep, so the strengthened check cannot see the files it most needed to. Give them headers at 0.0.1 and make the sweep assert its DENOMINATOR (stream 1's denominator finding — no number invented for it here; `nitpick-regex` allocated RX-123 through RX-126 today, verified by `git grep '^### RX-'`, so its next free is RX-127) so an uncovered file is a finding rather than a silence
 | s1 | `nitpick-regex` | **0.0.3 DONE — VERIFIED PASS** at `91657eb`, pushed, harness 63/63 in 37.5 s. Next: 0.0.4 (`src/core/`), **not dispatched** — this session is stopping | *(no live agent)* | 2026-09-04 | `claude-opus-5` | **RX-126 is this subcycle's most valuable output and it corrected THIS BOARD** — see its block above. O-N10 also discharged here (RX-125), on thirteen measured properties, **two of which `nitpick-time` cannot test** (its enum has one payload field per variant), so O-N10's verification is still owed there. RX-123 (both leak checkboxes), RX-124 (`parse` no longer depends on a compiler-repository tool) landed. O-N16 raised, numbered from `meta/OPEN_QUESTIONS.md:355`. **ACCEPTED WITH A KNOWN OVERSTATEMENT, carried to 0.0.4 rather than re-dispatched at a stopping session:** the verifier found that the mutation-test **transcripts are NOT committed** — `meta/roadmap/0.0/0.0.3.md` §4 holds a per-case attribution *summary table*, which is what the acceptance criterion actually required and is why this is a PASS — but **`harness/README.md` claims "§4 has the transcripts", and it does not**. `PLAYBOOK.md` §6 says a summary is not evidence, and `nitpick-time` 0.0.0 was once FAILED by its own verifier for exactly this, so the precedent cuts against letting the sentence stand. **0.0.4 must either commit the raw mutation runs with their exit codes, or correct that sentence to claim only what is there.** Do not let it pass a third time
 
 ## Questions for the author
