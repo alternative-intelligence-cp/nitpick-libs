@@ -3254,3 +3254,87 @@ twice, once **inside a transcript generator**, where `ls <missing> | sed` wrote
 writing** — it said the compiler tree was "four commits" ahead, from memory. It
 is two. It was corrected by running the command the paragraph exists to
 recommend, and the correction is left in the text.
+
+### `nitpick-time` 0.0.2 — the harness, and a self-checking number that two agents did not check — 2026-09-05
+
+**0.0.2 DONE — VERIFIED PASS** at `e101312`. The harness is green: 27 units, 0
+failures, ~63 s. The verifier **rebuilt and re-ran all three negative controls**
+rather than accepting them — the symbol scan red on an introduced undefined
+symbol, the toolchain pin red on 20.1.3 against 20.1.2, and `repro` red on an
+unsorted generator with a sorted control green *through the same code path*,
+which is the part that makes it a control rather than a second test.
+
+**P-16 WAS UNEXECUTABLE, AND THE COMPILER WAS RIGHT ALL ALONG.** The plan's
+decision to *"compile the library once to an object and link each test program
+against it"* cannot work: two `npkc`-produced objects are a duplicate-symbol
+error — `ld.lld` exit 1, 121 lines, `npk.prelude.int8:ToString.to_string`
+defined twice — because every compile emits the whole reachable graph
+**including the prelude**. `tests/conformance/import.npk`, which computes
+nothing, emits **845 282 B**: the canary number exactly. **Confirmed here before
+anything was concluded from it.**
+
+**And then the reframing, which is the actual lesson.** Read at the pin,
+`BUILD_REFERENCE` §4.1 says *"The link line `npkg` builds takes **one program
+object** and adds the runtime object; there is no parameter through which a
+third input could enter."* **The compiler behaves exactly as documented; our
+plan assumed a model it never offered.** The first framing — *"`npkc` has no
+separate-compilation mode"* — is true and points at the compiler. The second is
+also true and points at us, and only the second is actionable. **A finding that
+blames the tool is worth re-reading against the tool's own documentation before
+it is raised**, and this one was, which is why what went upstream was the
+allowlist finding and an explicit note that separate compilation was *our*
+error. P-16 is the natural decision to write, so **the other four libraries'
+harness plans probably carry it (TM-117).**
+
+**THE ALLOWLIST IS WRONG IN BOTH DIRECTIONS, AND THE ARITHMETIC PROVES ITSELF.**
+`npkg/elf.npk`'s `runtime_allowlist`, read at the pin: on meeting `internal` it
+**advances past the keyword and takes the name anyway**, so the allowlist is all
+166 `define` names plus `main`. Measured against `runtime/npkrt.ll` at `0dfddac`
+and our pinned `npkrt.o`: **166 defines = 57 `internal` + 109 exported**, and
+the object exports **111** globals — the 2-symbol gap being exactly the `module
+asm` block's `.globl _start` and `.globl npk_clone_raw`. **109 + 2 = 111.** So
+the allowlist is **too permissive by 57** (names the object never exports: a
+program referencing one passes the scan and fails at `ld.lld`, turning D-206's
+named refusal into a link error) and **too narrow by 2** (`npk_clone_raw` is an
+intended export no `define` scan can see, so a legal program is falsely
+refused — the direction that gets guards disabled). Raised, with impact stated
+and no ask beyond whether it was known.
+
+**A NUMBER THAT CHECKED ITSELF PASSED THROUGH TWO AGENTS UNCHECKED.** The worker
+reported **56** internal defines; the verifier repeated **56**; the true count
+is **57**, confirmed two independent ways — `grep -c '^define internal'` and a
+unique-name extraction, both 57. **The number was falsifiable from the other
+numbers in the same sentence:** only 57 makes `109 + 2 = 111` come out, and 56
+would have required the object to export 112. **Neither agent ran the check
+their own figures contained**, and the verifier's phrasing tracked the worker's
+closely enough that it plainly carried the number forward rather than
+re-deriving it. Everything the verifier actually *tested* it re-ran; this was
+the one thing it *reported*. **The distinction is the finding: a verifier
+re-runs commands and repeats prose, and a number embedded in prose travels with
+the prose.** The orchestrator caught it only because the same figure had been
+sent upstream and was worth re-checking for that reason — not by any mechanism.
+**Where a report's numbers stand in a fixed relation, state the relation**, so
+that carrying one forward without the others is visibly wrong.
+
+**Two board staleness findings, both in the direction nothing here checks.** The
+0.0.2 worker checked its inherited NOTES against the files instead of working
+from them, and found **RX-111 and two leak-gate sites already discharged** in
+`nitpick-time` while the board still listed them as owed. Verifying that turned
+up the larger one: **the board cited `specs/SAFETY.md` in all five stream rows,
+and the file is `meta/specs/SAFETY.md` in every library** — eight occurrences
+across five lines. **The line numbers were right and the prefix was wrong**,
+which is why it survived: a line number reads as a thing to re-check and gets
+re-checked; a directory prefix reads as part of the file's name and is copied
+forward. **A citation is a path AND a line, and this ecosystem has been
+re-deriving lines while copying paths.** RX-111 is genuinely discharged in
+`nitpick-time` and `nitpick-regex`; **three remain — `nitpick-tui`,
+`nitpick-parse`, `nitpick-sockets` — each checked individually.**
+
+**And the general shape of it: every check in this workbench asks whether a
+claimed fix is real. Nothing asks whether a claimed debt is still owed.** That
+direction costs a whole dispatch, silently, because re-fixing a fixed thing
+looks exactly like work and produces a clean diff.
+
+**Incidental, and it is the denominator lesson arriving inside the instrument
+used to measure denominators:** `grep -c` reports **5** for the `SAFETY.md`
+paths because it counts *lines*, not *matches*; there are **8**.
