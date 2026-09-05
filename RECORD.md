@@ -3124,3 +3124,133 @@ method error — `${PIPESTATUS[0]}` after a command substitution reading `tail`'
 status — were each one command away, and the ones that were caught were caught
 because somebody ran it. **The tell, every time, was a claim standing where no
 command had been.**
+
+### The sixth orchestrator takes the lock; `nitpick-time` 0.0.1 closes, and a count is wrong for the fourth time — 2026-09-05
+
+**Handover.** `nitpick-libs_s1` (`00e68bc1-dc6d-4607-b8eb-72f7188a59c1`) takes
+the writer lock at 16:4x from `nitpick-libs_s0` on a briefed overlap. Freedom
+verified **three** ways rather than the usual two — the line read `none`,
+`.internal/` held only `toolchain/`, and the release commit `b992544` was on
+`main` with all seven trees clean and level. The outgoing session was asked
+directly and **answered from `git status` rather than memory**, and volunteered
+what no tree read can show: that its remaining actions were messages only.
+
+**A fourth lock hazard, and it was answered by one message.** `ListAgents`
+showed a **`nitpick-libs_s2`, idle, opened within a minute of this session**,
+which no brief, record or roster mentioned. Orchestrate §2.1 says to stop and
+ask the author; **asking the peer itself was faster and more certain** — it
+replied *idle, no task, nothing written, and I will message you before I
+write*. That is the move the fourth orchestrator recommended for the
+unidentified `nitpick-e3` and did not take, leaving it open two days. The
+author confirmed the practice: a **rolling pool**, the next generation
+pre-opened and a spent session closed to return as the generation after next
+(`s0` closes here and comes back as `s3`). **A higher-numbered libs peer is
+normally your own parked successor — ask it anyway.**
+
+**And the lock was taken locally and left invisible on `origin`.** The commit
+landed; the push did not. `origin/main`'s writer line still read `none` until
+`nitpick-libs_s0` noticed and said so. **The check ran on the wrong side of the
+write**: `git status` was verified before committing and not after, and the
+session that had just verified "all seven trees committed **and pushed**" as an
+inherited state failed to hold its own commit to it.
+
+**`check_refs` AND `gather_claims` BOTH REPORTED OVER A DENOMINATOR THEY NEVER
+STATED, AND THE SECOND WAS WORSE.** Both enumerate markdown with `git ls-files`
+and fall back to a recursive `rglob` when git is unavailable. From the
+workbench root those are **34 files and 334** — the root's own, plus 297 in
+five separate checkouts, plus 3 under a gitignored `.internal/`. Measured, not
+inferred: with git absent from `PATH`, `check_refs .` reports **exit 1, "57
+finding(s)"** against a true answer of clean-over-34, **under the same
+repository label**, so all 57 read as this repository's fault when each belongs
+to a repository W-7 forbids the session to touch. `gather_claims` gathers
+**1449 claims instead of 274**, and its guard was a bare `except Exception`,
+swallowing *any* error into the wider path.
+
+**Where it was hiding is the durable part.** `check_refs`'s own docstring warns
+that *"quietly narrowing the file set is how a check comes to report 'All
+clean' over a denominator it never states"* — **three lines above a fallback
+that quietly WIDENED it.** Awareness is not immunity, in the tool this
+workbench gates every commit on. Both now print `N files via <how>` on every
+line, clean or not. **Two control cases added and commissioned: green with the
+fix, red with it reverted, restored byte-identical.** The existing `CASES`
+table checked *which faults are found*; nothing checked *what was examined*,
+which is exactly why this survived. Controls 112 → 114.
+
+**CI MAY PIN THE COMPILER BY COMMIT, AND IT IS NOW A MEASUREMENT.** Our pin is
+a **binary**; CI **builds** one, so P-10 holds only if the build reproduces.
+`nitpick-compiler_s0` rebuilt `0dfddac` in a fresh detached worktree with
+nothing uncommitted and reproduced **both** artefacts byte for byte — checked
+here against `.internal/toolchain/0dfddac/` rather than read off the message.
+**Two conditions are load-bearing and are written into the workflow:** LLVM
+**20.1.2 exactly**, patch release included, *because a patch release can change
+instruction selection*, and **the ladder invoked from the tree root**. The
+reason is recorded with the condition, because a condition whose reason is lost
+gets relaxed by the next person who finds it inconvenient.
+
+**S-38 IS RATIFIED, AND OUR ATTRIBUTION WAS WRONG.** The author ratified the
+compiler session's recommendation and it is in flight as their 1.5.2d (D-262,
+verified here as docs-only and unpushed, so `0dfddac` stays the pin). Their
+option (2) — *measure the frontend's share before believing the obvious cause*
+— was carried out first **and changed the answer. The cost is not the prelude's
+size:** the frontend holds **0.72 s of the 0.82 s**, and three scaling defects
+account for it, chiefly a bindings analysis allocating one state slot **per
+statement of the whole program, for every function** (57%). **We measured the
+cost soundly and inferred its cause wrongly, and nothing on the board had
+marked that inference as one.** The canary is now *expected* to move at their
+step 2; a later session must read that as the landing, not a regression.
+
+**`nitpick-time` 0.0.1 — DISPATCHED, DONE, VERIFIED PASS** at `0c7e156`,
+committed and deliberately not pushed. It carried six items, five accrued after
+0.0.1 was planned. **Its lasting value is four corrections it made to what it
+was told**, three of them to this board:
+
+- **`case3` names SIX identities and `case1` four.** This board said *"the
+  diagnostic says four — this board's correction against the six we were told
+  is confirmed by the compiler's own output"*, taking one program's floor as
+  the general answer and citing the compiler's own mouth for it. **The board
+  contained its own refutation**: it records that `case1` has *"no import, no
+  arithmetic and no allocation, so its bill is S-4b's floor of four"* — which
+  is precisely why four is not `case3`'s number. Re-measured by the
+  orchestrator directly before the board moved. **A count a diagnostic computes
+  FROM THE PROGRAM cannot be corrected once for the set.**
+- **`TZ=Europe/KIEV` exits 34, not 0.** A claim relayed into the dispatch,
+  labelled unverified, and measured rather than inherited — which is the only
+  reason it did not become a fifth false entry. The spelling that does
+  demonstrate the weak assertion is mixed-case `Europe/Kiev`.
+- **`tests/probe/` HAS a `README.md`** — 12 KB, with the probe table. Board and
+  record both said it had none.
+- **TM-114, probably shared:** `BUILD.md` §3 was missing the compiler's default
+  `compile` stage and assigned `tests/conformance/` to `accept` — *accepted in
+  silence*, the shape O-N11 walks through. **The template was shared**, so each
+  sibling checks its own §3 at its next claim.
+
+**THE `list.npk` COUNT HAS NOW BEEN WRONG FOUR TIMES, AND THE REASON IS THAT
+NOBODY WAS COUNTING THE RIGHT KIND OF THING.** Five, then six, then seven, then
+ten — the last from the verifier, which swept the string and found ten,
+including the very records that document the fix. **Every one of those counts
+measured a STRING; the property is SEMANTIC** — *"cites the deleted file as
+though it still exists"* — and no `grep` decides that, because the same string
+appears in a stale citation, in an accurate historical note, and in the proof
+that the file is gone. Settled by reading: **zero stale citations remain.** The
+four surviving mentions in `probe06_generic_vec.npk` are *"it **was**
+`src/frontend/list.npk`"*, *"now prelude functions **rather than**
+`list.npk`'s"*, and two naming the new prelude location; lines 49 and 60 were
+correctly left untouched. **This workbench's standing rule is "a list of files
+is produced by `git grep`, never by recall". This is the counter-case: `git
+grep` is not the answer either when the predicate is not lexical**, and four
+sessions in a row reached for it because the rule does not say when it stops
+applying.
+
+**The worker's own instrument was better than the ones it was given.** It
+proved the deleted file gone **at the pin** — `git cat-file -e
+0dfddac:src/frontend/list.npk` → exit 128 — rather than in the compiler's
+working tree, which by then sat two commits ahead at `daa5057`. That became a
+playbook rule the same hour, alongside the restatement of the pipeline trap as
+*no pipeline at all when a status is being recorded* — the worker hit that one
+twice, once **inside a transcript generator**, where `ls <missing> | sed` wrote
+`exit=0` into a file whose entire purpose is verbatim evidence.
+
+**And the playbook paragraph recommending that rule was itself wrong on first
+writing** — it said the compiler tree was "four commits" ahead, from memory. It
+is two. It was corrected by running the command the paragraph exists to
+recommend, and the correction is left in the text.

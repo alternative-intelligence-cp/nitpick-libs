@@ -830,6 +830,40 @@ file set is a measurement; one tool's silence is not. And **state the
 denominator with every sweep result**: a sweep reporting no matches must also
 report how many files it opened, or it has reported nothing.
 
+**AND THE RULE HAS A LIMIT NOBODY HAD WRITTEN DOWN: WHEN THE PROPERTY IS NOT
+LEXICAL, NO SWEEP IS THE CHECK — INCLUDING A CORRECT ONE.** This ecosystem's
+standing discipline is *a list of files is produced by `git grep`, never by
+recall*. That rule is right about **recall** and silent about **predicates**,
+and four sessions in a row reached for `git grep` on a property it cannot
+decide.
+
+**The case, and the count is the evidence.** The stale citations to the deleted
+`src/frontend/list.npk` were counted **five**, then **six**, then **seven**,
+then **ten** — four sessions, four numbers, each produced by a real command
+over a real denominator, each disagreeing with the last. The property is
+*"cites the deleted file as though it still exists"*. **The same string appears
+in a stale citation, in an accurate historical note (*"it **was**
+`src/frontend/list.npk`"*), in a correction (*"now prelude functions **rather
+than** `list.npk`'s"*), and in the proof that the file is gone (`git cat-file
+-e <pin>:src/frontend/list.npk` → exit 128).** A sweep sees one class where
+there are four. The final count of ten included **the very records documenting
+the fix**, and the true answer to the question actually being asked — *how many
+stale citations remain* — was **zero**.
+
+**The tell that you are in this case:** the property contains a claim about
+**truth or tense** — *cites something deleted*, *describes current behaviour*,
+*is still accurate* — rather than about **presence**. Presence greps. Truth
+does not. **A sweep is then the way you build the CANDIDATE list, and reading
+is the check** — so report both numbers, *"N candidates swept, M confirmed by
+reading"*, because a single number silently claims the sweep was the check.
+
+**Why this outranks the ordinary version of the rule.** A blind sweep
+(`grep -r` from the root) returns zero and is caught the moment anyone asks for
+the denominator. **A lexically correct sweep of a semantic property returns a
+plausible number over a stated denominator and survives every check this
+workbench has** — it looks exactly like diligence. That is what let one count
+be wrong four times while each session did the thing the playbook told it to.
+
 ## 7. Repository conventions
 
 **`.gitignore`** — build output, `*.o`, `*.ll` (negating any committed
