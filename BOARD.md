@@ -120,6 +120,42 @@ said nothing. **This is stream 2's to fix at `nitpick-time` 0.0.1** — give
 runs yet; **it will produce a false failure the first time 0.0.2's `program`
 stage runs, and the failure will look like a compiler regression.**
 
+**CI MAY PIN THE COMPILER BY COMMIT AND EXPECT THE PINNED BYTES — BUT ONLY
+UNDER TWO CONDITIONS, AND `nitpick-time` 0.0.1 STEP 4 MUST WRITE BOTH.** Asked
+of `nitpick-compiler_s0` at this handover and answered 2026-09-05, because our
+pin is a **binary** we copied while CI would **build** one, and P-10 has CI pin
+by commit. Those are the same artefact only if the build reproduces.
+
+**The answer is yes, by decision rather than by luck**, and the mechanism is
+worth knowing: **D-204** (1.4.5) makes the toolchain a build input — the
+manifest's `[toolchain]` pins LLVM **20.1.2 exactly, patch release included**,
+along with the four flag sets every `llc`, `opt` and `ld.lld` call is built
+from; the harness's **repro** stage re-runs the same compiler on the same
+inputs from a *different working directory* and requires identical bytes on
+every full run; its **parity** stage byte-compares the harness's own `npkc`
+against `npkg`'s `build/npkc` on every run (**1083 verdicts, byte-identical on
+all three 1.5.2c runs**); and **D-236** renders every embedded source path
+relative to the manifest root, so the build path cannot leak into the artefact.
+
+**The two conditions CI must satisfy, and neither is optional:**
+
+1. **The same LLVM patch release — 20.1.2, not 20.1.x.** A patch release can
+   change instruction selection. That is *why* the pin is to a patch.
+2. **The ladder invoked from the tree root** — `npkg build`, or the harness's
+   builder. Invoked elsewhere it may not reproduce.
+
+**And the gap this closes.** `nitpick-libs_s0` flagged, correctly, that it
+could prove `HEAD` did not move during the 15:52–15:56 build but **could not
+prove the tree was clean during it**, and advised writing the weaker claim.
+That session then answered it directly: **the tree was clean at 15:47** — `git
+status` printed nothing before the push, and the ladder ran after the push from
+the tree root. **So the strong claim is now supported and may be written**, and
+a fresh detached worktree at `0dfddac` was re-running the ladder to answer with
+a measurement rather than a design argument. **Record the sha it returns
+against the pinned `38e48973…`; if it differs, CI cannot pin by commit and P-10
+needs revisiting.** Until that number lands, the honest form is *"reproducible
+by decision (D-204, D-236, repro and parity stages); direct rebuild pending"*.
+
 **THE RE-PIN CHECKLIST — assembled 2026-09-05 because none existed and the
 re-pin was being carried as a one-line instruction.** §3 has the general
 procedure; this is what *this* re-pin owes on top of it:
@@ -336,8 +372,14 @@ Their commit `8dbef43`, docs only. **Catalogued rather than raised, and closed
 anyway** — worth noting for the next session that the catalogue-don't-raise rule
 cost nothing here.
 
-**S-38 — THE PRELUDE'S PER-PROGRAM COST IS AN OPEN DECISION FOR THE AUTHOR, NOT
-A SETTLED PRICE. Raised by this workbench 2026-09-05 and taken up the same
+**S-38 — RATIFIED BY THE AUTHOR AND IN FLIGHT AS THE COMPILER'S 1.5.2d. NO
+LONGER OPEN, AND NOT OURS TO RE-REPORT.** Confirmed to this session by
+`nitpick-compiler_s0` on 2026-09-05: they put it to the author directly with the
+measurement and the recommendation, and he ratified it — *"lets go with your
+recommendation"*. **Do not re-report it.** The previous board carried it as
+*"the author decides"*, which was true when written and is now stale; a session
+reading only that line would report a settled decision a second time.
+**Originally raised by this workbench 2026-09-05 and taken up the same
 afternoon** as the compiler's `OPEN_DECISIONS` **S-38** (their `a882188` —
 verified here as docs-only, one file, one insertion, no `src/` or `runtime/`,
 so **our pin at `0dfddac` is unaffected** and `sha256sum -c` still passes).
@@ -348,20 +390,47 @@ already recorded that *"every prelude impl body is emitted whether reached or
 not"* with **+2.2% IR and +14% frontend time** measured on the compiler's own
 tree. **What nobody had measured is the fixed per-program cost — which is
 exactly what a per-program harness pays, and is why this workbench saw it and
-they did not.** Their three options, for the author: **(1)** reachability-driven
+they did not.** Of their three options the author took **(1)** reachability-driven
 emission of non-generic prelude bodies via the demand walk the emitter already
 runs for generic instances — deterministic, semantics-neutral, and *"worth doing
-before 1.5.3 hangs contract obligations on every prelude function"*; **(2)**
-measure the frontend's share first, since parsing and typing the prelude is paid
-per compile whatever is emitted, and if that is most of the 0.75 s the real
-answer is a checked-once prelude, a larger design; **(3)** accept by decision and
-record it in D-257.
+before 1.5.3 hangs contract obligations on every prelude function"*. But their
+option **(2)** — *measure the frontend's share first* — was carried out before
+any of it started, **and it changed the answer. That is the part worth reading.**
+
+**THE COST IS NOT THE PRELUDE'S SIZE.** On the floor-only probe the **frontend
+holds 0.72 s of the 0.82 s** and emission only **0.10 s**, and a profile names
+**three scaling defects** rather than prelude bulk: the bindings analysis
+allocating one state slot **per statement of the whole program, for every
+function** (**57%** of the run), and the type interner and the string interner
+deduplicating by **linear scan** (13%, plus part of the lexer's 12%). Those are
+fixed first as ordinary engineering with **no language change**; reachability-
+driven emission follows (587 of the probe's 608 emitted functions are prelude
+bodies). **Why this lands harder here than the raise assumed:** all three
+defects scale with the number of programs compiled, so a harness that compiles
+**many small programs pays them repeatedly** — the same structural asymmetry
+that let this workbench see the cost when the compiler's own harness could not.
+**And the durable lesson is option (2) itself: the obvious cause was measured
+before it was believed, and it was wrong.** We had attributed the whole +0.75 s
+to D-257's generated impls; five-sixths of it is three unrelated scaling
+defects. Our measurement of the *cost* was sound and our inference about its
+*cause* was not — and nothing on this board had marked that inference as one.
 
 **We stop measuring this per program.** The two data points and the
 22-of-30 constancy argument are what the decision needs, and any fix arrives
 with its own before/after. **One canary is kept:
 `nitpick-time/tests/probe/probe11d_floor_only.npk`, whose `.ll` is 845 282 B at
 `0dfddac`** — that is the number to watch, and a change in it is the signal.
+
+**THE CANARY IS NOW EXPECTED TO MOVE, AND WHEN IT DOES THAT IS SUCCESS RATHER
+THAN A REGRESSION.** 1.5.2d is in flight to shrink exactly this number, so the
+next session to see 845 282 change must not read it as a defect — read it as
+the landing. `nitpick-compiler_s0` sends the before/after at that point and has
+asked for our 30-program re-measure afterwards, **which we should run**: it is
+the only per-program evidence either side has, and re-running a measurement we
+already know how to take is the cheapest confirmation available. **Re-pin
+before re-measuring**, since a number measured against the old pin proves
+nothing about the new one — that is the rule this workbench already paid for
+once at the 0dfddac re-pin.
 
 **Why this is worth reading twice: it is the second time in two days that
 raising cost nothing and bought something.** O-N16 was catalogued rather than
