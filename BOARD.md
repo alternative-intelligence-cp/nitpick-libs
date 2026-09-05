@@ -68,7 +68,7 @@ All four were facts about `94874ce`; here is what they are against `0dfddac`.
 
 | Stop | Verdict at the new pin |
 |---|---|
-| **O-N11** | **FIXED.** `case1_no_failsafe` and `case3_arm_contract_evaded` are now `npkc` **exit 1, `NITPICK-REACH-003`, no `.ll`** — where before it was `npkc` exit 0 and `llc` exit 1 on an undefined `@npk_failsafe`. `case2_failsafe_present` still exits 0 and emits. **The diagnostic says "4 identities: Unreachable, HeapOom, HeapBadRequest, WildLeak" — this board's correction against the six we were told is confirmed by the compiler's own output.** This is the after-value checklist item 5 owes the two DEF-5 transcripts |
+| **O-N11** | **FIXED.** `case1_no_failsafe` and `case3_arm_contract_evaded` are now `npkc` **exit 1, `NITPICK-REACH-003`, no `.ll`** — where before it was `npkc` exit 0 and `llc` exit 1 on an undefined `@npk_failsafe`. `case2_failsafe_present` still exits 0 and emits. **THE IDENTITY COUNT IS PER PROGRAM, AND THIS BOARD'S "FOUR" WAS ONE CASE'S BILL ASSERTED OF ALL OF THEM. Corrected 2026-09-05 by the 0.0.1 worker and re-measured by the orchestrator directly before the board moved:** `case1` names **4** — `Unreachable, HeapOom, HeapBadRequest, WildLeak` — and `case3` names **6** — `probe11_arms_lib.EProbeZone, Unreachable, HeapOom, HeapBadRequest, WildLeak, IntOverflow`. **Both numbers were always real.** The earlier entry read *"the diagnostic says 4 identities — this board's correction against the six we were told is confirmed by the compiler's own output"*, which took one program's floor as the general answer and then cited the compiler's own mouth for it. **The board contained its own refutation:** checklist item 5 says `case1` has *"no import, no arithmetic and no allocation, so its bill is S-4b's floor of four"* — which is precisely why four is not `case3`'s number, `case3` importing `probe11_arms_lib` (hence `EProbeZone`) and doing arithmetic (hence `IntOverflow`). **A count that a diagnostic computes FROM THE PROGRAM cannot be corrected once for the set**, and "confirmed by the compiler's own output" is what made it feel settled. This is the after-value the two DEF-5 transcripts owe, and each records its own number |
 | **O-N10** | **UNCHANGED.** All three `derive_payload_enum` cases behave identically on both pins through the full four-step recipe and match their `expect-exit` headers exactly (0, 121, 107). 1.5.2b's wholesale derive rewrite did **not** move it — which is precisely what had to be measured rather than assumed |
 | **O-N9** | **UNCHANGED.** `probe10b` → `NITPICK-BORROW-012`, `probe10c` → `NITPICK-BORROW-001`, identical on both pins. `probe09b` exits 0 on both — *once its precondition is met; see below* |
 | **O-N4** | **STILL DISCHARGED, BUT SLOWER.** `probe04` is **2.03–2.06 s at ~119 MB**, was **1.18 s at 74 624 KiB**. Against the original 281 s / 30.9 GiB it is still ~136× better, so nothing reopens |
@@ -178,7 +178,8 @@ belong to the streams.** 1: answered and the `binary` line is written. 2: the
 harnesses finished and the pin was taken after them. 3: `npkrt.o` taken again
 and checked — byte-identical, verified not assumed. 4: all four re-measured,
 results in the table above. 5: the after-value is measured
-(`NITPICK-REACH-003`, **four** identities) and the two transcripts can now be
+(`NITPICK-REACH-003`; **four** identities for `case1`, **six** for `case3` — the
+count is per program, see the O-N11 row) and the two transcripts can now be
 re-recorded — **that write belongs to `nitpick-time`'s stream at its claim
 (W-7)**, not to the orchestrator. **6** (the six stale `list.npk` citations,
 three files, two streams), **7** (`probe04b`'s rationale as historical) and
@@ -220,7 +221,10 @@ three files, two streams), **7** (`probe04b`'s rationale as historical) and
      `Opt<Point>` compares only if `Point: Eq`, asked at the call.
 5. **Re-record `nitpick-time`'s two DEF-5 transcripts** — an `npkc`
    `NITPICK-REACH-003` refusal replaces the `llc` failure — and note the
-   identity count for `case1` is **four**, not six.
+   identity count is **per program**: `case1` names **four**, `case3` names
+   **six**. This line once read *"four, not six"*, which was true of `case1`
+   and became a general claim two paragraphs later; **six was never wrong, it
+   was another program's bill.**
 6. **Correct the stale comments citing the deleted `src/frontend/list.npk`.
    THE COUNT IS SIX, IN THREE FILES — NOT FIVE IN TWO.** Re-derived
    2026-09-05 with an instrument that can actually see the library checkouts
