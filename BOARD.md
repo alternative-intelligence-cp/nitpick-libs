@@ -1001,6 +1001,31 @@ says bumping the pin *"is a deliberate commit, and this is that commit"*. **So
 bump `NITPICK_COMMIT` to `3d15ac9` as its own commit BEFORE 0.1.1's work; that
 commit is what proves the new compiler builds the existing tree.**
 
+**THE TWO BUMPS ARE NOT THE SAME SIZE OF JOB, AND ONE OF THEM HAS A PREREQUISITE.
+Confirmed from both sides 2026-09-06 05:1x.** `nitpick-time`'s bump is a one-line
+commit. **`nitpick-regex`'s is not**: at `3d15ac9` its harness dies at the
+baseline before the suite runs, so **the floor baseline must be re-recorded in
+the same pass** or the bump lands a red that says nothing. Treating them as one
+kind of task is how the second one gets committed unrun.
+
+**AND THE RULE THAT CAME OUT OF DOING IT: measure a re-pin's blast radius in a
+COPY, never in the claimed tree.** Establishing what is on the far side of the
+baseline failure meant *running* `--record-baseline`, which rewrites committed
+files; done in a scratch copy, the claimed repository was never touched and the
+result is just as good. **This is now the rule for any re-pin probe that has to
+write to find out**, not a courtesy of the session that happened to do it first.
+
+**`nitpick-time` HAS ITS OWN RE-PIN EXPOSURE, OF A DIFFERENT SHAPE, AND IT IS
+PREDICTED RATHER THAN LATENT.** Its check list carries `check_exemptions_live`,
+and **0.1.0's plan file §1 item 4 already predicts that check firing at the
+re-pin** — the close worker foresaw the interaction and wrote the answer down
+before anyone re-pinned. So expect a fire there and **read it as the prediction
+landing, not as a new defect.** It is the same class as `nitpick-regex`'s — *a
+committed expectation about compiler output meeting a compiler that changed* —
+and the difference that matters is that this one was foreseen. **The class is now
+the thing to look for at every future re-pin**, in every repository, rather than
+the two instances of it.
+
 **(2) `nitpick-regex`'s TWO-DAY RED IS DIAGNOSED, REPRODUCED AND BOUNDED —
 2026-09-06 05:0x by the eighth orchestrator.** Run `33901134351`, 2026-09-04, on
 **`91657eb`** — *the very commit this board records as "0.0.3 DONE — VERIFIED
