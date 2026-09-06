@@ -3692,3 +3692,81 @@ both were right.** The `56`/`57` internal defines, the allowlist's
 `112`/`57`/`113`/`106`, and now `447`/`454`. **When two measurements disagree,
 the first question is what SET each one measured, not who miscounted** — and in
 all three cases the answer was a denominator nobody had stated.
+
+### Cycle 0.0 CLOSES — the first cycle closed anywhere in this ecosystem — 2026-09-06
+
+**`nitpick-time` cycle 0.0 is CLOSED, VERIFIED PASS, archived at
+`meta/roadmap/done/0.0/`, pushed, and CI is GREEN.** Harness green at **62
+units, 0 failures, ~62 s**. Seven subcycles: the language probes, the skeleton,
+two of harness, `src/core/`, the tzdb spike, and the close.
+
+**All 30 audit findings triaged — 30 of 30 carry a line**, counted rather than
+taken on report. Nothing was rejected on disagreement; the single refusal (F8,
+a file rename) states its cost instead. **That is what W-22 is for**: the
+auditor writes nothing and cannot defend its findings, so a close that drops one
+silently is the failure the rule exists to prevent, and the only way to know is
+to count.
+
+**CI RAN FOR THE FIRST TIME IN THIS REPOSITORY'S HISTORY, AND ITS FIRST RUN WENT
+RED.** Run `34014136095` failed on `f950ae4`; `8081e60` and `93293f2` are green.
+Read from GitHub rather than from the report. **The close is three commits
+because a CI result cannot live inside the commit that caused it** — an
+obvious-once-said structural fact that no plan had anticipated. **The first run
+found two defects in eight minutes, and both are in the shared workflow**: a
+whole-tree sweep that walks the entire compiler, because **CI checks the pinned
+compiler out INSIDE the workspace** where locally it is a sibling directory; and
+a capture-then-print step that dies before the print, because **a GitHub `run:`
+block already has `-e` on and `set -uo pipefail` does not clear it**. **Treat
+the first CI run as an instrument rather than a formality** — it is the only
+moment the workflow is tested against a machine that is not yours.
+
+**THE CYCLE SHIPPED TWO USE-AFTER-FREES ON ITS OWN PUBLIC SURFACE AND CAUGHT
+BOTH — the second one only because an adversarial reader was sent looking.**
+`vec_pop<T>` at 0.0.4 passed review and an independent VERIFIED PASS.
+`bytes_view`'s comment, promising a view outlives a growth it does not survive,
+passed 0.0.4 and 0.0.5 untouched and was found by the audit. **Both are
+invisible to every gate this repository owns, for one structural reason: they
+are all leak gates.** D-151 counts `wild` blocks, D-188 counts live drivers, and
+neither sees a managed body. **A leak is found by a gate; a use-after-free is
+found by a wrong answer — so it is found by a test that reads, and by nothing
+else.** That sentence is the most expensive thing this cycle learned.
+
+**The audit's own headline finding was the same shape one level up.**
+`check_no_owning_fields` could not parse a single-line struct declaration —
+**and both of this repository's structs are single-line**, so neither type's
+real fields had ever been examined. The self-check planted the violation
+**multi-line**, so the check was red on the fixture its author wrote and silent
+on the identical fault in the form the repository actually uses. **A check
+commissioned on one spelling is commissioned on none.** Five instances of the
+name-versus-mechanism shape landed in this cycle alone (TM-115, TM-137, TM-138,
+TM-141, TM-144), **every one found by a reader and none by a run.**
+
+**The harness grew 40 → 62 units, and the 22 are coverage rather than
+re-counting**: the defect corpus the audit found asserting nothing — 21
+committed `expect-` markers under `tests/probe/defect/`, the entire regression
+record for four discharged compiler defects. The inversion the auditor named was
+exact: **the three files EXEMPT from carrying an expectation had their verdicts
+re-derived every run, and the 21 that CARRIED one did not.**
+
+**~~O-N4~~ struck on this repository's own re-measurement** — 30 000 rows at
+**1.17 s / 26 888 KiB** against 281 s / 30.9 GiB, with a **2 266 485 B `.ll`
+carrying all 30 000 rows**, so the speed is not bought by emitting less. **Its
+heading had read BLOCKING for two subcycles after its gate was passed** — the
+same staleness direction the board was caught in earlier: everything here asks
+whether a claimed fix is real and nothing asks whether a claimed debt is still
+owed.
+
+**AND ONE CORRECTION THE ORCHESTRATOR OWES, BECAUSE THE OVERSTATEMENT WAS
+ITS OWN.** After the `0dfddac` rebuild this record and a message upstream both
+said *"built from commit X"* is *"exactly as strong a claim as the pin"*. **That
+reproduction was same-machine.** CI measured the other case: **`npkrt.o` is
+byte-identical across machines and `npkc` is not** — `3c05818c…` in CI against
+`a3b0dadc…` here. So a CI build of the pinned commit is **behaviourally**
+equivalent, and the suite passing is what carries the weight; **byte-identity
+across machines was never measured and is not claimed.** One data point,
+deliberately not promoted to an assertion.
+
+**The claim advances to cycle 0.1 — the civil calendar, `src/cal/`** — whose
+opening subcycle is written and execution-grade. **The re-pin is held for the
+compiler's 1.5.2f close**, which carries D-264, the rule this workbench's O-N19
+forced.
