@@ -3956,3 +3956,49 @@ that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
   plus a verifier is what it buys. The independence argument is on the board and
   in Q2 above; the one thing carried into `NOTES:` is that **every number it
   records is an `aaffb87` number and must say so.**
+
+- **finding: the 30-program spread we OWE the compiler session at the re-pin
+  cannot be re-run, because its program set was never recorded.** Found while
+  waiting for 1.5.2f, ~40 minutes before the re-pin would have needed it.
+  Searched exhaustively rather than sampled: four `BOARD.md` sites,
+  `RECORD.md:3013`–`3017`, every `meta/` document, every `.md`/`.txt`/`.csv`/
+  `.py`/`.sh` in this workbench tracked or untracked, and the compiler's own
+  `meta/`. **Only the result survives** — *"30 programs across two libraries, 22
+  sit at exactly 388 765, all 8 exceptions are derive or enum programs"* — and
+  it names **no program, no library and no selection command**. The board's
+  standing sentence that *"re-running a measurement we already know how to take
+  is the cheapest confirmation available"* is therefore false as written, and
+  has been since the day it was written.
+- **This is hazard 6's shape a second time in one session, and the third
+  instance this week**: a result published over a denominator nobody stated. The
+  tree sweep's version cost nothing because the trees happened to be clean; the
+  O-N12 citation count cost an understatement the outgoing session caught
+  itself. **This one costs the re-measure its comparability**, which is the
+  first time the shape has cost something we owe to another party. Recorded as
+  evidence that the rule now in `PLAYBOOK.md` §7 — *discover the set, never list
+  it, and print the count beside the verdict* — is not a bookkeeping nicety.
+- **What survives, stated so the finding is not read as worse than it is.** The
+  load-bearing claim never rested on the 30. A 14-line program that only exits 0
+  went **456 517 B → 845 282 B**, and the 30 000-row program moved by the
+  identical **388 765 B**; a delta independent of input size is a prelude cost
+  and not a compile-time regression, and that pair is reproducible from its own
+  description. **The 30 were the widening, not the argument.**
+- **Decision, taken here and recorded so a later session does not re-litigate
+  it: the re-measure is RE-FOUNDED, not repeated, and it will say so to the
+  compiler session.** Define the set in a committed file before running it, by
+  discovery — every program under `tests/` compiling clean under both pinned
+  binaries, enumerated by command, count printed beside the verdict — and report
+  the spread as **first-of-its-kind under a stated denominator**, with the floor
+  pair carried forward as the one continuous measurement. **Claiming a
+  continuity we cannot demonstrate would be the same overstatement this board
+  has now caught four times**, and the compiler session is entitled to know
+  which of the two numbers it can compare against yesterday's.
+- **Sequencing, and it is a rule rather than a preference: `skills/orchestrate/SKILL.md`
+  §2 says NEVER RE-PIN WHILE ANY CLAIM IS IN FLIGHT.** `nitpick-time` is claimed
+  and `s2-ntime-0.1.0-0235` is live, so 1.5.2f's landing at ~03:20 does **not**
+  start the re-pin: the worker must report and the verifier must PASS first.
+  §3's mid-rebuild guard then applies on top — a `build/npkc` less than two
+  minutes old means retry, and that guard has fired twice and been right both
+  times, each time catching an orchestrator moving straight off a landing
+  notice. **A landing notice is not a re-pin trigger; a quiet board plus an aged
+  binary is.**

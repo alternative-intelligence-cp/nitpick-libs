@@ -694,6 +694,44 @@ before re-measuring**, since a number measured against the old pin proves
 nothing about the new one — that is the rule this workbench already paid for
 once at the 0dfddac re-pin.
 
+> **AND WE DO NOT, IN FACT, KNOW HOW TO TAKE IT AGAIN — THE 30-PROGRAM SET IS
+> RECORDED NOWHERE. Found 2026-09-06 02:4x by the seventh orchestrator while
+> waiting for 1.5.2f, roughly forty minutes before it would have bitten.**
+> Searched exhaustively: `BOARD.md` (four sites), `RECORD.md:3013`–`3017`,
+> every `meta/` document, every `.txt`/`.csv`/`.py`/`.sh` in this workbench
+> tracked or not, and the compiler's own `meta/` — **only the RESULT survives.**
+> *"30 programs across two libraries, 22 sit at exactly 388 765, all 8
+> exceptions are derive or enum programs"* names **no program, no library and
+> no selection command.**
+>
+> **This is the same defect as hazard 6, in a measurement we OWE somebody**: a
+> result published over a denominator nobody wrote down. The tree sweep's
+> version cost nothing because the answer happened to be clean; this one costs
+> the re-measure its comparability, because a differential over a *different*
+> 30 programs cannot be checked against *"22 of 30 at exactly 388 765"*.
+>
+> **What is still sound, and it is not nothing.** The floor program is described
+> precisely enough to rebuild — *"a 14-line program that only exits 0"*, **456 517
+> B → 845 282 B**, and the 30 000-row program at the identical delta. That pair
+> is the whole load-bearing claim (a constant independent of input size is a
+> prelude cost, not a compile-time regression) and it survives without the set.
+> **The 30 were the widening, not the argument.**
+>
+> **So the re-measure is re-founded rather than repeated, and it says so out
+> loud.** Define the set in a committed file **before** running it, by discovery
+> and not by listing (`PLAYBOOK.md` §7): every program under `tests/` that
+> compiles clean under both pinned binaries, enumerated by command, **with the
+> count printed beside the verdict**. Report it to the compiler session as a
+> **new denominator** — the floor pair carried forward as the continuous
+> measurement, the spread restated as first-of-its-kind under a stated set.
+> Claiming continuity we cannot demonstrate would be the same overstatement this
+> board has now caught four times.
+>
+> **Take the count when NO WORKER IS LIVE.** `nitpick-time` is being written by
+> `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
+> now is a moving target — which is how unstable numbers get published in the
+> first place.
+
 **Why this is worth reading twice: it is the second time in two days that
 raising cost nothing and bought something.** O-N16 was catalogued rather than
 raised and was closed upstream the same day anyway; S-38 was raised under the
