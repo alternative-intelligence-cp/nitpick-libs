@@ -855,6 +855,58 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 1.5.4 STEP 3 IS LANDED — the counters, S-46 under its recommendation, pin target `65a1756`, notice 2026-09-06 19:58. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+**53/53, 62 verified programs (57, 53, 48 at the steps before), parity 1 194, the
+catalogue's kinds check agreeing with the new `loop-step` row, and the compiler's 178
+obligations UNCHANGED at 170 / 8** — the first step of the subcycle to move none.
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since 1.5.2i (fe42dba)
+builder.o  3b5f868d...  8,086,688 B  unchanged since the 1.5.1b snapshot refresh
+builder    fe528b03...  7,014,760 B  unchanged since the same refresh
+npkc.ll    3abbe270... 22,897,885 B  the emission, MOVED
+npkc.o     535874fc...  9,122,976 B  MOVED
+npkc       0115df4b...  7,940,984 B  MOVED
+```
+
+**⚠⚠ THE CANARY'S FOURTH IDENTICAL READING IS A NULL RESULT FOR THIS STEP, NOT A
+CONTROL — AND THIS BOARD MUST WALK BACK HOW IT PRAISED THE SERIES ONE NOTICE AGO.**
+14 defines / 52 212 B again, unchanged since `8ef0f79`. **But they gave the reason, and
+the reason removes the evidential value: *the canary holds no counted loop.*** Step 3
+changes emission **only** for counted loops, so **our canary cannot detect this change at
+all.** The previous notice recorded the three-reading series as establishing *"our
+canary's emission is stable across 1.5.4 so far"* — **that was too broad.** The correct
+statement is narrower: **a control series is only a control for changes that touch the
+paths its program exercises**, and for step 3 the canary is silent rather than
+reassuring. *Four identical readings look like mounting evidence and are not; a fifth
+would add nothing either. The right instrument for a counted-loop change is a program
+with a counted loop, and we have none.*
+
+**THE ONE EMITTED-IR CHANGE OF THE SUBCYCLE SO FAR.** A counted loop whose step is a
+**literal** no longer emits the `BadStep` compare — the checker's `TYPE-068` at step 0
+already made the literal positive — so such a program **compiles to fewer bytes than at
+`24fad46`**. A **computed** step keeps its compare, now the guard of a **new catalogue
+kind: `loop-step`, kind 18, trap `-4101`, guard yes**, elided when the manifest discharges
+the row. **A manifest read from this compiler forward can carry `loop-step` rows; none
+exists in the compiler's own.** No new refusal (`TYPE-068` landed at step 0), no new trap
+identity.
+
+**BLAST RADIUS: ZERO — BUT INCIDENTALLY, LIKE STEP 0, NOT STRUCTURALLY LIKE STEPS 1–2.**
+This is why the board keeps those two kinds of zero apart. **Steps 1 and 2 could not
+affect a program that compiled before; step 3 can, and simply does not affect ours.**
+Re-verified here at 2026-09-06 19:58 rather than carried forward from the earlier run —
+all six work trees unmoved (`nitpick-parse` `3cad08c`, `nitpick-regex` `ab93eae`,
+`nitpick-sockets` `d385991`, `nitpick-time` `2589069`, `nitpick-tui` `e5439ee`,
+`nitpick-posix` `948d9b6`, all `dirty=0`), and the claim itself re-run: **zero `loop(`
+heads in code position, zero `till` anywhere.** **⚠ THE MOMENT A LIBRARY WRITES A COUNTED
+LOOP, THIS CLEARANCE EXPIRES AND ITS EMITTED BYTES CHANGE** — with a literal step it
+loses the `BadStep` compare, with a computed step it gains a `loop-step` obligation row.
+
+**Next: step 4 (`prove` / `assert_static` / `exhaustive` rows, the `checker` verdict, the
+rung suite's retirement — S-45, S-47, S-48) and step 5 (the docs); harnesses running.
+S-45…S-48 remain open with the author.**
+
 ### 1.5.4 STEP 2 IS LANDED — the merge, pin target `24fad46`, notice 2026-09-06 19:36. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **53/53, 57 verified programs (53 at step 1, 48 at step 0), parity 1 184 verdicts

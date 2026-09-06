@@ -6025,6 +6025,38 @@ emitted-IR change, the same category as step 1 rather than step 0's incidental c
 The obligation trend across the subcycle is 154/24, then 168/10, then 170/8, **with
 nothing at any step moving the other way.**
 
+**1.5.4 STEP 3 FILED — THE COUNTERS, `65a1756`, 2026-09-06 19:58.** 53/53, **62
+verified programs**, parity 1 194, the catalogue's kinds check agreeing with a new
+`loop-step` row, and the compiler's obligations **unchanged at 170 / 8** — the first step
+of the subcycle to move none. Filed, not worked; pin stays `3d15ac9`.
+
+**THIS SESSION HAD TO WALK BACK ITS OWN PRAISE OF THE CANARY SERIES, AND THAT IS THE
+ENTRY WORTH KEEPING.** One notice earlier this record said three identical readings
+established *"our canary's emission is stable across 1.5.4 so far"*. **That was too
+broad.** Step 3 changes emission only for counted loops, and the compiler volunteered the
+reason its fourth identical reading means nothing here: **the canary holds no counted
+loop.** So the series is silent about this step rather than reassuring about it. **The
+correct general statement is that a control series is only a control for changes touching
+the paths its program exercises** — four identical readings look like mounting evidence
+and are not, and a fifth would add nothing. **The right instrument for a counted-loop
+change is a program with a counted loop, and we have none.** *A control that cannot fail
+is not a control; it is a habit.*
+
+**The subcycle's first emitted-IR change landed here.** A counted loop with a **literal**
+step no longer emits the `BadStep` compare — `TYPE-068` at step 0 already forced the
+literal positive — so such a program compiles smaller than at `24fad46`. A **computed**
+step keeps its compare as the guard of a new catalogue kind, **`loop-step`, kind 18, trap
+`-4101`**, elided when the manifest discharges the row. **Manifests from this compiler
+forward can carry `loop-step` rows.**
+
+**Our clearance is therefore INCIDENTAL again, like step 0's, not structural like steps 1
+and 2 — which is precisely why the board keeps the two apart.** Steps 1 and 2 could not
+affect a program that compiled before; **step 3 can, and merely does not affect ours.**
+Re-verified rather than carried forward: all six work trees unmoved and `dirty=0`, and the
+claim itself re-run — zero `loop(` heads in code position, zero `till` anywhere. **The
+moment a library writes a counted loop the clearance expires**, losing the `BadStep`
+compare with a literal step or gaining a `loop-step` obligation row with a computed one.
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`
