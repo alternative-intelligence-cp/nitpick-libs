@@ -4268,3 +4268,52 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   satisfied and not by being weakened: **13 cases, 7 fault classes, 4
   false-positive controls, 2 denominator cases, all correct** — with
   `undefined-question` still firing.
+
+- **pin `3d15ac9`, tree clean** — the re-pin the board had held since 02:00,
+  taken 2026-09-06 03:40 once 0.1.0 was verified and nothing was in flight.
+  **Both §3 guards cleared before anything was copied**, which is the first
+  re-pin where that was true on the first attempt: the binary's mtime is
+  **725 s after** `HEAD`'s commit (the provenance test — a binary older than
+  `HEAD` cannot be a build of it), and it was **876 s old**, past the
+  two-minute mid-rebuild floor. **Digests matched the compiler's notice** rather
+  than being taken from it, `npkrt.o` was `cmp`-verified byte-identical to the
+  `aaffb87` pin's on DEF-12's precedent, LLVM 20.1.2, and `aaffb87` is an
+  ancestor so the pin moves forward.
+- **THE FLAT PREDICTION HELD, AND IT WAS A REAL TEST.** `nitpick-compiler_s0`
+  predicted the 1.5.2f point on the floor series would not move at all. The same
+  program through both pinned compilers on this machine — the differential the
+  board's own method requires, and possible only because old pins are kept —
+  gives `aaffb87` **50 482 B / 14 `define`s** and `3d15ac9` **50 482 B / 14
+  `define`s**. Byte-identical and define-identical. **A prediction that forbids
+  all movement is falsified by any movement**, which is what makes a flat one
+  worth more than a moving one. Third prediction in this series; all three hit.
+- **finding: THE CANARY'S SOURCE WAS NEVER COMMITTED, and it is the measurement
+  this workbench relies on most.** Until today it lived in a session scratchpad.
+  The 2026-09-05 reading's **output** survived there by accident — `canary.ll`,
+  50 560 B, 14 defines — and **its input did not**, so the series could not be
+  continued from its own materials. **This is the 30-program spread's defect
+  again, found the same night, on the one number the compiler session asks for
+  at every re-pin.** Fixed rather than noted: the canary is committed at
+  `tools/canary.npk` with `tools/canary.md` carrying the method, the series and
+  which number to trust. **The series restarts here**: the 78-byte gap between
+  the lost program and this reconstruction is a *different program*, not a
+  compiler change, and the define count of 14 is what carries across the break.
+- **finding: `npkc` writes the emission to STDOUT.** An unredirected run in an
+  agent session dumps ~50 000 bytes of IR into the transcript, which is what
+  happened on this canary's first reading and cost real context. **Redirect
+  first, always** — `$NPKC prog.npk > out.ll` — and capture the status with
+  `; echo "exit=$?"` immediately after, never through a pipeline, because a
+  `$(cmd | tail -1)` capture reads `tail`'s status. Into `tools/canary.md`.
+- **finding: the canary is a WEAK case for the path-dependence rule, and the
+  measurement said so before the document could overclaim.** `tools/canary.md`'s
+  first draft asserted that a byte count is comparable only against one taken
+  from the same path. Compiled from a session scratchpad and again from
+  `tools/` — six characters apart — the canary emits **the same 50 482 bytes**.
+  The emission shows why: the site path table is overwhelmingly the *prelude's*
+  rows, every one the fixed string `prelude.npk`, and a floor program
+  contributes almost none of its own. **Path dependence is real and scales with
+  a program's own site count** — `nitpick-time` 0.0.5 measured 14 bytes between
+  two directories one character apart because that program had 14 site rows.
+  **The rule holds for the spread and barely registers here**, and the document
+  now says so. Written down because the draft was corrected by running the
+  command against it, which is the only reason it did not ship as fact.
