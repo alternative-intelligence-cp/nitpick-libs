@@ -5268,3 +5268,35 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   `vec_oob(k)` does not return for k in {-1, 0, 1} would have caught it, and will
   catch the next spelling of the trap whatever that is.** A test aimed at the
   guard's own contract outranks any number of tests aimed through it.
+- **The second triage returned READY-TO-CLOSE: harness 141/141 (was 108), six
+  items, six lines, ALL FIXED — none deferred, none refused — and the denominator
+  explained rather than asserted** (the audit filed 5 findings; the dispatch split
+  BL-4 into its comment half and its memory-cap half, giving 6). Four commits,
+  unpushed. Verifier dispatched.
+- **finding, and it CORRECTS the recommendation the worker sent up: the
+  supersession convention is NOT missing. It exists, it is named inside
+  `DECISIONS.md` itself, and it was applied one document over.** The worker
+  reported *"`meta/DECISIONS.md` holds 78 decisions and NO mechanism for marking
+  one superseded"* and recommended inventing one. **Measured instead of accepted:**
+  `meta/specs/VERIFICATION.md:139` already reads
+  **`Rule P-4 — SUPERSEDED by SAFETY.md S-24`** with a `>` blockquote above it
+  explaining why the section is kept rather than deleted — **and
+  `DECISIONS.md:2054` describes that very marking approvingly.** The `>`
+  blockquote-above-a-heading form is already used in `DECISIONS.md` for other
+  purposes at lines 543 and 674. **So the mechanism was invented in this same
+  cycle, documented in the file that needs it, and never applied there.**
+- **The live instance, exact:** `DECISIONS.md:2376`, inside RX-143's body, states
+  *"This supersedes RX-130's sentence…"* — **the supersession IS declared** — while
+  RX-130's heading at line 1590 carries nothing at all, and **no heading among the
+  78 decisions carries a superseded or struck form.** A reader arriving at RX-130
+  reads *"it never returns"*, which is false, with nothing on the page saying so.
+- **THIS IS THE THIRD INSTANCE OF ONE SHAPE IN ONE CYCLE, AND THE SHAPE IS
+  ALREADY NAMED IN THE FIRST AUDIT:** *a consequence written in the document that
+  DISCOVERED it, never carried to the document that OWNS it.* First `SAFETY.md`
+  claiming a check that did not exist; then the accessor-confinement consequence;
+  now the supersession marker. **The recommendation is therefore cheaper and
+  better founded than the one filed — not "adopt a convention" but "apply the one
+  this ecosystem already wrote, in the file that already praises it".** Left as a
+  recommendation to the author rather than actioned, because unlike the leak-scan
+  widening it imposes a documentation convention on five repositories, and that is
+  a different class of change from detecting an objective leak.
