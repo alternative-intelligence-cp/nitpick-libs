@@ -5583,3 +5583,76 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   the pause block, because the writer line is the one thing every session reads
   first and a `none` with no explanation invites exactly the resume the pause
   exists to prevent.
+
+### The ninth session takes the lock as a LISTENER, and the compiler address is settled by asking — 2026-09-06 13:25
+
+**Handover.** `nitpick-libs_s4` (`08f94e4a-85df-4b03-ac4a-bfd9e5cd07a1`) takes the
+writer lock from `nitpick-libs_s3` on a briefed overlap, at `92b279e`. **It is not
+the ninth orchestrator.** Its instructions from the author, relayed through the
+outgoing session, are to **stand down, listen for compiler updates, log them, and
+start no implementation** — because by the time this workbench resumes the compiler
+will have moved and anything built meanwhile may have to be redone. **The lock was
+taken only to write this entry and the board entries beside it, and it will be
+released without anything having been built.**
+
+**Freedom verified on four independent readings before the write, none of them
+inference.** Line 14 read `none` **as a value** rather than by grepping for a uuid;
+`git ls-remote origin main` returned `92b279e`, equal to local `HEAD`, so the
+`none` was true on the wire and not only locally; `.internal/` held **only**
+`toolchain/`, no marker; and the outgoing session answered from `git status` across
+a `find`-discovered **eight** trees. The take then went **line, marker, push,
+re-read from `origin/main`** — hazard 5's order.
+
+**The marker was written from a literal uuid, not `${CLAUDE_SESSION_ID}`**, which
+is empty in a Bash tool call (hazard 2). **37 bytes, asserted rather than assumed.**
+
+**A count was wrong for the fifth time, and this one was found by READING rather
+than by working.** `BOARD.md:1384` says *"one tree at `91657eb`, three kept
+compilers, this machine"*. The sentence is **true** — three pins were run for the
+CI diagnosis — but `.internal/toolchain/` holds **five** (`0dfddac`, `3d15ac9`,
+`94874ce`, `950bb1d`, `aaffb87`). It sits directly on top of a three-row table
+inside a measured result with real digests around it, so it reads as an inventory
+to anyone who does not run `ls`. **That is trap 4 — a count that looks measured
+because it is adjacent to a measurement — and it was found in the board of the
+session that had just recorded trap 4 against itself.** The incoming session
+raised it; the outgoing session counted and confirmed rather than accepting. The
+sentence is left standing and the inventory is now stated beside it, with the
+reason old pins are never deleted: **every differential this workbench owes is
+taken by running two pinned compilers over the same inputs on this machine**, so a
+deleted pin costs the ability to take the measurement, not merely the history. The
+CI log for the run in question was **HTTP 404 and unrecoverable**; the kept pins
+were the only instrument left.
+
+**The outgoing session was resumed mid-handoff, and its identity survived.** Its
+two messages arrived from different sockets and `ListAgents` reported it as started
+20 minutes earlier — impossible for a session that had taken a pin at 03:40. Rather
+than infer, the incoming session read the transcript: one continuous file, 4 567 223
+bytes, last written 80 seconds before the check. **Resumed, not replaced**, so line
+14's releaser uuid stood and needed no correction. The outgoing session supplied
+what no file could show — the connection dropped mid-response, the author restarted
+it, **and the first thing it did on resume was sweep the eight trees and the lock
+before doing any work**, because a dropped connection is exactly when a half-finished
+write hides. *Sweep first, then work.*
+
+**THE COMPILER ADDRESS IS SETTLED, AND THE MANNER MATTERS MORE THAN THE ANSWER.**
+The eighth orchestrator had told `nitpick-compiler_s1` that the libs address was now
+`_s4`, **but asserted it without waiting for an acknowledgement** and said so
+plainly rather than reporting the handover as complete. That gap fails silently: an
+unacknowledged address change loses exactly the notices the quiet period exists to
+collect, and nothing reports it. One receipt-check closed it. `nitpick-compiler_s1`
+confirmed it holds `nitpick-libs_s4` as the address, and answered the question the
+eighth orchestrator had deliberately left open: **`_s1` is the live compiler
+address; `_s2` and `_s3` are parked successors the author opened, NEITHER BRIEFED,
+SO NEITHER AN ADDRESS.** The `ListAgents` shape — `_s1` busy, two idle — looked
+exactly like the rolling pool and would have yielded **the right answer for the
+wrong reason**. *Parked is not the same as addressable.* Going forward `_s1` will
+name its successor explicitly at a subcycle boundary **and copy this workbench on
+the naming**, so the address never has to be inferred again.
+
+**The first quiet-period notice is logged and not acted on**, which is the whole
+point of the seat: 1.5.3 is mid-subcycle (contracts live, steps 0 and 1 under
+harness, step 2 being written), the landing notice will carry the six digests as
+before, and the compiler confirmed both of our landmines back to us unprompted —
+the pin stays `3d15ac9`, `npkrt.o` moving to `67cc8186…` / 55 648 B is DEF-25's
+runtime fix and is correct, and the CI digest reads against `05457db4…`. **Nothing
+was dispatched, no claim was opened, and no re-pin was taken.**
