@@ -3922,3 +3922,37 @@ on, and which is the concrete form of the correction the previous entry ends on.
 than read off `PIN.md`: `npkc` 7 346 792 B and `npkrt.o` 55 576 B, both OK.
 **The re-pin stays held** for 1.5.2f's single close notice; a landing notice
 that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
+
+- **stale claim `nitpick-time`: found `CLAIMED s2` at cycle 0.1 with no live
+  agent, `0.1/0.1.0.md` titled `PLANNED`, tree clean at `93293f2`, done —
+  §4's `PLANNED` + any row: the worker never started, so this is a fresh
+  dispatch rather than a recovery of lost work.** Every claim is stale after a
+  session restart by construction, because `ListAgents` shows only this
+  session's agents; recorded so the word is not read as a fault.
+- **stale claim `nitpick-regex`: found `CLAIMED s1` at 0.0.4, no live agent,
+  `0.0/0.0.4.md` titled `PLANNED`, tree clean at `91657eb`, left claimed** —
+  stream 1 idles at width 1 and W-7 ownership survives a session gap by design.
+  The claim is kept rather than released: **the writer line names a session and
+  a session dies; a `CLAIMED` row names a stream and a stream does not.**
+- **finding: `nitpick-regex`'s carried 0.0.4 debt is real and is TWO defects in
+  one sentence, not one.** Verified here against the tree rather than taken from
+  the handoff: `harness/README.md:69` reads *"`../meta/roadmap/0.0/0.0.3.md` §4
+  has the transcripts"*. It does not — that section holds a per-case
+  **summary table** (`Mutation | Reddened | Left green`), which is what the
+  acceptance criterion actually required and is why 0.0.3 was a PASS. **And the
+  citation is ambiguous as well as overstated:** `0.0.3.md` carries **two**
+  sections numbered `## 4.` — the plan half and the execution-record half each
+  restart at 1 across the `## Execution record` divider — so *"§4"* names both
+  "The tree checks" and "The self-check, and the mutation test that is its
+  evidence". **0.0.4 must fix both halves**: claim only what is there, and cite
+  it unambiguously. The dual numbering is a convention, not a defect, and the
+  full extent is two files (`nitpick-regex/…/0.0.3.md`,
+  `nitpick-time/…/done/0.0/0.0.4.md`) — measured across all six work
+  repositories, not assumed.
+- **dispatch `s2-ntime-0.1.0-0235`** — `nitpick-time` 0.1.0, the civil types,
+  `claude-opus-5`, at pin `aaffb87` with the re-pin still held. **The author
+  confirmed the dispatch rather than the orchestrator assuming it**, because
+  quota is the binding constraint the width was turned down for and a worker
+  plus a verifier is what it buys. The independence argument is on the board and
+  in Q2 above; the one thing carried into `NOTES:` is that **every number it
+  records is an `aaffb87` number and must say so.**
