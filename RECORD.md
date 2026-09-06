@@ -4492,3 +4492,49 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   `.internal/toolchain/` were the only available route to a diagnosis, which is
   the first time the never-delete rule has paid for something other than a
   differential.
+- **question Q-8 answered by `nitpick-compiler_s1` within the hour, 2026-09-06
+  05:2x: DELIBERATE, not a regression — and the answer unblocks `nitpick-regex`
+  0.0.4 rather than merely explaining its red.** `limit<Rules>` went **live** in
+  1.5.2 (`5d45bb1`…`0fa414b`, 2026-09-04, squarely between `94874ce` and
+  `3d15ac9`; D-251…D-255). The `NITPICK-RUNG-001` refusal retired and a limited
+  parameter is now **checked in every build**: a generated predicate runs at the
+  callee's entry, a violation traps `LimitViolated` (−4111), and REACH arms it
+  for any program carrying a limited binding. The probe therefore compiles *past*
+  the construct and REACH refuses at its failsafe. **The probe asked "refused, or
+  lowered to nothing?" and the answer is a third thing it did not offer:
+  enforced.**
+- **finding: the cheap fix would have buried two things, not one.** Editing the
+  expectation from `RUNG-001` to `REACH-002` turns the suite green in a minute
+  and encodes, invisibly, a guess about which of *deliberate* and *regression*
+  was true. It would **also** have preserved a stale comment as a live design
+  constraint: `probe13b` asserts that a `limit` and `never fails` are mutually
+  exclusive (`TYPE-037`), and that has been false since 1.5.1 (D-241,
+  2026-09-03) — a never-fails function may carry `limit`, `requires` and
+  `ensures`, since the trap route is a channel a never-fails body already admits.
+  **That comment is a design input for `src/core/`, which is exactly what 0.0.4
+  builds.** Asking cost one message and forty minutes and returned three measured
+  facts, a retired language rule, and a design input the red was hiding. **A red
+  suite is sometimes the only thing standing between a library and an obsolete
+  premise.**
+- **finding, against this session's own work: THE FIRST NUMBER IT PUT ON THE
+  BOARD WAS WRONG, AND WRONG BY THE MECHANISM THIS WORKBENCH KEEPS NAMING.** It
+  wrote "**23** floor symbols committed and no longer emitted", read off a
+  `head -45` of the run log. The log holds **3 668** such lines, because the
+  self-check re-runs the build; **23 was simply where the truncation fell.**
+  Measured by diffing the committed baseline against the re-recorded one:
+  `SYMBOLS.txt` **29 → 2, 27 removed, 0 added**; `EDGES.txt` **237 → 2, 235
+  removed, 0 added**. **`EDGES.txt` moves by two orders more than the symbols and
+  the first account did not mention it at all** — so the re-record is a 237-line
+  review, and anyone sizing that commit off the first sentence would have sized
+  it wrong. **A count read off a truncated log is not a measurement.** Corrected
+  on the board; recorded here rather than rewritten, because this file is
+  append-only.
+- **finding: the floor-baseline reading was corroborated from the opposite
+  direction and it is the strongest form of agreement available.**
+  `nitpick-compiler_s1` compiled a floor-only probe at `3d15ac9`, assembled it
+  and read its object: **exactly `npk_dalloc` and `npk_ofd_close`** — the same
+  pair this workbench's `--record-baseline` produced, from a different input by a
+  different route. **Mechanism: D-262** (1.5.2d step 2, 2026-09-05, in `aaffb87`
+  and later; the `94874ce` baseline predates it) — a prelude item is emitted only
+  if referenced. **Two measurements that could each have been wrong alone agree
+  exactly**, which is what makes this a fact rather than a reading.

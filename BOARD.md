@@ -1080,9 +1080,41 @@ PREDICTED.** This board recommended bumping `NITPICK_COMMIT` to `3d15ac9` and
 re-running as a *diagnostic*. The outgoing session then withdrew that on the
 bracket, predicting it "will not go green". **Bumping does not go green, and not
 for that reason.** At `3d15ac9` the harness never reaches the suite: it dies in
-the build step with **23 floor symbols "committed and no longer emitted — THE
-PRELUDE MOVED"** (`__divti3`, `npk_alloc`, `npk_exec`, `npk_sys6`, …). That is
-1.5.2d's prelude trim arriving in a repository that records a symbol floor.
+the build step on symbols **"committed and no longer emitted — THE PRELUDE
+MOVED"** (`__divti3`, `npk_alloc`, `npk_exec`, `npk_sys6`, …). That is 1.5.2d's
+prelude trim arriving in a repository that records a symbol floor.
+
+**THE SIZE OF THAT MOVE, COUNTED RATHER THAN EYEBALLED — AND THE FIRST NUMBER
+THIS SESSION PUT ON THIS BOARD WAS WRONG.** It read "23 floor symbols", taken
+from a `head -45` of the run log; the log carries 3 668 such lines because the
+self-check re-runs the build, and 23 was simply where the truncation fell.
+**Measured properly, by diffing the committed baseline against the re-recorded
+one:**
+
+```
+SYMBOLS.txt    29 -> 2     27 removed, 0 added   (npk_dalloc, npk_ofd_close remain)
+EDGES.txt     237 -> 2    235 removed, 0 added
+unique "no longer emitted" symbols in the log:  27   (not 23)
+```
+
+**`EDGES.txt` moves too, and by two orders more than the symbols — this board's
+first account of the failure did not mention it at all.** So the re-record is a
+**237-line review**, not a 23-line one, and anyone sizing that commit off the
+earlier sentence would have sized it wrong. **A count read off a truncated log is
+not a measurement**, and the fix is the rule this workbench already has: print
+the count beside the verdict, from a command that counts.
+
+**CORROBORATED FROM THE COMPILER SIDE, FROM THE OPPOSITE DIRECTION, 05:2x.**
+`nitpick-compiler_s1` compiled a floor-only probe at `3d15ac9`, assembled it, and
+read its object: **exactly two undefined symbols, `npk_dalloc` and
+`npk_ofd_close`** — none of `__divti3`, `npk_alloc`, `npk_exec`, `npk_sys6`. That
+is the same pair this workbench's re-record produced, reached by a different
+route on a different input. **The mechanism is D-262** (1.5.2d step 2,
+2026-09-05, present in `aaffb87` and later; the `94874ce` baseline predates it):
+a prelude item is emitted **only if referenced**, and a reference to a runtime
+symbol — or an `i128` division for `llc` to mint `__divti3` from — is what used to
+drag the carrying prelude body in. **They confirm re-recording as the library's
+own commit is the right move.**
 
 **What is on the other side of it, measured in a COPY so the claimed tree was
 never touched:** re-record the baseline at `3d15ac9` and the suite runs
@@ -1105,16 +1137,60 @@ work repositories with `git ls-files`, **exactly one has one**: `nitpick-regex`
 **so this does not spread** — the one place it bites is the one place it was
 found, and that is now a measurement rather than a hope.
 
-**WHAT 0.0.4 ACTUALLY COSTS TO ENTER, in this order.** (a) Re-record the
-baseline as **its own commit** naming the compiler commit that moved — the
-harness prints that instruction itself, *"this is a deliberate act, commit it on
-its own, so a reviewer sees the diff"*. (b) Settle `NITPICK-RUNG-001` →
-`NITPICK-REACH-002` **with the compiler side**, because a library cannot tell a
-deliberate diagnostic change from a regression, and 0.0.4 must not encode a
-guess. (c) Bump CI's `NITPICK_COMMIT` to `3d15ac9`, which only then can go green.
-**`nitpick-regex` is CLAIMED and is stream 1's next item — 0.0.4 is still not
-dispatchable, but for a stated and bounded reason instead of an unexplained
-red.**
+**WHAT 0.0.4 COSTS TO ENTER, in this order — ALL THREE NOW SPECIFIED, NONE OF
+THEM OPEN.** (a) **Re-record the floor baseline as its own commit** naming the
+compiler commit that moved; the harness prints that instruction itself — *"this
+is a deliberate act, commit it on its own, so a reviewer sees the diff"* — and
+**size it as a 237-line review, not a 27-line one**, because `EDGES.txt` moves
+further than `SYMBOLS.txt`. The expected landing state is **2 symbols and 2
+edges**, corroborated from both sides. (b) **Reshape `probe13b`** per the answer
+to question 8, below. (c) **Bump CI's `NITPICK_COMMIT` to `3d15ac9`** in the same
+pass as (a), since without the re-record the bump lands a red that says nothing.
+**`nitpick-regex` is CLAIMED and is stream 1's next item — and as of 05:2x it is
+DISPATCHABLE**, which it was not two hours ago.
+
+**THE THREE FACTS `nitpick-compiler_s1` MEASURED SO 0.0.4 CAN ENCODE RATHER THAN
+GUESS.** Taken on their `build/npkc` at `3d15ac9` with the pinned `llc`/`ld.lld`
+flags and `npkrt.o` `c9ddbcff…` — the same runtime object this workbench has
+`cmp`-verified — so the numbers are commensurable with ours rather than merely
+adjacent:
+
+```
+1.  probe13b + a (LimitViolated) arm in failsafe, bounded(3i32)
+        compiles, exits 0
+2.  the same with bounded(0i32)
+        exits THROUGH the LimitViolated arm (31 in their copy)
+        at -O0 AND under opt -O2 + llc -O2   <- both optimisation levels
+3.  func:bounded = int32(limit<r_pos> int32:x) never fails { pass x; }
+        compiles and runs, exit 0
+```
+
+**Fact 3 is the one that reaches beyond the probe, and it is a DESIGN INPUT for
+`src/core/` — the very package 0.0.4 builds.** That probe carries a comment
+asserting that a `limit` and `never fails` are **mutually exclusive**
+(`TYPE-037`). **That has been stale since 1.5.1** (D-241, 2026-09-03): a
+never-fails function may carry `limit`, `requires` and `ensures`, because the
+trap route is a channel a never-fails body already admits. **So a comment written
+as a constraint on the design is now a false constraint, in the cycle that acts
+on it.** 0.0.4 must not inherit it.
+
+**Their recommended reshape, and this workbench's view of it.** Retire `probe13b`
+as a *refusal* probe; keep it as **two positive probes** — accepted-and-checked,
+and the trap reaching failsafe — and expect `NITPICK-REACH-002` only in a probe
+whose failsafe **deliberately** omits the arm. **The recommendation is sound and
+the library still owns the decision** (W-7): it is stream 1's to take at its
+claim, with the reasoning recorded, not something this board imposes from the
+compiler's side of the fence.
+
+**THE PROCEDURAL FINDING, WHICH IS WORTH MORE THAN THE ANSWER.** The cheap move
+was available and wrong: edit one expectation from `RUNG-001` to `REACH-002` and
+the suite goes green in a minute. That would have encoded, invisibly, a guess
+about which of *deliberate* and *regression* was true — and it would have
+silently preserved the stale `never fails` comment as a live design constraint
+for `src/core/`. **Asking instead cost one message and forty minutes, and
+returned three measured facts, a retired language rule, and a design input the
+red was hiding.** A red suite is sometimes the only thing standing between a
+library and an obsolete premise.
 
 **(3) Four of six repositories have no CI.** The ecosystem's strongest recent
 lesson protects one repository and is broken in the other.
@@ -1126,7 +1202,7 @@ lesson protects one repository and is broken in the other.
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
 | ~~5~~ | s2 | 2026-09-06 | ~~**`nitpick-regex`'s CI is red at `91657eb`, cause unknown**~~ — **ANSWERED BY MEASUREMENT 05:0x, not by the author; no ruling needed and none should be waited for** | **CLOSED.** Diagnosed, reproduced and bounded against the three kept pins — see the CI PIN MAP item (2). The stale pin is the cause, 0.0.3's derive probes are the trigger, the CI log is gone at the source (HTTP 404, expired), and the recommendation this row carried — bump and re-run *as a diagnostic* — **was refuted by the opposite result from the one it predicted**. It is superseded by the three-step entry cost recorded there. **Nothing here is the author's to decide** |
-| 8 | s3 | 2026-09-06 | **Is `NITPICK-RUNG-001` → `NITPICK-REACH-002` a deliberate compiler change or a regression?** At `3d15ac9`, with the floor baseline re-recorded, `nitpick-regex`'s `probe13b_limit_refused.npk` expects `NITPICK-RUNG-001` and gets `NITPICK-REACH-002`; the same probe passes at `94874ce`. Measured in a copy, twice, both `probe` and `parse` stages | **Not the author's call, and not this workbench's — it goes to `nitpick-compiler_s1` as a question, not as a defect report.** A library cannot distinguish an intended diagnostic change from a regression, and **0.0.4 must not encode a guess about which it is**: if it is deliberate, the probe's expectation is updated and the change wants recording; if it is a regression, the fix is theirs and 0.0.4 waits. **Do not update the expectation to make the suite green before the answer arrives** — that converts an open question into a silently-encoded assumption, which is the shape this workbench keeps finding |
+| ~~8~~ | s3 | 2026-09-06 | ~~**Is `NITPICK-RUNG-001` → `NITPICK-REACH-002` deliberate or a regression?**~~ — **ANSWERED BY `nitpick-compiler_s1` WITHIN THE HOUR, 05:2x. DELIBERATE, and the probe's premise is now obsolete in two separate ways** | **CLOSED, and it UNBLOCKS 0.0.4 rather than merely explaining it.** `limit<Rules>` went **live** in 1.5.2 (`5d45bb1`…`0fa414b`, 2026-09-04 — squarely between `94874ce` and `3d15ac9`; D-251…D-255). The `NITPICK-RUNG-001` refusal for it **retired**, and a limited parameter is now **checked in every build**: a generated predicate runs at the callee's entry and a violation traps `LimitViolated` (−4111), which REACH arms for any program carrying a limited binding. So the probe compiles *past* the construct and REACH then refuses at its failsafe — `NITPICK-REACH-002 …:43:5: failsafe does not name LimitViolated, which can reach it (D-179): add the arm — (*) counts for nothing here`. **The probe asked "refused, or lowered to nothing?" and the answer is now a third thing it did not offer: enforced.** See the block below for the three measured facts and the recommended reshape — **asking rather than editing the expectation green is what turned a red into a design input** |
 | 6 | s2 | 2026-09-06 | **Should the CI pin bump to `3d15ac9` happen before 0.1.1?** The workflow's header says bumping is a deliberate commit and that commit runs the full suite | **Yes, as its own commit, before any 0.1.1 work.** Otherwise 0.1.1 is verified locally at `3d15ac9` and judged by CI at `aaffb87`, and neither result means what it appears to |
 | 7 | s2 | 2026-09-06 | **Four of six work repositories have no CI at all** — `nitpick-parse`, `nitpick-sockets`, `nitpick-tui`, `nitpick-posix` | **Not urgent, and not free.** `nitpick-time`'s CI found two defects in its first eight minutes that nothing local could reach, so the value is measured rather than assumed; but each workflow is real work and the shared CI shape already has two known findings against it (prune nested repositories by shape; `set +e` before a capture-then-print step). **Fix the shape once, then propagate** |
 | 1 | s2 | 2026-09-04 | **Is a committed `REPORT` block immutable?** A worker left one of the six DEF-3 sites unedited because it sits inside a committed REPORT block, arguing a report records what a worker said on a date and must not be rewritten — correcting it in a later record entry instead. **This is the second dispatch to meet the question; the first left it open.** | **Ratify it, and write it into `WORKSTREAMS.md`.** The worker's reasoning matches this workbench's existing append-only rule and the finer form of it in `PLAYBOOK.md` §6 — what may be amended depends on whether the document records something that *happened*. Making it explicit costs one rule and stops a third dispatch re-deciding it |
