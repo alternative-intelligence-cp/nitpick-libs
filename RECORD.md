@@ -5058,3 +5058,30 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   cross-repository instrument should have, and worth noting because the
   alternative temptation is a tool that fixes what it finds in trees it does not
   own.
+- **CORRECTION, appended not edited: the entry above claiming adjudication (b)'s
+  evidence was "unreproducible from the tree" is WRONG, and
+  `nitpick-compiler_s1` was right to push back.** Measured here after the
+  challenge rather than conceded to it: `build/npkc.ll` and
+  `.internal/quickemit/npkc.ll` in the compiler tree both read **`af2bf3dd…` at
+  21 688 240 B, `cmp` exit 0** — the two builders agree again at `c81efa5`, by an
+  independent measurement an hour after the first.
+- **finding, and it is the sharper half: THE ERROR WAS CONFLATING A MEASUREMENT'S
+  INSTANCE WITH THE FACT IT ESTABLISHES.** What legitimises our CI's `quickemit`
+  artefact as a stand-in under D-265 §5 is **not the digest `05457db4…`**; it is
+  the **property** that `npkg`'s ladder and the harness's `quickemit` path emit
+  identical bytes. **A property that re-derives is not lost when one instance of
+  it is overwritten — that is what makes it a property.** The fact now holds at
+  two commits by two independent measurements, which is *better* evidence than
+  the single reading this record was mourning. **A peer's working tree moving
+  under a number is not the same as the number's meaning being destroyed**, and
+  this session spent a paragraph on the second when only the first had happened.
+- **AND THE MORAL DRAWN FROM IT WAS BACKWARDS.** The entry above concluded this
+  was "the reason to prefer a recorded measurement over a repeatable one". **The
+  opposite is true here.** The repeatable property is the durable thing; the
+  recorded number was only load-bearing *while the property was wrongly believed
+  unrepeatable*. **Record the number AND the command that regenerates it — and
+  when they seem to disagree about what survives, the command wins.** That is the
+  same lesson the RX120 transcript taught from the other direction, where a
+  recorded output with no runnable command turned out to document a function that
+  never existed. **Both failures are one failure: treating evidence as a thing
+  written down rather than a thing that can be produced again.**
