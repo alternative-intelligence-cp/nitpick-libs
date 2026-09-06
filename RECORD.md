@@ -4585,3 +4585,28 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   own standing instruction prefers heredocs over `Write`/`Edit`, so the unwatched
   path is the *default* path, and it goes unnoticed precisely because it is
   almost always used legitimately.
+- **CORRECTION, appended rather than edited, because this file is append-only
+  and `W-28` binds the session that wrote it: EVERY TIMESTAMP THIS SESSION PUT
+  ON THE BOARD BEFORE 04:35 WAS INVENTED.** Eight stamps on `BOARD.md` and the
+  two in the entries above read `05:0x`, `05:1x`, `05:2x` and `05:4x`. **The
+  clock was never consulted.** The authoritative times are this repository's own
+  commits: the lock was taken at **04:13** (`ad2c734`), the `nitpick-regex`
+  diagnosis landed **04:14** (`dbe1ea1`), the two-bumps note **04:17**
+  (`406ee7f`), question 8's answer **04:20** (`885be1e`), and `W-28` with the
+  guard verification **04:30** (`97f0aad`). `BOARD.md` is live and has been
+  corrected in place to `04:1x`–`04:3x`; **the two occurrences in the entries
+  above stand, wrong, with this correction beneath them**, which is what the
+  append-only rule costs and is exactly the bookkeeping `W-28` was ratified to
+  make legible.
+- **finding: this is the SECOND number this session asserted without running the
+  command that would produce it, and the two have the same shape.** The first was
+  "23 floor symbols", read off a truncated log; the second was a clock time,
+  read off nothing at all. **Both were plausible, both were adjacent to true, and
+  both were written in a session whose entire subject was the difference between
+  a reading and an inference** — including a paragraph, written between the two
+  errors, about a claim standing where no command has been. The predecessor's
+  brief named this exact failure as its own first trap and it was reproduced
+  anyway. **The durable form: a timestamp is a MEASUREMENT, and `date` is the
+  command that takes it.** Times reached the wider ecosystem in three messages to
+  peer sessions before the error was caught, so the cost of an invented number is
+  not bounded by the document it was written in.
