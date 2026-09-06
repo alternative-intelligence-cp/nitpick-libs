@@ -1146,3 +1146,63 @@ design fresh.
 - Every external dependency — a standard, a data release, a corpus, a
   reference implementation — is a row in `meta/research/CURRENCY.md` with the
   date it was checked (`skills/research/SKILL.md` §7).
+
+---
+
+**A DEFECT'S EXTENT IS A SEPARATE MEASUREMENT FROM ITS EXISTENCE, AND ONLY THE
+FIRST IS USUALLY TAKEN.** Found the hard way at `nitpick-time` 0.0.4, where the
+orchestrator raised a compiler defect upstream as blocking **one** API row and
+it blocked **five**. Reproducing a defect answers *does this happen*. It does
+not answer *what else is built on the thing that broke*, and the second
+question needs its own controls — here, four owning shapes against four scalar
+controls from the same source, which showed the primitive was
+`move(v.items[i])` in a generic function at an owning `T` and that **a loop is
+a different caller, not a different primitive.**
+
+**Understating an extent is the dangerous direction, and it fails silently.**
+*"One row"* was precisely the reading that would have justified shipping a
+generic `vec_clear<T>` that **does not drop its elements** — which passes an
+`exit 0` leak gate, because D-151 counts `wild` blocks and cannot see a managed
+body. An extent short by four rows would have been **discharged by a green
+suite**. Overstating an extent costs a wasted message; understating one ships a
+silent bug with a passing test beside it.
+
+**The cost of correcting it was one message, and the fix's shape did not move.**
+That is the general case: extent corrections are cheap upstream and expensive
+downstream, so **measure the extent before raising, and if you did not, correct
+it the moment you know.**
+
+---
+
+**A WORKER MUST NOT ASSIGN ITS OWN OPEN-QUESTION ID — IT SHOULD CITE THE NEW
+QUESTION BY PATH AND LET THE ORCHESTRATOR NUMBER IT.** `O-N` is the workbench
+registry's namespace and `O-X` a library's, and a worker cannot see what the
+registry has issued. At 0.0.4 a worker filed a genuine compiler defect as
+`O-N12`, which was already `nitpick-regex`'s settled `>>>` question, and
+undoing it took **ten edits in ten files** — the cheapest error available to
+make and among the more expensive to undo.
+
+**It is also the error the registry's own opening paragraph warns about**, which
+is the third time this ecosystem has recorded a number taken from memory rather
+than from the file that issues them. **So the rule is mechanical rather than
+attentional: a worker writes the reproduction directory's PATH, and the
+orchestrator assigns the id when it registers the question.** The successor
+worker at 0.0.4 did exactly this for a second defect it found and left it
+deliberately unnumbered, which cost nothing and is the shape to copy.
+
+---
+
+**A LOW `ulimit -v` MEASURES THE LOADER, NOT THE PROGRAM — SO EVERY
+ADDRESS-SPACE BOUND NEEDS A `/bin/true` CONTROL AT THE SAME CAP.** An
+acceptance item here asserted that the non-leaking half of a pair "finishes
+clean in under 768 KiB of address space". It does not, and neither does
+anything else: `/bin/true` and the probe **flip at the same cap**, between
+2688 and 2816 KiB, because at that size it is the dynamic loader that fails
+rather than the program's own allocation.
+
+**A bound that a trivial program also fails is not a statement about your
+program.** The corrected gate is **one shared 64 MiB cap with opposite
+outcomes** — `HeapOom` exit 92 for the leaking half, exit 0 for the correct one
+— plus the peak-RSS pair as the quantitative half. **Any repository quoting an
+address-space bound owes the same control**, and the number in this one was
+inherited across three subcycles before anyone ran `/bin/true` beside it.

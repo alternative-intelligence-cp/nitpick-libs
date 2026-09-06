@@ -3431,3 +3431,106 @@ habit than any instruction and fires before the rule is recalled. `PLAYBOOK.md`
 now points at the mechanism instead: **pair every status with the artefact it
 should have produced**, because a pipeline's borrowed `0` is falsified the
 moment you ask what it wrote. All four were caught that way and none by recall.
+
+### `nitpick-time` 0.0.4 — the first library code, and a defect whose extent was four rows wider than the orchestrator raised — 2026-09-05
+
+**0.0.4 DONE — VERIFIED PASS** at `06f82c0`. `src/core/` exists: `vec.npk`,
+`bytes.npk`, `limits.npk`, **35 public names = 10 + 12 + 13**. Harness green at
+**40 units, 0 failures, 5 pending, ~240 s**. This is the first subcycle in this
+repository to write library code rather than instrument, and the three tree
+checks built at 0.0.3 moved from a denominator of zero to a real one on the day
+the files landed — `check_constants_named` at 11 bounds / 2 constants,
+`check_raw_index` at **0 raw-index sites in the whole library**.
+
+**IT WAS WORKED TWICE. The first worker died mid-run when the session was
+killed at ~20:50, and none of its work was lost** — six modified tracked files,
+seven new probes and a complete defect reproduction were sitting uncommitted.
+§4's table resolved to `RUNNING` + dirty, so the subcycle was **re-dispatched
+with `TREE: dirty` and the successor inherited its predecessor's work** rather
+than restarting. That is the recovery path working exactly as written, on the
+first occasion anything has needed it.
+
+**THE ORCHESTRATOR RAISED A COMPILER DEFECT AS BLOCKING ONE API ROW. IT BLOCKS
+FIVE.** O-N17 — a generic function moving out of an indexed element at an
+owning `T` calls a `@npk.vacant.<n>` helper the emitter never defines; `npkc`
+exit 0 writes the `.ll`, `llc` exit 1 writes no object. **The primitive is
+`move(v.items[i])`**, and `vec_pop`, `vec_set`, `vec_clear`, `vec_truncate` and
+`vec_free` are all built on it — **a loop is a different caller, not a
+different primitive**, which is what the first reading missed. Measured by the
+worker with four owning shapes against four scalar controls from the same
+source, confirmed here on `case5_generic_drop_loop`, and re-confirmed by the
+verifier across all five cases.
+
+**Understating the extent was the dangerous direction, and it would have failed
+silently.** *"One row"* is exactly the reading that would have justified
+shipping a generic `vec_clear<T>` that **does not drop its elements** — which
+passes the `exit 0` leak gate, because D-151 counts `wild` blocks and cannot
+see a managed body. **An extent short by four rows would have been discharged by
+a green suite.** Overstating an extent costs a message; understating one ships a
+silent bug with a passing test beside it. **A defect's extent is a separate
+measurement from its existence, and only the second had been taken before it
+went upstream.**
+
+**Correcting it cost one message and cost the compiler nothing.** They had
+already fixed it — at the primitive rather than the symptom: `emit_move_out`
+built the vacant helper's symbol from the place's recorded type's raw id and
+now builds it from **the element type through the specialization**, so **our
+five operations are one fix**, verified there against the pop, set and
+loop-clear shapes. It is 1.5.2d step 4. **The extent correction changed nothing
+about the fix's shape**, which is the argument for correcting extents promptly
+rather than carefully.
+
+**And the silence that made the whole class possible closed with it.** The
+drop-body emitter now says `EMIT-002` **aloud** when a registered type cannot be
+lowered, instead of emitting nothing — *"that silence is why `npkc` said yes and
+`llc` said no"*. **O-N11, O-N14 and O-N17 were three instances of one shape**,
+which this workbench had only ever described case by case. Our `program` stage
+still runs all four steps, because `npkc` exit 0 is still not well-formedness,
+but the class has gone from open-ended to bounded.
+
+**A SECOND DEFECT, AND THE WORKER DELIBERATELY DID NOT NUMBER IT.** `.len` on a
+fixed-size array `T[N]` is accepted by the frontend and refused by the emitter
+at `NITPICK-EMIT-002`, whose own text asks to be reported. Registered here as
+**O-N18**, accepted upstream as their **DEF-22**. **The worker left it
+unnumbered and cited it by path**, because its predecessor had filed O-N17 as
+`O-N12` — a number already held by `nitpick-regex`'s settled `>>>` question —
+and undoing that took **ten edits in ten files**. **A worker cannot see what the
+registry has issued, so it must not assign an id; it names the path and the
+orchestrator numbers it.** That rule is now in `PLAYBOOK.md`, and the
+repository's own `OPEN_QUESTIONS.md` gained an entry reading *"O-N12 — NOT THIS
+REPOSITORY'S"*, which inoculates the next worker who reaches for a number.
+**Seven `O-N12` strings remain in the tree on purpose**, annotating the
+correction rather than erasing it — the verbatim transcript says the id was
+corrected instead of being silently rewritten.
+
+**TM-131 CORRECTED THIS SUBCYCLE'S OWN ACCEPTANCE, AND THE FIGURE HAD BEEN
+INHERITED FOR THREE SUBCYCLES.** The acceptance said the non-leaking half
+"finishes clean in under 768 KiB of address space". It does not — and neither
+does anything else. **`/bin/true` and the probe flip at the same cap, between
+2688 and 2816 KiB**, because at that size the dynamic loader fails rather than
+the program. **A bound a trivial program also fails is not a statement about
+your program.** The gate is now **one shared 64 MiB cap with opposite outcomes**
+— `HeapOom` 92 against 0 — plus the peak-RSS pair, 125 184 KiB against 1 660.
+**Every repository quoting an address-space bound owes a `/bin/true` control at
+the same cap.** It was found only because the dispatch said to re-measure the
+figure rather than inherit it.
+
+**THE VERIFIER RAN THE COMMANDS THIS TIME, AND THE FIX WAS IN THE DISPATCH.**
+After 0.0.3, where it twice substituted reading for running on checks that
+needed setup, this dispatch supplied **the literal commands** for every such
+check. It planted the magic constant and watched `check_constants_named`'s
+denominator move **11/2 → 11/3**; it ran `/bin/true` at three caps; it compiled
+all five O-N17 cases and all four controls. **The failure was never
+unwillingness — it was that a check requiring construction has no command to
+re-run, and reasoning is what fills that gap.** Supplying the construction
+removed the gap.
+
+**S-39, told to us unprompted and worth keeping straight:** an owning `List<T>`
+local alive in `main` at exit 0 is reported `WildLeak`, exit 94, at our pin too,
+because `exit` runs joins and defers **and no drops, by decision**, and a
+`List`'s buffer is the one managed storage D-151 counts. **For the prelude's
+`List` that is a surprise; for our containers it is the enforcement P-23 asked
+for**, since `Vec<T>` spells its block `wild` precisely so an unpaired
+`vec_free` traps at exit. **The same mechanism is a defect there and a feature
+here, and the difference is whether the type's owner intended `wild`.** We asked
+that the fix not become a general "D-151 stops counting managed storage".
