@@ -5642,12 +5642,32 @@ unacknowledged address change loses exactly the notices the quiet period exists 
 collect, and nothing reports it. One receipt-check closed it. `nitpick-compiler_s1`
 confirmed it holds `nitpick-libs_s4` as the address, and answered the question the
 eighth orchestrator had deliberately left open: **`_s1` is the live compiler
-address; `_s2` and `_s3` are parked successors the author opened, NEITHER BRIEFED,
-SO NEITHER AN ADDRESS.** The `ListAgents` shape — `_s1` busy, two idle — looked
-exactly like the rolling pool and would have yielded **the right answer for the
-wrong reason**. *Parked is not the same as addressable.* Going forward `_s1` will
-name its successor explicitly at a subcycle boundary **and copy this workbench on
-the naming**, so the address never has to be inferred again.
+address.**
+
+**TWO ACCOUNTS OF THE COMPILER ROTATION ARRIVED WITHIN MINUTES AND THEY DO NOT
+QUITE AGREE, SO BOTH ARE ON THE BOARD RATHER THAN RECONCILED.** `nitpick-compiler_s1`,
+asked directly, said `_s2` and `_s3` are parked and **neither has been briefed**, so
+neither is an address. The author, relayed through the outgoing session minutes
+later, said `_s1` was to hand off to `_s2` last night, **`_s2` asked a question
+during the overlap, and the handoff has been sitting there since** — which is why
+`_s1` has been busy for thirteen hours. *Not briefed* and *briefed, stalled
+mid-overlap* look identical from outside and differ in what happens next. They
+agree on the only operational point — write to `_s1` — so nothing was blocked, and
+picking one account over the other on no evidence would have been the error.
+
+**The hazard only the author's account carries, now recorded: A STALLED HANDOFF
+LOOKS EXACTLY LIKE A COMPLETED ONE FROM OUTSIDE.** A quiet `_s1` must not be read
+as "rotation complete, write to `_s2`"; it is indistinguishable from a rotation
+still stuck on last night's question. **The switch is announced or it has not
+happened**, and the announcement is bidirectional here.
+
+**On the inference this session declined to make.** The `ListAgents` shape — `_s1`
+busy, two idle — did point at the right answer, and the outgoing session fairly
+said so. It would still have been **the right answer for the wrong reason**: the
+inference yields *"`_s2` is next"*, which is true, while missing that the rotation
+is **frozen** and that `_s1` going quiet is not its completion. *Parked is not the
+same as addressable, and stalled is not the same as parked.* Going forward `_s1`
+will name its successor explicitly and **copy this workbench on the naming**.
 
 **The first quiet-period notice is logged and not acted on**, which is the whole
 point of the seat: 1.5.3 is mid-subcycle (contracts live, steps 0 and 1 under

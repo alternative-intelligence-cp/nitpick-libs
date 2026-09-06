@@ -29,8 +29,8 @@ is what disambiguates.
 | `nitpick-libs_s5` | — | the generation **after** `s4`. Parked and unbriefed, opened 04:1x in the terminal `s2` was closed from. **HAND OFF TO THIS ONE, NOT TO A HIGHER NUMBER.** Needs nothing until then |
 | `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **Stood down from the role, still alive** |
 | `nitpick-compiler_s1` | `nitpick-e3` | **THE COMPILER ADDRESS — CONFIRMED BY THEM 2026-09-06 13:25 RATHER THAN INFERRED FROM `ListAgents`.** Who to ask about `build/`, the pin, and whether a diagnostic change is deliberate. Currently mid-1.5.3. Answered question 8 within the hour, with three measured facts and an unasked-for correction of a stale design premise |
-| `nitpick-compiler_s2` | — | a parked successor. **UNBRIEFED, THEREFORE NOT AN ADDRESS** — stated by `_s1` itself, 2026-09-06 13:25, not inferred from its idle state |
-| `nitpick-compiler_s3` | — | a second parked successor, opened ~06:1x (`ListAgents`, 7 h before 13:19). **UNBRIEFED, THEREFORE NOT AN ADDRESS.** `_s1` will name whichever it briefs and copy us on the naming |
+| `nitpick-compiler_s2` | — | **`_s1`'S INTENDED SUCCESSOR, AND THE HANDOFF IS STALLED MID-OVERLAP** — it asked a question during the handoff last night and the rotation has been frozen there since (the author, relayed 2026-09-06 13:28). `_s1` describes it as *not briefed*; the author describes a handoff that started. **Not an address either way — and a quiet `_s1` is NOT evidence the switch happened** |
+| `nitpick-compiler_s3` | — | a second parked successor, opened ~06:1x (`ListAgents`, 7 h before 13:19). **Not an address, and not next in line** — the rotation is stalled at `_s2`. `_s1` or `_s2` will announce the switch; it is never inferred from silence |
 | `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
@@ -805,13 +805,36 @@ eighth orchestrator left it open deliberately rather than guessing. One message
 closed it, in under two minutes:
 
 - **`nitpick-compiler_s1` is the live compiler address.** Send there.
-- **`nitpick-compiler_s2` and `_s3` are parked successors the author opened, and
-  NEITHER HAS BEEN BRIEFED, SO NEITHER IS AN ADDRESS YET.** This is the part worth
-  keeping. The `ListAgents` reading — `_s1` busy, `_s2` and `_s3` idle — looked
-  exactly like the author's rolling pool with two parked successors, and inferring
-  from it would have produced **the right answer for the wrong reason**. *Parked is
-  not the same as addressable.* Hazard 4 says ask; asking returned a fact the
-  shape of the roster could not have given.
+- **`nitpick-compiler_s2` is `_s1`'s intended successor and THE HANDOFF IS
+  DELAYED, NOT DONE.** Two accounts of this reached us within minutes of each
+  other and **they do not quite agree, so both are recorded rather than
+  reconciled into one.** `nitpick-compiler_s1`, asked directly: *"`_s2` and `_s3`
+  are parked successors the author opened; neither has been briefed, so neither is
+  an address yet."* **The author, relayed by `nitpick-libs_s3`:** `_s1` was to hand
+  off to `_s2` last night, **`_s2` asked a question during the overlap, and the
+  handoff has been sitting there since** — which is why `_s1` has been busy for
+  thirteen hours and why both successors are parked. **The difference is real and
+  worth keeping:** "not briefed" and "briefed, stalled mid-overlap" are the same
+  from outside and different in what happens next. `_s1` is describing a handoff it
+  does not consider complete; the author is describing one that started. **They
+  agree on the only operational point — write to `_s1` — so nothing is blocked by
+  the discrepancy, and it is logged rather than resolved because resolving it would
+  mean picking one account over the other on no evidence.**
+- **⚠ DO NOT INFER THE SWITCH HAS HAPPENED FROM `_s1` GOING QUIET. A STALLED
+  HANDOFF LOOKS EXACTLY LIKE A COMPLETED ONE FROM OUTSIDE.** This is the hazard the
+  author's account adds and `_s1`'s does not, and it is the one that could actually
+  cost us: a silence we read as "rotation complete, write to `_s2`" is
+  indistinguishable from a silence that means "still stuck on a question from last
+  night". **The switch is announced or it has not happened.** The introduction is
+  bidirectional in this ecosystem and the compiler side has been reliable about it.
+- **On the inference we declined to make.** The `ListAgents` shape — `_s1` busy,
+  `_s2` and `_s3` idle — did point at the right answer, and `nitpick-libs_s3`
+  fairly noted so. **It would still have been the right answer for the wrong
+  reason**, and the reason is where the value was: the inference yields "`_s2` is
+  next", which is true, while missing both that the rotation is **frozen** and that
+  a quiet `_s1` must not be read as its completion. *Parked is not the same as
+  addressable, and stalled is not the same as parked.* Hazard 4 says ask; asking
+  cost one message and returned what the shape of the roster could not.
 - **When they hand off at a subcycle boundary the outgoing session briefs its
   successor by message, names it explicitly, and WILL COPY US ON THAT NAMING.** So
   this workbench should never have to infer the compiler address again. Until that
