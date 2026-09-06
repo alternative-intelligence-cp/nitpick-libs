@@ -3534,3 +3534,79 @@ for**, since `Vec<T>` spells its block `wild` precisely so an unpaired
 `vec_free` traps at exit. **The same mechanism is a defect there and a feature
 here, and the difference is whether the type's owner intended `wild`.** We asked
 that the fix not become a general "D-151 stops counting managed storage".
+
+### The pin moves to `aaffb87`, and the canary lands on its prediction — 2026-09-05
+
+**Re-pinned `aaffb87` at 22:47**, the 1.5.2d close, immediately on the landing
+notice and before any further work. **Both of this workbench's raised defects
+are in this pin**: O-N17 as step 4, and DEF-21 — our allowlist finding — as
+step 2b.
+
+**Provenance checked rather than inferred, and §3's test passed honestly this
+time.** `build/npkc`'s mtime (22:45:33) is **500 s after** `HEAD`'s commit
+(22:37:13), so `tree clean` is a true statement about what the binary was built
+from and not merely about the source tree. Every number verified here before
+copying: 7 346 792 B, sha256 `a3b0dadc…`, `sha256sum -c` OK, LLVM 20.1.2,
+`0dfddac` an ancestor of `aaffb87`. **`npkrt.o` byte-identical to the previous
+pin's and `cmp`-verified rather than assumed** — DEF-12 is the precedent for
+what assuming that costs. `aaffb87` is **docs-only over `0880771`**, so the
+compiler source is `0880771`'s. **Commissioned both directions before any
+measurement was believed:** the canary compiles at exit 0 writing a 50 560 B
+`.ll`; a malformed file exits 1 at `NITPICK-PARSE-001` writing none.
+
+**The mid-rebuild guard fired first, and was right.** The binary was 97 seconds
+old and §3 said retry. **That is the second re-pin running where it has caught
+this orchestrator moving straight off a landing notice** — the same 96-second
+case occurred at `0dfddac`. Twice is a pattern rather than luck: **the notice
+arrives while the ladder is still writing**, so the guard is doing the one thing
+it exists for, and the correct response is to spend the wait on something else
+rather than to shorten it.
+
+**THE CANARY WAS A PREDICTION AND IT PASSED.** This board had stopped saying
+*845 282 — a change is the signal*, which cannot distinguish a fix landing from
+something going wrong, and started saying **check the VALUE**, expecting
+~50 000 from the compiler session's own measurement.
+
+| | `0dfddac` | `aaffb87` | |
+|---|---|---|---|
+| canary `.ll` | 845 282 B | **50 560 B** | **−94.0%** |
+| canary functions | 608 | **14** | predicted 14, exact |
+| full harness | **240 s** | **41.8 s** | **5.7× faster** |
+| harness verdicts | 40 units, 0 fail | 40 units, 0 fail | unchanged |
+
+**The one byte between our 50 560 and their predicted 50 561 is two different
+source files** — they measured their floor probe and we measured ours — and the
+function count matches exactly. **Recorded rather than smoothed over**, because
+*"close enough"* is the habit by which a real difference gets absorbed the next
+time one appears.
+
+**Nothing broke, and that was not guaranteed.** The landing notice warned that
+*"every emitted module holds only the prelude functions it references, so any
+probe asserting a prelude symbol in IR needs a use"*. No probe here did — but
+**the other four repositories must check at their next claim**, and that is now
+on the board with the rest of what changes at this pin.
+
+**All four discharged stops re-measured, and one improved.** **O-N11**: `case1`
+names **4** identities and `case3` **6** — unchanged, so the per-program
+correction made earlier today survives the pin that could have invalidated it.
+**O-N4**: `probe04` is **1.18 s at 26 336 KiB**, against 2.03–2.06 s at ~119 MB
+on `0dfddac` — faster *and* a quarter of the peak, so it stays discharged with
+more room than before. **O-N9**: `BORROW-012` and `BORROW-001` unchanged.
+**O-N10**: covered green by the harness's derive probes.
+
+**O-N17 is fixed and verified here:** all five cases link and write objects,
+including `case1` and `case5`, which gave `llc` exit 1 and no object at the old
+pin; their IR fell from 850 377 B to 55 652 B alongside. **O-N18 still refuses
+at `NITPICK-EMIT-002`**, correctly — it is their DEF-22, scheduled after the
+landing.
+
+**The whole S-38 raise is now closed with a number.** It began as a per-program
+cost this workbench noticed *because* its harness compiles many small programs
+and the compiler's own harness does not — a measurement whose visibility
+depended on the shape of the thing measuring. It ends with **our full suite
+running in a sixth of the time and the compiler's own build going 242 s to
+21 s, 13.7 GB of allocation to 382 MB.** The workbench's contribution was the
+per-program constant; the compiler session's option (2) — *measure the
+frontend's share before believing the obvious cause* — is what turned it from
+a prelude-size story into three scaling defects, and **our inference about the
+cause was wrong while our measurement of the cost was right.**

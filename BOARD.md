@@ -10,7 +10,7 @@ blocked, what is done. The durable plan is
 > one repository and removes every merge conflict by construction.
 
 **Last updated:** 2026-09-05 · **Width:** 1 — stream 2 only, confirmed by the author 2026-09-05 (question 4 answered; the dial turned down for quota, not a change of plan — `parallel-planning-serial-implementation`) ·
-**Toolchain:** 0dfddac · .internal/toolchain/0dfddac/ · pinned 2026-09-05 15:58 · **tree clean, and the provenance CHECKED rather than inferred** — the 1.5.2c close. `build/npkc` was rebuilt from the pushed main checkout 15:52–15:56, so its mtime (15:56:34) is **after** `HEAD`'s commit (15:47:09), which is the provenance test added to orchestrate §3 today; the same test refused the previous binary. Verified here before copying, independently of the landing notice: 7 304 552 B, sha256 `38e48973eee3a830…`, `sha256sum -c` OK, LLVM 20.1.2, `94874ce` is an ancestor of `0dfddac`. **`npkrt.o` is byte-identical to the 94874ce pin's** (55 576 B, `c9ddbcff…`) — taken again and checked, not assumed. **The pinned compiler was commissioned before use:** a real tree file exits 0 with an 845 282 B `.ll` written; a malformed file exits 1 with none. Full provenance, the three commits and their harness numbers are in `.internal/toolchain/0dfddac/PIN.md`'s `binary` line
+**Toolchain:** aaffb87 · .internal/toolchain/aaffb87/ · pinned 2026-09-05 22:47 · **tree clean, and the provenance CHECKED rather than inferred** — the 1.5.2d close. `build/npkc` was rebuilt from the pushed main checkout 22:41–22:45, so its mtime (22:45:33) is **500 s after** `HEAD`'s commit (22:37:13), which is §3's provenance test; the same test refused a binary in the morning. Verified here before copying, independently of the landing notice: **7 346 792 B**, sha256 `a3b0dadc…`, `sha256sum -c` OK, LLVM **20.1.2**, `0dfddac` is an ancestor of `aaffb87`. **`npkrt.o` is byte-identical to the 0dfddac pin's** (55 576 B, `c9ddbcff…`) — taken again and `cmp`-verified, not assumed (DEF-12's precedent). **`aaffb87` is docs-only over `0880771`, so the compiler SOURCE is `0880771`'s** — 1.5.2d step 4. **Commissioned before use, both directions:** the canary compiles at exit 0 writing a 50 560 B `.ll`; a malformed file exits 1 at `NITPICK-PARSE-001` writing none. **The mid-rebuild guard fired first and was right** — the binary was 97 s old and §3 said retry, which is the second re-pin running it has caught the orchestrator moving straight off a landing notice. Full provenance and 1.5.2d's five step commits are in `.internal/toolchain/aaffb87/PIN.md`'s `binary` line
 **Workbench writer:** `00e68bc1-dc6d-4607-b8eb-72f7188a59c1` — session `nitpick-libs_s1`, the **sixth** orchestrator, took the lock 2026-09-05 at a briefed overlap with `nitpick-libs_s0`. **Freedom was verified THREE ways before taking it, not one:** this line read `none`, `.internal/` held only `toolchain/`, and the release commit `b992544` (16:17:22) was on `main` with all seven trees clean and level with origin. **To take it: this line first, then the marker; to release, marker first, then this line** — so an abrupt close cannot leave the lock naming a dead session. **Four hazards, each measured rather than inferred; the third was found at the 13:37 handover and the fourth at this one.** (1) The guard permits **any** session while this line reads `none`, so §2.1's refusal never fires and **its absence is not evidence the lock is free** — verify `.internal/` too. (2) **`CLAUDE_SESSION_ID` is EMPTY in a Bash tool call**, so §2.1's marker command writes a 0-byte file; take your id from the `~/.claude/projects/<slug>/<uuid>.jsonl` path, cross-check it against your scratchpad path, and expect **37 bytes**. (3) **A free lock is not the same as a clean tree.** At the 13:37 handover the incoming session asked the outgoing one *"are you done writing?"* instead of reading the `none` and taking it; the outgoing session nearly answered from memory, ran `git status`, and found an **uncommitted deletion it had not made** — the author had moved a tracked file out from under it. Committing on the "lock is free" reading would have swept another session's deletion into this one's commit. **During any handover overlap, ask the outgoing session directly and have it answer from `git status`, not from memory.** **Done again at this handover, and it paid again:** `nitpick-libs_s0` answered from `git status` — all seven trees `dirty=0`, `ahead/behind=0/0` — and volunteered that its remaining actions are **messages only**, which a tree read cannot tell you. (4) **A `nitpick-libs_sN` PEER YOU WERE NEVER TOLD ABOUT WILL APPEAR, AND ONE MESSAGE SETTLES IT.** At this takeover `ListAgents` showed **`nitpick-libs_s2`, idle, opened within a minute of this session**, while the handoff brief, the record and this board's own roster named only `s0` and `s1`. Orchestrate §2.1 says to stop and ask the author; **asking the peer itself is faster, cheaper and more certain** — it replied *idle, no task, nothing written, and I will message you before I write*, converting a guess into a fact in one message. That is the move the fourth orchestrator recommended for the unidentified `nitpick-e3` and did not take, leaving it open for two days. **The author's practice, confirmed by him at this handover, is a ROLLING POOL:** he pre-opens the next generation, and closes a spent session so it can return as the generation after next — `s0` closes here and comes back as `s3`, succeeding `s2`. **So a higher-numbered libs peer is normally your own parked successor, not a rival writer — but ask it anyway**, because the alternative is inference, which is exactly what two earlier orchestrators rightly refused to rest this lock on. One writer here (W-16, P-19).
 **THE PEER SESSIONS, AND THEIR NAMES ARE NOW A CONVENTION RATHER THAN A
 LABEL.** The author renamed every session on 2026-09-05 to `<project>_s<N>`,
@@ -45,7 +45,7 @@ first library cycle to be worked, and the loop is being judged against
 replacement span that ran to the next blank line and swallowed it — and restored
 verbatim from `d91d0ca` at 14:10.)*
 
-**THE RE-PIN IS DONE. Pinned `0dfddac` at 2026-09-05 15:58 — the 1.5.2c close —
+**~~THE RE-PIN IS DONE~~ — SUPERSEDED 2026-09-05 22:47 by the `aaffb87` re-pin above; kept because its four re-measurements are the before-values that one is measured against. Pinned `0dfddac` at 2026-09-05 15:58 — the 1.5.2c close —
 and all four discharged stops were re-measured against it.** The morning's
 question (*what is `build/npkc`, and is there a stable point to pin?*) was
 settled by one message to `nitpick-compiler_s0` at 13:35 and the pin followed
@@ -525,6 +525,54 @@ defects. Our measurement of the *cost* was sound and our inference about its
 with its own before/after. **One canary is kept:
 `nitpick-time/tests/probe/probe11d_floor_only.npk`, whose `.ll` is 845 282 B at
 `0dfddac`** — that is the number to watch, and a change in it is the signal.
+
+**THE RE-PIN IS DONE — `aaffb87`, 2026-09-05 22:47 — AND THE CANARY LANDED ON
+ITS PREDICTION.** 1.5.2d closed and this workbench re-pinned immediately, then
+re-measured. **The prediction was a real test and it passed:** the board said
+*check the VALUE, not merely that it moved*, expecting ~50 000.
+
+| | `0dfddac` | `aaffb87` | |
+|---|---|---|---|
+| canary `.ll` | 845 282 B | **50 560 B** | **−94.0%** |
+| canary functions | 608 | **14** | predicted 14, **exact** |
+| **full harness run** | **240 s** | **41.8 s** | **5.7× faster** |
+| harness verdicts | 40 units, 0 fail | **40 units, 0 fail** | **unchanged** |
+
+**The one-byte gap against their predicted 50 561 is two different source files,
+not a discrepancy** — they measured their own floor probe, we measured ours, and
+the function count matches exactly. **Stated rather than smoothed over, because
+"close enough" is how a real difference gets absorbed the next time.**
+
+**THE HARNESS IS GREEN AT THE NEW PIN AND NOTHING BROKE**, which was not
+guaranteed: the compiler session warned that *"every emitted module holds only
+the prelude functions it references, so any probe asserting a prelude symbol in
+IR needs a use"*. No probe here did. **40 units, 0 failures, 5 pending — the
+same verdicts, in a sixth of the time.**
+
+**ALL FOUR DISCHARGED STOPS RE-MEASURED, and one improved.** **O-N11** —
+`case1` names **4** identities and `case3` **6**, unchanged, so today's
+per-program correction still holds at the new pin. **O-N4** — `probe04` is now
+**1.18 s at 26 336 KiB**, against 2.03–2.06 s at ~119 MB on `0dfddac`: faster
+*and* a quarter of the peak, so it stays discharged with room. **O-N9** —
+`BORROW-012` and `BORROW-001` unchanged. **O-N10** — covered by the harness's
+derive probes, green.
+
+**OUR TWO DEFECTS BOTH LANDED IN THIS PIN.** **O-N17 is FIXED** — all five
+cases now link and write objects, including `case1` and `case5`, which produced
+`llc` exit 1 and no object at `0dfddac`; their IR also fell from 850 377 B to
+55 652 B. **DEF-21, our allowlist finding, is 1.5.2d step 2b** — the allowlist
+is now the runtime's **exports**: 112 entries with `main`, both `.globl` names
+in, the 57 internal names out. **O-N18 still refuses** (`NITPICK-EMIT-002`),
+as expected: it is their DEF-22, scheduled after the landing.
+
+**WHAT CHANGES FOR EVERY LIBRARY AT THIS PIN, and the last one is a trap:**
+`vec_pop`, `vec_set`, `vec_clear`, `vec_truncate` and `vec_free` at an owning
+`T` link and drop; a program naming one of the **57 internal runtime symbols**
+is now refused **at the scan, by name**, instead of at `ld.lld`; `npk_clone_raw`
+is allowed, so a legal program that was falsely refused now passes; and
+**every emitted module holds only the prelude functions it references, so any
+probe asserting a prelude symbol in IR needs a USE.** `nitpick-time` has none;
+**the other four repositories must check at their next claim.**
 
 **THE CANARY IS NOW EXPECTED TO MOVE, AND WE KNOW ROUGHLY WHERE TO — WHICH
 MAKES IT A REAL TEST RATHER THAN A TRIPWIRE.** `nitpick-compiler_s0` measured
