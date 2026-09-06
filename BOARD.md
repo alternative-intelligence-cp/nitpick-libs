@@ -840,6 +840,17 @@ closed it, in under two minutes:
   this workbench should never have to infer the compiler address again. Until that
   copy arrives, `_s1`.
 
+**⚠ THE STALLED-HANDOFF HAZARD PAID WITHIN TWENTY MINUTES OF BEING WRITTEN, AND
+THIS IS THE LOGGED INSTANCE.** At 2026-09-06 13:32 `ListAgents` shows
+**`nitpick-compiler_s2` BUSY** — it was idle when the roster above was written. The
+tempting read is *"the rotation completed, write to `_s2`"*. **The correct read is
+that a parked session is doing something, which is not an announcement.** No message
+has arrived from either side naming a new address. **THE ADDRESS IS UNCHANGED:
+`nitpick-compiler_s1`.** This is recorded as an *observation*, explicitly not as
+evidence, because it is exactly the signal the hazard above says must not be acted
+on — and because a later session finding `_s2` busy in the scrollback should find
+this line beside it rather than have to reason it out again.
+
 **They also confirmed receipt of the handover of OUR address.** The eighth
 orchestrator asserted that handover without waiting for an acknowledgement and
 said so plainly; the acknowledgement is now on the record. `nitpick-libs_s4` is
