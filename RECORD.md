@@ -5524,3 +5524,47 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   TYPE — every one of the twelve, and of the twelve before them, instantiates at
   a POD type.** That is exactly the shape the dispatch warned about, with a new
   value, and the value is `T`.
+- **CYCLE 0.0 PAUSED by the author, 2026-09-06.** Not closed, not abandoned, and
+  **not paused because the work went badly** — the reason is strategic and is
+  recorded on the board in his own words, because a successor reading only a
+  stalled claim would resume it. *"nitpick-libs has already been a tremendous
+  success in helping find bugs in the compiler so far and we already have a
+  slight backlog of those to get done. building on top of it is still shifting
+  sand right now but hopefully not for much longer."*
+- **`nitpick-regex` PUSHED before pausing — `7eb8e53..ab93eae`, four commits.**
+  Every one is VERIFIED PASS at the subcycle level; only the cycle *close* was
+  refused. **Leaving four commits local-only on a paused cycle is how work
+  disappears**, and the repository's own `ROADMAP.md` already records the refusal
+  in its own words rather than reverting to silence, so the public state is
+  honest without further edits. The claim stays `CLAIMED s1` so no other stream
+  takes it; the in-flight row is now marked history rather than a live dispatch.
+- **finding, and it is the justification for the pause rather than a consolation
+  for it: THE LIBRARIES' HIGHEST-VALUE OUTPUT TODAY IS COMPILER DEFECTS, AND THAT
+  IS MEASURED.** In one session this workbench raised **DEF-25** from a nine-line
+  accessor; the compiler side then found the class reached `impl:string:Clone`
+  and **234 sites of its own copy idiom**, so *the compiler had been leaking in
+  its own build*, and the arithmetic closed exactly at 1 079 × 16 = 17 264 bytes.
+  Three audits of one cycle produced **seven `src/core/` defects** and a chain in
+  which **the fix for each finding was where the next one lived** (BL-4 in BL-1's
+  fix, BL-6 in BL-4's). **That is a bug-finding instrument working well on a
+  foundation that is still moving.**
+- **Why resuming is cheap later and expensive now, stated so the pause is not
+  re-litigated:** every blocking finding here is pin-dependent in some direction.
+  `RX-120` expired under a re-pin mid-session; `BL-4`'s root cause was fixed
+  upstream within the hour; `BL-5`'s central claim is about `TYPE-046`, whose
+  behaviour is a compiler fact rather than a library one. **A library built
+  against a compiler in active implementation re-derives its own premises every
+  re-pin**, and this cycle spent most of its cost doing exactly that.
+- **The compiler's roadmap recorded on the board as the resume signal** — 1.5 in
+  progress at 1.5.3 today, then 1.6, the last cycle planned so far; those two
+  together are meant to carry the initial implementation to good shape. **Then**
+  the stdlib shipping with the compiler, filled in and improved; **then** testing,
+  fixes and refinement across all of it; **then** as much formal verification as
+  can be done. **The resume signal is a STATE, not a date: the compiler out of
+  active implementation and into fixing and refinement**, at which point a re-pin
+  stops moving the ground under a library's own measurements.
+- **Left for whoever resumes 0.0: `BL-6` first, regardless of anything else.**
+  The `pending-until` marker can move an ordinary red out of a green run's
+  denominator with one comment line, so **every subsequent green in that
+  repository is worth slightly less until it is controlled** — and that is true
+  whether or not `BL-5` is touched.

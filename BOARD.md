@@ -1248,6 +1248,65 @@ business, not a check's.
 
 ---
 
+## ⏸ CYCLE 0.0 IS PAUSED — the author's decision, 2026-09-06, and the reason is strategic rather than a problem with the work
+
+**`nitpick-regex` stays `CLAIMED s1` so no other stream takes it, and NOTHING IS
+IN FLIGHT — no agent is live and the row below is history, not a dispatch.**
+Cycle 0.0 is **not closed and not abandoned**: three audits refused the close,
+all four subcycle commits are **VERIFIED PASS individually and now PUSHED**
+(`7eb8e53..ab93eae`), and `ROADMAP.md` in that repository already records the
+refusal in its own words rather than reverting to silence.
+
+**THE AUTHOR'S REASONING, RECORDED BECAUSE A SUCCESSOR WOULD OTHERWISE READ A
+PAUSE AS A STALL AND RESUME IT.** In his words: *"nitpick-libs has already been a
+tremendous success in helping find bugs in the compiler so far and we already
+have a slight backlog of those to get done. building on top of it is still
+shifting sand right now but hopefully not for much longer."*
+
+**So the libraries' highest-value output today is NOT library code — it is
+compiler defects**, and that is measured rather than asserted. In one session
+this workbench raised **DEF-25** from a nine-line accessor, and the compiler side
+found the class reached **`impl:string:Clone`** and **234 sites of its own copy
+idiom** — *the compiler had been leaking in its own build.* Three audits of one
+cycle produced seven `src/core/` defects and a chain in which **the fix for each
+finding was where the next one lived**. That is a bug-finding instrument working
+well, on a foundation that is still moving.
+
+**WHY RESUMING IS CHEAP LATER AND EXPENSIVE NOW.** Every blocking finding here is
+pin-dependent in some direction: `RX-120` expired under a re-pin mid-session,
+`BL-4`'s root cause was fixed upstream within the hour, and `BL-5`'s central
+claim is about a diagnostic (`TYPE-046`) whose behaviour is a compiler fact. **A
+library built against a compiler in active implementation re-derives its own
+premises every re-pin**, and this cycle spent most of its cost on exactly that.
+
+**THE COMPILER'S ROADMAP, AS THE AUTHOR STATES IT** — the sequence a successor
+needs to know before proposing a resume date:
+
+```
+1.5  in progress; the compiler is at 1.5.3 today
+1.6  the last cycle on the roadmap so far
+     -> together these are meant to carry the INITIAL IMPLEMENTATION to
+        good shape
+then the STDLIB that ships with the compiler -- filled in and improved
+then loads of TESTING, FIXES and REFINEMENT across all of it
+then as much FORMAL VERIFICATION as can be done
+```
+
+**The resume signal is therefore not a date, it is a state:** the compiler out of
+active implementation and into fixing and refinement, at which point a re-pin
+stops moving the ground under a library's own measurements. **Until then the
+work that pays is the work that finds compiler defects.**
+
+**WHAT A SUCCESSOR SHOULD READ FIRST WHEN 0.0 RESUMES.** The three audits, in
+order, at `meta/audits/nitpick-regex-0.0-2026-09-06{,-second,-third}.md`. The
+open blocking set is `BL-5` and `BL-6`, both specified with their remedies and
+both measured. **`BL-6` is the one to fix first regardless of anything else** —
+the `pending-until` marker can move an ordinary red out of a green run's
+denominator with one comment line, so every subsequent green in that repository
+is worth slightly less until it is controlled.
+
+---
+
 ## In flight
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
