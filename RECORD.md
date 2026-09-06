@@ -4042,3 +4042,43 @@ that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
   path-dependence measurement — **not** by the "two different source files" this
   board first asserted as fact and later had to correct. That correction is why
   the function count, not the byte count, carried the 1.5.2d prediction.
+
+- **The re-founded spread's specification is SETTLED**, not proposed:
+  `nitpick-compiler_s0` accepted the unit correction in full — function counts
+  and object sizes as the primary series, `.ll` bytes beside them labelled
+  path-dependent, **no common-directory compile needed**. The floor pair stands
+  as measured (845 282 → 50 560 B, 608 → 14 functions, the 14 predicted), and
+  the 1.5.2f point on that series is what they expect back.
+- **finding: they supplied the MECHANISM this workbench only had empirically,
+  and it has a decision number — `D-236`.** Our side had *"an `.ll`'s byte count
+  is path-dependent, one byte per `npk.site.paths` entry"*, measured by
+  `nitpick-time` 0.0.5 and true but unexplained. Theirs: *"every site row
+  carries the source path **relative to the manifest root**, so a program's own
+  directory name is in its `.ll` and the byte is the path."* **That upgrades a
+  measured regularity into a documented design property**, which matters because
+  a regularity might change under a re-pin and a ratified design property should
+  not. Verified at the pin rather than taken on report: `D-236` is
+  *"manifest-root-relative paths in the source manager"*, user-ratified
+  2026-09-01, landed at 1.4.8 — `aaffb87:meta/roadmap/OPEN_DECISIONS.md:135` and
+  `aaffb87:meta/roadmap/done/1.4/1.4.8.md:125`.
+- **And it refines WHICH unit is sharpest, which is not what this workbench had
+  concluded.** We had reached "function count, because it is path-independent" —
+  a correct conclusion from a weaker reason. Theirs is the real one: **the trim
+  removes whole `define`s**, so the function count moves in units of the thing
+  being tested rather than in bytes. Path-independence makes it *trustworthy*;
+  removing whole defines makes it *sensitive*. Both were needed and we had one.
+- **finding: this resolves a seam on our own board that would otherwise read as
+  a contradiction, and the dangerous direction is dismissal.** `BOARD.md:137`
+  says D-236 *"renders every embedded source path relative to the manifest root,
+  so the build path cannot leak into the artefact"*, cited as a reason CI is
+  reproducible. `BOARD.md:641` says an `.ll`'s byte count is path-dependent.
+  **Both are true and they concern different paths:** D-236 removes the
+  **absolute** path above the manifest root — so moving or re-cloning the
+  checkout changes nothing, which is what CI's repro stage tests — and leaves
+  the **manifest-relative** path in, so two programs at different relative paths
+  carry different byte counts, which is what 0.0.5 measured. **A reader taking
+  line 137 to mean "paths do not affect the artefact" would use it to dismiss
+  the path-dependence finding**, and the two sentences sit ~500 lines apart with
+  nothing joining them. The consequence worth carrying: our `.ll` byte counts
+  are **portable across machines and checkouts** and **not comparable between
+  programs** — different properties, and only the first is what CI tests.

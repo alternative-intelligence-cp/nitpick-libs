@@ -777,8 +777,36 @@ source files** — see the path-dependence rule below.
 - [ ] A constant delta anywhere → **stop, name the program, raise it as a
       compiler defect** (W-11: never worked around).
 
-**THE UNIT IS THE OBJECT AND THE FUNCTION COUNT — NOT THE `.ll` BYTE. This
-workbench measured that and it corrects the request as received.**
+**THE UNIT IS THE OBJECT AND THE FUNCTION COUNT — NOT THE `.ll` BYTE. Proposed
+here from this workbench's own measurement, ACCEPTED BY `nitpick-compiler_s0`
+2026-09-06 03:0x, and no common-directory compile is needed.** Their acceptance
+supplied the mechanism our side only had empirically — **it is `D-236`, by
+design**: every site row carries the source path **relative to the manifest
+root**, so a program's own directory name is in its `.ll` and **the byte is the
+path**. Their reading of the three units, now settled: *"the object is what the
+trim's effect should be read from, and the **function count is the sharpest
+signal of all, since the trim removes whole defines**."* So the function count is
+the primary instrument rather than a tie-breaker.
+
+> **AND THIS RESOLVES A SEAM ON THIS BOARD THAT WOULD OTHERWISE READ AS A
+> CONTRADICTION.** Line 137 says **D-236** *"renders every embedded source path
+> relative to the manifest root, **so the build path cannot leak into the
+> artefact**"* — cited as a reason CI is reproducible. Line 641 says an `.ll`'s
+> byte count is **path-dependent**. **Both are true, and they are about
+> different paths:** D-236 removes the **absolute** path above the manifest root
+> (so moving or re-cloning the checkout changes nothing, which is what CI
+> needs), and leaves the **manifest-relative** path in (so two programs at
+> different relative paths carry different byte counts, which is what 0.0.5
+> measured). **A reader taking line 137 to mean "paths do not affect the
+> artefact" would use it to dismiss the path-dependence finding**, which is why
+> the distinction is written here rather than left to be re-derived.
+>
+> **The consequence that matters for this measurement:** our `.ll` byte counts
+> are **portable across machines and checkouts** and **not comparable between
+> programs**. Those are different properties and only the first is what CI's
+> repro stage tests.
+
+**The measurement this rests on:**
 `nitpick-compiler_s0` asked for the distribution of *IR bytes* and function
 counts. But `nitpick-time` 0.0.5 measured that **an emitted `.ll`'s byte count
 is PATH-DEPENDENT and the object's is not**: the same source compiled from two
