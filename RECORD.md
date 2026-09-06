@@ -4610,3 +4610,31 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   command that takes it.** Times reached the wider ecosystem in three messages to
   peer sessions before the error was caught, so the cost of an invented number is
   not bounded by the document it was written in.
+- **CORRECTION to the entry and commit made minutes earlier, supplied by the
+  author unprompted: the `claud-` spelling note was CORRECT WHEN WRITTEN, and
+  calling it a predecessor's error was unfair.** This session recorded it as *"a
+  confidently-stated spelling fix that was itself wrong"*. The real history: the
+  author created the `devteam` sessions with the segment genuinely misspelled
+  `claud-`; an earlier orchestrator read that off `ListAgents`, correctly, and
+  warned others here not to reconstruct it; the author later noticed his own typo
+  and renamed the sessions. **Because they were idle he judged the rename not
+  worth announcing** — reasonable, and wrong only because a document was tracking
+  the name. Raised on the board as **hazard 7**.
+- **finding, and it is a correction to this session's whole reading of the
+  handover: FOUR STALE FACTS WERE FOUND TODAY AND NONE OF THEM WAS WRONG WHEN IT
+  WAS WRITTEN.** The guard's `git worktree list` defect (fixed the same day the
+  question was raised), the writer roster (two generations behind), the questions
+  table's Q-3 recommendation, and this spelling note. **Every one was accurate on
+  its date and was invalidated by the world moving underneath it.** This session
+  reached for "the note was careless" twice — once explicitly in a commit message
+  — and was wrong both times. **The first hypothesis for a stale fact is that its
+  subject changed, not that its author was sloppy**, and the difference matters
+  because one conclusion prompts a re-read of the tree and the other prompts a
+  loss of trust in a predecessor whose work was sound.
+- **The author has undertaken to relay identity changes of this kind in future**
+  — *"if you were tracking them then it very much matters. I will be sure to
+  relay anything like that in the future."* **Recorded as reliable, and NOT built
+  upon:** the standing habit stays *re-derive a peer identifier from `ListAgents`
+  at the moment you use it, never from the board's roster*, because "it was not
+  active, so it did not matter" is precisely the reasoning that lets an identity
+  change slip past everyone, and idleness protects nothing that is written down.

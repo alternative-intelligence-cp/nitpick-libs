@@ -30,7 +30,7 @@ is what disambiguates.
 | `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **Stood down from the role, still alive** |
 | `nitpick-compiler_s1` | `nitpick-e3` | **the compiler side TODAY — who to ask about `build/`, the pin, and whether a diagnostic change is deliberate.** Answered question 8 within the hour, with three measured facts and an unasked-for correction of a stale design premise |
 | `nitpick-compiler_s2` | — | the compiler's parked successor |
-| `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. **The spelling correction that stood here was itself wrong** — this board claimed the project segment is `claud-`, "without the final `e`"; `ListAgents` reads `claude-skills-devTeam`. Corrected 2026-09-06 04:4x from the listing, and it is the third stale fact this handover found by re-reading a document against the thing it describes |
+| `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
 orchestrator declined to rest the lock on — `nitpick-e3` — is
@@ -59,6 +59,30 @@ reads it for free, instead of messaging it.** That is the correct answer to
 hazard 4 for a peer the author has already identified — hazard 4 is about
 resolving an *unexplained* peer, and a direct statement from the author is a
 fact, not the inference it warns against.
+
+**HAZARD 7 — AN IDENTIFIER CAN BE CORRECTED UNDER THIS BOARD WHILE NOTHING IS
+WATCHING, AND A STALE ONE IS NOT EVIDENCE OF CARELESSNESS. Established
+2026-09-06 by the author, unprompted, after this session got it wrong.** The
+`devteam` sessions were originally created with the segment misspelled `claud-`.
+An earlier orchestrator read that off `ListAgents`, correctly, and wrote a
+warning here telling others not to reconstruct the name. The author later
+noticed his own typo and renamed the sessions; **because they were idle he
+judged it not worth announcing** — a reasonable call that happened to be wrong,
+since a document was tracking the name. The warning outlived its subject and
+became a confident, load-bearing falsehood that a later session repeated.
+
+**This session then compounded it**, recording the note as a predecessor's
+"confidently-stated spelling fix that was itself wrong". **It was right when
+written.** The author supplied the real history and has undertaken to relay such
+changes in future — *"if you were tracking them then it very much matters."*
+Take that as reliable and build no ceremony on top of it.
+
+**The durable rule, which survives his undertaking rather than being replaced by
+it: re-derive a peer identifier from `ListAgents` at the moment you use it,
+never from this table.** The table is a roster, not an address. And when you find
+a stale fact in a document here, **the first hypothesis is that the world moved,
+not that the author of the note was sloppy** — this handover has now found four
+stale facts and exactly none of them were wrong when they were written.
 
 **Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
 first library cycle to be worked, and the loop is being judged against
