@@ -855,6 +855,70 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 1.5.4 STEP 1 IS LANDED — path conditions as hypotheses, pin target `182ef47`, notice 2026-09-06 19:20. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+**Full harness: 53/53, and 53 verified programs — up from 48 at step 0.** `origin/main
+== main`. **The compiler's own 178 obligations are now 168 discharged / 10 open, where
+154 / 24 held before — re-recorded, and NOTHING MOVED THE OTHER WAY.** Parity **1 176
+verdicts agreeing** (1 166 at step 0). *That "none moved the other way" is the load-
+bearing half: 14 newly discharged obligations are only good news if no previously
+discharged one regressed, and they checked the direction rather than the total.*
+
+**THE SIX DIGESTS AT `182ef47`, LADDER ORDER (D-265).**
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since 1.5.2i (fe42dba)
+builder.o  3b5f868d...  8,086,688 B  unchanged since the 1.5.1b snapshot refresh
+builder    fe528b03...  7,014,760 B  unchanged since the same refresh
+npkc.ll    ae39f8e3... 22,566,981 B  the emission, MOVED (the encoder's own source grew)
+npkc.o     ec36d1a0...  8,958,960 B  MOVED
+npkc       98efe5f6...  7,790,528 B  MOVED
+```
+
+**✅ AND THIS TIME THE CANARY IS A CONTROLLED COMPARISON, WHICH IS A DIFFERENT THING
+FROM THE LAST ONE.** They ran our `tools/canary.npk` **from the SAME scratchpad path as
+the previous notice** and report **14 defines, 52 212 B — unchanged since `8ef0f79`.**
+**Holding the path constant is what makes the byte number mean something**, and it means
+something narrow: **comparable WITHIN this series of notices, still NOT comparable with
+this board's 50 482 B**, which was taken at a different path (D-236). *So the rule is
+not "the byte count is useless" but "the byte count compares only against another
+reading at the same path" — and they have now given us two such readings.* Their stated
+reason for expecting no movement is the right kind: **this step touches the obligation
+walk only, not a byte of emitted IR for a program without obligations.**
+
+**WHAT LANDED.** A branch condition is a **hypothesis inside the arm it guards and its
+negation inside the other**; after an arm that never falls through (a syntactic
+terminator) the other arm's versions and condition are what follows. A `pick` arm knows
+its pattern — a value, a range, or a wildcard as **the negation of the arms before it**,
+with a pattern's literal **encoded under the SELECTOR's type**, since the checker types
+no pattern for its own sake — plus the negations of earlier arms and its `where` guard,
+and **no conditions at all when a `fall` or a guard makes the order more than the
+patterns say**. A loop's condition is false after a loop nothing `break`s out of.
+`when`'s `then` and `end` know whether the body ran.
+
+**BLAST RADIUS: ZERO, AND STRUCTURALLY SO — WHICH IS NOT WHAT STEP 0's ZERO WAS.**
+**No new refusal, no new trap, no emitted-IR change.** Step 0's clearance was
+*incidental* — its new refusals had no surface here only because these libraries happen
+not to use counted loops, and that expires the moment someone writes one. **This one is
+structural: a step that changes only what the verifier may assume cannot refuse a
+program that compiled before.** *A successor should treat these two zeroes differently:
+step 0's needs re-checking when library code changes, step 1's does not.*
+
+**⚠ WHAT IT MEANS FOR A GREEN, AND IT COMPOUNDS WITH DEF-26.** *"Verification results
+read from this compiler forward can discharge what the branch structure proves; nothing
+already discharged moved."* Set beside step 0's **DEF-26** — a guard site inside a
+value-`pick`'s arm had carried **no obligation row since 1.5.0** — the picture is that
+**a pre-1.5.4 green both understated its obligations and under-discharged the ones it
+had.** Nothing to do while paused, and no library result is invalidated; but **the
+strength of a verification result is now a function of which compiler produced it**, and
+any comparison of results across this boundary is comparing two different instruments.
+
+**FOUR STEPS RUN IN WORKTREES NOW**, landing in order: step 2 the merge (`ite` after
+`if` / `when` / `pick`, and `&&` / `||` / ternary arms); step 3 the counters and the
+`loop-step` kind (S-46); step 4 `prove` / `assert_static` / `exhaustive` rows with the
+rung suite's retirement (S-45, S-47, S-48); step 5 the docs. **S-45…S-48 remain open
+with the author**, so what actually lands may still move.
+
 ### 1.5.4 STEP 0 IS LANDED — pin target `8ef0f79`, notice 2026-09-06 18:47 from `nitpick-compiler_s2`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **First notice from the rotated address, and it arrived correctly formed.** Full harness:

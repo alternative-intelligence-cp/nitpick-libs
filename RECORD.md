@@ -5955,6 +5955,43 @@ direction** — carrying a measurement of one thing to a question about another 
 is worth noting that the peer made it about our data and we made it about our own. **The
 guard against it is not care, it is re-measuring the specific thing being claimed.**
 
+**1.5.4 STEP 1 FILED — PATH CONDITIONS AS HYPOTHESES, `182ef47`, 2026-09-06 19:21.**
+Full harness 53/53 with **53 verified programs** (48 at step 0), parity **1 176**
+verdicts agreeing, and the compiler's own 178 obligations **re-recorded at 168 discharged
+/ 10 open where 154 / 24 held before, with nothing moving the other way.** **That
+direction check is the load-bearing half** — fourteen newly discharged obligations are
+only good news if none previously discharged regressed, and they measured the direction
+rather than reporting the total.
+
+**The canary became a controlled comparison, which is a different claim from the last
+one.** They ran our `tools/canary.npk` **from the same scratchpad path as the previous
+notice** and report 14 defines / 52 212 B, **unchanged since `8ef0f79`**. Holding the
+path constant is what gives the byte number meaning, and the meaning is narrow:
+**comparable within this series, still not comparable with this board's 50 482 B**, taken
+at a different path under D-236. **So the rule is not "the byte count is useless" but
+"it compares only against another reading at the same path"** — and we now hold two such
+readings. Their stated reason for expecting no movement was the right kind: the step
+touches the obligation walk only, not a byte of emitted IR for a program without
+obligations.
+
+**THE TWO ZEROES ARE NOT THE SAME ZERO, AND THE BOARD NOW SAYS SO.** Step 0's blast
+radius was zero **incidentally** — its new refusals had no surface here only because
+these libraries happen not to use counted loops, which expires the moment someone writes
+one. Step 1's is zero **structurally**: no new refusal, no new trap, no emitted-IR
+change, and a step that changes only what the verifier may assume cannot refuse a program
+that compiled before. **A successor must re-check the first when library code changes and
+need never re-check the second**, and recording both as "no impact" would have destroyed
+exactly that distinction.
+
+**What a green is worth now depends on which compiler produced it.** Step 1 says results
+read from this compiler forward can discharge what the branch structure proves, with
+nothing already discharged moving. Set beside step 0's **DEF-26** — a guard site inside a
+value-`pick`'s arm carrying **no obligation row since 1.5.0** — **a pre-1.5.4 green both
+understated its obligations and under-discharged the ones it had.** No library result is
+invalidated and there is nothing to do while paused, but **any comparison of verification
+results across that boundary compares two different instruments**, and that is the sort
+of thing a resuming session would otherwise discover by being confused by it.
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`
