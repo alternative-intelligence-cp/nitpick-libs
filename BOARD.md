@@ -1403,6 +1403,29 @@ own claim about itself:
   *no*, matching Rust, and refusing `xx`. `0.1/README.md:69` has it as a checklist
   item and `:76` ties it to 0.1.4's behaviour, **so it wants an answer before 0.1.4
   rather than at the close.**
+  **⚠ AND NEVER CITE A LIBRARY QUESTION ID BARE ON THIS BOARD.** That id is
+  allocated in `nitpick-sockets` too, as an unrelated question about descriptor
+  passing. **This is structural rather than bad luck: 20 ids are allocated in more
+  than one of the six work repositories and NOT ONE means the same thing
+  everywhere** — swept and recorded in `meta/OPEN_QUESTIONS.md`'s second registry,
+  with the method, so it is re-runnable rather than remembered. **Partial agreement
+  is the hazard, not disagreement** — the worst case is allocated in five
+  repositories as three different questions, three of which agree, so a reader who
+  checks two or three and stops learns a rule that is false in the rest:
+
+```
+B1  "when to migrate off the harness"   regex, sockets, tui
+    "when npkg can build a library"     time
+    "the multi-call binary"             posix
+```
+
+  Cite a library question only through a registry entry naming the repository.
+  `check_refs` enforces it, and **the right response to that gate firing is an entry,
+  never a change to the check.** *(Evidence fenced deliberately: `prose()` strips
+  fences so quoted ids are not themselves read as citations. **This paragraph needed
+  that fix — the first draft cited the example bare and `check_refs` refused the
+  commit**, which is the second time on record that this rule has caught its own
+  author in the act of writing it.)*
 
 **WHY THIS IS NOT BLOCKED BY THE STAND-DOWN, WHICH IS THE WHOLE POINT OF RAISING
 IT.** Writing subcycle files is **planning, not code.** The pause exists because a
