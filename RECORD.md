@@ -4804,3 +4804,48 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   (the false justification that stood for five subcycles across seven sites), and
   that the RX-120 reproduction actually RUNS at both pins rather than being a
   third assertion.
+- **verify `nitpick-regex` 0.0.5 PASS** — 2026-09-06, eight checks, small-model
+  verifier on literal commands. Harness **98/98 in 32.2 s** against a claimed
+  31.9; `check_record` **clean, which it could not have been an hour ago** —
+  the workbench fix is what made the close's own report checkable at all;
+  `check_refs` clean over 63 files; tree clean; both commits present; the archive
+  landed with `ROADMAP.md` pointing at `done/0.0/README.md` and the link
+  resolving; `0.1/0.1.0.md` is **241 lines, six numbered decisions each with a
+  specification-tied reason, an ordered six-step build, ten falsifiable acceptance
+  items** — execution-grade rather than a topic list.
+- **THE VERIFIER EXCEEDED ITS BRIEF TWICE, AND BOTH TIMES IT MATTERED.** Asked
+  only to compile the `end` claim, it **linked and RAN** the binary and confirmed
+  `s.end == 7` reads back correctly — so the claim is not merely "the compiler
+  accepts it" but "the field works". Asked only to confirm the accessor
+  confinement check is registered and runs, it **planted its own fault** —
+  appending `q.items[0i64]` to `src/hir/hir.npk` — saw `ok=False` with the right
+  diagnostic, and reverted cleanly. **A verifier that plants a fault nobody asked
+  it to plant is worth more than one that re-runs the harness**, and this is the
+  behaviour to keep asking for.
+- **finding, and it is a real gap left by 0.0.5's own dispatch:
+  `harness/baseline/RX120.txt` IS A NARRATIVE TRANSCRIPT, NOT AN EXECUTABLE
+  SCRIPT.** `bash harness/baseline/RX120.txt` exits 2 at line 1. The verifier
+  extracted every documented command and re-ran them at both pins: **3d15ac9
+  floor 2 / syscaller 3 / diff exactly `{npk_sys6}`; 950bb1d 29 / 29 / diff
+  empty** — the measurement reproduces byte-for-byte and is real. **But the
+  subcycle was dispatched precisely to make that claim reproducible rather than
+  asserted, and a `.txt` nobody can execute will not be re-run at the next
+  re-pin.** The dispatch said "commit the actual command and its output"; that
+  is literally what arrived, and it is still not a reproduction. **The wording of
+  an instruction is satisfiable in a way that misses its purpose** — ask for a
+  runnable artefact when you mean one. Put to the auditor for adjudication rather
+  than settled here.
+- **dispatch: the AUDITOR for cycle 0.0** — `claude-opus-5`, adversarial, told to
+  break the PASS rather than confirm it. Its brief is built from **this cycle's
+  own closing findings used as templates rather than as closed matters**: a
+  correct decision resting on a false premise, the summary page no citation sweep
+  reaches, one document contradicting itself eighty lines apart, the 41 path
+  mentions an archive stranded outside the gate's 63-of-145 denominator, a
+  claimed check that did not exist, and measurements dated to "the pin" rather
+  than to a commit. Three items are put to it for adjudication: the RX120
+  transcript, whether comparing `.internal/quickemit/npkc.ll` against the compiler
+  side's `build/npkc.ll` is legitimate at all, and **which of the four new
+  primitives has a test that READS BACK after a free, a growth or a truncation** —
+  since this repository has shipped two use-after-frees under a green suite, one
+  through an independent VERIFIED PASS. **`meta/audits/` does not exist here; this
+  will be its first report.**
