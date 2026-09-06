@@ -5568,3 +5568,18 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   denominator with one comment line, so **every subsequent green in that
   repository is worth slightly less until it is controlled** — and that is true
   whether or not `BL-5` is touched.
+- **release `nitpick-libs` — the writer lock released 2026-09-06 for a briefed
+  handoff to `nitpick-libs_s4`, which STANDS DOWN rather than taking over the
+  loop.** Marker removed first, then the line, then pushed, then re-read from
+  `origin/main` (hazard 5). **The distinction matters more than usual here:** the
+  incoming session is not an orchestrator between dispatches, it is a listener.
+  Its instructions from the author are to log compiler updates in the appropriate
+  place and start no implementation, **because by the time this workbench resumes
+  the compiler will have moved and any implementation done meanwhile may have to
+  be redone.** A landing notice arriving in the quiet period is **recorded, not
+  acted on** — no re-pin taken, no claim opened, a defect report filed for later
+  rather than worked.
+- **The board's writer line now says so in the line itself**, rather than only in
+  the pause block, because the writer line is the one thing every session reads
+  first and a `none` with no explanation invites exactly the resume the pause
+  exists to prevent.
