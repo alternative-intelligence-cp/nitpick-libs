@@ -84,13 +84,51 @@ def tracked_md(repo: Path):
     return files, [p for p in listed if not p.exists()], how
 
 
+def tracked_text(repo: Path):
+    """Every tracked TEXT file, not only the markdown ones.
+
+    The LEAK scan has a security shape and the link/decision/question checks do
+    not: a markdown link can only exist in markdown, but an absolute home
+    directory or a pasted credential can land in a `.npk`, a `.toml`, a `.txt`
+    or a workflow, and those are exactly the files nobody re-reads. Measured in
+    `nitpick-regex` on 2026-09-06 by its own cycle-0.0 audit (N-7): the scan
+    covered 65 of 155 tracked files, leaving 90 unexamined -- and the subcycle
+    that found it had itself written two absolute toolchain paths into a
+    `harness/baseline/*.txt`, sanitised deliberately rather than because
+    anything objected.
+
+    Binary files are skipped by the same heuristic git uses -- a NUL byte in
+    the first 8 KiB -- rather than by an extension list, because an extension
+    list is a check narrower than its name and this repository has now found
+    six of those.
+    """
+    try:
+        out = subprocess.run(["git", "-C", str(repo), "ls-files"],
+                             capture_output=True, text=True, check=True).stdout
+        listed = [repo / p for p in out.split("\n") if p.strip()]
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return [], "unavailable -- git unavailable"
+    out_files = []
+    for p in listed:
+        if not p.is_file():
+            continue
+        try:
+            if b"\0" in p.open("rb").read(8192):
+                continue
+        except OSError:
+            continue
+        out_files.append(p)
+    return out_files, f"{len(out_files)} text of {len(listed)} tracked"
+
+
 def check(repo: Path):
     """Returns (findings, denominator). The denominator is returned, not
     printed here, because a caller that reports findings without reporting
     what was examined is the failure this function's own docstring warns of."""
     findings = []
     files, missing, how = tracked_md(repo)
-    denom = f"{len(files)} files via {how}"
+    text_files, text_how = tracked_text(repo)
+    denom = f"{len(files)} md files via {how}; leak scan {text_how}"
     # Not a fault in the repository — a tracked file deleted and not yet
     # staged — but it narrows what every check below examined, so it is
     # reported rather than absorbed.
@@ -145,7 +183,14 @@ def check(repo: Path):
     # 5. nothing machine-specific in a tracked file. Deliberately NOT run
     # through prose(): a home directory pasted inside a fence is still leaked,
     # and quoting is exactly how one gets there.
-    for f in files:
+    #
+    # This is the ONE check that runs over every tracked TEXT file rather than
+    # over the markdown set. The others answer questions only markdown can pose
+    # -- a link, a decision heading, an open-question id -- while this one is a
+    # security check, and a secret does not care what extension it lands in.
+    # Widening it was recommended by `nitpick-regex`'s cycle-0.0 audit (N-7)
+    # after it measured the old denominator at 65 of 155.
+    for f in text_files or files:
         for m in LEAK.finditer(f.read_text(encoding="utf-8", errors="replace")):
             findings.append(("leak", f"{f.relative_to(repo)}: {m.group(0)[:40]}"))
 

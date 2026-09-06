@@ -4912,3 +4912,44 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   report (W-22, orchestrate §7's `READY-TO-CLOSE` path). **Nine non-blocking
   findings carry into 0.1.** Cycle 0.0 is NOT closed and `ROADMAP.md` currently
   says it is — that reversal is part of the triage.
+- **`check_refs.py`'s LEAK SCAN WIDENED TO EVERY TRACKED TEXT FILE, and it found
+  148 real leaks on its first run.** Recommended by `nitpick-regex`'s cycle-0.0
+  audit (N-7) and by the triage worker, who correctly noted it is a **workbench**
+  change and read-only from a library. The link, decision and open-question
+  checks stay markdown-only — a markdown link can only exist in markdown — but
+  **the leak scan is the one check with a security shape, and a secret does not
+  care what extension it lands in.** Binaries are skipped by git's own heuristic,
+  a NUL byte in the first 8 KiB, **rather than by an extension list**, because an
+  extension list is a check narrower than its name.
+- **The denominators moved from 65-of-155 to everything, and the ecosystem
+  picture is now stated rather than assumed:** `nitpick-libs` 52/52 clean,
+  `nitpick-regex` 155/155 clean, `nitpick-tui` 76/76, `nitpick-parse` 67/67,
+  `nitpick-sockets` 66/66, `nitpick-apps` 5/5, `nitpick-posix` 72/72 — **and
+  `nitpick-time` 148 findings over 182 files.**
+- **finding, for `nitpick-time` at its next claim (W-7, not fixed from here): 148
+  absolute home paths across SIX `.txt` files**, none of them markdown and none
+  therefore ever examined before —
+  `tests/probe/defect/generic_owning_copy/TRANSCRIPT.txt` (90),
+  `generic_element_move/TRANSCRIPT.txt` (43), `missing_failsafe/TRANSCRIPT.txt`
+  (6), `meta/scratch/tzdb_spike/TRANSCRIPT.txt` (5),
+  `tests/probe/probe11_arm_contract.txt` (2), `view_escape/TRANSCRIPT.txt` (2).
+  Every one is a recorded command line carrying the machine's home directory into
+  a **public** repository. **The shape is the same one this ecosystem keeps
+  meeting: a transcript is written to preserve evidence, and evidence is exactly
+  what carries a machine's private detail.**
+- **finding, and it is the false positive that matters most: THE WIDENED SCAN
+  FLAGGED ITS OWN CONTROL.** `test_check_refs.py:53` plants a literal home path
+  to prove the leak check fires; once the scan read every text file it read that
+  fixture and reported the suite as leaking. **A false positive in the one check
+  with a security shape is how a guard gets switched off** — the guard's own
+  docstring says so. Fixed by ASSEMBLING the fixture (`"/" + "home/..."`) rather
+  than by adding an exclusion list, because an exclusion list would have been the
+  narrower-than-its-name defect again, this time inside the tool that exists to
+  catch it.
+- **A control caught the change before the change was trusted.** Widening the
+  denominator broke `denominator-stated`, which asserts the printed line names
+  what was examined and how. **The format was fixed to satisfy the control rather
+  than the control relaxed to accept the format** — and a second case,
+  `leak-denominator-stated`, was added and shown to discriminate: reverting the
+  widening in a scratch copy fails it with *"DENOMINATOR NOT REPORTED"*. Suite is
+  13 cases: 7 fault classes, 4 false-positive controls, 2 denominator cases.

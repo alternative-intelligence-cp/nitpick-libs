@@ -50,7 +50,14 @@ CASES = [
     ("cited-undefined", lambda r: append(r, "meta/specs/A.md", "\nAlso X-9.\n"), {"cited-undefined"}),
     ("defined-uncited", lambda r: append(r, "meta/DECISIONS.md", "\n### X-2 — nobody cites this\n\nDead.\n"), {"defined-uncited"}),
     ("undefined-question", lambda r: append(r, "meta/specs/A.md", "\nSee Q-2.\n"), {"undefined-question"}),
-    ("leak", lambda r: append(r, "meta/specs/A.md", "\nMeasured at /home/someone/secret.\n"), {"leak"}),
+    # The fixture is ASSEMBLED rather than written literally. Since the leak
+    # scan widened to every tracked TEXT file it reads this control too, and a
+    # literal here makes the suite flag itself -- a false positive in the one
+    # check with a security shape, which is how a guard gets switched off. An
+    # exclusion list would also have worked and would have been worse: it is a
+    # check narrower than its name, which is the defect this ecosystem has now
+    # found seven times.
+    ("leak", lambda r: append(r, "meta/specs/A.md", "\nMeasured at /" + "home/someone/secret.\n"), {"leak"}),
     # --- FALSE-POSITIVE CONTROLS: content that must NOT produce a finding ----
     # Until 2026-09-05 this control had one negative case ("clean") and six
     # planted faults, so nothing here could ever fail by over-reporting. A
@@ -109,6 +116,13 @@ def denominator_cases(repo, nogit_dir):
     _, _, with_git = run(repo)
     out.append(("denominator-stated",
                 "git ls-files" in with_git and "files via" in with_git))
+    # The LEAK scan runs over every tracked TEXT file, not the markdown set, so
+    # it has its OWN denominator and that number must print too. Without this
+    # case the widened scan could silently narrow back to markdown and every
+    # line would still read "clean" -- which is the precise failure the
+    # denominator rule exists to prevent, one level down.
+    out.append(("leak-denominator-stated",
+                "leak scan" in with_git and "text of" in with_git))
     # python is found via sys.executable, so emptying PATH removes git alone.
     _, _, no_git = run(repo, env=dict(os.environ, PATH=str(nogit_dir)))
     out.append(("fallback-announces-itself",
