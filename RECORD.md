@@ -4741,3 +4741,30 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   the real instance came later and is worse. **Nothing refused it and nothing
   logged it.** `sandbox.filesystem.denyWrite` is now configured for `../nitpick`
   but `sandbox.enabled` is unset, so the setting is correct and **latent**.
+- **`nitpick-regex` PUSHED 2026-09-06 05:5x** — `91657eb..7eb8e53`, seven commits,
+  and CI run **`34025780292`** started at the bumped pin. **The first run at a new
+  pin is a deliberate cache miss** — the workflow caches the built compiler by
+  commit — so it builds the compiler from source and slowness there is expected
+  rather than a symptom.
+- **dispatch `s1-nregex-0.0.5-0551`** — the cycle close, `claude-opus-5`. Five
+  additions to the planned six steps, each with its reason in the dispatch: the
+  `build/npkc.ll` digest step for CI (D-265's cross-machine measurement, which
+  this side owes), `harness/selfcheck.py:230`'s stale "29 each way" docstring,
+  committing a reproduction for the RX-120 expiry rather than leaving it
+  asserted, naming the one genuine leak-gate site no list contained, and the
+  self-check case that predicted its own decay.
+- **CORRECTION, appended: the board and a message to the author both said "a
+  close means the AUDITOR runs first". That is wrong.** `READY-TO-CLOSE` is a
+  **worker report status**, not a dispatch order — orchestrate §7 has the worker
+  work the close, report `READY-TO-CLOSE`, the verifier pass it, and **only then**
+  the auditor run, after which the worker is re-dispatched with `AUDIT:` naming
+  the filed report. Read off the skill rather than remembered, after the
+  statement had already been made twice.
+- **finding: the D-265 measurement cannot be taken by the orchestrator and that
+  is the point.** `ci.yml` builds the compiler from the pinned commit but prints
+  no digest, so capturing `build/npkc.ll`'s `sha256` needs a workflow step —
+  which is `nitpick-regex`'s file, owned by stream 1 under W-7. **The
+  orchestrator's job is to get CI to PRINT the digest; the comparison against the
+  compiler side's `05457db4…` is the orchestrator's and was explicitly withheld
+  from the worker**, so that nobody asserts a verdict on a digest they have not
+  seen.
