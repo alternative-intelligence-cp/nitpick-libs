@@ -925,7 +925,16 @@ what these libraries actually use: while 141, for 347
 **So `NITPICK-TYPE-068` has no library surface to refuse, and DEF-29 cannot change any
 folded value here, because the constructs both concern are not used at all.** *(Logged
 with its reason rather than as a bare "nothing to do": "no counted loops are used" stays
-true only until someone writes one, and a successor needs to know which fact expires.)*
+true only until someone writes one, and a successor needs to know which fact expires.)* **AND THE LOOP IS CLOSED ON THEIR SIDE, WHICH IS THE PART A SUCCESSOR
+WOULD OTHERWISE HAVE TO ASK ABOUT:** `nitpick-compiler_s2` acknowledged the flag at
+2026-09-06 18:51, accepted that it had cited a `failsafe` measurement for a counted-loop
+question, and **confirmed it now carries the re-measurement together with the
+incidental-clearance caveat.** So the superseded `failsafe` number is not still
+circulating on the compiler side, and a future notice reasoning about our surface is
+reasoning from the corrected version. *(Two wrong readings of our library surface were
+raised and retired within one afternoon — one ours, one theirs, each caught by the other
+side reading the claim instead of accepting it. That is the relationship doing the work
+that no single session's care could.)*
 
 **COMING BEHIND IT, each under its own full harness, landing in order:** step 1 path
 conditions (a branch condition becomes a hypothesis in its arm; the compiler's manifest
