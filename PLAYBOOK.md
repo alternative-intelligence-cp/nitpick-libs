@@ -92,6 +92,37 @@ repository would otherwise rediscover them. The first two come from
 `nitpick-posix`'s probe 02 and the rest from `nitpick-time`'s, both on
 2026-09-03.
 
+**Three more from `nitpick-time` 0.1.0, 2026-09-06, all measured at `aaffb87`
+and carried on a VERIFIED PASS. They share a cause worth naming: every
+specification in this ecosystem was written in the shape of a language that has
+private fields and payload-carrying errors, because that is the shape its
+authors came from.**
+
+- **A `pub struct` has no private fields, and `opaque struct:Name = { … };` is
+  refused** — the bodyless form is the extern-driver declaration (D-149). So a
+  validating constructor guarantees the values **the library produces**, never
+  the type: **a consumer's struct literal compiles, links and runs.** Any
+  library claiming a type "cannot be constructed invalid" is claiming one
+  register more than the language supports. The honest sentence is *this library
+  never returns an invalid X, and a caller building one by struct literal has
+  opted out*, and the enforceable half is a tree check over the library's own
+  `src/`.
+- **An `error:` identity cannot carry a payload.** `pub error:E(Detail);` is
+  `NITPICK-PARSE-001`, exit 1, no `.ll`. A `Result<T>` is
+  `{ T value, tbb32 err }`, so **the error half of every return is a code** and
+  there is nowhere for a payload to live. §3's rule below — *declare one
+  identity and put the detail in a rich value the caller reads* — therefore
+  leaves a real question open in every library: **how does the detail actually
+  reach the caller?** Answer it explicitly per repository rather than assuming
+  a detail field that does not exist.
+- **`fails <Identity>` is not a function-signature clause.** The contract window
+  is a closed list: `requires`, `ensures`, `acquires`, `never fails`, `joins`,
+  `pure`. **A fallible function simply omits `never fails`.** `fails` is a
+  `VerificationKeyword` only because D-002's FFI contracts used it, and D-149
+  removed those. It reads so natural that it was written into a *reviewed* plan
+  file here and survived all the way to execution — which is the argument for
+  this list existing at all.
+
 - **A macro is invocable only in the module that declares it**
   (`NITPICK-MACRO-007`, on D-124: an invocation's meaning depends on which
   module it is in). **A macro cannot be shared across a codebase.** Any plan
@@ -999,6 +1030,24 @@ done
 A verdict without its denominator is not a measurement, and *"all N are clean"*
 is two claims — that they are clean, and that there are N. **The second one is
 the one nobody checks.**
+
+**The same blindness has a second form, and it bit within hours of the rule
+above being written.** `git grep -l` **reads the index**, so a sweep run before
+`git add` silently skips every file the same commit is *adding*. A token
+correction in `nitpick-time` 0.1.0 reported four files fixed; there were five.
+**Use `git grep --untracked` whenever the commit adds files** — and note what
+actually caught it: the workbench's own new rule to run `check_refs` a **second
+time after staging**, which exists because `check_refs` enumerates with
+`git ls-files` and has exactly the same blind spot. **One index-blind tool
+caught another**, and neither would have caught itself.
+
+**And a count is only as good as the run it came from.** The same subcycle wrote
+`BUILD.md`'s parse split as *"64 parse cleanly + 16 refused later"* from a run
+where a test was still failing; the committed tree is **66 + 15 + 2**. The
+**tagged** number in that same sentence was right and the untagged ones beside
+it were wrong. **Pair every count with its run's verdict, not merely with the
+command that produced it** — a number taken from an intermediate RED run reads
+exactly like one taken from a green one.
 
 **`.gitignore`** — build output, `*.o`, `*.ll` (negating any committed
 fixture), `a.out`, `__pycache__`, `*.log`, generator inputs that are large and

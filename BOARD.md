@@ -957,7 +957,7 @@ business, not a check's.
 
 | Stream | Repository | Subcycle | Agent label | Since | Model | Note |
 |---|---|---|---|---|---|---|
-| s2 | `nitpick-time` | **0.1.0 — the civil types — CLAIMED AND DISPATCHED at `aaffb87`.** `CivilDate`, `CivilTime`, `CivilDateTime`, `Weekday`, `Month`, the validating constructors, `cal`'s one error identity. **No algorithm** — `date_to_days`/`days_to_date` are 0.1.1's. Cycle 0.0 before it: **CLOSED, VERIFIED PASS**, archived at `meta/roadmap/done/0.0/`, CI green at `93293f2`, harness **62 units, 0 failures, ~62 s** | `s2-ntime-0.1.0-0235` | 2026-09-06 02:35 | `claude-opus-5` worker, small-model verifier | **DISPATCHED UNDER A HELD RE-PIN, DELIBERATELY, AND THE REASON IS ON THE RECORD.** D-264's four consequences are all about a **generic `T`** — a copied `T` place, a stored by-value `T:v`, a lending `pick` on a `T` payload, a derive over a `T` payload — and **`src/cal/` declares no generic at all**; `Weekday` and `Month` are payload-free, so `DERIVE-006` cannot bite either. **0.1.0 was WRITTEN at `aaffb87` and its nine binding cases are measured there**, so running it at this pin is running it where it was written rather than despite the hold, and its §1 item 4 **already predicts `check_exemptions_live` firing at the re-pin**. **EVERY NUMBER IT RECORDS IS AN `aaffb87` NUMBER AND MUST BE LABELLED AS ONE** so the re-pin re-checks rather than inherits it — the discipline that caught the "under 768 KiB" figure after three subcycles. Author confirmed the dispatch 2026-09-06 02:3x. | **THE FIRST CYCLE CLOSED ANYWHERE IN THIS ECOSYSTEM.** **All 30 audit findings triaged — 30 of 30 carry a line**, verified by counting rather than by report; nothing rejected on disagreement, one refusal (F8, a rename) stating its cost instead. **Both use-after-frees are fixed**, and the second one — `bytes_view`'s comment promising a view outlives a growth — now has a test **with its control**, because a test showing only the failing half proves the failure and not the rule. **CI RAN FOR THE FIRST TIME IN THIS REPOSITORY'S HISTORY AND ITS FIRST RUN WENT RED — WHICH IS THE POINT.** Run `34014136095` failed on `f950ae4`, then green on `8081e60` and `93293f2`; read from GitHub, not from the report. **The close is three commits because a CI result cannot live inside the commit that caused it.** **TREAT THE FIRST CI RUN AS AN INSTRUMENT, NOT A FORMALITY** — it found two defects in its first eight minutes. **TWO OF THOSE AFFECT EVERY SIBLING AND ARE IN THE SHARED CI SHAPE — see the SHARED FINDINGS block.** **The harness grew 40 → 62 units**, and the 22 are exactly the defect corpus the audit found asserting nothing (24 = 3 exempt + 21 now asserted, 13 run + 8 refusal) — so the growth is coverage rather than re-counting. **~~O-N4~~ struck on this repository's own re-measurement** — 30 000 rows at **1.17 s / 26 888 KiB** against 281 s / 30.9 GiB, with a 2 266 485 B `.ll` carrying all 30 000 rows, **so the speed is not bought by emitting less**; its heading had read BLOCKING for two subcycles after its gate was passed |
+| s2 | `nitpick-time` | **0.1.0 — the civil types — DONE, VERIFIED PASS** at `2589069`, harness **GREEN 67 units / 0 failures / 5 pending**, grown 62 → 67. **Local, deliberately not pushed** — mid-cycle, so CI has not run on it (see the open item). Next: **0.1.1 — Hinnant's algorithms** (`date_to_days`, `days_to_date`), **NOT DISPATCHED and `0.1.1.md` DOES NOT EXIST** — the convention writes only a cycle's *opening* file, so 0.1.1 needs either a planner dispatch or a decision to work it from the cycle README's checklist | *(no live agent)* | verified 2026-09-06 03:30 | `claude-opus-5` worker, small-model verifier | **DISPATCHED UNDER A HELD RE-PIN, DELIBERATELY, AND THE REASON IS ON THE RECORD.** D-264's four consequences are all about a **generic `T`** — a copied `T` place, a stored by-value `T:v`, a lending `pick` on a `T` payload, a derive over a `T` payload — and **`src/cal/` declares no generic at all**; `Weekday` and `Month` are payload-free, so `DERIVE-006` cannot bite either. **0.1.0 was WRITTEN at `aaffb87` and its nine binding cases are measured there**, so running it at this pin is running it where it was written rather than despite the hold, and its §1 item 4 **already predicts `check_exemptions_live` firing at the re-pin**. **EVERY NUMBER IT RECORDS IS AN `aaffb87` NUMBER AND MUST BE LABELLED AS ONE** so the re-pin re-checks rather than inherits it — the discipline that caught the "under 768 KiB" figure after three subcycles. Author confirmed the dispatch 2026-09-06 02:3x. | **THE FIRST CYCLE CLOSED ANYWHERE IN THIS ECOSYSTEM.** **All 30 audit findings triaged — 30 of 30 carry a line**, verified by counting rather than by report; nothing rejected on disagreement, one refusal (F8, a rename) stating its cost instead. **Both use-after-frees are fixed**, and the second one — `bytes_view`'s comment promising a view outlives a growth — now has a test **with its control**, because a test showing only the failing half proves the failure and not the rule. **CI RAN FOR THE FIRST TIME IN THIS REPOSITORY'S HISTORY AND ITS FIRST RUN WENT RED — WHICH IS THE POINT.** Run `34014136095` failed on `f950ae4`, then green on `8081e60` and `93293f2`; read from GitHub, not from the report. **The close is three commits because a CI result cannot live inside the commit that caused it.** **TREAT THE FIRST CI RUN AS AN INSTRUMENT, NOT A FORMALITY** — it found two defects in its first eight minutes. **TWO OF THOSE AFFECT EVERY SIBLING AND ARE IN THE SHARED CI SHAPE — see the SHARED FINDINGS block.** **The harness grew 40 → 62 units**, and the 22 are exactly the defect corpus the audit found asserting nothing (24 = 3 exempt + 21 now asserted, 13 run + 8 refusal) — so the growth is coverage rather than re-counting. **~~O-N4~~ struck on this repository's own re-measurement** — 30 000 rows at **1.17 s / 26 888 KiB** against 281 s / 30.9 GiB, with a 2 266 485 B `.ll` carrying all 30 000 rows, **so the speed is not bought by emitting less**; its heading had read BLOCKING for two subcycles after its gate was passed |
 | s1 | `nitpick-regex` | **0.0.3 DONE — VERIFIED PASS** at `91657eb`, pushed, harness 63/63 in 37.5 s. Next: 0.0.4 (`src/core/`), **not dispatched** — this session is stopping | *(no live agent)* | 2026-09-04 | `claude-opus-5` | **RX-126 is this subcycle's most valuable output and it corrected THIS BOARD** — see its block above. O-N10 also discharged here (RX-125), on thirteen measured properties, **two of which `nitpick-time` cannot test** (its enum has one payload field per variant), so O-N10's verification is still owed there. RX-123 (both leak checkboxes), RX-124 (`parse` no longer depends on a compiler-repository tool) landed. O-N16 raised, numbered from `meta/OPEN_QUESTIONS.md:355`. **ACCEPTED WITH A KNOWN OVERSTATEMENT, carried to 0.0.4 rather than re-dispatched at a stopping session:** the verifier found that the mutation-test **transcripts are NOT committed** — `meta/roadmap/0.0/0.0.3.md` §4 holds a per-case attribution *summary table*, which is what the acceptance criterion actually required and is why this is a PASS — but **`harness/README.md` claims "§4 has the transcripts", and it does not**. `PLAYBOOK.md` §6 says a summary is not evidence, and `nitpick-time` 0.0.0 was once FAILED by its own verifier for exactly this, so the precedent cuts against letting the sentence stand. **0.0.4 must either commit the raw mutation runs with their exit codes, or correct that sentence to claim only what is there.** Do not let it pass a third time
 
 ## Questions for the author
@@ -1139,6 +1139,54 @@ remain: `nitpick-tui`, `nitpick-parse`, `nitpick-sockets`.**
 ---
 
 ## SHARED FINDINGS — what `nitpick-time` learned that the siblings probably inherit
+
+### THE 0.1.0 PAIR — TWO LANGUAGE FACTS THAT MAKE EVERY LIBRARY HERE OVERCLAIM, verified 2026-09-06
+
+**Both measured at `aaffb87` by `s2-ntime-0.1.0-0235` and carried on a VERIFIED
+PASS. They are not `nitpick-time`'s to fix and they are not defects — they are
+what the language is, reaching claims that four other repositories have already
+written down.**
+
+**(1) A `pub struct` HAS NO PRIVATE FIELDS, so "cannot be constructed invalid"
+is a claim the language does not support.** `opaque struct:Name = { … };` is
+refused — the bodyless form is the extern-driver declaration (D-149). So a
+validating constructor's guarantee is about the values **a library PRODUCES**,
+never about the type: **a consumer's struct literal compiles, links and runs.**
+
+| Repository | The type making the claim |
+|---|---|
+| `nitpick-regex` | a compiled pattern |
+| `nitpick-parse` | a validated layout |
+| `nitpick-sockets` | a parsed address |
+| `nitpick-tui` | a validated cell/geometry |
+| `nitpick-time` | `CivilDate` — **found here, and the reason the others are listed** |
+
+**The enforceable half is a tree check over the library's own `src/`** — which
+is exactly the shape both of this repository's shipped use-after-frees came
+from, so it is a real instrument and not a consolation. **Each repository states
+the honest claim at its next claim (W-7); do not fix another stream's
+repository.** The honest form: *this library never returns an invalid X, and a
+caller building one by struct literal has opted out.*
+
+**(2) An `error:` IDENTITY CANNOT CARRY A PAYLOAD — the error half of every
+return in this language is a CODE.** `pub error:E(Detail);` is
+`NITPICK-PARSE-001`, exit 1, no `.ll`; a `Result<T>` is `{ T value, tbb32 err }`,
+so there is nowhere for a payload to live. **`PLAYBOOK.md` §3's rule — *declare
+ONE identity and put the detail in a rich value the caller reads* — therefore
+contains an unanswered question**, because the natural reading of *"rides as a
+detail field"* names a field that does not exist. **Every library needs an
+explicit answer for how the detail reaches the caller.** `nitpick-time`'s is
+open as **O-X8** with a recommendation (a `never fails` companion classifier);
+the four siblings have not yet been asked the question.
+
+**Why this pair is worth reading twice.** Neither was found by a gate. Both were
+found by a worker writing a type and discovering the language would not let it
+say what the specification said. **The specifications were written in the shape
+of a language that has private fields and payload-carrying errors** — the shape
+every author here came from — and nothing in this ecosystem would have reported
+that until a library tried to compile it.
+
+---
 
 **Four things, found in three consecutive subcycles, and the reason they are
 shared is the same in every case: these repositories were scaffolded from one

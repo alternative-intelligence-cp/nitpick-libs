@@ -4132,3 +4132,70 @@ that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
   previous two were hit exactly. **A prediction that forbids all movement is
   falsified by any movement**, which is precisely why it is worth taking rather
   than merely observing the number afterwards.
+
+- **verify `s2-ntime-0.1.0-verify-0325` PASS** on `2589069`, 35 450 tokens, 4.5
+  minutes, small model. **All seven checks answered with an observed value
+  beside the claimed one, and none substituted reading for running** — which is
+  the failure mode the previous orchestrator measured twice and fixed by
+  supplying literal commands. Harness re-derived **GREEN 67 units / 0 failures /
+  5 pending** at 65.0 s; the 62-unit baseline re-derived **in a throwaway
+  worktree at `93293f2`**, so the 62 → 67 growth is measured at both ends rather
+  than inferred from a delta.
+- **THE PLANTED FAULT IS THE CHECK THAT MATTERED AND IT WORKED.** Breaking the
+  400-year leap rule in a throwaway worktree turned the suite **RED — 64 of 67,
+  three failures, `tests/unit/leap_rule.npk` exit 10**. This repository shipped
+  **two** use-after-frees under a green suite in cycle 0.0, both through review
+  and one through an independent VERIFIED PASS, so *"the suite is green"* has a
+  measured history of meaning nothing here. **A suite that cannot be shown to
+  fail on the thing it claims to test is not evidence**, and this is the first
+  subcycle where that was demonstrated rather than assumed.
+- **The worker reported a defect against itself and had already fixed it**,
+  which the verifier confirmed independently: `BUILD.md` now reads **"83 files =
+  66 parse cleanly + 15 parse and are refused later + 2 do not parse"**, matching
+  the tree, over the stated denominator *all `.npk` files in the tree*. The
+  earlier "64 + 16" came from an intermediate RED run. **Self-reported and
+  self-fixed is the outcome this discipline is for**; it is recorded because the
+  *class* is durable even though this instance is closed.
+- **finding: the gate-after-staging rule added to this workbench at 02:4x caught
+  a real defect at 03:1x — within the same session it was written.** `git grep
+  -l` reads the index, so the worker's token-correction sweep skipped a file the
+  same commit was adding: it reported four corrected and there were five. The
+  catch came from running `check_refs` a **second time after `git add`**, the
+  rule this board adopted from the outgoing session's trap 5. **`check_refs`
+  enumerates with `git ls-files` and has the identical blind spot — one
+  index-blind tool caught another, and neither would have caught itself.** Into
+  `PLAYBOOK.md` §7 beside the denominator rule, with `git grep --untracked` as
+  the fix.
+- **advance `nitpick-time` 0.1.0 → 0.1.1.** The claim stays with s2. **`0.1.1.md`
+  DOES NOT EXIST** — the convention writes only a cycle's *opening* subcycle file
+  — so 0.1.1 needs either a planner dispatch or a ruling that it is worked from
+  the cycle README's checklist. **Raised to the author rather than decided here**
+  (§9 item 6: anything ambiguous enough that you would be guessing), and the
+  worker's own recommendation is on the questions table: **0.1.2's exhaustive
+  sweep is the cycle gate and is the one that most wants an execution-grade
+  plan.**
+- **finding: TWO LANGUAGE FACTS FROM 0.1.0 MAKE EVERY LIBRARY HERE OVERCLAIM,
+  and neither was found by a gate.** A `pub struct` has no private fields and
+  `opaque struct:Name = { … };` is refused (D-149), so *"cannot be constructed
+  invalid"* is a claim the language does not support — a consumer's struct
+  literal compiles, links and runs, and the guarantee is only about what the
+  library **produces**. And an `error:` identity cannot carry a payload —
+  `Result<T>` is `{ T value, tbb32 err }`, so the error half of every return is a
+  **code**, and `PLAYBOOK.md` §3's *"put the detail in a rich value the caller
+  reads"* names a detail field that does not exist. **Both reach four sibling
+  repositories** — a compiled pattern, a validated layout, a parsed address, a
+  validated cell — each of which has already written the unsupported claim down.
+  Into the board's SHARED FINDINGS block with the per-repository table and into
+  `PLAYBOOK.md` §2. **Each repository fixes its own at its next claim (W-7).**
+  **The shared cause is worth more than either fact:** every specification here
+  was written in the shape of a language that has private fields and
+  payload-carrying errors, because that is the shape its authors came from, and
+  **nothing in this ecosystem would have reported that until a library tried to
+  compile it.**
+- **finding: `fails <Identity>` is not a function-signature clause.** The
+  contract window is closed — `requires`, `ensures`, `acquires`, `never fails`,
+  `joins`, `pure` — and a fallible function simply omits `never fails`. `fails`
+  survives as a `VerificationKeyword` only because D-002's FFI contracts used it
+  and D-149 removed those. **It read so natural that it was written into a
+  REVIEWED plan file and survived to execution**, which is the argument for
+  `PLAYBOOK.md` §2's measured-facts list existing at all.
