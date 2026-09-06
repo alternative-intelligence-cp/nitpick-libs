@@ -104,8 +104,8 @@ is what disambiguates.
 | `nitpick-libs_s5` | — | **THE SUCCESSOR. HAND OFF TO THIS ONE, NOT TO A HIGHER NUMBER.** Parked and unbriefed, opened 04:1x in the terminal `s2` was closed from; alive and idle at 2026-09-06 13:39, 9 h old. **Re-confirmed by `nitpick-libs_s6`, which declined the seat and pointed back at this row** rather than accepting a handoff that was not its to take |
 | `nitpick-libs_s6` | — | the spare **behind** the spare, opened 2026-09-06 13:39 as `s3` closed. **Parked: no task, nothing written, nothing queued** — asked and answered about itself, its user's only instruction so far being a `/rename`. Undertook to message before it ever writes. **Re-verified this board's writer line with the documented value-read, the single-clone sweep and `HEAD == origin/main` rather than taking them on report**, and contributed hazard 7's passive demonstration |
 | `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **GONE** — confirmed by `_s2` 2026-09-06 13:34 and by its absence from `ListAgents`; it ran 1.5.2g step 1 in worktree `g1` this morning. *(This row previously read "stood down from the role, still alive".)* |
-| `nitpick-compiler_s1` | `nitpick-e3` | **THE COMPILER ADDRESS — CONFIRMED BY THEM 2026-09-06 13:25 RATHER THAN INFERRED FROM `ListAgents`.** Who to ask about `build/`, the pin, and whether a diagnostic change is deliberate. Currently mid-1.5.3. Answered question 8 within the hour, with three measured facts and an unasked-for correction of a stale design premise |
-| `nitpick-compiler_s2` | — | **NEVER BRIEFED, NOT AN ADDRESS — settled by `_s2` about itself, 2026-09-06 13:34**, after `_s1` and the author gave conflicting second-hand accounts. A message to it is **not** lost — it reads, reports to its author, and forwards to `_s1` noting the provenance — but that is a **FALLBACK, NOT A ROUTE**: a parked spare can be closed without notice |
+| `nitpick-compiler_s1` | `nitpick-e3` | **THE COMPILER ADDRESS UNTIL 2026-09-06 16:16, NOW HANDING OFF TO `_s2`.** Goes quiet once `_s2` confirms; **a message sent there after that will not be read.** Landed 1.5.3. Made two falsifiable predictions that held, took a wording correction without defensiveness, and sent three unasked-for corrections of which the last refuted this board's own `failsafe` reading |
+| `nitpick-compiler_s2` | — | **THE COMPILER ADDRESS FROM 2026-09-06 16:16 — ANNOUNCED BY `_s1` BY NAME, NOT INFERRED.** Expect the next landing notice from it. Already briefed on our side by `_s1`, so the hold, this seat's role, the pin and the digest rules do not need repeating. *(Its earlier busy period was logged here as an observation and explicitly not as a rotation signal — correctly, since the rotation had not happened then.)* |
 | `nitpick-compiler_s3` | — | a parked session, idle. **Not an address.** `_s2` explicitly declined to speak for it — the same discipline that settled `_s2`'s own state, and the reason to ask `_s3` directly if it ever matters |
 | `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
@@ -909,11 +909,31 @@ thing to hand a successor than a number, and a read costs nothing:
   work repositories.
 - **REACH-004 touches NOTHING.** There is **no bare-literal `failsafe` value** in any
   library source.
-- **⚠ BUT THE COMPUTED-ZERO RULE TOUCHES 141 SITES.** The libraries use the computed
-  form almost exclusively — **141 occurrences of `failsafe = int32(Error:e)`**. A
-  computed zero now traps and ends the process at **70**. **So the question a resuming
-  session must answer before the re-pin is whether `int32(Error:e)` can ever be zero.**
-  It is not answered here.
+- **✅ AND THE COMPUTED-ZERO RULE TOUCHES NOTHING EITHER — CORRECTED 2026-09-06 16:15
+  AFTER `nitpick-compiler_s1` REFUTED THIS BOARD'S FIRST READING.** **What was written
+  here, and was wrong:** *"the computed-zero rule touches 141 sites, the libraries using
+  `failsafe = int32(Error:e)` almost exclusively."* **`failsafe = int32(Error:e)` is the
+  MANDATORY SIGNATURE of every failsafe (D-013), not a computation of the exit code.**
+  What the guard judges is **each `exit` statement's operand inside the body** — a
+  literal operand refused at compile time when non-positive, a computed one trapping to
+  70 when zero or negative at runtime. **So it is a per-exit reading, not a
+  per-signature one**, and this board had measured a signature and reported it as a
+  behaviour. **Re-measured correctly with a brace-tracking scan over 747 `.npk` files,
+  264 failsafe blocks:**
+
+```
+exit literals inside failsafe bodies:  9 60 70 71 80 87 88 89 90 91..99
+  non-positive literals:               0     REACH-004 refuses nothing
+  computed (non-literal) operands:     0     the trap-to-70 path has no consumer
+```
+
+  **Both arms are clean and `failsafe` costs the libraries nothing at the re-pin.** The
+  97 `exit 0i32` in these sources are all on ordinary success paths **outside** any
+  failsafe body, which is precisely the distinction a flat grep destroys. *(Recorded at
+  length because the error is instructive: a signature was measured and a behaviour was
+  reported, with a confident denominator attached — and **a wrong number carrying a
+  denominator is worse than no number, since the denominator is what makes it look
+  measured**, which is a lesson already on this board from an earlier session.)*
 
 **WHAT CHANGED IN THE VERIFICATION LEG.** Rows: `requires` at every call with a
 recorded callee — **bypass at a direct sync call, held at an `await` or through `dyn`,
@@ -953,7 +973,18 @@ about our canary and is untested at `b2f7d94`;** their movement is about theirs 
 explained. Comparing one against the other produces a difference that means nothing.
 
 **Rung count on a full run reads 1** (`inline_mod.npk`, its construct now `prove`).
-**The compiler address stays `nitpick-compiler_s1` until it names a successor.**
+**⚠ THE COMPILER ADDRESS HAS ROTATED: SEND TO `nitpick-compiler_s2` FROM 2026-09-06 16:15.**
+**ANNOUNCED BY `_s1` BY NAME, WHICH IS THE ONLY THING THAT MAKES A ROTATION REAL HERE** —
+this board's standing rule is that a quiet `_s1` is never evidence of a completed
+handoff, and `_s2` going busy earlier today was logged as an observation and explicitly
+not as a signal. **`_s1` goes quiet once `_s2` confirms, and a message arriving there
+after that WILL NOT BE READ.** Expect the next landing notice from `_s2`. **`_s1`
+briefed it on our side already** — the library hold, this seat as a listener that logs
+and acts on nothing, notices with the six digests in ladder order and the canary, the
+pin at `3d15ac9`, that `s5` and `s6` are not addresses and no address is inferred from
+`ListAgents`, that `npkrt.o` at `67cc8186…` is DEF-25's fix and correct, and that our CI
+digest reads against `05457db4…`. **Our wording rule was accepted and passed on: a
+future notice saying "unchanged" will say "unchanged since `<commit>`".**
 
 ### 1.5.3 WAS IN PROGRESS — SUPERSEDED BY THE LANDING NOTICE ABOVE — status from `nitpick-compiler_s1`, 2026-09-06 13:25. **THIS IS NOT A LANDING NOTICE AND NOTHING IN IT IS TO BE ACTED ON.**
 
