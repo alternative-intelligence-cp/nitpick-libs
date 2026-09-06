@@ -4953,3 +4953,55 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   `leak-denominator-stated`, was added and shown to discriminate: reverting the
   widening in a scratch copy fails it with *"DENOMINATOR NOT REPORTED"*. Suite is
   13 cases: 7 fault classes, 4 false-positive controls, 2 denominator cases.
+- **verify `nitpick-regex` 0.0.5 (audit triage) PASS** — 2026-09-06 07:5x, ten
+  checks, literal commands. Harness **108/108**; `check_refs` clean;
+  `check_record` reporting **exactly one** finding and it is the deliberate
+  unticked "cycle archived" box; tree clean twice.
+- **THE DECISIVE CHECK, AND IT IS THE ONLY ONE THAT MAKES BL-1's FIX EVIDENCE.**
+  The verifier copied the tree, reverted `bytes_copy_string` to the borrowed view
+  it used to be, and re-ran: **RED, 107/108, `bytes_unit.npk` exited 46 expecting
+  0** — the exact unit and the exact code the fix documents. **A fix whose
+  reversal leaves the suite green is not a fix**, and this repository has now
+  shipped three use-after-frees to learn it.
+- **`rx120.sh` RUNS, ASSERTS, AND WAS SHOWN TO FAIL.** Exit 0 on the real tree,
+  asserting floor == 2, syscaller == 3, difference == `{npk_sys6}`, plus a subset
+  check — **and the historical `950bb1d` leg ran green too** (29/29 identical).
+  The verifier planted its own fault (`expect_count floor 2` → `3`) and got
+  `FAIL floor: 2 undefined symbol(s), expected 3`, exit 1. **The narrative
+  transcript is kept beside it rather than instead of it**, which was the
+  adjudication.
+- **finding: THE AUDIT OVERSTATED BL-2's SECOND HALF, AND THE OVERSTATEMENT IS NOW
+  REFUTED AT BOTH STATES.** The audit claimed `vec_push`/`vec_insert` call
+  `ralloc(<dangling>, 0)` and then **write**. Measured: **before** the triage a
+  freed `vec_push` exited **91** (`HeapBadRequest`, D-150 refusing
+  `ralloc(p, 0)`); **after**, it exits **94**, because the triage added an
+  explicit `vec_oob` guard that fires before the allocator is reached. **There
+  was never a write, at either state.** The worker corrected its own auditor and
+  the verifier confirmed the correction independently. **An adversarial report is
+  a claim like any other, and the worker under review is allowed to be right.**
+- **The CI digest step still PRINTS.** The `05457db4…` literal appears only inside
+  a comment explaining the audit's same-machine measurement and why it must not
+  become an assertion; the live step `printf`s size and digest with no comparison.
+  **The cross-machine value has still never been observed, and the tooling now
+  says so in the file rather than only on this board.**
+- **The archive reversal is complete and honest.** `meta/roadmap/0.0/` holds the
+  cycle again, `done/` holds only its generic placeholder, and `ROADMAP.md:55`
+  now reads *"NOT CLOSED. Its close was REFUSED by the cycle 0.0 audit on
+  2026-09-06 and the archive move was reversed"* — **a roadmap that records its
+  own refusal rather than quietly reverting to silence.**
+- **The triage's count was re-derived independently and matches: 15 = 2 + 4 + 9**,
+  disposition **12 fixed / 2 settled / 1 deferred**, every audit item present with
+  a line and none dropped.
+- **AND THE ONE DEFERRED ITEM IS NOW DISCHARGED.** N-7 was deferred to a named
+  owner — the workbench — because widening `check_refs`'s leak scan is not a
+  library's change to make. **The workbench made it in the same session**, and it
+  found **148 real leaks in `nitpick-time`** on its first run. So the triage's
+  deferral was correct, targeted, and closed within the hour rather than becoming
+  a standing item.
+- **dispatch: the SECOND audit of cycle 0.0**, scoped to the delta and to what the
+  first audit did not reach rather than to a full re-sweep, because the first
+  cost 230 k tokens and re-deriving its clean findings buys nothing. **The cycle
+  cannot close without it:** the worker declined to report `READY-TO-CLOSE` on the
+  stated ground that the last close *was* reported ready, independently verified
+  on eight checks, and refused on two defects in one directory — and the triage
+  then found a fifth in that same directory.
