@@ -5676,3 +5676,43 @@ before, and the compiler confirmed both of our landmines back to us unprompted �
 the pin stays `3d15ac9`, `npkrt.o` moving to `67cc8186…` / 55 648 B is DEF-25's
 runtime fix and is correct, and the CI digest reads against `05457db4…`. **Nothing
 was dispatched, no claim was opened, and no re-pin was taken.**
+
+**AND THE LOCK IS HELD RATHER THAN RELEASED AT THIS CLEAN STOP, FOR A REASON THAT
+TURNED OUT TO BE BETTER THAN THE ONE ARGUED FOR IT.** The incoming session's case
+was about churn — further notices mean further writes, and `none` on the line
+invites the resume the pause exists to prevent. The outgoing session supplied the
+real one, and it is structural: **every `nitpick-libs_sN` session works the same
+checkout.** Measured rather than assumed — `git reflog` holds `commit:` entries
+from four different orchestrator sessions interleaved in one log, and a sweep of
+`~/Workspace` finds exactly one clone pointed at the remote. **The eighth
+orchestrator found it from the other side**, seeing its own `HEAD` at a commit it
+had not made and briefly wondering how it had moved without a pull. It had not
+moved; the ninth session moved it, because there is one set of files. So the writer
+lock is not bookkeeping about authority across clones — **it is a mutex over one
+directory that three libs sessions can all write**, and `none` on that line permits
+a fresh session to write into the files the holder is editing. **A session holding
+it while deliberately doing nothing is holding a mutex, not being tidy; releasing
+it "because nothing is happening" is the mistake.** Recorded as hazard 7.
+
+**The corollary, also landed:** a held watch-lock's failure mode is a *stale* one,
+and a stale lock normally raises *"is someone mid-write?"* — so the line now states
+its own recovery condition, that it may be taken freely with nothing in flight, no
+claim open, no agent live and no work owed. **§4 Recovery is written for stale
+CLAIMS; a watch-lock is a shape it does not cover.**
+
+**Hazard 5 now carries a literal command instead of an instruction.** It said *read
+the line as a value*, and the session that wrote it failed it within the hour on its
+own release, because the releaser's uuid also sits on that line and its `grep`
+matched itself. **A hazard that names the trap without naming the command is half a
+hazard**, so the value-read `sed` is now written out in full.
+
+**A NOTE AGAINST THIS SESSION, BECAUSE THE COMMIT MESSAGE OVERSTATED AND THE BOARD
+IS OBSESSIVE ABOUT EXACTLY THIS.** `7cd54f7` is titled *"board and record: …"* and
+**touched only `BOARD.md`.** The edit that would have written this paragraph failed
+its own assertion — the anchor string is wrapped across two lines and was matched as
+one — and the commit ran in **the same shell block**, so it committed regardless and
+published a subject naming a file it had not changed. **The failure was visible in
+the output and nothing branched on it**, which is precisely the fault the outgoing
+session had warned about for the reference gate: *a check whose result nothing acts
+on is a log line.* The lesson generalises past gates to **any** step whose success
+the next step assumes. Corrected here rather than by amending a pushed commit.
