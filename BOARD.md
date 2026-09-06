@@ -1781,6 +1781,52 @@ discharged, verified by reading.
 
 ---
 
+## THE CONSUMER MAP — the applications are the libraries' test bed, and it is ALREADY SHAPING THEIR DESIGNS
+
+**Confirmed by the author 2026-09-06 and then read out of
+`nitpick-apps/nitpick-posix/README.md:47` rather than taken from the
+conversation.** The applications are not a separate work area: they are *"the
+consumers of some of the libraries we made here as a way to test them while
+making useful things"*. A library exercised only by its own harness is tested by
+the people who wrote it; a library exercised by a real program is not. **This is
+the same argument as the planted fault, one level up.**
+
+```
+grep   ->  nregex   ("and a stated conformance departure")
+date   ->  ntime    ("POSIX +%Y formatting is parsed HERE and mapped onto
+                      ntime's typed layout; the library has NO format-specifier
+                      language and DOES NOT NEED ONE")
+```
+
+**TWO THINGS THAT CHANGE PLANNING, NOT JUST CONTEXT.**
+
+**(1) `nitpick-time`'s scope boundary is already decided, and stream 2's next
+cycle is where it bites.** The format-specifier language lives in **`date`**, not
+in `ntime`. A planner opening 0.1.1 who assumes the library owes a `strftime`-
+shaped formatter would build a feature the consumer's own README says it must not
+have. **Carry this into 0.1.1's dispatch.**
+
+**(2) `nregex` has no back-references BY DECISION, and `grep` — the program most
+likely in the whole set to be pointed at hostile input — refuses one by name,
+with the reason and the byte offset.** Not silently accepted, never quietly
+reinterpreted; a documented conformance departure, the same choice `ripgrep`
+makes. **That is the same rule the cycle-0.0 audit invoked to make BL-2's
+non-terminating loop a BLOCKING finding** — catastrophic backtracking is a denial
+of service, and the language has no cancellation to survive one. The library's
+safety property and the application's conformance departure are one decision
+seen from two sides.
+
+**AND THE GAP, STATED WITH ITS DENOMINATOR: the table says "Known so far" and
+lists TWO of five libraries.** `nitpick-parse`, `nitpick-sockets` and
+`nitpick-tui` have **no named consumer**. So the consumer-as-test arrangement
+currently covers **2 of 5**, and three libraries are on course to be validated
+only by the harnesses their own authors wrote. **That is not a defect today** —
+those libraries are earlier — **but it is worth naming before it is discovered at
+their 1.0**, and it is the kind of coverage claim this workbench has learned to
+state with a denominator rather than leave implied.
+
+---
+
 ## Stream 1 — text
 
 | # | Repository | Cycles | State | Notes |

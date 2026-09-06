@@ -5393,3 +5393,34 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   scratch copy, where it now fails while the other two still pass. **A control
   that passes under the fault it names is worse than no control, because it is
   cited as evidence.**
+- **The consumer map is now on the board, read from
+  `nitpick-apps/nitpick-posix/README.md:47` rather than taken from the
+  conversation.** The author recalled that `date` consumes `nitpick-time`; the
+  file confirms it and carries more than the recollection did. **`grep → nregex`
+  and `date → ntime`, and the table says "Known so far".**
+- **finding, and it changes stream 2's next dispatch rather than merely informing
+  it: `nitpick-time`'s SCOPE BOUNDARY IS ALREADY DECIDED, in the consumer's
+  README.** *"POSIX `+%Y` formatting is parsed here and mapped onto `ntime`'s
+  typed layout; the library has no format-specifier language and does not need
+  one."* **The format-specifier language lives in `date`, not in the library.** A
+  planner opening 0.1.1 — the very next thing stream 2 does — who assumed the
+  library owed a `strftime`-shaped formatter would build a feature the consumer
+  explicitly says it must not have. **Carried into 0.1.1's dispatch.**
+- **finding: the regex library's safety property and the `grep` conformance
+  departure are ONE decision seen from two sides.** `nregex` has no
+  back-references by decision, because back-references force a backtracking
+  engine and catastrophic backtracking is a denial of service on input somebody
+  else controls; `grep` therefore **refuses a back-reference by name, with the
+  reason and the byte offset** — never silently accepted, never quietly
+  reinterpreted — as a documented departure matching `ripgrep`'s choice. **This is
+  the same rule the cycle-0.0 audit invoked to make BL-2's non-terminating
+  `vec_reserve` BLOCKING rather than ordinary**, which is why that severity
+  argument held: the library's first non-negotiable and the application's
+  conformance departure are the same commitment.
+- **gap, stated with its denominator before anyone discovers it at a 1.0: the
+  consumer-as-test arrangement covers 2 of 5 libraries.** `nitpick-parse`,
+  `nitpick-sockets` and `nitpick-tui` have **no named consumer**, so three
+  libraries are on course to be validated only by the harnesses their own authors
+  wrote. **Not a defect today** — those libraries are earlier — **but the whole
+  point of the arrangement is that a library exercised only by its own harness is
+  tested by the people who wrote it.** Named now rather than left implied.
