@@ -37,7 +37,7 @@ found by a wrong answer rather than by a gate.
 
 # Pre-close audit — `nitpick-time` cycle 0.0 at `0c85648`, pin `aaffb87`
 
-Method notes: every sweep below reports its denominator. Where the property is not lexical I say how many candidates the sweep produced and how many I read. Compiler facts are read at `aaffb87` via `git -C /home/randy/Workspace/REPOS/nitpick show aaffb87:<path>`; external facts at their primary source at the exact tag. Nothing in the repository was modified — every experiment wrote to the session scratch directory, and the two compilations at `0dfddac` used `-o` into scratch.
+Method notes: every sweep below reports its denominator. Where the property is not lexical I say how many candidates the sweep produced and how many I read. Compiler facts are read at `aaffb87` via `git -C ../nitpick show aaffb87:<path>` (the auditor wrote this as an absolute path; **rendered relative here by the orchestrator**, because `check_refs` refuses an absolute path in a tracked file and the leak scan is right to); external facts at their primary source at the exact tag. Nothing in the repository was modified — every experiment wrote to the session scratch directory, and the two compilations at `0dfddac` used `-o` into scratch.
 
 ---
 

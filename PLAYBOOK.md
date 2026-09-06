@@ -1304,3 +1304,32 @@ verifier's reasoning and into the dispatcher's command.** That is not an
 argument against supplying them. It is the reason the orchestrator runs the
 decisive measurement itself before accepting either party's number: **the
 adjudication cost one command and settled it beyond both.**
+
+---
+
+**THE MANDATED GATE ORDER MEANS A NEW FILE IS NOT EXAMINED BY THE GATE THAT
+PRECEDES ITS OWN COMMIT.** `check_refs` enumerates with `git ls-files`, which
+reads the **index**. The workbench's rule is *run it BEFORE `git add`* — which
+exists for a good reason (an unstaged deletion is a finding rather than a
+crash). But the two together mean a **newly created** file is not in the index
+when its own gate runs, so **the gate reports clean over a denominator that
+excludes the very file being added.**
+
+**Measured 2026-09-06, on this workbench, in the act of filing an audit.** The
+gate before the commit printed `nitpick-libs clean (34 files)`; the audit file
+was committed; the next run printed `1 finding(s) (35 files)` — an absolute
+path in the newly tracked file. **The check was right both times.** Its
+denominator moved by one, and the one was the file at issue.
+
+**This is the denominator lesson arriving in the workflow rather than in a
+tool**, and it is invisible precisely because the gate is green: *"swept and
+found nothing"* and *"swept everything except the thing you are adding"* print
+identically. **The tell is the file count** — which `check_refs` now prints on
+every line, so it is visible to anyone who reads it.
+
+**The rule: when a commit ADDS a file, gate it twice** — once before `git add`
+for the deletion case the order was written for, and once **after staging**, so
+the new file is in the index the check reads. Or stage first and rely on
+`tracked-file-missing` to report the deletion case, which the check has done
+since `7da5c2d`. **A gate whose denominator omits the change being gated is not
+gating that change.**
