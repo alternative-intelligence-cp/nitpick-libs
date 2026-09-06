@@ -5300,3 +5300,52 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   recommendation to the author rather than actioned, because unlike the leak-scan
   widening it imposes a documentation convention on five repositories, and that is
   a different class of change from detecting an objective leak.
+- **The supersession finding is now complete, and it is better than either
+  earlier version of it. THE CONVENTION EXISTS, APPLIED TO A DECISION, IN EXACTLY
+  THE PROPOSED WORDING, IN A SIBLING REPOSITORY, SINCE 2026-09-04.**
+  `nitpick-time/meta/DECISIONS.md:913` carries
+  **`> **SUPERSEDED IN PART by TM-110 (2026-09-04).**`** followed by an
+  explanation that the text below is left exactly as written because it records
+  what was believed on an earlier date. **The worker recommended inventing
+  `> SUPERSEDED IN PART BY RX-nnn`. A sibling had been using that exact form for
+  two days.** Three readings of one question: the worker said no mechanism
+  exists; this session first found it in `VERIFICATION.md` applied to a *spec
+  rule*; the measurement found it in a sibling's `DECISIONS.md` applied to a
+  *decision*. **Each reading was better than the last and only the third came
+  from a command.**
+- **THIS IS THE FOURTH INSTANCE OF ONE SHAPE IN THIS CYCLE AND THE FIRST ACROSS
+  REPOSITORIES.** *A consequence written in the document that discovered it,
+  never carried to the document that owns it* — `SAFETY.md`'s absent check, the
+  accessor-confinement consequence, the supersession marker within
+  `nitpick-regex`, and now **a convention invented in one repository and unknown
+  in the other four.** The within-repository instances were found by reading; this
+  one needed a sweep across repositories, which nothing in the loop currently
+  does.
+- **finding, against this session's own instrument: THE FIRST DRAFT OF THE CHECK
+  HAD A 33 % FALSE-POSITIVE RATE, AND ONLY CHECKING ITS FIRINGS FOUND IT.** The
+  draft flagged 6 decisions across 4 repositories. Spot-checking two showed
+  **`TM-110` and `PX-100` are the decisions doing the SUPERSEDING**, not the
+  superseded ones: `supersede[sd]?` also matches *"superseded by X"*, whose `X` is
+  the superseder. **Direction is the whole difficulty** — the active form takes its
+  object after it, the passive its subject before it, and they need separate
+  patterns. Fixed and re-measured: **6 firings became 2, both verified real**, and
+  the four that vanished were all correct to vanish — `T-055` sits in an unticked
+  checklist box describing a *planned* future supersession, and `PX-006` is cited
+  *about* something superseded rather than being superseded. **A check that fires
+  on a plan or on a citation is a check that gets switched off.**
+- **The rule's true extent, measured with denominators: 328 decisions across six
+  repositories, 8 supersessions declared, 2 unmarked** — `RX-130`
+  (`nitpick-regex`) and `PX-010` (`nitpick-posix`, whose superseder `PX-100`
+  *does* name it in its own heading while the superseded one carries nothing).
+  `nitpick-parse` and `nitpick-sockets` declare none. **So the check lands amber
+  on two sites, not red across five repositories** — which is what makes it
+  landable at all.
+- **NOT LANDED YET, DELIBERATELY: a verifier is running against `nitpick-regex`
+  and one of its checks invokes `skills/check/scripts/check_refs.py` from the
+  working tree.** Editing a shared instrument mid-run would change it under the
+  measurement and could redden a gate for a reason unrelated to the work under
+  test. **The same rule as not editing a tree while a harness runs on it, applied
+  to a tool rather than a tree** — and worth stating because the tool is shared
+  across repositories while a tree is not, so the blast radius is larger and the
+  ownership less obvious. Built and measured in the scratchpad; lands when the
+  verifier reports.
