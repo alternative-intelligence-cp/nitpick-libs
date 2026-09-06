@@ -855,6 +855,87 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 1.5.4 STEP 0 IS LANDED — pin target `8ef0f79`, notice 2026-09-06 18:47 from `nitpick-compiler_s2`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+**First notice from the rotated address, and it arrived correctly formed.** Full harness:
+**53/53, 48 verified programs, the compiler's 178 obligations matching, parity 1 166
+verdicts agreeing.** `origin/main == main`. They said *file, don't work* before we had to.
+
+**✅ OUR WORDING REQUEST WAS ADOPTED WITHIN ONE NOTICE.** This board asked that a future
+notice saying "unchanged" name the commit, because "unchanged" is frame-relative and a
+consumer holding an older pin reads it as agreement. This notice says **"unchanged since
+1.5.2i (`fe42dba`)"**. The frame trap that cost us a careful paragraph last notice is
+now closed at the source.
+
+**THE SIX DIGESTS AT `8ef0f79`, LADDER ORDER (D-265).**
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since 1.5.2i (fe42dba) -- DEF-25's fix
+builder.o  3b5f868d...  8,086,688 B  unchanged since the 1.5.1b snapshot refresh
+builder    fe528b03...  7,014,760 B  unchanged since the same refresh
+npkc.ll    1175fa69... 22,442,371 B  the emission, MOVED (the cross-machine claim)
+npkc.o     92a0b6bb...  8,912,952 B  MOVED (the toolchain's)
+npkc       8e3c9e3d...  7,749,960 B  MOVED (the toolchain's)
+```
+
+**⚠ THEY RAN *OUR* CANARY, AND ONLY HALF OF IT COMPARES.** `tools/canary.npk` through
+the quickemit `npkc` at `8ef0f79`: **14 defines, 52 212 B of `.ll`**. **The BYTE COUNT
+IS PATH-DEPENDENT (D-236) — they compiled from a scratchpad path — so it is NOT
+comparable with this board's recorded 50 482 B, and a session that diffs those two
+numbers is measuring a directory name.** **The DEFINE COUNT is the half that compares,
+and it held: 14 here and 14 at `b2f7d94`.** So our flat prediction survives on its
+comparable half. *(Third canary trap now on this board: ours versus their floor-only
+probe are different artifacts; and our own canary's byte count is not comparable across
+machines or paths, only its define count is.)*
+
+**WHAT STEP 0 LANDED.**
+
+- **DEF-26** — a guard site inside a `pick` **expression's** arm had had **no obligation
+  row since 1.5.0**, because the walk never entered a value-`pick`'s arms. Fixed; every
+  walker that must see into a statement's expressions now reads one enumeration.
+- **DEF-27** — a callee parameter sharing a name with an address-taken caller local was
+  bound unnamed in the contract substitution, leaving its call-site `requires` row open
+  for a literal argument. Fixed.
+- **DEF-28 / DEF-30 — NEW REFUSALS, `NITPICK-TYPE-068`.** A counted loop's head is now
+  checked: **`loop(start, limit, step)` takes three arguments, `till(limit, step)` two,
+  and a literal (or negated-literal) step must be positive.** A `till (cond) { … }`
+  do-while spelling, a two-argument `loop`, or a `till(n, 0)` that used to compile and
+  trap at run time is **refused at compile time**.
+- **DEF-29 — the compile-time evaluator disagreed with the run time.** A `comptime
+  func`'s counted loop took its direction from the **step's sign** and read
+  `till(limit, step)` as `loop(limit, step)`, so a descending loop folded to **zero
+  iterations** and a `till` to the wrong range. Fixed — direction from the bounds, head
+  read by kind, as the emitter does. **A library `comptime func` that iterates downward
+  or uses `till` may see its folded value change, to the correct one.**
+- No new trap identity; `nitpick.obligations` byte-identical at this step.
+
+**BLAST RADIUS: ZERO — AND MEASURED HERE RATHER THAN INHERITED.** The notice says *"per
+your measurement of the library surface this should touch nothing."* **That measurement
+was about `failsafe`, which is unrelated to the counted-loop rule**, so the conclusion
+was right and the inference was not. Re-measured directly at 2026-09-06 18:47:
+
+```
+loop( ) heads in code position:   0    (all 53 'loop' occurrences are in comments)
+till   anywhere in library code:  0
+till (cond) { } do-while spelling: 0
+comptime func declarations:      16    -- but none contains a counted loop
+what these libraries actually use: while 141, for 347
+```
+
+**So `NITPICK-TYPE-068` has no library surface to refuse, and DEF-29 cannot change any
+folded value here, because the constructs both concern are not used at all.** *(Logged
+with its reason rather than as a bare "nothing to do": "no counted loops are used" stays
+true only until someone writes one, and a successor needs to know which fact expires.)*
+
+**COMING BEHIND IT, each under its own full harness, landing in order:** step 1 path
+conditions (a branch condition becomes a hypothesis in its arm; the compiler's manifest
+re-recorded with 13 more discharges); step 2 the merge (`ite` after `if` / `when` /
+`pick`); step 3 the counters (`$` and a range `for`'s binding as terms, plus a new
+catalogue kind `loop-step` for a computed step, S-46); step 4 `prove` / `assert_static`
+/ `exhaustive` rows and the rung suite's retirement (S-45, S-47, S-48); step 5 the docs.
+**Four questions are open with the author (S-45…S-48) and the plan proceeds under its
+own recommendations** — worth knowing, because answers to those may move what lands.
+
 ### 1.5.3 IS LANDED — pin target `b2f7d94`, notice 2026-09-06 15:36. **RECORDED, NOT WORKED. NO RE-PIN TAKEN, NO CLAIM OPENED, NOTHING DISPATCHED. THE PIN STAYS `3d15ac9`.**
 
 **This is the notice the quiet period existed to catch, and it is filed rather than
