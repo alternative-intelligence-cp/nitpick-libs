@@ -14,6 +14,50 @@ neither is taken twice.
 | [`nitpick-sockets`](https://github.com/alternative-intelligence-cp/nitpick-sockets) | `nsockets` | `SK-` | the BSD socket surface — AF_UNIX, TCP and UDP over IPv4/IPv6 | **planned** — 14 specs, 35 decisions, 12 cycles, 0.0 execution-grade |
 | [`nitpick-time`](https://github.com/alternative-intelligence-cp/nitpick-time) | `ntime` | `TM-` | dates, times, durations and zones | **planned** — 13 specs, 30 decisions, 10 cycles, 0.0 execution-grade |
 
+## Who consumes each library
+
+**Every library has a named consumer, and this table is the first place all five
+have appeared together.** The applications are the libraries' test bed — the
+author's words: *"we were gonna use some of the nitpick apps stuff as the
+consumers of some of the libraries we made here as a way to test them while
+making useful things"*. A library exercised only by its own harness is tested by
+the people who wrote it; that is the same argument as the planted fault, one
+level up.
+
+| Library | Consumer | Where it lives | Named in |
+|---|---|---|---|
+| `nregex` | `grep` | `nitpick-posix` | [`APPS.md`](https://github.com/alternative-intelligence-cp/nitpick-apps/blob/main/APPS.md), and `nitpick-posix`'s own README |
+| `ntime` | `date`, `crontab`, `at` | `nitpick-posix` | `APPS.md` |
+| `nparse` | a configuration linter — TOML, JSON and YAML, reporting **every** fault in a file rather than the first | **its own repository** under `nitpick-apps` | `APPS.md` (`PA-103`) and `nparse`'s `ROADMAP.md` 0.12, *"the dogfood consumer"* |
+| `ntui` | a log viewer — follow, search and filter over a large file | **its own repository** under `nitpick-apps` | `APPS.md` (`T-104`, amended `T-114`, located `T-115`) and `ntui`'s `ROADMAP.md` 0.15 |
+| `nsockets` | a TCP proxy with an admin socket over `AF_UNIX` | **`examples/` inside the library** — see the note below | `nsockets`'s `ROADMAP.md` 0.9 only |
+
+**A consumer does not have to be a POSIX utility.** `nitpick-posix` is a
+subcategory for the ones that are; anything else takes its own repository in the
+parent `nitpick-apps` folder, which is where the linter and the log viewer are
+already placed.
+
+**Why each was chosen is recorded where it was decided, and the reasons are
+worth reading before proposing a different one.** A pager would exercise `ntui`'s
+screen model and almost no widgets, so the consumer is a viewer *with a filter
+bar and a status line*, which exercises the whole stack. The linter is *"the only
+planned program that exercises recovery and multi-fault rendering"* — reporting
+one error per run would have tested none of it. And `grep` is the utility in the
+set most likely to be pointed at hostile input, which is why `nregex` refusing
+back-references is a library safety property and a stated `grep` conformance
+departure at the same time.
+
+**⚠ ONE ASYMMETRY, RECORDED AS A RECOMMENDATION RATHER THAN A DEFECT.**
+`nparse`'s and `ntui`'s consumers are their own repositories; `nsockets`'s is in
+`examples/` **inside the library it exercises**. The program itself is well
+chosen — streams, Unix sockets, descriptor passing, the bounded accept loop,
+half-close and `poll_set` in one thing that has a purpose — but the arrangement's
+whole value is that the consumer is written *by someone using the library rather
+than writing it*, and an `examples/` program is written by exactly the people who
+wrote the library. Since a non-POSIX consumer may live in `nitpick-apps`, the
+placement is a choice rather than a constraint. **Raised for `nsockets`'s stream
+to decide at its claim (W-7); not changed from here.**
+
 **No library has any code yet.** "Planned" means the specification set, the
 decision log and the cycle map are written and cycle 0.0 is execution-grade.
 Implementation is partitioned into streams by [`WORKSTREAMS.md`](WORKSTREAMS.md);

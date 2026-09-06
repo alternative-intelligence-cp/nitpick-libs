@@ -1816,14 +1816,45 @@ of service, and the language has no cancellation to survive one. The library's
 safety property and the application's conformance departure are one decision
 seen from two sides.
 
-**AND THE GAP, STATED WITH ITS DENOMINATOR: the table says "Known so far" and
-lists TWO of five libraries.** `nitpick-parse`, `nitpick-sockets` and
-`nitpick-tui` have **no named consumer**. So the consumer-as-test arrangement
-currently covers **2 of 5**, and three libraries are on course to be validated
-only by the harnesses their own authors wrote. **That is not a defect today** —
-those libraries are earlier — **but it is worth naming before it is discovered at
-their 1.0**, and it is the kind of coverage claim this workbench has learned to
-state with a denominator rather than leave implied.
+**⚠ CORRECTION, 2026-09-06: THIS BOARD SAID "2 OF 5 LIBRARIES HAVE A NAMED
+CONSUMER" AND THAT WAS WRONG. ALL FIVE DO.** The claim was made from
+`nitpick-posix/README.md`'s table, which says **"Known so far"** and whose very
+next line points at **`../APPS.md`** as *"the summary"* — a pointer this session
+grepped straight past. **Stating a wrong number WITH a denominator is worse than
+stating it without one, because the denominator is what makes it look
+measured**, and this session had spent the day insisting on exactly that.
+
+**The real map, assembled from the three documents that hold it:**
+
+```
+nregex     grep                                        posix README + APPS.md
+ntime      date, crontab, at                           APPS.md
+nparse     a configuration linter, OWN REPOSITORY      APPS.md (PA-103) + nparse ROADMAP 0.12
+ntui       a log viewer, OWN REPOSITORY                APPS.md (T-104/114/115) + ntui ROADMAP 0.15
+nsockets   a TCP proxy with an AF_UNIX admin socket    nsockets ROADMAP 0.9 -- and it lives in examples/
+```
+
+**SO THE ACTUAL FINDING IS NOT A MISSING CONSUMER, IT IS A MISSING MAP.** The
+information is spread across `nitpick-posix/README.md` (2 rows, scoped and
+honest about it), `nitpick-apps/APPS.md` (the linter, the log viewer, `vi`,
+`make`) and **each library's own `ROADMAP.md`** (`nsockets` names its dogfood
+application at 0.9 and nothing outside that file knows). **No single document
+holds all five** — which is the fifth instance in two days of *a fact written in
+the document that discovered it and never carried to the document that owns it*.
+The workbench-side map now lives in `LIBRARIES.md`, mirroring `APPS.md` from the
+library side.
+
+**AND ONE ASYMMETRY THAT IS A REAL RECOMMENDATION RATHER THAN AN ARTEFACT OF THE
+SEARCH.** `nparse`'s and `ntui`'s consumers are **their own repositories**;
+`nsockets`'s is **`examples/` inside the library itself**. The author has
+confirmed that a consumer need not be a POSIX utility — **anything that is not
+one simply lives in the parent `nitpick-apps` folder** — so the in-repo placement
+is not forced by the layout. **The whole argument for the arrangement is that a
+library exercised only by its own harness is tested by the people who wrote it,
+and an `examples/` program is written by exactly those people.** The proxy is a
+well-chosen program — streams, Unix sockets, descriptor passing, the bounded
+accept loop, half-close and `poll_set` in one thing with a purpose — and the
+recommendation is only about **where it lives**, not what it is.
 
 ---
 

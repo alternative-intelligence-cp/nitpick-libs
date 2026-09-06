@@ -5424,3 +5424,40 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   wrote. **Not a defect today** — those libraries are earlier — **but the whole
   point of the arrangement is that a library exercised only by its own harness is
   tested by the people who wrote it.** Named now rather than left implied.
+- **CORRECTION: this board asserted "the consumer-as-test arrangement covers 2 of
+  5 libraries" and that was WRONG. ALL FIVE have a named consumer.** The claim
+  came from `nitpick-posix/README.md`'s table, which says **"Known so far"** and
+  whose very next line points at `../APPS.md` as *"the summary"* — a pointer this
+  session grepped past while reading the table it introduced. **Stating a wrong
+  number WITH a denominator is worse than stating it without one, because the
+  denominator is what makes it look measured**, and this session had spent the day
+  insisting on exactly that discipline. Corrected in place on the live board.
+- **The real finding is not a missing consumer, it is a MISSING MAP.** The
+  information is spread across three kinds of document — `nitpick-posix`'s README
+  (2 rows, scoped and honest about being so), `nitpick-apps/APPS.md` (the linter,
+  the log viewer, `vi`, `make`), and **each library's own `ROADMAP.md`**, where
+  `nsockets` names its dogfood application at cycle 0.9 and nothing outside that
+  file knows it exists. **No single document held all five.** Fifth instance in
+  two days of *a fact written in the document that discovered it and never carried
+  to the document that owns it* — and the first found because a wrong claim was
+  challenged rather than because anyone swept for it.
+- **The map now lives in `LIBRARIES.md`**, mirroring `APPS.md` from the library
+  side, with each choice's *reason* recorded beside it: a pager would exercise
+  `ntui`'s screen model and almost no widgets, so the consumer is a viewer with a
+  filter bar and a status line; the linter is the only planned program that
+  exercises recovery and multi-fault rendering; and `grep` is the utility most
+  likely to meet hostile input, which is why `nregex`'s missing back-references
+  are a safety property and a conformance departure at once.
+- **The author confirmed the placement rule: a consumer NEED NOT be a POSIX
+  utility** — `nitpick-posix` is the subcategory for those, and anything else
+  takes its own repository in the parent `nitpick-apps` folder, which is where
+  the linter and log viewer already sit.
+- **finding, raised as a recommendation for `nsockets`'s stream at its claim
+  (W-7), not changed from here: its consumer lives in `examples/` INSIDE the
+  library it exercises**, while `nparse`'s and `ntui`'s are their own
+  repositories. **The program is well chosen** — streams, Unix sockets, descriptor
+  passing, the bounded accept loop, half-close and `poll_set` in one thing with a
+  purpose — **but the arrangement's whole value is that the consumer is written by
+  someone USING the library rather than writing it, and an `examples/` program is
+  written by exactly the people who wrote the library.** With the placement rule
+  confirmed, `examples/` is a choice rather than a constraint.
