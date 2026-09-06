@@ -4368,3 +4368,53 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   evidence in a column-0 fence. A rule obeyed only when remembered is a rule
   that needs a check — and this one has one, which is the only reason the
   sentence is right now.
+
+- **`nitpick-time` 0.1.0 PUSHED** at the author's instruction — `2589069` to
+  `origin/main`, tree level. CI run **`34020573741`** started immediately. **The
+  push is coherent rather than merely permitted, and that was checked before
+  pushing:** `nitpick-time`'s CI pins `NITPICK_COMMIT: aaffb87…`, which is
+  **exactly the pin 0.1.0 was written and verified at**, so CI judges the code
+  against the compiler it was proved against. Pushing after bumping CI's pin
+  would have tested 0.1.0 on a compiler it had never been verified on.
+- **finding: THE RE-PIN CREATED A DIVERGENCE THAT IS CORRECT TODAY AND BECOMES A
+  TRAP AT 0.1.1.** Three compiler pins are now live: the workbench at
+  **`3d15ac9`**, `nitpick-time`'s CI at **`aaffb87`**, and `nitpick-regex`'s CI
+  at **`950bb1d`**. The first two agree with what has been verified; **the next
+  subcycle worked at `3d15ac9` would be verified locally against one compiler
+  and judged by CI against another**, and nothing would say so — the run would
+  simply be green or red about the wrong thing. `nitpick-time`'s workflow says
+  in its own header that bumping the pin *"is a deliberate commit, and this is
+  that commit"*, so **the bump belongs BEFORE 0.1.1's work, as its own commit,
+  and that commit is what proves `3d15ac9` builds the existing tree.**
+- **finding: `nitpick-regex`'s CI HAS BEEN RED AT ITS CURRENT HEAD FOR TWO DAYS
+  AND NOBODY LOOKED.** Run `33901134351`, 2026-09-04, on `91657eb` — **the very
+  commit this board records as "0.0.3 DONE — VERIFIED PASS … harness 63/63 in
+  37.5 s"**. The failing step is `Run the harness`; the compiler and LLVM steps
+  were cache hits and passed. **Local harness green, CI harness red, same
+  commit, unnoticed for two days.** That is `nitpick-time`'s TM-146 lesson —
+  *treat the first CI run as an instrument, not a formality* — reaching a
+  sibling where no one was reading the instrument. **The CAUSE is NOT
+  established:** `gh run view --log` returns an empty log for that run, so the
+  failure text could not be retrieved here, and **it is recorded as an
+  unexplained red rather than guessed at.** Its CI also pins `950bb1d`, **57
+  compiler commits behind `3d15ac9`** and dated 2026-09-03, so a stale pin is a
+  live hypothesis and nothing more.
+- **finding: only TWO of the six work repositories have CI at all.**
+  `nitpick-parse`, `nitpick-sockets`, `nitpick-tui` and `nitpick-posix` have **no
+  `.github/workflows` directory**. So the ecosystem's strongest recent lesson —
+  that CI's first run on `nitpick-time` found two defects nothing on this machine
+  could reach — currently protects one repository and is broken in the other.
+  **Stated with its denominator: 6 work repositories, 2 with a workflow, 1 of
+  those green.**
+- **CI GREEN on `2589069`** — run `34020573741`, `nitpick-time` 0.1.0, read from
+  GitHub rather than assumed. **So 0.1.0 is now confirmed on a second machine
+  with a differently-built compiler**, which is the property a local harness
+  cannot establish and the whole argument for pushing mid-cycle rather than
+  waiting for 0.1.5. The worker recommended it; the author authorised it; it
+  cost one push and bought a cross-machine verdict.
+- **release `nitpick-libs` — the writer lock released 2026-09-06 04:2x at a
+  clean stop, for a briefed handoff to `nitpick-libs_s3`.** Marker first, then
+  the line, then pushed, then re-read from `origin/main`. **The retake at 04:1x
+  was for one errand and is recorded as such** so the two takes are not read as
+  a session that could not decide: released at 04:0x on the author's stop,
+  retaken when he asked for the push and the handoff, released again here.
