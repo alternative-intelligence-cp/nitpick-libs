@@ -169,6 +169,53 @@ and not yet pushed**, so **`0dfddac` remains our pin and is still an ancestor of
 their `main`**). **Its step 2 moves our canary**, and the landing notice carries
 the before and after. Nothing here waits on it.
 
+**O-N17 IS FIXED, AT THE PRIMITIVE, AND OUR EXTENT CORRECTION IS WHY THAT IS
+CHEAP.** `nitpick-compiler_s0`, 2026-09-05: `emit_move_out` (`ir_stmt.npk`)
+handed `ll_type` the *place's recorded type* and built the vacant helper's
+symbol from that raw id; it now builds it from the **element type through the
+specialization**, so **our five operations are one fix**. They verified the
+pop, the set and the loop-clear shapes link and run to exit 0 under D-151's
+leak check, where all three fail under `0dfddac`. **The extent correction was
+right and changed nothing about the fix's shape** — which is the good outcome,
+and worth reading twice: correcting an understated extent cost us one message
+and cost them nothing, while shipping against *"one row"* would have produced a
+generic `vec_clear<T>` that silently does not drop. **It is step 4 of 1.5.2d,
+under its harness now**; the landing notice names the commit.
+
+**AND THE SILENCE THAT MADE THE WHOLE CLASS POSSIBLE IS CLOSED WITH IT.** The
+drop-body emitter **now says `EMIT-002` aloud when a registered type cannot be
+lowered, instead of emitting nothing** — *"that silence is why `npkc` said yes
+and `llc` said no"*. **That is the general form of O-N11, O-N14 and O-N17**,
+which were three instances of one shape: the frontend accepting and the emitter
+quietly declining. **Our harness rule does not change** — the `program` stage
+still runs all four steps, because `npkc` exit 0 is not well-formedness — but
+the gap it guards has narrowed from a class to whatever remains outside the
+registered-type path.
+
+**S-39 — AN OWNING `List<T>` LOCAL ALIVE IN `main` AT EXIT 0 IS REPORTED AS
+`WildLeak`, EXIT 94, AT OUR PIN TOO.** Told to us unprompted, found while
+writing O-N17's test, and recorded for the author on their side. `exit` runs
+joins and defers **and no drops, by decision** (D-183's amendment keeps the drop
+walk off the shutdown path), and **a `List`'s buffer is the one managed storage
+D-151 counts, because the prelude spells it `wild`.** Their working spelling
+until the author rules: **keep the list inside a function that returns**, which
+is what every `List` test in their tree does. Their recommendation is that the
+buffer allocate through the managed heap's untracked entry, as a channel ring
+does.
+
+**What it means here, stated because the answer is not obvious:** for the
+prelude's `List<T>` this is a surprise. For **our** containers it is the
+enforcement we asked for — `Vec<T>`'s block is `wild` by P-23 precisely so that
+an unpaired `vec_free` traps at exit under D-151. **So the same mechanism is a
+defect there and a feature here, and the difference is whether the type's owner
+intended `wild`.** No action for us; do not "fix" a `Vec` that traps at exit.
+
+**O-N18 is their DEF-22**, recorded with our two controls, to be fixed after the
+landing. **And the `string ==` / `TYPE_REFERENCE` §3.2 mismatch is accepted as
+our item in their doc-sync backlog** — the language's answer is `.eq` (D-250:
+comparisons of owning types are calls, not operators) and **the table is what is
+wrong**. They asked for no separate item from us.
+
 **1.5.2d's STEP STATUS, as of 2026-09-05 evening:** step 1 (the frontend's
 three scaling defects) **committed and under its harness**; step 2 (the prelude
 trim) **implemented and passing both runners' self-checks**, about to go under

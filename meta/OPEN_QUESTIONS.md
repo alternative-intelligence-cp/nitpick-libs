@@ -107,6 +107,37 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N18 — `.len` on a fixed-size array `T[N]` is accepted by the frontend and
+  cannot be lowered by the emitter.** Raised by `nitpick-time` 0.0.4,
+  2026-09-05, at pin `0dfddac`, writing `put_uint`'s allocation-free digit
+  buffer; **reproduced by the orchestrator before it was sent.** `npkc` exits
+  **1** and writes no `.ll`, with **`NITPICK-EMIT-002`** — whose own text says
+  *"a defect in the compiler rather than in this program — report it with the
+  construct at this position"*, **so the compiler is explicitly asking to be
+  told**, which is the whole reason this is registered rather than absorbed.
+
+  **Two controls place it at `.len` on the array TYPE, not at arrays:** a
+  **slice** `uint8[]` asking `.len` compiles and writes; a local `uint8[20]`
+  **indexed without `.len`** compiles and writes. It refuses at both storage
+  classes — a local `uint8[20]` and a module `fixed uint8[3]`.
+
+  **Impact (W-27). Blocks nothing.** `src/core/bytes.npk`'s digit buffer is a
+  `uint8[20]` that never asks its length: the bound is `NTIME_DIGITS_MAX`, a
+  named constant in `src/core/limits.npk`, which is what a reader should see
+  anyway — so naming the bound is better style regardless and the workaround is
+  not one. **Inconveniences** any code that would rather ask an array its
+  length than name the constant. **Does not touch** correctness of anything
+  that compiles.
+
+  Reproduction: `nitpick-time/tests/probe/defect/fixed_array_len/`. **Stated
+  gap, not closed:** its two controls are recorded *as comments inside*
+  `case1_local_array_len.npk` with their exit statuses, **not as compilable
+  files** — unlike `generic_element_move/`, which ships five real cases in the
+  same commit. The results are true (re-run here), but a later session cannot
+  re-execute a control that is a comment. **That is the `nitpick-regex` 0.0.3
+  shape — a document describing evidence rather than holding it — and it is
+  owed at this repository's next claim.**
+
 - **O-N17 — a generic function that moves OUT of an indexed element at an
   owning `T` calls a `@npk.vacant.<n>` helper the emitter never defines.**
   Raised by `nitpick-time` 0.0.4, 2026-09-05, against the pinned `0dfddac`, and
@@ -126,8 +157,29 @@ file existed — the check works.
   call site synthesises a `dty` the definition walk never visits, which points
   at the demand walk rather than at the helper-writing code.
 
-  **Impact (W-27). Blocks** one row of one API table — `vec_pop<T>` in
-  `nitpick-time`'s `src/core/`. **Does not block** the rest of that library:
+  **Impact (W-27) — CORRECTED 2026-09-05, AND THE FIRST STATEMENT OF IT WAS
+  WRONG IN THE DIRECTION THAT MATTERS. Blocks FIVE rows of `Vec<T>`, not one.**
+  This entry, this board and the message that raised it upstream all first said
+  *"one row — `vec_pop<T>`"*. **The primitive is `T:x = move(v.items[i])` in a
+  generic function at an owning `T`**, and `vec_pop`, `vec_set`, `vec_clear`,
+  `vec_truncate` and `vec_free` are all built on it — **a loop is a different
+  caller, not a different primitive**, which is what the first reading missed.
+  Measured with a non-owning control from the same source per case: four owning
+  shapes give `npkc` 0 / `llc` 1 / no object, four scalar controls link and run
+  at exit 0. **The orchestrator confirmed the generalisation directly on
+  `case5_generic_drop_loop`** — a drop loop rather than a pop — `npkc` 0,
+  `llc` 1, no object.
+
+  **Why understating it was the dangerous direction, and this is the reason to
+  read this paragraph twice:** *"one row"* is precisely what would have
+  justified shipping a generic `vec_clear<T>` that **silently does not drop** —
+  and that passes the `exit 0` leak gate, because D-151 counts `wild` blocks
+  and cannot see a managed body. An extent understated by four rows would have
+  been discharged by a green suite. **A defect's EXTENT is a separate
+  measurement from its existence**, and only the first was taken before it was
+  raised.
+
+  **Does not block** the rest of that library:
   `ntime` plans no `Vec<T>` at an owning `T`, its `Layout` vector being a
   payload-free enum but for `Literal(uint16)` and its zone tables holding
   offsets into a name pool precisely so no row owns anything. **Does not touch**
