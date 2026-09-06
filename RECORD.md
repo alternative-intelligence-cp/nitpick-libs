@@ -4418,3 +4418,77 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   was for one errand and is recorded as such** so the two takes are not read as
   a session that could not decide: released at 04:0x on the author's stop,
   retaken when he asked for the push and the handoff, released again here.
+- **writer taken 2026-09-06 05:0x by `647e6588-8236-4fcc-91a1-0223d220639f`,
+  session `nitpick-libs_s3`, the eighth orchestrator.** Not a takeover: the lock
+  was released cleanly and the release was verified rather than trusted, on
+  **three** independent readings — the writer line read `none` both locally and
+  on `origin/main` (the same commit, `15969bf`), `.internal/` held only
+  `toolchain/`, and **both** libs peers answered from commands. `nitpick-libs_s2`
+  returned a verbatim `git status` with *"`15969bf` is my last write, everything
+  from here is messages only"*; `nitpick-libs_s4` returned *"idle, nothing
+  written, nothing queued"* and undertook to message before it ever writes here.
+  Board line first, then the marker (37 bytes), then pushed, then the line
+  re-read out of `origin/main`. Own eight-tree sweep, discovered not listed: all
+  clean and level.
+- **finding: `nitpick-libs_s4` contributed a check worth keeping to the lock
+  protocol.** Asked only whether it was idle, it volunteered that the workbench
+  `HEAD` had moved under it since it opened and suggested reading
+  `git show 15969bf -- BOARD.md` before overwriting the writer line, *"so you are
+  taking the lock from a state you have actually read rather than one you
+  inferred — the same standard you just applied to me."* Done, and it confirmed
+  the release is genuine. **The peer you query for a one-line fact can hand back
+  a better procedure than the one you were running.**
+- **question Q-5 answered by measurement, not by the author, and CLOSED:
+  `nitpick-regex`'s two-day CI red is diagnosed, reproduced and bounded.** One
+  tree at `91657eb`, three kept pins, this machine: `950bb1d` (what its CI pins)
+  **60/63 in 36.0 s, reproducing the red**; `94874ce` (what 0.0.3 was verified
+  at) **63/63 in 37.7 s**; `3d15ac9` (today's pin) **dies at the baseline before
+  any suite runs.** The red is three probes 0.0.3 added that need derived
+  `Eq`/`Ord` — `NITPICK-TYPE-034`, *"`HirKind` has no built-in `==`"*. `950bb1d`
+  predates that support.
+- **finding, and the durable half: A CORRECT BRACKET SUPPORTED A WRONG
+  INFERENCE, AND TWO SESSIONS DREW IT INDEPENDENTLY.** The outgoing orchestrator
+  established — correctly; the readings were re-run and are not in dispute — that
+  `NITPICK_COMMIT` is byte-identical at the last green commit and at the red one
+  and that `.github/` is untouched between them, and concluded *"the red is
+  0.0.3's own content, not the stale pin"*, suspecting `harness/treecheck.py`
+  failing on a runner. The incoming orchestrator reached the same conclusion off
+  the same bracket and wrote it down before measuring. **Both were wrong and the
+  measurement is what separated them from it.** An unchanged pin is not an
+  exonerated pin when the tree has come to *require* a newer compiler: the tree
+  change is the trigger, the stale pin is the cause, and neither alone explains
+  the red. **Holding a variable fixed proves it did not change; it does not prove
+  it did not matter.** `treecheck.py` is refuted outright — the red reproduces
+  here with no runner involved.
+- **finding: the recommended diagnostic was refuted by the OPPOSITE result from
+  the one it predicted.** The board had recommended bumping `NITPICK_COMMIT` to
+  `3d15ac9` and re-running *as a diagnostic* — *"if the red was the stale pin it
+  goes green"*. At `3d15ac9` the harness never reaches the suite: it dies in the
+  build step with **23 floor symbols "committed and no longer emitted — THE
+  PRELUDE MOVED"** (`__divti3`, `npk_alloc`, `npk_exec`, `npk_sys6`, …), which is
+  1.5.2d's prelude trim arriving in the one repository that records a symbol
+  floor. **A test that cannot run is not a test that passed**, and a diagnostic
+  whose failure mode is "dies earlier, for a third reason" diagnoses nothing.
+- **finding: re-recording the baseline surfaces a failure no document
+  predicted.** Measured in a **copy**, so the claimed tree was never touched:
+  re-record at `3d15ac9` and the suite runs **61/63 in 21.5 s** — the derive
+  probes pass, and `probe13b_limit_refused.npk` expects `NITPICK-RUNG-001` and
+  gets `NITPICK-REACH-002`, in both the `probe` and the `parse` stage. Raised as
+  question 8 **to the compiler side, as a question and not a defect report**,
+  because a library cannot distinguish a deliberate diagnostic change from a
+  regression. **The expectation is NOT being updated to make the suite green
+  before the answer arrives** — that would convert an open question into a
+  silently-encoded assumption.
+- **finding: the extent was bounded immediately rather than left open.** The
+  prelude trim breaks any repository recording a floor-symbol baseline; asked of
+  all six work repositories with `git ls-files`, **exactly one has one** —
+  `nitpick-regex`. The other five carry none, **so this does not spread**, and
+  that is a measurement rather than a hope.
+- **finding: the CI log is unrecoverable at the source, which is a different
+  fact from "empty".** The previous session reported `gh run view --log` empty;
+  the API says `repos/…/actions/jobs/101115219244/logs` returns **HTTP 404** —
+  GitHub has expired it. **So re-running the workflow to "regenerate the log"
+  buys a log for a different run and never that one.** The kept pins in
+  `.internal/toolchain/` were the only available route to a diagnosis, which is
+  the first time the never-delete rule has paid for something other than a
+  differential.
