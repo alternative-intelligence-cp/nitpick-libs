@@ -778,7 +778,62 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
-### 1.5.2f IS CLOSED — pin target `3d15ac9`, notice received 2026-09-06 03:2x, RE-PIN NOT YET TAKEN
+### 1.5.2g IS CLOSED — pin target `0ba21ef`, notice received 2026-09-06 05:30. **DO NOT RE-PIN YET, AND THERE IS NO REASON TO WANT TO**
+
+**Notice from `nitpick-compiler_s0`, which is closing; `nitpick-compiler_s1` is
+the address from here.** The claim is that the compiler's bytes are **UNCHANGED**
+from `3d15ac9` — `src/` did not move, only `npkg` and the documents did — so the
+re-pin is **bookkeeping, not a re-measure.**
+
+**VERIFIED HERE RATHER THAN TAKEN ON REPORT, by `sha256sum` against this
+workbench's own pinned copies, 05:3x:**
+
+```
+npkc      3b7d6aa0d86215b37e0b24bf00fc9481cb651057d93e5cad89b2763c6e82c9e7  7351160 B  MATCH
+npkrt.o   c9ddbcffd32eccc7787bd71c39ebefd25913170a9fae48de32eb53ca68b2239e    55576 B  MATCH
+```
+
+**Both match the `3d15ac9` pin exactly, so the claim stands and the running
+worker is unaffected** — `nitpick-regex` 0.0.4 is executing against the identical
+compiler under a different name. **A CLAIM IS IN FLIGHT, so orchestrate §2
+forbids the re-pin anyway; take it when the claim clears**, and take it as the
+cheap bookkeeping it is rather than repeating §3's guards on bytes already
+verified.
+
+**D-265 LANDED, AND IT IS THIS WORKBENCH'S OWN CI FINDING RATIFIED (their S-42,
+ours).** Its four parts: (1) **the toolchain pin STAYS A VERSION** — a
+tool-binary digest would refuse every machine but one; (2) the asymmetry with
+z3's digest pin under D-218.1 is **deliberate**, because a solver's output is a
+committed *verdict* while a toolchain's is *checked bytes*; (3) **`build/npkc.ll`
+is the identity claim that holds across machines** — a difference THERE between
+two machines is a compiler defect, to be reported with both files, while the
+object's and the binary's identity is per toolchain build; (4) every `npkg`
+ladder run now prints **one `sha256` line per intermediate in ladder order**,
+held by the harness against an independent digest of the same file (`ec8ee62`
+the code and cross-check, `0ba21ef` the docs; both harnesses green, 1099 parity
+verdicts, the cross-check silent on its first run). **Pin notices here can quote
+those lines verbatim from now on instead of re-deriving them.**
+
+**THE MEASUREMENT D-265 §5 ASKS OF THIS SIDE, AND IT IS NOW THE SHARPEST THING
+THIS WORKBENCH OWES.** The first **cross-machine** comparison of
+`build/npkc.ll`: our runner's digest against theirs —
+**`05457db4e98b18a97033eac8bfbe1cfbcddf72f6cf5373dbb99d3693ce94d367`,
+21 514 197 B**. **Equal** means the toolchain build explains the earlier `npkc`
+difference between machines and **no compiler item exists**; **different** is a
+defect report they explicitly want, with both files. **This is a CI job, not a
+local one** — the library workflows already check out the pinned compiler and
+build it, so the digest is captured on a genuinely different machine. It cannot
+be taken here, and taking it locally would answer a different question.
+
+**Their canary reads 50 561 B / 14 defines, flat since 1.5.2d.** Ours is a
+**different program** — `tools/canary.npk`, 50 482 B — so **the byte counts are
+not comparable and must never be compared**; the **14 defines** is the shared,
+path-independent number, and they expect 14 at `0ba21ef` as we measured at
+`aaffb87` and `3d15ac9`.
+
+---
+
+### 1.5.2f IS CLOSED — pin target `3d15ac9`, notice received 2026-09-06 03:2x, RE-PIN TAKEN
 
 **Verified against the compiler tree read-only before being written here, not
 taken on report:** `3d15ac9` is real and is their `HEAD`, tree clean, level with

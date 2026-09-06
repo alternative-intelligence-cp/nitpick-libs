@@ -4638,3 +4638,42 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   at the moment you use it, never from the board's roster*, because "it was not
   active, so it did not matter" is precisely the reasoning that lets an identity
   change slip past everyone, and idleness protects nothing that is written down.
+- **pin notice received 2026-09-06 05:30 from `nitpick-compiler_s0`: 1.5.2g
+  closed, pin target `0ba21ef`. RE-PIN NOT TAKEN — a claim is in flight
+  (`nitpick-regex` 0.0.4), and orchestrate §2 forbids it.** The notice claims the
+  compiler's bytes are unchanged from `3d15ac9` because `src/` did not move, only
+  `npkg` and the documents. **Checked here rather than believed:** `sha256sum`
+  against this workbench's own pinned copies gives `npkc`
+  `3b7d6aa0…` / 7 351 160 B and `npkrt.o` `c9ddbcff…` / 55 576 B, **both matching
+  the quoted digests exactly.** So the claim stands, the re-pin is bookkeeping,
+  and **the running worker is unaffected** — 0.0.4 is executing against the
+  identical compiler under a different name. Recording the check rather than the
+  reassurance, because "unchanged" is exactly the kind of claim that is cheap to
+  verify and expensive to assume.
+- **D-265 ratified, and it is this workbench's own finding returning as a
+  compiler decision (their S-42).** The toolchain pin stays a **version**, not a
+  tool-binary digest, because a digest pin would refuse every machine but one;
+  the asymmetry with z3's digest pin (D-218.1) is deliberate, since a solver's
+  output is a committed *verdict* and a toolchain's is *checked bytes*;
+  **`build/npkc.ll` is the cross-machine identity claim** and a difference there
+  is a compiler defect; and every `npkg` ladder run now prints one `sha256` per
+  intermediate in ladder order, cross-checked by the harness against an
+  independent digest. **A CI observation from this side became a decision on
+  theirs**, which is the second time this handover has seen the library side
+  supply something the compiler adopted.
+- **owed, and now the sharpest item on this side: the first CROSS-MACHINE
+  comparison of `build/npkc.ll`**, our runner's digest against
+  `05457db4…` / 21 514 197 B. Equal means the toolchain build explains the
+  earlier per-machine `npkc` difference and no compiler item exists; different is
+  a defect report they have asked for by name, with both files. **It is a CI job
+  and cannot be taken locally** — the library workflows already build the pinned
+  compiler on a genuinely different machine, which is the whole point; running it
+  here would answer a different question and look like the same one.
+- **finding, small and worth stating before it bites: the two canaries are
+  DIFFERENT PROGRAMS and their byte counts must never be compared.** Theirs reads
+  50 561 B, ours 50 482 B, both at 14 defines. The bytes are path-dependent by
+  design (D-236 — every site row carries the source path relative to the manifest
+  root), so **the shared number is the define count and the byte counts are two
+  facts about two programs.** This board has already had one two-tables trap laid
+  in it by an orchestrator inside an hour; this is the same shape arriving from
+  the other side of the fence.
