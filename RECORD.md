@@ -5240,3 +5240,31 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   dead weight, `.clone()` of an empty string would still leak for every other
   consumer of the language, and the compiler would still be leaking 17 264 bytes
   in its own build.
+- **dispatch `s1-nregex-0.0.5-audit2-1111`** — the second audit's triage,
+  `claude-opus-5`, author authorising the third worker on this cycle. Six items:
+  BL-3, BL-4's two library halves, N-10, N-11, N-12. **BL-4's guard is explicitly
+  OFF the list with the reason stated in the dispatch**, so the worker cannot
+  re-litigate a decision the compiler side has already made moot by fixing
+  DEF-25.
+- **A SEQUENCING TRAP WAS PUT IN THE DISPATCH RATHER THAN LEFT TO BE
+  DISCOVERED.** Our pin is still `3d15ac9` and the re-pin to `fe42dba` is held
+  behind this very claim — **so DEF-25's fix is NOT in the compiler the worker
+  builds with, and the `Bytes` memory-cap test over the empty path will
+  legitimately FAIL at its toolchain.** Left unsaid, the likely responses are all
+  wrong: conclude the test is broken, weaken it, or add the guard to make it pass
+  — and the third would quietly undo the decision that produced the compiler fix
+  in the first place. **The dispatch names the failure in advance, forbids all
+  three responses, and points at the PENDING mechanism the harness already has**
+  (the audit observed three legs honestly printed PENDING, so it exists).
+  **A worker cannot be blamed for a trap the dispatch could have named.**
+- **The dispatch also carries what NOT to redo, with its denominators** — BL-1's
+  class clean across 62 tracked `.npk`, the six mutation tests sound with
+  cross-independence checked, eight of nine prior non-blocking findings
+  discharged, `rx120.sh` asserting eleven legs. **A triage that re-derives a clean
+  sweep spends the budget that should go on the nine broken call sites.**
+- **The endorsed test is the cheap one, and it is endorsed BECAUSE it is cheap.**
+  Twelve existing out-of-range units all pass a non-zero argument; more cases of
+  the same shape would not have found BL-3. **One self-check case asserting
+  `vec_oob(k)` does not return for k in {-1, 0, 1} would have caught it, and will
+  catch the next spelling of the trap whatever that is.** A test aimed at the
+  guard's own contract outranks any number of tests aimed through it.
