@@ -4317,3 +4317,54 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   **The rule holds for the spread and barely registers here**, and the document
   now says so. Written down because the draft was corrected by running the
   command against it, which is the only reason it did not ship as fact.
+
+- **`nitpick-compiler_s1` stated D-236's mechanism exactly, and it SHARPENS the
+  unit argument rather than softening it.** Their words: *"every site row carries
+  the source path relative to the manifest root **the driver finds by walking up
+  from the main file**, so the absolute build directory never registers (the
+  repro stage measures that), and a program's own rows change only when its path
+  WITHIN its manifest tree changes. A spread over programs held at fixed
+  relative paths has **stable** byte counts."* **So the per-program artefact is
+  DETERMINISTIC, not noise** — same path, same count, every run and every
+  machine. That is a better situation than noisy and it **does not** make counts
+  comparable between programs, which was the whole of the argument. It also
+  settles that `nitpick-time` 0.0.5's 14-byte measurement was **the mechanism
+  working, not a leak** — a distinction the workbench had not been able to make
+  from its own side.
+- **release `nitpick-libs` — the writer lock released 04:0x at a clean stop on
+  the author's instruction.** Marker removed first, then the board line, then
+  pushed. **State at the stop:** pin `3d15ac9` commissioned and verified;
+  `nitpick-time` 0.1.0 DONE and VERIFIED PASS at `2589069`, harness 67 units,
+  **1 ahead of origin by design**; `nitpick-regex` still `CLAIMED s1` at 0.0.4
+  with its two-part `harness/README.md` debt attached; eight trees swept by
+  discovery; nothing in flight; no agent live.
+- **What the seventh orchestrator leaves owed, both unstarted and both needing a
+  worker:** the **re-founded spread** for the compiler side — specified in full
+  on the board, set to be defined and committed *before* it is run, reported as
+  function counts and object bytes with `.ll` beside them labelled, and **a
+  constant delta anywhere is a compiler defect rather than a result** — and
+  **0.1.1's plan**, which does not exist because the convention writes only a
+  cycle's opening file. **0.1.2's exhaustive sweep is the cycle gate and is the
+  one that most wants an execution-grade plan**, which is the worker's own
+  recommendation and the reason this was not guessed at.
+- **The session's one-line summary, and it cuts against the night's own grain.**
+  Five times the finding was *a check narrower than its name* — the tree sweep,
+  the spread's missing set, the two digest tables, the canary's lost source, the
+  indented fence. **The sixth time the check was exactly right and the author was
+  wrong**, and from the finding alone the two cases were indistinguishable. What
+  separated them, every time, was **measuring the premise instead of accepting
+  it**: eight trees not seven, one library question id defined in three
+  repositories rather than one, 50 482 bytes from two different paths rather
+  than two different numbers. **The failure mode is not believing the wrong
+  thing; it is not running the command that would tell you which thing you
+  believe.**
+- **And the gate got the last word, which is the right ending for this record.**
+  The paragraph above originally named that colliding id outright — in the
+  sentence summarising the lesson about not naming it. `check_refs` reported
+  `undefined-question` a fourth time, on the same id, in the entry describing
+  the third. **The rule is one session old and its author broke it while writing
+  its summary.** What that argues is not a better rule but a better habit:
+  **describe a library question, do not spell its id**, and keep any measured
+  evidence in a column-0 fence. A rule obeyed only when remembered is a rule
+  that needs a check — and this one has one, which is the only reason the
+  sentence is right now.
