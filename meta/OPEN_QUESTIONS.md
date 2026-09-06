@@ -107,6 +107,61 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N17 — a generic function that moves OUT of an indexed element at an
+  owning `T` calls a `@npk.vacant.<n>` helper the emitter never defines.**
+  Raised by `nitpick-time` 0.0.4, 2026-09-05, against the pinned `0dfddac`, and
+  **reproduced by the orchestrator before it was sent upstream.** `npkc` exits
+  **0** and writes the `.ll`; `llc` exits **1** and writes no object, on
+  `use of undefined value '@npk.vacant.1876'`. **Same shape as O-N14** — a call
+  emitted against a symbol nothing declares — **and a different symbol, so the
+  1.5.1b step 3c fix does not cover it.**
+
+  **Three controls place the fault at exactly one combination — generic,
+  owning, move-OUT — and no two of them:** a concrete move-out links, a generic
+  move-out at a *scalar* `T` links, and a generic move-*in* at an owning `T`
+  links. **The actionable half is a count rather than the error text.** All
+  four cases **define the same five** `npk.vacant.*` helpers, so the definition
+  pass is working; the three controls each **call three** of those five, while
+  the failing case **calls four** and the fourth callee is not among them. The
+  call site synthesises a `dty` the definition walk never visits, which points
+  at the demand walk rather than at the helper-writing code.
+
+  **Impact (W-27). Blocks** one row of one API table — `vec_pop<T>` in
+  `nitpick-time`'s `src/core/`. **Does not block** the rest of that library:
+  `ntime` plans no `Vec<T>` at an owning `T`, its `Layout` vector being a
+  payload-free enum but for `Literal(uint16)` and its zone tables holding
+  offsets into a name pool precisely so no row owns anything. **Does not touch**
+  the correctness of anything that links. **`vec_pop<T>` is HELD, not written
+  another way** — returning `NIL`, or restricting it to a scalar `T`, would be
+  a workaround buried in library code that outlives the bug and later reads as
+  a design choice nobody would question (W-11).
+
+  **Why it stayed latent, which is the part worth keeping.** The prelude's
+  `List<T>` has exactly **three** public functions at this pin — `list_init`,
+  `list_reserve`, `list_push`; no `list_pop`, `list_at`, `list_set` or
+  `list_free` — so **every move out of an element in the compiler's own tree is
+  in a concrete function**, which is precisely the passing control. `BUILD.md`
+  B-12 adopts this shape because it *"has been exercised across twenty-two
+  families"*, and that sentence is **true of the half those families used**.
+  It is not wrong; it is narrower than it reads — the same shape `PLAYBOOK.md`
+  records for D-070's *"indexing is bounds-checked"*. **Two of this
+  repository's findings now have that form, and both were found by writing the
+  unexercised half.**
+
+  **Numbering, recorded because it is the hazard this very section exists
+  for:** the worker filed this as `O-N12`, which is already `nitpick-regex`'s
+  settled `>>>`/`string_repeat` question. The registry ran O-N1…O-N16, so the
+  free number was **O-N17**, assigned here by the orchestrator and corrected at
+  the seven citations the worker had written. **A number taken from memory
+  rather than from this file collides**, and the paragraph above says so in
+  terms — awareness is not immunity.
+
+  Reproduction, every command with its exit status beside the artefact it
+  should have produced, and the four files:
+  `nitpick-time/tests/probe/defect/generic_element_move/`. **Raised to
+  `nitpick-compiler_s0` 2026-09-05** under the lifted constraint, explicitly
+  as a catalogue-quality report rather than an interrupt to their 1.5.2d.
+
 - **O-N16 — DEF-8's landing note states a premise about this workbench that is
   false, and reaches the right conclusion by the wrong route.** Raised by
   `nitpick-regex` 0.0.3, 2026-09-04, against the pinned `94874ce`; its local id
