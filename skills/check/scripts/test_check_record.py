@@ -71,9 +71,26 @@ def commit(repo):
     git(repo, "commit", "-q", "-m", "cycle 0.0.0: the probes, again")
 
 
+def archive(repo):
+    """Do to the fixture what a CLOSING subcycle does to its own cycle.
+
+    `git mv meta/roadmap/<c> meta/roadmap/done/<c>` is a mandated step of the
+    close, so the close's own record is checked AFTER the directory naming it
+    has gone. Both of the cases below failed before check_record grew its
+    done/ fallback -- the first loudly ([no-file]) and the second SILENTLY,
+    which is the worse half: the README lookup simply found nothing and the
+    checklist assertion was skipped while the run still reported clean.
+    """
+    (repo / "meta" / "roadmap" / "done").mkdir(parents=True, exist_ok=True)
+    git(repo, "mv", "meta/roadmap/0.0", "meta/roadmap/done/0.0")
+    commit(repo)
+
+
 CASES = [
     # (name, mutation(repo), subcycle id, expected kinds)
     ("clean", lambda r: None, "0.0.0", set()),
+    ("archived-clean", lambda r: archive(r), "0.0.0", set()),
+    ("archived-unticked", lambda r: (archive(r), edit(r, "meta/roadmap/done/0.0/README.md", "- [x] second", "- [ ] second"), commit(r)), "0.0.0", {"unticked"}),
     ("no-file", lambda r: None, "0.0.9", {"no-file"}),
     ("bad-status", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "— DONE (2026-09-03)", "— WIP"), commit(r)), "0.0.0", {"bad-status"}),
     ("no-report", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", REPORT, ""), commit(r)), "0.0.0", {"no-report"}),

@@ -4768,3 +4768,39 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   compiler side's `05457db4…` is the orchestrator's and was explicitly withheld
   from the worker**, so that nobody asserts a verdict on a digest they have not
   seen.
+- **CI IS GREEN AT THE BUMPED PIN — run `34025780292`, success in 5 m 32 s,
+  2026-09-06.** `nitpick-regex`'s CI had been **red at its own HEAD for two
+  days**; it is now green on a second machine with a differently-built compiler.
+  **The morning's diagnosis is confirmed end to end**: the red was 0.0.3's derive
+  probes meeting a compiler 57 commits stale, the cure was the three-step entry
+  cost, and the proof is a green run rather than an argument. The run took 5 m 32 s
+  against the earlier 1–2 minutes **because bumping the pin is a deliberate cache
+  miss** on the built-compiler cache, exactly as predicted before it started.
+- **finding, fixed in the workbench's own tooling: `check_record.py` COULD NOT
+  CHECK A CYCLE CLOSE, IN ANY REPOSITORY, EVER.** It resolved a record as
+  `meta/roadmap/<cycle>/<sid>.md` with no `done/` fallback — and archiving the
+  cycle is a **mandated step of the close itself**, so the close's own report was
+  structurally un-checkable and returned `[no-file]`. Raised by the 0.0.5 worker,
+  **measured here before fixing** (`[no-file] meta/roadmap/0.0/0.0.5.md does not
+  exist`, exit 1), then fixed with a `cycle_dir()` helper.
+- **AND THE WORKER NAMED ONE SITE WHERE THERE WERE TWO — THE SECOND FAILING
+  SILENTLY.** The same hardcoded path appears again for the cycle `README.md`,
+  which drives the **unticked-acceptance-box** assertion. With only the reported
+  site fixed, an archived close resolves its record, finds no README, **skips the
+  checklist assertion entirely and reports CLEAN** — a green gate over a close
+  with unticked boxes. **The loud half was reported; the dangerous half was one
+  line further down**, and would have been missed by fixing exactly what was
+  asked.
+- **Both halves proved by planted fault rather than asserted.** Reverting only the
+  README half in a scratch copy makes `archived-unticked` fail with *"expected
+  ['unticked'], got clean"* — the silent pass, reproduced on demand; reverting
+  both makes each fail with `[no-file]`. **Two new controls committed**
+  (`archived-clean`, `archived-unticked`), suite **13 cases, 11 fault classes, 2
+  false-positive controls**, all correct. A fix without a control is what this
+  ecosystem spends its time finding.
+- **dispatch: verifier for 0.0.5**, small model, literal commands, and it is
+  required to re-derive **two claims the tree itself cannot catch** — that a
+  reserved word is refused as a binding name but accepted as a struct FIELD name
+  (the false justification that stood for five subcycles across seven sites), and
+  that the RX-120 reproduction actually RUNS at both pins rather than being a
+  third assertion.

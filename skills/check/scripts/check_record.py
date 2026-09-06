@@ -49,10 +49,27 @@ def parse_report(section):
     return name, sid, fields
 
 
+def cycle_dir(repo: Path, cycle: str) -> Path:
+    """The cycle's roadmap directory, live or archived.
+
+    A CLOSING subcycle archives its own cycle -- `git mv meta/roadmap/<c>
+    meta/roadmap/done/<c>` is a mandated step of the close -- so by the time
+    that subcycle's record is checked, the directory it names is gone. Without
+    this fallback the close's own report is the one report that can never be
+    verified, in every repository, at every cycle boundary. Returns the live
+    directory when it exists, else the archived one (which is also what the
+    caller should report as missing, since it is where a closed cycle lives).
+    """
+    live = repo / "meta" / "roadmap" / cycle
+    if live.is_dir():
+        return live
+    return repo / "meta" / "roadmap" / "done" / cycle
+
+
 def check(repo: Path, sid: str):
     findings = []
     cycle = sid.rsplit(".", 1)[0]
-    f = repo / "meta" / "roadmap" / cycle / f"{sid}.md"
+    f = cycle_dir(repo, cycle) / f"{sid}.md"
     if not f.exists():
         return [("no-file", f"{f.relative_to(repo)} does not exist")]
     text = f.read_text(encoding="utf-8", errors="replace")
@@ -106,7 +123,7 @@ def check(repo: Path, sid: str):
         findings.append(("dirty-tree", f"{len(dirty.splitlines())} uncommitted path(s)"))
 
     if status == "DONE":
-        readme = repo / "meta" / "roadmap" / cycle / "README.md"
+        readme = cycle_dir(repo, cycle) / "README.md"
         if readme.exists():
             rt = readme.read_text(encoding="utf-8", errors="replace")
             sec = re.search(rf"^###\s+{re.escape(sid)}\b.*?$(.*?)(?=^###\s|^##\s|\Z)", rt, re.S | re.M)
