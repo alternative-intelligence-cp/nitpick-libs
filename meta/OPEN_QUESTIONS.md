@@ -96,6 +96,63 @@ note above records.*
   neither can be built until the re-pin lands. Settled by: the author, then a
   worker amending `0.0.3.md` and `0.0.4.md`.
 
+## Library questions this board cites — the second registry, and why it exists
+
+**A library-local question id has no meaning at workbench scope, and citing one
+here is how a reader is silently misled.** The section below says `O-N` numbers
+collide; **so do the letters.** Measured 2026-09-06 across all six work
+repositories rather than assumed:
+
+```
+O-X1   nitpick-regex, nitpick-time, nitpick-tui               THREE different questions
+O-X2   nitpick-time, nitpick-tui                              two
+O-B1   nitpick-regex, nitpick-sockets, nitpick-time,          FIVE
+       nitpick-tui, nitpick-posix
+```
+
+*(That evidence is fenced deliberately, and the reason is this section's own
+rule biting its author within a minute of being written: naming those ids in
+prose **cites** them, and citing a colliding id is the exact thing forbidden
+here. `check_refs` reported all three immediately. Measured output belongs in a
+fence — `prose()` strips fences precisely so quoted evidence is not read as a
+citation, and `test_check_refs.py`'s `fenced-id` control exists to keep that
+true.)*
+
+So `BOARD.md` and `RECORD.md` may cite a library question **only through an
+entry here**, which names the repository. Anything else resolves to whichever
+repository the reader happens to open.
+
+**This section exists because the seventh orchestrator cited a bare `O-X8` on
+the board, `check_refs` reported `undefined-question`, and the orchestrator was
+one step from "fixing" the check to resolve library ids against sibling
+repositories — which, for the first id in the table above, would have silently
+resolved to the wrong question in two repositories out of three.** What stopped
+it was measuring the collision premise instead of accepting the convention's
+word for it. **A check
+that reports a false positive invites being weakened, and the weakening looks
+like a fix right up until you count.**
+
+- **O-X8 — `nitpick-time`: how does a refusing constructor hand back its
+  `ValueFault`?** Raised by `nitpick-time` 0.1.0, 2026-09-06, at pin `aaffb87`;
+  defined in full at
+  [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md)
+  §`O-x — ours`. **NOT blocking**, and deliberately left open: every candidate
+  adds a public name and TM-013 makes a public name a MAJOR-version commitment.
+  The recommendation is a `never fails` companion classifier
+  (`civil_date_fault(y, m, d) -> ValueFault`) with the constructor written over
+  it so the rules live in one place; it needs an **eleventh `ValueFault` variant
+  meaning "no fault"**, which amends `SAFETY.md` S-3's enum and is the
+  substantive half of the decision. **Settle it when `src/fmt/`'s parser at 0.4
+  gives it a real call site** — a name chosen without a caller is a name chosen
+  blind.
+
+  **It generalises past `nitpick-time`.** An `error:` identity cannot carry a
+  payload anywhere in this language, so **every library here faces the same
+  question** and none of the other four has been asked it yet. See the board's
+  SHARED FINDINGS block.
+
+---
+
 ## For the compiler — the registry
 
 `O-N` numbering is **per repository**, and the numbers collide: `O-N2` is the

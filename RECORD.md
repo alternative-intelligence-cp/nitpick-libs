@@ -4199,3 +4199,72 @@ that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
   and D-149 removed those. **It read so natural that it was written into a
   REVIEWED plan file and survived to execution**, which is the argument for
   `PLAYBOOK.md` §2's measured-facts list existing at all.
+
+- **finding, and the process error is mine: the orchestrator COMMITTED OVER A
+  GATE FINDING, because the gate ran in the same shell script as the commit.**
+  `check_refs` reported `undefined-question` on the 0.1.0 close and `e9bf06f`
+  landed anyway — the output was printed, and the `git commit` on the next line
+  did not read it. **The mandated order is right and the mechanisation defeated
+  it:** running the gate and the commit in one non-interactive block makes the
+  gate advisory, which is exactly the state the rule exists to prevent. **A gate
+  whose result nothing branches on is a log line.** The fix is procedural and
+  costs nothing: run the gate, read it, then commit as a separate step.
+- **AND THE NEAR-MISS IS WORTH MORE THAN THE ERROR.** The finding was a bare
+  `O-X8` cited on the board; `O-X8` is defined in `nitpick-time`'s own registry,
+  and `check_refs` resolves questions only against **the repository it is
+  scanning**. The orchestrator's first conclusion was that the check's mechanism
+  was narrower than its name — the shape found four times already tonight — and
+  the intended fix was to teach it to resolve library ids against sibling
+  repositories. **That fix would have been actively wrong, and one command
+  showed it.** Measured across all six work repositories rather than taken from
+  the convention's word — **the letters collide as badly as the numbers**:
+
+```
+O-X1   nitpick-regex, nitpick-time, nitpick-tui       THREE different questions
+O-X2   nitpick-time, nitpick-tui                      two
+O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
+       nitpick-tui, nitpick-posix                     FIVE
+```
+
+  A sibling-resolving `check_refs` would have named the wrong repository for the
+  first of those in two cases out of three — **a false negative dressed as a
+  fix, in the one tool this workbench uses to catch false references.**
+- **finding: `prose()` DOES NOT STRIP AN INDENTED FENCE, and its docstring does
+  not say so.** `FENCE` is `^```.*?^```` under `re.M`, so the opening delimiter
+  must sit at **column 0**; a fence nested inside a list item — the natural way
+  to attach evidence to a bullet in this file — is invisible to it and its
+  contents are read as prose. Found by writing exactly that and watching the
+  gate report three ids it should have ignored. **The docstring already states
+  one limit of this kind** (verbatim output quoted with *inline* backticks is
+  still counted) **and this is a second, undocumented one.** Same shape as the
+  night's other findings: a mechanism narrower than its name. **Not fixed here**
+  — widening the pattern to allow leading whitespace is a one-line change to a
+  gate that everything commits through, it needs its own control case, and it
+  is not this subcycle's. **The evidence block above is therefore un-indented
+  deliberately**, which is the workaround and reads as a wart until the pattern
+  is widened. Raised for the author.
+- **That was the third time in ten minutes this gate was right about its
+  author.** Naming those ids in prose *cites* them, and citing a colliding
+  library id is precisely what the new registry section forbids — so the first
+  draft of this very entry tripped `undefined-question` three times, then twice
+  more after the fence was added indented. **The rule and its escape hatch were
+  both already there; what was missing was the author reading the gate as its
+  own step rather than in the same block as the commit.**
+- **The lesson, and it is the counterweight to the last three findings rather
+  than another instance of them.** Four times tonight the answer was *the check
+  is narrower than its name; fix the mechanism*. This time the check was exactly
+  as wide as it should be and **the citation was wrong** — and the two cases are
+  indistinguishable from the finding alone. **What separated them was measuring
+  the premise the convention rests on instead of accepting it.** A check
+  reporting a false positive invites being weakened, and **the weakening looks
+  like a fix right up until you count.**
+- **Resolved by a second registry rather than by a tool change or a rewrite of
+  the record.** `meta/OPEN_QUESTIONS.md` gains **"Library questions this board
+  cites"**, carrying the collision table and one entry per cited id naming its
+  repository. That resolves the reference at workbench scope, keeps `RECORD.md`
+  append-only, leaves `check_refs` untouched, and **forces the next citation of
+  a colliding id to disambiguate rather than permitting it silently.** Gate clean
+  afterwards, and `test_check_refs.py` re-run to prove it cleared by being
+  satisfied and not by being weakened: **13 cases, 7 fault classes, 4
+  false-positive controls, 2 denominator cases, all correct** — with
+  `undefined-question` still firing.
