@@ -732,6 +732,72 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### THE RE-FOUNDED SPREAD — the specification, agreed with `nitpick-compiler_s0` 2026-09-06 02:5x
+
+**Read the inversion first, because a session that remembers the old number
+will read the new result exactly backwards.**
+
+| | Before 1.5.2d | After the trim |
+|---|---|---|
+| **22 of 30 at exactly 388 765 B** | **the FINDING** — a constant delta independent of the program proved the prelude was emitted whole into every program | **the FAILURE SIGNAL** — 1.5.2d keeps only the prelude items a program *references*, so a delta that is constant across programs means **the trim did not apply** |
+| a spread that VARIES per program | would have been the anomaly | **is the expected, healthy shape** |
+
+**`nitpick-compiler_s0`'s words, so this is not paraphrase drift:** *"the shape I
+want to see is a spread that VARIES with what each program uses, with no
+constant delta anywhere. A constant delta reappearing under a stated denominator
+would be the trim failing to apply, a compiler defect, and I would want the
+program that shows it."* **So if a constant turns up, do not report it as
+agreement with the earlier measurement — report it as a defect and name the
+program.** No comparison against "22 of 30" is needed or wanted.
+
+**Their prediction, which makes this a test rather than a survey:** the **derive
+and enum programs** — the 8 that were the *exceptions* before — are expected at
+the **top** of the distribution now, because their impls are what they
+reference. A different set at the top is itself a finding.
+
+**Deliverable 1 — the floor pair, the one continuous number. LARGELY ALREADY
+TAKEN, and this changes what 1.5.2f buys.** The canary *is* the 14-line floor
+program, and the `0dfddac → aaffb87` pair is measured and on this board: `.ll`
+**845 282 B → 50 560 B** (−94.0%), functions **608 → 14**, where **14 was
+predicted and hit exactly**. So 1.5.2f yields a **third point in a series**, not
+a first comparison. Their floor-only probe reads **50 561 B / 14 functions after
+1.5.2d**; the one-byte gap is **already explained and is not two different
+source files** — see the path-dependence rule below.
+
+**Deliverable 2 — the spread, over a stated denominator.**
+
+- [ ] Define the set in a **committed file before running anything**, by
+      **discovery, not by listing** (`PLAYBOOK.md` §7): every program under
+      `tests/` that compiles clean under **both** pinned binaries.
+- [ ] **Print the count beside the verdict.** "All N" is two claims and the
+      second is the one nobody checks.
+- [ ] Report the **distribution**: min, median, max — plus **the names of the
+      largest**, which is the half they can act on.
+- [ ] Report it as **first-of-its-kind under a stated set**, not as a repeat.
+- [ ] A constant delta anywhere → **stop, name the program, raise it as a
+      compiler defect** (W-11: never worked around).
+
+**THE UNIT IS THE OBJECT AND THE FUNCTION COUNT — NOT THE `.ll` BYTE. This
+workbench measured that and it corrects the request as received.**
+`nitpick-compiler_s0` asked for the distribution of *IR bytes* and function
+counts. But `nitpick-time` 0.0.5 measured that **an emitted `.ll`'s byte count
+is PATH-DEPENDENT and the object's is not**: the same source compiled from two
+directories whose names differ by one character gives `.ll` sizes **14 bytes
+apart**, one byte per `npk.site.paths` entry, while the `.o` and the linked
+binary are **byte-identical**. **A distribution taken across programs sitting at
+different paths therefore carries a per-program artefact of its own directory
+name**, which is precisely the confound a distribution is supposed to expose.
+So: **function counts and object sizes are the primary series**, `.ll` bytes are
+reported beside them and **labelled path-dependent**, and if `.ll` bytes are
+wanted comparably, every program is compiled **from one common directory**.
+This board's standing rule — **quote the OBJECT, not the `.ll`** — is not a
+style preference; it is why the canary's *function* count is the half that
+carried the 1.5.2d prediction.
+
+**Gate:** re-pin first (and the re-pin waits for the live claim to close —
+orchestrate §2 — then for §3's two-minute binary-age guard). **Every number
+above that predates the re-pin is an `aaffb87` number and says so.**
+
 **Why this is worth reading twice: it is the second time in two days that
 raising cost nothing and bought something.** O-N16 was catalogued rather than
 raised and was closed upstream the same day anyway; S-38 was raised under the

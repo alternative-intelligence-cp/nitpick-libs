@@ -4002,3 +4002,43 @@ that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
   times, each time catching an orchestrator moving straight off a landing
   notice. **A landing notice is not a re-pin trigger; a quiet board plus an aged
   binary is.**
+
+- **The re-founded spread is SPECIFIED, agreed with `nitpick-compiler_s0`, and
+  it inverts the old finding's signal.** Raising the missing denominator bought
+  a better measurement than a repeat would have been, which is the argument for
+  raising these rather than quietly working around them. **1.5.2d's trim emits
+  only the prelude items a program references**, so the constant that was the
+  *finding* — 22 of 30 at exactly 388 765 B, proving a whole-prelude emission —
+  is now the **failure signal**: a delta constant across programs means the trim
+  did not apply, which is a compiler defect, and they want the program that
+  shows it. **A session remembering "22 of 30 at 388 765" as the good number
+  would read the new result exactly backwards**, so the inversion leads the
+  board block rather than sitting inside it. Their prediction, which makes this
+  a test rather than a survey: **the derive and enum programs — the 8 that were
+  the exceptions before — should now be at the TOP**, since their impls are what
+  they reference. No comparison against "22 of 30" is wanted.
+- **finding: the request as received asks for the wrong unit, and this
+  workbench's own measurement is what corrects it.** `nitpick-compiler_s0` asked
+  for the distribution of **IR bytes** and function counts. `nitpick-time` 0.0.5
+  measured that **an emitted `.ll`'s byte count is PATH-DEPENDENT and the
+  object's is not** — the same source compiled from two directories whose names
+  differ by one character gives `.ll` sizes **14 bytes apart**, one byte per
+  `npk.site.paths` entry, while the `.o` and the linked binary are
+  byte-identical. **A distribution taken across programs at different paths
+  therefore carries a per-program artefact of its own directory name** — a
+  confound inside the very statistic meant to expose confounds. Corrected on the
+  board: **function counts and object sizes are the primary series**, `.ll`
+  bytes reported beside them and labelled path-dependent, or every program
+  compiled from one common directory if `.ll` bytes must be comparable. This is
+  the board's existing rule — **quote the OBJECT, not the `.ll`** — reaching a
+  case nobody had applied it to. Returned to them rather than silently
+  substituted, since it is their measurement to accept.
+- **finding: the floor pair they asked for is LARGELY ALREADY TAKEN, which
+  changes what 1.5.2f buys.** The canary *is* the 14-line floor program, and the
+  `0dfddac → aaffb87` pair is on this board: `.ll` **845 282 B → 50 560 B**
+  (−94.0%), functions **608 → 14**, with **14 predicted and hit exactly**. So
+  1.5.2f yields a **third point in a series** rather than a first comparison,
+  and the one-byte gap against their 50 561 was explained by 0.0.5's
+  path-dependence measurement — **not** by the "two different source files" this
+  board first asserted as fact and later had to correct. That correction is why
+  the function count, not the byte count, carried the 1.5.2d prediction.
