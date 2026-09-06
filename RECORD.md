@@ -5156,3 +5156,44 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   tree rather than the report** — including N-3, whose replacement count (33
   occurrences, 32 lines, 9 files) **re-derives exactly** at the archived commit.
   N-9 is discharged with the hole that is N-10.
+- **DEF-25: the defect report raised under W-11 was CONFIRMED and is being fixed
+  now, landing as 1.5.2i.** `nitpick-compiler_s1` reproduced our shape on
+  `c81efa5` — **so it is NOT already fixed there**, which is the question we asked
+  rather than assumed — and instrumented it with `NPK_HEAP_STATS`: 1 M calls give
+  `allocated=16000000 peak_live=16000000 count=1000000` for the empty case against
+  `allocated=1000000 peak_live=1` for `("", "a")`. **16 B per call never freed.**
+  **Our 32.2 B/call and their 16 B/call reconcile rather than compete** — we
+  measured peak RSS, which carries the block header; they measured allocator
+  accounting, which does not. **Two instruments pointed at one phenomenon and the
+  difference between the numbers is itself explainable**, which is a better
+  outcome than agreement would have been.
+- **finding, and it is the largest outward result this workbench has produced: A
+  LIBRARY AUDIT OF A NINE-LINE ACCESSOR FOUND A RUNTIME DEFECT IN THE COMPILER'S
+  OWN SELF-HOSTING.** Two consequences beyond what we filed, both found by the
+  compiler side once pointed at it: the prelude's `impl:string:Clone` **is**
+  `string_concat(self, "")`, so **`.clone()` of an empty string leaks the same
+  block for every consumer of the language**; and `string_concat(x, "")` is the
+  compiler's own copy idiom at **234 sites in its `src/`**, so **the compiler has
+  been leaking in its own build.** **The report named one nine-line function and
+  the class reached the whole language** — which is the argument for raising a
+  defect rather than guarding around it, in one instance.
+- **A FALSIFIABLE PREDICTION IS ON THE RECORD AND MUST BE CHECKED, NOT ASSUMED.**
+  They state that at 1.5.2i **`build/npkrt.o`'s digest WILL change and
+  `build/npkc.ll`'s WILL NOT**, because the runtime is assembled beside the
+  emission rather than compiled into it. **This is the same shape as the canary's
+  flat prediction that held across `aaffb87` and `3d15ac9`:** a prediction stated
+  before the measurement is what turns an unchanged reading into evidence rather
+  than a shrug. **If `npkc.ll` moves at 1.5.2i, that is a finding and it goes back
+  to them.**
+- **BL-4's disposition is now settled and written down so no worker has to guess.**
+  **The library-side guard is NOT to be written** — the root cause is being
+  removed upstream, and writing it would convert a compiler defect into a
+  permanent library house rule for nothing. **But BL-4's other half is ours
+  regardless of any compiler fix:** `bytes.npk:339-342` asserts something false
+  about `string_concat`, cites a measurement that is not in the tree, and cites
+  `exit 0` for a managed body where this repository's own S-22 says that
+  instrument cannot see one. **A false comment is a library defect and does not
+  wait for 1.5.2i.** The `Bytes` memory-cap pair is owed either way.
+- **Their `Views` table agrees with ours** — `string_bytes` and `string_from_bytes`
+  are the two, independently confirmed on both sides from the generated table
+  rather than from its documentation.

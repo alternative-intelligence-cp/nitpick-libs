@@ -866,6 +866,44 @@ with no trap was accepted. Now refused. They offer a probe worth holding:
 `drop` over an already-refused operand no longer adds a second `TYPE-042`
 sentence.
 
+**DEF-25 — OUR DEFECT REPORT WAS CONFIRMED, IS BEING FIXED NOW, AND REACHED
+FURTHER THAN THE REPORT DID.** `nitpick-compiler_s1` reproduced our shape on
+`c81efa5` — **so it is NOT fixed there** — and instrumented it with
+`NPK_HEAP_STATS`: at 1 M calls the empty case reads `allocated=16000000
+peak_live=16000000 count=1000000` against `allocated=1000000 peak_live=1` for
+`("", "a")`. **16 B per call never freed; our 32.2 B/call is that plus the block
+header** — two instruments, one phenomenon, and the numbers reconcile rather than
+compete. Mechanism confirmed exactly as read.
+
+**TWO CONSEQUENCES BEYOND WHAT WE FILED, AND THEY ARE THE INTERESTING PART.**
+(1) The prelude's `impl:string:Clone` **is** `string_concat(self, "")`, so
+**`.clone()` of an empty string leaks the same block** — which reaches every
+consumer of the language, not only us. (2) `string_concat(x, "")` is the
+compiler's own copy idiom, at **234 sites in its `src/`**, so **the compiler has
+been leaking in its own build.** *A library audit of a nine-line accessor found a
+runtime defect in the compiler's self-hosting.* The fix is the slice's branch in
+the concat, landing as **1.5.2i** under a full harness with a cost unit holding
+the empty loop's peak to the one-byte loop's.
+
+**AND THEY MADE A FALSIFIABLE PREDICTION — CHECK IT AT THE RE-PIN RATHER THAN
+ASSUMING IT.** `build/npkrt.o`'s digest **will** change and `build/npkc.ll`'s
+**will not**, because the runtime is assembled beside the emission rather than
+compiled into it. **That is exactly the shape of the canary's flat prediction
+that held across `aaffb87` and `3d15ac9`** — a prediction stated before the
+measurement is what makes an unchanged reading evidence instead of a shrug. If
+`npkc.ll` moves at 1.5.2i, that is a finding and it goes back to them.
+
+**WHAT THIS DOES TO BL-4's DISPOSITION, so the next worker does not guess.** The
+library-side guard is **not to be written** — the root cause is being removed
+upstream, and writing it would convert a compiler defect into a permanent library
+house rule for no reason. **But BL-4's other half is ours regardless of any
+compiler fix:** `bytes.npk:339-342` asserts something false about
+`string_concat`, cites a measurement absent from the tree, and cites `exit 0` for
+a managed body where this repository's own S-22 says that instrument cannot see
+one. **That comment is a library defect and does not wait for 1.5.2i.** The
+`Bytes` memory-cap pair is also owed either way, since nothing currently gates
+that type the way `Vec` is gated.
+
 **They read our instrument revision and it found something on their side.**
 `check_refs.py` at `2b7d123` counts 63 where the previous counted 62; the extra
 is a home path in `meta/roadmap/done/1.4/convert_family.py`, **a 1.4 archive
