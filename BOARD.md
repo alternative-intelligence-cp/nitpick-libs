@@ -216,6 +216,52 @@ our item in their doc-sync backlog** — the language's answer is `.eq` (D-250:
 comparisons of owning types are calls, not operators) and **the table is what is
 wrong**. They asked for no separate item from us.
 
+**THE RE-PIN IS HELD UNTIL 1.5.2f, AT THE COMPILER SESSION'S REQUEST — ~2 HOURS
+FROM 2026-09-06 00:3x, WHEN ONE NOTICE CARRIES BOTH.** 1.5.2e landed and pushed
+at **`f6e3537`**; we are **NOT** re-pinning on it. **`aaffb87` remains the pin**,
+and the 0.0.6 close is running against it, so the hold costs nothing and moving
+the pin under a running close would cost something. **Do not re-pin on a landing
+notice that asks you to wait.**
+
+**WHAT 1.5.2e ALREADY CONTAINS, both of them ours.** **O-N18 is FIXED** —
+`.len` on a fixed-size array lowers to its constant (their DEF-22). And
+**S-39 is fixed in exactly the shape this workbench asked for**: the prelude's
+`List<T>` stores through `alloc_managed`, the managed heap's untracked entry,
+**prelude-only** — `TYPE-054` from any other module — *"because your `Vec`'s
+`wild` count is its enforcement and stays"*. **We asked that the fix not become
+a general "D-151 stops counting managed storage", and it did not.** A `List`
+alive in `main` at exit 0 now exits 0; our `Vec` still traps, which is P-23's
+whole point.
+
+**AND D-264 — THE RULE OUR O-N19 FORCED — IS RATIFIED, WITH ITS IMPLEMENTATION
+UNDER HARNESS.** *A bare type parameter, and `Self` in a trait's default body,
+is move-only in the body that names it.* **Measured on the compiler's own tree
+the new rule refused SEVEN sites, every one a stored `T` parameter, and nothing
+else** — which is the number that made it safe to ratify.
+
+**WHAT 1.5.2f WILL REQUIRE OF OUR CODE AT THE RE-PIN — read this before 0.1 is
+planned, not after:**
+
+- a **copy of a `T` place in a generic body is `TYPE-046`** unless spelled
+  `move(...)`, or `.clone()` under a `Clone` bound;
+- a **by-value `T:v` parameter stored into an element, a field, a payload or a
+  channel wants `move T:v` and `move(v)`**;
+- a **lending `pick` cannot bind a `T` payload**;
+- **`#[derive(Eq | Ord | PartialOrd | Clone)]` over an enum with a `T` payload
+  is `DERIVE-006`** — `Hash`, `ToString` and `Debug` still derive — because the
+  generated `pick` was the same copy.
+
+**`vec_pop<T>` already has the spelling**, because 0.0.5 fixed our own bug
+rather than working around theirs — **so the library is already written the way
+the ratified rule requires**, which is the return on that call. **The rest of
+`src/core/` is not yet checked against the four rules above**; that belongs to
+the first dispatch after the re-pin, not to the close.
+
+**Left open for the author as their S-41:** a borrowing `pick` binding form,
+which would let a generic enum with payloads derive the four again. **That one
+touches `nitpick-time`'s `Layout` vector** — a payload-free enum but for
+`Literal(uint16)` — so it is worth watching rather than waiting on.
+
 **O-N19 IS ACCEPTED AS A SOUNDNESS HOLE IN THE CHECKER, AND IT GOES TO THE
 AUTHOR TODAY AS A DECISION RATHER THAN A PATCH.** `nitpick-compiler_s0`
 confirmed our mechanism reading — `require_move_if_owning`
