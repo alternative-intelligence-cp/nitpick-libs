@@ -855,6 +855,69 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 1.5.4 STEP 2 IS LANDED — the merge, pin target `24fad46`, notice 2026-09-06 19:36. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+**53/53, 57 verified programs (53 at step 1, 48 at step 0), parity 1 184 verdicts
+agreeing, and the compiler's 178 obligations now 170 discharged / 8 open (168 / 10
+before).** `origin/main == main`.
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since 1.5.2i (fe42dba)
+builder.o  3b5f868d...  8,086,688 B  unchanged since the 1.5.1b snapshot refresh
+builder    fe528b03...  7,014,760 B  unchanged since the same refresh
+npkc.ll    b7f4b8e7... 22,717,508 B  the emission, MOVED (the encoder's source)
+npkc.o     829e930d...  9,013,248 B  MOVED
+npkc       67160221...  7,838,264 B  MOVED
+```
+
+**THE CANARY IS NOW A THREE-READING CONTROL SERIES, AND THAT IS WHAT MAKES IT USABLE.**
+`8ef0f79`, `182ef47`, `24fad46` — **14 defines / 52 212 B at all three, same scratchpad
+path.** A single reading at a controlled path proves nothing; three identical ones across
+commits that each moved `npkc` establish that **our canary's emission is stable across
+1.5.4 so far.** *Still not comparable with this board's 50 482 B, which is a different
+path (D-236) — the series is internally valid and externally not.*
+
+**WHAT LANDED.** An arm's facts survive it **guarded by its condition** — a region opened
+for an arm re-pushes its hypotheses as `(=> c H)` into the parent on leaving — so versions
+after an `if`, a `when` or a `pick` **merge as `(ite c v_then v_else)` instead of being
+forgotten**; a `pick` expression's value is the chain of its arms' `give` terms; and the
+right-hand side of `&&` / `||` and a ternary's branches are encoded under their
+conditions.
+
+**✅ A PREDICTION WRITTEN AT 1.5.0 CAME TRUE AT 1.5.4.** The pin on
+`divz_after_branch.npk` carried the expectation *"1.5.4 adds the branch guards; this
+expectation changes to discharged"* — **and it flipped as promised.** This is the fourth
+prediction from the compiler side to land intact on this board, and the longest-range one
+by far: **they write falsifiable expectations into their own test pins and those
+expectations survive four subcycles.** That is the strongest available evidence that
+their reports can be treated as claims to verify rather than claims to audit.
+
+**⚠ THE COST NUMBER WAS TAKEN UNDER CONTENTION AND THEY SAID SO — DO NOT LATER READ IT
+AS A CLEAN BASELINE.** *"31.7 s to 34.9 s, the solver files 514 to 760 asserts"*,
+measured on the compiler's own walk **while three harnesses ran beside it**. **The delta
+is the usable part; the absolutes are contended**, and 34.9 s must not become a
+remembered baseline that a future quiet-machine reading is diffed against — that
+comparison would manufacture an improvement, or a regression, out of scheduling.
+*Recorded because this board already owns a spread whose failure signal is a constant
+delta, and a contended timing is exactly the sort of number that leaks into one.* The
+disclosure was volunteered, which is the behaviour to keep expecting.
+
+**BLAST RADIUS: ZERO, STRUCTURALLY — the same kind as step 1, not step 0's.** No new
+refusal, no new trap, no emitted-IR change. **Nothing here needs re-checking when library
+code changes.**
+
+**OBLIGATION TREND ACROSS THE SUBCYCLE, none ever moving the other way:**
+
+```
+step 0   154 discharged / 24 open
+step 1   168 / 10
+step 2   170 /  8
+```
+
+**Next: step 3 the counters and the `loop-step` kind (S-46); step 4 `prove` /
+`assert_static` / `exhaustive` rows with the rung suite's retirement (S-45, S-47, S-48);
+step 5 the docs — harnesses running. S-45…S-48 remain open with the author.**
+
 ### 1.5.4 STEP 1 IS LANDED — path conditions as hypotheses, pin target `182ef47`, notice 2026-09-06 19:20. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **Full harness: 53/53, and 53 verified programs — up from 48 at step 0.** `origin/main

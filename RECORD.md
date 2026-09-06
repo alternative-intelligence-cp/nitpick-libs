@@ -5992,6 +5992,39 @@ invalidated and there is nothing to do while paused, but **any comparison of ver
 results across that boundary compares two different instruments**, and that is the sort
 of thing a resuming session would otherwise discover by being confused by it.
 
+**1.5.4 STEP 2 FILED — THE MERGE, `24fad46`, 2026-09-06 19:36.** 53/53, **57 verified
+programs** (53, then 48 at the two steps before), parity 1 184, and the compiler's 178
+obligations at **170 discharged / 8 open**. Filed, not worked; pin stays `3d15ac9`.
+
+**The canary is now a three-reading control series and that is what makes it usable.**
+Identical at `8ef0f79`, `182ef47` and `24fad46` — 14 defines, 52 212 B, same scratchpad
+path — across three commits that each moved `npkc`. **One reading at a controlled path
+proves nothing; three establish that our canary's emission is stable across 1.5.4 so
+far.** The series is internally valid and externally not: it still cannot be compared
+with this board's 50 482 B, taken at a different path under D-236.
+
+**A prediction written at 1.5.0 came true at 1.5.4.** The pin on `divz_after_branch.npk`
+carried the expectation *"1.5.4 adds the branch guards; this expectation changes to
+discharged"*, and it flipped as promised. **That is the fourth compiler-side prediction to
+land intact on this board and by far the longest-range** — they write falsifiable
+expectations into their own test pins and those expectations survive four subcycles. It is
+the strongest evidence available that their reports are claims worth verifying rather than
+claims needing audit.
+
+**A cost number was recorded with a caveat that will matter later.** The walk went 31.7 s
+to 34.9 s and the solver files 514 to 760 asserts — **measured while three harnesses ran
+beside it, which they volunteered.** **The delta is the usable part and the absolutes are
+contended.** Recorded loudly because 34.9 s must not become a remembered baseline that
+some future quiet-machine reading is diffed against: that comparison manufactures an
+improvement or a regression out of scheduling. **This board already owns a spread whose
+failure signal is a constant delta, and a contended timing is exactly the kind of number
+that leaks into one.**
+
+**Blast radius zero again, and structurally so** — no new refusal, no new trap, no
+emitted-IR change, the same category as step 1 rather than step 0's incidental clearance.
+The obligation trend across the subcycle is 154/24, then 168/10, then 170/8, **with
+nothing at any step moving the other way.**
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`
