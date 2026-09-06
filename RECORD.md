@@ -5461,3 +5461,66 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   someone USING the library rather than writing it, and an `examples/` program is
   written by exactly the people who wrote the library.** With the placement rule
   confirmed, `examples/` is a choice rather than a constraint.
+- **SESSION RESUMED after a dropped connection; nothing was lost, and the state
+  was VERIFIED rather than assumed.** The workbench sat clean at `1a158b6` with
+  `HEAD == origin/main`, the writer line still naming this session, the marker
+  still 37 bytes with the same uuid — **a resume changes the session's display
+  ref and not its id, so the lock survives it** — and all eight trees clean,
+  `nitpick-regex` 4 ahead exactly as recorded. **A dropped connection is when a
+  half-finished write hides, so the sweep came before the work.** New peer noted:
+  `nitpick-compiler_s3`, the compiler side having rotated again while `_s1` stays
+  busy; the board's roster is not changed on that alone.
+- **THE THIRD AUDIT COMPLETED BEFORE THE CONNECTION DIED AND IS NOW FILED** —
+  `meta/audits/nitpick-regex-0.0-2026-09-06-third.md`. **DO NOT ACCEPT, the third
+  refusal of this close.** It passed the reference gate on the first attempt,
+  having written relative paths pre-emptively from reading the earlier headers.
+- **BL-5 — the SEVENTH defect in `src/core/`, and the shape the dispatch asked
+  for by name: `vec_get` IS A DESTRUCTIVE READ FOR AN OWNING `T`.** The emitted
+  IR for `pass v.items[i]` **zeroes the slot and marks it vacant** while `count`
+  is untouched, so the container claims a live element it has emptied.
+  `Vec<string>` pushed once and read twice returns the value, then **nothing** —
+  a silent wrong answer, not a trap, identical at `-O0` and under `opt -O2`, with
+  a POD control returning the value both times. **`vec_get` takes its container
+  BY VALUE, so its signature says it cannot mutate the caller's — and it mutates
+  the caller's heap block.**
+- **The refusal that was supposed to make it safe DOES NOT EXIST.** Three
+  documents assert *"a copy is refused, TYPE-046"*; at the pin `TYPE-046` is
+  `TYPE_MOVE_REQUIRED`, a move-required diagnostic at a binding site, and it does
+  not fire — read from `type_codes.npk` at the pin rather than from any document
+  here. **And `vec_unit.npk` builds a `Vec<string>`, reaches the one line where it
+  could read an element back, and declines — citing the refusal that does not
+  exist.** That is BL-1's shape exactly, *the suite constructs the case and
+  declines to look*, this time with the reason written down.
+- **The same false belief leaves three siblings orphaning elements silently**,
+  measured with `NPK_HEAP_STATS` over 1 000 rounds against a flat 618-byte
+  control: `vec_set` **261 618**, `vec_remove` and `vec_swap_remove` **257 353**,
+  strictly linear across 3/10/100/1 000 rounds. **And the API offers no
+  non-leaking way to remove or overwrite an owning element** — the only correct
+  usage runs through the behaviour the specification calls impossible.
+- **BL-6 — THE `pending-until` MACHINERY HAS NO CONTROL, AND IT CAN HIDE A RED.**
+  Three mutations, three full harness runs, **all exit 0**: a marker naming a
+  commit that does not exist is accepted and inert (**141/141 GREEN**); a marker
+  absorbs a failure other than the one it names, printing *"this tree gives 94"*
+  where 92 was the reason (**141/141 GREEN**); and **one comment line moves an
+  ordinary wrong-expectation red out of the denominator entirely — `140/140`,
+  GREEN, exit 0.** The third defeats the self-check's own case 1, which exists to
+  catch precisely that fault.
+- **Two sentences in the tree describing its safety property are FALSE at the
+  pin**, and one contains its own refutation: the marker's retirement is keyed
+  solely on the file starting to pass, not on the named commit, which
+  `expect.py` never resolves and `stages.py` uses only inside printed text. **"The
+  day it starts passing" is not "bumping past that commit".**
+- **THE RECURRING SHAPE, NOW ON ITS THIRD INSTANCE IN ONE CYCLE: THE FIX FOR A
+  FINDING IS WHERE THE NEXT FINDING LIVES.** BL-4 was introduced by BL-1's fix;
+  BL-6 by BL-4's. Each was invisible to a green suite for a reason this
+  repository had already written down somewhere else — and each was found only
+  because something adversarial went looking at the fix rather than at the
+  original defect.
+- **The audit also answered its fourth question in a way worth keeping: the new
+  twelve boundary units ARE unanimous, and not in the index.** Each passes 0 to
+  the entry point its filename names, each carries a distinct fall-through exit
+  code so a vanished guard names itself, and the three self-check units span both
+  values the new `vec_oob` body can produce. **The unanimity is in the ELEMENT
+  TYPE — every one of the twelve, and of the twelve before them, instantiates at
+  a POD type.** That is exactly the shape the dispatch warned about, with a new
+  value, and the value is `T`.
