@@ -731,27 +731,89 @@ remain: `nitpick-tui`, `nitpick-parse`, `nitpick-sockets`.**
 
 ---
 
+## SHARED FINDINGS — what `nitpick-time` learned that the siblings probably inherit
+
+**Four things, found in three consecutive subcycles, and the reason they are
+shared is the same in every case: these repositories were scaffolded from one
+template, so a defect in the template is a defect in five trees.** Stated once
+here with its evidence rather than pasted into five rows — this board already
+carries `RX-120` verbatim four times, and text copied five ways is text that
+drifts. **Each is carried into that repository's next dispatch by the
+orchestrator; none is fixed in another stream's repository (W-7).**
+
+**None of these blocks anything today.** Every one of them is a plan or a
+document that will fail *when executed*, which is precisely why they are worth
+carrying now rather than meeting one at a time.
+
+| # | Finding | Who it hits | What to check, in one command |
+|---|---|---|---|
+| **1** | **TM-114 — `BUILD.md` §3's stage table is incomplete.** It was missing the compiler's **default `compile` stage** and assigned `tests/conformance/` to **`accept`** — *"accepted in silence"*, which is the O-N11 shape: a root with `main` and no `failsafe` is accepted at `npkc` exit 0 and refused only later | **all four siblings**, template-shared | Does your §3 carry a `compile` row, and what stage is `tests/conformance/` on? |
+| **2** | **TM-117 — separate compilation DOES NOT EXIST, and this is the documented model rather than a defect.** Two `npkc`-produced objects are a duplicate-symbol error (`ld.lld` exit 1, 121 lines) because every compile emits the whole reachable graph **including the prelude**. `BUILD_REFERENCE` §4.1 at the pin: *"takes one program object and adds the runtime object; there is no parameter through which a third input could enter"* | **any sibling whose harness plan says "compile the library once, link each program against it"** — it is the natural decision to write, and `nitpick-time`'s P-16 said exactly that | `grep -n 'once' meta/roadmap/0.0/0.0.2.md` — a plan naming one library object cannot be executed as written |
+| **3** | **The compiler's frontend tools are `.npk` SOURCE, not binaries.** `tools/parse_check.npk` imports twenty frontend modules and `tools/check.npk` the whole driver pipeline, so *"build the compiler's tools once per run from the pinned checkout"* means **building the compiler**, from a tree routinely ahead of our pin | **any sibling naming `tools/parse_check` or `tools/check` in a harness plan** | `git grep -n 'parse_check\|tools/check' -- 'meta/'` |
+| **4** | **`NITPICK-REACH-003` LISTS THE IDENTITIES OWED — an OPPORTUNITY, not a defect.** Compile a program importing one module with no `failsafe` and the refusal names **every arm a consumer of that module will owe** | **every library with an error budget** — all five | Verified in `nitpick-time` both directions on three specimens: floor **4**, `arms_lib` **5**, `calc_lib` **8** |
+
+**On #2, the framing matters more than the fact.** *"`npkc` has no separate
+compilation"* is true and points at the compiler. *"Our plan assumed a model
+the compiler never offered"* is also true, points at the plan, and is the only
+one of the two that can be acted on. The compiler session confirmed it is not
+a defect and **offered to put separate compilation to the author as a design
+row if the libraries need it** — this workbench answered **not yet**, because
+1.5.2d's step 2 removes ~94% of the cost that would motivate the ask. Re-pin,
+re-measure, then decide. The offer is on the record and does not expire.
+
+**On #4, the trap inside the opportunity:** the identity count is **per
+program** — the same diagnostic names **four** identities for one fixture and
+**six** for another, differing by an import and some arithmetic. This board
+once generalised one program's floor to the set and cited the compiler's own
+output for it. Read each program's own bill.
+
+**And the substitute for #3 is better than the thing it replaces.** `npkc` has
+no parse-only mode, but **a diagnostic's CODE FAMILY answers the question**:
+LEX and PARSE are the parse phase and every other family is later, so **a file
+refused at TYPE, BORROW or REACH necessarily parsed.** No extra tool, no build,
+and it reads the compiler's own classification instead of reimplementing it.
+
+**`nitpick-posix` IS A SIXTH TREE AND IS NOT EXEMPT — it is only out of
+reach.** It lives in `../nitpick-apps/`, outside this workbench's write scope,
+so nothing here may touch it; but it was scaffolded the same way, so **findings
+1 and 3 plausibly apply to it and finding 4 certainly does** (it consumes three
+of these libraries, so it owes their arms). **Say so at stream 3's claim rather
+than letting the five-row table imply it was checked.** The table above lists
+five because five is what this workbench can write to, and a scope boundary is
+not a clean bill of health — which is exactly the *"a check whose name
+describes the property while its mechanism covers something narrower"* shape
+this ecosystem keeps meeting, arriving this time in a table's row count.
+
+**Still outstanding from earlier sweeps, unrelated to the four above but owed
+by the same three repositories:** `RX-111`'s false bounds promise remains in
+**`nitpick-tui`** (`meta/specs/SAFETY.md:24`), **`nitpick-parse`** (`:22` — the
+worst instance, since a parser's index is attacker-influenced) and
+**`nitpick-sockets`** (`:28`). `nitpick-time` and `nitpick-regex` are
+discharged, verified by reading.
+
+---
+
 ## Stream 1 — text
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-regex` | 0.0 … 1.0 (16) | `CLAIMED s1` | independent; nothing gates it. **RX-111 found and already corrected here — its `SAFETY.md:20` and Rule S-23's per-type table are the wording the other four take.** **Q-10 sweep — the leak gate that cannot fail:** 4 sites — `0.0/README.md:130`, `0.0/0.0.4.md:14`, `meta/specs/SAFETY.md:25`, `0.0/0.0.0.md:314`. Fix at this stream's claim |
-| 2 | `nitpick-tui` | 0.0 … 1.0 (18) | — | independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  Inherits stream 1's Unicode approach from `nregex`. **RX-111 — the `SAFETY.md` bounds promise is FALSE and must be corrected at this stream's claim:** `meta/specs/SAFETY.md:24`, "An out-of-range cell index is a *crash*, not a smear". **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:125`, `0.0/0.0.4.md:16`, `meta/specs/SAFETY.md:27,216`, `0.0/0.0.0.md:353`. Fix at this stream's claim |
+| 1 | `nitpick-regex` | 0.0 … 1.0 (16) | `CLAIMED s1` | **SHARED FINDINGS above apply here — carry them into this repository's next dispatch.** independent; nothing gates it. **RX-111 found and already corrected here — its `SAFETY.md:20` and Rule S-23's per-type table are the wording the other four take.** **Q-10 sweep — the leak gate that cannot fail:** 4 sites — `0.0/README.md:130`, `0.0/0.0.4.md:14`, `meta/specs/SAFETY.md:25`, `0.0/0.0.0.md:314`. Fix at this stream's claim |
+| 2 | `nitpick-tui` | 0.0 … 1.0 (18) | — | **SHARED FINDINGS above apply here — carry them into this repository's next dispatch.** independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  Inherits stream 1's Unicode approach from `nregex`. **RX-111 — the `SAFETY.md` bounds promise is FALSE and must be corrected at this stream's claim:** `meta/specs/SAFETY.md:24`, "An out-of-range cell index is a *crash*, not a smear". **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:125`, `0.0/0.0.4.md:16`, `meta/specs/SAFETY.md:27,216`, `0.0/0.0.0.md:353`. Fix at this stream's claim |
 | 3 | `nitpick-logview` | — | `BLOCKED on nitpick-tui 0.14` | repository not created; created at `ntui` 0.15's open (T-115) |
 
 ## Stream 2 — data
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-time` | 0.0 … 1.0 (10) | `CLAIMED s2` | independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  **~~RX-111~~ — DISCHARGED HERE, verified by reading 2026-09-05.** `meta/specs/SAFETY.md:315` now reads *"An out-of-range read is **a wrong value**, not a crash"* and `:332` *"**An unchecked index is a WRONG ANSWER, not a crash**"*. The board carried it as outstanding after it had been fixed, and would have dispatched it a second time. **`nitpick-regex` is likewise discharged** (`:269`). **Three remain: `nitpick-tui`, `nitpick-parse`, `nitpick-sockets`** — checked individually, not inferred from this one. Smallest first item; finishes early and can take slack. **Q-10 sweep — the leak gate that cannot fail:** **DISCHARGED IN FULL, verified by reading 2026-09-05** — the specs, `DECISIONS.md` and `0.0.4.md` already carried it, and the two that were listed as lagging (`0.0/README.md:100`, `0.0/0.0.0.md:299`) **do carry the correction too**: `0.0.0.md` now reads *"Exit 0 means 'no `wild` allocation is live' (D-151) — that, and nothing more"*. **Nothing outstanding here.** Both this and RX-111 above were listed as owed after the tree had discharged them, found by the 0.0.2 worker checking its inherited NOTES against the files rather than working from them — **a board that is stale in the "still owed" direction costs a whole dispatch, and nothing in this ecosystem checks for it** |
-| 2 | `nitpick-parse` | 0.0 … 1.0 (15) | — | independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  **RX-111 — the `SAFETY.md` bounds promise is FALSE and must be corrected at this stream's claim:** `meta/specs/SAFETY.md:22` says "Indexing is bounds-checked and traps ... An index derived from input is a *crash*, not a smear". **The worst instance in the ecosystem** — a parser's index is attacker-influenced by definition, so this is a security claim and it is wrong. **Q-10 sweep — the leak gate that cannot fail:** **the worst case, 9 sites** — `0.0/README.md:104,135`, `0.0/0.0.4.md:20`, **`0.4/README.md:43`**, `meta/specs/SAFETY.md:35,237,283`, `specs/VALUE_MODEL.md:214`, `0.0/0.0.0.md:354`. It is a parsing library, so managed bodies are everywhere and `string_slice` allocates (D-186); `0.4/README.md:43` puts the false gate on `doc_destroy`, which is exactly an owning structure D-151 cannot see. Fix at this stream's claim |
+| 1 | `nitpick-time` | 0.0 … 1.0 (10) | `CLAIMED s2` | **SHARED FINDINGS above apply here — carry them into this repository's next dispatch.** independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  **~~RX-111~~ — DISCHARGED HERE, verified by reading 2026-09-05.** `meta/specs/SAFETY.md:315` now reads *"An out-of-range read is **a wrong value**, not a crash"* and `:332` *"**An unchecked index is a WRONG ANSWER, not a crash**"*. The board carried it as outstanding after it had been fixed, and would have dispatched it a second time. **`nitpick-regex` is likewise discharged** (`:269`). **Three remain: `nitpick-tui`, `nitpick-parse`, `nitpick-sockets`** — checked individually, not inferred from this one. Smallest first item; finishes early and can take slack. **Q-10 sweep — the leak gate that cannot fail:** **DISCHARGED IN FULL, verified by reading 2026-09-05** — the specs, `DECISIONS.md` and `0.0.4.md` already carried it, and the two that were listed as lagging (`0.0/README.md:100`, `0.0/0.0.0.md:299`) **do carry the correction too**: `0.0.0.md` now reads *"Exit 0 means 'no `wild` allocation is live' (D-151) — that, and nothing more"*. **Nothing outstanding here.** Both this and RX-111 above were listed as owed after the tree had discharged them, found by the 0.0.2 worker checking its inherited NOTES against the files rather than working from them — **a board that is stale in the "still owed" direction costs a whole dispatch, and nothing in this ecosystem checks for it** |
+| 2 | `nitpick-parse` | 0.0 … 1.0 (15) | — | **SHARED FINDINGS above apply here — carry them into this repository's next dispatch.** independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  **RX-111 — the `SAFETY.md` bounds promise is FALSE and must be corrected at this stream's claim:** `meta/specs/SAFETY.md:22` says "Indexing is bounds-checked and traps ... An index derived from input is a *crash*, not a smear". **The worst instance in the ecosystem** — a parser's index is attacker-influenced by definition, so this is a security claim and it is wrong. **Q-10 sweep — the leak gate that cannot fail:** **the worst case, 9 sites** — `0.0/README.md:104,135`, `0.0/0.0.4.md:20`, **`0.4/README.md:43`**, `meta/specs/SAFETY.md:35,237,283`, `specs/VALUE_MODEL.md:214`, `0.0/0.0.0.md:354`. It is a parsing library, so managed bodies are everywhere and `string_slice` allocates (D-186); `0.4/README.md:43` puts the false gate on `doc_destroy`, which is exactly an owning structure D-151 cannot see. Fix at this stream's claim |
 | 3 | `nitpick-conflint` | — | `BLOCKED on nitpick-parse 0.11` | repository not created; created at `nparse` 0.12's open (PA-103) |
 
 ## Stream 3 — system
 
 | # | Repository | Cycles | State | Notes |
 |---|---|---|---|---|
-| 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  **RX-111 — the `SAFETY.md` bounds promise is FALSE and must be corrected at this stream's claim:** `meta/specs/SAFETY.md:28` says an out-of-range `sockaddr` read is "a *crash*, not a leak of adjacent memory" — a claim that there is no information disclosure, and it is wrong. **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:134`, `0.0/0.0.4.md:14`, `meta/specs/SAFETY.md:26`, `specs/VERIFICATION.md:48`, `0.0/0.0.0.md:328`. Its `ANCILLARY_MODEL.md:67` and `SAFETY.md:221` are correctly scoped already ("takes no `wild` bytes") and are the model for the rest. D-188 covers the driver/process registry, not managed bodies. Fix at this stream's claim |
+| 1 | `nitpick-sockets` | 0.0 … 1.0 (12) | — | **SHARED FINDINGS above apply here — carry them into this repository's next dispatch.** independent. **RX-120 — the undefined-symbol scan this repository's `BUILD.md` plans CANNOT SEE A SYSCALL** (measured in `nitpick-regex`, independently reproduced: 29 symbols each way, diff empty, because `npk_sys6` is already the prelude's). Replace it with an **IR call-edge scan**, which does distinguish them. Treat the acceptance item naming the symbol diff as unmet.  **RX-111 — the `SAFETY.md` bounds promise is FALSE and must be corrected at this stream's claim:** `meta/specs/SAFETY.md:28` says an out-of-range `sockaddr` read is "a *crash*, not a leak of adjacent memory" — a claim that there is no information disclosure, and it is wrong. **Q-10 sweep — the leak gate that cannot fail:** 5 sites — `0.0/README.md:134`, `0.0/0.0.4.md:14`, `meta/specs/SAFETY.md:26`, `specs/VERIFICATION.md:48`, `0.0/0.0.0.md:328`. Its `ANCILLARY_MODEL.md:67` and `SAFETY.md:221` are correctly scoped already ("takes no `wild` bytes") and are the model for the rest. D-188 covers the driver/process registry, not managed bodies. Fix at this stream's claim |
 | 2 | `nitpick-posix` | 0.0 … 1.0 (14) | — | **Q-10 sweep — the leak gate that cannot fail:** 2 sites, both in `0.0/0.0.0.md:37,226` (`nitpick-apps/nitpick-posix`, outside this workbench's write scope). **O-N6 answered 2026-09-03 by probe 02** — negatively, and the repository absorbed it (PX-100: `failsafe` is generated). W-1 is discharged. Nine of its cycles are ungated and are the slack this stream uses when a gate is not ready. **Q-1 answered 2026-09-03:** POSIX.1-2024 (Issue 8) is current and its utility table moved by 19 entries — the first worker here files the digest and amends `SCOPE.md`, `CONFORMANCE.md` K-1 and `GLOSSARY.md`; the syntax guidelines are unchanged |
 
 ---
