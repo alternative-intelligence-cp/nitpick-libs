@@ -1001,19 +1001,95 @@ says bumping the pin *"is a deliberate commit, and this is that commit"*. **So
 bump `NITPICK_COMMIT` to `3d15ac9` as its own commit BEFORE 0.1.1's work; that
 commit is what proves the new compiler builds the existing tree.**
 
-**(2) `nitpick-regex`'s CI HAS BEEN RED AT ITS CURRENT HEAD FOR TWO DAYS AND
-NOBODY LOOKED.** Run `33901134351`, 2026-09-04, on **`91657eb`** — *the very
-commit this board records as "0.0.3 DONE — VERIFIED PASS … harness 63/63 in
-37.5 s"*. Failing step: **`Run the harness`**; the compiler and LLVM steps were
-cache hits and passed. **Local green, CI red, same commit, unnoticed.** That is
-TM-146's lesson — *treat CI as an instrument, not a formality* — reaching a
-sibling where nobody was reading the instrument. **THE CAUSE IS NOT
-ESTABLISHED:** `gh run view --log` returns an empty log for that run, so the
-failure text could not be retrieved and **this is an unexplained red, not a
-diagnosed one.** The 57-commit-stale pin is a live hypothesis and nothing more.
-**`nitpick-regex` is CLAIMED and is stream 1's next item — do not dispatch 0.0.4
-without settling this first**, or the worker inherits a red suite it did not
-cause and cannot explain.
+**(2) `nitpick-regex`'s TWO-DAY RED IS DIAGNOSED, REPRODUCED AND BOUNDED —
+2026-09-06 05:0x by the eighth orchestrator.** Run `33901134351`, 2026-09-04, on
+**`91657eb`** — *the very commit this board records as "0.0.3 DONE — VERIFIED
+PASS … harness 63/63 in 37.5 s"*. Failing step: **`Run the harness`**. **Local
+green, CI red, same commit, unnoticed for two days** — TM-146's lesson reaching a
+sibling where nobody was reading the instrument.
+
+**THE CI LOG IS UNRECOVERABLE AND THAT IS A FACT, NOT A RETRY.** The previous
+orchestrator reported `gh run view --log` "empty"; the API says why —
+`repos/…/actions/jobs/101115219244/logs` returns **HTTP 404**. GitHub has
+expired it. **No re-read will ever produce that log**, so "re-run the workflow to
+regenerate one" buys a log for a *different* run, not the one that failed. The
+diagnosis therefore had to come from **the pins kept on this machine**, which is
+precisely what `.internal/toolchain/` is for and why it is never cleaned.
+
+**The measurement: one tree at `91657eb`, three kept compilers, this machine.**
+
+```
+pin        what it is                          result
+950bb1d    what nitpick-regex CI PINS          60/63 in 36.0 s  -- REPRODUCES THE RED
+94874ce    what 0.0.3 was VERIFIED at          63/63 in 37.7 s  -- green, the board's number
+3d15ac9    today's pin, the proposed bump      DIES AT THE BASELINE, no suite runs
+
+the three failures at 950bb1d, which ARE the CI red:
+  probe/tests/probe/probe02b_derive_eq.npk   expected IR, got REFUSAL NITPICK-TYPE-034
+  probe/tests/probe/probe02c_derive_ord.npk  exited 20, expected 0 (REAL backend)
+  parse/tests/probe/probe02b_derive_eq.npk   expected IR, got REFUSAL NITPICK-TYPE-034
+  NITPICK-TYPE-034 <derived-1>:2:82: `HirKind` has no built-in `==`:
+                                     derive or implement `Eq` and compare with `a.eq(b)`
+```
+
+**THE CAUSE.** 0.0.3 added probes that exercise **derived `Eq` and `Ord`**.
+`950bb1d` predates that support and refuses them. The tree change is the
+**trigger**; the 57-commit-stale pin is the **cause**; and *neither alone
+explains it*, which is why the bracket misled.
+
+**A CORRECT BRACKET SUPPORTED A WRONG INFERENCE, AND THIS IS THE DURABLE PART.**
+The previous orchestrator established — correctly, and the readings are not in
+dispute — that `NITPICK_COMMIT` is byte-identical at the last green commit and at
+the red one, and that `.github/` is untouched between them. From that it
+concluded *"the red is 0.0.3's own content, **not** the stale pin"*, and
+suspected `harness/treecheck.py` failing on a runner. **The conclusion does not
+follow.** An unchanged pin is not an exonerated pin: what changed is a tree that
+now *requires* a compiler newer than the pin, so the constant is the cause and
+the variable is only the trigger. **`treecheck.py` is refuted outright** — the
+red reproduces on this machine with no runner involved, and the failures are
+three named derive probes. **Holding a variable fixed proves it did not change;
+it does not prove it did not matter.**
+
+**AND THE RECOMMENDED FIX IS REFUTED — BY THE OPPOSITE RESULT FROM THE ONE
+PREDICTED.** This board recommended bumping `NITPICK_COMMIT` to `3d15ac9` and
+re-running as a *diagnostic*. The outgoing session then withdrew that on the
+bracket, predicting it "will not go green". **Bumping does not go green, and not
+for that reason.** At `3d15ac9` the harness never reaches the suite: it dies in
+the build step with **23 floor symbols "committed and no longer emitted — THE
+PRELUDE MOVED"** (`__divti3`, `npk_alloc`, `npk_exec`, `npk_sys6`, …). That is
+1.5.2d's prelude trim arriving in a repository that records a symbol floor.
+
+**What is on the other side of it, measured in a COPY so the claimed tree was
+never touched:** re-record the baseline at `3d15ac9` and the suite runs
+**61/63 in 21.5 s**. The derive probes pass. **Two NEW failures appear that no
+document predicts:**
+
+```
+probe-refused/tests/probe/refused/probe13b_limit_refused.npk
+parse/tests/probe/refused/probe13b_limit_refused.npk
+    expected NITPICK-RUNG-001, got NITPICK-REACH-002
+    "reported NITPICK-REACH-002, which no expectation names -- an unexpected
+     diagnostic fails a test as surely as a missing one (BUILD.md B-7, D-237)"
+```
+
+**EXTENT, ESTABLISHED IMMEDIATELY AND BOUNDED RATHER THAN ASSUMED.** The prelude
+trim breaks any repository that records a floor-symbol baseline. Asked of all six
+work repositories with `git ls-files`, **exactly one has one**: `nitpick-regex`
+(`harness/baseline/SYMBOLS.txt`, `EDGES.txt`, `baseline.npk`). `nitpick-parse`,
+`nitpick-sockets`, `nitpick-time`, `nitpick-tui` and `nitpick-posix` carry none,
+**so this does not spread** — the one place it bites is the one place it was
+found, and that is now a measurement rather than a hope.
+
+**WHAT 0.0.4 ACTUALLY COSTS TO ENTER, in this order.** (a) Re-record the
+baseline as **its own commit** naming the compiler commit that moved — the
+harness prints that instruction itself, *"this is a deliberate act, commit it on
+its own, so a reviewer sees the diff"*. (b) Settle `NITPICK-RUNG-001` →
+`NITPICK-REACH-002` **with the compiler side**, because a library cannot tell a
+deliberate diagnostic change from a regression, and 0.0.4 must not encode a
+guess. (c) Bump CI's `NITPICK_COMMIT` to `3d15ac9`, which only then can go green.
+**`nitpick-regex` is CLAIMED and is stream 1's next item — 0.0.4 is still not
+dispatchable, but for a stated and bounded reason instead of an unexplained
+red.**
 
 **(3) Four of six repositories have no CI.** The ecosystem's strongest recent
 lesson protects one repository and is broken in the other.
@@ -1024,7 +1100,8 @@ lesson protects one repository and is broken in the other.
 
 | # | Stream | Raised | Question | Recommendation |
 |---|---|---|---|---|
-| 5 | s2 | 2026-09-06 | **`nitpick-regex`'s CI is red at `91657eb` and has been for two days, on the commit the board calls VERIFIED PASS.** Cause unknown — the run's log comes back empty. Its CI also pins a compiler 57 commits stale | **Settle it before 0.0.4 is dispatched.** Cheapest first move is to bump that workflow's `NITPICK_COMMIT` to `3d15ac9` and re-run: if the red was the stale pin it goes green, and if it does not, the failure is real and is now legible against the compiler everything else uses. **Do not dispatch a worker into a repository whose suite is red for reasons nobody has established** — it cannot tell its own breakage from the inherited one |
+| ~~5~~ | s2 | 2026-09-06 | ~~**`nitpick-regex`'s CI is red at `91657eb`, cause unknown**~~ — **ANSWERED BY MEASUREMENT 05:0x, not by the author; no ruling needed and none should be waited for** | **CLOSED.** Diagnosed, reproduced and bounded against the three kept pins — see the CI PIN MAP item (2). The stale pin is the cause, 0.0.3's derive probes are the trigger, the CI log is gone at the source (HTTP 404, expired), and the recommendation this row carried — bump and re-run *as a diagnostic* — **was refuted by the opposite result from the one it predicted**. It is superseded by the three-step entry cost recorded there. **Nothing here is the author's to decide** |
+| 8 | s3 | 2026-09-06 | **Is `NITPICK-RUNG-001` → `NITPICK-REACH-002` a deliberate compiler change or a regression?** At `3d15ac9`, with the floor baseline re-recorded, `nitpick-regex`'s `probe13b_limit_refused.npk` expects `NITPICK-RUNG-001` and gets `NITPICK-REACH-002`; the same probe passes at `94874ce`. Measured in a copy, twice, both `probe` and `parse` stages | **Not the author's call, and not this workbench's — it goes to `nitpick-compiler_s1` as a question, not as a defect report.** A library cannot distinguish an intended diagnostic change from a regression, and **0.0.4 must not encode a guess about which it is**: if it is deliberate, the probe's expectation is updated and the change wants recording; if it is a regression, the fix is theirs and 0.0.4 waits. **Do not update the expectation to make the suite green before the answer arrives** — that converts an open question into a silently-encoded assumption, which is the shape this workbench keeps finding |
 | 6 | s2 | 2026-09-06 | **Should the CI pin bump to `3d15ac9` happen before 0.1.1?** The workflow's header says bumping is a deliberate commit and that commit runs the full suite | **Yes, as its own commit, before any 0.1.1 work.** Otherwise 0.1.1 is verified locally at `3d15ac9` and judged by CI at `aaffb87`, and neither result means what it appears to |
 | 7 | s2 | 2026-09-06 | **Four of six work repositories have no CI at all** — `nitpick-parse`, `nitpick-sockets`, `nitpick-tui`, `nitpick-posix` | **Not urgent, and not free.** `nitpick-time`'s CI found two defects in its first eight minutes that nothing local could reach, so the value is measured rather than assumed; but each workflow is real work and the shared CI shape already has two known findings against it (prune nested repositories by shape; `set +e` before a capture-then-print step). **Fix the shape once, then propagate** |
 | 1 | s2 | 2026-09-04 | **Is a committed `REPORT` block immutable?** A worker left one of the six DEF-3 sites unedited because it sits inside a committed REPORT block, arguing a report records what a worker said on a date and must not be rewritten — correcting it in a later record entry instead. **This is the second dispatch to meet the question; the first left it open.** | **Ratify it, and write it into `WORKSTREAMS.md`.** The worker's reasoning matches this workbench's existing append-only rule and the finer form of it in `PLAYBOOK.md` §6 — what may be amended depends on whether the document records something that *happened*. Making it explicit costs one rule and stops a third dispatch re-deciding it |
