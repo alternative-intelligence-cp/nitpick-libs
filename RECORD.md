@@ -5197,3 +5197,46 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
 - **Their `Views` table agrees with ours** — `string_bytes` and `string_from_bytes`
   are the two, independently confirmed on both sides from the generated table
   rather than from its documentation.
+- **DEF-25 FIXED, LANDED AND PUSHED at `fe42dba` (1.5.2i), and the prediction made
+  before the fix HELD — verified here across all six lines rather than taken on
+  report.** `npkrt.o` moved to `67cc8186…` / 55 648 B; `builder` and `npkc` moved
+  because they link it; `builder.o` and `npkc.o` held; **`build/npkc.ll` is
+  UNCHANGED at `af2bf3dd…`**, which was the claim. Canary 50 561 B / 14 defines,
+  IR byte-identical to 1.5.2h's close. **Second instance of a prediction stated
+  before a measurement doing the work here** — the canary's flat prediction across
+  `aaffb87` and `3d15ac9` was the first — and it is the difference between an
+  unchanged reading that is evidence and one that is a shrug.
+- **HAZARD FOR THE NEXT RE-PIN, and it is the reverse of the RX-120 trap:
+  `npkrt.o` HAS MOVED FOR THE FIRST TIME.** Every pin this workbench holds —
+  `0dfddac`, `94874ce`, `aaffb87`, `3d15ac9` — carries the identical
+  `c9ddbcff…` / 55 576 B, and DEF-12 made `cmp`-verifying that a standing step of
+  the ritual. **At the next re-pin it will be `67cc8186…` / 55 648 B, and that is
+  CORRECT**, because DEF-25's fix is in the runtime itself. **An orchestrator
+  running the habit will find a difference where four consecutive readings found
+  none, and may report a defect against a peer for doing exactly what they said
+  they would do.** RX-120 was a pin-dependent measurement recorded as permanent;
+  this is **four identical readings hardening into an expectation that was never a
+  rule.** The correction is the same in both directions: **verify against the
+  notice, never against the previous pin.**
+- **finding: THE ARITHMETIC CLOSES THE ATTRIBUTION EXACTLY, AND THAT IS WORTH MORE
+  THAN THE FIX.** The compiler's own build now allocates **17 264 fewer bytes in
+  1 079 fewer allocations**, and **1 079 × 16 = 17 264** — checked here. Every
+  leaked byte is accounted for as an empty concatenation, with no residue.
+  **A total that reconciles to the last byte proves the class was CLOSED rather
+  than reduced**, which a smaller number and a plausible story would not have.
+- **The fix verified against our own reproduction:** 8 000 000 empty calls under
+  `ulimit -v 65536` **exit 0** where they exited 92; 200 000 empty calls read
+  `allocated=0 peak_live=0 count=0` where they read `3200000 / 3200000 / 200000`.
+  `tests/cost/empty_concat.toml` holds the empty loop's peak to 4× the one-byte
+  loop's **so the class cannot silently return** — a cost unit rather than a
+  comment, which is the distinction this workbench spent the morning learning.
+  `BUILTIN_REFERENCE`'s `string_concat` row now states that an empty result
+  allocates nothing, **closing the documentation asymmetry alongside the code
+  asymmetry** — the two halves fixed together rather than the code alone.
+- **`impl:string:Clone` is correct now and NOTHING IN LIBRARY CODE NEEDS A GUARD**,
+  which is the ruling BL-4's disposition was held open for. **The decision not to
+  write the guard is vindicated by the outcome rather than merely by the
+  principle:** had the library patched around it, the guard would now be permanent
+  dead weight, `.clone()` of an empty string would still leak for every other
+  consumer of the language, and the compiler would still be leaking 17 264 bytes
+  in its own build.

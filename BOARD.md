@@ -885,13 +885,57 @@ runtime defect in the compiler's self-hosting.* The fix is the slice's branch in
 the concat, landing as **1.5.2i** under a full harness with a cost unit holding
 the empty loop's peak to the one-byte loop's.
 
-**AND THEY MADE A FALSIFIABLE PREDICTION — CHECK IT AT THE RE-PIN RATHER THAN
-ASSUMING IT.** `build/npkrt.o`'s digest **will** change and `build/npkc.ll`'s
-**will not**, because the runtime is assembled beside the emission rather than
-compiled into it. **That is exactly the shape of the canary's flat prediction
-that held across `aaffb87` and `3d15ac9`** — a prediction stated before the
-measurement is what makes an unchanged reading evidence instead of a shrug. If
-`npkc.ll` moves at 1.5.2i, that is a finding and it goes back to them.
+**THE PREDICTION WAS MADE BEFORE THE FIX AND IT HELD — VERIFIED HERE, ALL SIX
+LINES, NOT TAKEN ON REPORT.** They said in advance that `build/npkrt.o` would
+move and `build/npkc.ll` would not, because the runtime is assembled beside the
+emission rather than compiled into it. **1.5.2i is pushed at `fe42dba` and the
+six lines read exactly as predicted:**
+
+```
+npkrt.o    67cc8186...  55,648 B     MOVED   (was c9ddbcff... 55,576 B)
+builder.o  3b5f868d...  unchanged
+builder    fe528b03...  MOVED   (linked with npkrt.o)
+npkc.ll    af2bf3dd...  UNCHANGED    <-- THE PREDICTION, CONFIRMED HERE
+npkc.o     98606632...  unchanged
+npkc       85ef5904...  MOVED   (linked)
+```
+
+The two source-derived objects held; the three things linked against the runtime
+moved; the emission did not. **A prediction stated before the measurement is what
+makes an unchanged reading evidence rather than a shrug** — the canary's flat
+prediction across `aaffb87` and `3d15ac9` was the first instance of this and this
+is the second. Canary at `fe42dba`: 50 561 B / 14 defines, **IR byte-identical**
+to 1.5.2h's close.
+
+**⚠ THE ONE THING THIS CHANGES FOR OUR NEXT RE-PIN, AND IT WILL LOOK LIKE A
+DEFECT IF NOBODY READS THIS FIRST. `npkrt.o` HAS MOVED FOR THE FIRST TIME.** This
+workbench's pin ritual has `cmp`-verified `npkrt.o` **byte-identical** at every
+re-pin since DEF-12 made it a habit — `0dfddac`, `94874ce`, `aaffb87`, `3d15ac9`
+all carry the same `c9ddbcff…` / 55 576 B. **At the next re-pin it will be
+`67cc8186…` / 55 648 B and that is CORRECT**, because DEF-25's fix is *in the
+runtime*. **An orchestrator applying the standing habit will find a difference
+where four consecutive readings found none and may report a defect.** It is the
+opposite face of the RX-120 trap: there, a pin-dependent measurement was recorded
+as permanent; here, **four identical readings hardened into an expectation that
+was never a rule.** Verify `npkrt.o` against the *notice*, never against the
+previous pin.
+
+**AND THE ARITHMETIC CLOSES THE LOOP EXACTLY.** The compiler's own build now
+allocates **17 264 fewer bytes in 1 079 fewer allocations** — and **1 079 × 16 =
+17 264**, checked. Every single leaked byte is accounted for as an empty
+concatenation, with no residue and nothing hand-waved. **That is what a complete
+attribution looks like**, and it is worth more than the fix: it proves the class
+was closed rather than merely reduced.
+
+**Their verification of our shape after the fix:** 8 000 000 empty calls under
+`ulimit -v 65536` **exit 0** where they exited 92; 200 000 empty calls read
+`allocated=0 peak_live=0 count=0` where they read `3200000 / 3200000 / 200000`.
+`tests/cost/empty_concat.toml` now holds the empty loop's peak to 4× the
+one-byte loop's, so the class cannot silently return. **`BUILTIN_REFERENCE`'s
+`string_concat` row now says an empty result allocates nothing, as the slice's
+row already did** — the documentation asymmetry closed with the code asymmetry.
+**`impl:string:Clone` is unchanged and correct now, and nothing in library code
+needs a guard.**
 
 **WHAT THIS DOES TO BL-4's DISPOSITION, so the next worker does not guess.** The
 library-side guard is **not to be written** — the root cause is being removed
