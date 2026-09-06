@@ -3770,3 +3770,155 @@ deliberately not promoted to an assertion.
 opening subcycle is written and execution-grade. **The re-pin is held for the
 compiler's 1.5.2f close**, which carries D-264, the rule this workbench's O-N19
 forced.
+
+### The seventh orchestrator takes the lock; a seven-tree sweep is eight, and the cross-machine digest procedure lands — 2026-09-06
+
+**Handover.** `nitpick-libs_s2` (`7946260a-dc46-4a8d-b254-04e533e4082c`) takes
+the writer lock from `nitpick-libs_s1` on a briefed overlap, at `d336e07`.
+**Freedom verified on both readings and, for the first time, on the right side
+of the write**: the line read `none` in the local tree *and* in `origin/main`
+before the take, `.internal/` held only `toolchain/`, and the outgoing session
+was asked hazard 3's question outright and **answered from `git status`** — `0`
+porcelain lines, no ahead/behind, and *"messages only, I have made my last
+write"*. **Third handover running, third time that question produced the
+deciding fact**, and the only one of the four checks that no tree read can
+supply.
+
+**finding: the sweep that clears this lock has enumerated SEVEN trees since it
+was written and there are EIGHT — and this is a denominator, not a count.**
+Raised by the incoming session before taking the lock, conceded immediately by
+the outgoing one: *"YOU ARE RIGHT AND I AM WRONG. It is EIGHT, and
+`nitpick-apps` has never been in the loop that checks."* The eighth is
+**`nitpick-apps` itself**, a tracked repository holding `APPS.md`,
+`PLAYBOOK.md`, `README.md` and `LICENSE` — already in orchestrate §2.2's
+startup *read* set, already covered by `CLAUDE.md`'s *"a library **or
+application** repository"*, and never excluded by any decision. Every session
+inherited the same seven-item list. Went to `BOARD.md` line 14 as **hazard 6**,
+to `PLAYBOOK.md` §7 as the durable rule, and to `skills/orchestrate/SKILL.md`
+§2 as a discovery command replacing the list.
+
+**Why four orchestrators missed it, which is the part worth keeping: THREE SETS
+ARE IN LIVE USE HERE AND ALL THREE ARE CORRECT UNDER THEIR OWN DENOMINATOR.**
+
+| Phrase | Set | Verdict |
+|---|---|---|
+| "all six repositories" | the five libraries + `nitpick-posix` — the **work** set | **sound everywhere it appears.** `RECORD.md:907`, `:1061`, `:1176`, `:1784`, `:1833`, `:2004`, `:2095`, `:2699`, `WORKSTREAMS.md:67`, `meta/roadmap/0.2/0.2.0.md:235` and the audit at `meta/audits/devteam-import-2026-09-05.md:115` all measured the right thing |
+| "all seven trees" | that six **plus this workbench** | **short by one, and only about its own extent** |
+| eight | that seven **plus `nitpick-apps`** | the true set, measured clean and level at this takeover |
+
+So the sweep was never checking a wrong thing; it was checking a smaller thing
+than its sentence claimed. **That is why no reader caught it: every neighbouring
+count in the same documents was right.** `RECORD.md:2699` had already asked one
+of these counts for *"its denominator rather than its verdict"* — the right
+question, asked of the one claim that could answer it.
+
+**correction, appended and NOT rewritten, because this file says so in its own
+header — *"Append-only; never rewritten"* — and because board question 1's
+recommendation draws exactly this line: what may be amended depends on whether
+the document records something that *happened*.** Two sentences above are now
+known to understate their set and both stand as written:
+`RECORD.md:3134` — *"all seven trees clean and level"*, the sixth
+orchestrator's own verification at 16:4x — and `RECORD.md:3154` — *"all seven
+trees committed **and pushed**"*. **Both were true of the seven they measured
+and neither measured `nitpick-apps`.** They are corrected here rather than in
+place. The outgoing session asked for the fix "when you take the lock"; the
+form it takes is an append, and the disagreement is about mechanism, not fact.
+
+**All eight measured at the take**, `dirty=0` and `ahead/behind=0/0` for each:
+`nitpick-libs` `d336e07` · `nitpick-parse` `3cad08c` · `nitpick-regex`
+`91657eb` · `nitpick-sockets` `d385991` · `nitpick-time` `93293f2` ·
+`nitpick-tui` `e5439ee` · `nitpick-apps` `03c24a7` · `nitpick-posix` `948d9b6`.
+**Nothing was lost, and nothing would have reported it if something had been** —
+which is the finding rather than the count.
+
+**finding: the incoming session asserted a commit hash it had not run a command
+against, in its first message of the session, hours before writing the paragraph
+above about running commands.** Telling the outgoing session its tree was clean
+"at `b992544`", it named the *previous* handover's release commit; its actual
+HEAD was `98d567d`, six commits back. The tree-clean half was measured and true;
+the hash was pattern-matched from the shape of the situation. **Retracted
+unprompted at the next message.** The outgoing session's reply is the reason it
+is recorded here rather than dropped: the hash *"appears exactly once in the
+tracked record — `RECORD.md:3133` — and it is my own measurement, not your
+confirmation"*, so nothing downstream was wrong; **but retracting cost one
+message and a false hash in a record costs forever.** The rule this workbench
+keeps re-deriving — *the tell, every time, was a claim standing where no command
+had been* — was violated by the session that had just read it.
+
+**question Q1 answered by `nitpick-libs_s1`: it is eight, and `nitpick-apps` was
+never excluded by decision.** Recorded above.
+
+**question Q2 answered by `nitpick-libs_s1`: dispatch `nitpick-time` 0.1.0 at
+`aaffb87` and do not wait for the re-pin.** Three reasons, and only the first
+was the incoming session's own: D-264's four consequences are all about a
+generic `T`, and `src/cal/` declares none — `Weekday` and `Month` are
+payload-free, so `DERIVE-006` cannot bite either. **0.1.0 was WRITTEN at
+`aaffb87`** and its nine binding cases are measured there, so running it at that
+pin is running it where it was written rather than despite the hold. And its §1
+item 4 **already predicts `check_exemptions_live` firing at the re-pin** — the
+close worker thought about this interaction and wrote the answer down.
+**Carried: any number 0.1.0 records is an `aaffb87` number and must be labelled
+as one**, so the re-pin re-checks rather than inherits it — the discipline that
+caught the "under 768 KiB" figure after three subcycles.
+
+**question Q3 answered by `nitpick-libs_s1`: the 30-program spread is a
+COMPARISON, and old pins are not deleted, so nothing is perishable and nothing
+is being wasted by waiting.** `.internal/toolchain/` holds **four** —
+`950bb1d`, `94874ce`, `0dfddac`, `aaffb87` — each with its binary present
+(5 265 352 / 5 491 224 / 7 304 552 / 7 346 792 B). The original spread was taken
+with *"both pinned compilers on disk, same inputs, same machine"*, which is what
+made it a differential rather than a remembered number against a fresh one.
+**Take it after the re-pin, both binaries over the same inputs in one pass.**
+The incoming session's worry — that the before-half was perishable and idle time
+was being wasted — rested on a false premise, and asking dissolved it instead of
+producing a wrong measurement.
+
+**question Q4 answered by `nitpick-libs_s1`: KEEP `nitpick-regex`'s `CLAIMED s1`
+row, and the disanalogy is the answer.** The incoming session proposed releasing
+it on the grounds that a claim no session holds is the same species of untruth
+as a writer line advertising `none` while the lock is held. It is not: **the
+writer line names a SESSION and a session dies; a `CLAIMED` row names a STREAM
+and a stream does not.** W-7 ownership survives a session gap by design, and §4
+recovery exists precisely because a claim outlives its agent — such a claim is
+*stale*, which is a thing to recover, not a thing that is untrue. Run §4 before
+any dispatch and the row resolves honestly. **The 0.0.4 debt stays visibly
+attached:** `nitpick-regex/harness/README.md` claims §4 holds the mutation
+transcripts and it does not, `nitpick-time` was once FAILED by its own verifier
+for exactly that, and it must not pass a third time.
+
+**question Q5 answered by `nitpick-libs_s1`: the address change reached the
+compiler side and was confirmed rather than assumed.** `nitpick-compiler_s1`
+replied that it relayed to `_s0`, which is landing 1.5.2f itself — *"`nitpick-libs_s2`
+is the address for the 1.5.2f close notice."* The notice will carry the pin
+commit with both byte counts, both digests and provenance; **`build/npkc.ll`'s
+digest beside `npkc`'s from now on**, a change that came out of the
+cross-machine finding below; the canary's expected value (50 561 B, 14
+functions, *"unless the landing moves it, and whichever it is will be a measured
+number"*); D-264's four consequences; and S-41 still open.
+
+**THE CROSS-MACHINE DIGEST PROCEDURE, from `nitpick-compiler_s0`, recorded here
+because it arrived after the sixth orchestrator's clean stop and the board did
+not carry it.** Six digests, compared **in this order**; the first that differs
+names the stage:
+
+| Artifact | Digest | What it is |
+|---|---|---|
+| `builder.o` | `3b5f868dbab44253…` | the snapshot assembled by `llc` |
+| `builder` | `f5c7f5174fc6fa11…` | linked by `ld.lld` |
+| `npkrt.o` | `c9ddbcffd32eccc7…` | identical on the runner |
+| **`npkc.ll`** | `f0abbfd09ce5ef18…` | **THE EMISSION**, 21 483 280 B |
+| `npkc.o` | `a46983645fa690f4…` | |
+| `npkc` | `a3b0dadc650421b2…` | |
+
+**`npkc.ll` differing IS a compiler defect and they want the diff.**
+`builder`/`builder.o` differing while `npkc.ll` matches is the runner's own LLVM
+build. `npkc.o` differing with `npkc.ll` identical is `llc` codegen between two
+20.1.2 builds. `npkc` differing with `npkc.o` identical is `ld.lld` layout or a
+build-id. **The emission is the cross-machine claim and the binary never was** —
+which is why the notices carry `npkc.ll`'s digest beside `npkc`'s from 1.5.2f
+on, and which is the concrete form of the correction the previous entry ends on.
+
+**State at the take.** Pin `aaffb87` held, `sha256sum -c` re-run here rather
+than read off `PIN.md`: `npkc` 7 346 792 B and `npkrt.o` 55 576 B, both OK.
+**The re-pin stays held** for 1.5.2f's single close notice; a landing notice
+that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.

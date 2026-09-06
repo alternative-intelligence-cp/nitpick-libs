@@ -962,6 +962,44 @@ be wrong four times while each session did the thing the playbook told it to.
 
 ## 7. Repository conventions
 
+**A repository that holds only documents is still a repository, and a loop
+assembled by listing rather than by discovery will miss exactly the one nobody
+thinks of as code.** Found 2026-09-06 at the seventh orchestrator's takeover:
+the handover sweep that certifies every tree *"clean and level"* before the
+writer lock changes hands had enumerated **seven** trees since it was first
+written, and there are **eight**. The missing one was `nitpick-apps` itself —
+`APPS.md`, `PLAYBOOK.md`, `README.md`, `LICENSE`, no source — already in
+orchestrate §2.2's startup *read* set and already covered by `CLAUDE.md`'s *"a
+library **or application** repository"*, so it was never excluded by decision.
+Four orchestrators inherited the same hand-written list.
+
+**It survived because every neighbouring count was right.** Three sets are in
+live use in this ecosystem and each is correct under its own denominator: **six
+repositories** (five libraries + `nitpick-posix`) is the *work* set; **seven
+trees** is that six plus the workbench; **eight** is that seven plus
+`nitpick-apps`. A reader checking any "all six repositories" claim finds it
+sound, so nothing signals that the neighbouring seven is short. **This is the
+same shape §6 names — a check whose NAME describes the property while its
+MECHANISM covers something narrower — and here the mechanism was a list a human
+typed once.**
+
+The rule, and it costs one line: **discover the set, never list it, and print
+the count beside the verdict.**
+
+```bash
+mapfile -t TREES < <(find . ../nitpick-apps -maxdepth 3 -name .git -printf '%h\n' | sort)
+echo "sweeping ${#TREES[@]} trees"          # the count IS part of the verdict
+for t in "${TREES[@]}"; do
+  printf '%-34s dirty=%-3s ahead/behind=%s\n' "$t" \
+    "$(git -C "$t" status --porcelain | wc -l)" \
+    "$(git -C "$t" rev-list --left-right --count HEAD...@{u} 2>/dev/null | tr '\t' '/')"
+done
+```
+
+A verdict without its denominator is not a measurement, and *"all N are clean"*
+is two claims — that they are clean, and that there are N. **The second one is
+the one nobody checks.**
+
 **`.gitignore`** — build output, `*.o`, `*.ll` (negating any committed
 fixture), `a.out`, `__pycache__`, `*.log`, generator inputs that are large and
 reproducible, editor residue, `.internal`, `.claude/settings.local.json`. Plus

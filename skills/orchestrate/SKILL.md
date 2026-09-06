@@ -61,13 +61,30 @@ Skipped in `tick` mode.
    `RECORD.md`.
 2. Read, in order: `BOARD.md`; `WORKSTREAMS.md` §3 and §5; `LIBRARIES.md`;
    `../nitpick-apps/APPS.md`; `git -C ../nitpick log --oneline -3`.
-3. The toolchain: if the board's header names no pin, or the pinned
+3. Sweep every tree, and **discover the set rather than listing it** — a
+   hand-written list ran here for four orchestrators certifying **seven**
+   trees when there were eight, because `nitpick-apps` holds only documents
+   and nobody thinks of it as code (`PLAYBOOK.md` §7):
+
+   ```bash
+   mapfile -t TREES < <(find . ../nitpick-apps -maxdepth 3 -name .git -printf '%h\n' | sort)
+   echo "sweeping ${#TREES[@]} trees"
+   for t in "${TREES[@]}"; do
+     printf '%-34s dirty=%-3s ahead/behind=%s\n' "$t" \
+       "$(git -C "$t" status --porcelain | wc -l)" \
+       "$(git -C "$t" rev-list --left-right --count HEAD...@{u} 2>/dev/null | tr '\t' '/')"
+   done
+   ```
+
+   **Report the count with the verdict.** *"All N clean"* is two claims and
+   the second is the one nobody checks.
+4. The toolchain: if the board's header names no pin, or the pinned
    directory is missing, or `sha256sum -c SHA256SUMS` inside it fails, run
    §3. Otherwise use it. **Never re-pin while any claim is in flight.**
-4. Recovery, §4, for every `CLAIMED` row.
-5. Tell the author the picture in under ten lines: width, pin, each stream's
-   next item and its gate, anything recovered, anything on the questions
-   table. Then §5.
+5. Recovery, §4, for every `CLAIMED` row.
+6. Tell the author the picture in under ten lines: width, pin, **the tree
+   count**, each stream's next item and its gate, anything recovered,
+   anything on the questions table. Then §5.
 
 ## 3. The pin procedure (W-18)
 
