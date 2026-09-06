@@ -29,8 +29,33 @@ level up.
 | `nregex` | `grep` | `nitpick-posix` | [`APPS.md`](https://github.com/alternative-intelligence-cp/nitpick-apps/blob/main/APPS.md), and `nitpick-posix`'s own README |
 | `ntime` | `date`, `crontab`, `at` | `nitpick-posix` | `APPS.md` |
 | `nparse` | a configuration linter — TOML, JSON and YAML, reporting **every** fault in a file rather than the first | **its own repository** under `nitpick-apps` | `APPS.md` (`PA-103`) and `nparse`'s `ROADMAP.md` 0.12, *"the dogfood consumer"* |
-| `ntui` | a log viewer — follow, search and filter over a large file | **its own repository** under `nitpick-apps` | `APPS.md` (`T-104`, amended `T-114`, located `T-115`) and `ntui`'s `ROADMAP.md` 0.15 |
+| `ntui` **+ `nregex`** | a log viewer — follow, search and filter over a large file | **its own repository** under `nitpick-apps` | `APPS.md` (`T-104`, amended `T-114`, located `T-115`) and `ntui`'s `ROADMAP.md` 0.15 |
 | `nsockets` | a TCP proxy with an admin socket over `AF_UNIX` | **`examples/` inside the library** — see the note below | `nsockets`'s `ROADMAP.md` 0.9 only |
+
+**A CONSUMER MAY SPAN LIBRARIES, AND TWO ALREADY DO** — the log viewer consumes
+`ntui` **and** `nregex`, and `awk` consumes `nparse` **and** `nregex`. That is
+worth stating because a shared consumer tests something no single-library
+consumer can: **the seam**, where each library alone is correct and the pair is
+wrong. Every defect this ecosystem has found the hard way lived at a seam of some
+kind.
+
+**The rule that makes a shared consumer safe rather than risky is MATURITY
+ASYMMETRY, and both existing cases already obey it.** The newer library owns the
+consumer and the older one is merely *used*: the log viewer is `ntui`'s dogfood
+at its cycle 0.15 while `nregex` is far ahead and stable by then. **Two immature
+libraries co-owning one consumer would couple their cycle schedules**, so either
+one's slip blocks the other's validation, and a red in the shared program belongs
+to neither of them until somebody bisects it. **Prefer: one owner, the rest
+already finished.**
+
+**A note on when to add more of them.** A shared consumer also multiplies
+exposure to compiler churn — two libraries crossing one program means a compiler
+change can redden the seam for reasons belonging to neither. That is expensive
+while re-pins land weekly and a pin-dependent measurement can expire underneath a
+library (see `RX-120`, which did exactly that on 2026-09-06), and cheap once the
+compiler is in bug-fix and improvement mode. **The instinct to wait for that
+before spanning libraries deliberately is right, and the reason is schedule
+coupling rather than difficulty.**
 
 **A consumer does not have to be a POSIX utility.** `nitpick-posix` is a
 subcategory for the ones that are; anything else takes its own repository in the
