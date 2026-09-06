@@ -32,6 +32,39 @@ level up.
 | `ntui` **+ `nregex`** | a log viewer — follow, search and filter over a large file | **its own repository** under `nitpick-apps` | `APPS.md` (`T-104`, amended `T-114`, located `T-115`) and `ntui`'s `ROADMAP.md` 0.15 |
 | `nsockets` | a TCP proxy with an admin socket over `AF_UNIX` | **`examples/` inside the library** — see the note below | `nsockets`'s `ROADMAP.md` 0.9 only |
 
+**AN APPLICATION SERVES THREE PURPOSES, AND THE THIRD IS THE ONE NOBODY WRITES
+DOWN.** The author's framing, 2026-09-06:
+
+1. **A test that is not thrown away.** The exercise a library needs and a
+   program somebody wants are the same artefact, so the coverage costs nothing
+   that was not already being built.
+2. **Work already scheduled.** `nitpick-posix` was a porting target from the
+   prototype regardless. Pairing it with library validation is *"two birds with
+   one stone"* — the marginal cost of the test bed is close to zero, because the
+   sequencing is the only thing that changed.
+3. **A usable demonstration, in the language, of something real** — *"rather
+   than just a library or a 'trust me bro' description of what it should do."*
+
+**The third is worth stating plainly because it is an argument about EVIDENCE,
+and it is the same argument this ecosystem already applies to itself.** A library
+can only be evaluated by reading it, or by believing its README. A working `grep`
+can be **run**, by someone who will never read a specification. Internally this
+project refuses "trust me" everywhere — planted faults, stated denominators,
+premises measured rather than accepted — and a library shipped with nothing but
+its own harness asks the outside world for exactly the credence it declines to
+extend to itself. **The applications are how the claim becomes a demonstration.**
+
+**AND POSIX STRUCTURALLY CANNOT COVER ALL FIVE, WHICH IS WHY THE OTHER
+APPLICATIONS ARE REQUIRED RATHER THAN A FALLBACK.** Of the five libraries,
+`nitpick-posix` reaches **three** — `nregex` (`grep`), `ntime` (`date`,
+`crontab`, `at`), `nparse` (`awk`). It cannot reach **`nsockets`**, because the
+POSIX utility set has essentially no networking utilities to write, and it barely
+reaches **`ntui`**, whose natural large consumer `vi`/`ex` is *excluded from
+`nitpick-posix` by `PX-004`* as its own project. **The two libraries POSIX cannot
+serve are exactly the two whose consumers already live in their own
+repositories** — so the design has accounted for this, and the own-repository
+placement is a consequence of the standard's shape rather than a preference.
+
 **A CONSUMER MAY SPAN LIBRARIES, AND TWO ALREADY DO** — the log viewer consumes
 `ntui` **and** `nregex`, and `awk` consumes `nparse` **and** `nregex`. That is
 worth stating because a shared consumer tests something no single-library
