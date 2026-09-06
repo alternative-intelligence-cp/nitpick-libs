@@ -246,6 +246,30 @@ been built on an unenforced escape rule.
 
 ---
 
+**Rule W-28 — a committed `REPORT` block is immutable, and a sweep must say so
+rather than look short.** Refines the append-only rule with the finer form
+`PLAYBOOK.md` §6 already draws: **what may be amended depends on whether the
+document records something that *happened*.** A `REPORT` block records what a
+worker said on a date. It is evidence, not documentation, and correcting it in
+place destroys the only record of what was believed at the time. **So a wrong
+statement inside a committed REPORT block is corrected in a later `RECORD.md`
+entry or in the document that supersedes it — never by editing the block.**
+
+**The half that has bitten twice is the bookkeeping, not the principle.** A sweep
+that finds six sites and edits five reads as *incomplete*, and the sixth looks
+like an omission for as long as anyone remembers to explain it. **State the
+denominator and the exemption together: "six sites, five edited, one inside a
+committed REPORT block and corrected at `RECORD.md` <date> under W-28."** A count
+that does not name its exemptions is the same defect this workbench keeps finding
+in checks whose name is wider than their mechanism.
+
+**Answered by the author 2026-09-06 (Q-1), ratifying the worker's own reasoning.**
+It reached this table twice — a worker declined the edit and argued the case, a
+second dispatch met the same question, and both left it open. Writing it down
+costs one rule and stops a third dispatch re-deciding it from scratch.
+
+---
+
 ## 6. What could start today
 
 Six things need nothing that does not already exist, and each is roughly a day:

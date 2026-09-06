@@ -4538,3 +4538,50 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   and later; the `94874ce` baseline predates it) — a prelude item is emitted only
   if referenced. **Two measurements that could each have been wrong alone agree
   exactly**, which is what makes this a fact rather than a reading.
+- **question Q-1 answered by the author 2026-09-06: ratified as recommended, and
+  landed as `W-28` in `WORKSTREAMS.md`.** A committed `REPORT` block is
+  immutable — it is evidence, not documentation, and editing it in place destroys
+  the record of what was believed at the time; corrections go in a later
+  `RECORD.md` entry or in the document that supersedes it. **The rule also
+  settles the half that actually bit twice, which is bookkeeping rather than
+  principle:** a sweep that finds six sites and edits five reads as *incomplete*,
+  so W-28 requires the denominator and the exemption stated together. It reached
+  the questions table twice with both dispatches leaving it open.
+- **questions Q-2, Q-6 and Q-7 confirmed with the author 2026-09-06 and taken off
+  his plate.** Q-2 needs no action and is recorded only so a later session does
+  not read a type-shaped gap as an omission. Q-6 — the `nitpick-time` CI pin bump
+  to `3d15ac9` — is a clear yes as its own commit, and the orchestrator does it
+  when that stream moves. Q-7, CI for the four repositories that have none,
+  stands as *fix the shape once, then propagate*: a cycle of its own rather than
+  work to squeeze in.
+- **finding: HALF OF Q-3 HAD ALREADY BEEN FIXED AND THE QUESTIONS TABLE DID NOT
+  KNOW.** The row recommended fixing both guard defects *together* — the
+  unjudgeable interpreter heredoc, and the false positive refusing
+  `git worktree list` as "a mutating git subcommand". **The second landed in
+  `80263a2`**: the guard carries a read-forms table (`"worktree": {"list"}`) and
+  a `git_is_read()` test, and the suite passes **86 cases, 41 block / 45 allow,
+  exit 0**, covering `git worktree list` as an allow and `worktree add`/`remove`
+  as blocks. **Established by running the suite rather than by reading the
+  code.** So the two halves did not need to be fixed together, and the open
+  question is **narrower than the row claimed**: the suite already blocks the
+  *visible* form (a heredoc followed by `rm -rf` on a compiler path), so what
+  remains is specifically a write inside an **opaque interpreter payload**.
+  **And the mechanism is duller and worse than a lost commit.** `80263a2` landed
+  **2026-09-05 12:56**, the *same day* Q-3 was raised, and its commit body says so
+  in plain words — *"`git worktree list` is no longer refused as a mutating
+  subcommand … thirteen controls, each read form with its write twin."* Nothing
+  was hidden. **Nobody re-read the row against the tree.** A questions table does
+  not update itself, and **a row that recommends work states an INTENT, not a
+  STATE**; between raising it and answering it the tree can already have moved.
+  **The eighth orchestrator then relayed this row to the author as an open
+  question without checking it**, and he approved a recommendation half of which
+  was a day stale. **Re-verify a standing question against the tree before
+  putting it in front of anyone** — the same discipline this workbench applies to
+  a worker's premises, applied to its own table.
+- **finding, self-observed and put on the board as live evidence rather than as
+  an argument: this session wrote `RECORD.md` twice through exactly the
+  unjudgeable form** (`cat >> … <<'ENTRY'`), inside the repository it was
+  authorised to write, so nothing went wrong. **That is the point.** The harness's
+  own standing instruction prefers heredocs over `Write`/`Edit`, so the unwatched
+  path is the *default* path, and it goes unnoticed precisely because it is
+  almost always used legitimately.
