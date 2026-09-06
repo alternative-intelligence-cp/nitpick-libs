@@ -122,6 +122,72 @@ So `BOARD.md` and `RECORD.md` may cite a library question **only through an
 entry here**, which names the repository. Anything else resolves to whichever
 repository the reader happens to open.
 
+**THE SHARING IS STRUCTURAL, NOT A HANDFUL OF ACCIDENTS — SWEPT 2026-09-06 13:58.**
+The table above listed three ids as examples. A full sweep of all **six** work
+repositories' `meta/OPEN_QUESTIONS.md` finds **20 ids allocated in more than one
+repository, and NOT ONE of them means the same thing everywhere it is allocated.**
+
+```
+allocated twice or more:   A1 A2 B1 B2 C1 C2 C3 G1 G2 P1 P2 R1 R2 S1 T1 T2 X1 X2 Y1 Y2
+agreeing everywhere:       none
+per repo: parse 12  regex 23  sockets 20  time 10  tui 22  posix 6
+```
+
+**So a bare library-local citation on this board is ambiguous AS A CLASS.** That is
+the framing to keep: not *"an id collided once and was resolved"*, but *"these ids
+are shared by design and a bare citation is always wrong"*. **A successor meeting the
+gate for the third time should read this and write an entry, not reach for resolving
+library ids against sibling repositories** — which is what the previous orchestrator
+nearly did, and which would silently pick the wrong question for every id above.
+
+**PARTIAL AGREEMENT IS THE HAZARD, NOT DISAGREEMENT.** Twenty ids that always
+disagreed would train everyone to check. The dangerous ones agree *often enough* to
+teach the opposite habit and then break it:
+
+```
+B1  five repositories, THREE different questions
+      "when to migrate off the harness"      regex, sockets, tui
+      "when npkg can build a library"        time
+      "the multi-call binary"                posix
+B2  three repositories, TWO different questions
+      "ship as source or as an object"       regex, tui (tui's settled, T-112)
+      "whether the network stage should      sockets
+       exist at 1.0"
+```
+
+**Anyone who checks two or three repositories and stops learns a rule that is false
+in the others.**
+
+**THE DENOMINATOR IS SIX, AND A FIVE-LIBRARY SWEEP MISSES THE WORST CASE.** This
+sweep was first run over the five libraries and returned a different set;
+`nitpick-posix` allocates six ids of its own and supplies **`O-B1`'s third meaning**.
+That is `PLAYBOOK.md` §7's rule biting again — *discover the set, never list it* —
+and the application repository is the one nobody thinks of as holding questions.
+
+**METHOD, so this is re-runnable rather than a remembered number.** Take
+`meta/OPEN_QUESTIONS.md` in each of the six work repositories; **strip `~~` and `*`
+before matching**, because at least one repository writes a settled entry as
+`- ~~**O-B2 — …**~~` with the strikethrough *outside* the bold, and a matcher built
+for `- **O-…` silently under-counts exactly the settled ones; accept both the bullet
+form and the `###` heading form, since `nitpick-time` uses headings throughout;
+**exclude the `O-N` family**, which `nitpick-regex/meta/OPEN_QUESTIONS.md:10` defines
+as the workbench registry's ecosystem-wide id, *"never allocated here, only cited"*,
+so `O-N1` in five repositories is correct rather than a collision. **Distinguish
+ALLOCATION from CITATION:** an id defined in one repository and cited in another is
+the system working as intended, and only double *allocation* makes a bare citation
+ambiguous.
+
+**THIS IS NOT A DEFECT IN ANY LIBRARY AND SHOULD NOT BE FILED AS ONE.** Each
+repository's id space is local by design and locally unambiguous; `O-G` is even
+documented as *"numbered locally"*, so two repositories allocating `O-G1` is the
+design working. **The ambiguity exists only at this boundary, when the workbench
+cites a library-local id bare** — so the fix is always an entry here naming the
+repository, and never a change to the library or to the check.
+
+*(Swept by `nitpick-libs_s6`, which found the property and the framing; re-run
+independently here across six repositories rather than five, which raised 19 to 20
+and found `O-B1`'s third meaning.)*
+
 **This section exists because the seventh orchestrator cited a bare `O-X8` on
 the board, `check_refs` reported `undefined-question`, and the orchestrator was
 one step from "fixing" the check to resolve library ids against sibling
