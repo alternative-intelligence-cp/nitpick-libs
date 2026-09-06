@@ -4677,3 +4677,67 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   facts about two programs.** This board has already had one two-tables trap laid
   in it by an orchestrator inside an hour; this is the same shape arriving from
   the other side of the fence.
+- **verify `nitpick-regex` 0.0.4 PASS** — 2026-09-06 05:5x, small-model verifier,
+  literal commands. Harness re-run from the report's own line: **98/98 in 31.7 s**
+  against the claimed 31.5 s. Tree clean, all seven commits present,
+  `check_record` and `check_refs` clean, `ci.yml:69` confirmed reading
+  `3d15ac92d51…`, floor baseline landed at exactly **2 symbols and 2 edges** with
+  `npk_dalloc` and `npk_ofd_close` surviving — the numbers this board predicted
+  before the work started.
+- **THE PASS RESTS ON THE PLANTED FAULT, NOT ON THE GREEN.** The verifier copied
+  the tree, deleted **one line** — `src/core/vec.npk:186`, the `i >= v.count`
+  upper-bound check inside `vec_get<T>` — and the suite went **97/98, failing
+  exactly `vec_oob_get_at_count.npk`** (exit 50, expected 94): the one unit built
+  for that check, failing the way its own comment predicts. Copy destroyed, real
+  tree re-confirmed clean. **This repository has shipped two use-after-frees
+  under a green suite, one of them through an independent VERIFIED PASS, so 98/98
+  is not evidence and was not treated as any.**
+- **advance `nitpick-regex` 0.0.4.** Next is 0.0.5, the cycle close, which means
+  the **auditor runs first** (W-22, orchestrate §7's `READY-TO-CLOSE` path) rather
+  than a worker. Seven commits stand **unpushed**, 7 ahead of `origin`.
+- **finding: THE BOARD'S LEAK-GATE SITE LIST WAS WRONG IN BOTH DIRECTIONS AT
+  ONCE, which is why it survived.** For `nitpick-regex` it named four sites; the
+  verifier read all four and **two are miscitations to unrelated content**
+  (`0.0/README.md:130` is the harness module list, `0.0/0.0.0.md:314` is
+  reserved-word syntax notes) while **two already carried the correction inline**.
+  Meanwhile the worker's own three-way sweep of 126 tracked files found 13
+  candidates, 12 correct or exempt, and **one genuine site that was not on the
+  list at all.** **A list that is both stale and short is worse than no list,
+  because it gets actioned** — and it was queued for four siblings.
+- **extent re-derived by CONTENT across all six work repositories, independently
+  of the verifier, and it is three different answers rather than one.** **Four
+  sites are genuinely live** — `nitpick-tui/…/0.0.4.md:103`,
+  `nitpick-parse/…/0.0.4.md:110`, `nitpick-parse/…/README.md:104`,
+  `nitpick-sockets/…/0.0.4.md:91` — all still unchecked and still stating the
+  unfalsifiable form. **`nitpick-regex` is clear**, its only surviving hit being
+  `CONTRIBUTING.md:95`, which states the corrected form. **`nitpick-time`'s entry
+  is a BROKEN PATH**: cycle 0.0 closed and the file moved to
+  `meta/roadmap/done/0.0/`, and the phrasing appears nowhere in that repository,
+  archive included. **Stated with its limit: this sweep was ONE phrasing where the
+  worker used three, so four is a FLOOR and not a total** — the same "a generating
+  command is only as wide as its pattern" trap the playbook already records, and
+  claiming four as the answer would have re-committed it.
+- **finding: RX-120 EXPIRED AT THE PIN AND THE BOARD CARRIED THE OPPOSITE OF THE
+  TRUTH IN FOUR ROWS AT ONCE.** It said the undefined-symbol scan *cannot* see a
+  syscall — 29 symbols each way, diff empty. True at `950bb1d`; **false at
+  `3d15ac9`**, where D-262's trim stopped emitting `npk_sys6` into programs that
+  do not use it, giving **floor 2, syscaller 3, difference exactly
+  `{npk_sys6}`**. **A pin-dependent measurement had been recorded as a permanent
+  property** — the identical shape to the `never fails` / TYPE-037 claim this same
+  repository shipped as permanent and has now retracted. All four rows corrected.
+  **The IR call-edge scan stays everywhere, and for a better reason than before:
+  it is strictly stronger AND pin-independent**, while the symbol layer is now a
+  residue diff that moves whenever the prelude does. **Honest limit recorded with
+  it:** the 2-vs-3 reading is asserted in three places, not mechanically
+  reproduced, and `harness/selfcheck.py:230`'s docstring still says "29 each way".
+- **finding, self-reported because nothing else would have: THIS SESSION WROTE
+  `BOARD.md` THROUGH THE UNJUDGEABLE INTERPRETER-HEREDOC FORM.** At 05:5x it
+  rewrote the residue table with `python3 - <<'PY'` … `open(path,'w')` — the exact
+  construct question 3 exists about — on the file that carries the writer lock, in
+  the session that documented the hazard. **And the board's FIRST account of this
+  was also wrong**: it had claimed two earlier `RECORD.md` writes used that form,
+  but those were `cat >> FILE <<'EOF'`, plain shell redirects the guard judges
+  correctly. So the earlier note overstated the exposure with a false example and
+  the real instance came later and is worse. **Nothing refused it and nothing
+  logged it.** `sandbox.filesystem.denyWrite` is now configured for `../nitpick`
+  but `sandbox.enabled` is unset, so the setting is correct and **latent**.
