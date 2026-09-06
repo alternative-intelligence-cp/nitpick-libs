@@ -4082,3 +4082,53 @@ that asks us to wait is not a re-pin trigger. Width 1, stream 2 only.
   nothing joining them. The consequence worth carrying: our `.ll` byte counts
   are **portable across machines and checkouts** and **not comparable between
   programs** — different properties, and only the first is what CI tests.
+
+- **report `s2-ntime-0.1.0-0235` DONE**, 399 037 tokens, 49.4 minutes, 177 tool
+  uses, one commit `2589069`, tree clean and **1 ahead of origin — deliberately
+  not pushed**, workbench and compiler untouched. `check_record` clean; harness
+  claimed **GREEN, 67 units, 0 failures, 5 pending**, growing 62 → 67. **Nothing
+  moves on the board until the verifier answers**; `s2-ntime-0.1.0-verify-0325`
+  dispatched on a small model with **literal commands for every check**,
+  including two throwaway-worktree checks — the 62-unit baseline re-derived at
+  `93293f2`, and a **planted fault breaking one leap-year condition, which must
+  turn the suite RED**. That last is the answer to the failure mode this
+  workbench has been caught by twice: *a green suite is evidence only of what it
+  is shaped to see*, and `nitpick-time` shipped two use-after-frees under one.
+- **finding: 1.5.2f IS CLOSED at `3d15ac9` and the RE-PIN IS STILL GATED, by our
+  rule rather than theirs.** Orchestrate §2 forbids re-pinning while any claim is
+  in flight and `nitpick-time` is claimed, so the order is verifier PASS →
+  advance → §3. Verified read-only before recording: `3d15ac9` is their HEAD,
+  tree clean, level with origin, and all three commits exist with matching
+  subjects. Their `build/npkc` was **124 seconds old at 03:27**, clearing §3's
+  two-minute guard by four seconds — noted because that guard has fired twice
+  and been right both times, and this is the closest it has come to firing on a
+  notice that was in fact ready.
+- **`3d15ac9` carries `S-42`, which is OURS** — recorded by the compiler side
+  from this workbench's first CI run: the toolchain pin is a **version** and a
+  version is not a binary; the pinned commit's `build/npkc` differs between this
+  machine and GitHub's runner while `npkrt.o` is identical; **the property that
+  holds across machines is the EMISSION**, and a difference there is a compiler
+  defect. It is open with their author, not yet ruled. **A finding this
+  workbench filed as a correction of its own overstatement became a compiler
+  decision**, which is the return on having recorded the correction rather than
+  quietly fixing the sentence.
+- **finding, and it is a trap this board LAID FOR ITSELF within one hour: there
+  are now TWO six-digest tables on this board at two different commits, and
+  comparing them is a category error.** The six digests localise a difference
+  **between machines at one commit**; they say nothing across commits. `npkc.ll`
+  moved `f0abbfd0…`/21 483 280 B → `05457db4…`/21 514 197 B, **+30 917 B**,
+  between `aaffb87` and `3d15ac9` — the expected consequence of shipping D-264,
+  **not** the *"`npkc.ll` differs = compiler defect"* rule firing. Three of the
+  six are unchanged across the two versions (`builder.o`, `builder`, `npkrt.o`),
+  which makes the fourth's movement look like a signal against three controls.
+  **A warning now sits directly under the second table.** This is the same shape
+  as the spread's inversion, found the same night: a diagnostic whose meaning
+  depends on a comparison axis nobody wrote down.
+- **The canary prediction for the re-pin is FLAT, and that is stronger than a
+  moving one.** Their floor-only probe under `3d15ac9` reads **50 561 B and 14
+  `define`s, identical to 1.5.2d's**, so our floor program should hold at
+  **50 560 B / 14 functions** and **the 1.5.2f point on the floor series should
+  not move. Anything else is a finding.** Third prediction in this series; the
+  previous two were hit exactly. **A prediction that forbids all movement is
+  falsified by any movement**, which is precisely why it is worth taking rather
+  than merely observing the number afterwards.

@@ -732,6 +732,81 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 1.5.2f IS CLOSED — pin target `3d15ac9`, notice received 2026-09-06 03:2x, RE-PIN NOT YET TAKEN
+
+**Verified against the compiler tree read-only before being written here, not
+taken on report:** `3d15ac9` is real and is their `HEAD`, tree clean, level with
+origin, and all three claimed commits exist with matching subjects — `94af975`
+(D-264 step 1), `1ed4934` (step 2, the docs, *"1.5.2f CLOSES"*), `3d15ac9`
+(**S-42, recorded from THIS workbench's first CI run**). Their harnesses: ok 56;
+223 programs at `-O0` and under `opt -O2`; 81 type and 10 derive rejection
+files; verify 141 obligations with 116 discharged, unchanged; parity 1099
+verdicts agreeing with `npkc` byte-identical between two runners; **prelude-trim
+101 prelude functions kept, all referenced**.
+
+**THE RE-PIN IS GATED AND THE GATE IS OURS, NOT THEIRS.** Orchestrate §2 —
+**never re-pin while any claim is in flight** — and `nitpick-time` is claimed
+with 0.1.0 awaiting verification. So the order is: **verifier PASS → advance the
+board → then §3's pin procedure**, whose two-minute binary-age guard then gets
+its turn. At 03:27 their `build/npkc` was **124 seconds old**, which clears that
+guard by four seconds; it will be comfortably aged by the time the gate opens.
+**A landing notice is not a re-pin trigger.**
+
+**The six digests at `3d15ac9`:**
+
+| Artifact | Digest | Bytes | |
+|---|---|---|---|
+| `builder.o` | `3b5f868dbab44253…` | 8 086 688 | unchanged from `aaffb87` |
+| `builder` | `f5c7f5174fc6fa11…` | 7 014 696 | unchanged |
+| `npkrt.o` | `c9ddbcffd32eccc7…` | 55 576 | **unchanged — `cmp`-verify at the re-pin rather than assume (DEF-12)** |
+| **`npkc.ll`** | `05457db4e98b18a9…` | 21 514 197 | **THE EMISSION** |
+| `npkc.o` | `3cd6ba4bfb914987…` | 8 469 288 | |
+| `npkc` | `3b7d6aa0d86215b3…` | 7 351 160 | |
+
+> **DO NOT COMPARE THIS TABLE AGAINST THE `aaffb87` TABLE ABOVE. There are now
+> two digest tables on this board at two different commits, and comparing them
+> is a category error waiting to happen.** The six digests localise a difference
+> **BETWEEN MACHINES AT ONE COMMIT**; they say nothing across commits. `npkc.ll`
+> moved `f0abbfd0…`/21 483 280 B → `05457db4…`/21 514 197 B, **+30 917 B**,
+> between `aaffb87` and `3d15ac9` — that is a different compiler, and the change
+> is the expected consequence of shipping D-264, **not** the "`npkc.ll` differs
+> = compiler defect" rule firing. That rule is about one commit built in two
+> places. **Three of the six being unchanged across versions is a convenience,
+> not the invariant.**
+
+**THE CANARY PREDICTION IS FLAT, WHICH IS A STRONGER TEST THAN A MOVING ONE.**
+Their floor-only probe under `3d15ac9` reads **50 561 B of `.ll` and 14
+`define`s — identical to 1.5.2d's**. So our 14-line floor program should land at
+**50 560 B and 14 functions** (the byte is the path, D-236), and **the 1.5.2f
+point on our floor series should be FLAT. Anything else is a finding.** This is
+the third prediction in this series and the previous two were hit exactly; a
+prediction that forbids all movement can be falsified by any movement, which is
+what makes it worth taking.
+
+**D-264, AS IT BINDS LIBRARY CODE — the four rules, in their words.** A copy of
+a `T` place is `TYPE-046` unless spelled `move(...)` (a plain copy at a scalar;
+**the source is spent at ANY type**, `MOVE-001` on a later read) or `.clone()`
+under a `Clone` bound. A by-value `T:v` stored into an element, field, payload
+or channel is spelled **`move T:v` in the signature and `move(v)` at the
+store**. A lending `pick` cannot bind a `T` payload. `#[derive]` of `Eq`, `Ord`,
+`PartialOrd` or `Clone` over an enum with a `T` payload is `DERIVE-006` —
+**`Hash`, `ToString` and `Debug` still generate, and a `T` FIELD in a struct
+derives all seven**. `vec_pop<T>` already has the required shape. **The rest of
+`src/core/` is unchecked against this and the stored by-value `T:v` is the one
+to hunt** — a shape a library writes without thinking, with no diagnostic before
+now to have taught us otherwise.
+
+**Open with the author on their side:** **S-41** (a borrowing `pick` binding
+form, which would give generic enums with payloads the four derives back) and
+**S-42** (ours: the pin is a version and a version is not a binary; `npkg build`
+to print the six digests; the emission's digest in every pin notice) — recorded
+with recommendations, **not yet ruled**.
+
+**THE COMPILER SIDE IS ROTATING.** `nitpick-compiler_s1` holds this notice's
+contents and **is the address once `_s0` closes**.
+
+---
+
 ### THE RE-FOUNDED SPREAD — the specification, agreed with `nitpick-compiler_s0` 2026-09-06 02:5x
 
 **Read the inversion first, because a session that remembers the old number
