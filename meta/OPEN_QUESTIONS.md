@@ -153,6 +153,31 @@ like a fix right up until you count.**
 
 ---
 
+- **O-Y2 — `nitpick-regex`: does `x` mode ignore whitespace inside character
+  classes?** Raised by `nitpick-regex` cycle 0.1; defined in full at
+  [`nitpick-regex/meta/OPEN_QUESTIONS.md`](../nitpick-regex/meta/OPEN_QUESTIONS.md).
+  Rust does not; Perl does, with `xx`. **Recommendation: do not, matching Rust, and
+  refuse `xx` with a message naming the escape.** **NOT blocking the pause** — but it
+  wants an answer **before subcycle 0.1.4**, not at the close, because
+  `nitpick-regex/meta/roadmap/0.1/README.md` ties it to that subcycle's behaviour
+  while listing it as a cycle-level checklist item. Cited on `BOARD.md` as part of
+  the cycle 0.1 planning gap held for `nitpick-libs_s5`.
+
+  **THIS ID COLLIDES, AND THE COLLISION WAS MEASURED HERE RATHER THAN ASSUMED FROM
+  THIS SECTION'S RULE.** `check_refs` reported `undefined-question` when the board
+  first cited it bare — the same finding, on a fresh id, that this section was
+  written for. The two questions are unrelated:
+
+```
+O-Y2   nitpick-regex     does `x` mode ignore whitespace inside classes
+O-Y2   nitpick-sockets   descriptor passing to a non-AF_UNIX peer
+```
+
+  **So a bare citation would have resolved to the wrong question for any reader who
+  happened to open the sockets repository**, which is precisely the silent failure
+  this registry prevents. The gate is now two-for-two on catching it, and both times
+  the correct response was an entry here rather than a change to the check.
+
 ## For the compiler — the registry
 
 `O-N` numbering is **per repository**, and the numbers collide: `O-N2` is the

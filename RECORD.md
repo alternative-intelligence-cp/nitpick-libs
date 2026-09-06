@@ -5779,6 +5779,66 @@ single-clone sweep of `~/Workspace`. **Three sessions have now independently
 re-derived the writer line, and the one that did it most cheaply had been alive for
 under two minutes.**
 
+**THE AUTHOR CONFIRMED THE PAUSE, THE SUCCESSION AND THIS SEAT'S INSTRUCTION FROM
+HIS OWN SIDE, AND ADDED ONE FACT THIS SESSION COULD NOT HAVE KNOWN.** Relayed
+through `nitpick-libs_s6` at 2026-09-06 13:51. **The pause reason on this board is
+his reason rather than a predecessor's reconstruction of it**, in his words:
+*"we have reached a state where trying to continue working on the libs while the
+compiler is still in so much flux is more trouble than its worth. we end up redoing
+the thing we just redid because of a new bug and another fix that landed and stuff
+like that."* He confirmed this seat's instruction as recorded — stand down, log what
+the compiler team sends, do not act on it — and confirmed `nitpick-libs_s5` as the
+successor, which had until then rested on a roster row rather than on his authority.
+
+**The new fact: THIS SEAT IS CLOSED AT THE HANDOFF, NOT KEPT AS A SPARE.** *"at
+which time i will close the s4 session and start an s7 session in that terminal that
+will be your successor when the time comes."* **Two consequences, and the first is
+operational.** The brief this session gives `s5` is its **last act** — there is no
+period afterwards as an available fallback and no asking it anything, so everything
+a successor could need must be on the board or in that brief before the handoff
+begins. And the pool's mechanic is now explicit rather than inferred: **it advances
+exactly one seat, and a closed session's terminal supplies the spare two generations
+out** — `s7` is born in `s4`'s terminal and is `s6`'s successor, not `s5`'s. That is
+the general form of the off-by-one this session and `s6` hit earlier the same
+afternoon.
+
+**COMPILER-INDEPENDENT WORK EXISTS AND WAS RAISED SO IT WOULD SURVIVE THE PAUSE.**
+The author asked for `nitpick-regex`'s cycle 0.1 planning gap to be in the handoff
+brief **because he expects to have forgotten it himself by then**, and his reason
+generalises: *"there is no actual way of knowing how long it will take to get to the
+stable state. sometimes sub cycles go fast. sometimes they take all day or longer."*
+**An indeterminate pause is exactly the condition under which something held only in
+a person's head is lost.** It was therefore written onto the board as well as into
+the brief, on this session's own reasoning that its handoff is its last act.
+
+**The gap, verified in the tree rather than relayed:** `meta/roadmap/0.1/` holds
+exactly `0.1.0.md` (241 lines) and `README.md` (110 lines), so **six subcycle files
+are owed, 0.1.1 through 0.1.6**. The map already exists — the README's table gives
+each a topic and an end-state — so this is writing six files against a table, not
+designing a cycle. **`0.1.0.md`'s existence is not evidence 0.1 was started:**
+`ROADMAP.md:23` and `0.1/README.md:8` both state that a cycle's opening subcycle file
+is written by the cycle before it, and `0.0.5` step 5 wrote it; cycle 0.0's own six
+files run 452–1189 lines against its 241. `nitpick-regex`'s `O-Y2` is open, belongs to this cycle, and
+`0.1/README.md:76` ties it to 0.1.4's behaviour, so it wants an answer before 0.1.4
+rather than at the close. **And citing that id cost a gate failure, which is the check
+earning its keep for the second time on the same rule.** `check_refs` refused the
+commit with `undefined-question`: a library-local question id has no meaning at
+workbench scope. **The collision was then measured rather than taken from the
+convention's word** — the same discipline that stopped the seventh orchestrator from
+"fixing" the check when it hit this on a different id — and the id does collide, with
+two unrelated questions of that number in `nitpick-regex` and `nitpick-sockets`. **A
+bare citation would have resolved to descriptor passing for anyone who opened the
+sockets repository.** The fix was an entry in the second registry naming the
+repository, not a change to the check; the citations on this board now name the
+repository too.
+
+**Why it is not blocked, which is the point:** writing subcycle files is planning,
+not code, and **nothing in a subcycle plan is invalidated by a re-pin.** It is the
+one category of `nitpick-regex` work the stand-down does not reach. **This session
+did not do it** — this seat logs and does not plan — and it is recorded for `s5` so
+that the next holder does not sit idle waiting for a stability signal it does not
+need for this part.
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`
