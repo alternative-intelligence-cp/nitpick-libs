@@ -216,6 +216,47 @@ our item in their doc-sync backlog** — the language's answer is `.eq` (D-250:
 comparisons of owning types are calls, not operators) and **the table is what is
 wrong**. They asked for no separate item from us.
 
+**O-N19 IS ACCEPTED AS A SOUNDNESS HOLE IN THE CHECKER, AND IT GOES TO THE
+AUTHOR TODAY AS A DECISION RATHER THAN A PATCH.** `nitpick-compiler_s0`
+confirmed our mechanism reading — `require_move_if_owning`
+(`type_expr.npk:404`) asks `type_drops`, which answers **false for an
+unsubstituted `T`**, so a bare copy of an owning element inside a generic body
+is **never refused**. Not a regression, and **not O-N17's**: the hole predates
+both, and step 4 only made its consequence *runnable* where it previously
+stopped at `llc`.
+
+**Why it is a decision and not a fix.** A generic body is checked **once, as a
+template**, and a move-only rule keyed on *ownership* has no answer for `T`.
+Their honest rule: **a bare type parameter is move-only in a generic body** — a
+copy of a `T` place is spelled `move(...)`, or `.clone()` under a `Clone` bound
+— **the same at every instantiation, and costing nothing at a scalar.** That
+changes what the checker *accepts*, so it needs the author's word, and they are
+**measuring how much existing code it refuses first** (the compiler's own
+sources, `npkg`, the tools, the test suite) before recommending.
+
+**And our fix is ratified rather than tolerated: `move(s[i])` is the spelling
+the language means at every `T`.** So `src/core/vec.npk` is now written the way
+the rule will require, whichever way the author rules — which is the good
+outcome from having fixed our own bug rather than routing around theirs.
+
+**THE ALLOWLIST NUMBERS RECONCILE, AND THE RECONCILIATION IS GOING INTO THEIR
+DOCS SO IT STOPS TRAVELLING.** Confirmed exactly: the allowlist is **the
+object's 111 GLOBAL symbols plus `main` = 112**; the `.ll`'s **57** are its
+`define internal` **functions**; the object's other **106** non-global symbols
+are locals of every kind. **So 217 and 166 describe different artefacts and
+every number is right** — which is precisely the shape that had one of ours
+wrong today. It lands in `BUILD_REFERENCE` §4.1 with **DEF-23** (this finding)
+in the docs commit after 1.5.2e.
+
+**1.5.2e IS UNDER ITS HARNESSES NOW, AND IT CARRIES BOTH OF OUR REMAINING
+ITEMS.** **O-N18 is fixed** — `.len` on a fixed-size array lowers. And **S-39
+is fixed in the shape this workbench asked for**: the prelude's `List<T>` stores
+through the managed heap's **untracked entry** (D-263, **prelude-only**,
+`TYPE-054` elsewhere) — **and `D-151` keeps counting every `wild` block, our
+`Vec` included.** That was the one thing we asked not to be generalised away,
+and it was not. **Another re-pin follows the landing notice**; re-pin first,
+then re-measure, and the 30-program spread goes back to them after it.
+
 **1.5.2d's STEP STATUS, as of 2026-09-05 evening:** step 1 (the frontend's
 three scaling defects) **committed and under its harness**; step 2 (the prelude
 trim) **implemented and passing both runners' self-checks**, about to go under
@@ -538,10 +579,18 @@ re-measured. **The prediction was a real test and it passed:** the board said
 | **full harness run** | **240 s** | **41.8 s** | **5.7× faster** |
 | harness verdicts | 40 units, 0 fail | **40 units, 0 fail** | **unchanged** |
 
-**The one-byte gap against their predicted 50 561 is two different source files,
-not a discrepancy** — they measured their own floor probe, we measured ours, and
-the function count matches exactly. **Stated rather than smoothed over, because
-"close enough" is how a real difference gets absorbed the next time.**
+**The one-byte gap against their predicted 50 561 has a MEASURED cause, and it
+is not the one first written here.** This board said *"two different source
+files"* — a plausible guess, offered as fact. `nitpick-time` 0.0.5 then measured
+the real mechanism: **an emitted `.ll`'s byte count is PATH-DEPENDENT and the
+object's is not.** The same source compiled from two directories whose names
+differ by **one character** gives `.ll` sizes **14 bytes apart** — one byte per
+`npk.site.paths` entry — while the `.o` and the linked binary are
+**byte-identical**. So the byte is the path, and the function count matching
+exactly is the real signal. **THE RULE: quote the OBJECT, not the `.ll`.** Every
+IR byte-count on this board is therefore a measurement of the emitting
+directory as much as of the compiler — including the canary itself, which is
+why the count of FUNCTIONS is the half worth trusting.
 
 **THE HARNESS IS GREEN AT THE NEW PIN AND NOTHING BROKE**, which was not
 guaranteed: the compiler session warned that *"every emitted module holds only

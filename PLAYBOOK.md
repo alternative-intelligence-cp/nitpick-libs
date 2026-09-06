@@ -1206,3 +1206,60 @@ outcomes** — `HeapOom` exit 92 for the leaking half, exit 0 for the correct on
 — plus the peak-RSS pair as the quantitative half. **Any repository quoting an
 address-space bound owes the same control**, and the number in this one was
 inherited across three subcycles before anyone ran `/bin/true` beside it.
+
+---
+
+**AN EXEMPTION LIST'S BOTH-DIRECTIONS DIFF CHECKS THAT THE FILE STILL EXISTS,
+NOT THAT ITS REASON STILL HOLDS — AND THAT IS THE FOURTH INSTANCE OF THIS
+SECTION'S SHAPE FOUND INSIDE A MECHANISM WRITTEN TO PREVENT IT.** A file
+exempted from a check carries a reason: *this cannot be spelled because the
+compiler refuses it*. The diff that keeps such a list honest asks **is every
+named file present, and is every present file named** — which is a question
+about **membership** while the thing that decays is the **reason**.
+
+**Measured at `nitpick-time` 0.0.5.** Two entries exempted for O-N17 said *in
+their own text* that they would "fail the both-directions diff" on the day the
+defect landed. **It landed. Both files went from stopping at `llc` to running
+clean. The suite stayed GREEN at 40 units with both stale entries in place.**
+The prediction was written down, was correct about the world, and the mechanism
+it named could not see it come true.
+
+**The remedy is cheap and it is the general one: an exemption records the
+VERDICT it was written against** — `npkc` / `llc` / `ld` / `run:<code>` /
+`none` — **and the harness re-derives that verdict every run.** Membership is
+then still checked, and the reason is checked too. **Any list of "known
+failures", "expected refusals" or "temporarily skipped" in this ecosystem owes
+the same treatment**, because every one of them is a claim about the world that
+was true on the day it was written.
+
+---
+
+**AN EMITTED `.ll`'s BYTE COUNT IS PATH-DEPENDENT; THE OBJECT'S IS NOT. QUOTE
+THE OBJECT.** The same source compiled from two directories whose names differ
+by **one character** produced `.ll` files **14 bytes apart** — one byte per
+`npk.site.paths` entry — while the `.o` and the linked binary were
+**byte-identical**. So an IR byte-count is partly a measurement of where you
+built, and two sessions comparing IR sizes across different trees are comparing
+their directory names as well as their compilers.
+
+**This already cost a small false explanation here:** the canary's one-byte
+difference against the compiler session's predicted value was written up as
+*"two different source files"* — plausible, and a guess presented as a cause.
+The real mechanism is this one. **Where a size must be compared across trees,
+compare the OBJECT; where IR is the only thing available, compare the FUNCTION
+COUNT**, which is what actually held exactly across the re-pin.
+
+---
+
+**`#size_of` DERIVED FROM FIELD WIDTHS WAS WRONG TWICE IN ONE TABLE OF AN
+ALREADY-REVIEWED DOCUMENT, AND CARRIED 37% OF A DECISION'S HEADLINE NUMBER.**
+`ZoneTransition` was recorded as 12 bytes and is 16; `ZoneEntry` as 16 and is
+28. Both were arrived at by adding up field widths, which ignores alignment and
+padding, and both survived review because the arithmetic looks right. The
+playbook already said never to derive `#size_of`; this is what it costs when
+someone does — **a size estimate low by more than a third, underneath a
+decision every specification in the repository rests on.**
+
+**Make the probe's EXIT CODE be `#size_of`**, so the number cannot be
+transcribed wrongly: a program that exits with the width it measures is a
+measurement no one can round.

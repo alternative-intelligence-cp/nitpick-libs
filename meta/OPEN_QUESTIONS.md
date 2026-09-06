@@ -107,6 +107,52 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N19 — `NITPICK-TYPE-046` IS NOT ENFORCED INSIDE A GENERIC FUNCTION BODY,
+  SO A BARE COPY OF AN OWNING ELEMENT COMPILES, LINKS, RUNS, AND LEAVES TWO
+  OWNERS OF ONE HEAP BODY. THIS IS A USE-AFTER-FREE THAT EXITS 0.** Raised by
+  `nitpick-time` 0.0.5, 2026-09-05, at pin `aaffb87`; **reproduced by the
+  orchestrator before it was sent, end to end.** `T:answer = s[i]` at an owning
+  `T` inside a generic function is **accepted** (`npkc` 0, `.ll` written); the
+  identical statement with `string` written out is **refused** at
+  `NITPICK-TYPE-046`. The case that drops the first owner and reads the second
+  compiles, links, and **runs to exit 170 — the allocator's `0xAA` poison.**
+
+  **The controls isolate it to the type parameter and nothing else:**
+  `case2_concrete_bare_copy` (the type written out) → `npkc` **1**,
+  `NITPICK-TYPE-046`, no `.ll`; `case1_generic_bare_copy` (the same statement at
+  an owning `T`) → `npkc` **0**; `case3_generic_scalar` (generic, scalar `T`) →
+  `npkc` 0, which is correct because scalars copy. **So the rule exists, is
+  right, and is simply not asked of an unsubstituted type parameter.**
+
+  **Mechanism, read at the pin rather than guessed:**
+  `require_move_if_owning` (`src/frontend/type_expr.npk:404` at `0880771`)
+  returns early unless `type_drops` is true, **which it is not of an
+  unsubstituted `T`.**
+
+  **Not a regression — reproduced at ALL FOUR pins this workbench has used**
+  (`aaffb87`, `0dfddac`, `950bb1d`, `94874ce`). What changed is only that
+  O-N17's fix made the consequence **runnable**: before it, the same program
+  stopped at `llc`, so the hole was readable off the IR and never executed.
+
+  **Impact (W-27). Blocks nothing here today** — `ntime` instantiates no owning
+  `T` by design. **But it silently un-guards every generic container in the
+  ecosystem, and the failure mode is a use-after-free rather than a leak**,
+  which is the reason it is registered at once rather than carried. **A leak is
+  found by a gate; this is found by a wrong answer.**
+
+  **AND THIS LIBRARY SHIPPED IT.** `src/core/vec.npk`'s `vec_pop<T>` at 0.0.4
+  was the defect's own `case1` function verbatim — **written, reviewed,
+  verified PASS by an independent verifier, and committed**, because the
+  compiler accepted it and every gate the repository owns is a leak gate.
+  Fixed at 0.0.5, which now writes `move(s[…])` — the correct spelling of a pop
+  at any `T`, costing nothing at a scalar, **so that is this library fixing its
+  own bug and not routing around the compiler's.**
+
+  Reproduction: `nitpick-time/tests/probe/defect/generic_owning_copy/` — five
+  cases and a transcript across four pins. **The worker deliberately left it
+  unnumbered and cited it by path**, which is the rule written after the
+  `O-N12` collision, applied correctly the first time it mattered.
+
 - **O-N18 — `.len` on a fixed-size array `T[N]` is accepted by the frontend and
   cannot be lowered by the emitter.** Raised by `nitpick-time` 0.0.4,
   2026-09-05, at pin `0dfddac`, writing `put_uint`'s allocation-free digit
