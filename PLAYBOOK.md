@@ -1263,3 +1263,44 @@ decision every specification in the repository rests on.**
 **Make the probe's EXIT CODE be `#size_of`**, so the number cannot be
 transcribed wrongly: a program that exits with the width it measures is a
 measurement no one can round.
+
+---
+
+**WHEN TWO CAREFUL PARTIES DISAGREE ON A COUNT, THE FIRST QUESTION IS WHAT SET
+EACH ONE MEASURED — NOT WHO MISCOUNTED.** Three times in one day here, two
+numbers conflicted and **both were right**:
+
+| the dispute | resolution |
+|---|---|
+| `56` vs `57` internal defines | 57 is `^define internal`; the 56 was never re-derived, and the other numbers in its own sentence proved it |
+| allowlist `112` / `57` / `113` / `106` | 112 = the object's 111 globals + `main`; 57 = the `.ll`'s `define internal` functions; 106 = the object's non-global symbols. **Three artefacts, three true counts** |
+| `447` vs `454` zone files | 447 = TZif files by magic bytes; 454 = every regular file, the difference being seven metadata files |
+
+**In all three the answer was a denominator nobody had stated**, and in none was
+anybody careless. So the diagnostic move is not *recount* — it is **ask what
+was counted**, and expect the sets to differ by something nameable.
+
+**The corollary for reports: name the SET, not just the number.** *"447
+non-symlink TZif files"* survives contact with a verifier; *"447 files"* does
+not. The worker whose count was challenged had written the qualifier and was
+vindicated by it.
+
+---
+
+**A VERIFIER'S `FAIL` IS EVIDENCE, NOT A VERDICT — ADJUDICATE IT BEFORE
+RE-DISPATCHING ANYBODY.** §7 says a FAIL means re-dispatch with the finding in
+`NOTES:`, and that is right when the finding is about the work. **It is not
+always about the work.** At `nitpick-time` 0.0.5 the verifier returned FAIL on a
+count, and the fault was **the dispatch's**: the orchestrator had supplied a
+literal command (`find … -type f | wc -l`) that **could not produce the number it
+was asserting**, because the claim was about TZif files and the command counted
+every file. Re-dispatching the worker to "fix" a correct number would have been
+the wrong response, and an obedient one.
+
+**This is the fix for one failure mode producing another.** Supplying literal
+commands was introduced precisely because a verifier had substituted reading for
+running on checks needing setup. It worked — and it **moved the error out of the
+verifier's reasoning and into the dispatcher's command.** That is not an
+argument against supplying them. It is the reason the orchestrator runs the
+decisive measurement itself before accepting either party's number: **the
+adjudication cost one command and settled it beyond both.**

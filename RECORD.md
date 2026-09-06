@@ -3610,3 +3610,85 @@ per-program constant; the compiler session's option (2) — *measure the
 frontend's share before believing the obvious cause* — is what turned it from
 a prelude-size story into three scaling defects, and **our inference about the
 cause was wrong while our measurement of the cost was right.**
+
+### `nitpick-time` 0.0.5 — the estimate was low by 37%, and a use-after-free that exits 0 — 2026-09-05
+
+**0.0.5 DONE — VERIFIED PASS** at `0c85648`, with one FAIL raised and
+**adjudicated in the worker's favour on the orchestrator's own measurement**.
+Harness green at 40 units in ~43 s, the first subcycle worked entirely against
+the new `aaffb87` pin.
+
+**THE NUMBER.** **475 006 B** for `ZONE_MODEL.md` Z-7's four tables and two
+pools; **489 310 B (477.8 KiB)** with `POSIX_RULES` at its real cardinality.
+Against a **≈356 119 B** estimate — **low by 37%**. Read off the object with
+`nm -S` rather than computed, and that mattered: **two of the three estimated
+row widths were wrong** (`ZoneTransition` 12 against **16**, `ZoneEntry` 16
+against **28**), in a document that had already been reviewed. **TM-007 stands.**
+Margin to the next band is **22 690 B = 1 418 transitions ≈ 4.4%**, now written
+into the specification as Z-7b rather than left for a tzdata release to find.
+**This is exactly what the subcycle was for**: an estimate sitting under a
+decision every specification here rests on, replaced by a measurement *before*
+cycle 0.5 could be built on it.
+
+**AND IT FOUND A USE-AFTER-FREE THAT EXITS 0 — O-N19.** `NITPICK-TYPE-046` is
+not enforced inside a generic function body: `T:answer = s[i]` at an owning `T`
+is accepted, while the identical statement with `string` written out is refused.
+The case that drops the first owner and reads the second **compiles, links,
+runs, and exits 170 — the allocator's `0xAA` poison.** Reproduced by the
+orchestrator end to end before it went upstream. **Accepted there as a soundness
+hole in the checker**, not a regression and not O-N17's: the mechanism is
+`require_move_if_owning` asking `type_drops`, which answers false for an
+unsubstituted `T`, and the hole is present at all four pins this workbench has
+used. O-N17's fix only made the consequence **runnable** where it previously
+stopped at `llc`. **It goes to the author as a decision rather than a patch**,
+because a generic body is checked once as a template and a move-only rule keyed
+on ownership has no answer for `T`.
+
+**AND THIS LIBRARY SHIPPED IT.** `vec_pop<T>` at 0.0.4 was the defect's own
+`case1` verbatim — **written, reviewed, independently VERIFIED PASS, and
+committed.** Every gate this repository owns is a leak gate, and `npkc` accepted
+the program, so nothing in the pipeline could see it. **A leak is found by a
+gate; this was found by a wrong answer.** Fixed at 0.0.5 with `move(s[…])`,
+which the compiler session then ratified as the spelling the language means at
+every `T` — so the library is already written the way the rule will require
+whichever way the author rules.
+
+**TM-137 IS THE FINDING THIS SUBCYCLE WOULD BE REMEMBERED FOR IF THE NUMBER
+WERE NOT ITS POINT.** An exemption list's both-directions diff asks *is every
+named file present, and every present file named* — **a question about
+membership, while the thing that decays is the reason.** Two entries exempted
+for O-N17 stated *in their own text* that they would fail that diff on the day
+the defect landed. **It landed. Both files went from stopping at `llc` to
+running clean. The suite stayed GREEN at 40 units with both stale entries in
+place.** The prediction was written down, was correct about the world, and the
+mechanism it named could not see it come true. **Fourth instance of §6's shape
+here, and the first found inside a mechanism written to prevent it.** The
+remedy — an exemption records the **verdict** it was written against and the
+harness re-derives it every run — is now `check_exemptions_live`, and the
+verifier drove it red.
+
+**THE ONE FAIL WAS THE DISPATCH'S FAULT, NOT THE WORK'S, AND THE WAY IT HAPPENED
+IS INSTRUCTIVE.** The verifier reported 454 files + 153 symlinks = 607 against
+the worker's 447 + 153 = 600. **Both numbers are right about different sets:**
+454 is every regular file under `zoneinfo`, **447 is the TZif files** — the
+difference being exactly seven metadata files (`zone.tab`, `leapseconds`,
+`tzdata.zi`, `iso3166.tab`, `zone1970.tab`, `zonenow.tab`,
+`leap-seconds.list`), which the orchestrator confirmed by magic bytes. The
+worker's own report said *"447 non-symlink **TZif**"*, with TZif doing real
+work in the sentence. **The dispatch's literal command dropped it** —
+`find … -type f | wc -l` cannot produce a TZif count — and then asserted the
+identity against it.
+
+**So the fix for the verifier's 0.0.3 gap produced a failure of its own.**
+Supplying literal commands removed the verifier's temptation to reason, and
+**moved the error out of its reasoning and into the dispatcher's command.**
+That is not an argument against supplying them; it is the reason a FAIL is
+adjudicated rather than obeyed. **A verifier's FAIL is evidence, not a verdict**,
+and the orchestrator's job is to find out which of the two is wrong before
+re-dispatching anybody.
+
+**And it is the third time today two careful parties disagreed on a count while
+both were right.** The `56`/`57` internal defines, the allowlist's
+`112`/`57`/`113`/`106`, and now `447`/`454`. **When two measurements disagree,
+the first question is what SET each one measured, not who miscounted** — and in
+all three cases the answer was a denominator nobody had stated.
