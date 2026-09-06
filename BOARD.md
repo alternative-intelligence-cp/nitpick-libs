@@ -24,19 +24,41 @@ is what disambiguates.
 
 | Session | Was | Role |
 |---|---|---|
-| `nitpick-libs_s0` | `nitpick-libs-c6` | **this workbench's orchestrator — the current writer** |
-| `nitpick-libs_s1` | — | this workbench's **successor**, open and idle, waiting for the handoff |
-| `nitpick-compiler_s0` | `nitpick-bc` | the compiler session — **who to ask about `build/` and the pin** |
-| `nitpick-compiler_s1` | `nitpick-e3` | the compiler's successor, open and idle |
-| `claud-skills-devTeam_s0` / `_s1` | — | the `devteam` project pair, **idle to conserve quota** (note the project segment is spelled `claud-`, without the final `e`) |
+| `nitpick-libs_s3` | — | **this workbench's orchestrator — the current writer, the eighth** |
+| `nitpick-libs_s4` | — | this workbench's **successor — hand off to THIS one, not to the highest number.** Answered "idle, nothing written, nothing queued" at the lock take and undertook to message before it ever writes here |
+| `nitpick-libs_s5` | — | the generation **after** `s4`. Parked and unbriefed, opened 04:1x in the terminal `s2` was closed from. **Needs nothing from the current writer** |
+| `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **Stood down from the role, still alive** |
+| `nitpick-compiler_s1` | `nitpick-e3` | **the compiler side TODAY — who to ask about `build/`, the pin, and whether a diagnostic change is deliberate.** Answered question 8 within the hour, with three measured facts and an unasked-for correction of a stale design premise |
+| `nitpick-compiler_s2` | — | the compiler's parked successor |
+| `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. **The spelling correction that stood here was itself wrong** — this board claimed the project segment is `claud-`, "without the final `e`"; `ListAgents` reads `claude-skills-devTeam`. Corrected 2026-09-06 04:4x from the listing, and it is the third stale fact this handover found by re-reading a document against the thing it describes |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
 orchestrator declined to rest the lock on — `nitpick-e3` — is
 `nitpick-compiler_s1`, the compiler's own waiting successor, confirmed by the
 same `ListAgents` ref across the rename. It works another repository and will
 not write here. And **an idle peer is parked on purpose, not stalled**: the
-author is holding the `devteam` pair idle so the compiler and this workbench do
+author is holding the `devteam` trio idle so the compiler and this workbench do
 not run short of quota, so waking one has a cost he is actively managing.
+
+**THE POOL IS THREE TERMINAL TABS IN ONE WINDOW, CYCLED IN A LOOP — described
+by the author 2026-09-06, and it settles a question four orchestrators have
+guessed at.** He keeps exactly three live sessions for a work area. When the
+outgoing one is closed he opens the next generation **in the terminal it
+vacated**, so at any moment there is one working session, its briefed
+successor, and a fresh unbriefed session behind that. `s2` was closed and `s5`
+opened in its tab while `s3` held the lock.
+
+**Two things follow, and both are easy to get backwards.** (1) **Hand off to the
+session ONE number above you, never to the highest number** — handing to `s5`
+would skip `s4`, which has been parked and waiting for the role and is the one
+the author expects to take it. (2) **A brand-new peer two numbers above you
+needs nothing from you.** It is not a rival writer, it has not been briefed, and
+waking it to tell it what it will learn at its own handoff spends the quota he is
+deliberately managing. **Record its existence here, where the next orchestrator
+reads it for free, instead of messaging it.** That is the correct answer to
+hazard 4 for a peer the author has already identified — hazard 4 is about
+resolving an *unexplained* peer, and a direct statement from the author is a
+fact, not the inference it warns against.
 
 **Phase:** cycle 0.2's dry run one is under way — `nitpick-time` 0.0 is the
 first library cycle to be worked, and the loop is being judged against
