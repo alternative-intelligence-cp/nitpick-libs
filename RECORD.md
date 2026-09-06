@@ -5349,3 +5349,47 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   across repositories while a tree is not, so the blast radius is larger and the
   ownership less obvious. Built and measured in the scratchpad; lands when the
   verifier reports.
+- **verify `nitpick-regex` 0.0.5 (second triage) PASS** — nine checks. Harness
+  **141/141** plus **1 PENDING stated verbatim and explicitly outside the
+  denominator**; both gates clean; all four commits present; `vec_oob(k)` traps 94
+  at k ∈ {−1, 0, 1}; N-10's check now opens `.yml 1` where it opened 0, with
+  per-extension denominators; N-11's three double-free paths now report **94
+  `OutOfBounds`** where they reported 95 `Unreachable`; the triage's six rows
+  counted independently and the arithmetic confirmed.
+- **THE VERIFIER CORRECTED THE DISPATCH, AND WAS RIGHT.** I wrote that the three
+  self-check units for k ∈ {−1, 0, 1} *"must redden"* when the fix is reverted.
+  Only `vec_oob_selfcheck_zero` reddened, **and that is correct by design** — the
+  defect only ever manifested at `i == 0`, and the tree's own header says *"the
+  ONE unit that would have caught this"*, singular. **A verifier that fails work
+  for not matching a wrong expectation is worse than no verifier**; this one
+  reported 1-of-3, explained why 1 is right, and passed the check on its real
+  bar — 10 units red out of 141, matching 141 − 131 exactly.
+- **THE PENDING MARKER WAS TESTED AGAINST THE COMPILER THAT MAKES IT STALE, AND
+  IT REDDENS.** Run against `../nitpick/build/npkc` — provenance established by
+  mtime rather than assumed, since that repository's HEAD has since moved to
+  `47a7eb2` (1.5.3) — the suite gives **141/142 with exactly one FAIL**:
+  *"`pending-until: fe42dba` IS NOW STALE — the file met its expectation …
+  DELETE THE MARKER"*. Diffed against the pinned run, **that is the only status
+  line that changed anywhere in the suite.** A deferral that announces its own
+  expiry is a different object from a comment that records one.
+- **finding: the optimiser makes the trap MORE certain, not less.** The worker's
+  fourth false sentence is confirmed — under `opt -O2` the probe's `main`
+  collapses to `npk_chain_reset` + `tail call void @npk_trap(i32 -4099)` +
+  `unreachable`, marked `noreturn`. **The header's fear that a constant-provable
+  index would let the optimiser defeat the trap is exactly backwards**, and the
+  parameter is kept for the two reasons that are true.
+- **The supersession rule LANDED in `check_refs.py`, with three controls, after
+  the verifier cleared.** Ecosystem run: **2 findings, both verified real** —
+  `RX-130` and `PX-010` — against 328 decisions in six repositories, with
+  `nitpick-parse` and `nitpick-sockets` declaring no supersessions at all.
+- **finding, against this session's own control: THE FIRST DIRECTION CONTROL
+  COULD NOT SEE THE BUG IT WAS WRITTEN FOR.** It marked neither decision and
+  expected `{"unmarked-supersede"}`; with the direction bug restored the check
+  emitted **two** findings of that kind rather than one, and **this harness
+  compares SETS OF KINDS, so both readings matched and the case passed.** **A
+  control whose expectation is a set cannot count.** Rebuilt to change the
+  *answer* rather than the count — mark the superseded decision, leave the
+  superseder unmarked, expect **clean** — and verified by restoring the bug in a
+  scratch copy, where it now fails while the other two still pass. **A control
+  that passes under the fault it names is worse than no control, because it is
+  cited as evidence.**

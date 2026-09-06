@@ -43,6 +43,18 @@ def append(repo, rel, text):
     git(repo, "commit", "-q", "-m", "fault")
 
 
+def rewrite(repo, rel, old, new):
+    """Replace text in place, for a fault that must land somewhere other than
+    the end of a file. `append` cannot mark an existing heading, because a
+    marker has to sit directly beneath the heading it marks."""
+    p = repo / rel
+    s = p.read_text()
+    assert old in s, (rel, old)
+    p.write_text(s.replace(old, new, 1))
+    git(repo, "add", "-A")
+    git(repo, "commit", "-q", "-m", "fault")
+
+
 CASES = [
     ("clean", lambda r: None, set()),
     ("broken-link", lambda r: append(r, "meta/specs/A.md", "\n[missing](B.md)\n"), {"broken-link"}),
@@ -58,6 +70,45 @@ CASES = [
     # check narrower than its name, which is the defect this ecosystem has now
     # found seven times.
     ("leak", lambda r: append(r, "meta/specs/A.md", "\nMeasured at /" + "home/someone/secret.\n"), {"leak"}),
+    # A decision declared superseded must carry a marker on its own heading.
+    # X-1 is the fixture's existing decision, so declaring it superseded from a
+    # spec file must fire.
+    ("unmarked-supersede",
+     lambda r: append(r, "meta/specs/A.md", "\nRule R-9 replaces it: this supersedes X-1 entirely.\n"),
+     {"unmarked-supersede"}),
+    # FALSE-POSITIVE CONTROL: the same declaration WITH the marker must not
+    # fire. Without this case the rule could be satisfied by never marking
+    # anything, and nobody would notice.
+    ("marked-supersede-is-clean",
+     lambda r: (append(r, "meta/specs/A.md", "\nRule R-9 replaces it: this supersedes X-1 entirely.\n"),
+                append(r, "meta/DECISIONS.md", "\n### X-1 — SUPERSEDED by R-9\n\nKept as written.\n")),
+     {"duplicate-decision"}),
+    # DIRECTION CONTROL, and it took two attempts to write one that works.
+    #
+    # In "X-1 is superseded by X-7" the SUPERSEDED one is X-1, not X-7. A
+    # pattern spelled `supersede[sd]?` also captures X-7 and demands a marker on
+    # the decision doing the superseding -- measured at 2 false positives in 6
+    # firings against the real repositories.
+    #
+    # THE FIRST VERSION OF THIS CASE COULD NOT SEE THAT BUG. It marked neither
+    # decision and expected {"unmarked-supersede"}; with the bug restored the
+    # check emitted TWO findings of that kind instead of one, and this harness
+    # compares SETS OF KINDS, so both readings matched and the case passed.
+    # A control whose expectation is a set cannot count.
+    #
+    # So the case is built to change the ANSWER rather than the count: X-1 is
+    # marked correctly, X-7 is not. Correct direction sees only the marked X-1
+    # and reports CLEAN; the buggy direction also sees the unmarked X-7 and
+    # fires. Verified by restoring the bug in a scratch copy -- this case then
+    # fails and the other two still pass, which is what makes it the control
+    # for the direction specifically.
+    ("supersede-direction",
+     lambda r: (rewrite(r, "meta/DECISIONS.md",
+                        "### X-1 — the first decision",
+                        "### X-1 — the first decision\n> **SUPERSEDED by X-7.**"),
+                append(r, "meta/DECISIONS.md", "\n### X-7 — the replacement\n\nSee A.\n"),
+                append(r, "meta/specs/A.md", "\nX-1 is superseded by X-7 for the reason given.\n")),
+     set()),
     # --- FALSE-POSITIVE CONTROLS: content that must NOT produce a finding ----
     # Until 2026-09-05 this control had one negative case ("clean") and six
     # planted faults, so nothing here could ever fail by over-reporting. A

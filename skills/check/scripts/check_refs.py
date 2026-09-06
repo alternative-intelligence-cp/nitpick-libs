@@ -16,6 +16,20 @@ DECL = re.compile(r'^###\s+(?:~~)?\*{0,2}([A-Z]{1,3}-\d+)', re.M)
 OQ_DEF = re.compile(r'\b(O-[A-Z]\d+|Q-\d+)\b(?=\s*(?:—|~~))')
 OQ_REF = re.compile(r'\b(O-[A-Z]\d+|Q-\d+)\b')
 LEAK = re.compile(r'/home/[a-z_][a-z0-9_-]*|ghp_[A-Za-z0-9]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY')
+# A settled decision's text is never rewritten (D-085/D-202) -- it is superseded
+# by a new one that says so and says why. That rule is right and stays. Its cost
+# is that a superseded decision and a live one are indistinguishable by reading,
+# so RX-130 went on saying "it never returns" while RX-143 recorded that it does.
+#
+# DIRECTION IS THE WHOLE DIFFICULTY. The active form takes its object AFTER it
+# ("this supersedes RX-130"); the passive takes its subject BEFORE it ("PX-010 is
+# superseded by PX-100"). A single pattern spelled `supersede[sd]?` matches both
+# and captures the SUPERSEDER half the time: measured, that draft flagged TM-110
+# and PX-100 -- the two decisions doing the superseding -- for 2 false positives
+# in 6 firings. Two patterns, and `supersedes` must not also match `superseded`.
+SUPERSEDES = re.compile(r'\bsupersedes\b[^.\n]{0,60}?\b([A-Z]{1,3}-\d+)')
+SUPERSEDED_BY = re.compile(r'\b([A-Z]{1,3}-\d+)\b[^.\n]{0,60}?\bsuperseded\b')
+SUPERSEDE_MARK = re.compile(r'SUPERSEDED', re.I)
 
 
 FENCE = re.compile(r"^```.*?^```", re.S | re.M)
@@ -179,6 +193,43 @@ def check(repo: Path):
             refs |= set(OQ_REF.findall(prose(f.read_text(encoding="utf-8", errors="replace"))))
         for q in sorted(refs - defined_q):
             findings.append(("undefined-question", f"{q} is referenced and never defined"))
+
+    # 4b. a decision declared superseded carries a marker on its own heading.
+    # The convention is not invented here: nitpick-time/meta/DECISIONS.md has
+    # carried `> **SUPERSEDED IN PART by TM-110 (2026-09-04).**` since that date,
+    # and nitpick-regex/meta/specs/VERIFICATION.md marks a spec rule the same
+    # way. This check propagates a form four of the six repositories did not
+    # know about, rather than imposing a new one.
+    #
+    # It fires only where the supersession is ALREADY DECLARED somewhere in the
+    # repository, so it cannot demand a marker for a decision nobody has
+    # replaced -- and it deliberately does not fire on a PLAN to supersede
+    # (`- [ ] ... R-25 superseded`) or on a decision merely CITED about
+    # something superseded, both of which the draft caught and neither of which
+    # is a supersession.
+    if dec.exists():
+        dtext = dec.read_text(encoding="utf-8", errors="replace")
+        claimed = {}
+        for f in files:
+            t = f.read_text(encoding="utf-8", errors="replace")
+            for n, line in enumerate(t.split("\n"), 1):
+                for pat in (SUPERSEDES, SUPERSEDED_BY):
+                    for ident in pat.findall(line):
+                        if ident in set(DECL.findall(dtext)):
+                            claimed.setdefault(ident, []).append(
+                                f"{f.relative_to(repo)}:{n}")
+        for ident in sorted(claimed):
+            hit = False
+            for m in re.finditer(rf"^###\s+.*?\b{re.escape(ident)}\b.*$", dtext, re.M):
+                after = dtext[m.end():].split("\n")[:4]
+                if SUPERSEDE_MARK.search(m.group(0)) or any(
+                        l.lstrip().startswith(">") and SUPERSEDE_MARK.search(l) for l in after):
+                    hit = True
+                    break
+            if not hit:
+                findings.append(("unmarked-supersede",
+                                 f"{ident} is declared superseded at "
+                                 f"{', '.join(claimed[ident][:2])} but its heading carries no marker"))
 
     # 5. nothing machine-specific in a tracked file. Deliberately NOT run
     # through prose(): a home directory pasted inside a fence is still leaked,
