@@ -5700,6 +5700,54 @@ its own recovery condition, that it may be taken freely with nothing in flight, 
 claim open, no agent live and no work owed. **§4 Recovery is written for stale
 CLAIMS; a watch-lock is a shape it does not cover.**
 
+**THE COMPILER ROSTER TOOK THREE ASKS TO SETTLE, AND THE DECISIVE ONE WENT TO THE
+SUBJECT OF THE QUESTION RATHER THAN TO SOMEONE ABOUT IT.** `nitpick-compiler_s1`,
+asked directly, said `_s2` and `_s3` were parked and unbriefed. The author, reading
+that relayed upward, contradicted it: `_s2` had been at least initially briefed, then
+told to stand down, and was listening so it could relay — **with his own memory
+flagged as fuzzy, because it was late when it happened.** The outgoing session did
+not arbitrate; it asked `_s2`, **the only authority on its own briefing state**, and
+redirected the reply here.
+
+**`_s2` answered about itself and settled it.** It received no handover brief from
+`_s1`, full or partial, and its author sent it no prompt beyond naming the session.
+`_s1`'s account was correct. **And the author was not wrong either — his memory was
+attached to the wrong session:** `_s2` supplied the reconciliation nobody else could,
+that the briefing-then-stand-by he remembered **most likely describes `_s1` itself**,
+which `_s0` briefed early on 2026-09-06 ahead of a compaction with a stand-by
+condition. **No account was false; one was misfiled.** That is worth keeping, because
+"two sources disagree" invites picking a winner, when the actual resolution was that
+both described real events and one had the wrong subject.
+
+**A correction this workbench had briefly implied and `_s2` refuted about itself:** a
+message to an unbriefed session is **not** silently lost. `_s2` is alive and idle, a
+message reaches it at its next turn, and it will read it, report it to its author and
+forward it to `_s1` noting the provenance. **But it stated the limit in the same
+breath and the limit is the operative half — that is a FALLBACK, NOT A ROUTE, because
+a parked spare can be closed without notice.**
+
+**The outgoing session recorded an error against itself here, and it is the sharpest
+one of the handover:** it relayed `_s1`'s account upward **as settled when it was one
+session's claim about a third party.** It had applied *verify the peer's report* to
+that session's digests all day and did not apply it to a roster fact. **A claim about
+who someone else is briefed by is a second-hand claim like any other.**
+
+**The `_s2`-went-busy observation got its cause, rather than being deleted.** It had
+been logged as a bare signal with an explicit "not evidence" note; the cause was that
+the outgoing session had messaged it minutes earlier. **An explained transition and an
+unexplained one are different entries** — a bare signal left standing is something a
+later session mines for meaning it does not have.
+
+**Compiler-side observation logged and NOT acted on**, volunteered by `_s2` and
+flagged hard because it has the shape of a landing notice and is not one:
+`nitpick-compiler_s0` is **gone** (this board had it as "still alive"; corrected, and
+`ListAgents` agrees); `_s1` is the only busy compiler session and is **running a full
+harness in worktree `c1`**, so its slowness must not be read as a handoff; compiler
+`main` is at **`47a7eb2`, 1.5.3 ratified, D-267/D-268**, worktrees `c0`/`c1`/`c2` on
+1.5.3. **The pin stays `3d15ac9`.** `_s1`'s landing notice with the six digests is
+the re-pin input; a third party's status read is not. Nothing claimed, nothing
+dispatched, no re-pin taken.
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`
