@@ -3338,3 +3338,96 @@ looks exactly like work and produces a clean diff.
 **Incidental, and it is the denominator lesson arriving inside the instrument
 used to measure denominators:** `grep -c` reports **5** for the `SAFETY.md`
 paths because it counts *lines*, not *matches*; there are **8**.
+
+### `nitpick-time` 0.0.3 — the self-check lands, and the verifier reasons where it should have run — 2026-09-05
+
+**0.0.3 DONE — VERIFIED PASS** at `60e03bf`. The harness is green — 27 units, 0
+failures, 5 pending, ~188 s — and this is the subcycle that earns the earlier
+greens: **eight self-check cases, each red on its planted fault and green on a
+correct twin in the same run; nine tree checks, not the four planned, each red
+on a planted violation against ten clean controls.** Case 7 — *a sweep that
+silently does not run* — reports **"swept 3 of the 10 its header declares"** and
+**"7 case(s) were NOT visited"**, which is this library's most plausible way to
+be green and wrong, now caught by name and by number.
+
+**THE VERIFIER RETURNED PASS, AND TWO OF THE NINE PRESSED POINTS HAD NOT BEEN
+TESTED. WHICH TWO IS THE FINDING.**
+
+- **V-15's stopping.** Reported as *"a self-check failure **would** block
+  subsequent stages"* — read off the code, where the dispatch had asked in
+  terms for a planted failure. **Planted at the orchestrator: `run.py` exit 1,
+  only `[1/9] self` in the whole output, stages 2 through 9 never ran**, the
+  banner *"Nothing below it was run (V-15)"* present, and `harness/selfcheck.py`
+  restored byte-identical with `git status --porcelain` and `git diff --stat
+  HEAD` both empty.
+- **The arm-bill oracle.** Checked against six `src/` placeholders **which all
+  owe the floor of four** — a set that cannot distinguish the claim from its
+  negation. **The discriminating specimens were re-run here:** `probe11c`, whose
+  `failsafe` is the floor-only one character for character, is refused **4×
+  `NITPICK-REACH-002`** naming `DivByZero`, `DivOverflow` and two more, so
+  `calc_lib` **adds four → 8**; `probe11b` is refused naming
+  `probe11_arms_lib.EProbeZone`, so `arms_lib` **adds one → 5**. Both of the
+  worker's bills stand.
+
+**The shape both gaps share is worth more than either gap.** Each was a check
+that needed **setup** — planting a fault, or choosing a specimen that could
+discriminate — and in each the verifier **substituted reading for running**,
+reasoning its way to the correct answer. Everything that was a bare command it
+re-ran faithfully. **But reasoning from the code is exactly what the worker
+already did**, so on precisely the checks that are hardest to fake, the
+verification stopped being independent. **A verifier that reads instead of runs
+agrees with the worker for the worker's own reasons.**
+
+**This is the second verifier gap today and both point the same way.** The
+first carried a **56** that the other two numbers in its own sentence
+falsified; this one carried two conclusions that were correct but underived.
+**Neither was a wrong answer — that is what makes the pattern hard to see. A
+verifier's errors are not wrong verdicts, they are right verdicts reached the
+wrong way**, and nothing downstream can tell those apart. **Fix, applied from
+the next dispatch: hand the verifier the LITERAL command for any check that
+requires construction, or verify that class at the orchestrator and say so.**
+
+**TM-124 — `accept` was DECLINED, not skipped, and the distinction was checked
+rather than accepted.** Acceptance asked for five stages and four were built.
+The plan listed `accept`; `BUILD.md` B-4b and `TESTING.md` §1 both say this
+library does not use it. **The specifications are the authority (TM-002), so
+the plan was the wrong document** — and the decision is implemented as an
+**active refusal by name with its reason**, distinguished in the schema check
+from *"not yet implemented"*, because *"not yet"* invites a later session to
+build it and `accept` stops at **"accepted in silence"** — the exact thing this
+repository holds the O-N11 reproduction of. Verified live: a manifest naming
+`accept` is refused and told what to use instead.
+
+**And the numbers all sum, because the worker was asked to state the identity
+rather than the figure.** 50 = 7 `src/` + 42 `tests/probe` + 1 conformance;
+42 = 26 + 3 + 13; parse verdicts 50 = 36 clean + 13 refused later + 1
+must-not-parse + 0 failed; **what roots each file, 50 = 1 library root + 27
+suite roots + 3 reached by `use` + 19 nothing else** — that last one being the
+parse stage's whole marginal value, since nineteen files are reached by no
+build and would otherwise be checked by nothing. `check_specs_current`:
+226 + 15 new = **241** declared rules, 1 575 citations across 119 files, 0
+unresolved. **After this morning's `56`, every count in the report carries the
+relation that makes it falsifiable.**
+
+**Cost: 187 s, up from 63.8 s** — 78 s of self-check and 40 s of parse, both
+**new checks rather than new overhead on old ones**. All of it is TM-117's
+floor: ~130 `npkc` invocations at ~0.8 s each for a library that computes
+nothing. **Deliberately not chased**, per the dispatch, because 1.5.2d is in
+flight to remove ~94% of exactly that. **When it lands, this repository is the
+best place in the ecosystem to measure the improvement**, precisely because its
+run is an unusually large number of very small compilations — the same
+structural fact that let this workbench see the cost when the compiler's own
+harness could not.
+
+**The pipeline trap, fourth occurrence, and this one settles what kind of
+problem it is.** The worker hit it in its **first measurement**, in a dispatch
+whose text warned against it, in the paragraph it was working from:
+`$NPKC --help 2>&1 | head -30; echo $?` reports **0**; redirected with the
+status on its own line the same command is **2**, re-confirmed here. Four
+sessions, four warnings, four violations, each by someone who had just read the
+warning. **A rule violated by the person reading it is not under-stated, it is
+mis-formed** — appending `| head` to look at output is an older and faster
+habit than any instruction and fires before the rule is recalled. `PLAYBOOK.md`
+now points at the mechanism instead: **pair every status with the artefact it
+should have produced**, because a pipeline's borrowed `0` is falsified the
+moment you ask what it wrote. All four were caught that way and none by recall.
