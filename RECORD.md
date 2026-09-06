@@ -4849,3 +4849,66 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   since this repository has shipped two use-after-frees under a green suite, one
   through an independent VERIFIED PASS. **`meta/audits/` does not exist here; this
   will be its first report.**
+- **audit `nitpick-regex` 0.0 filed** —
+  `meta/audits/nitpick-regex-0.0-2026-09-06.md`, **the first audit in this
+  ecosystem**. `npk:auditor` on `claude-opus-5`, dispatched adversarially and
+  briefed from cycle 0.0's own closing findings used as templates. **Verdict: DO
+  NOT ACCEPT.** Both trees clean before and after; every probe built in the
+  scratchpad; every compiler claim re-read with `git show 3d15ac9:<path>` because
+  **the compiler working tree is at `ddc3dc0`, not at the pin** — a discipline the
+  auditor applied without being told.
+- **BL-1: `bytes_take_string` returns a BORROWED VIEW and three documents call it
+  owning.** `npk_string_from_bytes` sets cap 0, and the compiler's own runtime
+  comment reads *"cap 0 is the not-mine bit"*. Both advertised properties are
+  false at the pin: returning it from the frame that owns the `Bytes` is REFUSED
+  `NITPICK-BORROW-001`, and a growth frees the body underneath a taken string —
+  **probe B exits 170 = `0xAA`, the D-183 free poison, the exact signature this
+  repository's own open question names.** **THE SUITE ALREADY CONSTRUCTS THE
+  STALE ALIAS AND DECLINES TO READ IT** — `bytes_unit.npk:55` takes `out`, line 63
+  reallocates, `out` is never read again, and **one added line turns the green run
+  into exit 46.** **Third use-after-free shipped here under a green suite; second
+  to survive an independent VERIFIED PASS.** A 147-file sweep for
+  `dangl|invalidat|stale view|…` returns 10 hits, **none about `Bytes`** — the
+  repository documents this hazard correctly for `Vec` and missed it for the type
+  it wrote to replace the banned one.
+- **BL-2: `vec_reserve` does not terminate on `cap == 0`**, which is `vec_free`'s
+  deliberate poison postcondition. `bytes_reserve`, written in the same subcycle
+  for the same purpose, carries `if (nc < 1i64) { nc = 1i64; }`; `vec_reserve`
+  does not. Measured `timeout 6 ./vfree` → **exit 124**. `vec_push` and
+  `vec_insert` `ralloc(<dangling>, 0)` and then write. **A non-terminating loop in
+  the container every engine is built on is the denial of service `CLAUDE.md`'s
+  first non-negotiable rule exists to prevent, reached with no backtracking.**
+- **adjudication (a): the RX120 obligation is NOT discharged, and the reason is
+  worse than non-executability. `harness/baseline/RX120.txt:115` RECORDS A COMMAND
+  THAT CANNOT HAVE PRODUCED THE OUTPUT BESIDE IT** — it calls
+  `harness.irscan.kernel_call_edges`, which **exists nowhere in the tree**; run
+  verbatim it raises `AttributeError`, exit 1. The transcript's conclusion is
+  sound and its evidence is fabricated, **in the section being propagated to four
+  sibling repositories**, and the independent VERIFIED PASS did not catch it.
+  **A transcript is a claim about a command, not the command** — the artefact must
+  be an executable that creates every intermediate it consumes and ASSERTS the
+  numbers rather than printing them.
+- **adjudication (b): the CI digest substitution is LEGITIMATE, settled by
+  measurement.** `build/npkc.ll` and `.internal/quickemit/npkc.ll` are
+  **byte-identical**, both `05457db4…`, 21 514 197 B, `cmp`-verified. **STATED
+  PRECISELY SO IT IS NOT OVERSOLD: that is a SAME-MACHINE comparison and settles
+  only the substitution.** The compiler side runs on this machine too, so the
+  cross-machine measurement D-265 §5 asks for is **still owed** and still needs a
+  CI runner — the digest step is in 0.0.5's unpushed commits.
+- **adjudication (c): three of four primitives read back after a growth, none
+  reads after a truncation, and the one weak case is where BL-1 lives.**
+  `sparseset_unit.npk` is named the strongest artefact in the tree — an
+  independent reference re-checked at every key after every one of 10 000 seeded
+  operations. `Bytes`'s growth test pushes the constant `88u8`, **so any mis-copy
+  that preserves length is invisible**.
+- **adjudication (d): the three-way error budget holds — one `error:`, zero
+  arithmetic, zero contract clauses — and the audit found the INVERSE failure.**
+  `bytes_unit.npk:166` asserts `DivByZero`/`DivOverflow` are present "because
+  `bytes_put_uint` uses `/` and `%`"; `bytes.npk:186` says in capitals that it
+  does not, and stripping both arms compiles at exit 0. **Two dead arms outliving
+  the construct that charged them, justified by a sentence false about the file it
+  tests.**
+- **re-dispatch `s1-nregex-0.0.5-audit-0637`** with `AUDIT:` naming the filed
+  report (W-22, orchestrate §7's `READY-TO-CLOSE` path). **Nine non-blocking
+  findings carry into 0.1.** Cycle 0.0 is NOT closed and `ROADMAP.md` currently
+  says it is — that reversal is part of the triage.
