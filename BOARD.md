@@ -45,7 +45,48 @@ report it as live state, and **have every provenance check it runs come back cle
 **Only the PATH distinguishes them.** So anchor on `nitpick-apps/nitpick-posix`
 explicitly, treat a bare `-name nitpick-posix` match as **unresolved** until its parent
 directory has been read, and never let `ARCHIVE/` into a live denominator — it is
-read-only prior art by design. One writer here (W-16, P-19).
+read-only prior art by design. (9) **THE OPPOSITE OF HAZARD 8, AND THE QUIETER ONE: THE SAME FILE REACHED BY TWO
+PATHS, WHICH `sort -u` DOES NOT COLLAPSE.** Found 2026-09-06 14:13 by `nitpick-libs_s6`;
+verified here by inode. **Keep these two apart — they are different failure modes with
+different fixes.** Hazard 8 is *different files, one name*, fixed by reading the parent
+directory. This is *one file, different names*, fixed only by resolving **identity**:
+
+```
+50481537  ./meta/OPEN_QUESTIONS.md
+50481537  ../nitpick-libs/meta/OPEN_QUESTIONS.md
+```
+
+**`sort -u` over those two lines returns two lines.** The strings differ, so a
+path-deduplicated sweep still counts the file twice **and still looks deduplicated** —
+which is what makes this the more dangerous of the pair. A name collision eventually
+looks wrong to a reader; **a re-reached file produces a plausible number with no
+visible anomaly at all**, and if it cancels against a missing member the total can even
+come out right. `find . .. -maxdepth 3 -name OPEN_QUESTIONS.md` does exactly that: seven
+paths, `nitpick-posix` missing, this workbench counted twice.
+
+**Dedupe on inode, and root only on the live areas:**
+
+```
+find . ../nitpick-apps -maxdepth 4 -name OPEN_QUESTIONS.md | grep -v '/\.git/' \
+  | xargs -r stat -c '%i %n' | sort -u -k1,1        # -> 7: workbench, 5 libraries, posix
+```
+
+**⚠ THE `..` ROOT WAS DROPPED DELIBERATELY AND MUST NOT BE ADDED BACK FOR TIDINESS.**
+Rooting at `..` with `-maxdepth 4` reaches `ARCHIVE/`, and the only reason it does not
+currently pull prior art into the count is that `ARCHIVE/nitpick-posix` happens to hold
+no `meta/OPEN_QUESTIONS.md`. **That is safety by coincidence of the archive's present
+contents, not by construction** — `ARCHIVE/` holds 121 entries including
+`nitpick-posix`, `nparse`, `nregx`, `ntime` and `nsocket`, so one archived file with
+that name at that depth silently admits read-only prior art to a live denominator, with
+hazard 8 guaranteeing the provenance check comes back clean. Rooting on `.` and
+`../nitpick-apps` makes the exclusion structural.
+
+**AND DO NOT SWEEP THIS WORKBENCH AS A PEER OF THE LIBRARIES.** Its own
+`meta/OPEN_QUESTIONS.md` carries library ids — an occurrence-based sweep reads them as
+an eighth allocator inventing that many colliding ids, when they are **registry entries
+citing library questions and naming the repository**, which is the mechanism working.
+The allocation-versus-citation distinction is what keeps that out of the count.
+One writer here (W-16, P-19).
 **THE PEER SESSIONS, AND THEIR NAMES ARE NOW A CONVENTION RATHER THAN A
 LABEL.** The author renamed every session on 2026-09-05 to `<project>_s<N>`,
 where the project segment names the work area and `N` is the handoff
