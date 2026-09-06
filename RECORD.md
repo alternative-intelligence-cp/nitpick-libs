@@ -5085,3 +5085,74 @@ O-B1   nitpick-regex, nitpick-sockets, nitpick-time,
   recorded output with no runnable command turned out to document a function that
   never existed. **Both failures are one failure: treating evidence as a thing
   written down rather than a thing that can be produced again.**
+- **SECOND audit of `nitpick-regex` 0.0 filed** —
+  `meta/audits/nitpick-regex-0.0-2026-09-06-second.md`. **DO NOT ACCEPT again.**
+  Scoped tightly to the delta and to where the first did not press; it passed the
+  reference gate on the first attempt because the auditor read the first report's
+  header and wrote relative paths pre-emptively.
+- **BL-3 — `vec_oob(0)` RETURNS, AND IT IS THE LARGEST FINDING OF THE CYCLE.** The
+  library's only out-of-range stop is spelled as an index into a one-element
+  fixed array (`int64[1]:guard = [0i64]; discard(guard[i]);`) — **and index 0 is
+  in range.** Every call site is `drop vec_oob(...)`, and `drop` continues, so at
+  `i == 0` the guard does nothing and the access it just refused proceeds.
+  Measured with controls: `vec_oob(0)` returns; `vec_oob(1)` and `vec_oob(-1)`
+  trap 94. **Extent: 28 call sites, 19 sound, 9 broken** — every `i >= count`
+  guard where the container is empty. Consequences measured, not reasoned:
+  `vec_get` on an empty `Vec` **returns a word**; `vec_set` on a FREED `Vec`
+  **completes the write through a dangling `items`**; `vec_remove` sets
+  `count = -1`, after which `vec_push` writes at **`items[-1]`, before the
+  block**, surfacing later as heap-header corruption; and `sset_at` returns a
+  **phantom member** — which is verbatim the failure `sparseset.npk:43` warns of
+  in its own header, *"the library returns a match that is not there"*.
+- **AND THE REASON 108/108 IS GREEN OVER IT IS THE FINDING BEHIND THE FINDING.**
+  All **twelve** out-of-range unit programs pass a NON-ZERO argument — checked one
+  by one and tabulated. Twelve of twelve avoid the single value at which the stop
+  does not stop. `SAFETY.md:363` enumerates "four cases are gated" and reads as
+  exhaustive; **`i == count == 0` is the fifth.** **A suite can be
+  comprehensive-looking and unanimous in its blind spot**, and no amount of adding
+  more cases of the same shape would have found this.
+- **BL-4 — THE FIX FOR BL-1 LEAKS, AND ITS ROOT CAUSE IS A COMPILER DEFECT.**
+  `bytes_copy_string` on an EMPTY `Bytes` leaks **32.2 bytes per call**, linear,
+  identical through `opt -O2`, measured with this repository's own memory-cap
+  instrument because S-22 says `exit 0` proves nothing about a managed body: 8 M
+  calls reach **exit 92 `HeapOom`** under a 64 MiB cap where a 5-byte control
+  reaches 0. **Attributed exactly** — `string_concat("", "")` in a bare loop with
+  no library code reproduces it; `string_concat("", "a")` does not.
+- **The compiler asymmetry is documented in the compiler's own source, which is
+  what makes it a defect rather than a design choice.** At `3d15ac9`
+  `@npk_string_slice` carries an explicit empty short-circuit — *"An empty slice
+  allocates nothing"* — and `@npk_string_concat` carries none, so
+  `alloc(0)`'s real 16-byte block (D-150) is returned with cap 0, the not-mine
+  bit, and the drop frees nothing. **RX-138 chose `string_concat` over
+  `string_slice` precisely because `string_slice` returns a `Result` — and the
+  `Result` is the price of the primitive that handles the empty case correctly.**
+  **Raised to `nitpick-compiler_s1` under W-11 rather than worked around; the
+  library-side guard is a decision to take deliberately and record, not a silent
+  patch.**
+- **finding: the tree's justification for BL-4 cited a measurement that is not in
+  the tree, and the wrong instrument for the one it named.**
+  `bytes.npk:339-342` asserts `string_concat` of two empty strings "allocates
+  zero bytes", which the compiler's source contradicts, and cites an `exit 0`
+  measurement — the instrument this repository's own S-22 says cannot see a
+  managed body. **Three failures in one comment: a false claim about a peer's
+  code, a measurement absent from the tree, and the wrong gate cited for it.**
+- **N-10 — THE CHECK BUILT TO CLOSE N-9 CANNOT SEE THE FILE ITS OWN DOCSTRING
+  NAMES.** `check_dated_measurements` lists `.yml` in scope and then prunes every
+  dotted directory, so `.github/` is unreachable and the tree's only tracked
+  `.yml` is `.github/workflows/ci.yml`. Instrumented: **115 files opened, 0 of
+  them `.yml`**, `failures: []` — while its own regex finds **two matches in that
+  file**. **The rule-wider-than-mechanism shape, appearing inside the check
+  written to close an instance of it.** Corroborated by dead code: the skip list
+  still names `.internal/` and `.git/`, which the prune already removes.
+- **The two things a scoped audit could have rubber-stamped and did not.** BL-1's
+  class swept **CLEAN** across all 62 tracked `.npk` — only two builtins in the
+  entire set carry a non-empty `Views` column, **verified against the GENERATED
+  table in compiler source rather than against its documentation** — so
+  `bytes_copy_string` was the only escape and there is no second one. And the
+  triage's tests are **sound**: six mutations, each reverting exactly one guard,
+  each reddening exactly its own unit, with cross-independence checked so no unit
+  is passing on another's behalf.
+- **Eight of nine non-blocking findings genuinely discharged, verified from the
+  tree rather than the report** — including N-3, whose replacement count (33
+  occurrences, 32 lines, 9 files) **re-derives exactly** at the archived commit.
+  N-9 is discharged with the hole that is N-10.
