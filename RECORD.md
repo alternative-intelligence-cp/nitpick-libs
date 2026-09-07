@@ -6057,6 +6057,58 @@ claim itself re-run — zero `loop(` heads in code position, zero `till` anywher
 moment a library writes a counted loop the clearance expires**, losing the `BadStep`
 compare with a literal step or gaining a `loop-step` obligation row with a computed one.
 
+**1.5.4 STEP 4 FILED — AND IT PRODUCED THE FIRST GENUINE LIBRARY CONSEQUENCE OF THE
+WHOLE QUIET PERIOD.** `a807de9`, 2026-09-06 23:49: `prove` and `assert_static` live, every
+`pick` a `checker` row, the rung suite retired (52 harness suites where there were 53),
+parity 1 204. Filed, not worked; pin stays `3d15ac9`.
+
+**THE FINDING: `VERIFICATION.md` RULE P-1's PREMISE IS NOW ENTIRELY GONE, IN ALL SIX
+REPOSITORIES.** Nobody asked for this; it falls out of reading the notice against our own
+specification. **P-1** states that until a construct is live its obligation is written as
+a comment in the exact syntax it will take, and its safety argument is that at compiler
+1.5.0 `prove`, `assert_static`, `limit<Rules>`, loop `invariant` and `requires`/`ensures`
+**all refuse with `NITPICK-RUNG-001`** — so *"a premature clause is a build failure and
+not a silent no-op"*. **P-1a (RX-127) had already seen the mechanism** — *"the rung is no
+longer uniform, so 'refused by name' must be re-measured per construct and not
+inherited"* — and its closing line is the operative one: **"A comment-form obligation is
+only inert while its construct is refused."**
+
+**Tracked against this board's own notices, every construct P-1 names has gone live:**
+`limit<Rules>` already at `3d15ac9`; `requires`, `ensures` and loop `invariant` at 1.5.3
+(`b2f7d94`); `prove` and `assert_static` at this step. **At the compiler's current main,
+not one of them refuses.** P-1a instructs re-measurement per construct rather than
+inheritance, and **the re-measurement is now due for all of them at once, across six
+repositories.**
+
+**Stated carefully so nobody over-reacts at the re-pin: nothing breaks automatically and
+no library result is invalidated.** Comments remain comments. The footprint in the exact
+future syntax is tiny — measured: two commented `prove(`, and zero commented `requires(`,
+`ensures(`, `invariant(` or `assert_static(`. **What is lost is the guarantee, not any
+code:** a prematurely uncommented clause used to be a build failure and now compiles.
+
+**And one probe's expectation is inverted.**
+`nitpick-regex/tests/probe/refused/probe13a_prove_refused.npk` carries `expect-error:
+NITPICK-RUNG-001` and exists to prove `prove` is inert; `prove` is live, so it will no
+longer be refused. Its own comment names the stake — *"a construct that compiled to
+nothing would tell a caller its argument was checked when nothing checked it"* — and in a
+plain build `prove` now lowers to nothing, though under `--elide` an undischarged one is
+`NITPICK-VERIFY-001`. **Whether that satisfies P-1 is a library design question left
+deliberately unanswered by this seat.** `NITPICK-RUNG-001` now has no compiler-side test
+while a library probe still asserts it: **the assertion has outlived its counterpart.**
+
+**The manifest change has the widest reach and the least immediate effect.** Every `pick`
+is now a `checker` row, so a manifest recorded before `a807de9` will not match at or past
+it. **Measured: no library holds a recorded obligations manifest of any kind — zero across
+all six** — so there is nothing to re-baseline, and the exposure is deferred rather than
+absent. `nitpick-regex` (81 `pick` sites), `nitpick-time` (101) and `nitpick-posix` (7)
+will carry `checker` rows in the first manifest they record, re-recorded under **D-040 —
+a deliberate re-baseline in the same commit, never a quiet fix.**
+
+**DEF-31 does not touch us**: zero inline `mod` blocks, all 170 non-comment `mod` uses
+being file-module declarations. **Emitted IR is byte-identical for our libraries across
+this landing.** **All four questions S-45…S-48 landed under their recommendations with
+ratification still pending**, so the shape can move before the author signs it.
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`

@@ -855,6 +855,103 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 1.5.4 STEP 4 IS LANDED — `prove`/`assert_static` live, the rung retired, pin target `a807de9`, notice 2026-09-06 23:48. **RECORDED, NOT WORKED — BUT THIS IS THE FIRST NOTICE OF THE SUBCYCLE WITH REAL LIBRARY CONSEQUENCES, AND THEY ARE SET OUT BELOW.**
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since 1.5.2i (fe42dba)
+builder.o  3b5f868d...  8,086,688 B  unchanged since the 1.5.1b snapshot refresh
+builder    fe528b03...  7,014,760 B  unchanged since the same refresh
+npkc.ll    72fdbd97... 22,965,305 B  the emission, MOVED
+npkc.o     96a5c05c...  9,168,856 B  MOVED
+npkc       7757457f...  7,983,712 B  MOVED
+```
+Canary 14 / 52 212 B, unchanged — **and per step 3's lesson that is a null result here too.**
+Parity **1 204** verdicts; both runner self-checks +3 cases. **52 harness suites where there were 53** (the rung suite retired).
+
+## ⚠⚠⚠ THE FINDING: `VERIFICATION.md` RULE P-1's PREMISE IS NOW ENTIRELY GONE, IN ALL SIX REPOSITORIES
+
+**This is a library-side consequence, not a compiler defect, and no session asked for
+it — it falls out of reading the notice against our own specification.**
+
+**P-1** (present in all six work repos' `meta/specs/VERIFICATION.md`, 56–269 lines each)
+says: *until a construct is live, its obligation is stated as a comment beside the code in
+the exact syntax it will take*. Its **safety argument** is that at compiler 1.5.0
+`prove`, `assert_static`, `limit<Rules>`, loop `invariant` and `requires`/`ensures` **all
+refuse with `NITPICK-RUNG-001`**, so *"a premature clause is a build failure and not a
+silent no-op"*, and *"the switch is deleting a comment marker rather than inventing the
+clause."*
+
+**P-1a (RX-127) already saw the mechanism** — *"the rung is no longer uniform, so
+'refused by name' must be re-measured per construct and not inherited"* — and recorded
+that at our pin `3d15ac9` three still refuse while `limit<Rules>` had gone live. **Its
+closing line is the operative one: *"A comment-form obligation is only inert while its
+construct is refused."***
+
+**Tracked against this board's own landing notices, every construct P-1 names has now
+gone live:**
+
+```
+limit<Rules>          live already at 3d15ac9   (P-1a recorded this)
+requires / ensures    live at 1.5.3, b2f7d94    checked at entry / at return seams
+loop invariant        live at 1.5.3, b2f7d94    checked at every loop head
+prove / assert_static live at 1.5.4 step 4, a807de9   THIS NOTICE
+```
+
+**So at the compiler's current `main`, NOT ONE of P-1's constructs refuses.** P-1a
+instructs re-measurement per construct rather than inheritance; **the re-measurement is
+now due for all of them at once, in six repositories.**
+
+**⚠ WHAT THIS DOES *NOT* MEAN — stated so nobody over-reacts at the re-pin.** Comments
+remain comments; **nothing breaks automatically and no library result is invalidated.**
+The commented-obligation footprint in the exact future syntax is tiny — measured at
+2026-09-06 23:48: **2 commented `prove(`, and zero commented `requires(`, `ensures(`,
+`invariant(` or `assert_static(`.** **What is lost is the GUARANTEE**, not any code: a
+prematurely uncommented clause used to be a build failure, and now compiles.
+
+**⚠ AND ONE PROBE'S EXPECTATION IS NOW INVERTED.**
+`nitpick-regex/tests/probe/refused/probe13a_prove_refused.npk` carries
+`// expect-error: NITPICK-RUNG-001` and exists to prove `prove` is *inert*. **`prove` is
+live, so that probe will no longer be refused at the re-pin.** Its own comment states the
+stake precisely: *"A construct that compiled to nothing would tell a caller its argument
+was checked when nothing checked it, which is the exact defect the compiler's LIVE-1 lock
+was created for."* **In a plain build `prove` now lowers to nothing** — under `--elide` an
+undischarged one is `NITPICK-VERIFY-001`, so it is not silent *under verification*.
+**Whether that satisfies P-1's requirement is a library design question for the resuming
+session, and this seat does not answer it.**
+
+## The rest, measured rather than assumed
+
+- **THE MANIFEST SHAPE MOVED**, and it is the change with the widest reach: every `pick`
+  and every `assert_static` is now a **`checker` row** (column 5 `c`, kind `exhaustive`
+  or `assert-static`, no z3 query, tier `-`, word `none`). **A `nitpick.obligations`
+  recorded before `a807de9` will not match at or past it if the library has any `pick`.**
+  **Measured: NO library holds a recorded obligations manifest of any kind — zero across
+  all six.** So there is **nothing to re-baseline**, and the exposure is deferred rather
+  than absent: `nitpick-regex` (81 `pick` sites), `nitpick-time` (101) and
+  `nitpick-posix` (7) will carry `checker` rows in the **first** manifest they record.
+  The adopting commit re-records with `npkg verify --record` under **D-040 — a deliberate
+  re-baseline in the same commit, never a quiet fix.**
+- **DEF-31 does not apply to us.** An inline `mod` block's members are unreachable from
+  the parent (`TYPE-007` / `RESOLVE-002`). **Measured: zero inline `mod` blocks.** All 170
+  non-comment `mod` uses are file-module declarations of the form `mod:name;`.
+- **`assert_static`: zero occurrences.** **`prove`: one in code position** — the probe
+  above — and nothing else.
+- **Emitted IR is byte-identical for our libraries across this landing**, since only
+  programs writing `prove`/`assert_static` changed, and only that one probe does.
+- **`NITPICK-RUNG-001` now has no compiler-side test** (the code stays, its reason
+  recorded) **while a library-side probe still asserts it** — the assertion has outlived
+  its counterpart.
+
+**⚠ RATIFICATION IS PENDING ON ALL FOUR: S-45 (VERIFY-001), S-46 (`loop-step`), S-47 (the
+rung retires), S-48 (`prove` as lemma) — landed under their recommendations, not yet
+ratified — plus DEF-31.** So the shape above can still move before the author signs it,
+and nothing here should be treated as settled.
+
+**Step 5 (the docs) is under its harness. Their note on its digests contains a garbled
+clause — "expect every digest but none to read unchanged"; read most plausibly as *bar
+none*, i.e. all six unchanged, since `src/` does not move in it. NOT RESOLVED HERE:
+verify against step 5's actual digests rather than against this reading.**
+
 ### 1.5.4 STEP 3 IS LANDED — the counters, S-46 under its recommendation, pin target `65a1756`, notice 2026-09-06 19:58. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **53/53, 62 verified programs (57, 53, 48 at the steps before), parity 1 194, the
