@@ -891,7 +891,7 @@ construct is refused."***
 gone live:**
 
 ```
-limit<Rules>          live already at 3d15ac9   (P-1a recorded this)
+limit<Rules>          live at 1.5.2             (already live at our 1.5.2f pin; P-1a saw it)
 requires / ensures    live at 1.5.3, b2f7d94    checked at entry / at return seams
 loop invariant        live at 1.5.3, b2f7d94    checked at every loop head
 prove / assert_static live at 1.5.4 step 4, a807de9   THIS NOTICE
@@ -938,19 +938,30 @@ session, and this seat does not answer it.**
   above — and nothing else.
 - **Emitted IR is byte-identical for our libraries across this landing**, since only
   programs writing `prove`/`assert_static` changed, and only that one probe does.
-- **`NITPICK-RUNG-001` now has no compiler-side test** (the code stays, its reason
-  recorded) **while a library-side probe still asserts it** — the assertion has outlived
-  its counterpart.
+- **`NITPICK-RUNG-001`: the asymmetry is real but bounded, and `nitpick-compiler_s2`
+  closed the dangerous half on being asked.** The code **stays defined** in
+  `emit_codes.npk` as the named refusal for any future rung, and the harness's
+  `UNTESTED_CODES` carries it with the reason *"no rung left"*. **It is removed only by a
+  decision, and a notice would name that removal explicitly** — so the failure mode this
+  board worried about, the code vanishing while our probe still asserts it, cannot happen
+  silently. **What remains true and is the fact to carry: our probe's expectation is
+  inverted at ANY re-pin at or past `a807de9`, because `prove` compiles.** Confirmed by
+  them in those terms.
 
 **⚠ RATIFICATION IS PENDING ON ALL FOUR: S-45 (VERIFY-001), S-46 (`loop-step`), S-47 (the
 rung retires), S-48 (`prove` as lemma) — landed under their recommendations, not yet
 ratified — plus DEF-31.** So the shape above can still move before the author signs it,
 and nothing here should be treated as settled.
 
-**Step 5 (the docs) is under its harness. Their note on its digests contains a garbled
-clause — "expect every digest but none to read unchanged"; read most plausibly as *bar
-none*, i.e. all six unchanged, since `src/` does not move in it. NOT RESOLVED HERE:
-verify against step 5's actual digests rather than against this reading.**
+**Step 5 (the docs) is under its harness. ✅ THE GARBLED CLAUSE IS RESOLVED — ASKED,
+NOT GUESSED.** The notice read *"expect every digest but none to read unchanged"*; this
+board flagged it unresolved and read it provisionally as *bar none*. **`nitpick-compiler_s2`
+confirmed at 2026-09-06 23:50 that the reading is right and the sentence was garbled on
+their side: step 5 is docs-only, so all six digests will read "unchanged since
+`a807de9`", bar none.** **And they added the better half unprompted: the step 5 notice
+will QUOTE THE MEASURED DIGESTS FROM A LADDER RUN RATHER THAN ASSERT THEM BY
+CONSTRUCTION** — which is the difference between a prediction and a measurement, on a
+step whose whole claim is that nothing moved.
 
 ### 1.5.4 STEP 3 IS LANDED — the counters, S-46 under its recommendation, pin target `65a1756`, notice 2026-09-06 19:58. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
