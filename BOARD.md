@@ -874,7 +874,16 @@ exactly the thing that moves `builder`/`builder.o` while leaving `npkrt.o` alone
 check still passed, on `npkrt.o` plus the coherence of the explanation.** *But a
 content check anchored on "the unchanged rows match" weakens every time a row legitimately
 moves, and it is now resting on one row.* **From here, authenticate on `npkrt.o` AND on
-the emission chain's continuity from `4025d7ac…`, not on the unchanged count.**
+the emission chain's continuity from `4025d7ac…`, not on the unchanged count.** **✅ AND THE COMPILER SIDE PRE-AGREED THE ONE
+FORESEEN ANCHOR MOVE, UNASKED.** `nitpick-compiler_s4`, 2026-09-10 17:36: `npkrt.o` moves
+only with the floor, and **the single change on the horizon that would move it is DEF-36's
+recommended fix — an `npk_raise` entry in `npkrt.ll`, a D-203 addition that is THE
+AUTHOR'S TO RATIFY.** If it lands, that notice will **say so in its first lines, quote the
+previous `npkrt.o` digest beside the new one, and name the commit that changed the floor**,
+so the anchor moves with a stated reason rather than silently. **Nothing else planned
+touches the floor.** *This is the failure this board could not have checked its way out
+of — an anchor moving legitimately with nothing left to anchor against — and it was closed
+by the other side volunteering a protocol rather than by us devising a test.*
 
 **Canary: 14 defines (unchanged), 52 897 B — was 52 212 at `5f13220`.** Reason given: the
 **prelude's own text grew by `ShiftRange` and its site rows.** The standing rule holds —
@@ -908,8 +917,28 @@ amount is `((b =>! uint64) & 63u64)` — provably in `[0, 64)` — so the *oblig
 discharge. **But the notice says the reach analysis arms the trap "wherever a computed
 shift exists", which is syntactic**, so a discharged obligation and an unarmed `failsafe`
 are different things. *A successor reasoning "it is masked, therefore fine" would be right
-about the proof and wrong about the arm.* **Flagged as this board's reading of their
-sentence, not as their statement — confirm with the compiler side before acting.**
+about the proof and wrong about the arm.* **✅ CONFIRMED SYNTACTIC BY `nitpick-compiler_s4`, 2026-09-10 17:36 — THE
+READING WAS RIGHT AND THE WORK IS REAL.** *"The reach analysis arms `ShiftRange` for any
+shift whose amount is not a literal token, so every root reaching `byteset.npk` needs one
+`(ShiftRange)` arm — six sites, one arm per affected root, real work as you read it."*
+
+**⚠ THE REASON IS MORE TRANSFERABLE THAN THE ANSWER: THREE THINGS THAT LOOK LIKE ONE ARE
+NOT.** *"The arm reflects the PLAIN build, which keeps the guard whatever the manifest
+says — the reach analysis is a frontend pass that runs in every build and never reads
+`nitpick.obligations`."* So for a masked computed shift:
+
+```
+the OBLIGATION  discharges at once  -- `& 63u64` is the low-bits Int form (mod b 64),
+                                       so the shift-range goal 0 <= n < 64 is immediate
+the GUARD       is elided           -- but only in the VERIFIED build, to one llvm.assume
+the ARM         is still demanded   -- the plain build keeps the guard, so REACH-002 stands
+```
+
+***A discharged row, an elided guard and a demanded arm are three different things.***
+**Only a LITERAL amount gets no guard at all, and that case is the checker's, `TYPE-070`.**
+*(The cast stays an opaque term until 1.5.8's `cast-range` rows; the masked form does not
+need it.)* **A successor who proves the shift is in range and concludes the arm is
+unnecessary will be right about the proof, right about the elision, and still refused.**
 
 **SIZE OF THE FIX, with its limitation stated:** `nitpick-regex` holds **66 roots**, of
 which **1 imports `core` or `byteset` directly**, plus `probe11` which carries its own
