@@ -6109,6 +6109,45 @@ being file-module declarations. **Emitted IR is byte-identical for our libraries
 this landing.** **All four questions S-45…S-48 landed under their recommendations with
 ratification still pending**, so the shape can move before the author signs it.
 
+**HAZARD 10 FIRED THREE DAYS AFTER IT WAS WRITTEN, AND ITS CHECK HELD.** `1.5.4c`'s
+notice arrived 2026-09-10 04:27 from **`nitpick-compiler_s3`, an address this board had
+never verified** — `nitpick-compiler_s2` having run out of quota before it could name a
+successor, announcing only *"the resumed session"*. **The prescribed check needed nothing
+from the sender:** the notice's three *unchanged* digests matched this board's recorded
+values to the character, and the canary read 14 / 52 212 B. **A sender who could not read
+this board could not have produced those.** Authenticated by ladder rather than by name,
+and **`_s3` then named `nitpick-compiler_s4` explicitly**, closing the gap going forward.
+*The one link that broke was the one where the outgoing session ran out of budget rather
+than going quiet — a failure of capacity, not of discipline, and content is the only
+check that covers it.*
+
+**THREE ITEMS WERE FLAGGED AS POSSIBLY CHANGING A LIBRARY'S VERDICTS AND ALL THREE
+MEASURE TO ZERO — BUT ONE OF THEM LOOKED ALARMING FIRST, AND THE FIRST READING WAS
+WRONG.** The `REACH-002` item says an async **method** spawn now arms `DeadlineExceeded`,
+so a `failsafe` that never names it is refused. The libraries hold **5** `drop x.method()`
+sites and name `DeadlineExceeded` **exactly once** — which reads as four unguarded spawns
+until the shapes are checked. **They are not spawns.** All five are `drop b.push2(…)` in
+one probe, and `push2` is `NIL(Vec<T>->:self, move T:v) never fails` — **not `async`** —
+so `drop` is discarding a value rather than starting a job. **No async method exists at
+all**: the 7 `async` occurrences are free functions in a single probe that already names
+`DeadlineExceeded` in its failsafe arm. **The counting was right and the reading would
+have been wrong**, which is the third time this session a shape had to be checked before a
+count meant anything.
+
+**The `TYPE-046` item is the one worth a successor's attention despite measuring zero.**
+The qualified spelling `Trait.method(recv, s)` **used to let a string be freed twice** and
+now demands `move(s)`. Our 10 qualified `Capitalised.method(` sites are all enum-variant
+paths calling derived methods — `HirKind.Empty.eq(…)`, `Weekday.Saturday.cmp(…)` — none
+passing a `move` parameter. **`TYPE-046` is the rule `BL-5`'s central claim turns on**, so
+a resuming session should read this alongside that finding rather than filing it as
+another clean sweep.
+
+**D-274 and D-275 are unlocks rather than breaks.** D-274 gives a member-less `mod:name;`
+import the loaded file's scope; today `name.f()` says *"no member"*, **so nothing can be
+relying on it**, and our 170 such imports gain a form rather than losing one. **All three
+clearances are INCIDENTAL** — each rests on a form these libraries happen not to write —
+**so all three expire the moment library code moves.**
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`

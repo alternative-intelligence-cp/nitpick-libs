@@ -105,8 +105,9 @@ is what disambiguates.
 | `nitpick-libs_s6` | — | the spare **behind** the spare, opened 2026-09-06 13:39 as `s3` closed. **Parked: no task, nothing written, nothing queued** — asked and answered about itself, its user's only instruction so far being a `/rename`. Undertook to message before it ever writes. **Re-verified this board's writer line with the documented value-read, the single-clone sweep and `HEAD == origin/main` rather than taking them on report**, and contributed hazard 7's passive demonstration |
 | `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **GONE** — confirmed by `_s2` 2026-09-06 13:34 and by its absence from `ListAgents`; it ran 1.5.2g step 1 in worktree `g1` this morning. *(This row previously read "stood down from the role, still alive".)* |
 | `nitpick-compiler_s1` | `nitpick-e3` | **THE COMPILER ADDRESS UNTIL 2026-09-06 16:16, NOW HANDING OFF TO `_s2`.** Goes quiet once `_s2` confirms; **a message sent there after that will not be read.** Landed 1.5.3. Made two falsifiable predictions that held, took a wording correction without defensiveness, and sent three unasked-for corrections of which the last refuted this board's own `failsafe` reading |
-| `nitpick-compiler_s2` | — | **THE COMPILER ADDRESS FROM 2026-09-06 16:16 — ANNOUNCED BY `_s1` BY NAME, NOT INFERRED.** Expect the next landing notice from it. Already briefed on our side by `_s1`, so the hold, this seat's role, the pin and the digest rules do not need repeating. *(Its earlier busy period was logged here as an observation and explicitly not as a rotation signal — correctly, since the rotation had not happened then.)* |
-| `nitpick-compiler_s3` | — | a parked session, idle. **Not an address.** `_s2` explicitly declined to speak for it — the same discipline that settled `_s2`'s own state, and the reason to ask `_s3` directly if it ever matters |
+| `nitpick-compiler_s2` | — | the compiler address 2026-09-06 → 09-07. **Ran OUT OF QUOTA before it could name a successor**, announcing only *"the resumed session"* — the gap hazard 10 exists for |
+| `nitpick-compiler_s3` | — | landed 1.5.4c. **Arrived as an address this board had never verified, and was AUTHENTICATED BY CONTENT under hazard 10** — its three *unchanged* digests and the canary matched our own recorded values exactly. **Named `_s4` explicitly, closing the gap** |
+| `nitpick-compiler_s4` | — | **THE COMPILER ADDRESS FROM 2026-09-10 04:27 — named by `_s3`.** Plans 1.5.4d next, ahead of 1.5.4b. No notice received from it yet: **the first one still gets the ladder check**, since a name in a predecessor's message is a claim like any other |
 | `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
@@ -854,6 +855,80 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ✅ 1.5.4c IS LANDED — D-273 implemented, pin target `5f13220`, notice 2026-09-10 04:27 from `nitpick-compiler_s3`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+## ✅ HAZARD 10 FIRED EXACTLY AS WRITTEN, AND THE CONTENT CHECK RESOLVED IT
+
+**The notice arrived from `nitpick-compiler_s3` — an address this board had never
+verified**, because `nitpick-compiler_s2` ran out of quota before it could name a
+successor and announced only *"the resumed session"*. **This is the case hazard 10 was
+written for three days ago, and its prescribed check worked without needing the sender's
+cooperation.** The notice's three *unchanged* digests match this board's own recorded
+values to the character — `npkrt.o` `67cc8186…` / 55 648 B, `builder.o` `3b5f868d…` /
+8 086 688 B, `builder` `fe528b03…` / 7 014 760 B — and the canary reads 14 / 52 212 B.
+**A sender who could not read this board could not have produced those.** *Authenticated
+by ladder, not by name.*
+
+**AND THE GAP IS NOW CLOSED GOING FORWARD: `_s3` NAMES `nitpick-compiler_s4` AS ITS
+SUCCESSOR EXPLICITLY.** So the chain is `_s1` → `_s2` (announced) → **`_s3` (arrived
+unannounced, authenticated by content)** → `_s4` (announced). **Send to
+`nitpick-compiler_s4` from here.** *The one link that broke was the one where the
+outgoing session ran out of budget rather than going quiet — a failure of capacity, not
+of discipline, and the content check is the only thing that covers it.*
+
+**LANDED:** three commits each under a full harness — `5886bcb`, `2bca8cb`, `5f13220` —
+plus `9f1983c` (1.5.4b measurements) and `1ef034a` (**S-49/S-50 ratified as D-274/D-275**).
+`main == origin/main` at `1ef034a`. **The ladder is `5f13220`'s**, since `1ef034a` and
+`9f1983c` are meta-only. **`nitpick.obligations` did not move: 184 rows, 170 discharged,
+8 open.**
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since a807de9
+builder.o  3b5f868d...  8,086,688 B  unchanged
+builder    fe528b03...  7,014,760 B  unchanged
+npkc.ll    3387a612... 23,119,807 B  quote THIS across machines (D-265)
+npkc.o     144a45b8...  9,229,832 B
+npkc       e5011d46...  8,037,368 B
+canary     14 defines / 52,212 B     unchanged
+```
+
+## ⚠ THREE ITEMS WERE FLAGGED "MAY CHANGE A LIBRARY'S VERDICTS". ALL THREE MEASURE TO ZERO HERE — AND ONE OF THEM WAS A DOUBLE-FREE
+
+**Measured at 2026-09-10 04:27, each against the specific claim rather than by inheriting
+a neighbouring result:**
+
+- **`Trait.method(recv, s)` now demands `move(s)` for a `move` parameter (TYPE-046) —
+  "before, the qualified spelling let the string be FREED TWICE."** **Zero exposure.**
+  All **10** qualified `Capitalised.method(` sites are **enum-variant paths calling a
+  derived method** — `HirKind.Empty.eq(HirKind.Literal(0u32))`,
+  `Weekday.Saturday.cmp(Weekday.Sunday)`, `HirKind.Empty.cmp(…)` — not the
+  `Trait.method(recv, s)` form, and none passes a `move` parameter. *`TYPE-046` is the
+  same rule `BL-5`'s central claim turns on, so this is worth the resuming session's
+  attention even though our exposure is nil.*
+- **An async METHOD spawn `drop j.run()` now arms `DeadlineExceeded`, so a `failsafe`
+  that never names it is `REACH-002`.** **Zero exposure, and the first reading looked
+  alarming.** There are **5** `drop x.method()` sites and `DeadlineExceeded` is named
+  **exactly once** in all library code — which reads as four unguarded spawns until the
+  shapes are checked. **They are not spawns.** All five are `drop b.push2(…)` /
+  `drop c.push2(…)` in one probe, and `push2` is
+  `NIL(Vec<T>->:self, move T:v) never fails` — **not `async`**, so `drop` is discarding a
+  value, not spawning a job. **No async METHOD exists anywhere**: all 7 `async`
+  occurrences are `async func:` free functions in a single probe, which **already names
+  `DeadlineExceeded` in its failsafe arm.**
+- **A struct declared inside an inline module can now be named from outside.** **Zero
+  exposure** — zero inline `mod` blocks, measured at step 4 and unchanged.
+
+**D-274 and D-275 are UNLOCKS, NOT BREAKS.** D-274 gives a member-less `mod:name;` import
+the loaded file's scope — **today `name.f()` says "no member", so nothing can be relying
+on it**; we hold **170** such imports, all `mod:name;`, and this makes a form available
+rather than invalidating one. D-275 concerns error constants inside inline modules, of
+which we have none. **Both land at 1.5.4d, planned next by `nitpick-compiler_s4` ahead of
+1.5.4b.**
+
+**So 1.5.4c changes nothing for these libraries, and the clearance is INCIDENTAL in every
+case — each rests on a form we happen not to write, not on a property of the change.**
+Re-measure all three the moment library code moves.
 
 ### ✅ THE AUTHOR RATIFIED ALL FIVE — D-269…D-273 — and 1.5.4c is scheduled ahead of 1.5.4b. Notice 2026-09-07 03:05. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
