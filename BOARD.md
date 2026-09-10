@@ -856,6 +856,97 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ 1.5.4b IS LANDED — D-277…D-282, pin target `18b93e1`, notice 2026-09-10 17:33 from `nitpick-compiler_s4`. **RECORDED, NOT WORKED — AND IT CARRIES THE QUIET PERIOD'S FIRST NON-ZERO EXPOSURE.**
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged since a807de9   <- the only surviving anchor
+builder.o  c489068f...  9,085,152 B  MOVED  (was 3b5f868d / 8,086,688 B)
+builder    00bf9cd4...  7,903,920 B  MOVED  (was fe528b03 / 7,014,760 B)
+npkc.ll    4025d7ac... 24,223,684 B  the one that travels (D-265)
+npkc.o     f68a576a...  9,579,864 B
+npkc       840ca3cb...  8,348,152 B
+```
+
+**⚠ HAZARD 10's ANCHOR SET JUST SHRANK FROM THREE TO ONE.** The `builder` pair moved, for
+a stated and internally coherent reason — **the snapshot was refreshed at step 0 because
+forty roots in their own tree had to name `ShiftRange`** — and a snapshot refresh is
+exactly the thing that moves `builder`/`builder.o` while leaving `npkrt.o` alone. **The
+check still passed, on `npkrt.o` plus the coherence of the explanation.** *But a
+content check anchored on "the unchanged rows match" weakens every time a row legitimately
+moves, and it is now resting on one row.* **From here, authenticate on `npkrt.o` AND on
+the emission chain's continuity from `4025d7ac…`, not on the unchanged count.**
+
+**Canary: 14 defines (unchanged), 52 897 B — was 52 212 at `5f13220`.** Reason given: the
+**prelude's own text grew by `ShiftRange` and its site rows.** The standing rule holds —
+**quote the define count, the byte count is path-dependent** — and they added a control we
+did not ask for: **taken on the docs tree and again on landed main, identical, as were all
+six digests.**
+
+## ⚠⚠⚠ D-277 — THE FIRST THING IN THIS ENTIRE QUIET PERIOD THAT WILL REQUIRE A LIBRARY CODE CHANGE
+
+**A computed shift amount now traps `ShiftRange` (-4115), and the reach analysis arms it
+WHEREVER A COMPUTED SHIFT EXISTS — so every root whose program contains one must add
+`(ShiftRange)` to its `failsafe` or it refuses `REACH-002`.** They said *"forty roots in
+the compiler tree needed the arm… expect the same in yours; the fix is one arm."*
+
+**Measured here at 2026-09-10 17:33 — and it is not zero:**
+
+```
+computed-amount shift sites: 6, in 2 files
+  nitpick-regex/src/core/byteset.npk:70,77,84   1u64 << ((b =>! uint64) & 63u64)   <-- SOURCE
+  nitpick-regex/tests/probe/probe11_...:112,119,146                                    tests
+`ShiftRange` named in any library:  0
+```
+
+**One of the two files is library SOURCE, not a probe** — `src/core/byteset.npk` — and
+**`src/core/core.npk` imports it**, so the regular-expression library's core aggregator
+reaches a computed shift. **`ShiftRange` appears nowhere in any library.** At the re-pin,
+every affected root refuses until it names the arm.
+
+**⚠ THE MASK DOES NOT EXEMPT IT, AND THIS IS THE READING MOST LIKELY TO GO WRONG.** The
+amount is `((b =>! uint64) & 63u64)` — provably in `[0, 64)` — so the *obligation* should
+discharge. **But the notice says the reach analysis arms the trap "wherever a computed
+shift exists", which is syntactic**, so a discharged obligation and an unarmed `failsafe`
+are different things. *A successor reasoning "it is masked, therefore fine" would be right
+about the proof and wrong about the arm.* **Flagged as this board's reading of their
+sentence, not as their statement — confirm with the compiler side before acting.**
+
+**SIZE OF THE FIX, with its limitation stated:** `nitpick-regex` holds **66 roots**, of
+which **1 imports `core` or `byteset` directly**, plus `probe11` which carries its own
+computed shifts. **That count is DIRECT imports only — transitive reach was not measured,
+so it is a LOWER BOUND, not the answer.**
+
+**No `TYPE-070` exposure:** every literal shift amount is within its type's width —
+`nitpick-time`'s `1i128 << 100i128`, `<< 101i128`, `<< 63i128` are all `< 128`, and
+`nitpick-regex`'s `>> 6i64`, `<< 13u64`, `<< 17u64`, `>> 7u64`, `>> 8u64` all `< 64`.
+
+## The rest, measured against their own claims
+
+- **THE MANIFEST FORMAT MOVED (D-281)** — `rows.txt` gains an eleventh field and the tier
+  column is now the encoder's word (`int`/`bv`/`fp`/`-`, `real` for a tier-2 discharge)
+  where it was constant `int`. **We hold zero manifests, so nothing to re-record** — but
+  **the first manifest any library records must be recorded under the new compiler**, and
+  D-040 asks for the re-baseline in the re-pin commit **with the delta read before it is
+  committed.**
+- **DEF-36 — a `?!` unwrap with a system error code fails a verified build's belt**
+  (-4097, -4098, -4100, -4101, -4111…-4115), because it lowers to the same trap text the
+  belts count as a guard. **Zero exposure: no library unwraps with a system error
+  constant.** Their advice — *unwrap with your own error constants until the `npk_raise`
+  floor entry lands* — is already what these libraries do.
+- **DEF-38 / S-59 — a `simd<int32, N>` `+ - *` WRAPS on lane overflow where its scalar
+  traps, recorded and NOT fixed.** **Zero exposure: no `simd` in code position anywhere.**
+  Worth carrying anyway: *do not rely on a lane overflow reaching `failsafe`.*
+- **DEF-37 — a float `/` or `%` no longer demands `(DivByZero)`/`(DivOverflow)` arms**, and
+  extra arms still compile. **Not a break.**
+- **DEF-33 is a soundness rule for whoever writes contracts here:** a proposition holds
+  only where its evaluation does not trap, so `requires (1i32 << n) != 0i32` now **proves**
+  `0 <= n < 32` at the call and in the body rather than assuming it. **This matters for
+  `nitpick-regex`'s eventual contracts precisely because its shifts are computed.**
+
+**Reminder of the denominator: `nitpick-parse`, `nitpick-sockets` and `nitpick-tui` hold no
+`.npk` at all, so every zero above covers `nitpick-regex`, `nitpick-time` and
+`nitpick-posix` only.**
+
 ### ✅ 1.5.4d IS LANDED — D-274/D-275/D-276, pin target `12a6a78`, notice 2026-09-10 08:33 from `nitpick-compiler_s4`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **✅ The ladder convention was honoured on its first outing** — all six digests including

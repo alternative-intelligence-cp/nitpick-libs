@@ -6185,6 +6185,48 @@ every file against itself**. Excluding self-references, no test anywhere is load
 another test. **Third instance this session of a count taken over the wrong set** — and
 each time the guard was the same: **check the shape before believing the number.**
 
+**1.5.4b FILED — AND IT CARRIES THE QUIET PERIOD'S FIRST NON-ZERO EXPOSURE.**
+D-277…D-282 at `18b93e1`, 2026-09-10 17:34. Seven commits, each under a full harness.
+Filed, not worked; pin stays `3d15ac9`.
+
+**D-277: a computed shift amount now traps `ShiftRange` (-4115), and the reach analysis
+arms it wherever a computed shift exists, so every root containing one must name
+`(ShiftRange)` in its `failsafe` or refuse `REACH-002`.** The compiler side needed the arm
+on **forty roots of their own** and said plainly *"expect the same in yours; the fix is one
+arm."* **Measured here, and it is not zero: six computed-shift sites across two files, one
+of them library SOURCE** — `nitpick-regex/src/core/byteset.npk` lines 70, 77 and 84,
+`1u64 << ((b =>! uint64) & 63u64)` — **and `src/core/core.npk` imports it, so the
+regular-expression library's core aggregator reaches a computed shift. `ShiftRange` is
+named nowhere in any library.**
+
+**The reading most likely to go wrong is recorded as a reading rather than as fact.** The
+amount is masked to `& 63u64`, provably in `[0, 64)`, so the obligation should discharge —
+**but the arming is described as syntactic, "wherever a computed shift exists", and a
+discharged obligation is not an armed arm.** A successor reasoning *"it is masked,
+therefore fine"* would be right about the proof and wrong about the refusal. **Flagged for
+confirmation with the compiler side rather than acted on.**
+
+**The size of the fix is stated with its limitation.** `nitpick-regex` holds 66 roots, of
+which one imports `core` or `byteset` **directly**, plus the probe that carries its own
+shifts. **Transitive reach was not measured, so that is a lower bound and not the answer** —
+recorded as such, because a lower bound presented as a count is exactly the error this
+session has already made three times.
+
+**No `TYPE-070` exposure:** every literal shift amount sits inside its type's width.
+**DEF-36 — a `?!` unwrap with a system error code fails a verified build's belt — zero
+exposure**, these libraries already unwrap with their own constants. **DEF-38, a `simd`
+lane overflow wrapping where the scalar traps, recorded and not fixed — zero exposure**, no
+`simd` anywhere, though the warning is worth carrying. **The manifest format moved and we
+hold zero manifests**, so nothing to re-record, but the first one any library records must
+be under the new compiler with the delta read before committing (D-040).
+
+**Hazard 10's anchor set shrank from three rows to one.** The `builder` pair moved for a
+stated, coherent reason — a snapshot refresh at step 0, which is exactly what moves
+`builder`/`builder.o` and leaves `npkrt.o` alone — so the check passed on `npkrt.o` plus
+the explanation's coherence. **But a check anchored on "the unchanged rows match" weakens
+every time a row legitimately moves, and it now rests on one row.** From here, authenticate
+on `npkrt.o` **and** the emission chain's continuity, not on the unchanged count.
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`
