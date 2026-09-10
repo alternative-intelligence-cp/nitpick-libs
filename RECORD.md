@@ -6148,6 +6148,43 @@ relying on it**, and our 170 such imports gain a form rather than losing one. **
 clearances are INCIDENTAL** — each rests on a form these libraries happen not to write —
 **so all three expire the moment library code moves.**
 
+**1.5.4d FILED — D-274/D-275/D-276 at `12a6a78`, 2026-09-10 08:33.** The ladder
+convention was honoured on its first outing: all six digests including the three
+unchanged, which match this board, plus the canary. 52/52, parity 1 254, obligations
+unmoved at 184 rows. Filed, not worked; pin stays `3d15ac9`.
+
+**THE CANARY WAS DESCRIBED BY A NEW PATH AND `cmp` SETTLED IT.** Earlier notices said
+*"your `tools/canary.npk`"*; this one said *"canary.npk at the tree root"*. **Two files of
+that name exist** — ours and `nitpick/.internal/canary.npk` — and this board has already
+been caught three times comparing canary numbers across different artifacts. Both are
+335 B with sha `55dafd8aff262c7e…`, **byte-identical**, so the reading compares and the
+drift is harmless. *The check cost one `cmp`.*
+
+**THE DENOMINATOR BEHIND EVERY "ZERO EXPOSURE" THIS SEAT HAS RECORDED, AND IT WEAKENS
+THEM ALL.** Measured here: **`nitpick-parse`, `nitpick-sockets` and `nitpick-tui` contain
+NO `.npk` files at all** — they hold specifications and plans, and no code has been
+written in them. **So every "zero across all six work repositories" recorded during the
+quiet period is really "zero across the three that contain code"** — `nitpick-regex`,
+`nitpick-time`, `nitpick-posix`. Not wrong, and much weaker than it reads: a successor
+taking six independent confirmations from those sentences would be counting three empty
+sets as evidence. **None of it says anything about code not yet written**, and the three
+empty repositories will be written from specifications drafted when the pre-1.5.3 language
+was current. **Re-run every one of these measurements against them the first time they
+hold code.**
+
+**The four items each measured against their own claim.** D-274 is an unlock — 170
+`mod:name;` imports gain a form and nothing could have depended on the old *"no member"*
+behaviour. D-275: zero `(file.Name)` arms against 899 bare-name and 148 wildcard arms, and
+zero `ERR:`, literal or range arms; the 40 qualified arms that exist are `Type.Variant`
+over enum selectors, a different construct. DEF-32: zero `?! qualifier.CONST` sites, so no
+dead arm of that shape exists.
+
+**The fixture rule measured zero, and the first count said 161.** Every `.npk` opens by
+declaring its own module, so matching each `mod:name;` against the test-file set **matched
+every file against itself**. Excluding self-references, no test anywhere is loaded by
+another test. **Third instance this session of a count taken over the wrong set** — and
+each time the guard was the same: **check the shape before believing the number.**
+
 **Hazard 5 now carries a literal command instead of an instruction.** It said *read
 the line as a value*, and the session that wrote it failed it within the hour on its
 own release, because the releaser's uuid also sits on that line and its `grep`

@@ -856,6 +856,76 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ 1.5.4d IS LANDED — D-274/D-275/D-276, pin target `12a6a78`, notice 2026-09-10 08:33 from `nitpick-compiler_s4`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+**✅ The ladder convention was honoured on its first outing** — all six digests including
+the three unchanged, plus the canary line, and the three unchanged match this board.
+52/52, **parity 1 254**. `nitpick.obligations` did not move (184 rows, 170/8). Commits
+`1c60cdb`, `5caa43e`, `f6691bc`, `32884b2`, `12a6a78`; `main == origin/main` at `12a6a78`.
+
+```
+npkrt.o    67cc8186...     55,648 B  unchanged
+builder.o  3b5f868d...  8,086,688 B  unchanged
+builder    fe528b03...  7,014,760 B  unchanged
+npkc.ll    8db8451d... 23,199,787 B  the one that travels (D-265)
+npkc.o     47b34d0c...  9,258,200 B
+npkc       25e72cc2...  8,061,616 B
+```
+
+**⚠→✅ THE CANARY WAS DESCRIBED BY A NEW PATH, AND `cmp` SETTLED IT.** Previous notices
+said *"your `tools/canary.npk`"*; this one says *"canary.npk at the tree root"*. **Two
+files of that name exist** — ours and `nitpick/.internal/canary.npk` — and this board has
+already been caught three times comparing canary numbers across different artifacts.
+**Measured rather than assumed: both are 335 B with sha `55dafd8aff262c7e…`, byte-identical.**
+Same program, so the 14 / 52 212 reading compares and the wording drift is harmless.
+*The check cost one `cmp`; assuming would have cost nothing until it cost everything.*
+
+## ⚠⚠ THE DENOMINATOR BEHIND EVERY "ZERO EXPOSURE" ON THIS BOARD — READ THIS BEFORE TRUSTING ONE
+
+**Three of the five libraries contain NO `.npk` FILES AT ALL.** Measured 2026-09-10 08:33:
+**`nitpick-parse` 0, `nitpick-sockets` 0, `nitpick-tui` 0.** They hold specifications and
+plans; no code has been written in them. **So every "zero across all six work
+repositories" this seat has recorded during the quiet period is really "zero across the
+three that contain code" — `nitpick-regex`, `nitpick-time` and `nitpick-posix`.**
+
+**That is not wrong, and it is much weaker than it reads.** A successor taking *"measured
+zero across six repositories"* as six independent confirmations would be treating three
+empty sets as evidence. **None of these clearances says anything about code not yet
+written**, and `nitpick-parse`, `nitpick-sockets` and `nitpick-tui` will be written from
+specifications drafted when the pre-1.5.3 language was current. **Every measurement in
+this quiet period must be re-run against those repositories the first time they hold
+code** — the results here do not transfer to them, they simply do not cover them.
+
+## The four items, measured against their own specific claims
+
+- **D-274 — a member-less `mod:name;` import carries the loaded file's scope.** **An
+  unlock.** `name.f()`, `name.K`, `use name.{f};` and a `pub mod:name;` re-export now
+  work, one meaning with the alias form. **Our 170 such imports gain a form and lose
+  none**, and nothing can have depended on the old behaviour because it said *"no
+  member"*.
+- **D-275 — every arm over an `Error` selector is checked at the arm.** **Zero exposure.**
+  **Zero** `(file.Name)` qualified arms; our arms are **899 bare error-constant names and
+  148 wildcards**. The other TYPE-007 shapes are absent too: **zero `ERR:` arms, zero
+  numeric-literal arms, zero range arms.** *(The 40 qualified arms that do exist —
+  `(Ordering.Less)`, `(HirKind.Empty)`, `(Part.YearN)` — are `Type.Variant` over ENUM
+  selectors, a different construct from `(file.Name)` over an `Error`, and are untouched.)*
+- **DEF-32, latent since 1.1.6 — the reach analysis took a constant's qualifier from the
+  FIRST site that reached it**, so `(root.E)` was demanded and the correct `(perr.E)`
+  refused; an arm spelled `(root.Name)` for another file's constant **was a dead arm and
+  refuses now.** **Zero exposure: zero `?! qualifier.CONST` unwrap sites and zero
+  qualified arms**, so no dead arm of that shape exists here.
+- **D-276 and the fixture rule — a file loaded only through `mod:name;` by another test is
+  a fixture, built and never run.** **Zero exposure — and the first count said 161.**
+  **⚠ That count was wrong and the error is worth more than the result:** every `.npk`
+  opens by declaring its own module (`mod:<own name>;`), so a naive match of each
+  declaration against the test file set **matched every file against itself**. Excluding
+  self-references, **no test in any repository is loaded by another test**, so nothing is
+  reclassified and no unit silently stops running. *Third instance this session of a count
+  taken over the wrong set; the guard each time was checking the SHAPE before believing
+  the NUMBER.*
+
+**Next on the compiler side: 1.5.4b, the remaining theories.**
+
 ### ✅ 1.5.4c IS LANDED — D-273 implemented, pin target `5f13220`, notice 2026-09-10 04:27 from `nitpick-compiler_s3`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 ## ✅ HAZARD 10 FIRED EXACTLY AS WRITTEN, AND THE CONTENT CHECK RESOLVED IT
