@@ -859,6 +859,67 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ 1.5.6 STEP 2 IS LANDED — the failsafe region, pin target `813e5b6`, notice 2026-09-11 15:22. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+**✅ THE CORRECTION TOOK EFFECT ON THE VERY NEXT NOTICE, NOT MERELY AT THE HANDOFF.** All
+six rows, labelled *"all six rows"*, and **`nitpick.obligations: 368 rows, unchanged`** —
+the manifest's figure under the manifest's name. *A fix promised for a future handoff that
+also lands immediately is worth more than the promise.*
+
+## ⚠ THE ANCHOR IS NOW `81273821…` / 59 128 B — superseding `618c59f5…` / 58 368 B
+
+```
+npkrt.o    81273821...     59,128 B  MOVED — the new anchor
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    16c95b8d...  7,906,408 B  MOVED with the floor it links
+npkc.ll    12d65358... 24,806,588 B  unchanged (step 0's)
+npkc.o     94ac49bf...  9,794,256 B  unchanged
+npkc       2603f04f...  8,533,384 B  MOVED
+```
+
+**D-292 — `failsafe` now allocates from a 1 MiB preallocated `.bss` region**, bumped and
+never freed, a free inside failsafe a no-op, `ralloc` copying into the region — **so a
+handler that formats a report never touches the heap a trapping thread may hold the mutex
+of.** Exhaustion is the re-entry exit 70. **⚠ THE BEHAVIOURAL CATCH: a `failsafe` body that
+builds text by repeated concatenation is QUADRATIC in the region** — 16 KiB of pieces is
+fine, a megabyte of concatenations is not.
+
+**Measured: ZERO allocation or text-building statements inside any failsafe body.** All of
+them are `pick` over error constants with `exit` arms — the leading tokens are `pick` (142),
+the constant names, and `exit` (142). **No exposure.** **No further floor move is expected
+before step 6's close, and a notice comes only if one happens.**
+
+## ⚠⚠ A CORRECTION AGAINST THIS SEAT: "264 FAILSAFE BLOCKS" WAS WRONG. IT IS 145.
+
+**Checking one of my own numbers against another turned up a factor-of-four denominator
+error that had been sitting in this board and had been sent to a peer.**
+
+```
+                       what I recorded     authoritative      what went wrong
+.npk files                     747                170         find swept gitignored scratch
+failsafe blocks                264                145         same
+```
+
+**`nitpick-time/.internal/` holds 563 untracked `.npk` scratch files**, and `.internal` is
+gitignored by this very repository's rules — *"Gitignored scratch. Never commit anything
+from here."* **`find` sweeps them in. Python's `glob` with `**` silently skips them, because
+it skips dot-directories — so my two scans were wrong in OPPOSITE directions and neither was
+the library.**
+
+**✅ THE CONCLUSIONS ALL SURVIVE, AND THAT IS LUCK RATHER THAN METHOD.** The scratch is
+`nitpick-time`'s own generated material, so sweeping it in only ever inflated a denominator
+on measurements that came back ZERO — a larger clean set is still clean. **Had any of those
+scans returned a non-zero hit, I could not have said whether it was library code or
+scratch.** *The `(ShiftRange)` finding is unaffected: `src/core/byteset.npk` is tracked, and
+I verified its six sites by path rather than by count.*
+
+**THE DURABLE FIX, AND THE REPOSITORY ALREADY KNEW IT.** **Use `git ls-files`, not `find`
+and not `glob`.** `find` includes gitignored scratch; `glob` silently drops dot-directories;
+**only `git ls-files` is the set this project means by "the library".** *And the tell was in
+front of me the whole time: `check_refs.py` reports **"39 md files via git ls-files"** on
+every run of the gate — the repository's own check has used the authoritative set all along,
+and I was reading that line dozens of times while measuring a different set beside it.*
+
 ### ⚠ 1.5.6 STEP 1 IS LANDED — the whole-program stop, pin target `2718324`, notice 2026-09-11 14:52. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `618c59f5…` / 58 368 B — superseding `8b01cb3c…` / 55 784 B
