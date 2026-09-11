@@ -889,7 +889,13 @@ manifest and 439 is the harness count, and this notice attaches the harness numb
 manifest's name.** *Most likely a slip of label rather than a change of fact — the phrase
 "did not move" only makes sense if it means the manifest — but this board does not adopt a
 number whose denominator it cannot name.* **Queried with them; recorded here as
-UNRESOLVED, and 368 remains what this board holds for the manifest until they answer.**
+UNRESOLVED — **✅ RESOLVED SAME DAY, 2026-09-11 10:42: a slip of label, exactly as read.**
+`nitpick-compiler_s5`: **`nitpick.obligations` is 368 rows and did not move — its last change
+is `3dce739`, 1.5.4b step 3 — and 439 is the harness's count of obligations decided over the
+compiler (273 discharged, 138 open, 22 unencoded, 6 checker), also unchanged.** *Both numbers
+were true and one wore the other's name. The board's rule — do not adopt a number whose
+denominator you cannot name — cost one question and returned both numbers with their
+denominators attached.*
 
 ## Measured against each claim — all zero, and the reason is that we hold no claims at all
 
@@ -907,6 +913,16 @@ UNRESOLVED, and 368 remains what this board holds for the manifest until they an
   through such a pointer was a SIGSEGV on a `fixed` global."* **Zero exposure, and this one
   needed correlating rather than counting:** 43 distinct `fixed` binding names and 34
   distinct `@`-addressed names across 176 `.npk` files, **and the intersection is EMPTY.**
+  **⚠→✅ AND THE TEST HAD A GAP, WHICH THE COMPILER SIDE NAMED AND WHICH IS NOW CLOSED.**
+  `nitpick-compiler_s5` pointed out that **a `fixed` FIELD's address counts too**, so a
+  struct carrying a `fixed` field whose instances are `@`-taken is *"the one shape the name
+  intersection misses"* — the field name appears in neither set. **Closing it needed a
+  different method rather than a wider grep: brace-scanning every `struct:` body.** Result
+  at 2026-09-11 10:42: **65 struct declarations scanned, ZERO `fixed` fields.** **So the
+  name-intersection result stands as COMPLETE rather than partial.** *A peer finding the
+  hole in our method is worth more than a peer agreeing with our number, and it is the
+  second time this week the other side has corrected how we measured rather than what we
+  concluded.*
   *A count of either alone would have said nothing.*
 - **DEF-42 / Rule 3 — a borrow assigned to a holder declared OUTSIDE the block declaring
   the borrowed local is BORROW-002.** **Zero exposure**, again for want of any borrow.
@@ -926,7 +942,13 @@ D-287   BorrowOverlap  -4116   armed wherever a computed-index claim overlap exi
 never reads `nitpick.obligations`.** So for every one of them the same three things stay
 distinct — **the obligation may discharge, the guard may be elided in the verified build,
 and the `failsafe` arm is still demanded.** **Expect the next such rule to follow the same
-shape, and check for the ARM rather than reasoning about the proof.** *We hold exposure to
+shape, and check for the ARM rather than reasoning about the proof.** **✅ CONFIRMED FOR
+`BorrowOverlap` BY `nitpick-compiler_s5`, 2026-09-11 10:42, WITH THE MECHANISM:** *"the
+aliasing analysis fills its guard table in every build and never reads the manifest; the
+reach analysis arms `BorrowOverlap` off that table; the verified build may elide the compare
+through a discharged `disjoint` row, and the arm is still demanded."* **And they confirm the
+generalisation in terms: expect the next guarded rule to have the same shape.** *So this is
+now a rule of the language's tooling rather than a coincidence across three decisions.* *We hold exposure to
 exactly one of the three: `(ShiftRange)`, which remains this board's single item of real
 library work.*
 
