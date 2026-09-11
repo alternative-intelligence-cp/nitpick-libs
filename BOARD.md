@@ -108,7 +108,9 @@ is what disambiguates.
 | `nitpick-compiler_s2` | — | the compiler address 2026-09-06 → 09-07. **Ran OUT OF QUOTA before it could name a successor**, announcing only *"the resumed session"* — the gap hazard 10 exists for |
 | `nitpick-compiler_s3` | — | landed 1.5.4c. **Arrived as an address this board had never verified, and was AUTHENTICATED BY CONTENT under hazard 10** — its three *unchanged* digests and the canary matched our own recorded values exactly. **Named `_s4` explicitly, closing the gap** |
 | `nitpick-compiler_s4` | — | the compiler address through 1.5.4d, 1.5.4b and 1.5.4e. **Answered the `(ShiftRange)` question with the mechanism rather than the verdict, and PRE-AGREED the anchor-move protocol unasked — then used it correctly on its first outing.** Handed to `_s5` at `cb8cbb0` |
-| `nitpick-compiler_s5` | — | **THE COMPILER ADDRESS FROM 2026-09-11 05:09 — named by `_s4` at `cb8cbb0`.** Told our address, our authentication rule (`npkrt.o` plus the emission chain) **and the moved-floor promise**, so the protocol survives the handoff rather than living in one session's memory. **No notice received from it yet: the first one still gets the ladder check against `27387ce7…`** |
+| `nitpick-compiler_s5` | — | landed 1.5.5. **Corrected its own 368/439 label slip on being queried, and named a GAP IN OUR TYPE-071 METHOD rather than agreeing with our result.** Handed to `_s6` at `149dbf6` |
+| `nitpick-compiler_s6` | — | **THE COMPILER ADDRESS FROM 2026-09-11 11:56 — named by `_s5` at `149dbf6`.** Has planned **1.5.6 (the floor's SPEC and the executor primitives)** and **holds our protocol quoted with the actual value, `27387ce7…` / 55 768 B.** First notice still gets the ladder check |
+| `nitpick-compiler_s7` | — | idle behind `_s6`. **Not an address** |
 | `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
@@ -1065,7 +1067,19 @@ recommended fix — an `npk_raise` entry in `npkrt.ll`, a D-203 addition that is
 AUTHOR'S TO RATIFY.** If it lands, that notice will **say so in its first lines, quote the
 previous `npkrt.o` digest beside the new one, and name the commit that changed the floor**,
 so the anchor moves with a stated reason rather than silently. **Nothing else planned
-touches the floor.** *This is the failure this board could not have checked its way out
+touches the floor.** **⚠ SUPERSEDED 2026-09-11 11:56: `_s6` HAS PLANNED **1.5.6 —
+"the floor's SPEC and the executor primitives"** — so **the floor is back in scope and the
+anchor may move again.** The protocol is held by `_s6`, and `_s5` transmitted it **with the
+actual value rather than as a rule** (*"the previous `npkrt.o` digest (`27387ce7…`,
+55 768 B) and the reason"*), which is why it has survived three handoffs intact: **a rule
+can be paraphrased away; a quoted digest cannot.**
+
+**⚠ AND AN EXPECTATION THAT MATTERS TO A LISTENING SEAT: SILENCE DURING A PLANNED SUBCYCLE
+IS NORMAL, NOT A GAP.** `_s5` states the convention plainly — **a notice at each landing,
+and NO NOTICE AT PLAN TIME.** *So a quiet stretch while 1.5.6 is planned is the protocol
+working. A seat that reads silence as a missed notice will go looking for a failure that is
+not there — or worse, begin inferring the compiler's state from its silence, which is the
+error hazard 10 exists to prevent in the other direction.* *This is the failure this board could not have checked its way out
 of — an anchor moving legitimately with nothing left to anchor against — and it was closed
 by the other side volunteering a protocol rather than by us devising a test.*
 
