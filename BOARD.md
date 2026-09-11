@@ -859,6 +859,69 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ 1.5.6 STEP 1 IS LANDED — the whole-program stop, pin target `2718324`, notice 2026-09-11 14:52. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+## ⚠⚠ THE ANCHOR IS NOW `618c59f5…` / 58 368 B — superseding `8b01cb3c…` / 55 784 B
+
+*Delta **2 584 B**, again an observation rather than a check — no byte claim was made.*
+**Protocol honoured a second time**: first lines name the move, both digests quoted and
+labelled, commit `2718324`, reason given.
+
+**D-291 / DEF-47 — a trap now stops every other thread before `failsafe` runs.** A thread
+registry; a `SIGUSR1` stop handler installed at `npk_start` using **SA_RESTORER with the
+floor's own `rt_sigreturn` stub, so no libc is involved**; **cmpxchg arbitration of the
+failsafe holder in `npk_trap`** — a second trapping thread parks, and **a trap inside
+`failsafe` itself is the re-entry exit 70**; the stop walk under the executor's join
+deadline (default 5 s); a non-holder's `exit` parks instead of racing the holder.
+
+**⚠ A HARD LIMIT WORTH CARRYING EVEN THOUGH WE HAVE NO THREADS: the registry is 64 SLOTS,
+AND THE 65TH THREAD IS REFUSED AT ITS START.** *A ceiling that refuses at start is the kind
+of fact a library discovers at the worst possible moment; it is recorded here so whoever
+writes threaded code in these repositories meets it on the board first.*
+
+**No ABI change; emitted IR unchanged (`npkc.ll` is step 0's).** `getpid` / `tgkill` /
+`rt_sigaction` are new syscalls in the floor's table — **and they volunteered, unasked, that
+the harness's zero-dependency scan is unchanged because no new SYMBOL appears.** *That is
+precisely the check `nitpick-regex/harness/irscan.py` exists to run, and they answered it
+before we could ask.*
+
+**Zero exposure: thread primitives remain at zero code-position sites here.**
+
+```
+npkrt.o    618c59f5...     58,368 B  MOVED — the new anchor
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    *** ABSENT AGAIN ***      this board last held 2445d651… / 7,903,984 B
+npkc.ll    12d65358... 24,806,588 B  unchanged (step 0's)
+npkc.o     94ac49bf...  9,794,256 B  unchanged
+npkc       901b98c2...  8,532,792 B  MOVED
+```
+
+## ⚠⚠⚠ TWO NOTICES RUNNING WITH FIVE ROWS: THIS IS `_s6`'s FORMAT, NOT AN OMISSION
+
+**`build/builder` is absent from step 0 AND step 1.** One missing row is a slip; **two in a
+row is how this session formats a ladder**, which means **the six-row convention did not
+survive the handoff.** Still not reconstructed from this board — the rule holds and the
+temptation is now stronger, since two notices agree on every row we can check.
+
+**AND THE `nitpick.obligations` LABEL SLIP HAS NOW REPEATED THREE TIMES** (`_s5` once,
+corrected; `_s6` twice). **368 remains this board's figure for the manifest.**
+
+## THE LESSON THIS HANDOFF TEACHES, WHICH IS WORTH MORE THAN EITHER DEFECT
+
+**Three things were in flight across the `_s5` → `_s6` handoff. Exactly one arrived.**
+
+```
+the floor-move protocol   ARRIVED   handed over as an explicit VALUE + PROCEDURE
+                                    ("the previous digest 27387ce7…, 55768 B, and the reason")
+the six-row ladder        LOST      lived as a CONVENTION observed in practice
+the 368/439 correction    LOST      lived as PROSE about which number means what
+```
+
+***What survives a handoff is what was handed over as a value with a procedure attached.
+A convention that is merely practised, and a correction that is merely explained, do not
+travel.*** **This is the same finding as "a rule can be paraphrased away; a quoted digest
+cannot", now demonstrated three times in one handoff — twice by failure.**
+
 ### ⚠ 1.5.6 STEP 0 IS LANDED — THE FLOOR MOVED AGAIN, pin target `85952d0`, notice 2026-09-11 14:51 from `nitpick-compiler_s6`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **✅ The protocol was honoured on all three elements by a session we had never heard from
