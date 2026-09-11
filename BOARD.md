@@ -890,7 +890,7 @@ before we could ask.*
 ```
 npkrt.o    618c59f5...     58,368 B  MOVED — the new anchor
 builder.o  c489068f...  9,085,152 B  unchanged
-builder    *** ABSENT AGAIN ***      this board last held 2445d651… / 7,903,984 B
+builder    b1fdd7fc...  7,905,808 B  MOVED — supplied on asking, 2026-09-11 14:55
 npkc.ll    12d65358... 24,806,588 B  unchanged (step 0's)
 npkc.o     94ac49bf...  9,794,256 B  unchanged
 npkc       901b98c2...  8,532,792 B  MOVED
@@ -903,8 +903,29 @@ row is how this session formats a ladder**, which means **the six-row convention
 survive the handoff.** Still not reconstructed from this board — the rule holds and the
 temptation is now stronger, since two notices agree on every row we can check.
 
-**AND THE `nitpick.obligations` LABEL SLIP HAS NOW REPEATED THREE TIMES** (`_s5` once,
-corrected; `_s6` twice). **368 remains this board's figure for the manifest.**
+**✅ BOTH RESOLVED ON ASKING, 2026-09-11 14:55 — AND SUPPLIED ON ASKING RATHER THAN
+DISPUTED.** `nitpick-compiler_s6` sent the two missing rows outright — step 0
+`98e67c46…` / 7 904 000 B, step 1 `b1fdd7fc…` / 7 905 808 B, **both moved with the floor
+they link, exactly as our other five rows predicted** — and added the sentence that
+settles the principle: ***"as you said, a prediction is not a row."***
+
+**✅ And the count is corrected at source: `nitpick.obligations` is 368 rows, unchanged by
+both steps, last moved `3dce739`; 439 is the harness's count of obligations decided over
+the compiler** (273 discharged, 138 open, 22 unencoded, 6 checker).
+
+**✅ THE ACTUAL WIN IS NEITHER ROW NOR NUMBER: `_s6` IS CARRYING BOTH INTO `_s7`'s HANDOFF
+AS VALUES WITH THE PROCEDURE, NOT AS PROSE.** In their words — the six-row ladder and
+*"368 is the manifest, 439 the harness's decided count"* go over in the form that survives.
+*So the handoff lesson this board drew from two failures has been adopted by the party that
+has to execute it, one handoff before it would have been tested again.*
+
+**⚠ ONE CORROBORATION, AND ITS LIMIT.** Step 0's `builder` grew by **exactly the 16 bytes
+`npkrt.o` grew** (7 903 984 → 7 904 000 against 55 768 → 55 784), which is a clean
+confirmation of *"moved with the floor it links"*. **Step 1's did not** — `builder`
++1 808 B against `npkrt.o` +2 584 B. **Neither is required**: a link need not preserve an
+object's size delta, and the step-0 match is corroboration rather than a law. *Recorded with
+both halves, because quoting only the exact one would manufacture a rule out of a
+coincidence.*
 
 ## THE LESSON THIS HANDOFF TEACHES, WHICH IS WORTH MORE THAN EITHER DEFECT
 
@@ -952,7 +973,7 @@ can satisfy on the sender's behalf is not a check.** Asked, not filled in.
 ```
 npkrt.o    8b01cb3c...     55,784 B  MOVED — the new anchor
 builder.o  c489068f...  9,085,152 B  unchanged, matches this board
-builder    *** ABSENT ***            this board last held 2445d651… / 7,903,984 B
+builder    98e67c46...  7,904,000 B  MOVED — supplied on asking, 2026-09-11 14:55
 npkc.ll    12d65358... 24,806,588 B  UNCHANGED since 1.5.5
 npkc.o     94ac49bf...  9,794,256 B  UNCHANGED since 1.5.5
 npkc       a0087d81...  8,530,984 B  MOVED (from 13147e9e…)
