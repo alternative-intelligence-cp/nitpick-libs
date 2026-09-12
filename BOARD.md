@@ -942,7 +942,63 @@ matches neither figure. **§4b and §4c now exist exactly as forecast.**
 
 ***So the floor's evidence is generated and held by both runners, and the SUMMARY COUNTS
 quoted in notices are not in it.*** *A board that cites one has no way to re-derive it, which
-is the same defect as a citation that cannot be followed. Queried; recorded as open.*
+is the same defect as a citation that cannot be followed.*
+
+## ✅ RESOLVED — AND THIS BOARD WAS WRONG TOO. EVERY FIGURE RE-DERIVES FROM THE TREE.
+
+**`137` versus `85` is the 368/439 shape a third time, confirmed by `nitpick-compiler_s6`
+against `b7d60dc`: two true numbers with different denominators and no drift.**
+
+```
+175   `define`s in runtime/npkrt.ll                       -- the floor's whole surface
+137   `(symbol ...)` sections in runtime/npkrt.spec        -- symbols DESCRIBED
+ 85   distinct symbols with rows in npkrt.obligations      -- symbols WITH EVIDENCE
+370   rows: 363 discharged, 7 budget, 0 refuted
+```
+
+**The 52-symbol gap is not slack. Their words, and worth keeping verbatim:** *"137 is
+'described', 85 is 'has evidence', and the gap is 52 symbols whose whole specification is a
+promise at the kernel boundary or an admission of residue. That gap is not slack — it is most
+of the allocator, the waits, the thread and process boundaries, and it is the honest part of
+the picture."*
+
+**⚠ AND THIS BOARD'S OWN "UN-RE-DERIVABLE" FINDING WAS WRONG — THEY ACCEPTED IT AND IT DOES
+NOT HOLD.** The figures are not *written* in `TCB.md` or `npkrt.spec` as literals, which is
+what this board checked; **but every one of them is COMPUTABLE from committed artefacts, one
+command each, verified at `b7d60dc`:**
+
+```
+175  grep -cE '^define' runtime/npkrt.ll                              -> 175
+137  grep -cE '^\(symbol' runtime/npkrt.spec                          -> 137
+ 85  awk '!/^#/{print $6}' runtime/npkrt.obligations | sort -u | wc -l -> 85
+370  grep -cE '^[^#;]' runtime/npkrt.obligations                      -> 370
+363  awk '!/^#/ && $4=="discharged"' npkrt.obligations | wc -l        -> 363
+  6  ls runtime/models/ | wc -l                                       -> 6
+ 79  85 minus the 6 models                                            -> 79
+```
+
+***So "not stated" and "not checkable" are different things, and this board conflated them —
+the same error it has been correcting in others all week, one level up.*** **`175` now agrees
+three independent ways**: the object's `define`s, `TCB.md` §4's membership table, and their
+stated figure. *Their proposed fix — a generated counts line at §4c's head — is therefore a
+convenience that saves a reader inventing four commands, NOT the closing of a hole. Worth
+knowing before anyone spends half an hour plus a harness on it.*
+
+**⚠ ONE FIGURE DOES NOT RE-DERIVE BY ITS OWN NAME, AND IT IS A FOURTH LABEL INSTANCE.** The
+notices say **"7 residue"**; the manifest's verdict word for those rows is **`budget`**.
+Grepping the manifest for `residue` returns nothing. *`residue` is the category in prose,
+`budget` the verdict in the file — true on both sides, findable from only one.*
+
+**AND THE 7 ARE CONCENTRATED, WHICH IS A CONCRETE FACT ABOUT WHAT THE FLOOR DOES NOT
+PROMISE:** **six of the seven are `@npk_small_free`** and the seventh is
+`@npk_int_to_string`. *So the floor's undischarged residue is almost entirely the small-block
+free path — which is allocator behaviour every library here sits on top of, and is the single
+most useful sentence to carry out of `TCB.md` §4c.*
+
+**✅ AND THE z3 PROFILE INSTRUCTION IS SELF-CARRYING AFTER ALL** — `npkrt.obligations`'s own
+header line reads `# options smt.random_seed=0 sat.random_seed=0 rlimit=20000000
+lp.dio=false`, so a manifest hands a reader its own profile without anyone having to
+remember the notice.
 
 ### ✅ 1.5.6 IS CLOSED — LANDED as `b7d60dc`, notice 2026-09-12 02:30. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `d8a51b42…` / 59 192 B.**
 
