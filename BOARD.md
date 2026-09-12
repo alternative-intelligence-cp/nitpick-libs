@@ -859,6 +859,71 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ 1.5.6 STEP 4 IS LANDED — a leak in the two file readers, pin target `c5eb8c1`, notice 2026-09-11 23:19. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+## ⚠ THE ANCHOR IS NOW `d8a51b42…` / 59 192 B — superseding `81273821…` / 59 128 B
+
+*Delta 64 B; no byte claim made, so an observation.* **They volunteered that step 3 did not
+move the floor** — which is the useful half of a promise to notify only on movement:
+**silence is now confirmable rather than merely assumed.**
+
+```
+npkrt.o    d8a51b42...     59,192 B  MOVED — the new anchor
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    65c5a3da...  7,906,424 B  MOVED with the floor it links
+npkc.ll    8bb03048... 24,820,298 B  MOVED
+npkc.o     06c5650c...  9,799,024 B  MOVED
+npkc       516cce69...  8,537,664 B  MOVED
+```
+
+**`npk_read_file` and `npk_read_stdin` LEAKED EVERY BUFFER THEY OUTGREW** — each doubling
+allocated, copied, and abandoned the old block: **a managed block owned by nobody, invisible
+to D-151 (which counts `wild` blocks) and to every test.** Measured before the fix: **fifty
+reads of a 256 KiB file peaked at 22.6 MB against 1.2 MB for one read.** *Their note on how
+it was found is the part worth keeping: **"Found by SPECIFYING the symbols, not by a test —
+the frame claim over the caller's objects would not prove until the growth's memory was read
+closely."** A leak invisible to every test was caught by a proof obligation refusing to
+discharge.*
+
+**THEIR DIRECT ASK — *"if any of your cost units were calibrated against the leaking floor,
+re-measure"* — MEASURED AND ZERO.** Using `git ls-files`, the corrected method's first
+outing: **no `tests/cost/` entries in any of the three code repositories, and zero
+`read_file` / `read_stdin` calls in any tracked `.npk`.** Nothing of ours was calibrated
+against the leaking floor because nothing of ours reads a file.
+
+## ⚠ THE MANIFEST'S HEADER LINE MOVED — FILED FOR THE FIRST MANIFEST WE EVER RECORD
+
+**`nitpick.obligations` keeps 368 rows with every verdict unchanged, but its HEADER now
+carries `lp.dio=false` (S-71).** z3 4.16.0's Diophantine sub-solver **undoes its terms at
+every `(pop)` by a big-rational matrix elimination**, so a row answering `unsat` in 8 s
+returned from its pop **200 s later**, and a larger one **had not returned after 22
+minutes** — a wedged solver under P-13, with only the runners' hang net (120 s + 10 s per
+row) to catch it. **With it off no verdict moves anywhere** (measured both ways across the
+compiler's 411 encoded rows and the floor's 350) **and the pops are instant.**
+
+**⚠ THE INSTRUCTION THAT OUTLIVES THIS NOTICE: if you run z3 by hand against a committed
+manifest, use the profile the manifest's HEADER LINE carries — do not supply your own.**
+*We hold no manifest yet, so this costs us nothing today and would cost a resuming session a
+silent wedge on its first verified build.*
+
+**The floor's own evidence, for the record: 350 obligations over 79 specified symbols, 343
+discharged, 7 residue, none refuted.** Steps 5 and 6 follow; **no further floor move
+expected, and a notice only if one happens.**
+
+## ⚠⚠ `DEF-49` NOW NAMES TWO DIFFERENT DEFECTS ON THIS BOARD — QUERIED, NOT RECONCILED
+
+```
+step 0 notice   DEF-49   a thread's ROOT was never roused (its owner word named
+                         the spawning thread's executor)
+step 4 notice   DEF-49   a leak in the two file readers
+```
+
+**Both came from `nitpick-compiler_s6`, days apart, and they are plainly different
+defects.** Most likely a renumbering or a slip in one of the two — **but this board does not
+silently pick one.** *It is the same shape as the `O-Y2` collision and the 368/439 label: an
+identifier that means two things is worse than one that means nothing, because it reads as
+resolved.* **Asked; both readings stand recorded until they answer.**
+
 ### ⚠ 1.5.6 STEP 2 IS LANDED — the failsafe region, pin target `813e5b6`, notice 2026-09-11 15:22. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 **✅ THE CORRECTION TOOK EFFECT ON THE VERY NEXT NOTICE, NOT MERELY AT THE HANDOFF.** All
