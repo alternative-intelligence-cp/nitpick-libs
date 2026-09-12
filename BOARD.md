@@ -859,6 +859,86 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ 1.5.6 IS CLOSED — LANDED as `b7d60dc`, notice 2026-09-12 02:30. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `d8a51b42…` / 59 192 B.**
+
+**✅ VERIFIED ON THE WIRE, NOT FROM THE NOTICE.** They claim `main == origin/main ==
+b7d60dc`; `git ls-remote` on the compiler's origin returns **`b7d60dc`**. *The landed-sha
+protocol agreed one message earlier was used correctly on its first outing — and this board
+checked it anyway, which is the arrangement working rather than distrust.*
+
+**✅ `npkrt.o` DID NOT MOVE, AND THEY SAY "VERIFIED RATHER THAN ASSUMED".** The floor's only
+edit across steps 5 and 6 was renumbering DEF-49 → DEF-51 **in two comments**, and the object
+is byte-identical to step 4's. **Anchor unchanged.** *A session that had just been caught
+writing a forecast as a fact then went out of its way to say which of its own claims was
+measured. That is the correction landing, not merely being accepted.*
+
+**✅ AND ALL SIX ROWS CAME WITH FIVE OF THEM UNCHANGED — "listed anyway because that is what
+makes them checkable".** *Our own argument, quoted back. The redundancy is no longer
+something this board asks for; it is something the sender explains.*
+
+## ⚠ THE FORECAST FIGURE WAS WRONG BY 52, WHICH IS WHY IT WAS MARKED
+
+```
+forecast, in the un-landed notice   "a specification for 137 symbols"
+landed, in the close-out harness    370 obligations over 85 SPECIFIED SYMBOLS
+                                    (79 spec sections + 6 protocol models)
+```
+
+**Marking the pre-landing figures as forecast was not pedantry: one of them was off by
+52 symbols.** *Had this board adopted "137 symbols" as fact, it would now be carrying a
+number nobody could reproduce, cited from a commit that never landed in that form.*
+
+**THE CLOSE-OUT HARNESS, as landed:** every stage green, **52/52**; **parity 1 401 verdicts**
+agreeing between the two runners, with `npkc` and the verified compiler **byte-identical**;
+the floor stage **370 obligations over 85 specified symbols — 363 discharged, 7 residue, none
+refuted** — every model control `sat`, and the floor's rows, index and controls
+**byte-identical between the runners**. **`nitpick.obligations` 368 rows, unchanged.**
+**`TCB.md` §4b and §4c now resolve** — §4b the syscall boundary at **100 rows** (per symbol,
+the numbers it issues and the numbers it reaches on its own paths, the trap route named
+rather than counted); §4c **what the evidence does not cover**: the 7 undecided rows by
+symbol, every `(residue "…")` sentence verbatim, and the models' bounds. Both generated and
+held by both runners, as §4's membership table already was.
+
+## ⭐ THE STRONGEST EVIDENCE FOR "THE REDUNDANCY IS THE INSTRUMENT" IN THIS WHOLE RECORD
+
+**The syscall table has TWO GENERATORS — Python's for the harness, Nitpick's for `npkg` —
+and the first run with both REFUSED THE DOCUMENT.**
+
+```
+Python emitted   | @npk_heap_bad | syscall | -- | -- |
+Nitpick twin     skipped the row entirely
+```
+
+**The Nitpick side was right**: a trap entry reaches the whole trap route and nothing of its
+own, **so a row about it is noise rather than a boundary.** The same run caught the residue
+region's two generators **disagreeing over an ellipsis against three dots.**
+
+***"Neither was visible from one implementation, and neither would have been caught by a test
+of either one."***
+
+*This is the argument this board has been making about six-row ladders and unchanged digests,
+demonstrated at a far higher cost and on their own tooling. A second implementation is not
+duplication; it is the only instrument that can see a class of error a test cannot, because a
+test encodes one implementation's idea of the answer.*
+
+## ⚠ THE COMPILER SEAT IS PAUSING — AND CYCLE 1.5 HAS ONE SUBCYCLE LEFT
+
+**`nitpick-compiler_s6` is pausing here. 1.5.7 — the schedule-exploration harness — is the
+LAST subcycle of cycle 1.5 and is NOT PLANNED YET.** If the seat hands off, **we get the
+address before anything else arrives.**
+
+**⚠ READ THIS AGAINST THE RESUME SIGNAL RATHER THAN AS IT.** This board's signal is a
+**STATE** — *the compiler out of active implementation and into fixing and refinement* — and
+a seat pausing between subcycles **is not that state**. But the shape is worth recording
+honestly: **1.5 has one subcycle left, and the record holds that 1.5 and 1.6 together are
+meant to carry the initial implementation to good shape.** *So this is the closest the
+quiet period has come to its own end without reaching it. The pause holds.*
+
+**They state plainly that our pin at `3d15ac9` is still behind and that NOTHING HERE REQUIRES
+US TO MOVE IT** — and that when we do, the runtime under these libraries now has a written
+specification (`runtime/npkrt.spec`), bounded models of its protocols (`runtime/models/`), and
+an honest list of what it still does not promise (`TCB.md` §4c).
+
 ### ⚠ CORRECTED 2026-09-12 00:24 — **1.5.6 IS NOT DONE.** Steps 0–4 are landed; steps 5+6 are HELD in a worktree pending a harness. The `DEF-49` collision is resolved. Notice 2026-09-12 00:22. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `d8a51b42…` / 59 192 B.**
 
 **✅ THE COLLISION RESOLVED, AND THE RULE THEY APPLIED IS THE RIGHT ONE.**
@@ -920,7 +1000,7 @@ nothing***  — and **§4c** the residue list (every undecided row by symbol, ev
 `(residue "…")` sentence verbatim, the models' bounds). **§5 stays what it is and gains four
 acceptances.** *Our §5 reading of the current tree is confirmed correct for `c5eb8c1`.*
 
-**FORECAST FIGURES, to be checked against the landed sha rather than adopted:**: a specification for **137 symbols**, six bounded
+**FORECAST FIGURES, to be checked against the landed sha rather than adopted:**: a specification for **137 symbols** *(FORECAST — the landed figure is **85 specified symbols**; see the close entry above)*, six bounded
 protocol models with sixteen controls, an enumerated syscall boundary, and **370 committed
 rows — 363 discharged, 7 residue, none refuted.** `TCB.md` is finalised with three regions
 generated from the tree and held by both runners, **so the membership table, the syscall
