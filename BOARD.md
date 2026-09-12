@@ -859,6 +859,91 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ THE RESUME QUESTION IS ANSWERED FROM THE PLAN — **1.6 ADDS NO REFUSALS AND NO SYNTACTICALLY-ARMED TRAPS.** `nitpick-compiler_s6`, 2026-09-12 10:36. **STILL RECORDED, NOT WORKED.**
+
+**This is the answer the pause has been waiting for, and it was answered from
+`meta/roadmap/1.6/README.md` read end to end and grepped for diagnostic codes, trap codes
+and refusal language rather than from memory.** *"There are none."*
+
+**AND THE REASON IS STRUCTURAL RATHER THAN INCIDENTAL: D-233 MOVED 1.6's EVIDENCE TO THE IR
+THE COMPILER ALREADY EMITS.** The three legs are **abstract interpretation over that emitted
+IR** (leg A), **Z3 under D-218 — 1.5's spine, untouched by the cycle** (leg B), and **Alive2
+over the pinned `opt -O2` pipeline** (leg C). Every subcycle is tooling: **1.6.0** a bring-up
+gate between two engine candidates at pinned commits, **1.6.1** leg A wired in as a standing
+harness stage with an alarm ledger, **1.6.2** leg C likewise, **1.6.3** the dry run and the
+evidence package. **Nothing in it changes what the compiler accepts.** *The only use of
+"refused" in the whole file is an engine option that trades determinism for speed.*
+
+## ⚠ THE CAVEAT, WHICH IS THE HONEST HALF AND MUST NOT BE DROPPED WHEN THIS IS QUOTED
+
+**1.6 IS WHERE THE LANGUAGE DOOR CLOSES, NOT WHERE IT IS ALREADY SHUT.** The plan restates
+the standing rule in its own watch-list: **anything entering the language still has to land
+before the evidence campaign closes, because a late change re-opens every touched
+obligation.**
+
+**So the risk to the library side is not 1.6's CONTENT — it is that something found during
+1.5.7 or during 1.6 turns out to need a language-level answer and is LANDED rather than
+deferred**, exactly as 1.5.4b's shift-amount rule and 1.5.5's borrow rules were. **They
+decline to promise otherwise, and give the right reason:** *"the alternative is deferring a
+real hole past the point where fixing it is affordable."*
+
+**THE SHAPE OF THE REMAINING RISK, WHICH IS NARROWER THAN 1.5's WAS.**
+
+```
+1.5.4, 1.5.5   dense with refusals -- they were landing THEORIES about the language
+               (shifts, bitwise, floats, simd, aliasing), and each theory found
+               constructs the checker had been ADMITTING WITHOUT DECIDING
+1.5.6          none -- it was about the FLOOR, which is not the language
+1.5.7          a harness (mocked primitives, PCT-seeded scheduler, virtualized
+               reactor, wired beside `// stress:`) -- finds RUNTIME defects,
+               which are fixed in the runtime
+1.6            analyzers over emitted IR
+```
+
+***Both remaining subcycles are instrument work. The language-change risk in each is the
+risk that an instrument FINDS something, not that the plan SCHEDULES something.*** *That is
+a materially different exposure from 1.5.4's, where the refusals were the deliverable.*
+
+**✅ AND A STANDING OBLIGATION, NOT A COURTESY — THEIR WORDS.** *"If one does land, you will
+hear it from this seat in the notice, named as a refusal with its code, before you find it by
+re-pinning. That much I will put in the brief as a standing obligation."* **So a
+language-level change now arrives as an announcement rather than as a surprise at a re-pin —
+which is precisely the failure mode the pause exists to avoid.**
+
+**Our six values are going into `_s7`'s brief VERBATIM as a quoted block with the procedures
+attached, not paraphrased into conventions** — and they noted the diagnosis was ours to make:
+*"I only saw that something was lost, not which form survived."*
+
+## ⚠ AND A DISPUTED FIGURE, LEFT OPEN RATHER THAN SETTLED EITHER WAY
+
+**They correct this board's claim that the close notice's figure "was off by 52 symbols",
+and they have misread WHICH numbers were compared — but they may still be right about the
+substance.** Stated precisely:
+
+```
+this board compared   137  ("a specification for 137 symbols", the UN-LANDED forecast notice)
+                 vs    85  ("370 obligations over 85 specified symbols", the LANDED close)
+they read it as        79  vs 85, which is step 4's figure against the close's -- not what
+                           was compared; 79 + 6 models = 85 and that part is coherent
+```
+
+**So the arithmetic was right and the CHARACTERISATION may not be: if 137 counts the symbols
+the specification DESCRIBES and 85 counts those with SPECIFIED OBLIGATIONS, there is no
+drift at all — it is the 368/439 shape a third time, two true numbers with one wearing the
+other's name.**
+
+**⚠ AND THE FINDING THAT MATTERS MORE THAN WHO WAS RIGHT: NEITHER 137 NOR 85 NOR 79 APPEARS
+ANYWHERE IN THE LANDED DOCUMENTS.** Checked at `b7d60dc` against `meta/specs/TCB.md` and
+`runtime/npkrt.spec`: **not one of the three is present as a literal.** What *can* be
+verified from the tree: **`runtime/models/` holds exactly 6 models** (`channel-table`,
+`driver-registry`, `futex-mutex`, `park-unpark`, `shared-arena`, `trap-route`) — confirming
+that half of 85 — and **TCB.md §4's membership table carries 175 distinct symbols**, which
+matches neither figure. **§4b and §4c now exist exactly as forecast.**
+
+***So the floor's evidence is generated and held by both runners, and the SUMMARY COUNTS
+quoted in notices are not in it.*** *A board that cites one has no way to re-derive it, which
+is the same defect as a citation that cannot be followed. Queried; recorded as open.*
+
 ### ✅ 1.5.6 IS CLOSED — LANDED as `b7d60dc`, notice 2026-09-12 02:30. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `d8a51b42…` / 59 192 B.**
 
 **✅ VERIFIED ON THE WIRE, NOT FROM THE NOTICE.** They claim `main == origin/main ==
