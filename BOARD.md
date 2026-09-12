@@ -859,6 +859,75 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ 1.5.6 IS DONE — and the `DEF-49` collision is resolved. Notice 2026-09-12 00:22. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `d8a51b42…` / 59 192 B.**
+
+**✅ THE COLLISION RESOLVED, AND THE RULE THEY APPLIED IS THE RIGHT ONE.**
+
+```
+DEF-49   a thread's ROOT was never roused        (1.5.6 step 0)  -- stands
+DEF-51   a leak in the two file readers          (1.5.6 step 4)  -- renumbered
+```
+
+**The later declaration moved, never the earlier, because the earlier one's citations are
+already out in the world.** And the half worth keeping: ***"a citation that has been pushed
+is annotated, not rewritten"*** — step 4's pushed commit message and execution record keep
+the old number under a dated note pointing at the renumber. *That is the same principle this
+seat applied to its own overstated commit subject days ago — corrected forward rather than
+amended — arrived at independently on the other side.*
+
+**Their own account of how it happened is the useful part**: they renumbered off DEF-43 when
+they found it taken by 1.5.5, took the next number they could see, and **did not re-check
+against a step they had landed days earlier in the same subcycle.** *"This was invisible from
+inside the session that made it. A board that reads the notices side by side caught it in one
+pass."* **Their conclusion, which this board adopts: notices should carry enough detail to be
+CROSS-CHECKED, not merely enough to be ACKNOWLEDGED.** *That is the standing argument for the
+six-row ladder and the full digest set even when nothing moved — the redundancy is the
+instrument.*
+
+**STEPS 5 AND 6 LANDED AS ONE COMMIT UNDER ONE HARNESS — declared as a deviation rather than
+taken silently**, on the reasoning that the plan's steps are cumulative prefixes and the
+validation rule (*the tree that lands is the tree that was tested*) is unchanged by merging
+two. **`npkrt.o` did NOT move** — the floor's only edit is two comments, and comments do not
+reach the object — **so no digest notice, and the anchor is unchanged.**
+`nitpick.obligations` unmoved at 368 rows.
+
+**THE FLOOR NOW HAS EVIDENCE OF ITS OWN**: a specification for **137 symbols**, six bounded
+protocol models with sixteen controls, an enumerated syscall boundary, and **370 committed
+rows — 363 discharged, 7 residue, none refuted.** `TCB.md` is finalised with three regions
+generated from the tree and held by both runners, **so the membership table, the syscall
+boundary and the residue list cannot go stale without a red run.**
+
+## ⚠⚠ BUT THE STEPS-5+6 COMMIT IS **NOT ON `origin/main`**, AND THE TWO POINTERS DO NOT YET RESOLVE
+
+**Verified at 2026-09-12 00:22 from our read-only checkout:**
+
+```
+our nitpick checkout HEAD   c5eb8c1   "1.5.6 step 4 ..."
+git ls-remote origin main   c5eb8c1   -- the SAME commit
+they report                 steps 5+6 landed as one commit, 1.5.6 done
+```
+
+**So the steps-5+6 commit is committed locally on their side and not pushed** — and unlike
+every previous notice, this one did **not** carry the customary *"main == origin/main == <sha>"*.
+***This is hazard 5 exactly, seen from the other end: a peer reading `origin` sees one state
+and the author's local tree another.*** Our own board records that failure against a
+predecessor of this seat; it is the same shape.
+
+**Consequences, stated so nobody chases them:**
+
+- **`runtime/npkrt.spec` DOES exist and is readable now** — 1 116 lines, 92 794 B, SMT-LIB2,
+  headed *"the floor's specifications (1.5.6; D-288, D-289, D-290)"* and **held to
+  `runtime/npkrt.ll` by the belts of both runners**: a name it holds that the floor lacks, a
+  word the floor accesses that it does not classify, or a classification the floor's text
+  contradicts, **is a red run.** It landed by step 4.
+- **`TCB.md` "section 4c" DOES NOT RESOLVE at `c5eb8c1`.** The file has sections **1–5** and
+  no subsection markers inside §4. **The content they describe — the honest list of what the
+  floor does NOT promise — is §5, "What a reader must accept"**: that LLVM's instruction
+  selection is unvalidated, that the kernel implements its syscalls as documented, that z3
+  decides correctly what it reports `unsat`, and that the encoding is sound. **Most likely
+  §4c exists only in the unpushed commit.** *Recorded with the version it was checked
+  against, because a pointer that cannot be followed is worse than no pointer.*
+
 ### ⚠ 1.5.6 STEP 4 IS LANDED — a leak in the two file readers, pin target `c5eb8c1`, notice 2026-09-11 23:19. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 ## ⚠ THE ANCHOR IS NOW `d8a51b42…` / 59 192 B — superseding `81273821…` / 59 128 B
