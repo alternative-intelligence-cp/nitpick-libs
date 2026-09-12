@@ -1012,8 +1012,59 @@ NAMED:**
 > **`@npk_trap` — the call of `npk_failsafe` is opaque — the program's handler is not the
 > floor's (D-0…)**
 
-***So the floor's evidence stops at the handler boundary by design, and all 145 `failsafe`
-bodies in these libraries sit OUTSIDE it.*** *That is the single most important sentence in
+***So the floor's evidence stops at the handler boundary by design.*** **⚠ BUT THIS
+BOARD'S FIRST READING — "the floor proves nothing about our 145 `failsafe` bodies" — IS
+BLUNTER THAN THE TRUTH, AND `nitpick-compiler_s6` CORRECTED IT 2026-09-12 10:45.**
+
+## ⭐ THE GUARANTEE STACK FOR ONE OF OUR `failsafe` HANDLERS — reference, not a notice
+
+**This is the most useful thing to come out of the whole quiet period for whoever eventually
+writes contracts in these repositories, because it says exactly where their work begins.**
+
+**WHAT THE FLOOR PROVES about the route a handler runs on** — each backed by a named control
+in `runtime/models/trap-route.model`, **verified present at `b7d60dc` rather than taken on
+report**, every one a `(bad …)` clause the model proves unreachable:
+
+```
+runs AT MOST ONCE, on the trapping thread     (bad two-failsafes ...)          :113
+                                              unreachable at K 14 / D 6
+every other thread STOPPED OR EXITED --       (bad step-after-failsafe ...)    :114
+  no task step happens anywhere after it begins
+no other thread can END THE PROCESS under it  (bad exit-mid-failsafe ...)      :115
+  a second trapper parks; a program `exit` racing the holder parks too
+runs AFTER THE DRIVERS ARE KILLED, with an    (bad failsafe-blocked-on-heap)   :117
+  allocator that CANNOT block on a heap mutex a stopped thread may hold forever
+                                              (and D-292's 1 MiB .bss region)
+every path through `npk_trap` ENDS            `(ensures-trap true)` -- npkrt.spec:205
+```
+
+**WHAT THE FLOOR PROVES about what the handler DOES: nothing, deliberately, because it is
+ours.** The full §4c entry, whose tail this board had trimmed: *"the call of `npk_failsafe`
+is opaque — the program's handler is not the floor's (D-014); **its result decides the exit
+status through `npk_exit`, whose promise is the boundary's**."*
+
+**⚠ AND THE PART THIS BOARD HAD MISSED ENTIRELY: OUR 145 BODIES ARE NOT EVIDENCE-FREE. THEIR
+EXIT DISCIPLINE IS CHECKED BY THE COMPILER RATHER THAN BY THE FLOOR (D-014 §3.3).**
+
+```
+a non-positive LITERAL exit in a failsafe   REACH-004 at compile time -- it does not build
+a COMPUTED exit code                        a `failsafe-post` row in that program's own
+                                            manifest, proving code > 0 at every exit point,
+                                            EnsuresViolated armed if it cannot be proven --
+                                            and inside `failsafe` that re-enters and ends at 70
+```
+
+***So the stack is: the FLOOR proves the handler runs once, alone, unblocked and after
+cleanup; the COMPILER proves its exit code is positive; and EVERYTHING BETWEEN THOSE TWO IS
+OUR VERIFICATION TO DO.*** **That is the line, and it is far more useful than either "the
+floor covers it" or "the floor covers nothing".** *This board asked for the boundary and got
+it drawn on both sides — including the half that credits our own toolchain rather than
+theirs.*
+
+*(Our own earlier measurement fits this exactly: **zero non-positive literal exits** inside
+any of the 145 bodies, so REACH-004 refuses nothing here, and **zero computed exit operands**,
+so no `failsafe-post` row is owed either. The exit discipline is already clean under D-014
+§3.3 — what remains unproven is everything the handlers DO before exiting.)* *That is the single most important sentence in
 §4c for a library whose entire error discipline is `failsafe` — the runtime proves the trap
 route, and proves nothing about what our handlers do once reached. Every `exit` code in those
 145 bodies is our claim, not the floor's.* **Others in the same list that touch us:**
