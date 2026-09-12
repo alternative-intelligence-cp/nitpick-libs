@@ -3327,6 +3327,49 @@ whichever session takes the lock next knows there is compiler-independent work
 waiting and **does not sit idle waiting for a stability signal it does not need for
 this part.**
 
+**⚠ AND ONE THING THE 0.1 PLAN MUST ACCOUNT FOR, ADDED 2026-09-12 10:49 AT THE AUTHOR'S
+DIRECTION: THE FLOOR LEAVES ONE THING UNPROVEN AND 0.1.0 WALKS STRAIGHT INTO IT.**
+
+**`0.1.0`'s subject is *"the byte cursor with offsets, the AST ARENA, the node kinds"* —
+and the single largest hole in the runtime's own evidence is the allocator's small-block
+free path.** Both of `TCB.md` §4c's residue categories point at the same symbol:
+
+```
+category 1, rows the profile did not decide   6 of the 7 are `@npk_small_free`
+category 2, claims the spec does NOT make     `@npk_small_free` -- "the five ensures and
+                                              the frame are not decided under the profile
+                                              (unknown at the budget; at ten times it two
+                                              answer unknown and four do not ...)"
+```
+
+**⚠ THAT IS NOT A BUDGET TWEAK AWAY.** They raised the budget **ten-fold** and the rows
+still did not resolve — two answered `unknown` and four did not return. *So a resuming
+session must not plan on the assumption that the floor's allocator evidence will be
+complete by the time 0.1 is built; on present evidence it will not be.*
+
+**AND `nitpick-regex` IS ALREADY ON THAT PATH, measured in tracked code rather than
+assumed:** `ralloc` **26**, `free` **29**, `dalloc` **22**, `alloc` **17**, `wild` **133**.
+**An arena allocates and, at teardown, frees** — which is precisely the operation whose five
+`ensures` and frame the floor declines to decide.
+
+**WHAT THIS MEANS FOR THE PLAN, stated as a planning constraint rather than as alarm:**
+
+- **It is not a defect and nothing is broken.** The floor's `(residue …)` sentence is a
+  claim deliberately **not made**, enumerated honestly in a generated region held by both
+  runners. The plain build's guards are unaffected.
+- **It means the arena's own correctness is `nitpick-regex`'s to establish, not something it
+  inherits.** Under the guarantee stack recorded above, the floor proves the trap route and
+  the compiler proves exit codes; **the arena's free discipline sits in the gap between
+  them, which is the library's verification to do.**
+- **So `0.1.0`'s subcycle file should say so explicitly** — what the arena promises about
+  its own frees, and how that is checked here — rather than leaving a reader to assume the
+  allocator underneath is proven. *Per the author's standing preference, a plan records the
+  measurements it rests on; this is one of them, and it is cheaper to write into 0.1.0 now
+  than to discover when a probe disagrees.*
+- **Re-check it at the re-pin**, because §4c is generated: if a later cycle decides those
+  rows, the constraint lifts, and the check is one read of `TCB.md` §4c rather than a
+  conversation.
+
 
 **`nitpick-regex` stays `CLAIMED s1` so no other stream takes it, and NOTHING IS
 IN FLIGHT — no agent is live and the row below is history, not a dispatch.**
