@@ -989,8 +989,39 @@ notices say **"7 residue"**; the manifest's verdict word for those rows is **`bu
 Grepping the manifest for `residue` returns nothing. *`residue` is the category in prose,
 `budget` the verdict in the file — true on both sides, findable from only one.*
 
-**AND THE 7 ARE CONCENTRATED, WHICH IS A CONCRETE FACT ABOUT WHAT THE FLOOR DOES NOT
-PROMISE:** **six of the seven are `@npk_small_free`** and the seventh is
+**⚠ AND THIS BOARD WAS NARROW: §4c ALREADY CARRIES BOTH FINDINGS, AND HOLDS THREE RESIDUE
+CATEGORIES WHERE THIS BOARD SAW ONE.** Read verbatim at `b7d60dc` 2026-09-12 10:42 rather than
+taken from their quote of it. **The label distinction is in the section's own opening
+sentence** — *"`budget` is a row the pinned z3 did not decide under the profile — the verdict
+rule keeps it as RESIDUE, never as a proof"* — **and the concentration is the generated
+`floor-residue` region's body.** *So the DOCUMENT was right all along and the NOTICES were
+loose, which is the opposite of where both sides were looking.*
+
+**THE THREE CATEGORIES, of which the 7 budget rows are only the first:**
+
+```
+1. rows the profile did not decide (`budget`)   7: @npk_small_free x6, @npk_int_to_string x1
+2. sentences the spec CARRIES, each a claim     12 symbols, each naming what is NOT decided
+   deliberately NOT MADE
+3. the models' residue                          the standing bounds (VERIFICATION_REFERENCE §9.4)
+```
+
+**⭐ AND CATEGORY 2 HOLDS THE ENTRY THAT MATTERS MOST TO THESE LIBRARIES, WHICH NEITHER SIDE
+NAMED:**
+
+> **`@npk_trap` — the call of `npk_failsafe` is opaque — the program's handler is not the
+> floor's (D-0…)**
+
+***So the floor's evidence stops at the handler boundary by design, and all 145 `failsafe`
+bodies in these libraries sit OUTSIDE it.*** *That is the single most important sentence in
+§4c for a library whose entire error discipline is `failsafe` — the runtime proves the trap
+route, and proves nothing about what our handlers do once reached. Every `exit` code in those
+145 bodies is our claim, not the floor's.* **Others in the same list that touch us:**
+`@npk_read_file` / `@npk_read_stdin` (the kernel's bytes are opaque), `@npk_wild_live_count`
+(the live-block walk), `@npk_small_free` (five ensures and the frame), `@npk_udivmod128` (the
+division identity `a = q*b + r`), `@fmod` / `@fmodf` (the reduction's result).
+
+**The original, narrower finding, kept because it is still true of category 1:** **six of the seven are `@npk_small_free`** and the seventh is
 `@npk_int_to_string`. *So the floor's undischarged residue is almost entirely the small-block
 free path — which is allocator behaviour every library here sits on top of, and is the single
 most useful sentence to carry out of `TCB.md` §4c.*
