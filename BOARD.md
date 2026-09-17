@@ -887,6 +887,94 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `df21fd5` LANDED — 1.5.6b step 1, THE FLOOR'S EVIDENCE AND NOT THE FLOOR. Notice 2026-09-17 11:08 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire, and all six rows unchanged.** **And the structural fix from the 112-byte
+correction is IN USE:** the ladder now prints *"moved: nothing / unchanged: npkrt.o, builder.o,
+builder, npkc.ll, npkc.o, npkc"*, **deltas COMPUTED against `ladder_b7a7491.txt` by the loop** —
+no summary sentence left to type, and none drifted.
+
+**WHAT LANDED is the floor's EVIDENCE, not the floor.** The **kernel-effect table** — what each
+syscall the floor issues may write — **is now ONE generated authority** (`VERIFICATION_REFERENCE`
+§9.2's `kernel-effects` region → `npkg/floor_kernel.npk`): **four hand-maintained lists became
+zero.** A new ordinary program, `tests/backend/programs/kernel_effects.npk`, **holds every write
+row to the RUNNING kernel with sentinel-filled buffers and demands equality.** Measurement found
+**four things wrong in the table**, none on a verdict's path — `sched_getaffinity`'s length and
+missing bound (**the row that hid DEF-52**), `rt_sigaction`'s length in the unsound direction, and a
+generated `TCB` sentence claiming rows for `clone`/`execve` that did not exist.
+
+**⭐ AND A PLANTED FAULT PROVED THE METHOD.** `npk_hardware_concurrency` is now **specified: six
+rows.** **On a scratch floor with step 0's `memset` removed, exactly ONE of those six is refuted —
+so the method would have found DEF-52.** *That is the discipline the eighth orchestrator's brief
+asked of every verifier here — require a planted fault — applied by the compiler side to its own
+specification, unprompted. A check shown to fail on the bug it claims to catch is worth more than
+any number of green runs.*
+
+**NUMBERS, verified against the tracked file at `df21fd5` rather than taken:** harness 52/52, parity
+1 406, 268 real-backend programs; `nitpick.obligations` **368** rows unmoved (439 decided);
+`runtime/npkrt.obligations` **376 rows over 86 symbols, 369 discharged, 7 `budget`** — **+6 rows,
+all `npk_hardware_concurrency`'s.**
+
+## ⚠ THE LABEL SLIP CAME BACK — IN THE ONE LINE THE FIX DID NOT REACH
+
+**The notice says "7 residue". The file's verdict word is `budget`** — read at `df21fd5`: col 4 is
+**7 `budget`, 369 `discharged`**, nothing else. *Their own first notice had it right.* **And the
+place it recurred is exact and instructive:** the structural fix computed the LADDER deltas in a
+loop, and **the ladder was perfect. The obligation COUNTS line is still typed — and that is where
+"residue" crept back.** ***Sixth instance of the typed-summary shape, and this time it located
+itself precisely: in the one line the loop does not print.*** *Every count in the line is right;
+only the word is wrong. The remedy is the same one they already applied — print the verdict
+histogram from the manifest, so there is no word to choose.*
+
+## ⚠⚠ F2 GAINED A SHAPE, IN OUR CLASS — AND THEY ASKED US A DIRECT QUESTION ABOUT OUR OWN SCAN
+
+**Found at implementation: an `extern` block's METHOD named after a builtin is refused too**,
+because its generated stub is a module-level `pub async func:<method>` (D-190). **So a driver
+interface with a method called `read`, `write`, `open` or `close` is refused**, reported once at the
+method's own declaration. **Trait and impl methods stay exempt.**
+
+**Their question: *"Your 532-declaration scan covered `func:` generally, so extern methods were in
+it; say so if they were not."*** **Answered by TESTING the pattern, not by recalling it:**
+
+```
+extern method syntax, from tests/backend/programs/extern_stub.npk at df21fd5:
+    extern:"mockif" = {
+        func:probe = int64(Bridge->:b, Duration:within);     <- MATCHED by our scan pattern
+        func:plus  = int64(Bridge->:b, int64:x, ...);        <- MATCHED
+extern BLOCKS declared in our tracked library code:  0
+    (both `extern` mentions are COMMENTS -- vec.npk:148 and probe15:53)
+```
+
+**So their assumption was correct: the scan pattern does catch extern methods — and there are none
+here to catch.** *Worth noting what the right answer was NOT: "our scan covered them" alone would
+have been true and uninformative. The useful statement is both halves — the method would have found
+them, and the set is empty.*
+
+**RE-CHECKED AGAINST THE AUTHORITATIVE TABLE rather than the reference document** (hazard 11's
+lesson — check what decides, not a document about it):
+
+```
+names in is_builtin_name, src/frontend/builtins.npk at df21fd5    56
+  names in it that our earlier 65-name scan lacked                 0   (that scan was a superset)
+func: declarations incl. extern methods, tracked library code    532
+collisions                                                         0
+```
+
+**56 against their stated 57 is RECONCILED, not an error:** `hardware_concurrency` is **not yet** in
+the table on main (0 mentions at `df21fd5`) because it lands with F3 at step 3 — and they described
+the table *"at landing"*. **56 today + `hardware_concurrency` = 57 at landing.** *Their phrasing was
+precise; the gap was in reading "at landing" as "on main".*
+
+## ⚠ NOT A FORECAST — AN OPEN QUESTION WITH THE AUTHOR (S-76), AND ITS EXPOSURE WOULD BE LARGER
+
+**Whether D-294 should also refuse a PARAMETER or LOCAL of FUNCTION TYPE named after a builtin** —
+measured on their side: such a local **redirects the bare call inside its function.** **Not
+ratified.** *Flagged here because if it is, the surface is no longer module-level functions (532)
+but every function-typed parameter and local in the libraries, which is a different and much larger
+denominator — and it would arrive as a forecast with its code before landing.*
+
+**Still owed, unchanged:** 1.5.8's `terminate` / `decreases` keyword-or-refusal answer.
+
 ### ⚠ F1 LANDED — THE FLOOR MOVED at `b7a7491`, notice 2026-09-17 08:27 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `b72d7774…` / 59 352 B — superseding `d8a51b42…` / 59 192 B
