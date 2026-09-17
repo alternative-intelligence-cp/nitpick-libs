@@ -887,6 +887,78 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `83e9f88` + `c609350` LANDED — **1.5.6b IS CLOSED**, nine landings. F6 AND F7 ARE FACT. **NO LADDER ROW MOVED AT EITHER.** Notice 2026-09-17 14:41 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire. Both commits carry the SAME six rows as `c5517f2`, all six found on this board:**
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged   <- the anchor; moved ONCE in 1.5.6b, at step 0
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged
+npkc.ll    ddef91be... 24,858,269 B  unchanged   -- THE EMISSION (D-265)
+npkc.o     a1eb22ce...  9,817,256 B  unchanged
+npkc       c3d76668...  8,553,824 B  unchanged
+moved: nothing, at either commit
+```
+
+**✅ F6 AND F7 EACH PREDICTED "NO LADDER ROW MOVES" AND NEITHER DID.** *Second and third forecasts to state
+their own ladder shape in advance and hold — after F5's. Three for three.*
+
+## ✅ OUR 439/433 CATCH IS CLOSED STRUCTURALLY, NOT JUST CORRECTED
+
+**The `verify` line now carries its `checker` rows, and BOTH RUNNERS ASSERT THAT THE PARTS SUM TO THE
+TOTAL.** Verified here: **273 + 138 + 0 + 22 + 6 = 439**, exactly. *The old line omitted the 6 `checker`
+rows and summed to 433.* **A category the generator forgets is now a RED RUN rather than a clean-looking
+breakdown** — which is the fix this board suggested, in the form it suggested. *The typed-summary lesson has
+now been applied three times on their side: generated deltas, generated counts, and now an assertion that a
+generated breakdown is complete. The third is the strongest, because the first two removed a chance to
+mistype and this one removes a chance to omit.*
+
+## ⭐ D-295's SECOND READER — ITS FIRST FINDING WAS IN THE CHECKING APPARATUS ITSELF
+
+**The floor's seven protocol models are now read a SECOND way on every run, in both runners:** explicit-state
+search over each model's whole reachable space, beside the solver's bounded rows. **A bad state reachable
+anywhere, a control that reaches none, a range that silently blocks a step, or a model the second reader
+cannot read — each is a red run by name.**
+
+**And its first finding was not in a model of the floor. It was in the runners' own self-check: the toy model
+the `floor-control-blind` cases use was COMMENTED SAFE AND WAS NOT — two steps reach its bad state.** Fixed
+in both.
+
+***A new check's first catch being a defect in the test apparatus that was already believed correct is the
+strongest evidence it could have given.*** *This is the second time in this subcycle that a second independent
+reading found something in material believed sound — the first being the two syscall-table generators
+disagreeing on their first joint run, where the Nitpick side was right. The mechanism is the same one this
+board argues for its own six-row ladder: **an unchecked restatement is not redundancy; a second reader that
+can disagree is.***
+
+## 📋 WHAT 1.5.6b CHANGED FOR A LIBRARY — their consolidation, with our measured exposure beside it
+
+```
+hardware_concurrency() is a builtin (D-293)                     we call it nowhere            0
+a program may not DECLARE a builtin's name, 57 names:
+  a module-level func:                       (D-294)            532 declarations checked      0
+  an extern block's method                   (D-294)            0 extern blocks               0
+  a function-typed parameter/local/for/pick  (D-296)            0 function types spelled      0
+DEF-54, DEF-55, DEF-56 fixed -- none a refusal                  no function values here       0
+the floor's bytes moved ONCE, at step 0, and not since          anchor b72d7774…, verified
+```
+
+**Every one measured, and the two that mattered validated by a positive control on their tree** — 57 names
+against 532 declarations, and 31 function-type spellings found where they exist against our 0. **1.5.6b
+closes with zero exposure for these libraries.**
+
+## FORECASTS AND THE ROAD TO THE RESUME SIGNAL
+
+- **F8 — 1.5.6c**: steps 0, 1, 2 **committed in worktrees and under their harnesses now.** **Evidence only** —
+  the floor's SPEC and its translator, a generated `TCB.md` table. **No floor byte, nothing under `src/`, so
+  no ladder row should move.** *If that changes, we hear it first.*
+- **Then 1.5.7** (the schedule-exploration harness, planned).
+- **⚠ THEN 1.5.8 — AND IT OPENS WITH A LANGUAGE QUESTION PUT TO THE AUTHOR** (`terminate` / `decreases`).
+  **We get the keyword-or-refusal answer, with its code, before anything lands.** *This is the item the whole
+  pause has been waiting on: the last subcycle of 1.5, and the only remaining one that can add a reserved word
+  or a refusal. It begins with a decision that is the author's to make, not the compiler side's.*
+
 ### ✅ `c5517f2` LANDED — 1.5.6b step 4c. **F5 IS FACT: DEF-54, DEF-55, DEF-56 FIXED — NONE A REFUSAL, NO NAME ADDED.** Notice 2026-09-17 13:59 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire; deltas exact.** **And two checks that are really tests of the board itself:**
