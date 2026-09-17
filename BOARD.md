@@ -887,6 +887,80 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ FORECAST F4 — D-296: FUNCTION-TYPED LOCALS NAMED AFTER A BUILTIN ARE REFUSED. Notice 2026-09-17 11:28 from `nitpick-compiler_s7`. **NOTHING HAS LANDED. FILED AS A FORECAST.**
+
+**This board asked for S-76 as a forecast with its code if it were ratified — it was, and it
+arrived before a line of it was written.** The author: *"go with your recommendations on all
+three."* **S-76 → D-296**, landing at **1.5.6b step 4b**, after steps 2, 3 (F3) and 4 (F2).
+
+**THE RULE — `NITPICK-RESOLVE-001` at the binding** — a **parameter** (of a function or a method), a
+**local**, a **`for` binding** or a **`pick` pattern binding** whose **TYPE is a function type** and
+whose **NAME is a bare builtin name.** **Reason, measured on their side:** such a binding is called by
+its bare name, so inside its scope the builtin is shadowed — a local
+`func int64() never fails:path_exists = eight;` makes `raw path_exists()` answer **8**.
+**NOT refused:** a binding of any *other* type named after a builtin (`int64:read`, `string:open` —
+calling it is a loud type error, so the name is harmless); **a struct FIELD of function type**
+(reached through its receiver, like a method); methods (D-294's exemption stands). **Spelling:** no
+type aliases exist, so an annotated function-typed binding is always literally
+`func RET(PARAMS)[ never fails]:name`; the un-annotated case is a `pick` binding over a function-typed
+payload or field.
+
+## ✅ ZERO EXPOSURE — AND THE ZERO IS VALIDATED BY A POSITIVE CONTROL, NOT ASSUMED
+
+**A zero from a pattern never shown to find anything is worthless**, so both their pattern and a
+broader one written here were run against **their** tree first, where the answer is known:
+
+```
+                                       compiler tree @ df21fd5    our 3 code repos (tracked)
+tracked .npk files                            777 (they: 778)           170
+their pattern   \bfunc\s+[^:;{}=]*?\)...       15 (they: 15)             0
+broader pattern (allows ':' in parens)          15                       0
+function-typed bindings named after a builtin    0 (they: 0)               0
+builtin names at landing                              57 = 56 on main + hardware_concurrency
+```
+
+**Both patterns reproduce their 15 exactly, so both work — and both find ZERO in our libraries.**
+*The broader pattern was written to test a suspected blind spot: theirs excludes `:` inside the
+parentheses, so it could not match a function type with NAMED parameters. **It does not
+materialise** — Nitpick function types use unnamed parameters (`func int32(int32)`), and the broader
+pattern finds the identical 15. Tested rather than asserted either way.*
+
+**⚠ AND THE CONTROL SHOWED SOMETHING ABOUT THEIR DENOMINATOR.** One of their 15 hits is
+`tests/backend/programs/fn_field_call.npk:11` — **`struct:Ops = { func int32(int32):op; };`, a struct
+FIELD, which D-296 explicitly EXEMPTS.** *So their "15 function-typed bindings" mixes the refused
+shape with an exempt one, overcounting the refusable set. It changes no conclusion — a zero over a
+superset is still a zero — but it matters to the IMPLEMENTATION: a pattern that matches fields cannot
+be used as the definition of what to refuse. Told to them, because it bears on the work in hand.*
+
+**✅ AND IT CLOSES THE `pick` CASE AND DEF-54 FOR US.** That same control hit proves the pattern catches
+**struct-field spellings** — and our libraries have **zero** matches of any kind. **So our libraries
+declare no function-typed binding, field or payload at all**, which makes both the un-annotated `pick`
+case and DEF-54's shape **vacuous here, by measurement.**
+
+**DEF-54, recorded for completeness:** CALLING a function value bound by a `pick` pattern
+(`(Op.Run(f)) { raw f(); }`) passes the checker, and **the emitter writes a direct call to a symbol that
+does not exist** (`@npk.prelude.f`), so `llc` rejects the module — **for any name, not only a
+builtin's. So no library can have a WORKING program of that shape today.** Being fixed inside 1.5.6b.
+
+## ⚠ THE PATH TO THE RESUME SIGNAL JUST GOT ONE SUBCYCLE LONGER
+
+**A new subcycle, 1.5.6c, is inserted BEFORE 1.5.7** — ratified today, for **two over-strong
+assumptions in the floor's spec: `npk_string_concat`'s and `npk_small_free`'s.** *Evidence only; the
+floor's behaviour does not change; any floor byte that moves arrives with both digests first.* **The
+remaining sequence is now: 1.5.6b steps 2, 3, 4, 4b → 1.5.6c → 1.5.7 → 1.5.8 → 1.6.** **S-75 also
+ratified** (the floor's protocol models gain a second, exhaustive reading as a belt in both runners) —
+no surface for us.
+
+**⚠ `npk_small_free` AGAIN — and the direction matters for the 0.1 planning gap.** This is the symbol
+the 0.1 gap's allocator constraint rests on. **An "over-strong assumption" being corrected makes the spec
+claim LESS, not more** — so 1.5.6c is likely to make the small-block free path *more honestly unproven*,
+not proven. *It does not lift the 0.1 constraint; if anything it confirms it.* Cross-referenced in the gap.
+
+**✅ AND THE LABEL-SLIP ITEM IS STRUCTURALLY CLOSED:** *"the counts block of every notice is generated
+from the manifests now (`notice_counts.py`), the manifests' own words, pasted verbatim like the
+ladder."* **The one typed line is gone.** Seventh fix of the typed-summary shape, and the first one made
+before a recurrence rather than after.
+
 ### ✅ `df21fd5` LANDED — 1.5.6b step 1, THE FLOOR'S EVIDENCE AND NOT THE FLOOR. Notice 2026-09-17 11:08 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire, and all six rows unchanged.** **And the structural fix from the 112-byte
@@ -3723,6 +3797,11 @@ assumed:** `ralloc` **26**, `free` **29**, `dalloc` **22**, `alloc` **17**, `wil
   allocator underneath is proven. *Per the author's standing preference, a plan records the
   measurements it rests on; this is one of them, and it is cheaper to write into 0.1.0 now
   than to discover when a probe disagrees.*
+- **⚠ AND 1.5.6c WILL REVISIT IT — IN THE DIRECTION THAT CONFIRMS THIS CONSTRAINT.** Ratified
+  2026-09-17 11:28: a new subcycle before 1.5.7 corrects an **over-strong assumption in
+  `npk_small_free`'s spec.** Correcting an over-strong assumption makes the spec claim *less*, so
+  the free path is likely to become **more honestly unproven, not proven.** *Plan 0.1.0 on the
+  assumption that the arena's free discipline stays the library's own to establish.*
 - **Re-check it at the re-pin**, because §4c is generated: if a later cycle decides those
   rows, the constraint lifts, and the check is one read of `TCB.md` §4c rather than a
   conversation.
