@@ -887,6 +887,88 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ `50ff821` — **1.5.6c IS CLOSED**, four steps in ONE notice, **NO LADDER ROW MOVED ACROSS THE SUBCYCLE.** F8 IS FACT. Notice 2026-09-17 16:56. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified: `50ff821` on the wire; all six rows unchanged and all six on this board; and the batching
+convention worked exactly as described — four steps, one notice, because nothing moved.** **25 hashes moved
+over the subcycle, over two symbols, and this board checked the split rather than the total: 13
+`@npk_small_free` + 12 `@npk_string_concat` = 25.** No verdict moved.
+
+## ⭐⭐ §4d IS A BETTER INSTRUMENT FOR THE 0.1 GAP THAN §4c, AND IT ANSWERS THE GAP'S QUESTION EXACTLY
+
+**New at this landing (`## 4d` absent at `2f96bb2`, present at `50ff821`), GENERATED in both runners.** Its
+opening sentence is the whole point:
+
+> *"A section's `requires`, `(objects …)` and `(views …)` are HYPOTHESES of its rows: the rows are decided under
+> them, **so for a call that does not keep them the rows say nothing.**"*
+
+**And the coverage taxonomy:** a translated caller of a `(summary)` symbol **PROVES** them as rows at the call;
+a translated caller of any other symbol **INLINES** it, so the caller's own rows cover the body; **every other
+call is checked by NOTHING** — an untranslated floor caller, and **EMITTED code, which reaches whatever the
+floor EXPORTS.**
+
+**THE GENERATED HEADLINE:** *"31 sections have rows AND assume something of their caller. For **2** of them
+every caller is covered … **18 have a floor caller no row covers**; **15 are EXPORTED**, so emitted code can
+call them and nothing proves the assumption there."* ***Two of thirty-one fully covered.*** *That is the honest
+shape of the floor's evidence at the caller boundary, and it is generated, so it cannot go stale silently.*
+
+**⚠⚠ AND THE ROW FOR THE ALLOCATOR, READ WITH ITS HEADER:**
+
+```
+| symbol            | assumes          | a row at the call | inlined into | NOT PROVED: floor callers | NOT PROVED: emitted |
+| `@npk_small_free` | requires objects |        --         |      --      |      `@npk_dalloc`        |         no          |
+```
+
+**No row at the call. Not inlined into anything. Its one floor caller — `@npk_dalloc` — is in the NOT PROVED
+column.** *`dalloc` is the builtin a library calls to free memory.*
+
+### ⭐ THE COMPLETE CHAIN, NOW MEASURED END TO END
+
+```
+1. `npk_small_free` assumes `requires objects` -- its ranges pairwise apart
+2. that assumption was FALSE for the ordinary LIFO free      (1.5.6c step 0, verified here)
+3. its 13 rows are 7 discharged + 6 `budget`                  (verified here)
+4. its ONLY floor caller is `@npk_dalloc`, and at that call
+   NOTHING PROVES THE ASSUMPTION                              (SS4d, verified here)
+=> for a library freeing memory through `dalloc`, the floor's rows for the
+   small-block free path SAY NOTHING -- by the spec's own generated account.
+```
+
+***This is the complete answer to the question the 0.1 planning gap was created to ask, and it took four
+landings to assemble: what does the floor actually promise about freeing memory? Nothing, at the call a library
+makes.*** *Not a defect, not a surprise, and not hidden — it is enumerated honestly in a generated region held
+by both runners. **It is simply the library's work, and now it is documented as the library's work rather than
+inferred to be.***
+
+**⚠ §4d IS THE INSTRUMENT TO CONSULT AT THE RE-PIN**, ahead of §4c: §4c says what the evidence does not cover
+BY SYMBOL; **§4d says it BY CALLER**, which is the shape of the question a library author actually has — *"is
+the way I call this covered?"*
+
+**THE OTHER OVER-STRONG ASSUMPTION RESOLVED THE OPPOSITE WAY, AND THE CONTRAST IS THE LESSON.**
+`npk_string_concat`'s spec had assumed its two inputs apart — **`string_concat(s, s)` is a legal program** — and
+**the proof never needed the assumption**, so removing it cost nothing; step 1 replaced it with `(views …)`,
+ranges a symbol only READS, which may overlap, **read-only PROVEN by the frame row.** ***So "the spec assumed
+something false" does NOT by itself mean "the evidence was worthless": `npk_small_free`'s false assumption was
+load-bearing and `npk_string_concat`'s was not. Whether an assumption is load-bearing has to be checked, not
+inferred from its being wrong.***
+
+**Also landed:** step 2 — every other apartness the spec assumes, **argued in the spec beside its clause**
+(comments, no hash moved); **and the reason §4d is generated at all: *"the hand-written account of it was wrong
+twice in eleven sections"*.** *The typed-summary lesson, found independently on their side, in their own
+documents, and fixed the same way.*
+
+## FORECAST — 1.5.7 IS DRAFTED, MEASURED, AND **NOT APPROVED: SIX QUESTIONS GO TO THE AUTHOR FIRST**
+
+**D-212's schedule-exploration harness.** *A throw-away prototype already explores **35 of the 44 `// stress:`
+programs, 35 000 schedules clean**.* **As drafted: NO language surface, no refusal, no name; the floor's bytes
+do not move (the explored floor is generated from the real one at test time); test programs would gain a
+COMMENT marker, `// explore: N`.** **If any of that changes on the author's answers, we hear before anything
+lands.**
+
+**⚠ SO TWO THINGS NOW SIT WITH THE AUTHOR:** **S-77** (the `npk_small_free` hang-net margin, raised twice,
+unanswered) and **1.5.7's six questions.** **And after 1.5.7 comes 1.5.8, which OPENS with the
+`terminate`/`decreases` LANGUAGE question — also his.**
+
 ### ⚠ `2f96bb2` LANDED — 1.5.6c step 0, EVIDENCE ONLY. **NO LADDER ROW MOVED.** Notice 2026-09-17 16:02 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire; all six rows unchanged from `c609350` and all six on this board.** No language
@@ -4285,6 +4367,12 @@ assumed:** `ralloc` **26**, `free` **29**, `dalloc` **22**, `alloc` **17**, `wil
   allocator underneath is proven. *Per the author's standing preference, a plan records the
   measurements it rests on; this is one of them, and it is cheaper to write into 0.1.0 now
   than to discover when a probe disagrees.*
+- **⭐ AND `TCB.md` §4d (new at `50ff821`) ANSWERS THIS NOTE'S QUESTION OUTRIGHT.** Read with its header:
+  `@npk_small_free` has **no row at the call, is inlined into nothing, and its one floor caller
+  `@npk_dalloc` sits in the "NOT PROVED" column.** **`dalloc` is the builtin a library calls to free.**
+  ***So for a library freeing memory through `dalloc`, the floor's rows for the small-block free path say
+  nothing — by the spec's own generated account.*** **Consult §4d, not §4c, at the re-pin: §4c answers by
+  symbol, §4d by CALLER, which is the question 0.1.0 actually has.**
 - **✅ CONFIRMED AS FACT 2026-09-17 16:02 AT `2f96bb2`, AND WORSE THAN THIS NOTE ANTICIPATED.** The
   over-strong assumption was that a chunk is apart from the head of the list it was already on — **false for
   the ordinary LIFO free** — so **`npk_small_free`'s seven discharged rows claimed nothing for that call.**
