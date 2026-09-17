@@ -86,7 +86,33 @@ hazard 8 guaranteeing the provenance check comes back clean. Rooting on `.` and
 an eighth allocator inventing that many colliding ids, when they are **registry entries
 citing library questions and naming the repository**, which is the mechanism working.
 The allocation-versus-citation distinction is what keeps that out of the count.
-One writer here (W-16, P-19).
+(11) **⚠ `../nitpick/build/` IS A STALE LOCAL ARTIFACT AND MUST NEVER BE USED TO CHECK A
+LADDER DIGEST. IT LOOKS EXACTLY LIKE THE AUTHORITATIVE THING AND IS NOT.** Found 2026-09-17 03:54
+on a resume sweep, one command short of filing a false defect against the compiler side.
+**Our read-only checkout's `build/npkrt.o` read `27387ce7…` / 55 768 B — the 1.5.4e anchor —
+while the compiler correctly reported `d8a51b42…` / 59 192 B.** Every instinct says the local
+object is the fact and the notice is the claim. **It is the other way round.**
+
+```
+build/ in the compiler repo    GITIGNORED (.gitignore:3), 0 tracked files
+git show b7d60dc:build/npkrt.o the path does not exist in the commit at all
+our build/npkrt.o mtime        2026-09-11 10:32  -- BEFORE step 4 (c5eb8c1, 21:19)
+                                                    and before b7d60dc (09-12 00:20)
+```
+
+**So it reflects whenever someone last ran a build in that tree, which can be arbitrarily far
+behind the checked-out commit.** *A session that "verified" a notice against it would get a
+confident FALSE NEGATIVE — concluding the compiler was misreporting its own anchor — which is
+worse than no check, because it would be reported.*
+
+**THE RULE: a ladder digest is checked against the notice's internal consistency and THIS
+BOARD's recorded history, never against `../nitpick/build/`.** **The distinction that makes
+the compiler tree usable at all:** its **TRACKED files at a verified commit are
+authoritative** — `runtime/npkrt.spec`, `meta/specs/TCB.md`, `runtime/models/`,
+`runtime/npkrt.obligations` have all been read that way this cycle and every reading held.
+**Gitignored build outputs are not.** *Same family as hazards 8 and 9 and the
+`find`-versus-`git ls-files` correction: an artifact that looks authoritative, answers
+confidently, and is measuring something else.* One writer here (W-16, P-19).
 **THE PEER SESSIONS, AND THEIR NAMES ARE NOW A CONVENTION RATHER THAN A
 LABEL.** The author renamed every session on 2026-09-05 to `<project>_s<N>`,
 where the project segment names the work area and `N` is the handoff
@@ -109,7 +135,9 @@ is what disambiguates.
 | `nitpick-compiler_s3` | — | landed 1.5.4c. **Arrived as an address this board had never verified, and was AUTHENTICATED BY CONTENT under hazard 10** — its three *unchanged* digests and the canary matched our own recorded values exactly. **Named `_s4` explicitly, closing the gap** |
 | `nitpick-compiler_s4` | — | the compiler address through 1.5.4d, 1.5.4b and 1.5.4e. **Answered the `(ShiftRange)` question with the mechanism rather than the verdict, and PRE-AGREED the anchor-move protocol unasked — then used it correctly on its first outing.** Handed to `_s5` at `cb8cbb0` |
 | `nitpick-compiler_s5` | — | landed 1.5.5. **Corrected its own 368/439 label slip on being queried, and named a GAP IN OUR TYPE-071 METHOD rather than agreeing with our result.** Handed to `_s6` at `149dbf6` |
-| `nitpick-compiler_s6` | — | **THE COMPILER ADDRESS FROM 2026-09-11 11:56 — named by `_s5` at `149dbf6`.** Has planned **1.5.6 (the floor's SPEC and the executor primitives)** and **holds our protocol quoted with the actual value, `27387ce7…` / 55 768 B.** First notice still gets the ladder check |
+| `nitpick-compiler_s6` | — | landed 1.5.6 entire. **Corrected itself four times unprompted**, pre-agreed nothing but honoured the anchor protocol on four floor moves, and **withdrew a specified task when shown its premise was wrong.** Handed to `_s7` at `b7d60dc` 2026-09-17 03:54 |
+| `nitpick-compiler_s7` | — | **THE COMPILER ADDRESS FROM 2026-09-17 03:54 — announced by `_s6` at `b7d60dc`.** Holds our six items **quoted verbatim with procedures attached**, the standing obligation on language-level changes, and the 1.6 answer with its caveat so it repeats rather than re-derives it. **First notice still gets the ladder check against `d8a51b42…`** |
+| `nitpick-compiler_s8` | — | open behind `_s7` as its eventual successor. **Not an address**; we are told from the address the rotation happens from |
 | `nitpick-compiler_s7` | — | idle behind `_s6`. **Not an address** |
 | `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
