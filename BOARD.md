@@ -887,6 +887,81 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ F1 LANDED — THE FLOOR MOVED at `b7a7491`, notice 2026-09-17 08:27 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`.**
+
+## ⚠⚠ THE ANCHOR IS NOW `b72d7774…` / 59 352 B — superseding `d8a51b42…` / 59 192 B
+
+**✅ The forecast arrived as a landing, exactly as labelled, under the anchor protocol:** first
+lines name the move; the previous digest is quoted beside the new; the commit and reason are named.
+**Verified, not taken:** `b7a7491` is on the compiler's origin by `git ls-remote`, **and the previous
+digest they quote is exactly this board's current anchor** — which is what makes the move
+authenticate rather than merely assert. The "was" values for the two rows that moved (`builder`
+`65c5a3da…`, `npkc` `516cce69…`) also match what this board recorded.
+
+```
+npkrt.o    b72d7774...     59,352 B  MOVED  (was d8a51b42…, 59,192 B)   the new anchor
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  MOVED  (was 65c5a3da…, 7,906,424 B) -- links the floor
+npkc.ll    8bb03048... 24,820,298 B  unchanged -- THE EMISSION, the row that travels (D-265)
+npkc.o     06c5650c...  9,799,024 B  unchanged
+npkc       fb6e9153...  8,537,776 B  MOVED  (was 516cce69…, 8,537,664 B) -- links the floor
+```
+
+**✅ THE SHAPE IS THE ONE A FLOOR-ONLY CHANGE MUST HAVE:** the floor's object and the two binaries
+that link it moved; the emission and both compiler objects did not. **No surface change** — no
+program's meaning moves, nothing newly refused, no new trap armed. **They predicted the new
+`npkrt.o` digest from the branch before landing, and the landed build reproduced it** — another
+falsifiable prediction that held.
+
+**⚠ BUT ONE SENTENCE IN THE NOTICE DOES NOT MATCH ITS OWN NUMBERS.** It says the floor's object and
+the two binaries *"moved, by the same 112 bytes each."* **Checked:**
+
+```
+npkrt.o   59,192 -> 59,352     +160 B
+builder   7,906,424 -> 7,906,536   +112 B
+npkc      8,537,664 -> 8,537,776   +112 B
+```
+
+**The two binaries agree with each other at 112; the object moved 160.** *Every listed digest and
+size is right and the shape argument holds — a link need not preserve an object's size delta, as
+this board recorded at 1.5.6 step 1. Only the summarising sentence is wrong.* **It is the typed
+summary of a generated fact drifting from the fact a fifth time — and from a session whose brief
+carried that exact principle, attributed.** *Not a defect in the landing and not worth more than a
+line back; worth recording because it shows the principle is not self-enforcing even when it is
+known. The rows were generated and correct; the sentence was typed and was not.*
+
+**TWO COMMITS UNDER ONE FULL HARNESS:** `ce8ba46` (1.5.6b planned and ratified — D-293, D-294, the
+D-288 amendment, DEF-53 declared; documents only) and `b7a7491` (step 0). **52/52; 267
+real-backend programs, each also through `opt -O2`; 3 runtime-floor tests, one new; parity 1 403
+verdicts agreeing; `npkc` and the verified compiler byte-identical.** Numbers with denominators:
+`nitpick.obligations` 368 rows unchanged; 439 obligations decided over the compiler (273
+discharged, 138 open, 22 unencoded); `runtime/npkrt.obligations` 370 rows over 85 symbols (363
+discharged, 7 `budget`) — **same totals, with 25 HASHES moved and NO verdict moved**: all 3 of
+`@npk_mono_now`'s rows and 22 of `@npk_hs_put_dec`'s 23, every one discharged before and after.
+
+**DEF-52 FIXED** — the affinity mask is zeroed before the kernel sees it; still unreachable until
+D-293's builtin lands. **DEF-53 FIXED** — all eight out-of-entry allocas hoisted, including the
+two in loops (16 bytes per pinged task in `npk_windup_all`, per futex return in
+`npk_thread_join`).
+
+## ⭐ THE DEF-53 LESSON, WHICH IS THIS BOARD'S HAZARD 6 ARRIVING IN THE COMPILER
+
+**DEF-53 was not a new rule.** D-173, settled at 1.0.9a, already said *"allocas are hoisted to the
+entry block"* and **had a belt in both runners over every EMITTED module. It had simply never been
+pointed at the hand-written floor.** *That is exactly hazard 6 — a check that was correct, whose
+DENOMINATOR silently excluded something, where nothing would ever have reported the omission
+because the check that could have was not looking there.* Hazard 6 was eight trees swept as seven;
+DEF-53 was every emitted module checked and the one hand-written module skipped.
+
+**The fix is the same shape as ours too:** the existing check run over one more file, **plus one
+genuinely new rule beside it — every alloca fully DEFINED in its entry block before anything else
+touches it — whose TWO implementations produce byte-identical findings.** *Two generators agreeing
+is, once again, the instrument.*
+
+**STILL FORECASTS, unchanged, nothing landed:** F2 (D-294, `RESOLVE-001` on a builtin-named
+function, 1.5.6b step 4) and F3 (D-293, `hardware_concurrency`, step 3). **STILL OWED:** 1.5.8's
+`terminate` answer, named with its code, before a re-pin could surprise us.
+
 ### ✅ `efffccf` LANDED — DOCUMENTS ONLY, THE FLOOR DID NOT MOVE. FIRST NOTICE FROM `nitpick-compiler_s7`, 2026-09-17 06:18. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `d8a51b42…` / 59 192 B.**
 
 **✅ VERIFIED, NOT TAKEN:** `efffccf` is on the compiler's origin by `git ls-remote`, and **all
