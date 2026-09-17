@@ -887,6 +887,65 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ `2f96bb2` LANDED — 1.5.6c step 0, EVIDENCE ONLY. **NO LADDER ROW MOVED.** Notice 2026-09-17 16:02 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire; all six rows unchanged from `c609350` and all six on this board.** No language
+surface, no refusal, no name, no floor byte, nothing under `src/` — **as F8 forecast.**
+
+## ⚠⚠ THE SUBSTANCE LANDS ON `npk_small_free`, AND IT IS THE 0.1 GAP'S CONSTRAINT CONFIRMED
+
+**A section of the floor's spec ASSUMES things of its caller** — an `(objects …)` clause asserts its ranges
+**pairwise apart**, as a HYPOTHESIS of its proofs. **And `npk_small_free` assumed something FALSE of the
+ordinary LIFO free: a chunk apart from the head of the list it was already on.**
+
+***So its seven discharged rows CLAIMED NOTHING FOR THAT CALL.***
+
+**Verified in the tree rather than taken from the notice:**
+
+```
+apart-when (the new spec form)  at c609350: 0 occurrences   at 2f96bb2: 4    <- new
+@npk_small_free rows            13 before, 13 after
+  verdicts                      7 discharged + 6 budget, BEFORE AND AFTER -- no verdict moved
+  hashes                        all 13 moved                                <- they said 13
+```
+
+**⚠ WHAT THIS MEANS, STATED CAREFULLY.** *Nothing the runtime DOES changed; this is not a behavioural
+defect.* **What changed is what the evidence was worth.** Before today, for the ordinary LIFO free path,
+`npk_small_free` held **6 rows undecided (`budget`) and 7 discharged under a hypothesis that is false for that
+call** — so **not one of its 13 rows established anything about the commonest way the function is used**, while
+the manifest read *"7 discharged"*. **The `(lo len apart-when COND)` form makes the hypothesis conditional, so
+a discharge now means what it says.** *Whether those seven now cover the LIFO call, or merely stop pretending
+to, is not determinable from the manifest and is NOT assumed here.*
+
+**✅ AND THIS CONFIRMS AS FACT WHAT THIS BOARD RECORDED AS A PREDICTION IN THE 0.1 PLANNING GAP.** The gap's
+allocator note said an over-strong assumption being corrected makes the spec claim **less**, so the free path
+would become **more honestly unproven rather than proven**, and told the author the arena's free discipline
+stays the library's own to establish. **That has now landed.** *A prediction recorded on this board about a
+symbol, confirmed by the landing it named.*
+
+## ⚠ S-77 RAISED A SECOND TIME AND STILL UNANSWERED — IT IS ON THE AUTHOR'S PLATE
+
+**The solver's hang net (120 s + 10 s per check, per file) leaves `npk_small_free` at 81% of its bound on the
+compiler's machine.** *Repeated verbatim in this notice because it is still open.* **If a library CI ever runs
+the `floor` leg on a slower runner, `"z3 exceeded the wall-clock net on 0056"` is that margin and NOT a
+verdict.** *Recorded again because this symbol now carries four separate signals at once — the largest residue,
+a corrected false hypothesis, the nearest timeout, and an unanswered question.*
+
+## 📋 A BATCHING CONVENTION, RECORDED SO SILENCE IS NOT READ AS A GAP
+
+**1.5.6c's steps 1–4 are committed and under their harnesses; each is evidence only and none should move a
+ladder row. They will send ONE notice when the LAST of them lands, rather than four saying the same thing —
+"unless any of them moves anything, in which case you hear at once."** *So a quiet stretch across those four
+steps is the convention working, exactly like "no notice at plan time". **The rule that makes it safe is
+theirs: silence means nothing moved, and movement breaks the silence immediately.***
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged      builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged      npkc.ll    ddef91be... 24,858,269 B  unchanged
+npkc.o     a1eb22ce...  9,817,256 B  unchanged      npkc       c3d76668...  8,553,824 B  unchanged
+moved: nothing
+```
+
 ### ✅ `83e9f88` + `c609350` LANDED — **1.5.6b IS CLOSED**, nine landings. F6 AND F7 ARE FACT. **NO LADDER ROW MOVED AT EITHER.** Notice 2026-09-17 14:41 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire. Both commits carry the SAME six rows as `c5517f2`, all six found on this board:**
@@ -4226,6 +4285,14 @@ assumed:** `ralloc` **26**, `free` **29**, `dalloc` **22**, `alloc` **17**, `wil
   allocator underneath is proven. *Per the author's standing preference, a plan records the
   measurements it rests on; this is one of them, and it is cheaper to write into 0.1.0 now
   than to discover when a probe disagrees.*
+- **✅ CONFIRMED AS FACT 2026-09-17 16:02 AT `2f96bb2`, AND WORSE THAN THIS NOTE ANTICIPATED.** The
+  over-strong assumption was that a chunk is apart from the head of the list it was already on — **false for
+  the ordinary LIFO free** — so **`npk_small_free`'s seven discharged rows claimed nothing for that call.**
+  Verified: 13 rows, 7 discharged + 6 `budget` before and after, **all 13 hashes moved**, the new
+  `apart-when` form present at `2f96bb2` and absent at `c609350`. ***So before this landing, not one of the
+  symbol's 13 rows established anything about the commonest way it is used, while the manifest read "7
+  discharged".*** **Plan 0.1.0 on the assumption that the arena's free discipline is the library's own to
+  establish — that is now measured, not predicted.**
 - **⚠ AND 1.5.6c WILL REVISIT IT — IN THE DIRECTION THAT CONFIRMS THIS CONSTRAINT.** Ratified
   2026-09-17 11:28: a new subcycle before 1.5.7 corrects an **over-strong assumption in
   `npk_small_free`'s spec.** Correcting an over-strong assumption makes the spec claim *less*, so
