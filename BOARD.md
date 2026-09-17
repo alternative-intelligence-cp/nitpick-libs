@@ -887,6 +887,84 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `632d2a7` LANDED — 1.5.6b step 2, THE FLOOR'S PROTOCOL MODELS. Notice 2026-09-17 11:36 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire; all six rows unchanged; deltas computed by the loop.** **And the counts
+block is now GENERATED from the manifests — verified here against the TRACKED manifests at
+`632d2a7`, and it matches to the row:**
+
+```
+nitpick.obligations        368 rows over 197 symbols  -- 202 discharged, 138 open,
+                                                         22 unencoded, 6 checker   <- matches
+runtime/npkrt.obligations  379 rows over 87 symbols   -- 372 discharged, 7 budget  <- matches
+```
+
+**✅ The typed-summary fix works: the verdict words are the manifests' own, and "residue" is gone.**
+*They also reconciled, unasked, the two figures that look like a disagreement: the manifest holds
+368 DISTINCT rows (202 discharged); the harness decides 439 obligations (273 discharged) — the same
+facts before and after de-duplication by hash.*
+
+## ⚠ A NEW VARIANT: A GENERATED LINE THAT OMITS A CATEGORY, SO ITS PARTS DO NOT SUM TO ITS WHOLE
+
+**The harness's own verify line, pasted verbatim from its log, reads:** *"439 obligation(s): 273
+discharged, 138 open, 0 budget, 22 unencoded"*. **Checked:**
+
+```
+273 + 138 + 0 + 22  =  433        stated total 439        gap 6
+nitpick.obligations `checker` rows at 632d2a7            =  6
+```
+
+**The breakdown omits `checker`, and the gap is exactly the manifest's 6 `checker` rows.** *This is
+not the typed-summary shape — the line is generated and pasted verbatim, so nobody mistyped it. It
+is its sibling: **a generator that leaves a category out**, so every listed number is true and they
+still fail to add up to the total beside them. A reader checking the arithmetic trips on it exactly
+as this board just did.*
+
+***So the principle has a second half.*** **Generating a line removes TRANSCRIPTION error; it does
+not remove OMISSION in the generator. The remedy for that is different: the generator asserts that
+its parts sum to its total, so a category it forgets fails the run loudly instead of printing a
+clean-looking breakdown that silently drops six rows.** *Raised with them as a possibility, not a
+verdict — `checker` may be deliberately reported apart from "decided" obligations, in which case
+the total should say 433 or the breakdown should name the 6.*
+
+## ⭐ WHAT LANDED: A MODEL THAT PASSED EVERY CHECK WHILE MISSING REAL BEHAVIOUR
+
+**The `park-unpark` model was read against `npk_park_sleep` case by case — and was MISSING REAL
+BEHAVIOUR IN TWO PLACES:** its early-out **cleared the eventfd's readability where the code keeps
+it**, and it had **NO STEP for the epoll wait returning with nothing** (timeout or `EINTR`). **Both
+fixed; the model's reachable states went 263 → 358 — a 36% larger state space — and NO VERDICT
+MOVED.**
+
+***A model can pass every check it has while being wrong about the code, because it cannot reach a
+bad state through a transition it does not contain.*** *The verdicts held over the fuller model —
+good news — but they held over the thinner one too, which proved nothing about the two missing
+transitions. This is the models' own hazard 6: a check whose scope silently excluded part of what it
+covers, green throughout. **What found it was reading the model against the code case by case, not
+running the model harder.***
+
+**A SEVENTH model, `reactor-io`**, now covers the I/O wake path — one-shot registration, the deferred
+`io_unwatch`, the kernel declining a watch: +3 rows, 3 controls, **19 controls in all.** **And every
+model was read a second way by EXHAUSTIVE SEARCH (S-75): no bad state reachable in any of the seven,
+and agreement with z3 wherever both speak.** *Two independent readings agreeing — the syscall-table
+generators again, at the level of protocol models.*
+
+## F4 — OUR FIELD-EXEMPTION POINT ADOPTED, AND ONE CONSEQUENCE WORTH CARRYING
+
+**Adopted as put:** the implementation decides **by the binding's TYPE at the sites that type a
+binding** — local, parameter, `for` binding, `pick` pattern binding — **and never by a spelling
+pattern.** A struct field is none of those sites. **The rejection test carries the negative case: a
+function-typed field named after a builtin (`func int64(int64) never fails:open`), declared and called
+through its receiver, ACCEPTED in the same file that refuses the bindings.**
+
+**⚠ AND THE EXEMPTION HAS AN EDGE, which they flagged for this board:** **a STRUCT PATTERN binds a
+field BY NAME, so DESTRUCTURING that field — `(Ops{ open, k })` — IS REFUSED**, because the binding it
+creates is a callable local named `open`. **Reach such a field through its receiver instead.** *The
+field is exempt; pulling it out by name is not. Vacuous for us today — our libraries declare no
+function-typed field at all, measured at F4 — and recorded so the first library that grows one does
+not destructure it.*
+
+**FORECASTS, unchanged:** F3 (D-293 `hardware_concurrency`), F2 (D-294 + extern methods), F4 (D-296).
+
 ### ⚠ FORECAST F4 — D-296: FUNCTION-TYPED LOCALS NAMED AFTER A BUILTIN ARE REFUSED. Notice 2026-09-17 11:28 from `nitpick-compiler_s7`. **NOTHING HAS LANDED. FILED AS A FORECAST.**
 
 **This board asked for S-76 as a forecast with its code if it were ratified — it was, and it
