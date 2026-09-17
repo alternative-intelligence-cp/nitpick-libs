@@ -887,6 +887,57 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ `c18fa78` LANDED — 1.5.6b step 4. **F2 IS FACT: A NEW REFUSAL IN OUR CLASS IS NOW ENFORCED (D-294).** Notice 2026-09-17 12:06 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**`NITPICK-RESOLVE-001` at a module-level `func:` — plain, `pub`, `async` or `thread`, inside an inline
+module or out — WHOSE NAME IS A BARE BUILTIN'S, and at an `extern` block's METHOD of such a name**
+(its generated stub is a module-level function, D-190; reported once, at the method's own
+declaration). **Trait and impl methods exempt.** Name table: `is_builtin_name`, **57 names**.
+
+**✅ Verified as ENFORCED ON MAIN, not taken from the notice:** `c18fa78` is on the wire;
+`owned_builtin_name` is present in the loader at `c18fa78`; the rejection test
+`tests/modules/rejection/owned_builtin_names.npk` exists; the table holds 57. **The three "was" values
+are this board's and the loop-computed deltas are exact** (`npkc.ll` +11 430, `npkc.o` +4 504, `npkc`
++3 832). **Same shape as F3 — the compiler moved, the floor did not.**
+
+## ✅ THE STANDING RESERVED-NAME CHECK, NOW AGAINST AN ENFORCED REFUSAL RATHER THAN A FORECAST
+
+```
+enforced reserved names at c18fa78                       57
+module-level func: declarations, tracked library code   532
+EXACT-name collisions -- what D-294 actually refuses       0
+```
+
+**Zero. Our libraries' function names pass D-294 as it is now enforced.** *The check matches EXACT names by
+set membership, which is D-294's own semantics: one of their six ACCEPTED shapes is "a name that merely
+contains one", so `read_all` passes where `read` fails. A substring match would have flagged false
+positives. (No library name even contains a built-in name of four or more characters, so that side check
+had nothing to find — the decisive figure is the zero exact collisions.)*
+
+**✅ THE SHADOWING WINDOW RECORDED LAST NOTICE HAS CLOSED, EXACTLY ONE LANDING WIDE.** At `9955d23`,
+`hardware_concurrency` had become a builtin while D-294's refusal had not yet landed, so for that one
+landing a same-named library function would have **silently shadowed** the builtin rather than been
+refused. **D-294 is now enforced, so that window is shut** — it cost us nothing, since we held no such
+function, and it closed on the landing this board said it would.
+
+**✅ A PROPERTY WORTH HAVING STATED: THIS IS REFUSAL-ONLY.** *"No program that compiled before emits
+differently."* **The emission moved because the compiler's OWN source changed — the new check — not
+because any valid program's output changed.** *A pure refusal can only turn a previously-accepted program
+into a rejected one; it cannot alter what an accepted program compiles to. So for a library whose names
+pass, D-294 is invisible at the emission level.*
+
+**THE TEST IS CONSTRUCTED THE RIGHT WAY — REFUSALS AND ACCEPTANCES IN ONE FILE:** six refusals (a plain, a
+`pub`, an `async` and a `thread` function, one inside an inline module named `hardware_concurrency`, and an
+`extern` method named `read`) **and six accepted shapes beside them** — a trait method, an impl method,
+**a field** (the exemption this board raised for F4), a parameter, a local, and a name that merely contains
+one. *A refusal tested only on what it refuses cannot show it does not over-reach; the accepted shapes in
+the same file are what pin the boundary.*
+
+**The `verify` line is still the old one** (273 + 138 + 0 + 22 = 433 of 439) — **expected**; its fix is step
+4d, being written now. **STILL FORECASTS:** **F4** (D-296, callable bindings named after builtins —
+committed as `32e9f20` on its branch, under its full harness, **lands next**) and the DEF-54/55/56 fixes
+after it (not refusals).
+
 ### ✅ `9955d23` LANDED — 1.5.6b step 3. **F3 IS FACT: `hardware_concurrency` IS A BUILTIN.** THE EMISSION MOVED; THE FLOOR DID NOT. Notice 2026-09-17 11:44 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire; the three "was" values are this board's; and the loop-computed deltas are
