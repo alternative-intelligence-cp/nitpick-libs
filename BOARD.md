@@ -887,6 +887,71 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c5517f2` LANDED — 1.5.6b step 4c. **F5 IS FACT: DEF-54, DEF-55, DEF-56 FIXED — NONE A REFUSAL, NO NAME ADDED.** Notice 2026-09-17 13:59 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire; deltas exact.** **And two checks that are really tests of the board itself:**
+
+- **✅ THE REPAIR HELD ON ITS FIRST TEST.** Last notice, the three "was" values could not be found, because the
+  board had summarised `c18fa78` instead of tabling it. `f19fabb` was then recorded **as a table** — and this
+  notice's three "was" values (`c8a2b723…`, `b6cf6ab8…`, `59ccdd5f…`) **are all found.** *The same check, one
+  notice apart, failed and then passed; the only thing that changed was that the board recorded the rows.*
+- **✅ THE FIRST FORECAST TO PREDICT ITS OWN LADDER, AND IT HELD.** F5 stated in advance: *`npkc.ll`, `npkc.o`,
+  `npkc` move; floor and builder do not.* **Landed: exactly those three moved, exactly those three did not.**
+  *A predicted ladder shape turns "did the right rows move" from an after-the-fact reading into a claim that
+  could have failed.*
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged
+npkc.ll    ddef91be... 24,858,269 B  MOVED +7,110  (was c8a2b723…)  THE EMISSION (D-265)
+npkc.o     a1eb22ce...  9,817,256 B  MOVED +2,160  (was b6cf6ab8…)
+npkc       c3d76668...  8,553,824 B  MOVED +1,856  (was 59ccdd5f…)
+```
+
+**WHAT NOW COMPILES THAT DID NOT** — each with a program or rejection file, both runners, -O0 and -O2:
+
+- **DEF-54** — calling a function value bound by a `pick` pattern. The emitter wrote `@npk.prelude.<name>` for any
+  callee that was not a prelude declaration, which `llc` rejects; **a call is now DIRECT only when the symbol is a
+  function DECLARATION, and indirect otherwise.**
+- **DEF-55** — `raw o.f(x)` over a `never fails` function-typed FIELD. The unwrap licence read a METHOD declaration,
+  found none for a field and reported TYPE-042; **it now falls back to the callee's function type.** A may-fail
+  field still needs `?|` / `?!` / `relay` (four TYPE-042 kept).
+- **DEF-56** — a trait method with a function-typed parameter can be implemented. **The signature comparison
+  compared function types by IDENTITY, and a function type's parameter window is interned by its START INDEX — so
+  two spellings of one type NEVER compared equal**, and every such impl got TYPE-014. **It compares STRUCTURALLY
+  now:** same kind, same `never fails` bit, same return, parameters pairwise (five TYPE-014 kept).
+  *A root cause worth keeping: equality by position rather than by structure, so the same type written twice was
+  two types.*
+
+**"If your trees worked around any of the three, the workaround is no longer needed and is still legal"** — a trait
+DEFAULT body in place of an impl, `?|` over a never-fails field, a function value called only through a local.
+**Vacuous here, and not by luck:** all three defects require a FUNCTION VALUE, and this board measured at `f19fabb`
+that **our libraries spell no function type anywhere** (0, with a 31-hit positive control). **So nothing of ours
+could have met these defects or worked around them.**
+
+## ⚠ A FALSE RED ON A SLOWER RUNNER — AND IT IS `npk_small_free` AGAIN
+
+**S-77, raised for the author by 1.5.6c's step 0 (a forecast; nothing changes until the author answers):** the
+solver's hang net is **120 s + 10 s per check, per file**, and **one floor file — `npk_small_free` — runs at 81%
+of its net on the compiler's machine.** Their warning, verbatim: *"if your CI ever runs the `floor` leg on a slower
+runner, a 'z3 exceeded the wall-clock net on 0056' there is that margin and not a verdict."*
+
+**⚠ RECORDED AS A FALSE-DEFECT TRAP, WHICH IS THE CLASS THIS BOARD WATCHES MOST CLOSELY.** A CI runner ~20% slower
+than the compiler's machine would push that file past its net, and **the resulting red would read like a proof
+failure while being nothing but wall-clock margin.** *Same family as the contended timing fenced off at 1.5.4 step
+2: a number that measures the machine, mistaken for one that measures the code.* **If a library CI run ever reports
+`z3 exceeded the wall-clock net on 0056`, it is this, and it is not a defect to raise.**
+
+**⚠ AND THE SYMBOL IS THE ONE THE 0.1 PLANNING GAP'S ALLOCATOR CONSTRAINT RESTS ON.** `npk_small_free` is now, at
+once: the floor's largest undischarged residue (6 of 7 `budget` rows), the subject of an over-strong spec assumption
+that 1.5.6c corrects, **and the file nearest its solver timeout.** *Three separate signals converging on one symbol
+is itself worth a successor's attention: the small-block free path is where the floor's evidence is thinnest,
+slowest and most recently revised.*
+
+**FORECASTS, unchanged:** **F6** (step 4d — no ladder row moves; the corrected `verify` line, still 433 of 439 in
+this log); **F7** (step 5 — documents, 1.5.6b closes); **F8** (1.5.6c — evidence only, no language surface).
+
 ### ⚠ `f19fabb` LANDED — 1.5.6b step 4b. **F4 IS FACT: D-296 IS ENFORCED, A SECOND NEW REFUSAL IN OUR CLASS.** Notice 2026-09-17 13:55 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **`NITPICK-RESOLVE-001` at a function-typed PARAMETER, LOCAL, `for` binding or `pick` PATTERN binding
