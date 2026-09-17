@@ -887,6 +887,88 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ `f19fabb` LANDED — 1.5.6b step 4b. **F4 IS FACT: D-296 IS ENFORCED, A SECOND NEW REFUSAL IN OUR CLASS.** Notice 2026-09-17 13:55 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**`NITPICK-RESOLVE-001` at a function-typed PARAMETER, LOCAL, `for` binding or `pick` PATTERN binding
+named after a bare builtin** — the same 57-name table D-294 reads. **Decided by the binding's TYPE at the
+five sites that type a binding, never by spelling** (the point this board raised at F4), **so a `pick`
+binding, which has no annotation, is covered.** Test: `tests/types/rejection/callable_builtin_names.npk` —
+**seven refusals, and the accepted cases in the same file** (a function-typed FIELD called both ways, a
+binding of any other type, ordinary names, methods), **so the rule fails its own test if it reaches too
+far.** Refusal-only for programs. The struct-pattern edge stands: `(Ops{ open, k })` is refused at the
+pattern; read the field through its receiver.
+
+**✅ Verified on the wire; test present on main; the loop-computed deltas exact.** **The full ladder, recorded
+as a table this time:**
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged
+npkc.ll    c8a2b723... 24,851,159 B  MOVED +13,558  (was 9b6bbe29…)  THE EMISSION (D-265)
+npkc.o     b6cf6ab8...  9,815,096 B  MOVED  +9,504  (was 350775f8…)
+npkc       59ccdd5f...  8,551,968 B  MOVED  +8,680  (was d64d1eda…)
+```
+
+## ⚠⚠ A LAPSE IN THIS BOARD'S OWN RECORD — THE PRINCIPLE IT ENFORCES ON OTHERS, BROKEN BY ITS KEEPER
+
+**The three "was" values in this notice could NOT be checked against the board: all three returned zero.**
+`c18fa78`'s entry had recorded **the deltas and not the six rows** — while `9955d23`'s, one entry
+earlier, had carried its full table. **So the board summarised a notice instead of recording it, and the
+very next authentication check fell through the hole.** *This board has spent the cycle asking the compiler
+side to send all six rows every time, on the argument that the redundancy is the instrument — and then
+compressed one of their notices into three numbers.*
+
+**The chain still authenticates**, because the digests were RECEIVED: `c18fa78`'s notice named `9b6bbe29…`,
+`350775f8…`, `d64d1eda…`, and this notice's "was" values are the same three. **But that proof lives in one
+session's transcript, not on the board — and a successor reading only this board could not have checked this
+notice at all.** *That is the whole reason the board exists, so the lapse was not cosmetic.* **Repaired above,
+in `c18fa78`'s own entry, marked as a repair rather than silently back-filled.**
+
+***The rule, now stated for the board as it was for the notices: the board records the TABLE, never a summary
+of it — for exactly the reason the notices must send it.*** *A summary is a check you can no longer run.*
+
+## ✅ THE STANDING CHECK — AND THE `pick` BLIND SPOT, CLOSED BY TYPE RATHER THAN BY NAME
+
+**This board's binding-site scan finds function-typed bindings by their `func RET(…):name` SPELLING, and an
+un-annotated `pick` binding has NO such spelling — so the scan cannot see D-296's `pick` case directly.**
+Closed at a level that does not depend on the binding site: **count every function-TYPE spelling ANYWHERE**
+(`func <type>(`, as distinct from a declaration's `func:`). **A `pick` binding is function-typed only if the
+payload or field it binds is — so if no function type is spelled anywhere, no binding of any kind can be one.**
+
+```
+                                        our 3 code repos (tracked)   compiler tree @ f19fabb
+function DECLARATIONS  (func:)                     532                        --
+function-TYPE spellings anywhere                     0                        31   <- POSITIVE CONTROL
+```
+
+**The control passes on the IDENTICAL pattern and engine: 31 function types found in the compiler tree** —
+including one as a generic argument (`Channel<func int32(int32) never fails, …>`), a position no binding
+scan examines. **So our zero is real, and D-296 is VACUOUS HERE BY TYPE: we spell no function type anywhere,
+so nothing in our libraries can trigger it, named after a builtin or not.**
+
+*One more instance for the record of how a control can silently fail: the first attempt ran the control through
+`git grep -E`, whose POSIX regex lacks `\b` and `\s`, so it printed nothing — a control on a DIFFERENT engine
+from the measurement controls nothing. Re-run in Python with the identical compiled pattern.*
+
+**The `verify` line is still the old one** (parts sum to 433 of 439); **its fix is F6.**
+
+## FORECASTS — EACH NOW STATES ITS EXPECTED LADDER IMPACT IN ADVANCE, SO EACH LANDING CAN BE CHECKED AGAINST IT
+
+- **F5** (step 4c, harness running): **DEF-54, DEF-55, DEF-56 fixed** — none a refusal. *Expected: `npkc.ll`,
+  `npkc.o`, `npkc` move; floor and builder do not.*
+- **F6** (step 4d): D-295's belt (the models' explicit-state reading in both runners) **and the corrected
+  `verify` line.** *Expected: NO ladder row moves.*
+- **F7** (step 5): documents only; **1.5.6b closes.**
+- **F8** (**1.5.6c**, approved; step 0 committed and under its harness): **EVIDENCE ONLY** — the floor's spec
+  grammar (`apart-when`, `(views …)`), **two spec clauses that assumed something false of a legal caller**, a
+  generated TCB.md table. **No language surface, no refusal, no name. No floor byte planned to move; nothing
+  under `src/` changes.** *Expected: NO ladder row moves in any step; if one must, both digests arrive BEFORE it
+  lands.* **For our resume assessment: 1.5.6c cannot move our premises.**
+
+*Worth noting what changed in the forecasts themselves: each now predicts its own ladder shape before landing, so
+"did the right rows move" becomes a falsifiable claim per landing rather than a reading after the fact.*
+
 ### ⚠ `c18fa78` LANDED — 1.5.6b step 4. **F2 IS FACT: A NEW REFUSAL IN OUR CLASS IS NOW ENFORCED (D-294).** Notice 2026-09-17 12:06 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **`NITPICK-RESOLVE-001` at a module-level `func:` — plain, `pub`, `async` or `thread`, inside an inline
@@ -899,6 +981,19 @@ declaration). **Trait and impl methods exempt.** Name table: `is_builtin_name`, 
 `tests/modules/rejection/owned_builtin_names.npk` exists; the table holds 57. **The three "was" values
 are this board's and the loop-computed deltas are exact** (`npkc.ll` +11 430, `npkc.o` +4 504, `npkc`
 +3 832). **Same shape as F3 — the compiler moved, the floor did not.**
+
+**⚠ REPAIRED 2026-09-17 13:55 — THIS ENTRY WAS FIRST WRITTEN WITHOUT ITS LADDER TABLE.** It recorded the
+three deltas and dropped the six rows, so c18fa78's new digests never reached the board, and the NEXT
+notice's authentication check failed against it. The table, from the notice as received:
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged
+npkc.ll    9b6bbe29... 24,837,601 B  MOVED +11,430  (was deeb7321…)  THE EMISSION (D-265)
+npkc.o     350775f8...  9,805,592 B  MOVED  +4,504  (was 390d83ba…)
+npkc       d64d1eda...  8,543,288 B  MOVED  +3,832  (was edc231ff…)
+```
 
 ## ✅ THE STANDING RESERVED-NAME CHECK, NOW AGAINST AN ENFORCED REFUSAL RATHER THAN A FORECAST
 
