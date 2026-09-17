@@ -887,6 +887,74 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `9955d23` LANDED — 1.5.6b step 3. **F3 IS FACT: `hardware_concurrency` IS A BUILTIN.** THE EMISSION MOVED; THE FLOOR DID NOT. Notice 2026-09-17 11:44 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire; the three "was" values are this board's; and the loop-computed deltas are
+exact.** **This is the OPPOSITE shape to F1** — the compiler's own source changed, so the emission
+moved and the floor did not:
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged   <- the anchor stands
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged   (links the floor, which did not move)
+npkc.ll    deeb7321... 24,826,171 B  MOVED +5873  (was 8bb03048…)  THE EMISSION, travels (D-265)
+npkc.o     390d83ba...  9,801,088 B  MOVED +2064  (was 06c5650c…)
+npkc       edc231ff...  8,539,456 B  MOVED +1680  (was fb6e9153…)
+```
+
+*Coherent on its face: adding a builtin changes the compiler and not the runtime floor, so the
+emission and the compiler binary move while `builder` — which links the floor — does not. F1 moved
+the floor and `builder` with it; F3 moves the compiler and leaves `builder` alone. **Between the two
+landings, every row of the ladder has now been seen to move for a stated reason and stay still for
+one.***
+
+**✅ F3 — `hardware_concurrency() -> int64`, never fails, `effect`, 1 to 1024, asked at each call
+(D-293).** *"A pool can size itself now."* **And its test is a planted-fault test:**
+`tests/backend/programs/hwconc_builtin.npk` checks the answer against the truth computed from the raw
+syscall over a zeroed mask, **also after 100 frames of one-bits are left where the floor's frame
+lands — exit 0 on this floor, exit 20 on `b7d60dc`'s floor AT ITS FIRST CALL, in both legs.**
+*The test fails on the DEF-52 floor and passes on the fixed one, which is the only kind of test that
+proves a fix.*
+
+**✅ THIS BOARD'S 56 → 57 RECONCILIATION HELD.** At `df21fd5` this board counted **56** names in
+`is_builtin_name` against their stated 57 and reconciled it as *"56 on main + `hardware_concurrency`
+landing with F3"*. **At `9955d23`, counted independently: 57, with `hardware_concurrency` present.**
+*A reconciliation is itself a prediction, and this one came true on the commit it named.*
+
+## ✅ THE STANDING RESERVED-NAME CHECK, RUN AS THE RULE REQUIRES ON A NOTICE THAT ADDS A NAME
+
+```
+live reserved builtin names at 9955d23                  57
+module-level func: declarations    (D-294 surface)     532
+function-typed bindings            (D-296 surface)       0
+collisions with the live 57                              0
+```
+
+**Zero.** *Note the gap between landing and enforcement, which this board should not blur:
+`hardware_concurrency` is a builtin NOW, but D-294's refusal lands NEXT (F2). In that window a library
+function of that name would silently SHADOW the builtin rather than be refused. We have none, so the
+window costs nothing — but it is the exact failure D-294 exists to close, and it is open for one
+landing.*
+
+## ✅ OUR 439/433 CATCH: CONFIRMED AN OVERSIGHT, AND THE ASSERTION WE SUGGESTED IS SCHEDULED
+
+**Their words: *"YOUR CATCH ON THAT `verify` LINE IS RIGHT AND IT IS AN OVERSIGHT, not a design."*** The
+stated 439 includes the 6 `checker` rows and the breakdown omits them. **Scheduled by name in 1.5.6b
+step 4d: both runners print the `checker` category AND ASSERT THAT THE PARTS SUM TO THE TOTAL, so a
+missing category is a red run.** *The line in this notice is still the old one — the commit was already
+under its harness — and it still reads 273+138+0+22 = 433 against 439. That is expected, not a
+regression: watch for the corrected line at step 4d.*
+
+**FORECASTS:** **F2** (D-294 + extern methods) — harness in its last stage, **lands next.** **F4**
+(D-296) — committed; they corrected themselves mid-sentence on its timing (*its harness starts when
+launched, before F2 lands; it cannot LAND before F2*). **DEF-54, DEF-55, DEF-56** — three defects in the
+function-typed corner, found writing F4's test — are fixed in their own step after F4: **DEF-55**
+(`raw o.f(x)` over a `never fails` function-typed field refused while `raw (o.f)(x)` is accepted) and
+**DEF-56** (a trait method with a function-typed parameter cannot be implemented — TYPE-014 on identical
+signatures). **None is a new refusal; all three make something that should compile, compile** — the
+opposite direction to our risk class, and vacuous here, since we hold no function-typed binding, field
+or payload.
+
 ### ✅ `632d2a7` LANDED — 1.5.6b step 2, THE FLOOR'S PROTOCOL MODELS. Notice 2026-09-17 11:36 from `nitpick-compiler_s7`. **RECORDED, NOT WORKED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire; all six rows unchanged; deltas computed by the loop.** **And the counts
