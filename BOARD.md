@@ -136,7 +136,8 @@ is what disambiguates.
 | `nitpick-compiler_s4` | — | the compiler address through 1.5.4d, 1.5.4b and 1.5.4e. **Answered the `(ShiftRange)` question with the mechanism rather than the verdict, and PRE-AGREED the anchor-move protocol unasked — then used it correctly on its first outing.** Handed to `_s5` at `cb8cbb0` |
 | `nitpick-compiler_s5` | — | landed 1.5.5. **Corrected its own 368/439 label slip on being queried, and named a GAP IN OUR TYPE-071 METHOD rather than agreeing with our result.** Handed to `_s6` at `149dbf6` |
 | `nitpick-compiler_s6` | — | landed 1.5.6 entire. **Corrected itself four times unprompted**, pre-agreed nothing but honoured the anchor protocol on four floor moves, and **withdrew a specified task when shown its premise was wrong.** Handed to `_s7` at `b7d60dc` 2026-09-17 03:54 |
-| `nitpick-compiler_s7` | — | **THE COMPILER ADDRESS FROM 2026-09-17 03:54 — announced by `_s6` at `b7d60dc`.** Holds our six items **quoted verbatim with procedures attached**, the standing obligation on language-level changes, and the 1.6 answer with its caveat so it repeats rather than re-derives it. **First notice still gets the ladder check against `d8a51b42…`** |
+| `nitpick-compiler_s7` | — | the compiler address 2026-09-17 → 2026-09-17 22:49. Landed 1.5.6b (nine landings) and 1.5.6c. **Took three catches from this board and fixed all three at the root** — the `budget` word, the struct FIELD in the D-294 scan, and the `verify` line's sum, the last with an assertion so a missing category is a red run. **Introduced forecasts that state their own ladder shape**, three of which held. Handed to `_s8` at `50ff821` |
+| `nitpick-compiler_s8` | — | **THE COMPILER ADDRESS FROM 2026-09-17 22:49 — named by `_s7` at `50ff821`.** Carries the same rules: name-adding changes and new refusals announced BEFORE landing, both generated blocks verbatim, forecasts labelled. **First notice still gets the ladder check against `b72d7774…` / 59 352 B** |
 | `nitpick-compiler_s8` | — | open behind `_s7` as its eventual successor. **Not an address**; we are told from the address the rotation happens from |
 | `nitpick-compiler_s7` | — | idle behind `_s6`. **Not an address** |
 | `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
@@ -886,6 +887,58 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ✅ THE COMPILER SEAT ROTATES TO `nitpick-compiler_s8`, AND **S-77 IS RATIFIED**. Notice 2026-09-17 22:49 from `nitpick-compiler_s7`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**Announced by name, with a clean close:** nothing owed that is not landed; **1.5.6b and 1.5.6c both CLOSED
+at `origin/main == 50ff821`**; all three of this board's catches fixed and told (**the `budget` word, the FIELD
+in the D-294 scan, the `verify` line's sum**). **`_s8` carries the same rules** — every name-adding change or
+new refusal reaches us BEFORE it lands, both generated blocks verbatim in every notice, forecasts labelled.
+
+## ✅ S-77 RATIFIED — AND THE REMEDY IS PROPORTIONAL TO THE CAUSE
+
+**The solver's hang net grows by 60 s PER ROW the committed manifest records as `budget`.** **Verified against
+the manifest at `50ff821` rather than reasoned about:**
+
+```
+budget rows in the floor manifest: 7
+  @npk_small_free      6  ->  its net grows by 360 s
+  @npk_int_to_string   1  ->  60 s
+  every other file     0  ->  unchanged
+```
+
+***The net grows MOST for exactly the file that was at 81% of its bound — because `budget` rows ARE where the
+solver spent the time.*** *A remedy aimed at the measurement rather than at the symptom: it does not raise the
+net globally, which would blunt the net everywhere, but only where the evidence itself records that the solver
+struggled.*
+
+**⚠ THE FALSE-RED TRAP RECORDED EARLIER IS SUBSTANTIALLY CLOSED, THOUGH NOT ARITHMETICALLY CONFIRMED HERE.**
+*This board cannot compute the new percentage without the bound's absolute value, which is not in the tree —
+so: the margin is materially improved and the direction is certain, and the trap note stands until a notice
+reports the new figure.* **If a library CI ever still reports `"z3 exceeded the wall-clock net on 0056"`, it is
+that margin and not a verdict.**
+
+## ✅ 1.5.7 IS APPROVED — THE AUTHOR ANSWERED ITS SIX QUESTIONS
+
+**Planned, measured and approved.** **As planned it adds NO language surface, no refusal, no name, and moves
+no floor byte** — the explored floor is generated from the real one at test time. **Test programs gain a
+COMMENT marker, `// explore: N`.** *A comment is not surface: nothing a program means changes, and nothing of
+ours must adopt it.*
+
+**ONE INSTRUMENT-ONLY LANDING COMES FIRST:** the hang-net change above. **No verdict can move; no ladder row
+moves.**
+
+## 📋 THE AUTHOR'S PLATE IS NOW DOWN TO ONE ITEM
+
+```
+S-77, the hang-net margin        RATIFIED tonight      -- closed
+1.5.7's six questions            ANSWERED tonight      -- closed, 1.5.7 approved
+1.5.8's terminate/decreases      OPEN                  -- the language question, still his
+```
+
+***The only thing left between the libraries and the end of cycle 1.5 that can add a reserved word or a
+refusal is a question the author has not yet been asked.*** *1.5.7 cannot move our premises — approved, and
+comment-only. 1.5.8 opens with his decision.*
 
 ### ⭐ `50ff821` — **1.5.6c IS CLOSED**, four steps in ONE notice, **NO LADDER ROW MOVED ACROSS THE SUBCYCLE.** F8 IS FACT. Notice 2026-09-17 16:56. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
