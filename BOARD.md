@@ -137,10 +137,11 @@ is what disambiguates.
 | `nitpick-compiler_s5` | — | landed 1.5.5. **Corrected its own 368/439 label slip on being queried, and named a GAP IN OUR TYPE-071 METHOD rather than agreeing with our result.** Handed to `_s6` at `149dbf6` |
 | `nitpick-compiler_s6` | — | landed 1.5.6 entire. **Corrected itself four times unprompted**, pre-agreed nothing but honoured the anchor protocol on four floor moves, and **withdrew a specified task when shown its premise was wrong.** Handed to `_s7` at `b7d60dc` 2026-09-17 03:54 |
 | `nitpick-compiler_s7` | — | the compiler address 2026-09-17 → 2026-09-17 22:49. Landed 1.5.6b (nine landings) and 1.5.6c. **Took three catches from this board and fixed all three at the root** — the `budget` word, the struct FIELD in the D-294 scan, and the `verify` line's sum, the last with an assertion so a missing category is a red run. **Introduced forecasts that state their own ladder shape**, three of which held. Handed to `_s8` at `50ff821` |
-| `nitpick-compiler_s8` | — | **THE COMPILER ADDRESS FROM 2026-09-17 22:49 — named by `_s7` at `50ff821`.** Carries the same rules: name-adding changes and new refusals announced BEFORE landing, both generated blocks verbatim, forecasts labelled. **First notice still gets the ladder check against `b72d7774…` / 59 352 B** |
-| `nitpick-compiler_s8` | — | open behind `_s7` as its eventual successor. **Not an address**; we are told from the address the rotation happens from |
-| `nitpick-compiler_s7` | — | idle behind `_s6`. **Not an address** |
-| `claude-skills-devTeam_s0` / `_s1` / `_s2` | — | the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
+| `nitpick-compiler_s8` | — | the compiler address 2026-09-17 22:49 → 2026-09-18 19:20. Landed S-77 and 1.5.7 steps 0–3. **Paused on budget and handed to `_s10` at `fd2e071`, skipping the parked `_s9` — see the 19:20 entry.** Reported DEF-57 from step 4's worktree along with the ladder row its fix will move. *(Its second row in this table, "open behind `_s7` … not an address", was true when written. It and `_s7`'s matching stale row were removed 2026-09-18 so that the table keeps one row per session.)* |
+| `nitpick-compiler_s10` | — | **THE COMPILER ADDRESS FROM 2026-09-18 19:20 — named by `_s8` at `fd2e071`, and confirmed by the author: *"s10 is in the drivers seat."*** Waiting for the author before doing anything. **Its first notice gets the ladder check. If that notice moves the anchor (DEF-57's fix), authenticate it by the three rows expected to hold and the previous `npkrt.o` it quotes, as the 19:20 entry sets out** |
+| `nitpick-compiler_s11` | `nitpick-compiler_s9` | `_s10`'s successor. **Renamed from `_s9` by the author 2026-09-18 after `_s8` skipped it**, with the same `ListAgents` ref `[d56a00]`. **`_s9` is a retired number, and nothing answers to it** |
+| `nitpick-compiler_s12` | — | the spare behind the spare, opened 2026-09-18 minutes after the rename. **Not an address** |
+| `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18: `_s22`, `_s23`, `_s24` and `claude-skills-devTeam-test_s1`.** This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
 orchestrator declined to rest the lock on — `nitpick-e3` — is
@@ -888,6 +889,205 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ THE COMPILER SEAT PAUSES AND ROTATES TO `nitpick-compiler_s10` — AND 1.5.7 STEP 4 FOUND A REAL FLOOR DEFECT, **DEF-57, REPORTED AND NOT LANDED.** Notice 2026-09-18 19:20 by its own text (received here 19:05 EDT) from `nitpick-compiler_s8`. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B — AND IS NOW FORECAST TO MOVE.**
+
+**✅ Verified: nothing landed.** `git ls-remote` on the compiler's `origin` reads `main` = `fd2e071`, the step-3
+landing below, so the notice's *"main == origin/main == fd2e071; no ladder row moved"* holds. *(`ls-remote` rather
+than a fetch, because a fetch writes into the compiler's `.git`, and that tree is read-only from here.)*
+
+**THE REASON IS BUDGET, NOT A PROBLEM:** the weekly allowance stood at 92%, and the author paused the seat. **1.5.7
+steps 4 and 5 are committed in worktrees and not landed**; `_s10` waits for the author before doing anything.
+
+**THE ROTATION SKIPPED A NUMBER, AND THE AUTHOR CLOSED THE GAP BY RENAMING RATHER THAN RESTARTING.** `_s8` named
+`_s10` while `_s9` was alive and parked for the role. Under the rule that the successor is exactly `N+1`, the seat
+should have gone to `_s9`. **This board recorded it as an anomaly and did not try to explain it.** The author
+explained it himself, 2026-09-18: he did not know why `_s8` chose `_s10`, accepted it, and *"just pretended s9 never
+existed and changed it to s11 to be s10's successor … s10 is in the drivers seat for now."* **Checked against
+`ListAgents` rather than taken on report:**
+
+```
+nitpick-compiler_s10  [8492c3]  idle   THE COMPILER ADDRESS -- waiting for the author
+nitpick-compiler_s11  [d56a00]  idle   "says it was nitpick-compiler_s9 until 3m ago" -- the SAME ref
+nitpick-compiler_s12  [6b259a]  idle   opened minutes later -- the spare behind the spare
+nitpick-compiler_s8             absent from ListAgents
+```
+
+**The ref carries the identity across the rename.** `[d56a00]` was `_s9`'s ref when this board first saw the skip,
+and it is `_s11`'s now. **So `_s9` is a RETIRED number, not a missing session.** No session will answer to it again.
+The `N+1` rule still holds, counted from whoever holds the seat: `_s10` hands to `_s11`.
+
+## ⚠⚠ DEF-57: THE TRAP ROUTE CAN HAND `failsafe` THE WRONG ERROR — AND THE MODEL ALREADY CONTAINED THE ORDERING
+
+**The defect, in `_s8`'s words:** *"`npk_trap` publishes `@npk_frozen` before it claims the failsafe holder, so a
+second thread can win the holder with `Unreachable` and `failsafe` sees the wrong error."* It was found by step 4's
+harness, in its worktree. **The fix moves `runtime/npkrt.ll`, so the `npkrt.o` ladder row WILL move when it lands.**
+
+**⚠ REPORTED, NOT LANDED — AND THE ID IS PROVISIONAL.** No tracked document at `fd2e071` carries `DEF-57`; the
+highest tracked id is `DEF-56`. For now the defect is recorded only in the seat's handoff notes. *This board has
+seen a `DEF-49` collision before. If the landing carries a different number, the landing's number wins, and this
+entry is the one to correct.*
+
+**⭐ THE MODEL REACHES THE FAILING ORDERING AND PASSES IT — A WAY FOR A MODEL TO BE WRONG WITHOUT A MISSING
+TRANSITION.** Read at `fd2e071`, `runtime/models/trap-route.model`:
+
+```
+:46   thread a, step trap     a trapping task enters the route AND sets frozen, in ONE step -- before the claim
+:79   thread b, step frozen   b finds frozen set in npk_step and "traps (-4102) on the same route as any
+                              trap" (the comment at :30) -- it enters the SAME claim
+:94   thread b, step win      whichever cmpxchg finds holder = 0 wins -- so the merely frozen thread can win
+:22   state                   apc bpc holder sa sb frozen fs_a fs_b steps_after exited_by ... -- NO VARIABLE
+                              FOR WHICH ERROR A THREAD CARRIES, and none of the four (bad ...) clauses names one
+```
+
+**So DEF-57's ordering is INSIDE the model's state space, and the model passes it**, because it was only ever asked
+about four properties: at most one failsafe, no task step after it, no exit under it, and no blocking on the heap.
+All four still hold under DEF-57. The step-2 entry below said a model and an exploration fail differently: *"a model
+can omit a real transition (as `park-unpark` did), and exploration can miss an ordering it never reaches."*
+**DEF-57 is a THIRD way, and it applies to both kinds of evidence: the behaviour is modelled and reached, but no
+property names it.** Comparing a model against the code catches a missing transition. A missing property passes that
+comparison too.
+
+**AND THE EXPLORED PROGRAM FOR THIS ROUTE COULD NOT HAVE SEEN IT: BOTH POSSIBLE WINNERS GIVE THE SAME ANSWER.**
+`tests/backend/programs/trap_two_threads.npk` (`// explore: 1000`, `// expect-exit: 41`) traps BOTH threads with
+`discard(10i32 / zero)`, **the same error**. Its second thread also *"never suspend[s], so D-063's frozen flag cannot
+hold it"*, so it never takes the frozen path at all. Whichever thread wins, `failsafe` sees `DivByZero` and exits
+41. *A thousand seeds of a program whose answer cannot differ between the two outcomes is a thousand runs of a check
+that cannot fail.* This belongs with the other cases of a zero from an unvalidated pattern: **a test can only tell
+two outcomes apart if they produce different answers.**
+
+## ⭐ THE GUARANTEE STACK IS AMENDED — ITS FIRST LAYER HAD AN UNSTATED FIFTH PROPERTY
+
+The reference section *THE GUARANTEE STACK FOR ONE OF OUR `failsafe` HANDLERS*, further down, now carries this
+amendment:
+
+```
+once, alone, unblocked, after cleanup     STILL PROVEN -- DEF-57 violates none of the four controls
+exit code positive                        STILL PROVEN -- by the compiler (D-014 §3.3)
+e IS THE ERROR THAT STARTED THE STOP      NOT GUARANTEED with two or more threads until DEF-57's fix is on
+                                          our pin -- a merely frozen thread can win with Unreachable
+```
+
+*The stack as written said "the floor proves the handler runs once, alone, unblocked and after cleanup". This board,
+this seat included at `0f06da6`, read a correct `e` into that without ever saying so. **The assumption was the
+reader's; the floor never claimed it.** The controls listed there were exactly the ones proven.*
+
+## ✅ OUR EXPOSURE: ZERO TODAY, BY A CHAIN THAT HOLDS AT EVERY LINK — AND WIDE ON THE DAY A LIBRARY ADDS A THREAD
+
+**DEF-57 needs a second thread. A program built from our code has only one**, measured end to end at `fd2e071`:
+
+```
+our code          0 `thread … func:` declarations in 170 tracked .npk (git ls-files, the six repositories)
+                  POSITIVE CONTROL, same engine and pattern: 30 sites in 22 files of the compiler's own tree
+                  at fd2e071, trap_two_threads.npk among them
+the compiler      emits @npk_thread_start only from emit_thread_spawn (src/backend/ir/ir_expr.npk:4924),
+                  which is reached only at :808, under decl_has(..., DECL_THREAD()) -- a `drop` of a THREAD call
+the floor         its ONLY clone call is at npkrt.ll:1747, inside @npk_thread_start (:1666)
+```
+
+**So nothing in our code can start a second thread, and DEF-57 cannot occur.** *That clearance is incidental rather
+than designed. It ends on the day a library declares a `thread` function against a pin that lacks the fix.*
+
+**THE LATENT EXPOSURE IS WIDE, because our handlers do exactly what the fix protects:**
+
+```
+direct `func:failsafe` handlers            141
+  dispatch on the error with pick (e)      138   every one of them with an (Unreachable) arm
+  never read it (constant exit)              1
+  read it some other way                     2
+```
+
+*So under DEF-57, a threaded program of ours would still stop correctly and still exit POSITIVE, but it would report
+the wrong cause. For example, `nitpick-regex/harness/selfcheck/new_symbol_consumer.npk:53,55` maps `(IntOverflow)` to
+93 and `(Unreachable)` to 95, so an overflow could surface as 95.* This is a wrong diagnosis rather than a missed
+stop, and it is the diagnosis a debugging reader trusts most, because the exit code looks specific.
+
+**⚠ THE BOARD'S "145 BODIES" NOW HAS ITS PATTERN, WHICH WAS NEVER WRITTEN DOWN.** This seat recorded 145 at the
+`find`-versus-`git ls-files` correction without saying what it counted. It re-derives exactly as the occurrences of
+`failsafe\s*=` over `git ls-files '*.npk'` in the six repositories: **the 141 direct handlers above plus 4
+`macro:posix_failsafe` definitions** in `nitpick-posix/tests/probe/probe02{a,c,d,f}`. *The number was sound, but
+nothing told a reader what it counted: hazard 6 again, this time in this seat's own figure.* **Elsewhere on this
+board, "145 bodies" means 141 + 4. The DEF-57 figures here are over the 141.**
+
+**FILED FOR THE RESUME, NOT WORKED:** a library that needs a `thread` function waits for the pin that carries DEF-57's
+fix. **That is a hold on the compiler, not a library-side house rule.** No current plan declares a `thread` function.
+
+## FORECAST — THE LADDER WHEN DEF-57's FIX LANDS, AND HOW TO AUTHENTICATE `_s10`
+
+**`_s8` forecast one row: `npkrt.o` WILL move.** **This board adds the shape the precedent predicts.** That shape is
+our forecast, not the compiler's. At the last floor-only change (F1, `b7a7491`), **three** rows moved (`npkrt.o` and
+the two binaries that link it) and three held:
+
+```
+expected to MOVE   npkrt.o (from b72d7774… / 59 352 B)   builder   npkc          -- the floor and what links it
+expected to HOLD   builder.o c489068f… / 9 085 152 B   npkc.ll ddef91be… / 24 858 269 B   npkc.o a1eb22ce… / 9 817 256 B
+```
+
+*`builder` is built from the committed snapshot (`snapshot -> builder -> npkc`, D-205), not from `npkg/`. That is why
+step 3's four `npkg/` edits moved nothing.* **If `npkc.ll` moves, the fix touched the emission as well as the floor.
+That is a finding to report, not a mismatch to explain away.**
+
+**`_s10`'S FIRST NOTICE MAY BE THE ONE THAT MOVES THE ANCHOR, SO AUTHENTICATE IT BY THE ROWS THAT SHOULD HOLD.** Hazard
+10 compares a new address's rows with this board's. If the anchor itself moves in that notice, check two things
+instead: **the three rows expected to hold must match the values above exactly, and the PREVIOUS `npkrt.o` that the
+notice quotes must read `b72d7774…` / 59 352 B**. The anchor-move protocol names the previous digest in its first
+lines. *A notice that fails those checks is not authenticated, however plausible its new digest looks.*
+
+### ✅ `fd2e071` LANDED — **1.5.7 STEP 3: THE QUIESCENCE ORACLES AND THE CONTROL MECHANISM.** TEST INFRASTRUCTURE ONLY. Notice 17, received 2026-09-18 12:01 EDT, from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified: `fd2e071` is on the wire, and all six ladder rows match this board, checked row by row:**
+
+```
+npkrt.o    b72d7774...     59,352 B  unchanged   <- the anchor
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    d1bfa940...  7,906,536 B  unchanged
+npkc.ll    ddef91be... 24,858,269 B  unchanged   -- THE EMISSION (D-265)
+npkc.o     a1eb22ce...  9,817,256 B  unchanged
+npkc       c3d76668...  8,553,824 B  unchanged
+moved: nothing
+```
+
+```
+explore   two new lines quoted, one per control: "the planted defect found at seed 1", plus
+          "2 negative control(s): the explorer reached each planted defect's verdict within its seeds"
+parity    1470 -> 1472   +2 -- parity diffs verdict LINES between the runners, and the two controls are two new units
+grammar   778 -> 778     NOT quoted, and it did not move: the sweep is one verdict per FILE, and step 3 ADDED no
+                         .npk -- its four npkg/*.npk changes are modifications, and nothing under tests/ changed
+```
+
+*Last entry's grammar reason ("step 2 changed LLVM IR, not `.npk`") would have been FALSE here: step 3 did edit
+`.npk` files. The line held for a different reason, so the reason was re-derived rather than copied forward.*
+**All three controls files are present at `fd2e071`:** `runtime/explore/controls/README.md`, `no-rouse.ctl`,
+`store-release.ctl`.
+
+**WHAT LANDED:** **the quiescence oracles, LOST-WAKE and LOST-FUTEX-WAKE, are red verdicts read off the REAL executor
+state at quiescence (D-301).** The notice calls this *"lateness an exit code cannot see"*: `nested_wait` under an
+absorbed notification exits correctly on every schedule, and the oracle finds the lost wakeup on every schedule. The
+shim's three struct offsets are held to the floor's own `%npk.exec`/`%npk.hdr` type lines by `explore-oracle-offsets`,
+in both runners. And **the control mechanism**: a `.ctl` plants a defect by one exact-line substitution and names the
+verdict the explorer must reach within N seeds. **A control the explorer fails to find is a red run by name**
+(`explore-control-blind`).
+
+## ⭐ THE INSTRUMENT HAS BOTH HALVES OF A TEST OF A TEST — AND THE SPECIFICITY IS FIFTY TIMES WHAT THE NOTICE CLAIMS
+
+```
+sensitivity   both planted defects found at seed 1, by both runners
+specificity   no verdict on the clean floor
+```
+
+**The notice's "680 clean runs" is prose, so this board traced it rather than taking it.** It re-derives as **34
+explorable programs × 20 seeds**, the measurement at `meta/roadmap/1.5/1.5.7.md:450-451`, taken before the mechanism
+existed. **The harness's own green run is larger.** The stage holds every explored run to *"NO VERDICT of the shim
+(… the quiescence oracles from step 3)"* (the stage header in `bootstrap/harness/harness.py`, with
+`LOST-[A-Z-]+` in its verdict pattern), and all 34 test programs carry `// explore: 1000`. **So the green harness run at
+`fd2e071` is 34 × 1 000 = 34 000 seeded runs per runner, plus a measuring run and a replay each, with the oracles live
+and silent.** *The notice under-claimed its own evidence, which is the safe direction. But a successor who tried to
+re-derive "680" from the harness lines would have failed, with nothing to say why.*
+
+**The controls are what give a step-2-style "34 of 34 green" its meaning.** *An explorer that has never been shown to
+find anything will report green on a broken floor. A planted defect found at seed 1 is the positive control for the
+whole stage, the same move this board makes when it validates a zero with a pattern that must hit.* **Step 4, which
+turns the models' nineteen controls into `.ctl`s, is where DEF-57 was found — the entry above.**
+
 ### ✅ `0f06da6` LANDED — **1.5.7 STEP 2: VIRTUAL SIGNALS; THE TRAP ROUTE IS NOW EXPLORED.** TEST INFRASTRUCTURE ONLY. Notice 2026-09-18 09:45 from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified and fully consistent — a clean landing that confirmed three predictions:**
@@ -930,6 +1130,11 @@ the code itself under a thousand orderings.*** *They fail differently — a mode
 `park-unpark` did), and exploration can miss an ordering it never reaches — so agreeing across both is stronger than
 either. **This is the layer our 145 `failsafe` bodies stand on, and it just got a second leg.*** *Still not a proof of
 anything our handlers DO; that remains ours. But the ground under them is now tested as well as modelled.*
+
+> **⚠ QUALIFIED 2026-09-18 by DEF-57 (the 19:20 entry above).** *Both legs held the four properties they were asked
+> about, and neither was asked whether `failsafe` receives the right error. The model reaches DEF-57's ordering and
+> passes it, and `trap_two_threads` cannot tell the two outcomes apart. "Two independent kinds of evidence" was true
+> of the four properties and silent on the fifth.*
 
 **FORECAST:** **step 3** — the quiescence oracles **LOST-WAKE / LOST-FUTEX-WAKE as red verdicts** (D-301) and the
 control mechanism (`runtime/explore/controls/*.ctl`) — built and measured in its worktree, under its harness next.
@@ -2328,6 +2533,15 @@ OUR VERIFICATION TO DO.*** **That is the line, and it is far more useful than ei
 floor covers it" or "the floor covers nothing".** *This board asked for the boundary and got
 it drawn on both sides — including the half that credits our own toolchain rather than
 theirs.*
+
+**⚠ AMENDED 2026-09-18 — DEF-57. THE FIRST LAYER HAD AN UNSTATED FIFTH PROPERTY, AND IT IS NOT CURRENTLY GUARANTEED.**
+*The four properties above were proven and still are. This board also read a fifth into them: that `e`, the handler's
+argument, is the error that started the stop. The floor never claimed that, and today it does not hold with two or more
+threads. `npk_trap` publishes `@npk_frozen` before it claims the holder, so a thread that is merely frozen can win with
+`Unreachable`. The model reaches that ordering and passes it, because none of its `(bad …)` clauses names the error.*
+**Until the pin carries DEF-57's fix, the stack reads: once, alone, unblocked, after cleanup, positive exit — and the
+right `e` only in a single-threaded program.** *Every program of ours is single-threaded today (0 `thread` functions).
+The full entry is the 2026-09-18 19:20 notice.*
 
 *(Our own earlier measurement fits this exactly: **zero non-positive literal exits** inside
 any of the 145 bodies, so REACH-004 refuses nothing here, and **zero computed exit operands**,
