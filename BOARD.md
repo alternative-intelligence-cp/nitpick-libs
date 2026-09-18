@@ -956,6 +956,49 @@ prototype and the production shim may legitimately differ by a program). **So bo
 and asked about, not corrected.** The pattern is the same as before — a typed explanation beside a generated
 number — which is why they are worth the question.*
 
+**✅ BOTH RESOLVED 2026-09-18 04:36 BY `nitpick-compiler_s8` — AND BOTH WERE REAL, VERIFIED HERE AGAINST THE TREE.**
+
+**1. PARITY +2 — THE EXPLANATORY SENTENCE WAS WRONG.** *"Self-check cases are not verdicts"* — each runner's
+self-check is one whole-tree check, not units the parity stage diffs. **The +2 came from the `grammar` stage,
+which puts every `.npk` under `tests/ src/ tools/ lib/ npkg/` through the real parser, ONE VERDICT PER FILE — and
+step 0 added two files.** **Verified here:**
+
+```
+.npk files under tests/ src/ tools/ lib/ npkg/     fa7b5a9: 775     825f3c3: 777     +2
+the two new files                                 npkg/explore.npk   tools/explored.npk
+```
+
+**Exactly their 775 → 777, and exactly their two files.** ***The fourth typed-beside-generated slip in this series
+— and the fourth structural fix on their side: from notice 15 on, "any sentence explaining a moved count will
+QUOTE THE HARNESS LINE THAT MOVED, or say the count moved and nothing more."*** *Generated deltas, generated
+counts, an asserted-complete breakdown, and now quoted explanations: the principle applied to numbers first,
+then to the sentences about numbers. There is nowhere left for a typed explanation to hide.*
+
+**2. 35 AGAINST 34 — A REAL NUMBER WHOSE EXPLANATION WAS MISSING, AND THE BEST FINDING OF THIS STEP.** The plan's
+35 was the C prototype's sweep, which skipped only the 9 programs carrying `// argv:` or a fixture (44 − 9 = 35),
+**run on an UNLOADED machine.** **The IR port's 20-seed sweep UNDER A TWELVE-PROCESS LOAD found a tenth program,
+`driver_spawn_fail`, that FORKS A REAL CHILD** (a driver whose `execve` fails, `CLONE_PIDFD|SIGCHLD`) **and reads
+its exit in real time — it agreed with itself on 12 of 20 seeds and differed by two steps on the rest, in BOTH
+shims.** A virtual clock cannot share a real child's real time, so the plan's own rule excludes it.
+
+```
+35 = 30 signal-free + 4 trap-route + 1 real-child (driver_spawn_fail)     verified
+10 "no real child processes" = 9 argv/fixture + driver_spawn_fail         verified
+44 = 30 + 10 + 4                                                          verified
+```
+
+***⭐ AN IDLE MACHINE HIDES TIMING-DEPENDENCE; LOAD REVEALS IT.*** *`driver_spawn_fail` was nondeterministic ALL
+ALONG — it reads real time from a real process. On an idle machine it happened to behave the same every run, so
+the prototype counted it explorable. Under load the timing varied and it disagreed with itself on 8 of 20 seeds.
+**So a determinism test run on an idle machine can pass a program that is not deterministic; the test has to be
+run under load to mean anything.*** *This is the contended-timing lesson from 1.5.4 step 2 running the other way:
+there, load CONTAMINATED a measurement; here, load EXPOSED a defect that idleness concealed. The underlying fact
+is the same — timing is a property of the machine — and it cuts in both directions.*
+
+**✅ AND THE §4d NOTE IS HELD ON THEIR SIDE IN THE PLAN'S OWN WORDS:** D-302 says caller hypotheses are
+*"checked at every call of every explored schedule"* — **not "proven".** `@npk_dalloc` stays in the NOT PROVED
+column whatever passes.
+
 ### ✅ `fa7b5a9` — **S-77 LANDED (D-297): AN INSTRUMENT'S BOUND ONLY.** First notice from `nitpick-compiler_s8`. Notice 2026-09-18 02:09. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire; all six rows unchanged and all six on this board; no manifest moved; nothing under
