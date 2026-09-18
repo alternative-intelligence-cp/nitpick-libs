@@ -888,6 +888,53 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `0f06da6` LANDED — **1.5.7 STEP 2: VIRTUAL SIGNALS; THE TRAP ROUTE IS NOW EXPLORED.** TEST INFRASTRUCTURE ONLY. Notice 2026-09-18 09:45 from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified and fully consistent — a clean landing that confirmed three predictions:**
+
+```
+0f06da6 on the wire; all six ladder rows unchanged and on this board
+grammar   778 -> 778   NOT quoted, and did not move   (step 2 changed npkx.ll, LLVM IR, not .npk)
+explore   30+14=44  ->  34+10=44   four programs reclassified; the total holds
+parity    1470 -> 1470   unmoved -- exactly what reclassification predicts, since it adds no verdicts
+```
+
+*The quote-don't-explain convention now shown working in BOTH directions: a line that moved is quoted, a line that
+did not is left out. **So the absence of a line is itself information** — grammar is missing because it held, and
+this board checked that it held.*
+
+**WHAT LANDED:** the shim remembers `rt_sigaction`; `tgkill` marks its target and makes a virtually blocked one
+runnable; **the handler runs in the target's own context at its next grant.** **So D-291's stop walk — the trap
+route — is explored like everything else.** `trap_two_threads`, `trap_stops_runner`, `windup_thread` and
+`failsafe_alloc` now say `// explore: 1000`, **agreeing with the C reference hash for hash on 20 seeds each.**
+**34 of 34 explorable programs are now explored** — *which closes the 35-against-34 thread for good: 34 is the true
+explorable count, and the 35th, `driver_spawn_fail`, is permanently excluded because it reads a real child's real
+time.*
+
+## ⭐ THE TRAP ROUTE NOW HAS TWO INDEPENDENT KINDS OF EVIDENCE — AND IT IS THE PART OF THE GUARANTEE STACK THAT COVERS OUR `failsafe` BODIES
+
+**This board recorded the guarantee stack for a `failsafe` handler:** the floor proves the handler runs **once,
+alone, unblocked, and after cleanup**; the compiler proves its exit code positive; everything between is ours.
+**The first layer — "once, alone, unblocked, after cleanup" — is exactly D-291's trap route.**
+
+```
+trap-route properties, before:   a bounded MODEL, proven by its controls
+                                 (two-failsafes, step-after-failsafe, exit-mid-failsafe,
+                                  failsafe-blocked-on-heap -- verified present at b7d60dc)
+trap-route properties, now:      the same model  PLUS  schedule EXPLORATION of the real code,
+                                 1000 seeds per program, replayed to the same hash
+```
+
+***Two independent kinds of evidence for the same property: a proof over a model of the code, and exploration of
+the code itself under a thousand orderings.*** *They fail differently — a model can omit a real transition (as
+`park-unpark` did), and exploration can miss an ordering it never reaches — so agreeing across both is stronger than
+either. **This is the layer our 145 `failsafe` bodies stand on, and it just got a second leg.*** *Still not a proof of
+anything our handlers DO; that remains ours. But the ground under them is now tested as well as modelled.*
+
+**FORECAST:** **step 3** — the quiescence oracles **LOST-WAKE / LOST-FUTEX-WAKE as red verdicts** (D-301) and the
+control mechanism (`runtime/explore/controls/*.ctl`) — built and measured in its worktree, under its harness next.
+**Nothing reaches a library, the floor, or a manifest.**
+
 ### ✅ `62756e7` LANDED — **1.5.7 STEP 1: THE SHIM, THE `explore` STAGE, THE MARKERS.** TEST INFRASTRUCTURE ONLY. Notice 2026-09-18 07:28 from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified: `62756e7` on the wire; all six rows unchanged and on this board.** No language surface, no refusal,
