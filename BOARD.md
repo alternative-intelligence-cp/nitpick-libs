@@ -888,6 +888,63 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `62756e7` LANDED — **1.5.7 STEP 1: THE SHIM, THE `explore` STAGE, THE MARKERS.** TEST INFRASTRUCTURE ONLY. Notice 2026-09-18 07:28 from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified: `62756e7` on the wire; all six rows unchanged and on this board.** No language surface, no refusal,
+no builtin name, no floor byte, no manifest — **nothing reaches a library.**
+
+**✅ THIS BOARD'S STEP-0 READING IS CONFIRMED.** At `825f3c3` this board recorded that `runtime/explore/` holding no
+tracked file was CONSISTENT rather than an error, because the shim was forecast for step 1. **At `62756e7` it holds
+exactly one: `runtime/explore/npkx.ll`.** *A reading recorded as "not an error, and here is why" is itself a
+prediction; this one held.*
+
+## ⭐ THE NEW CONVENTION WORKS ON ITS FIRST OUTING — AND IT MOVES THE RECONCILING TO THE READER
+
+**They quoted the two moved harness lines instead of explaining them**, exactly as promised after notice 14's slip:
+`grammar` 775 → 777 → 778, and `parity` 1 423 → 1 425 → 1 470. **So this board reconciled them itself, from the
+quoted lines alone:**
+
+```
+grammar  777 -> 778   +1    the new .npk is  npkg/explore_stage.npk          (verified in the tree)
+parity  1425 -> 1470  +45   = 44 explore verdicts (30 explored + 14 marked, one per stress program)
+                            +  1 grammar verdict (explore_stage.npk)
+                            = 45   CLOSES EXACTLY
+```
+
+***That is the whole point of quoting rather than explaining.*** *A typed explanation asks to be believed; a quoted
+line asks to be checked, and hands the reader what they need to do it. **Last notice the explanation was wrong and
+this board could only query it; this notice there is no explanation to be wrong, and the numbers close to the unit
+from the quoted lines.** The difference between a claim and a measurement, in one landing.*
+
+## ⭐ X-13: THE PORT FOUND A BUG IN THE REFERENCE IT WAS PORTED FROM
+
+**The IR shim was ported function for function from the C reference and held to it schedule hash for schedule hash
+on 30 of 30 signal-free programs × 20 seeds under a twelve-process load.** **And the port found that THE C REFERENCE
+DID NOT REPLAY EXACTLY UNDER LOAD EITHER:** the floor's `npk_chunk_new` over-maps and trims, so **whether its
+pre-trim `munmap` happened depended on the ALIGNMENT OF MMAP'S ANSWER — an address deciding a step count.** **Both
+shims now place anonymous mappings at a 64 KiB-aligned bump pointer with `MAP_FIXED_NOREPLACE`**; the C reference
+amended once, the amendment marked and recorded in its README.
+
+***The third time in this cycle that a SECOND implementation found a flaw in the FIRST one — the one believed
+correct:*** *the two syscall-table generators (the Nitpick side right, the Python side wrong); D-295's second reader
+finding the toy model mislabelled safe; and now the IR port finding the C REFERENCE nondeterministic. **The reference
+was the thing everything was being measured against, and it was wrong under load.** A reference implementation is
+not correct by virtue of being the reference; it is correct until a second implementation disagrees with it.*
+
+*And it is the address-contamination lesson landing: the same fact as the step-0 forecast, now explained to the
+syscall — a number measuring where memory happened to land, masquerading as one measuring the code.*
+
+**THE STAGE:** per unit, the measuring run, **1 000 seeds**, and **the first seed replayed to the same schedule hash**
+(`explore-replay-differs` if it does not) — *reproducibility checked, not assumed* — with PCT's per-run bound printed.
+**MARKERS: 30 `// explore: 1000`, 10 `// explore: no real child processes` (the tenth is `driver_spawn_fail`), 4
+`// explore: no …` until step 2 — 44.** The explore line agrees: **30 explored + 14 marked = 44.** Marker belt
+`explore-unmarked` (D-299) held by three planted headers in both self-checks.
+
+**FORECAST:** **step 2** — virtual signals; the four trap-route markers flip to `explore: 1000`, **already measured hash
+for hash, 4 of 4 × 20 seeds**. **Step 3** — the quiescence oracles **LOST-WAKE / LOST-FUTEX-WAKE as red verdicts**
+(D-301) and the control mechanism under `runtime/explore/controls/`. **Neither touches a library, the floor, or a
+manifest.**
+
 ### ✅ `825f3c3` LANDED — **1.5.7 STEP 0: THE SCHEDULE-EXPLORATION HARNESS OPENS.** EVIDENCE AND PLAN ONLY. Notice 2026-09-18 04:34 from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified: `825f3c3` on the wire; all six rows unchanged and on this board; `npkg/explore.npk` and
