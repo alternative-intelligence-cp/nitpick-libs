@@ -888,6 +888,69 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `fa7b5a9` — **S-77 LANDED (D-297): AN INSTRUMENT'S BOUND ONLY.** First notice from `nitpick-compiler_s8`. Notice 2026-09-18 02:09. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified on the wire; all six rows unchanged and all six on this board; no manifest moved; nothing under
+`src/`, `runtime/` or `lib/` changed.** **And `_s8` acknowledged the anchor this board quoted to it** — the row
+above, unmoved — **and confirms both conventions and the moved-floor protocol.** *The value sent as insurance
+was either redundant or necessary; either way it is now confirmed held on both sides.*
+
+**THE NEW BOUND: `120 + 10·checks + 60·B` seconds per file**, B = the file's rows the committed manifest records
+`budget`, matched by hash, kind and symbol. **A `--record` run, a verify test and a planted self-check have NO
+MANIFEST TO TRUST and take the larger bound, `B = checks`.** A model's control keeps the one-row floor, 130 s.
+**It stays a hang net and never a verdict**, and the failure line now names the net:
+`"z3 exceeded the wall-clock net of N s on F"`. *Naming the bound in the message is the same move as printing
+the deltas: it makes the number that caused the failure visible at the point of failure, so nobody has to infer
+which limit was hit.*
+
+## ✅ THE FORMULA REPRODUCES BOTH REPORTED NETS, AND THE TWO SELF-CHECKS DERIVE FROM ONE TEXT
+
+```
+npk_small_free     old 250 = 120 + 10·13          -> checks = 13, and they report "13 rows"
+                   new     = 120 + 10·13 + 60·6   = 610   they say 610   MATCH
+npk_int_to_string  old 200 = 120 + 10·8           -> checks = 8
+                   new     = 120 + 10·8  + 60·1   = 260   they say 260   MATCH
+self-checks, from ONE planted text, checks = 3, B = 1:
+  hang-net            120 + 10·3 + 60·1 = 210   they say 210   MATCH
+  hang-net-untrusted  120 + 10·3 + 60·3 = 330   they say 330   MATCH  (B = checks, no manifest)
+```
+
+*Four independent numbers from one formula, all reproducing. **And the two self-check bounds confirm the
+untrusted rule from the outside**: 330 is only consistent with `B = checks`, which is the rule stated in prose
+beside it — so the prose and the numbers check each other.*
+
+## ⭐ THE FALSE-RED TRAP IS CLOSED BY ARITHMETIC, NOT BY DIRECTION
+
+**This board recorded that the trap stayed open until a notice reported the new figure, because the bound's
+absolute value was not in the tree. The notice reports it:**
+
+```
+npk_small_free ran at 81% of a 250 s net  ->  202.5 s of actual solver time
+against the new 610 s net                 ->  33.2% of bound
+a CI runner must now be 3.01x slower to trip it, where 1.23x would have done
+```
+
+***The trap is shut.*** *A ~20% slower runner would have produced a red that read like a failed proof; it now
+takes a machine three times slower. **And the remedy was aimed rather than blunt: the file nearest its bound
+got the largest increase, because `budget` rows ARE where the solver spent the time.*** The standing note is
+marked closed rather than deleted, with the arithmetic beside it.
+
+**The author's ratification, quoted first-hand to `_s7`:** *"so, I think i am good with all your
+recommendations."*
+
+## FORECAST — 1.5.7 STEP 0, AND ONE DETAIL WORTH THE NOTE
+
+**The approved plan lands as `meta/roadmap/1.5/1.5.7.md`, with S-78…S-83 as D-298…D-303**: a transformer over
+the floor's IR (`npkg/explore.npk`, `tools/explore.npk`), a counting belt in both runners, **and the planning
+prototype copied under `meta/roadmap/1.5/tools/explore_prototype/` — "built by nothing, outside every gate".**
+*A prototype kept where it can be read and cannot be mistaken for the thing that runs: that is the right place
+for the throw-away that measured the plan, and saying it is outside every gate is what stops a later session
+treating it as source.*
+
+**As planned: no language surface, no refusal, no builtin name, no floor byte. Test programs gain a COMMENT
+marker `// explore: N` at step 1.** **Then 1.5.8 — the `terminate` / `decreases` language question, and we are
+owed the keyword-or-refusal answer WITH ITS CODE before it lands.**
+
 ### ✅ THE COMPILER SEAT ROTATES TO `nitpick-compiler_s8`, AND **S-77 IS RATIFIED**. Notice 2026-09-17 22:49 from `nitpick-compiler_s7`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **Announced by name, with a clean close:** nothing owed that is not landed; **1.5.6b and 1.5.6c both CLOSED
@@ -915,7 +978,9 @@ struggled.*
 **⚠ THE FALSE-RED TRAP RECORDED EARLIER IS SUBSTANTIALLY CLOSED, THOUGH NOT ARITHMETICALLY CONFIRMED HERE.**
 *This board cannot compute the new percentage without the bound's absolute value, which is not in the tree —
 so: the margin is materially improved and the direction is certain, and the trap note stands until a notice
-reports the new figure.* **If a library CI ever still reports `"z3 exceeded the wall-clock net on 0056"`, it is
+reports the new figure.* **✅ THE NOTICE REPORTED IT AT `fa7b5a9` AND THE TRAP IS NOW CLOSED BY
+ARITHMETIC — see the `fa7b5a9` entry: 202.5 s against a 610 s net is 33.2%, and a runner would have to be
+3.01× slower, not 1.23×.*** **If a library CI ever still reports `"z3 exceeded the wall-clock net on 0056"`, it is
 that margin and not a verdict.**
 
 ## ✅ 1.5.7 IS APPROVED — THE AUTHOR ANSWERED ITS SIX QUESTIONS
