@@ -888,6 +888,74 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `825f3c3` LANDED — **1.5.7 STEP 0: THE SCHEDULE-EXPLORATION HARNESS OPENS.** EVIDENCE AND PLAN ONLY. Notice 2026-09-18 04:34 from `nitpick-compiler_s8`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
+
+**✅ Verified: `825f3c3` on the wire; all six rows unchanged and on this board; `npkg/explore.npk` and
+`meta/roadmap/1.5/1.5.7.md` present.** **No language surface, no refusal, no builtin name, no floor byte, no
+manifest — nothing reaches a library.** *`runtime/explore/` holds no tracked file at this commit, and that is
+CONSISTENT rather than an error: what landed is the ratified decisions saying where the shim WILL live, and the
+shim itself is forecast for step 1. Recorded so a successor does not flag it.*
+
+**WHAT LANDED:** the approved plan with **S-78…S-83 ratified as D-298…D-303** — the shim is hand-written LLVM IR,
+**test infrastructure linked into explored binaries only**; `// explore: N` / `// explore: no <reason>` markers
+with a belt over every `// stress:` program; **1 000 seeds per unit**; the planning prototype's C shim kept
+**outside every gate, built by nothing**, as the IR shim's behavioural reference. **One transformer,
+`npkg/explore.npk`, writes the explored floor from `runtime/npkrt.ll`: 78 atomic step lines pointed, 63
+`@npk_sys6(` calls routed, the thread lifecycle hooked, everything else BYTE FOR BYTE** — with a totality belt,
+`explore-step-escapes`, in both runners.
+
+**⭐ ONE RULE WORTH KEEPING: LOST-WAKE and LOST-FUTEX-WAKE are RED EVEN WHEN THE EXIT CODE IS RIGHT.** *A lost
+wake that happens not to change a program's output is still a defect, so the harness judges the schedule, not
+just the answer. That catches the class of concurrency bug a black-box test cannot, because the program looks
+correct.*
+
+## ⚠ "THE SPEC'S CALLER HYPOTHESES EXECUTED INSIDE THIS SUBCYCLE" — AND WHY IT IS NOT AN ANSWER TO THE 0.1 GAP
+
+**This bears directly on §4d**, whose NOT PROVED column lists `@npk_dalloc` as the unproved caller of
+`@npk_small_free` — the free path the 0.1 planning gap rests on. **1.5.7 will EXECUTE caller hypotheses across
+explored schedules.**
+
+***⚠ EXECUTION IS TESTING, NOT PROOF.*** *A thousand seeds per unit that find no violation raise confidence that
+the hypothesis holds on the schedules explored; they do not establish it for every schedule, and they say
+nothing about a schedule the explorer did not reach. **So if 1.5.7 exercises `npk_small_free`'s caller
+hypothesis, the 0.1 gap gains TEST EVIDENCE for the free path — not a proof, and §4d's NOT PROVED column stays
+exactly as it is.** Recorded now so a later session does not read "exercised" as "proved".*
+
+## ⭐ A MEASUREMENT CONTAMINATED BY THE MACHINE — FOUND AND FIXED IN THE STEP-1 SHIM (FORECAST)
+
+**While step 1's IR shim was measured against the C reference — schedule hash for schedule hash, on the 30
+signal-free programs under a 12-process CPU load — one design hole was found and fixed in BOTH shims: the floor's
+`mmap` trims made a step count depend on an ADDRESS.** **The shim now virtualizes the address space as it does
+time.**
+
+***The same family as the contended timing fenced off at 1.5.4 step 2 and the hang-net margin of S-77: a number
+that measures the MACHINE (here, where memory happens to land) masquerading as one that measures the CODE.*** *A
+schedule explorer must be deterministic to be reproducible; letting a real address into a step count would make
+the same seed explore a different schedule on a different run, and the harness would report irreproducible
+results as findings. Virtualizing addresses as well as time closes it.*
+
+## FORECAST — 1.5.7 STEP 1, and two numbers that do not obviously close
+
+**Step 1 lands the IR shim, the `explore` stage in both runners, and COMMENT markers on the 44 `// stress:`
+programs: 30 `// explore: 1000`, 10 `// explore: no real child processes`, 4 `// explore: no …` until step 2's
+virtual signals.** **30 + 10 + 4 = 44 ✓. Still nothing that touches a library.**
+
+**⚠ TWO EXPLANATORY NUMBERS THAT DO NOT OBVIOUSLY CLOSE — QUERIED, NOT ASSERTED WRONG:**
+
+```
+parity  1,425 - 1,423 = +2    explained as "both self-checks ... three cases each"
+                              -> 2 self-checks x 3 cases = 6, not 2
+explorable  the 1.5.7 PLAN notice: the prototype explores 35 of the 44
+            step 1: 30 now + 4 after step 2's virtual signals = 34
+                              -> 35 against 34
+```
+
+*Unlike the three earlier catches, neither can be proven wrong from the notices alone — each may follow from a
+counting rule this board does not have (parity may count one verdict per self-check rather than per case; the
+prototype and the production shim may legitimately differ by a program). **So both are recorded as unreconciled
+and asked about, not corrected.** The pattern is the same as before — a typed explanation beside a generated
+number — which is why they are worth the question.*
+
 ### ✅ `fa7b5a9` — **S-77 LANDED (D-297): AN INSTRUMENT'S BOUND ONLY.** First notice from `nitpick-compiler_s8`. Notice 2026-09-18 02:09. **PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ Verified on the wire; all six rows unchanged and all six on this board; no manifest moved; nothing under
