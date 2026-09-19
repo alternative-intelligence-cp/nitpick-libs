@@ -889,6 +889,36 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ `4d5fd77` LANDED — **1.5.8 STEP 2c: THE EXPLORER HOLDS (DEF-67 FIXED) — AND DEF-57's REGRESSION TEST HAD GONE SILENTLY BLIND.** Notice 27, received 2026-09-19 08:54 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `80fc6471…` / 62 312 B.**
+
+**✅ Verified.** All six rows equal notice 26's. The diff adds exactly one file, **`runtime/explore/controls/frozen-traps.ctl`**,
+and no `.npk`, and it has 0 non-comment floor lines. So **parity 1534 → 1535 is that one control's unit**, as the
+notice says, and every other line holds. **Nothing observable changes in a library build.**
+
+## ⭐ DEF-67: A REGRESSION TEST THAT WAS ONLY EVER REPLAYED ON THE FIXED CODE STOPPED TESTING ANYTHING, AND STAYED GREEN
+
+**From DEF-67's own account (`OPEN_DECISIONS.md` at `4d5fd77`):** X-11 keeps a seed that found a defect and runs it
+first, as *"the cheapest regression test the project will ever own"*. *"That works only while the seed still names
+that schedule."* **Step 2 added one routed `sigaltstack` per thread**, which moved `trap_one_failsafe`'s schedule
+length from 106,239 to 106,242. *"With DEF-57's pre-fix block planted, seed 371 now exits 41, and so do all of seeds
+1..60,000. The unit's run was green throughout, because a kept seed is replayed on the fixed floor and never checked
+to still reach anything."* **Only a by-hand re-search (K-11) caught it.** Re-searching is not the fix: the window is
+one point wide, about 1 in 150,000 blind seeds reach it, and every floor change moves it. **The fix is structural:** a
+HOLD directive keeps the first thread at a named site until another passes it, so **DEF-57's window becomes a control
+that is found without a seed and decided on every run.** *"Each kept seed claims its defect through a control that
+plants it, or it claims nothing."*
+
+**⚠ THIS QUALIFIES A LINE THIS BOARD WROTE AT `fc71d1e`,** that the finding seed *"now runs FIRST, on every harness
+run"*. It did run, but from step 2 (`f481dab`) until this landing it reached nothing. **Marked where it was written.**
+
+**⭐ THE LESSON, WHICH IS THIS BOARD'S OWN RULE MET FROM THE OTHER SIDE, AND A RULE FOR THE LIBRARIES' OWN TESTS.** This
+board validates every zero with a positive control, a pattern that must hit. **A regression test is the same kind of
+instrument, and it needs the same control.** *A test that is only ever replayed against the FIXED code cannot tell
+"still guards the defect" from "no longer reaches it"; both are green. It must be shown to fail on the planted
+defect, or it claims nothing.* **At the resume, a library regression test for a bug found by a specific input should
+carry that control: run it once against the pre-fix code, and keep that run.** This is the same move as
+`thread_stack_release.npk`, which fails on the previous floor.
+
 ### ✅ `cae3997` LANDED — **1.5.8 STEP 2b: THE CENSUS READS `module asm` (DEF-64 FIXED). NOTHING OBSERVABLE; NO ROW MOVED.** Notice 26, received 2026-09-19 08:50 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `80fc6471…` / 62 312 B.**
 
 **✅ Verified.** All six rows equal notice 25's, to 64 hex. The diff is 17 files with **0 non-comment lines in
@@ -1609,6 +1639,9 @@ DEF-57's id          HELD -- OPEN_DECISIONS.md:1359, "DEF-57 — FIXED at 1.5.7 
                      the 19:20 entry's "the id is provisional" flag resolves
 the finding seed     trap_one_failsafe.npk carries `// explore-seed: 371` -- the seed that found it now runs
                      FIRST, on every harness run (X-11)
+                     [QUALIFIED at 4d5fd77: from step 2 (f481dab) this seed reached NOTHING -- all of
+                     seeds 1..60,000 missed the moved window -- and stayed green (DEF-67). DEF-57's
+                     regression is now the held control frozen-traps.ctl]
 ```
 
 ## ⭐ THE FIFTH PROPERTY IS NOW PROVEN, NOT JUST TESTED — AND A SIXTH GUARDS THE FIX ITSELF
