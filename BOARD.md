@@ -889,6 +889,59 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠⚠ `c2f08b7` AND `eccf6eb` LANDED — **1.5.8b STEPS 1b AND 2: THE CHECKED `List`, AND THE CONSTANTS. TYPE-076 NOW REFUSES OUR TWO `U64_MAX` SITES.** Received 2026-09-19 19:03 EDT from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**✅ Verified, and OUR TREES ARE UNTOUCHED.** The notice says our two sites *"spell it `~0u64` now"*. **That is the required
+spelling, not an edit: all four of our repositories read 0 changes, and both lines still read `0u64 - 1u64`.** *Read
+rather than assumed, because a sentence like that one is exactly how a boundary violation would first appear.*
+
+```
+npkrt.o    bb180934...     72,560 B  unchanged   <- the anchor, through both steps
+builder.o  7796bb38... 10,318,760 B  MOVED +256,424    the bridging refresh at 1b
+builder    d0be01fe...  8,926,544 B  MOVED +192,376
+npkc.ll    39a589df... 25,853,982 B  MOVED +546,001    -- THE EMISSION (D-265)
+npkc.o     255ba62f... 10,380,544 B  MOVED +281,568
+npkc       fbb82f59...  8,980,864 B  MOVED +216,056
+```
+
+**⚠ NO PREVIOUS DIGESTS WERE QUOTED THIS TIME, SO THE ROWS WERE AUTHENTICATED BY ARITHMETIC:** every quoted delta
+reproduces this board's recorded size at `410d405` exactly, and `npkrt.o` is unchanged to 64 hex. *A delta is a weaker
+authenticator than a quoted digest — it fixes the previous SIZE and says nothing about its bits — but five sizes
+agreeing to the byte is not a coincidence. Worth watching whether the next notice restores the "was" values.*
+
+**✅ AND THE SNAPSHOT WAS RECOMPUTED HERE, THE SECOND USE OF THE METHOD FROM `35ad9e1`:**
+
+```
+git show c2f08b7:bootstrap/seed/stage1.ll | sha256sum
+   -> 4974aba2f7159d7b443d42d33e32e7b6eaec532e22cc21d4abbe7b79607ab039, 25 707 020 bytes
+notice 32's forecast (before it landed): "snapshot 4974aba2..."          IDENTICAL
+this notice's stated value                                                IDENTICAL
+```
+
+**✅ THE HARNESS CLOSES EXACTLY:** programs 306 → **311** and parity 1572 → **1591**. The two steps add 5 programs
+(`constant_fold`, `list_index_oob`, `list_ops`, `list_ops_churn`, `list_ops_once`) × 2, 4 rejection tests
+(`constant_division`, `constant_overflow`, `index_pointer`, `list_fields`) × 2, and 1 cost unit (`tests/cost/list_ops.toml`):
+**10 + 8 + 1 = 19.** `nitpick.obligations` grows 368 → **390** as forecast, all in the folder's new code; the floor holds
+at 388 / 381 / 7.
+
+**WHAT THEY MEAN FOR US.** Step 1b: zero, as measured — our containers are our own `Vec`s. **Step 2: our two
+`fixed uint64:U64_MAX = 0u64 - 1u64;` lines are now TYPE-076 at any pin from `eccf6eb` on.** *Nothing happens at our
+pin; worklist item 5 becomes REQUIRED rather than tidy, and `~0u64` compiles at every pin, so the fix can go in first.*
+**DEF-79 again:** the new bounds check found `ast_init` storing the NONE declaration past `count` **since 1.4.7**.
+
+**⭐ THE FNV NEAR MISS, WHICH CONFIRMS THE NOTE THIS BOARD FILED AN HOUR AGO.** *"The first run of the new test held the
+prelude's `fnv_offset()` to the TEXTBOOK FNV-1a basis and failed."* **D-190's `0xCBF5DAE484222325` is the ecosystem's
+basis on purpose, and every error code, the Bridge's interface hash and every derived `Hash` come from it.** The
+textbook `0xCBF29CE484222325` *"is a different constant for a different purpose, and the two are not interchangeable."*
+**So the rule for a library is sharper than the earlier note:** *use the prelude's `fnv_offset` for anything that must
+agree with this ecosystem, and write the textbook basis ONLY for hashes that must agree with the outside world. Never
+substitute one for the other.*
+
+**COMING NEXT:** step 3, the `overflow` rows — every plain-integer `+ - *` and negation gets an obligation row, `rows.txt`
+gains a twelfth field, and the compiler's manifest grows to 2 439 rows. **No source change for us.** Then step 4, the
+wrapping family `+% -% *%` (D-312), where **the prelude's FNV step adopts `*%`, turning a 128-bit multiply plus an
+overflow guard into one `mul i64` for every program that hashes.**
+
 ### ⚠ FORECAST — 1.5.8b STEP 2 (D-310, D-311; DEF-70, DEF-71, DEF-80): **THE FIRST STEP THAT REFUSES CODE OF OURS — EXACTLY THE TWO KNOWN SITES.** Committed as `763eb10` in `_s11`'s worktree, after 1b. Received 2026-09-19 14:49 EDT. **NOTHING LANDED.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ```
@@ -1250,7 +1303,9 @@ entry that measured it.*
  3  (DecreasesViolated) -- only if 1.5.8c makes it universal; if so, all 145 as well              F5, notice 26
  4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
     92 in tests, probes and harnesses; each library loop needs a real termination measure
- 5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311
+ 5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311; REQUIRED
+    -- REQUIRED at any pin from eccf6eb on (TYPE-076 refuses the old spelling); ~0u64 compiles     from eccf6eb
+    at every pin, so this one can go in before the re-pin
  6  (ShiftRange) in every root reaching the 6 computed shifts (byteset.npk:70,77,84; probe11)     1.5.4b entry
  7  CastRange: none owed -- no float anywhere in our code (checked three ways)                    F5, notice 23
  8  THREAD HOLD: satisfied at any pin at or after 35ad9e1 (DEF-57, -60, -65, -66 all fixed)       notices 18-29
