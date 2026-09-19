@@ -889,6 +889,39 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ FORECAST — 1.5.8b STEP 1b (THE PRELUDE `List` HIDDEN/SEALED, CHECKED `l[i]`, TYPE-082), MEASURED BEFORE IT LANDS: **ZERO ON ALL FOUR COUNTS.** Received 2026-09-19 12:42 EDT. **NOTHING LANDED.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+```
+List<T>      { hidden wild T->:items; sealed int64:count; sealed int64:cap; } -- outside the prelude: .items is TYPE-080,
+             writing .count/.cap is TYPE-079, reading them is fine
+l[i]         indexes a List like a slice: bounds-checked against count (OutOfBounds -4099); assigning over an OWNING
+             element now DROPS the old value (the raw l.items[i] = v dropped nothing); l[lo...hi] is a checked T[] view
+TYPE-082     NEW: p[i] where p points to an array, slice or List -- it silently meant "the i-th List in memory";
+             the element is (<-p)[i] (built; pending the author's answer)
+prelude      list_pop, list_truncate, list_clear, list_insert, list_remove, list_swap_remove, all checked, and all
+             PRELUDE names (a library function so named collides, D-239)
+sweep        the compiler's own: 2,011 .items[i] -> l[i]; 77 count = 0 -> list_clear; 42 truncations; 21 pops; 1 insert
+found        DEF-79: ast_init stored the NONE declaration past count, so the first real declaration sat at index 0,
+             the "none" id -- the new bounds check caught it on its first run
+lands        with a BRIDGING snapshot refresh, so our re-pin will move the builder too
+```
+
+**MEASURED, every zero with a control:**
+
+```
+(a) .items on a prelude List outside the prelude   0   we use the prelude List NOWHERE (0 `List<`); our containers are
+(b) writes to a List's .count / .cap                0   our own Vec<T>, in BOTH regex and time (src/core/vec.npk)
+(c) functions named list_pop ... list_swap_remove   0   0 definitions, 0 mentions; control: the same pattern finds our
+                                                        12 vec_* counterparts (6 per library) -- no D-239 collision
+(d) p[i] on a pointer to an array / slice / List    0   the only indexes through pointer-typed names are 5 through
+                                                        int64-> / wild int64-> (raw element pointers in probes), which
+                                                        is the form of items[i] itself, not the one TYPE-082 refuses
+```
+
+**So step 1b lands on our code untouched. Answer sent to `_s11`.** *DEF-79 is the bounds check paying for itself on its
+first run, inside the compiler. It is also a quiet argument for worklist item 13: checked access on our own `Vec`
+would catch the same class of bug in ours.*
+
 ### ✅ FORECAST — 1.5.8b STEP 1 (`sealed`, `hidden`), MEASURED AT `_s11`'s REQUEST BEFORE IT LANDS: **ZERO ON ALL THREE COUNTS.** Received 2026-09-19 11:56 EDT. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ```
