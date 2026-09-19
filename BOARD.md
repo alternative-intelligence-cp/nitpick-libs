@@ -889,6 +889,41 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ D-314 SETTLED (S-94): **`hidden` FIELDS, AND THE PRELUDE `List` BOUNDS-CHECKED** — AND THIS SEAT'S OWN ZERO-COST CLAIM RE-VERIFIED BY A SOUND METHOD. Received 2026-09-19 11:22 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+```
+hidden     neither read nor written outside the declaring module -- a load, a copy out, a $$i claim, a struct-pattern
+           binding all count; touching one from outside is NITPICK-TYPE-080 (a write to a `sealed` field is TYPE-079)
+levels     sealed = "look, don't touch"; hidden = neither
+List<T>    indexed l[i] like a slice, bounds-checked against count (OutOfBounds, with the slice's `bounds` row); items
+           HIDDEN, count/cap SEALED; gains checked list_pop, list_truncate, list_clear, list_insert, list_remove and
+           list_swap_remove, "shaped by your Vec API"
+lands      1.5.8b step 1 with `sealed`; the plan (1.5.8b.md, D-308…D-314) goes into the tree next
+```
+
+**Our measurement went into D-314's record.** *We are unaffected unless we adopt the prelude `List`.*
+
+## ⚠ THIS SEAT'S "ZERO CROSSING WRITES" CLAIM RESTED ON AN UNSOUND CHECK — THE CONCLUSION SURVIVES A SOUND ONE
+
+`hidden` blocks READS, so the claim had to be extended from writes to every use. **The extension printed "files importing
+core/vec.npk: 0", which cannot be true of a library whose own modules use `Vec`.** The check had matched imports by
+the path `core/vec.npk` and was blind to sibling imports, and **the D-313 entry's "no file writes an imported Vec's
+fields" had rested on that same check.** *A zero from an unvalidated pattern, this board's oldest lesson, met in this
+seat's own measurement.*
+
+**Redone by DECLARED TYPE and the declaring module, with no reliance on import paths:**
+
+```
+cross-module READS found (sealed allows them)        Vec.count 35 · Vec.cap 16 · Bytes.buf 8 · SparseSet.sparse 1
+  -- 60 in all: the positive control that the method SEES across modules
+cross-module WRITES to count/cap/len/buf/items       0
+cross-module USES of Vec.items (hidden -> any use)    0
+```
+
+**So the conclusion stands on a method that can find what it is looking for.** It also corrects a fact: **`nitpick-time`
+has its OWN `Vec<T>`** (`nitpick-time/src/core/vec.npk`), not only regex. And because `Bytes.buf` and `SparseSet.sparse`
+are READ from other modules, **those fields are SEALED, not hidden.** *Worklist item 13 is rewritten to match.*
+
 ### ✅ D-313 (THE AUTHOR, TODAY): **`sealed` FIELDS — DEF-72 AND DEF-73 CLOSED BY SEALING THE BUILT-IN HEADERS AND THE PRELUDE `List`.** MEASURED AT `_s11`'s REQUEST: **ZERO EXPOSURE.** Received 2026-09-19 11:18 EDT. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ```
@@ -924,7 +959,9 @@ free, free_owning** (which drops owned elements) **and init_zeroed**. The shrink
 swap_remove. That was sent as design data for the prelude's new operations.
 
 **⭐ AND D-313 CLOSES THE SAME HOLE IN OUR OWN CODE.** Our `Vec<T>` has exactly DEF-73's shape: a `wild` `items` plus
-writable `count` and `cap`. **Sealing it costs nothing, as measured:** no file writes an imported `Vec`'s fields from
+writable `count` and `cap`. **Sealing it costs nothing, as measured:** *(RE-VERIFIED at D-314 by declared type: the check first used here matched
+imports by path and was blind to sibling imports. The sound re-check agrees, and finds 0 cross-module writes against 60
+cross-module reads.)* no file writes an imported `Vec`'s fields from
 outside `vec.npk` (every other writer is a probe declaring its own local `Vec`), and `Bytes` and `SparseSet` are written
 only in their own modules. **Added to the re-pin worklist as item 13.**
 
@@ -1074,9 +1111,10 @@ entry that measured it.*
 12  nitpick-posix PLANNING FACTS: EPIPE, not death (DEF-68); /dev/null on a closed 0-2 (DEF-69),   F6, F7, notices 25, 30,
     Unreachable before main without /dev/null; fixed 8 MiB stacks, whatever ulimit -s says;       21 (TCB 5 item 17)
     real child processes are never explored
-13  SEAL our own containers (D-313): regex Vec<T> items/count/cap, Bytes, SparseSet -- DEF-73's      D-313 entry
-    shape in our code; zero writers outside their declaring modules, so the change is free.
-    If S-94 ratifies `hidden`: hide Vec.items too -- 0 indexers outside the declaring module
+13  SEAL / HIDE our own containers (D-313, D-314) -- DEF-73's shape in our code, and free:          D-313, D-314 entries
+    Vec<T> in BOTH regex and time (src/core/vec.npk): items HIDDEN, count/cap SEALED;
+    Bytes (both libraries): buf/len SEALED; SparseSet (regex): SEALED -- buf and sparse are READ
+    from other modules, so seal, don't hide. 0 cross-module writes or items uses (type-resolved)
 ```
 
 **NEXT (forecast):** 1.5.8b step 0, the plan with D-308…D-311 and S-92 (the wrapping design, with our worked examples).
