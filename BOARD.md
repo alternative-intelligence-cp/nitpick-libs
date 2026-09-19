@@ -889,6 +889,30 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `410d405` LANDED — **1.5.8b STEP 1: `sealed` AND `hidden` (D-313, D-314) — TYPE-079/080/081, THE HEADERS SEALED, DEF-72/77/78 FIXED.** Notice 33, received 2026-09-19 14:49 EDT, from `nitpick-compiler_s11`. **`sealed` AND `hidden` ARE KEYWORDS FROM THIS COMMIT ON. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**✅ Verified.** The wire reads `410d405`. The three held rows are exact to 64 hex, and the moved rows' previous values
+match this board's:
+
+```
+npkrt.o    bb180934...     72,560 B  unchanged      <- the anchor
+builder.o  821ecf8d... 10,062,336 B  unchanged      -- no snapshot refresh
+builder    14172e43...  8,734,168 B  unchanged
+npkc.ll    ace56149... 25,307,981 B  MOVED +99,381  (was b7585e71…, 25,208,600 B) -- THE EMISSION: the checker's own new code
+npkc.o     b78f3f6d... 10,098,976 B  MOVED +36,640  (was 90c9bac3…)
+npkc       0771664c...  8,764,808 B  MOVED +30,640  (was ecf86e47…)
+```
+
+*The notice quoted the moved rows' previous digests as 8-hex prefixes this time. They match the board's full values,
+and the board keeps the full chain, so nothing is lost. It is noted rather than raised: only an ANCHOR move needs the
+previous digest in full, and the anchor did not move.* **The harness closes:** parity 1564 → **1572** = **four new
+rejection tests** (`tests/types/rejection/`: `field_qual_position`, `header_writes`, `hidden_fields`, `sealed_fields`),
+× 2 (grammar + verdict). Programs hold at 306, and there are 0 non-comment floor lines.
+
+**OUR EXPOSURE: ZERO, AS MEASURED BEFORE IT LANDED** (the step-1 forecast entry): no identifier spelled `sealed`/`hidden`,
+no write form over a built-in header or `OwnedFd.value`, and no `RGuard`. **Step 1b** (List, the bridging refresh) is in
+its full harness. **Step 2** (TYPE-076) will be the first to refuse code of ours: the two `U64_MAX` sites.
+
 ### ✅ `f241766` LANDED — **1.5.8b STEP 0: THE PLAN AND D-308…D-314. DOCUMENTS ONLY; NO ROW MOVED.** Notice 32, received 2026-09-19 14:27 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **✅ Verified.** The wire reads `f241766`, with `35ad9e1` as its ancestor. *The notice left out "origin/main == f241766",
