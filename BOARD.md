@@ -889,6 +889,79 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠⚠ FORECAST F7 — THE NEXT LANDINGS AND A 2–3 HOUR DELAY — **AND A RE-SCOPE THIS BOARD MISSED: "1.5.8" IS FOUR SUBCYCLES, AND THE LOOP REFUSAL BELONGS TO 1.5.8c.** Received 2026-09-19 06:27 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`d5ad3c9`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `c8be5302…` / 59 488 B.**
+
+## ⚠⚠ THE RESUME SIGNAL IS CORRECTED: IT IS **1.5.8c's CLOSE**, NOT THE CLOSE OF THE SUBCYCLE NOW NAMED 1.5.8
+
+F7 calls step 4 *"the close"*. Read against F5's order (*"… then `decreases` and the tree sweep, then the cycle
+close"*), that looked like a contradiction, so the plan was read before anything was concluded.
+**`meta/roadmap/1.5/1.5.8.md` §0 at `d5ad3c9` splits the work F5 described into FOUR subcycles**, in the order the
+author ratified. So did the same file at `cd1ed86`, where it landed with step 0:
+
+```
+1.5.8    (closes at its step 4)  the four identities and a snapshot refresh; CastRange (D-306, DEF-58) and the
+                                 128-bit conversions (DEF-61); the stack check (D-305, DEF-59, DEF-60); the last net (D-307)
+1.5.8b                           the guarded kinds' rows: overflow (2,250 guards in the compiler alone), bounds,
+                                 cast-range, and their elision -- prove-or-retain, NO refusal
+1.5.8c                           `decreases` / `unbounded` (D-304): the surface, the checks, the terminate and
+                                 stack-depth rows, the sweep of ~925 loops, AND THE REFUSAL (TYPE-072)
+1.5.8d                           the cycle's close: NIKOS's disposition (D-217), the docs, done/1.5/
+```
+
+*"Every DECISION all four need is already taken (D-304…D-307): what is left to their plans is measurement and
+mechanism, never a language question."*
+
+**So the F5 entry's *"the resume signal is 1.5.8's close notice"* is WRONG under the plan's own naming.** 1.5.8
+proper closes at its step 4, BEFORE the loop rule exists. The criterion recorded at `e3bf48c` was *written once,
+against the final rule*. **By that criterion the resume signal is 1.5.8c's close**, when the refusal lands and 1.5's
+language surface is final. 1.5.8d is tooling and docs, and 1.6 adds no refusals. *Corrected in place in the F5 and
+`e3bf48c` entries, and both corrections are marked.*
+
+**⚠ AND THE MISS IS THIS SEAT'S.** The split was in the plan that landed with step 0 (`cd1ed86`, committed 00:49,
+noticed 03:53). At notice 22 this seat read that plan's step-0 execution record and not its §0 scope table. So from
+03:53 until now the board carried a resume signal the tracked plan had already superseded, and this seat relayed that
+signal to the author. *The lesson: when a plan lands, read its scope before its record. The record says what
+happened; the scope says what the name now means.*
+
+**For threads nothing changes.** Every thread fix (DEF-60, DEF-65, DEF-66) is in 1.5.8 proper, so the thread hold is
+released by a pin at or after 1.5.8 proper's close, its step 4.
+
+## FORECAST F7 — WHAT THE NEXT LANDINGS CHANGE
+
+```
+DELAY     steps 2 and 2b went red. Three backend unit tests compare emitted `define` text exactly, and step 2's
+          "split-stack" attribute was not among their 18 expected strings. Amended (tests only; src/ untouched).
+          Steps 2-4 are re-running, and landings resume in order, "roughly 2-3 hours out".
+STEP 3b   DEF-66, per-slot pools: a spawned thread's TLS block and executor come from 64-entry pools, reborn for each
+          thread, and the join closes the thread's epoll set. Threads can now be spawned and joined without limit:
+          700 reactor threads used to die at the 510th with Unreachable under nofile 1024; now 0. The 65th LIVE
+          thread is still refused.
+STEP 3c   DEF-69, the standard descriptors: at startup the floor opens /dev/null onto any of 0, 1, 2 that is closed.
+          Before, a program started with `2>&-` got descriptor 2 for its next DATA file, and every stderr write,
+          the floor's own `heap:` line included, went into that file. One new startup syscall, fcntl(fd, F_GETFD), x3.
+STEP 4    1.5.8 proper's close: a ONE-HOP SNAPSHOT REFRESH, no prelude change. The builder carries the stack prologue
+          on all 3,202 defines, and compiles src/ under `ulimit -s 1024` (before 1.5.8 it died of SIGSEGV under 2048).
+```
+
+**The "split-stack" detail confirms this board's F5 expectation from the inside.** The attribute appears in emitted
+`define` text, **so step 2's notice should move `npkc.ll`** (and `npkc.o`) along with the floor.
+
+**📌 A FALSIFIABLE PREDICTION, RECORDED FOR STEP 4's NOTICE:** *"New snapshot: sha256
+`b7585e715ea5f24fc701b86ded63bedea7d5b9e232179efdad6b9aa989b8c1c3`, 25,208,600 bytes. After it, build/npkc.ll IS the
+snapshot's bytes."* **So step 4's `npkc.ll` row must read `b7585e71…` / 25 208 600 B.** *A digest stated before the
+landing is the strongest forecast this board has recorded, the same kind of move as `_s0`'s canary byte count.*
+
+**OUR EXPOSURE:**
+
+- **Step 3b: none.** We have 0 threads.
+- **Step 3c: none today.** No tracked `.npk`, `.sh` or `.py` of ours closes, duplicates or counts a standard
+  descriptor: `>&-`, `/proc/self/fd`, `fcntl`, `dup` and `SYS_CLOSE` all read 0. **⚠ A PLANNING FACT FOR
+  `nitpick-posix`:** a utility started with a standard descriptor closed will find `/dev/null` there. So a write to a
+  closed stdout (`utility >&-`) SUCCEEDS silently instead of failing with EBADF. *A conformance test that expects a
+  write error on a closed stdout will see success. POSIX lets an implementation open an unspecified file on 0–2 at
+  exec, so this is permitted behaviour, but it is visible, and each utility's plan should know it.*
+- **The builder under `ulimit -s 1024`:** after the re-pin, no compile depends on the shell's stack limit.
+
 ### ⚠ FORECAST F6 (ADDENDUM TO F5) — **DEF-68: FROM STEP 3, A WRITE INTO A BROKEN PIPE RETURNS `EPIPE` INSTEAD OF KILLING THE PROCESS.** Received 2026-09-19 04:55 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`d5ad3c9`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `c8be5302…` / 59 488 B.**
 
 **The change:** SIGPIPE's default action killed any program that wrote to a pipe or socket whose reader had gone, with no
@@ -965,7 +1038,8 @@ are never released either. It is scheduled as step 3b, per-slot pools.
 
 **OUR EXPOSURE: NONE,** because we have 0 `thread` functions. *For the first threaded library: a pin at or after
 `d5ad3c9` releases the stack mapping, and the rest waits for step 3b. It is one more reason the thread hold's release
-point is "a pin at or after the 1.5.8 close", not merely "after `fc71d1e`".* No language surface changed, no name was
+point is "a pin at or after the close of 1.5.8 proper (its step 4, which carries every thread fix)", not merely
+"after `fc71d1e`".* No language surface changed, no name was
 added, and no arm is required.
 
 **NEXT (forecast): step 2, the stack check.** **EVERY `failsafe` must then name `(StackExhausted)`, all 145 of ours,**
@@ -1203,13 +1277,16 @@ expectation for the stack-guard landing** (ours, labelled): because *"every comp
 prologue check"*, **the EMISSION row (`npkc.ll`) should move as well as the floor**, so most or all six rows. The
 notice's measured rows are the fact, and a mismatch with this expectation is a question, not a verdict.
 
-## ⭐ THE RESUME — THE CRITERION RECORDED AT `e3bf48c` NOW DECIDES IT: WAIT FOR 1.5.8 TO CLOSE
+## ⭐ THE RESUME — THE CRITERION RECORDED AT `e3bf48c` NOW DECIDES IT: WAIT FOR ~~1.5.8~~ **1.5.8c** TO CLOSE *(corrected at F7)*
 
 The criterion was: *"If it is a refusal that reaches ordinary loops … the libraries should wait for 1.5.8 to land, so
 that they are written once, against the final rule."* **It is exactly that refusal, and what REACH-002 demands grows in the same
 subcycle.** *The loop rule becomes mandatory only after the compiler's own tree is swept, which is 1.5.8's last step
 before its close, so the rule's final form is the last thing to land.* **So the resume signal is 1.5.8's close
-notice.** At that point the re-pin, the canary and the P-1/probe13a re-measure all happen once.
+notice.** At that point the re-pin, the canary and the P-1/probe13a re-measure all happen once. *(CORRECTED at F7,
+2026-09-19: the plan that landed with step 0 splits this work into 1.5.8, 1.5.8b, 1.5.8c and 1.5.8d. The loop
+rule, its sweep and its refusal belong to **1.5.8c**, and 1.5.8 proper closes at its step 4 without them. **The
+resume signal is 1.5.8c's close.** This seat missed the split at notice 22. See the F7 entry.)*
 
 **WHAT THE WAIT DOES NOT BLOCK, RECORDED FOR THE AUTHOR AND NOT STARTED HERE:** the rework is now fully inventoried —
 110 loops (18 in library code) and 145 handlers — and the rules are ratified. **So the plan for it could be written
@@ -1312,7 +1389,8 @@ how.** *If it is a keyword or an optional clause, our source exposure is zero, a
 the language (1.6 adds no refusals). The libraries can then resume with a re-pin at the current close. If it is a
 refusal that reaches ordinary loops, up to 112 loops across 47 files are in play, and the libraries should wait for
 1.5.8 to land, so that they are written once, against the final rule.* **Resuming before the answer risks exactly the
-rework the pause exists to avoid, in the one place the plan still schedules a language change.**
+rework the pause exists to avoid, in the one place the plan still schedules a language change.** *(At F7: the loop
+rule now belongs to 1.5.8c, so read "1.5.8" in this paragraph as "1.5.8c".)*
 
 ### ✅ `e5484e6` LANDED — **1.5.7 STEP 6: THE PROGRAM'S OWN STEPS, EXPLORED. NO LADDER ROW MOVED, NO NAME ADDED.** Notice 20, received 2026-09-18 22:51 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
