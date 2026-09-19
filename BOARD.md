@@ -889,6 +889,27 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `f241766` LANDED — **1.5.8b STEP 0: THE PLAN AND D-308…D-314. DOCUMENTS ONLY; NO ROW MOVED.** Notice 32, received 2026-09-19 14:27 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**✅ Verified.** The wire reads `f241766`, with `35ad9e1` as its ancestor. *The notice left out "origin/main == f241766",
+so the wire was read rather than assumed.* All six rows equal the `35ad9e1` table, to 64 hex, and every harness line
+holds (306 · 441 / 275 · 388 / 381 / 7 · 1564 · `ok 52`). **Documents only, checked:** 7 files, every one under `meta/`
+or a `.md`. **D-308 through D-314 are all tracked in DECISIONS.md now**, so every decision this board recorded from the
+compiler side's messages today has landed as text.
+
+**NEXT (forecast), with each step's exposure already measured here:**
+
+```
+step 1    sealed / hidden; TYPE-079/080/081; built-in headers sealed; DEF-77/78      in its full harness   ours: 0
+step 1b   List: l[i], hidden/sealed fields, six checked ops, TYPE-082, a BRIDGING    in its full harness   ours: 0
+          refresh (snapshot 4974aba2..., a forecast digest -- checkable by hand at its landing, as at 35ad9e1)
+step 2    the constants: TYPE-076, the folder exact at every width                    being built           ours: 2
+          -- our two `fixed uint64:U64_MAX = 0u64 - 1u64;` sites; _s11 will NAME them in step 2's notice before it lands
+```
+
+*Step 2 is the first landing of this quiet period that REFUSES code of ours. That is expected and planned for (D-311,
+worklist item 5): at our pin nothing happens, and at the re-pin the two lines become `~0u64`.*
+
 ### ✅ FORECAST — 1.5.8b STEP 1b (THE PRELUDE `List` HIDDEN/SEALED, CHECKED `l[i]`, TYPE-082), MEASURED BEFORE IT LANDS: **ZERO ON ALL FOUR COUNTS.** Received 2026-09-19 12:42 EDT. **NOTHING LANDED.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ```
