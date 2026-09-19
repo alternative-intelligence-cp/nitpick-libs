@@ -889,6 +889,84 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ `e3bf48c` LANDED — **1.5.7 IS CLOSED.** Step 7, documents only; no ladder row moved. Notice 21, received 2026-09-18 22:53 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ Verified.** All six rows equal this board's `fc71d1e` table, and `e3bf48c` is on the wire. That makes three shas in a
+row that this board saw on the wire before their notices arrived. The diff `e5484e6..e3bf48c` is 8 files, every one of
+them under `meta/` or a `.md`, so it is documents only, and that was checked. No harness line moved, and none is quoted
+as moved.
+
+**THE PIN TARGET, RECORDED AND NOT ACTED ON:** *"The anchor for your pin is now e3bf48c. Its ladder rows equal
+fc71d1e's; the floor moved only at notice 18."* **This seat does not re-pin.** If the re-pin is taken after 1.5.8, the
+target moves with it. The rule does not move: the target's own notice supplies the six rows, and commissioning checks
+against them.
+
+**TCB.md §5 item 13 now tells the DEF-57 story in the compiler's own words**, and it matches the 19:20 reading: *"It
+also found where a model said too little: `trap-route` had no error code, so DEF-57 — a failsafe running with the wrong
+error — satisfied every predicate it had. The model now carries the codes, and the correspondence of a step's MEANING to
+its block is still not proven, only exercised."*
+
+## ⚠ WHAT THE EXPLORER DOES NOT COVER — TCB.md §5 ITEM 17, NEW AT THE CLOSE — AND WHERE IT TOUCHES US
+
+```
+weak memory              NOT explored -- the baton serializes, so every atomic runs as seq_cst and a release/acquire
+                         ordering bug is invisible to it (`// stress:` on real cores "catches what it catches")
+REAL CHILD PROCESSES     NOT explored -- "a virtual clock cannot share a child's real time"; each such program says
+                         `// explore: no <reason>`, ten at the close
+the clone trampoline,    run, but are not scheduling points
+the asm bottom
+schedules beyond seeds   NOT claimed -- PCT's bound is "a probability per run ... never a proof"
+liveness                 NOT claimed -- "a due task is eventually run" needs a fairness assumption (item 13)
+```
+
+- **`nitpick-posix` is the repository this touches most.** A utility that spawns a real child process is outside the
+  explorer by construction, so its concurrency evidence will be `// stress:` and the models, never exploration.
+  *Recorded now so that posix's plan does not promise explored evidence it cannot have.*
+- **Weak memory matters on the day a library writes atomics:** an ordering bug in a release/acquire pair is invisible to
+  the explorer. Ours today: 0 `atomic<`.
+- **Liveness is not claimed.** Ours today: `async` appears in exactly one file, a regex probe
+  (`nitpick-regex/tests/probe/probe07_string_bytes_edges.npk`), and there are 0 `sleep(` calls. The exposure is
+  negligible.
+
+## ⚠ A CORRECTION AGAINST THIS SEAT: "TESTED AT THE EXACT CALL A LIBRARY MAKES" SAID TOO MUCH
+
+**TCB.md §5 item 16's dated note, new at the close:** *"What a reader still accepts: the four hypotheses the checkers
+LIST by name …, and every caller in a schedule or a program the explorer does not run (item 17)."* **Our library
+programs are not run by the explorer.** So D-302's `70 of 71` tests `npk_small_free`'s hypotheses at the call SITE a
+library uses (`dalloc` → `npk_small_free`), but in the COMPILER's explored programs, with their allocation patterns and
+not ours. The `f609a23` entry and the 0.1 gap pointer both said more than that, and both are corrected in place and
+marked. **The route to testing OUR calls is the one notice 20 named: a library test marked `// explore:`.** *Whether a
+library's own harness can run its tests under the explorer is a question for the compiler side at the resume, and it
+is filed as one.*
+
+## ⭐ THE RESUME: THE LAST GATE IS NOW A DECISION, NOT WORK — AND THE DECISION IS THE AUTHOR'S
+
+**1.5.7 is closed, and the prediction this board recorded for it held.** The prediction was *"1.5.7 … finds RUNTIME
+defects, which are fixed in the runtime"*, and DEF-57 was exactly that: fixed in the floor, with no language change and
+no library change. **What remains before 1.6, which adds no refusals, is 1.5.8.** Its obligations `overflow`, `bounds`
+and `cast-range` are prove-or-retain: each guard is either elided or kept, and nothing is refused. **Its `terminate`
+kind has no surface syntax, so its planning opens with the `terminate`/`decreases` language question, which is the
+author's to decide.** The compiler side owes us the keyword-or-refusal answer, named with its code, before anything
+lands.
+
+**Our exposure to each answer, measured now so that the decision can be taken with it in hand.** The count covers the
+170 tracked `.npk`, code only, with comments and strings stripped. The positive controls are the compiler's tree at
+`e3bf48c`, same engine:
+
+```
+a KEYWORD (`terminate`/`decreases`)       0 identifier collisions           (controls: 14 / 2 in the compiler)
+a REFUSAL, worst case -- every loop       110 `while` + 2 `for`, in 47 files: regex 62, time 50, posix 0
+  needing a termination argument          0 `till`, 0 counted `loop`         (controls: 11 / 20, both validated)
+a stack-depth or recursion rule           0 directly recursive functions     (control: 165); mutual recursion not measured
+```
+
+**This seat's judgement, for the author: resume when the keyword-or-refusal answer arrives, and let that answer decide
+how.** *If it is a keyword or an optional clause, our source exposure is zero, and nothing scheduled after it can change
+the language (1.6 adds no refusals). The libraries can then resume with a re-pin at the current close. If it is a
+refusal that reaches ordinary loops, up to 112 loops across 47 files are in play, and the libraries should wait for
+1.5.8 to land, so that they are written once, against the final rule.* **Resuming before the answer risks exactly the
+rework the pause exists to avoid, in the one place the plan still schedules a language change.**
+
 ### ✅ `e5484e6` LANDED — **1.5.7 STEP 6: THE PROGRAM'S OWN STEPS, EXPLORED. NO LADDER ROW MOVED, NO NAME ADDED.** Notice 20, received 2026-09-18 22:51 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
 **✅ Verified.** All six rows equal this board's `fc71d1e` table. **The sha is one this board had already seen on the
@@ -972,6 +1050,11 @@ unchanged, and the one unchecked hypothesis is the chunk table's ordering. *So t
 remaining risk is now LOCATED: five undecided ensures and the frame, plus one ordering fact that no entry checker can
 see.* **How many of the 38 explored programs reach `npk_small_free` is not stated.** `drop_string` does, as the control
 shows. **A pointer is added to the 0.1 gap's constraint note, where the planner will read it.**
+
+> **⚠ QUALIFIED at `e3bf48c` (the entry above):** TCB.md §5 item 16's dated note still asks a reader to accept
+> *"every caller in a schedule or a program the explorer does not run"*, and our library programs are not run by it.
+> So "every call on every explored schedule" here means every call IN THE COMPILER'S EXPLORED PROGRAMS. They share the
+> call site (`dalloc` → `npk_small_free`), but not our allocation patterns.
 
 ## ⚠ TWO SILENT FAILURES FOUND IN THE CHECKING APPARATUS — BOTH FIXED IN THIS STEP, BOTH FROM THE PLAN'S OWN RECORD
 
@@ -5279,8 +5362,11 @@ assumed:** `ralloc` **26**, `free` **29**, `dalloc` **22**, `alloc` **17**, `wil
   the apartness clause is caught (`unconditional-apartness.ctl`). **The NOT PROVED column still names `@npk_dalloc`,
   and the 6 residue rows are unchanged.** The one unchecked hypothesis is the chunk table's ordering, which is listed
   by name because it names a free symbol. *So the constraint stands, and the arena's free discipline is still the
-  library's to establish. But the floor underneath is now TESTED at the exact call a library makes. A 0.1.0 plan may
-  cite that as test evidence and must not cite it as proof.* See the `f609a23` entry.
+  library's to establish. But the floor underneath is now TESTED at the call SITE a library uses (`dalloc` →
+  `npk_small_free`), in the compiler's explored programs, which are not ours (TCB.md §5 item 16's dated note). A 0.1.0
+  plan may cite that as test evidence about the floor. It must not cite it as proof, or as a test of the library's own
+  calls.* *(Corrected at `e3bf48c`: this previously said "TESTED at the exact call a library makes".)* See the
+  `f609a23` and `e3bf48c` entries.
 - **Re-check it at the re-pin**, because §4c is generated: if a later cycle decides those
   rows, the constraint lifts, and the check is one read of `TCB.md` §4c rather than a
   conversation.
