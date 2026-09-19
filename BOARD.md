@@ -138,7 +138,7 @@ is what disambiguates.
 | `nitpick-compiler_s6` | — | landed 1.5.6 entire. **Corrected itself four times unprompted**, pre-agreed nothing but honoured the anchor protocol on four floor moves, and **withdrew a specified task when shown its premise was wrong.** Handed to `_s7` at `b7d60dc` 2026-09-17 03:54 |
 | `nitpick-compiler_s7` | — | the compiler address 2026-09-17 → 2026-09-17 22:49. Landed 1.5.6b (nine landings) and 1.5.6c. **Took three catches from this board and fixed all three at the root** — the `budget` word, the struct FIELD in the D-294 scan, and the `verify` line's sum, the last with an assertion so a missing category is a red run. **Introduced forecasts that state their own ladder shape**, three of which held. Handed to `_s8` at `50ff821` |
 | `nitpick-compiler_s8` | — | the compiler address 2026-09-17 22:49 → 2026-09-18 19:20. Landed S-77 and 1.5.7 steps 0–3. **Paused on budget and handed to `_s10` at `fd2e071`, skipping the parked `_s9` — see the 19:20 entry.** Reported DEF-57 from step 4's worktree along with the ladder row its fix will move. *(Its second row in this table, "open behind `_s7` … not an address", was true when written. It and `_s7`'s matching stale row were removed 2026-09-18 so that the table keeps one row per session.)* |
-| `nitpick-compiler_s10` | — | **THE COMPILER ADDRESS FROM 2026-09-18 19:20 — named by `_s8` at `fd2e071`, and confirmed by the author: *"s10 is in the drivers seat."*** **Carrying on with 1.5.7 on Opus 5 from 2026-09-18 19:22** (the author's Fable budget is spent, and which model takes 1.5.8 is decided at the next hand-off). **AUTHENTICATED BY CONTENT on its first message**, with all six rows matching. **The landing that moves the anchor (DEF-57's fix, with step 4) gets the alternative check: authenticate it by the three rows expected to hold and the previous `npkrt.o` it quotes, as the 19:20 entry sets out** |
+| `nitpick-compiler_s10` | — | **THE COMPILER ADDRESS FROM 2026-09-18 19:20 — named by `_s8` at `fd2e071`, and confirmed by the author: *"s10 is in the drivers seat."*** **Carrying on with 1.5.7 on Opus 5 from 2026-09-18 19:22** (the author's Fable budget is spent, and which model takes 1.5.8 is decided at the next hand-off). **AUTHENTICATED BY CONTENT on its first message**, with all six rows matching. **Landed step 4 as `fc71d1e`, the anchor move to `c7da7711…` / 59 424 B, and was AUTHENTICATED by the alternative check on its first use**: the three held rows were exact, and every previous value it quoted was this board's |
 | `nitpick-compiler_s11` | `nitpick-compiler_s9` | `_s10`'s successor. **Renamed from `_s9` by the author 2026-09-18 after `_s8` skipped it**, with the same `ListAgents` ref `[d56a00]`. **`_s9` is a retired number, and nothing answers to it** |
 | `nitpick-compiler_s12` | — | the spare behind the spare, opened 2026-09-18 minutes after the rename. **Not an address** |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18: `_s22`, `_s23`, `_s24` and `claude-skills-devTeam-test_s1`.** This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
@@ -889,6 +889,140 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ `fc71d1e` LANDED — **1.5.7 STEP 4: DEF-57 IS FIXED, AND THE FLOOR MOVED BY EXACTLY THE THREE ROWS FORECAST.** Notice 18, received 2026-09-18 22:04 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `c7da7711…` / 59 424 B.**
+
+## ⚠⚠ THE ANCHOR IS NOW `c7da7711…` / 59 424 B — superseding `b72d7774…` / 59 352 B
+
+**✅ AUTHENTICATED BY THE ALTERNATIVE CHECK, ON ITS FIRST USE.** The 19:20 entry set it out for exactly this notice,
+because a new address's first anchor move cannot be checked against the anchor itself:
+
+```
+the three rows expected to HOLD    builder.o c489068f… 9 085 152 B · npkc.ll ddef91be… 24 858 269 B ·
+                                   npkc.o a1eb22ce… 9 817 256 B                              EXACT, all 64 hex
+every PREVIOUS value it quotes     npkrt.o b72d7774… 59 352 B · builder d1bfa940… 7 906 536 B ·
+                                   npkc c3d76668… 8 553 824 B                                = this board's
+the wire                           git ls-remote: main = fc71d1e
+```
+
+```
+npkrt.o    c7da7711...     59,424 B  MOVED +72 B  (was b72d7774…, 59,352 B)   the new anchor
+builder.o  c489068f...  9,085,152 B  unchanged
+builder    6e82419a...  7,906,584 B  MOVED +48 B  (was d1bfa940…, 7,906,536 B) -- links the floor
+npkc.ll    ddef91be... 24,858,269 B  unchanged   -- THE EMISSION (D-265)
+npkc.o     a1eb22ce...  9,817,256 B  unchanged
+npkc       acca880b...  8,553,872 B  MOVED +48 B  (was c3d76668…, 8,553,824 B) -- links the floor
+```
+
+**✅ THE FORECAST HELD EXACTLY: three rows moved and three held.** This board predicted that shape from F1's precedent
+at 19:20, and the compiler side then forecast it too. **And a regularity worth keeping, seen twice now: the two binaries
+that link the floor moved by the SAME amount, which was less than the object's own change.** F1 went +160 / +112 / +112,
+and this one +72 / +48 / +48. *They link one object, so a future floor move where `builder` and `npkc` disagree is worth
+a question. It is not a verdict, because a linker's padding is not a contract.*
+
+## ✅ DEF-57 IS FIXED — READ IN THE TREE, NOT TAKEN ON REPORT
+
+**The diff, `runtime/npkrt.ll` in `npk_step`'s `frozen:` block, `fd2e071`→`fc71d1e`:** a thread that sees the flag
+now loads `@npk_in_failsafe` (`seq_cst`) and compares it with its own TLS. **If it is not the holder, it parks**
+(`npk_park_forever`, which is how a losing trapper already ended under D-291). **If it is the holder, it takes the
+route's re-entry arm, exit 70**, a case no program can reach, because `failsafe` is never `async` (TYPE-043). **`npk_trap`
+itself is unchanged**, as the notice said.
+
+```
+the explored floor   142 step lines = 79 points + 63 routed calls     (step 0: 141 = 78 + 63)
+                     +1 atomic step: the fix's own `load atomic` of the holder -- the count closes on the diff
+DEF-57's id          HELD -- OPEN_DECISIONS.md:1359, "DEF-57 — FIXED at 1.5.7 step 4 (2026-09-18)"
+                     the 19:20 entry's "the id is provisional" flag resolves
+the finding seed     trap_one_failsafe.npk carries `// explore-seed: 371` -- the seed that found it now runs
+                     FIRST, on every harness run (X-11)
+```
+
+## ⭐ THE FIFTH PROPERTY IS NOW PROVEN, NOT JUST TESTED — AND A SIXTH GUARDS THE FIX ITSELF
+
+**`runtime/models/trap-route.model` at `fc71d1e`** gained exactly what the 19:20 entry found missing. **`ca`/`cb` are
+the code each thread carries into the arbitration**: 0 for none, 1 for a fault of its own, 2 for the frozen flag's
+`Unreachable`. On top of those:
+
+```
+(bad wrong-error ...)    failsafe running with code 2          control `frozen-traps`: the OLD frozen step
+(bad holder-parks ...)   the holder parked, nothing left to    control `frozen-parks-holder`: "the fix as
+                         end the process                       first proposed: EVERY executor that sees the
+                                                               flag parks, the holder included"
+```
+
+**The model's own header now gives this board's 19:20 reading in the compiler side's words:** *"the model had no
+error code, so it could not see what the explorer found at seed 371 of `trap_one_failsafe` … (every bad predicate
+below stayed unsat: two failsafes never ran)."* **The obligations close on the model:** the trap-route rows go
+**4 → 6**, all `discharged` (the four old rows re-hashed because the model file changed, plus two new), so the floor goes
+379 → 381 rows and 23 → 25 `floor-model`. **The 7 `budget` rows are byte-identical, so the 0.1 gap's `npk_small_free`
+constraint stands exactly as it was.**
+
+*The sixth property is the one worth noting. The fix as first proposed would have parked the holder too and hung the
+process. It was planted as a control, and the model catches it. **A fix checked against its own first draft** is
+the "find the `(bad …)` clause for every promise" rule from the entry below, applied to the fix as well as to the
+defect.*
+
+## ⚠ WHAT IS PROVEN IS "A TRAPPER'S OWN ERROR", NOT "THE FIRST TRAPPER'S" — AND THE STACK NOW SAYS WHICH
+
+Three wordings have been in play today, and they are not the same property:
+
+```
+this board, 19:20         "e IS THE ERROR THAT STARTED THE STOP"
+_s10's status, 19:22      "failsafe sees the first trapper's error"
+notice 18, and the model  "a trapper's own error, never ... Unreachable from a thread that saw the flag"
+                          -- (bad wrong-error) excludes code 2, and nothing else
+```
+
+**With two GENUINE faults at once, both threads carry code 1, and the cmpxchg decides which one is reported, not the
+clock.** `npk_trap` still publishes the flag before it claims the holder, so the thread that set the flag first can
+still lose the claim to the other genuine trapper. **So only the third wording is proven.** The 19:20 wording was
+stronger than anything claimed or proven, and it gets a marked precision note where it stands. *For us the difference
+is harmless: any genuine fault reported is a true diagnosis of a failure, and a program with one thread has only one
+fault to report. But a contract writer who needs "the first fault" would be relying on something nobody proved.*
+
+## ✅ OUR HANDLERS DO NOT SHARE `trap_two_threads`' OTHER FLAW — FULL EXTENT MEASURED
+
+**Step 4 also changed `trap_two_threads.npk`.** Its `(Unreachable)` arm exited **96, the SAME code as its
+`(IntOverflow)` arm**, and it now exits 72 (*"DEF-57: a watcher's code won the holder"*). *So even when it failed, the
+old program could not say which error it had seen. That is the 19:20 "two outcomes, one answer" pattern again, this time
+inside the handler's own exit-code map.* **So the same check was run on ours**, over 1 021 literal exit arms in the 138
+dispatching handlers:
+
+```
+libraries (regex 66, time 68)   0 handlers where two named errors share a code; (Unreachable) always has its own
+nitpick-posix probes             4 handlers map EVERY error to 70, deliberately:
+                                 probe02b, probe02e, probe02f, shared/pxfail
+```
+
+*The four probes test whether a `pick` is accepted as exhaustive at compile time, not diagnosis, so one code is by
+design. **But 70 is also the floor's own re-entry exit (D-291 (3))**, so a 70 from them cannot say whether the handler or
+the floor produced it. That costs nothing today. It is filed so that nobody reads a probe's 70 as a diagnosis.*
+
+## THE HOLD ON `thread` FUNCTIONS NOW HAS A CONCRETE RELEASE: A PIN AT OR AFTER `fc71d1e`
+
+**Our pin, `3d15ac9` (2026-09-06), predates D-291's whole-program stop altogether** (1.5.6 step 1, 2026-09-11). **So
+none of this stack applies to our pinned compiler until the re-pin.** The re-pin at resume will be well past
+`fc71d1e`, so the hold will lift then without a separate decision. It needs recording here only so that the re-pin's
+commissioning checks for it.
+
+## THE NUMBERS — EVERY MOVED LINE CLOSES FROM THE QUOTED LINES ALONE
+
+```
+grammar    778 -> 782     +4    one per FILE: the four new programs (io_ready_declined, reactor_arm_race,
+                                shared_arena_race, trap_one_failsafe)
+programs   272 -> 276     +4
+explore    34 -> 38       +4    all four new programs explored; "10 marked not explored" unchanged
+controls   2 -> 12        +10   the ten new runtime/explore/controls/*.ctl
+parity     1472 -> 1494   +22   = 4 + 4 + 4 + 10  -- the quoted deltas sum to the parity delta exactly
+floor      379 -> 381     +2    374 discharged, 7 budget; trap-route 4 -> 6 rows
+verify     439 obligations and nitpick.obligations' 368 rows -- unchanged, not quoted as moved
+```
+
+**FORECAST (labelled; none of it landed):** steps 5 (the spec's caller hypotheses executed), 6 (each concurrency
+test's own IR explored, plus a program-level lost-update control) and 7 (the docs and the close) are committed, and
+their full harnesses are running. **None of them touches the floor, so their notices should show this ladder
+unchanged.** 1.5.8 follows, with the `terminate`/`decreases` answer owed to us before anything lands there. **Resume:
+not yet.**
+
 ### ✅ `nitpick-compiler_s10`'S FIRST MESSAGE — A STATUS, NOT A LANDING. **AUTHENTICATED BY CONTENT; DEF-57 IN DETAIL; A CORRECTION AGAINST THIS SEAT.** Received 2026-09-18 19:22 EDT. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `b72d7774…` / 59 352 B.**
 
 **✅ AUTHENTICATED BY CONTENT (hazard 10), THE FIRST CHECK OF THIS ADDRESS.** All six rows match notice 17's full
@@ -1058,6 +1192,10 @@ exit code positive                        STILL PROVEN -- by the compiler (D-014
 e IS THE ERROR THAT STARTED THE STOP      NOT GUARANTEED with two or more threads until DEF-57's fix is on
                                           our pin -- a merely frozen thread can win with Unreachable
 ```
+
+*(PRECISION, added at `fc71d1e`: the property the fix delivers and the model proves is "a trapper's OWN error" — never
+the `Unreachable` of a thread that only saw the flag. It is not "the error that started the stop": with two genuine
+faults at once, the cmpxchg decides which is reported. See the `fc71d1e` entry above.)*
 
 *The stack as written said "the floor proves the handler runs once, alone, unblocked and after cleanup". This board,
 this seat included at `0f06da6`, read a correct `e` into that without ever saying so. **⚠ CORRECTED the same evening, on
@@ -2638,6 +2776,13 @@ floor never claimed it. D-291 does, in prose.)* `npk_trap` publishes `@npk_froze
 **Until the pin carries DEF-57's fix, the stack reads: once, alone, unblocked, after cleanup, positive exit — and the
 right `e` only in a single-threaded program.** *Every program of ours is single-threaded today (0 `thread` functions).
 The full entry is the 2026-09-18 19:20 notice.*
+
+**✅ UPDATED at `fc71d1e` (1.5.7 step 4, 2026-09-18): FIXED AND PROVEN IN THE COMPILER.** The fifth property, stated
+precisely, is **"`failsafe` runs with a trapper's OWN error, never the `Unreachable` of a thread that only saw the
+flag"**, and `trap-route.model`'s `(bad wrong-error …)` now proves it (control `frozen-traps`). A **sixth**,
+`(bad holder-parks …)`, guards the fix itself (control `frozen-parks-holder`). *It is not "the first trapper's error":
+with two genuine faults at once, the cmpxchg decides which is reported.* **ON OUR PIN (`3d15ac9`) NONE OF THIS STACK
+APPLIES YET**, because that pin predates D-291 itself. It arrives with the re-pin at resume.
 
 *(Our own earlier measurement fits this exactly: **zero non-positive literal exits** inside
 any of the 145 bodies, so REACH-004 refuses nothing here, and **zero computed exit operands**,
