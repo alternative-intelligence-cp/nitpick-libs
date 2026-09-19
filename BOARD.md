@@ -889,6 +889,45 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ FORECAST — 1.5.8b STEP 2 (D-310, D-311; DEF-70, DEF-71, DEF-80): **THE FIRST STEP THAT REFUSES CODE OF OURS — EXACTLY THE TWO KNOWN SITES.** Committed as `763eb10` in `_s11`'s worktree, after 1b. Received 2026-09-19 14:49 EDT. **NOTHING LANDED.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+```
+TYPE-076    a constant + - * or negation whose exact value does not fit its type is refused WHERE IT IS WRITTEN;
+            "constant" = what the folder evaluates: literals, negated literals, `fixed`, `comptime`. This includes
+            0u64 - 1u64 anywhere, and an unsuffixed pair in a typed context (int8:x = 100 + 100;). A constant
+            MIN / -1 or MIN % -1 is TYPE-004. Past 64 bits it folds only inside the 64-bit window; beyond, the run-time
+            guard stays
+DEF-80      the folder's OTHER operations now give the MACHINE's answer: a narrow << loses its high bits
+            (1i8 << 7i8 = -128, which folded to 128); ~ of a narrow unsigned is masked (~5u8 = 250, which folded to -6);
+            uint64 past 2^63-1 divides, takes remainders, shifts right and compares UNSIGNED (it was signed); a wide
+            shift by 64 or more trapped the compiler (exit 3) and now folds exactly or declines
+emitter     a constant + - * or negation is written as its value, with no guard, so the emission moves wherever one
+            appears. A certain trap becomes a compile-time refusal; nothing else changes behaviour
+manifest    nitpick.obligations re-recorded in the same commit: 368 -> 390 rows, all in the folder's new code
+FNV         UNCHANGED: the prelude's fnv_offset is D-190's 0xCBF5DAE484222325 ON PURPOSE (only a comment that claimed the
+            textbook 0xCBF29CE484222325 was corrected) -- "your derived hashes and error codes do not move"
+```
+
+**MEASURED AT `_s11`'s REQUEST. Every zero is validated by synthetic must-match cases, and by the compiler's tree where
+it can hit:**
+
+```
+(a) constant underflow            2   the two `fixed uint64:U64_MAX = 0u64 - 1u64;` (worklist item 5 -> ~0u64); the D-310
+                                      scanner finds no other constant op that fails to fit
+    unsuffixed literal pairs      0   synthetic `int8:x = 100 + 100;` hits; the compiler has 1
+(b) fixed of a DEF-80 shape       0   no fixed initialiser uses << >> ~ / %  (synthetic 2/2; the compiler has 1).
+                                      Our U64_MAX is passed to bytes_put_uint(@h, U64_MAX) or assigned (uint64:u = U64_MAX):
+                                      its / and % happen at RUN TIME on the bits, and ~0u64 keeps the bits
+(c) MIN / -1, MIN % -1            0   synthetic 2/2; the compiler is also 0
+```
+
+**So step 2 refuses exactly the two sites D-311 already planned for, and nothing else.** *At our pin nothing happens. At
+the re-pin the two lines become `~0u64`, which works on every pin, so the fix can go in first.*
+
+**📌 A NOTE FOR THE CONSUMERS TO COME:** the prelude's `fnv_offset` is **D-190's variant**, not the textbook FNV-1a basis.
+*A library that needs FNV-1a hashes interoperable with other implementations must write the textbook basis itself.* The
+D-312 worked example does exactly that. **Flagged to `_s11`** so that the example, if it lands in docs, says which is which.
+
 ### ✅ `410d405` LANDED — **1.5.8b STEP 1: `sealed` AND `hidden` (D-313, D-314) — TYPE-079/080/081, THE HEADERS SEALED, DEF-72/77/78 FIXED.** Notice 33, received 2026-09-19 14:49 EDT, from `nitpick-compiler_s11`. **`sealed` AND `hidden` ARE KEYWORDS FROM THIS COMMIT ON. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **✅ Verified.** The wire reads `410d405`. The three held rows are exact to 64 hex, and the moved rows' previous values
