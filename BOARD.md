@@ -928,6 +928,16 @@ writable `count` and `cap`. **Sealing it costs nothing, as measured:** no file w
 outside `vec.npk` (every other writer is a probe declaring its own local `Vec`), and `Bytes` and `SparseSet` are written
 only in their own modules. **Added to the re-pin worklist as item 13.**
 
+**⚠ S-94, WITH THE AUTHOR (not settled): DEF-74, UNCHECKED ELEMENT ACCESS.** `List` element access is raw wild-pointer
+indexing through `items` (`l.items[i]`), with no bounds check and no opt-out at the site, and `_s11`'s probe wrote
+past a one-element list into another list's data. **The recommendation:** checked indexing `l[i]` against `count` (the
+slice's OutOfBounds trap and `bounds` rows), and a second qualifier, **`hidden`** (neither read nor written outside the
+declaring module), with List's `items` hidden and `count`/`cap` sealed. *"Your Vec has the same shape if callers index
+`items` directly."* **Measured, and sent as data for the decision:** all 103 direct `.items[…]` sites in our tracked code
+are inside the declaring module. 12 are in `vec.npk` itself, and 91 are in 23 probes that each declare their own local
+`Vec`. **0 index an imported `Vec`'s `items`**, because every library consumer goes through `vec_get`/`vec_set`. *So if
+`hidden` is ratified, hiding our `Vec`'s `items` is free as well (worklist item 13).*
+
 ### ✅ THE AUTHOR'S DECISION: **READINESS TO RESUME IS EVALUATED AT THE CLOSE OF THE ENTIRE 1.5 CYCLE**, NOT AT 1.5.8c. 2026-09-19. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 In his words: *"I am not in any rush to resume and would rather wait until we are sure we won't have to redo a lot of
@@ -1065,7 +1075,8 @@ entry that measured it.*
     Unreachable before main without /dev/null; fixed 8 MiB stacks, whatever ulimit -s says;       21 (TCB 5 item 17)
     real child processes are never explored
 13  SEAL our own containers (D-313): regex Vec<T> items/count/cap, Bytes, SparseSet -- DEF-73's      D-313 entry
-    shape in our code; zero writers outside their declaring modules, so the change is free
+    shape in our code; zero writers outside their declaring modules, so the change is free.
+    If S-94 ratifies `hidden`: hide Vec.items too -- 0 indexers outside the declaring module
 ```
 
 **NEXT (forecast):** 1.5.8b step 0, the plan with D-308…D-311 and S-92 (the wrapping design, with our worked examples).
