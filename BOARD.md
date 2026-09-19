@@ -889,6 +889,45 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `0cf0f78` LANDED — **1.5.8 STEP 3b: PER-SLOT THREAD POOLS (DEF-66 FIXED). THE FLOOR-ONLY SHAPE, A FOURTH TIME — AND THE SIZE REGULARITY IS FALSIFIED.** Notice 29, received 2026-09-19 10:24 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `bcd0e8ca…` / 64 968 B.**
+
+## ⚠⚠ THE ANCHOR IS NOW `bcd0e8ca…` / 64 968 B — superseding `4f4a08e3…` / 63 272 B
+
+**✅ Verified.** The three previous values are this board's, to 64 hex, and the three held rows are exact:
+
+```
+npkrt.o    bcd0e8ca...     64,968 B  MOVED +1,696  (was 4f4a08e3…, 63,272 B)   the new anchor
+builder.o  425398dc...  9,814,848 B  unchanged
+builder    7f4271f1...  8,557,136 B  MOVED +736    (was 1f50eb63…, 8,556,400 B) -- links the floor
+npkc.ll    47b1059b... 25,163,772 B  unchanged     -- THE EMISSION (D-265)
+npkc.o     1ebccef3...  9,900,392 B  unchanged
+npkc       acd568c0...  8,628,816 B  MOVED +728    (was a7641385…, 8,628,088 B) -- links the floor
+```
+
+**✅ THE FLOOR-ONLY SHAPE HELD A FOURTH TIME** (F1, `fc71d1e`, `d5ad3c9`, now): `npkrt.o` and the two binaries that link
+it move, and nothing else does. *That shape is STRUCTURAL: it follows from what links the floor. It is the part of this
+board's forecast worth keeping.* **⚠ THE SIZE REGULARITY IS FALSIFIED: the two binaries moved +736 and +728.** It held
+three times (+112/+112, +48/+48, +64/+64) and breaks on the fourth. **Struck where it was stated, in the `fc71d1e`
+entry.** *The caution written with it the first time, "a linker's padding is not a contract", was the right one. A
+regularity seen three times was a coincidence all along, and no forecast rested on it.*
+
+**✅ THE HARNESS CLOSES:** programs 300 → **304** and parity 1550 → **1560**. The diff adds four program files, one of them
+explored (`thread_reborn_sleeps.npk`), plus `tests/cost/threads.toml`. So 4 × 2 + 1 (explore) + 1 (the cost unit, by its
+directory) = **10**. The floor holds at 388 / 381 / 7, and DEF-66 is tracked as FIXED.
+
+**WHAT LANDED:** a spawned thread's TLS block and executor come from 64-entry pools, reborn for each thread, and the join
+closes the thread's epoll set. **A program can now spawn and join threads without limit.** Before, 700 reactor threads
+died at the 510th with Unreachable under nofile 1024, and 1 600 threads leaked about 232 B each. *The 65th LIVE thread
+is still refused.* **Ours: 0 threads, so no exposure.** *With this, every thread fix sits on the floor. For the first
+threaded library, a pin at or after 1.5.8 proper's close releases the thread hold with nothing outstanding.*
+
+**S-92 (the wrapping spelling), ACKNOWLEDGED:** `_s11` recorded our three points for the proposal, and **its worked
+examples will be an FNV-1a 64 loop with its offset basis written the D-311 way, a splitmix64 step with its three
+constants, and the hex literal form checked exactly against LEXICAL_REFERENCE.** It will send us the proposal when it goes
+to the author.
+
+**THE WIRE HAS MOVED:** `main` is now `6340d5c` (ancestor `0cf0f78`: yes), *"1.5.8 step 3c: THE STANDARD DESCRIPTORS ARE OPEN, AND THE REACTOR'S "NONE" IS -1"*. Notice 30 is owed.
+
 ### ✅ D-311 SETTLED BY THE AUTHOR (S-91): **`uint64`'s UPPER HALF IS CONSTRUCTED — `~0u64` IS THE MAXIMUM.** A WRAPPING-ARITHMETIC SPELLING IS ADDED TO 1.5.8b. Received 2026-09-19 10:22 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`b7244d2`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `4f4a08e3…` / 63 272 B.**
 
 ```
@@ -1759,7 +1798,8 @@ npkc       acca880b...  8,553,872 B  MOVED +48 B  (was c3d76668…, 8,553,824 B)
 at 19:20, and the compiler side then forecast it too. **And a regularity worth keeping, seen twice now: the two binaries
 that link the floor moved by the SAME amount, which was less than the object's own change.** *(QUALIFIED at `d5ad3c9`:
 the third floor move went +64 / +64 / +64. The binaries agreed again, but this time they EQUALLED the object's change.
-Only "the two binaries agree with each other" survives.)* F1 went +160 / +112 / +112,
+Only "the two binaries agree with each other" survives.)* *(STRUCK at `0cf0f78`: the fourth floor move went +736 / +728. The binaries disagreed,
+so NO size regularity survives. Only the three-row SHAPE does, because it is structural.)* F1 went +160 / +112 / +112,
 and this one +72 / +48 / +48. *They link one object, so a future floor move where `builder` and `npkc` disagree is worth
 a question. It is not a verdict, because a linker's padding is not a contract.*
 
