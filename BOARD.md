@@ -889,6 +889,44 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ D-311 SETTLED BY THE AUTHOR (S-91): **`uint64`'s UPPER HALF IS CONSTRUCTED — `~0u64` IS THE MAXIMUM.** A WRAPPING-ARITHMETIC SPELLING IS ADDED TO 1.5.8b. Received 2026-09-19 10:22 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`b7244d2`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `4f4a08e3…` / 63 272 B.**
+
+```
+D-311        uint64's upper half is CONSTRUCTED with bit operations, which never overflow: `~0u64` is the maximum,
+             `(1u64 << 63u64) | k` reaches any value above 2^63-1
+the folder   obeys D-210 exactly as the run time does (DEF-71, fixed with D-310 at 1.5.8b step 1): a certain constant
+             overflow is TYPE-076 in `fixed` initialisers too, with NO context exemption
+D-148        "constructed, not spelled" stands; its `0u64 - 1u64` example gets a dated note
+declined     exempting `fixed` initialisers; widening the unsigned literal envelope; prelude-named maxima
+```
+
+**FOR US:** the two sites become `fixed uint64:U64_MAX = ~0u64;`. **Already on the resume's re-pin list.** *`_s11` says the
+spelling "works on every pin today", and for OUR pin that is checked, not taken: `~` exists at `3d15ac9` (`OpTilde` in
+its operator table), and `nitpick-regex/src/core/byteset.npk:84` already uses `~(…)` on a `uint64`.* **This finding started
+as a request to measure, found a spec conflict, surfaced a compiler defect (DEF-71), and ended in a decision by the
+author, in about an hour.** *Measuring when asked turned up more than the count that was asked for.*
+
+## 📋 A WRAPPING-ARITHMETIC SPELLING, ADDED TO 1.5.8b AT THE AUTHOR'S REQUEST — AND OUR INPUT TO ITS DESIGN
+
+**The addition:** *"a dedicated WRAPPING arithmetic spelling, an explicit opt-out for modular and performance-critical
+code, which D-210 §3 left for when a consumer appeared. It is to be designed, decided and landed within 1.5.8b, before
+verification closes."* **Today's idiom is widen-compute-truncate with `=>!`**, which is what the compiler's own
+`fnv1a_step` does. **It is not a refusal and not a new requirement:** it adds a spelling, so it opens an option rather
+than closing one.
+
+**Our answer, measured and sent to `_s11`:**
+
+- **TODAY: no `+ - *` wrapping need in our 170 tracked `.npk`.** The one PRNG is xorshift64 in
+  `nitpick-regex/tests/unit/sparseset_unit.npk` (`xs_next`: `x ^= x<<13; x ^= x>>7; x ^= x<<17`). It uses shifts and XOR
+  only, so it needs no wrapping. **`nitpick-time` goes the other way:** it widens to `int128` to DETECT overflow, and it
+  wants the trap.
+- **FORESEEABLE:** `nitpick-posix` 0.4 lists `cksum`, which is CRC-32 and needs only XOR, shift and a table. The same set
+  has `tsort`, `join` and the like, whose natural hash table wants an **FNV-1a string hash, with a wrapping multiply in
+  the innermost per-byte loop**. The regex library's lazy-DFA cache would hash its state sets the same way.
+- **A SHAPE NOTE:** the constants those algorithms publish are mostly **above 2⁶³−1**. The FNV-1a 64 offset basis
+  (`0xCBF29CE484222325`) and all three splitmix64 constants were checked, and **each is written as a D-311 construction**.
+  *We offered it as data for the wrapping design's worked examples, explicitly not as a reason to reopen D-311.*
+
 ### ⭐ THE D-310 FINDING IS CONFIRMED AS A REAL CONFLICT — **DEF-71: "ONE EXPRESSION, TWO MEANINGS"** — AND A SPELLING GOES TO THE AUTHOR. Received 2026-09-19 10:04 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`b7244d2`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `4f4a08e3…` / 63 272 B.**
 
 **`_s11` confirmed it with a probe on its step-4 tree:** *"`fixed uint64:B = 0u64 - 1u64;` folds to 2^64-1, while the
