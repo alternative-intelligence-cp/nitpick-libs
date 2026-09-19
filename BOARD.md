@@ -889,6 +889,38 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `e5484e6` LANDED — **1.5.7 STEP 6: THE PROGRAM'S OWN STEPS, EXPLORED. NO LADDER ROW MOVED, NO NAME ADDED.** Notice 20, received 2026-09-18 22:51 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ Verified.** All six rows equal this board's `fc71d1e` table. **The sha is one this board had already seen on the
+wire before the notice arrived** (the `f609a23` entry below), so the notice confirms an observation rather than
+supplying one. The diff `f609a23..e5484e6` touches no floor, manifest, model or `src/` file. **`src/frontend/builtins.npk`
+is untouched, and `atomic_from_ptr` was already a builtin at `f609a23`.** So the notice's "no builtin name" holds, checked
+rather than taken. No new D-number was added.
+
+```
+programs    276 -> 277    +1   tests/backend/programs/atomic_threads.npk  (expect-exit 0, stress 40, explore 1000)
+grammar     783 -> 784    +1   the same file
+explore     38 -> 39      +1   the same file, explored
+controls    13 -> 14      +1   runtime/explore/controls/atomic-lost-update.ctl -- the program-level lost-update control
+parity      1496 -> 1500  +4   = 1 + 1 + 1 + 1
+```
+
+**WHAT LANDED:** every explored concurrency test's OWN IR now goes through the floor's transformer. A program's
+`atomic<T>` / `atomic_from_ptr` operations and `sys` calls become scheduling points, with sites numbered from
+1 000 000. **This is a runner change: no language surface, no refusal, no builtin name.**
+
+**📋 FILED FOR THE RESUME — THE COMPILER SIDE ADDRESSED THIS TO LIBRARIES ITSELF:** *"an `atomic<T>` borrow still cannot
+cross a spawn (D-180). Two threads share an atomic through `wild` storage and `atomic_from_ptr`;
+`tests/backend/programs/atomic_threads.npk` is the example. A library test marked `// explore:` now has its own atomics
+explored too."* **Our exposure today is zero:** 0 `// stress:`/`// explore:` markers in our tracked `.npk` (positive
+control, same pattern: 49 files in the compiler's `tests/` at `e5484e6`), 0 `atomic<`, and 0 `thread` functions. *For the
+first library that writes threaded code: share atomics through `wild` + `atomic_from_ptr`, mark its concurrency tests
+`// explore:`, and build against a pin at or after `fc71d1e` (the DEF-57 hold).*
+
+**⚠ AND THE WIRE HAS MOVED AGAIN:** `main` is now `e3bf48c`, 1.5.7 step 7 by its subject (*"the docs and the close"*),
+with `e5484e6` as its ancestor. Its notice is owed. **When it lands, 1.5.7 is closed, and 1.5.8 is all that stands
+between here and the resume.**
+
 ### ✅ `f609a23` LANDED — **1.5.7 STEP 5: THE SPEC'S CALLER HYPOTHESES, EXECUTED (D-302). NO LADDER ROW MOVED — AND THE 0.1 GAP GAINS TEST EVIDENCE, AT EXACTLY THE STRENGTH THIS BOARD PRE-REGISTERED.** Notice 19, received 2026-09-18 22:48 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
 **✅ Verified.** All six rows equal notice 18's to 64 hex. The diff `fc71d1e..f609a23` touches **no floor, manifest or
