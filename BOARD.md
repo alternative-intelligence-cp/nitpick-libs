@@ -889,6 +889,41 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `6340d5c` LANDED — **1.5.8 STEP 3c: THE STANDARD DESCRIPTORS (DEF-69 FIXED). THE FLOOR-ONLY SHAPE, A FIFTH TIME.** Notice 30, received 2026-09-19 10:29 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `bb180934…` / 72 560 B.**
+
+## ⚠⚠ THE ANCHOR IS NOW `bb180934…` / 72 560 B — superseding `bcd0e8ca…` / 64 968 B
+
+**✅ Verified.** The three previous values are this board's, to 64 hex, and the three held rows are exact:
+
+```
+npkrt.o    bb180934...     72,560 B  MOVED +7,592  (was bcd0e8ca…, 64,968 B)   the new anchor
+builder.o  425398dc...  9,814,848 B  unchanged
+builder    eb687d5a...  8,564,616 B  MOVED +7,480  (was 7f4271f1…, 8,557,136 B) -- links the floor
+npkc.ll    47b1059b... 25,163,772 B  unchanged     -- THE EMISSION (D-265)
+npkc.o     1ebccef3...  9,900,392 B  unchanged
+npkc       42267e64...  8,636,296 B  MOVED +7,480  (was acd568c0…, 8,628,816 B) -- links the floor
+```
+
+**The floor-only shape held a fifth time.** *The two binaries agree this time (+7 480 each), and that means nothing:
+the regularity was struck at `0cf0f78`, and an agreement after a falsification does not restore it.* **The harness
+closes:** programs 304 → **306**, and parity 1560 → **1564** = 2 new programs × 2 (`reactor_fd_zero`, `std_fds_closed`,
+neither explored). The floor holds at 388 / 381 / 7, and DEF-69 is tracked as FIXED.
+
+**WHAT LANDED, AS F7 FORECAST:** before `main`, the floor opens `/dev/null` (read-write, inherited) onto any closed
+descriptor 0–2, probing each with `fcntl(fd, F_GETFD)`. Before this, a program started with `2>&-` put every stderr
+write, including the floor's own `heap:` line, into its first DATA file. The reactor's "none" is now −1, so closing your
+own stdin no longer leaks an epoll set per wait.
+
+**One detail F7 did not carry, and it touches every `failsafe`:** *"Any other answer (/dev/null missing, a full
+descriptor table) traps Unreachable (-4102) before main."* **Our dispatching handlers all carry an `(Unreachable)` arm**
+(138 of 141, measured at the DEF-57 entry), so such a start ends through it. *For `nitpick-posix`: a utility started with
+a standard descriptor closed, in an environment without `/dev/null` (a bare chroot), now stops before `main` with
+`Unreachable` rather than running with the descriptor closed. It is an edge case, but a visible one.*
+
+**NEXT — 1.5.8 PROPER'S CLOSE:** step 4, the one-hop snapshot refresh. *"Its builder.o and npkc.ll WILL move."* **The
+prediction on record from F7 is `npkc.ll` = `b7585e71…` / 25 208 600 B**, and the notice will be checked against it.
+Pin anchor: `6340d5c`.
+
 ### ✅ `0cf0f78` LANDED — **1.5.8 STEP 3b: PER-SLOT THREAD POOLS (DEF-66 FIXED). THE FLOOR-ONLY SHAPE, A FOURTH TIME — AND THE SIZE REGULARITY IS FALSIFIED.** Notice 29, received 2026-09-19 10:24 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `bcd0e8ca…` / 64 968 B.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `bcd0e8ca…` / 64 968 B — superseding `4f4a08e3…` / 63 272 B
