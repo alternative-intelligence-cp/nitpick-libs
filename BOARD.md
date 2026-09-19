@@ -889,6 +889,73 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `f609a23` LANDED — **1.5.7 STEP 5: THE SPEC'S CALLER HYPOTHESES, EXECUTED (D-302). NO LADDER ROW MOVED — AND THE 0.1 GAP GAINS TEST EVIDENCE, AT EXACTLY THE STRENGTH THIS BOARD PRE-REGISTERED.** Notice 19, received 2026-09-18 22:48 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ Verified.** All six rows equal notice 18's to 64 hex. The diff `fc71d1e..f609a23` touches **no floor, manifest or
+model file**: it is harness, `npkg/`, docs, one new `.npk` and one new `.ctl`. D-302 is tracked at
+`meta/specs/DECISIONS.md:19025`. **Every moved line closes from the quoted lines alone:**
+
+```
+grammar     782 -> 783    +1   one new source: npkg/explore_req.npk -- THE GENERATOR (one per FILE)
+controls    12 -> 13      +1   runtime/explore/controls/unconditional-apartness.ctl -- the first SPEC control (X-18)
+parity      1494 -> 1496  +2   = 1 + 1
+explored    142 step lines = 79 + 63, unchanged -- "a checker is straight-line loads and i128 arithmetic --
+floor                          no atomic step, no syscall" (the plan's step-5 record)
+floor, verify  381 / 374 / 7 and 439 -- unchanged
+```
+
+**⚠ THE WIRE HAS ALREADY MOVED ON.** `git ls-remote` reads `main` = **`e5484e6`**, which is 1.5.7 step 6 by its
+subject, and `f609a23` is its ancestor, so the history moved forward rather than being rewritten. **Step 6's notice is
+owed and has not arrived, and nothing here is taken from that commit.** *So the notice's "origin/main == f609a23" was
+true when sent and is not true now. That is the normal state for a notice read an hour later, and it is the reason the
+wire is checked rather than assumed.*
+
+## ⭐⭐ THE 0.1 GAP: `npk_small_free`'s CALLER HYPOTHESES ARE NOW EXECUTED AT EVERY EXPLORED CALL — 70 OF 71
+
+**What D-302 does:** for every spec section with rows that assumes something of its caller, a GENERATED checker runs
+as the symbol's first instruction in the explored floor, evaluating each `requires` and `objects`/`views` fact over the
+entry state. A false one is the verdict `ASSUMPTION <symbol>: <clause>`. **240 hypotheses in 31 sections: 236 checked,
+and 4 LISTED BY NAME because they name a free symbol, never skipped in silence.** **TCB.md §4d at `f609a23`:**
+
+```
+| `@npk_small_free` | requires objects | -- | -- | `@npk_dalloc` | no | 70 of 71 |
+                                                   ^ NOT PROVED: unchanged    ^ NEW column: executed at every explored call
+
+the 1 not checked   its sorted-table `requires` -- npk_chtab's entries ascending -- names the free symbol `j`;
+                    the same clause is listed for npk_chtab_find and npk_small_check (npk_lg_find has its own)
+the residue         "specified (7 discharged, 6 residue)" -- unchanged; the 7 budget rows byte-identical since fc71d1e
+the control         unconditional-apartness.ctl plants 1.5.6's OLD apartness back: `drop_string` reports
+                    `ASSUMPTION @npk_small_free: (apart …)` at step 27, seed 1, both shims word for word
+```
+
+**This is exactly what this board pre-registered at step 0,** under *"THE SPEC'S CALLER HYPOTHESES EXECUTED INSIDE THIS
+SUBCYCLE"*: *"if 1.5.7 exercises `npk_small_free`'s caller hypothesis, the 0.1 gap gains TEST EVIDENCE for the free
+path — not a proof, and §4d's NOT PROVED column stays exactly as it is."* **Both halves held.** The column still reads
+`@npk_dalloc`, and the new column reads 70 of 71.
+
+**For the gap, at its right strength:** the free path a library reaches through `dalloc` is now **TESTED at every call
+on every explored schedule for 70 of its 71 hypotheses**, and the checker is **shown to catch a planted violation of
+the very apartness clause 1.5.6 got wrong**. It is **not PROVED**: the NOT PROVED column and the 6 residue rows are
+unchanged, and the one unchecked hypothesis is the chunk table's ordering. *So the constraint stands, but its
+remaining risk is now LOCATED: five undecided ensures and the frame, plus one ordering fact that no entry checker can
+see.* **How many of the 38 explored programs reach `npk_small_free` is not stated.** `drop_string` does, as the control
+shows. **A pointer is added to the 0.1 gap's constraint note, where the planner will read it.**
+
+## ⚠ TWO SILENT FAILURES FOUND IN THE CHECKING APPARATUS — BOTH FIXED IN THIS STEP, BOTH FROM THE PLAN'S OWN RECORD
+
+```
+define_headers   read ONE line, so the three defines whose parameter lists continue onto a second line
+                 (npk_string_concat among them) had no header -- check_spec's free-symbol check and the new
+                 second reader SKIPPED THEM IN SILENCE; it now joins continued lines as parse_floor does
+D-303            the sweep re-run with the checkers found shared_arena_spawn disagreeing on 3 of 20 seeds --
+                 a REAL RACE in BOTH shims (a thread's end not settled before others step), not in the
+                 checkers; X-19 settles it, and 60 of 60 alternations agree after
+```
+
+*The first is the failure this board keeps meeting under other names: **a check whose silence came from not looking**.
+The plan's record says only that it was "found on the way".* **FORECAST (labelled):**
+steps 6 and 7 have green harnesses and land in order. Neither touches the floor.
+
 ### ⭐ `fc71d1e` LANDED — **1.5.7 STEP 4: DEF-57 IS FIXED, AND THE FLOOR MOVED BY EXACTLY THE THREE ROWS FORECAST.** Notice 18, received 2026-09-18 22:04 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `c7da7711…` / 59 424 B.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `c7da7711…` / 59 424 B — superseding `b72d7774…` / 59 352 B
@@ -5174,6 +5241,14 @@ assumed:** `ralloc` **26**, `free` **29**, `dalloc` **22**, `alloc` **17**, `wil
   `npk_small_free`'s spec.** Correcting an over-strong assumption makes the spec claim *less*, so
   the free path is likely to become **more honestly unproven, not proven.** *Plan 0.1.0 on the
   assumption that the arena's free discipline stays the library's own to establish.*
+- **⭐ AND AT `f609a23` (1.5.7 step 5, D-302) THE FREE PATH GAINED TEST EVIDENCE, AT EXACTLY THE STRENGTH THIS
+  BOARD PRE-REGISTERED.** §4d's new column reads **`70 of 71`** for `@npk_small_free`. Every caller hypothesis but one
+  is EXECUTED at every call of every explored schedule, `@npk_dalloc`'s calls included, and a planted violation of
+  the apartness clause is caught (`unconditional-apartness.ctl`). **The NOT PROVED column still names `@npk_dalloc`,
+  and the 6 residue rows are unchanged.** The one unchecked hypothesis is the chunk table's ordering, which is listed
+  by name because it names a free symbol. *So the constraint stands, and the arena's free discipline is still the
+  library's to establish. But the floor underneath is now TESTED at the exact call a library makes. A 0.1.0 plan may
+  cite that as test evidence and must not cite it as proof.* See the `f609a23` entry.
 - **Re-check it at the re-pin**, because §4c is generated: if a later cycle decides those
   rows, the constraint lifts, and the check is one read of `TCB.md` §4c rather than a
   conversation.
