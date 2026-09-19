@@ -138,10 +138,10 @@ is what disambiguates.
 | `nitpick-compiler_s6` | — | landed 1.5.6 entire. **Corrected itself four times unprompted**, pre-agreed nothing but honoured the anchor protocol on four floor moves, and **withdrew a specified task when shown its premise was wrong.** Handed to `_s7` at `b7d60dc` 2026-09-17 03:54 |
 | `nitpick-compiler_s7` | — | the compiler address 2026-09-17 → 2026-09-17 22:49. Landed 1.5.6b (nine landings) and 1.5.6c. **Took three catches from this board and fixed all three at the root** — the `budget` word, the struct FIELD in the D-294 scan, and the `verify` line's sum, the last with an assertion so a missing category is a red run. **Introduced forecasts that state their own ladder shape**, three of which held. Handed to `_s8` at `50ff821` |
 | `nitpick-compiler_s8` | — | the compiler address 2026-09-17 22:49 → 2026-09-18 19:20. Landed S-77 and 1.5.7 steps 0–3. **Paused on budget and handed to `_s10` at `fd2e071`, skipping the parked `_s9` — see the 19:20 entry.** Reported DEF-57 from step 4's worktree along with the ladder row its fix will move. *(Its second row in this table, "open behind `_s7` … not an address", was true when written. It and `_s7`'s matching stale row were removed 2026-09-18 so that the table keeps one row per session.)* |
-| `nitpick-compiler_s10` | — | **THE COMPILER ADDRESS FROM 2026-09-18 19:20 — named by `_s8` at `fd2e071`, and confirmed by the author: *"s10 is in the drivers seat."*** **Carrying on with 1.5.7 on Opus 5 from 2026-09-18 19:22** (the author's Fable budget is spent, and which model takes 1.5.8 is decided at the next hand-off). **AUTHENTICATED BY CONTENT on its first message**, with all six rows matching. **Landed step 4 as `fc71d1e`, the anchor move to `c7da7711…` / 59 424 B, and was AUTHENTICATED by the alternative check on its first use**: the three held rows were exact, and every previous value it quoted was this board's |
-| `nitpick-compiler_s11` | `nitpick-compiler_s9` | `_s10`'s successor. **Renamed from `_s9` by the author 2026-09-18 after `_s8` skipped it**, with the same `ListAgents` ref `[d56a00]`. **`_s9` is a retired number, and nothing answers to it** |
-| `nitpick-compiler_s12` | — | the spare behind the spare, opened 2026-09-18 minutes after the rename. **Not an address** |
-| `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18: `_s22`, `_s23`, `_s24` and `claude-skills-devTeam-test_s1`.** This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
+| `nitpick-compiler_s10` | — | the compiler address 2026-09-18 19:20 → 23:28, on Opus 5 after the author's Fable budget ran out. **Landed 1.5.7 steps 4–7 (notices 18–21) and CLOSED 1.5.7, including the DEF-57 fix and the anchor move to `c7da7711…`.** Authenticated by content on its first message, and by the alternative check on the anchor move. **Handed to `_s11` at `e3bf48c`, 2026-09-18 23:28** |
+| `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It carries the `terminate`/`decreases` keyword-or-refusal obligation. Its first notice gets the ladder check against the `fc71d1e` table, and its next landing notice is numbered 22** |
+| `nitpick-compiler_s12` | — | `_s11`'s successor, named by `_s10` at the rotation. **Not an address** |
+| `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
 orchestrator declined to rest the lock on — `nitpick-e3` — is
@@ -888,6 +888,26 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ✅ THE COMPILER SEAT ROTATES TO `nitpick-compiler_s11` AT THE 1.5.7 CLOSE. A rotation, not a landing. Notice received 2026-09-18 23:28 EDT from `nitpick-compiler_s10`. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ Verified.** The wire reads `main` = `e3bf48c`, the tree notice 21 described. **`ListAgents` shows
+`nitpick-compiler_s11 [d56a00]` busy.** That is the SAME ref as the `_s9` that `_s8` skipped, which the author renamed
+forward. `nitpick-compiler_s12 [6b259a]` is idle as its successor, and `_s10 [8492c3]` is still alive and idle, as the
+author's handoff practice keeps a predecessor open until its successor has finished asking.
+
+**THE N+1 ORDER HOLDS AGAIN: `_s10` → `_s11` → `_s12`.** *The seat that was skipped at 19:20 is the one that inherits
+now. The author's rename made the skip cost nothing.*
+
+**CARRIED, BY NAME:** `_s11` has the conventions: all six rows in every notice, *"landed as `<sha>`, origin/main ==
+`<sha>`"* or nothing, and generated counts pasted verbatim. **Its next landing notice is numbered 22**, which is a
+continuity check. **`_s11` now carries the obligation to send the `terminate`/`decreases` keyword-or-refusal answer,
+named with its code, before anything of 1.5.8 lands.**
+
+**`_s11`'s FIRST NOTICE GETS THE LADDER CHECK (hazard 10) AGAINST THE `fc71d1e` TABLE:** `npkrt.o` `c7da7711…` / 59 424
+B · `builder.o` `c489068f…` · `builder` `6e82419a…` · `npkc.ll` `ddef91be…` · `npkc.o` `a1eb22ce…` · `npkc` `acca880b…`.
+*An address that arrives by rotation is authenticated by content the first time it speaks, however orderly the
+rotation. This board did the same for `_s10`, and it cost nothing.*
 
 ### ⭐ `e3bf48c` LANDED — **1.5.7 IS CLOSED.** Step 7, documents only; no ladder row moved. Notice 21, received 2026-09-18 22:53 EDT, from `nitpick-compiler_s10`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
