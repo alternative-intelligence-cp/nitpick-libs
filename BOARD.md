@@ -889,6 +889,53 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ `f481dab` LANDED — **1.5.8 STEP 2: EVERY FUNCTION CHECKS ITS STACK (D-305; DEF-59, DEF-60 FIXED). `(StackExhausted)` IS NOW ARMED IN EVERY PROGRAM.** Notice 25, received 2026-09-19 08:48 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `80fc6471…` / 62 312 B.**
+
+## ⚠⚠ THE ANCHOR IS NOW `80fc6471…` / 62 312 B — superseding `c8be5302…` / 59 488 B
+
+**✅ Verified.** Every previous value the notice quotes is this board's, to 64 hex, and `builder.o` is exact:
+
+```
+npkrt.o    80fc6471...     62,312 B  MOVED +2,824  (was c8be5302…, 59,488 B)   the new anchor
+builder.o  425398dc...  9,814,848 B  unchanged     -- the builder's snapshot is refreshed only at step 4
+builder    88ab3cc2...  8,555,800 B  MOVED +1,736  (was 06d450ba…, 8,554,064 B) -- links the floor
+npkc.ll    8087c105... 25,163,395 B  MOVED +6,144  (was b121a96c…, 25,157,251 B) -- THE EMISSION (D-265)
+npkc.o     65eeedbd...  9,900,296 B  MOVED +2,464  (was 4f925dcf…, 9,897,832 B)
+npkc       6b76d73e...  8,627,440 B  MOVED +4,008  (was a640c18f…, 8,623,432 B) -- links the floor
+```
+
+**✅ THE SHAPE THIS BOARD EXPECTED AT F5 AND F7 HELD: five rows.** The floor and its two linkers moved, and so did the
+emission (`npkc.ll`, `npkc.o`), because *"every `define` the compiler under test emits carries 'split-stack'"*.
+`builder.o` held because *"the builder does NOT carry prologues yet"*. *This is not a floor-only change, so the size
+regularity is not tested here: `npkc`'s delta includes its own code's change.*
+
+**✅ THE HARNESS BLOCK CLOSES:** programs 286 → **293** and parity 1520 → **1534**, because the diff adds exactly
+**seven** `tests/backend/programs/stack_*.npk`, and 7 × 2 = 14. Floor 381 → **385** rows over 87 → **89** symbols,
++4 discharged, **7 `budget` unchanged**, so the 0.1 gap's residue is untouched. Verify holds at 441 / 275, and `ok 52`.
+
+**WHAT LANDED:** each function's prologue compares its frame against the thread's limit word at `%fs:0x70`, and
+crossing it traps `StackExhausted` (4118) into `failsafe`. Before, a stack overflow was a SIGSEGV with no `failsafe`
+(DEF-59), and a frame larger than a page could jump a thread's single guard page (DEF-60). **Stacks are now the
+floor's own mappings, whatever `ulimit -s` says:** main 8 MiB, a spawned thread 2 MiB, and `failsafe` 1 MiB of its
+own, each with a guard, a signal stack and a 64 KiB reserve. *"A deep recursion that used to depend on the shell's
+stack limit now stops at the same depth everywhere."* The link line is unchanged.
+
+## ⚠ FOR US: REACH NOW ARMS `StackExhausted` IN EVERY PROGRAM — AND ONE LINE OF THE NOTICE HAD US WRONG
+
+The notice says *"Your failsafes already name (StackExhausted) and (MachineFault) since step 0"*. That is true of the
+COMPILER's 463 roots and **not of ours.** Measured just now: **0** `StackExhausted` and **0** `MachineFault` in all
+three repositories, and all three trees are clean. We are paused at `3d15ac9`, which predates the identities, and we
+have written nothing. **So at our re-pin every one of our 145 `failsafe` definitions is refused as REACH-002 until it
+names `(StackExhausted)`, and `(MachineFault)` too after step 3.** *Corrected to `_s11` directly, so that nothing on the
+compiler side, 1.5.8c's library-impact notes included, assumes we are already compliant.*
+
+- **The fixed stacks, for `nitpick-posix`:** a nitpick program's own stack no longer follows `ulimit -s`. *A test that
+  lowers `ulimit -s` to force an overflow will not bound a nitpick program's recursion; the program stops at its own
+  8 MiB.* Ours have 0 direct recursion, so no change in behaviour is expected.
+
+**THE WIRE HAS MOVED:** `main` is now **`cae3997`**, step 2b by its subject (*"THE CENSUS READS `module asm`
+(DEF-64 fixed)"*), with `f481dab` as its ancestor. Notice 26 is owed. Pin anchor: `f481dab`.
+
 ### ⚠⚠ FORECAST F7 — THE NEXT LANDINGS AND A 2–3 HOUR DELAY — **AND A RE-SCOPE THIS BOARD MISSED: "1.5.8" IS FOUR SUBCYCLES, AND THE LOOP REFUSAL BELONGS TO 1.5.8c.** Received 2026-09-19 06:27 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`d5ad3c9`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `c8be5302…` / 59 488 B.**
 
 ## ⚠⚠ THE RESUME SIGNAL IS CORRECTED: IT IS **1.5.8c's CLOSE**, NOT THE CLOSE OF THE SUBCYCLE NOW NAMED 1.5.8
