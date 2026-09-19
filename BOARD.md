@@ -889,6 +889,37 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ THE AUTHOR'S DECISION: **READINESS TO RESUME IS EVALUATED AT THE CLOSE OF THE ENTIRE 1.5 CYCLE**, NOT AT 1.5.8c. 2026-09-19. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+In his words: *"I am not in any rush to resume and would rather wait until we are sure we won't have to redo a lot of
+work. I'm fine with waiting until the entire 1.5 cycle is done to evaluate readiness to resume."* **This supersedes the
+board's "the resume signal is 1.5.8c's close"** (the F7 entry). That wording is marked where it is stated.
+
+**This seat agrees. The extra wait is cheap insurance:**
+
+- **1.5.8d adds no language decision.** Its plan says *"Every DECISION all four need is already taken"*, so waiting past
+  1.5.8c costs days, not weeks.
+- **It protects against late additions inside 1.5.8b–d, and one has already happened:** the wrapping operators (D-312)
+  joined 1.5.8b mid-cycle.
+- **It means ONE re-pin at a documented boundary** (`done/1.5/`) instead of a pin partway through a cycle, and that pin is
+  the one 1.6 builds on. 1.6 is instrument work that adds no refusals.
+- *The caveat this board has carried since 2026-09-12 still applies: 1.6 is where the language door CLOSES, not where it
+  is already shut. What the instruments found in 1.5.7–1.5.8 (DEF-57, DEF-68, DEF-69, DEF-71) was fixed in the compiler
+  without library changes, except where the author ratified a rule.*
+
+**WHAT THE EVALUATION AT THE 1.5 CLOSE WILL BE: a concrete go/no-go against the re-pin worklist (the `35ad9e1` entry),
+not an open judgement.**
+
+```
+a  the loop rule as landed (1.5.8c): its exact surface, and whether (DecreasesViolated) is universal
+b  D-308's failure identity: an existing one (no new arm) or a new, universal one (a third arm in all 145)
+c  any language addition landed in 1.5.8b-d beyond D-304...D-312
+d  the pin candidate, the 1.5 close commit, commissioned: the canary, P-1/probe13a, and the six rows checked
+e  the worklist re-sized against the rules AS LANDED (our code does not change during the pause; the rules may)
+```
+
+**Until then, the listener continues:** every notice logged, every exposure measured, nothing acted on.
+
 ### ✅ D-312 SETTLED BY THE AUTHOR (S-92): **WRAPPING OPERATORS `+%` `-%` `*%`** — AND OUR WORKED EXAMPLES, IN THE NEW SPELLING, CHECKED HERE. Received 2026-09-19 10:46 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ```
@@ -967,7 +998,8 @@ new sections §9.5 (the floor's stack) and MEMORY_REFERENCE §5.
 
 **THE PIN TARGET, RECORDED AND NOT ACTED ON:** *"Pin anchor: 35ad9e1, 1.5.8's close. This is the natural re-pin point if
 you resume before 1.5.8b's first language change (D-310's TYPE-076) lands."* **This board's resume signal stays 1.5.8c's
-close** (the F7 entry). `35ad9e1` is where to re-pin only if the author chooses to resume early.
+close** (the F7 entry). `35ad9e1` is where to re-pin only if the author chooses to resume early. *(SUPERSEDED the same day: the author
+evaluates readiness at the close of the ENTIRE 1.5 cycle. See the decision entry at the top.)*
 
 ## 📋 THE RE-PIN WORKLIST, CONSOLIDATED AT 1.5.8's CLOSE — FOR `nitpick-libs_s5`
 
@@ -975,7 +1007,8 @@ close** (the F7 entry). `35ad9e1` is where to re-pin only if the author chooses 
 entry that measured it.*
 
 ```
- 1  RE-PIN to a tree at or after 1.5.8c's close; re-commission (the canary, P-1/probe13a)         the F7 entry
+ 1  RE-PIN at or after the 1.5 CYCLE's close, if the readiness check there says go; re-commission    the author,
+    (the canary, P-1/probe13a). [Was "1.5.8c's close"; the author chose the whole cycle, 2026-09-19]  2026-09-19
  2  (StackExhausted) + (MachineFault) in ALL 145 failsafe definitions (141 direct + 4             F5, notices 25, 28
     macro:posix_failsafe), each with its OWN exit code; re-run the shared-code check after
  3  (DecreasesViolated) -- only if 1.5.8c makes it universal; if so, all 145 as well              F5, notice 26
@@ -1332,7 +1365,8 @@ mechanism, never a language question."*
 proper closes at its step 4, BEFORE the loop rule exists. The criterion recorded at `e3bf48c` was *written once,
 against the final rule*. **By that criterion the resume signal is 1.5.8c's close**, when the refusal lands and 1.5's
 language surface is final. 1.5.8d is tooling and docs, and 1.6 adds no refusals. *Corrected in place in the F5 and
-`e3bf48c` entries, and both corrections are marked.*
+`e3bf48c` entries, and both corrections are marked.* *(Later the same day the author chose to wait
+for the ENTIRE 1.5 cycle before evaluating readiness. See the decision entry at the top.)*
 
 **⚠ AND THE MISS IS THIS SEAT'S.** The split was in the plan that landed with step 0 (`cd1ed86`, committed 00:49,
 noticed 03:53). At notice 22 this seat read that plan's step-0 execution record and not its §0 scope table. So from
@@ -1703,7 +1737,8 @@ before its close, so the rule's final form is the last thing to land.* **So the 
 notice.** At that point the re-pin, the canary and the P-1/probe13a re-measure all happen once. *(CORRECTED at F7,
 2026-09-19: the plan that landed with step 0 splits this work into 1.5.8, 1.5.8b, 1.5.8c and 1.5.8d. The loop
 rule, its sweep and its refusal belong to **1.5.8c**, and 1.5.8 proper closes at its step 4 without them. **The
-resume signal is 1.5.8c's close.** This seat missed the split at notice 22. See the F7 entry.)*
+resume signal is 1.5.8c's close.** This seat missed the split at notice 22. See the F7 entry.)* *(And the author then
+chose the close of the whole 1.5 cycle; see the decision entry at the top.)*
 
 **WHAT THE WAIT DOES NOT BLOCK, RECORDED FOR THE AUTHOR AND NOT STARTED HERE:** the rework is now fully inventoried —
 110 loops (18 in library code) and 145 handlers — and the rules are ratified. **So the plan for it could be written
