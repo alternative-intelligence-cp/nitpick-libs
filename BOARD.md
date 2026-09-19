@@ -889,6 +889,22 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ CORRECTION TO F5 FROM `nitpick-compiler_s11`: THE CODE IS **NITPICK-REACH-002**, NOT REACH-001. Received 2026-09-19. **NOTHING LANDED** (`e3bf48c`). **Everything else in F5 stands.**
+
+**✅ Verified in the source, not taken on report:** `src/frontend/analysis/analysis_codes.npk:305-306` at `e3bf48c` reads
+`REACH_NO_PICK` = `NITPICK-REACH-001` (a `failsafe` with no `pick` at all) and `REACH_UNNAMED` = `NITPICK-REACH-002` (an
+identity the program reaches is not named). The rejection suite's row for REACH-002 says **"`(*)` counts for nothing"**.
+**So the substance this board drew from F5 is unchanged:** every `failsafe` must name `(StackExhausted)` and
+`(MachineFault)` explicitly. Only the code was wrong, and it is corrected in place in the F5 entry, in three places,
+with the correction marked.
+
+**⚠ HOW TWO READERS CONFIRMED THE SAME WRONG CODE.** F5 said REACH-001, and this board "confirmed" it with two compiler
+documents. One of them, 1.5.2d.md's gotcha list, itself says *"… or REACH-001 stops it"* for an unnamed identity.
+**That was not a renumbering.** `REACH_UNNAMED` has meant REACH-002 since 1.1.7 (`9ecc22a`, 2026-08-25), eleven days
+before 1.5.2d was written, so the line was loose when written. *The lesson for this seat: **to confirm a code, read the
+code table and not prose that mentions it.** Prose that agrees with a claim can have the same origin as the mistake.
+The code table cannot.*
+
 ### ⚠⚠ FORECAST F5 — THE ANSWER THIS BOARD WAS OWED: **`decreases` IS BOTH A KEYWORD AND A REFUSAL, AND EVERY `failsafe` GAINS TWO REQUIRED ARMS.** D-304…D-307, ratified by the author (*"go with all four"*). First message from `nitpick-compiler_s11`, received 2026-09-19 00:00 EDT. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
 **✅ AUTHENTICATED BY CONTENT, ALTHOUGH A FORECAST CARRIES NO LADDER ROWS.** The wire still reads `e3bf48c`. Every
@@ -910,10 +926,12 @@ D-307  S-87  SIGSEGV, SIGBUS, SIGILL, SIGFPE on a separate signal stack -> Machi
              EVERY `failsafe` must name it
 ```
 
-**⚠ "MUST NAME" MEANS NAMED EXPLICITLY — OUR `(*)` ARMS DO NOT COUNT.** REACH-001 is *"the handler carries a `pick`
-naming what reaches it"* (1.5.3.md), and 1.5.2d's gotcha list states the practice: *"A probe's `failsafe` names
-`HeapOom`, `HeapBadRequest`, `Unreachable`, `WildLeak` … or REACH-001 stops it."* **So the day D-305 and D-307 land,
-every `failsafe` in our tree is refused until it names both.**
+**⚠ "MUST NAME" MEANS NAMED EXPLICITLY — OUR `(*)` ARMS DO NOT COUNT.** The refusal is **NITPICK-REACH-002**
+(`REACH_UNNAMED`), and the compiler's own rejection suite states the rule outright: *"a `failsafe` whose `pick` does
+not name an error that can reach it (**`(*)` counts for nothing**)"* (`tests/analysis/rejection/README.md`,
+`failsafe_reach.npk`). **So the day D-305 and D-307 land, every `failsafe` in our tree is refused until it names
+both.** *(CORRECTED 2026-09-19 after `_s11`'s own correction, the entry above. This said REACH-001, as F5 did, and
+cited 1.5.3.md and 1.5.2d.md as confirmation. REACH-001 is `REACH_NO_PICK`, meaning no `pick` at all.)*
 
 ## ⚠⚠ OUR EXPOSURE — THE FULL EXTENT, MEASURED NOW
 
@@ -942,7 +960,7 @@ float -> int `=>!`      0              0              0             0          -
 - **D-305 and D-307 reach all 145 handlers**, each with two new arms. **Keep the codes distinct:** our 134 library
   handlers share no exit code today (measured in the `fc71d1e` entry), and the check that found `trap_two_threads`' 96/96
   collision should be re-run after the edit.
-- **⚠ INFERRED, NOT STATED — TO CONFIRM WHEN D-304 LANDS:** by REACH-001's own rule (every reachable error named),
+- **⚠ INFERRED, NOT STATED — TO CONFIRM WHEN D-304 LANDS:** by REACH-002's own rule (every reachable error named, and `(*)` counts for nothing),
   **`(DecreasesViolated)` would be owed by every handler whose program reaches a checked `decreases` loop**, which is
   nearly all of them. The notice states "must name" for StackExhausted and MachineFault only, so the landing is where
   this gets settled.
@@ -957,7 +975,7 @@ notice's measured rows are the fact, and a mismatch with this expectation is a q
 ## ⭐ THE RESUME — THE CRITERION RECORDED AT `e3bf48c` NOW DECIDES IT: WAIT FOR 1.5.8 TO CLOSE
 
 The criterion was: *"If it is a refusal that reaches ordinary loops … the libraries should wait for 1.5.8 to land, so
-that they are written once, against the final rule."* **It is exactly that refusal, and REACH-001 grows in the same
+that they are written once, against the final rule."* **It is exactly that refusal, and what REACH-002 demands grows in the same
 subcycle.** *The loop rule becomes mandatory only after the compiler's own tree is swept, which is 1.5.8's last step
 before its close, so the rule's final form is the last thing to land.* **So the resume signal is 1.5.8's close
 notice.** At that point the re-pin, the canary and the P-1/probe13a re-measure all happen once.
