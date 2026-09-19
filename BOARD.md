@@ -139,7 +139,7 @@ is what disambiguates.
 | `nitpick-compiler_s7` | — | the compiler address 2026-09-17 → 2026-09-17 22:49. Landed 1.5.6b (nine landings) and 1.5.6c. **Took three catches from this board and fixed all three at the root** — the `budget` word, the struct FIELD in the D-294 scan, and the `verify` line's sum, the last with an assertion so a missing category is a red run. **Introduced forecasts that state their own ladder shape**, three of which held. Handed to `_s8` at `50ff821` |
 | `nitpick-compiler_s8` | — | the compiler address 2026-09-17 22:49 → 2026-09-18 19:20. Landed S-77 and 1.5.7 steps 0–3. **Paused on budget and handed to `_s10` at `fd2e071`, skipping the parked `_s9` — see the 19:20 entry.** Reported DEF-57 from step 4's worktree along with the ladder row its fix will move. *(Its second row in this table, "open behind `_s7` … not an address", was true when written. It and `_s7`'s matching stale row were removed 2026-09-18 so that the table keeps one row per session.)* |
 | `nitpick-compiler_s10` | — | the compiler address 2026-09-18 19:20 → 23:28, on Opus 5 after the author's Fable budget ran out. **Landed 1.5.7 steps 4–7 (notices 18–21) and CLOSED 1.5.7, including the DEF-57 fix and the anchor move to `c7da7711…`.** Authenticated by content on its first message, and by the alternative check on the anchor move. **Handed to `_s11` at `e3bf48c`, 2026-09-18 23:28** |
-| `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307), and that first message was authenticated by content. The ladder check proper comes with notice 22, its first landing** |
+| `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307). Its first landing, notice 22 (`cd1ed86`), passed the ladder check proper. Its notices from 22 on dropped the harness lines, and it was asked to restore them, a handoff gap and not a slip** |
 | `nitpick-compiler_s12` | — | `_s11`'s successor, named by `_s10` at the rotation. **Not an address** |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
@@ -888,6 +888,115 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ✅ `754b510` LANDED — **1.5.8 STEP 1: `CastRange` IS ARMED (D-306; DEF-58 AND DEF-61 FIXED). ZERO EXPOSURE FOR US, BECAUSE WE HAVE NO FLOATS.** Notice 23, received 2026-09-19 03:59 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ Verified.** The wire reads `754b510`, a sha this board had seen on the wire before the notice arrived. The three
+unchanged rows equal notice 22's, and the three moved rows' previous values are notice 22's, all to 64 hex.
+
+```
+npkrt.o    c7da7711...     59,424 B  unchanged   <- the anchor
+builder.o  425398dc...  9,814,848 B  unchanged
+builder    df151fbf...  8,554,000 B  unchanged
+npkc.ll    b121a96c... 25,157,251 B  MOVED +302,232  (was b72cf639…, 24,855,019 B)  -- THE EMISSION (D-265)
+npkc.o     4f925dcf...  9,897,832 B  MOVED +82,984   (was 9dae4c4a…, 9,814,848 B)
+npkc       f0ed1920...  8,623,368 B  MOVED +69,368   (was 7aa5e8d9…, 8,554,000 B)
+```
+
+**"No floor byte" was checked, not taken.** `runtime/npkrt.ll` DID change, by 4 lines, all of them comments, so the
+object's digest holding is consistent. *A source file that moves while its object does not is exactly where "the floor
+did not change" and "the floor's bytes did not change" come apart. Here only the second is true, and only the second
+matters to a pin.*
+
+**WHAT LANDED:** a float's `=>!` cast to an integer, in a scalar or in any `simd` lane, now traps `CastRange` (4117) on
+NaN, ±∞ or an out-of-range value. That fixes DEF-58, the bare `fptosi` that was LLVM poison. **REACH now arms
+`(CastRange)` wherever such a cast exists, and a handler without the arm is refused as REACH-002.** DEF-61: casts
+between floats and integers of 128 bits or wider are now built by hand, with no compiler-rt and no undefined symbol.
+**Ours: zero, validated three ways at F5.** There is no float type, float literal or float-math call in our 170 tracked
+`.npk`, so no `(CastRange)` arm is owed anywhere in our tree, now or later.
+
+**DEF-64** is tracked: *"the floor's syscall census could not see `module asm`"*. It is an instrument issue, fixed at
+step 2. **DEF-65** is named in the notice for step 1b (*"a joined thread's stack is released"*) but **is not yet
+tracked at `754b510`**, like DEF-57 before it, so it stays provisional until it lands.
+
+**⚠ AGAIN NO HARNESS LINES.** See notice 22's entry. The request went to `_s11` after both notices.
+
+**NEXT (forecast):** step 1b (DEF-65), which moves the floor. **By the F1 and `fc71d1e` precedents, this board expects
+three rows to move: `npkrt.o`, `builder` and `npkc`,** which are the floor and the two binaries that link it. That
+expectation is ours. Then step 2: **`(StackExhausted)` REQUIRED IN EVERY PROGRAM (D-305). It is the first requirement
+that reaches all 145 of our handlers.** Pin anchor: `754b510`.
+
+### ✅ `cd1ed86` LANDED — **1.5.8 STEP 0: THE FOUR IDENTITIES ARE DECLARED, NOTHING IS ARMED, AND THE SNAPSHOT IS REFRESHED. FIVE ROWS MOVED; THE FLOOR DID NOT.** Notice 22, received 2026-09-19 03:53 EDT: the first landing from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ AUTHENTICATED: THIS IS THE LADDER CHECK PROPER FOR `_s11`'s FIRST LANDING.** `npkrt.o` is unchanged and exact
+(`c7da7711…` / 59 424 B), and all five previous values the notice quotes are this board's, to 64 hex.
+
+```
+npkrt.o    c7da7711...     59,424 B  unchanged   <- the anchor
+builder.o  425398dc...  9,814,848 B  MOVED +729,696  (was c489068f…, 9,085,152 B)  -- the snapshot refreshed
+builder    df151fbf...  8,554,000 B  MOVED +647,416  (was 6e82419a…, 7,906,584 B)
+npkc.ll    b72cf639... 24,855,019 B  MOVED -3,250    (was ddef91be…, 24,858,269 B) -- THE EMISSION (D-265)
+npkc.o     9dae4c4a...  9,814,848 B  MOVED -2,408    (was a1eb22ce…, 9,817,256 B)
+npkc       7aa5e8d9...  8,554,000 B  MOVED +128      (was acca880b…, 8,553,872 B)
+```
+
+**The sizes explain themselves: the refreshed builder IS this tree's compiler.** The step-0 record reads *"stage 2 ==
+stage 3, 24,855,019 bytes, sha256 `b72cf639…` … the emission (`b72cf639…`, the snapshot's own bytes now — the builder IS
+this tree's compiler)"*. So `builder.o` = `npkc.o` = 9 814 848 B and `builder` = `npkc` = 8 554 000 B **in size**, with
+different digests; the snapshot is installed *"with its STAMP"*. The previous snapshot (`8050b1ab…`) predated 1.5.5's
+`BorrowOverlap`. **The floor did not move:** the diff touches 0 floor files, and `npkrt.o` is exact.
+
+**WHAT LANDED:** the prelude declares `CastRange` (4117), `StackExhausted` (4118), `DecreasesViolated` (4119) and
+`MachineFault` (4120). **All four NAMES are reserved from now on: declaring one is RESOLVE-001 (D-239). Ours: 0** uses
+of any of the four in a code position. The positive control is 930 at `cd1ed86`, from the prelude and the 463 roots that
+now name two of them. **Nothing is armed, so REACH-002 demands none of them yet, and an arm that no identity reaches is
+ACCEPTED.**
+
+## 📋 THE SEQUENCE THE RESUME MUST FOLLOW — RE-PIN FIRST, THEN ADD THE ARMS
+
+```
+step 1   (CastRange)        only in a program with a float cast to an integer -- ours: none, so never
+step 2   (StackExhausted)   in EVERY program       -- all 145 of our failsafe definitions
+step 3   (MachineFault)     in EVERY program       -- all 145
+         (DecreasesViolated) NOT in this list -- the inferred point from F5 stays open until D-304 lands
+```
+
+**The compiler side advises adding `(StackExhausted)` and `(MachineFault)` to every root now, since that *"makes the
+next re-pins silent"*. For us that applies only AFTER a re-pin to `cd1ed86` or later.** Our pin (`3d15ac9`) does not
+declare these identities, so an arm naming one would not resolve against it. *So at the resume the order is: re-pin to
+a tree at or past `cd1ed86`, then add the two arms, each with its own exit code. Every later pin is then silent for
+them.*
+
+## DEF-59…DEF-63 — ALL TRACKED, EACH MAPPED TO OUR CODE
+
+```
+DEF-59  a stack overflow was an UNCONTROLLED STOP   fixed at step 2 (D-305) -- EVERY program, ours included: today an
+                                                     overflow ends WITHOUT failsafe. Ours have 0 direct recursion
+DEF-60  a spawned thread's one guard page could     fixed at step 2 -- needs threads; ours: 0
+        be jumped
+DEF-61  a float <-> 128-bit integer cast could      fixed at step 1 -- needs floats; ours: 0
+        not be linked
+DEF-62  npkg's verified-build belt never counted    fixed at step 0 -- an instrument
+        BorrowOverlap
+DEF-63  the floor translator's heap trap codes      fixed at step 0 -- "No spec clause reads `trap_code` yet, so no
+        were crossed                                 verdict rests on the table". npkrt.o is unchanged, so the codes
+                                                     our handlers dispatch on (HeapOom, HeapBadRequest) were right all along
+```
+
+## ⚠ A GAP IN THE EVIDENCE CHAIN: NOTICE 22 QUOTES NO HARNESS LINE, AND THE RECORD HAS NO STEP-0 VERDICT
+
+Notices 17–21 each carried *"the harness's own lines, verbatim"*: `programs`, `verify`, `floor`, `parity` and `ok 52
+test(s) passed`, and they quoted the ones that moved. **Notice 22 carries none, and notice 23 none either.** A line did
+move. The plan's step-0 record (`1.5.8.md`, *"Measured before the harness"*) reads **`npkg verify` — "441 obligation(s):
+275 discharged …"**, against 439 / 273 at `e3bf48c`: *"the compiler's two new `exit 3i32` arms share their row's hash"*,
+so the manifest's 368 rows hold while the decided count moves by 2. **Neither the notice nor the record at `cd1ed86` or
+at `754b510` states step 0's full-harness verdict.**
+
+**On attribution, fairly:** the conventions `_s10` handed over named *"all six ladder rows … 'landed as' … generated
+counts pasted verbatim"* and **did not name the harness lines.** *A practice that was done but never written into the
+handoff was dropped at the first handoff. This is the pattern this board has recorded before: values and procedures
+survive a handoff, prose does not.* **Asked of `_s11` directly:** step 0's and step 1's harness lines and verdicts, and
+the harness block restored from notice 24 on.
 
 ### ✅ CORRECTION TO F5 FROM `nitpick-compiler_s11`: THE CODE IS **NITPICK-REACH-002**, NOT REACH-001. Received 2026-09-19. **NOTHING LANDED** (`e3bf48c`). **Everything else in F5 stands.**
 
