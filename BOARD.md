@@ -889,6 +889,36 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ THE D-310 FINDING IS CONFIRMED AS A REAL CONFLICT — **DEF-71: "ONE EXPRESSION, TWO MEANINGS"** — AND A SPELLING GOES TO THE AUTHOR. Received 2026-09-19 10:04 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`b7244d2`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `4f4a08e3…` / 63 272 B.**
+
+**`_s11` confirmed it with a probe on its step-4 tree:** *"`fixed uint64:B = 0u64 - 1u64;` folds to 2^64-1, while the
+same subtraction at run time traps IntOverflow (93). That is one expression with two meanings."* **The root cause, in
+its words:** D-148 prescribes the idiom as *"exact by D-037's defined wrap"*, but *"D-210 replaced D-037's wrap with a
+trap for plain integers, and the constant folder was never updated."* **Recorded as DEF-71.** It is not yet tracked at
+`b7244d2`, so it stays provisional until it lands. *So the finding was bigger than a spelling: our two test files had
+measured the defect on 2026-09-06 (a `fixed` folds, a statement traps) and recorded it as a documentation gap. It was a
+compiler defect all along, and D-310 is what made it visible.*
+
+**THE RECOMMENDATION GOING TO THE AUTHOR** (it is not settled, and this board records it as a recommendation):
+
+```
+recommended   D-148's "constructed, not spelled" rule stands; its example becomes `~0u64` by a dated note; the constant
+              folder obeys D-210 like the run time. Values above 2^63-1 are built by bit construction:
+              `~0u64` for the maximum, `(1u64 << 63u64) | k` for any other -- "verified at compile time and at run time"
+              (by _s11's probe; this seat does not run the compiler under test, and `~` is confirmed only as a token
+              here: OpTilde in the lexer and the operator table)
+declined      exempting `fixed` initialisers -- "one expression, two meanings"
+declined      widening the literal envelope
+declined      prelude-named maxima -- "your own U64_MAX names would collide" (our two `fixed U64_MAX` would be RESOLVE-001)
+```
+
+**FOR US, IF THE AUTHOR TAKES IT:** our two sites become `fixed uint64:U64_MAX = ~0u64;`. That is **two lines in two test
+files**, added to the resume's re-pin list beside the `failsafe` arms. *The collision point is worth noting: `_s11` read
+our two files closely enough to see that its own alternative would have broken them.*
+
+**`derive_gen.npk:207`:** `BASIS_TEXT`/`PRIME_TEXT` are confirmed dead, and their *"wraps by definition (D-037)"* comment
+is stale since D-210. *"They go in 1.5.8b's first step."*
+
 ### ⚠⚠ `b7244d2` LANDED — **1.5.8 STEP 3: THE LAST NET (D-307; DEF-68 FIXED). `(MachineFault)` IS NOW ARMED IN EVERY PROGRAM — AND A 1.5.8b FORECAST THAT FINDS A CONFLICT IN THE COMPILER'S OWN SPEC.** Notice 28, received 2026-09-19 10:02 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `4f4a08e3…` / 63 272 B.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `4f4a08e3…` / 63 272 B — superseding `80fc6471…` / 62 312 B
