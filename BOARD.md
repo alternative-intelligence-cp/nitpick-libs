@@ -889,6 +889,39 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ FORECAST — 1.5.8b STEP 1 (`sealed`, `hidden`), MEASURED AT `_s11`'s REQUEST BEFORE IT LANDS: **ZERO ON ALL THREE COUNTS.** Received 2026-09-19 11:56 EDT. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+```
+KEYWORDS        `sealed` and `hidden`: an identifier spelled either stops parsing (the compiler renamed its three)
+TYPE-079        a write to a sealed field from outside: assignment through any path, compound assignment, a struct
+                literal naming it, move/pass out of an OWNING sealed field, @, $$m, a Self-> receiver call
+TYPE-080        ANY touch of a hidden field from outside (access, literal, pattern, call through a function field)
+TYPE-081        sealed/hidden anywhere but a struct field, or both on one field
+by definition   ptr/len/cap of string, cstring, slices, buffer -- and OwnedFd.value -- sealed in every module
+DEF-78 (new)    @f.value and $$m f.value on an OwnedFd were accepted; f.value = x moves from TYPE-007 to TYPE-079
+DEF-77 (new)    an RGuard's .value was read-only only as a DIRECT target: g.value.x = 5, @g.value.y, $$m g.value.x
+                were writes through a SHARED read hold, and are now TYPE-007 at every write form
+lands           after step 0's landing (its harness is running); no snapshot refresh; List's fields are qualified at 1b
+```
+
+**MEASURED. Every zero has a control, either the compiler's own tree at `35ad9e1` (before its renames) or synthetic
+must-match cases where that tree is also zero:**
+
+```
+(a) identifiers sealed / hidden                   0     control: 63 in the compiler
+(b) assignment / compound over a built-in header   0     type-resolved at D-313 (all 137 such writes: our own structs)
+    @ / $$m on .ptr/.len/.cap                     0     compiler also 0 -> validated synthetically (3/3 hit, 0 false)
+    a struct literal of string/cstring/buffer      0     compiler also 0 -> validated synthetically (2/2 hit, 0 false)
+    move / pass OUT of a header                    3     all `pass x.len;` -- INTEGER READS, not owning moves: our own
+                                                         Bytes.len x2, a uint8[20]'s length x1; the compiler has 20 alike
+    OwnedFd                                        0     control: 34
+(c) RGuard                                          0     control: 3 -- we have no threads and no shared holds
+```
+
+**So step 1 lands on our code untouched.** *Two of the compiler tree's zeros could not validate our zeros, so synthetic
+cases did. A control has to be able to hit, and a corpus that also reads zero is not one. That is the same rule the
+`import-path` miss taught an hour ago.* **Answer sent to `_s11`.**
+
 ### ✅ D-314 SETTLED (S-94): **`hidden` FIELDS, AND THE PRELUDE `List` BOUNDS-CHECKED** — AND THIS SEAT'S OWN ZERO-COST CLAIM RE-VERIFIED BY A SOUND METHOD. Received 2026-09-19 11:22 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ```
