@@ -889,6 +889,42 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ FORECAST F6 (ADDENDUM TO F5) — **DEF-68: FROM STEP 3, A WRITE INTO A BROKEN PIPE RETURNS `EPIPE` INSTEAD OF KILLING THE PROCESS.** Received 2026-09-19 04:55 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`d5ad3c9`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `c8be5302…` / 59 488 B.**
+
+**The change:** SIGPIPE's default action killed any program that wrote to a pipe or socket whose reader had gone, with no
+`failsafe`. *"`prog | head` was enough."* Measured: 4 KiB writes to stdout, piped into `true`, exit 141. **From step 3
+the floor CATCHES SIGPIPE with a handler that returns, so a `write` / `sys(1, …)` into a broken pipe RETURNS `-32` EPIPE
+as a value.** *"The handler is caught, not SIG_IGN, so children spawned through the floor get the default SIGPIPE back
+at execve."* It was found while writing TCB.md's list of what D-307 leaves uncontrolled. *That is one more finding made
+by writing down what is NOT covered.*
+
+**OUR CODE TODAY: ZERO EXPOSURE, BECAUSE IT WRITES NOTHING.**
+
+```
+write( / write_file(   0     (controls: 19 / 36 in the compiler at d5ad3c9)
+raw sys( calls         11    -- all reads: getpid (39), clock_gettime, readlink; every result already handled
+                                (Result / ?! / ?|), as the language requires
+wildx (JIT code)       0     (control: 13) -- so MachineFault can never actually fire in our code, and yet the
+                                (MachineFault) arm is still REQUIRED in all 145 handlers at step 3 (REACH-002)
+```
+
+*Our programs report through exit codes, not output, which is why the change passes us by today.*
+
+**⚠ BUT IT IS A PLANNING FACT FOR THE TWO CONSUMERS STILL TO BE WRITTEN: `nitpick-posix`'s utilities and `grep`.**
+
+- **The traditional stop-when-the-reader-leaves behaviour is gone.** A writer like `yes` or `cat` historically stopped
+  because SIGPIPE killed it (`yes | head -1`). On this floor it can never die of SIGPIPE: its `write` returns EPIPE, and
+  **it must stop by itself. *A writer that treats a write error as ignorable would now spin forever in a pipeline.***
+- **The exit status changes by construction.** Death by SIGPIPE shows as status 141 in a shell. A utility on this floor
+  chooses its own status on EPIPE, and whether to print a diagnostic. **Each utility's plan must state that choice.** It
+  is visible behaviour, and a conformance comparison against a reference implementation will see it.
+- **Children keep the conventional behaviour.** A utility that execs a child hands it the default SIGPIPE, because the
+  floor's handler is caught rather than ignored.
+
+**DEF-67 has not been named to us and is not tracked at `d5ad3c9`. DEF-68 is provisional until it lands, since it is
+not tracked either.** **Order for the pin:** steps 2, 2b and 2c are under their harnesses now, then step 3. *Step 2,
+which makes `(StackExhausted)` REQUIRED in every program, lands first.*
+
 ### ⚠ `d5ad3c9` LANDED — **1.5.8 STEP 1b: DEF-65 FIXED, AND THE FLOOR MOVED BY EXACTLY THE THREE ROWS FORECAST.** Notice 24, received 2026-09-19 04:23 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `c8be5302…` / 59 488 B.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `c8be5302…` / 59 488 B — superseding `c7da7711…` / 59 424 B
