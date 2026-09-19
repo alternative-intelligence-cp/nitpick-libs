@@ -889,6 +889,44 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ D-312 SETTLED BY THE AUTHOR (S-92): **WRAPPING OPERATORS `+%` `-%` `*%`** — AND OUR WORKED EXAMPLES, IN THE NEW SPELLING, CHECKED HERE. Received 2026-09-19 10:46 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+```
+operators    +%  -%  *%  ("add, subtract, multiply modulo 2^N"), compound +%= -%= *%=, at the precedence of + - *
+applies to   plain integers, signed (two's complement) and unsigned, and integer simd lane by lane
+refused      NITPICK-TYPE-078 on tbb ("it would launder ERR"), tfp, ternary, frac, dim256, complex and floats
+absent       no unary form (write `0 -% x`); no wrapping division; the division and shift-amount guards STAY
+cost         no guard, no obligation row, no REACH arm: a plain LLVM add/sub/mul, modelled exactly as mod 2^N
+folding      the folder folds them WITH the wrap, so they are never TYPE-076; `0u64 -% 1u64` is a legal, explicit
+             uint64 maximum beside `~0u64`
+lands        1.5.8b, as its own step after the overflow rows, with its forecast to come
+```
+
+**OUR WORKED EXAMPLES, AS THE DESIGN NOW CARRIES THEM** (sent by `_s11`, quoted):
+
+```
+fixed uint64:FNV_BASIS = (1u64 << 63u64) | 04BF29CE484222325hexu64;  // 0xCBF29CE484222325
+fixed uint64:FNV_PRIME = 1099511628211u64;
+... h = (h ^ (p[i] => uint64)) *% FNV_PRIME;
+
+fixed uint64:GAMMA = (1u64 << 63u64) | 01E3779B97F4A7C15hexu64;  // 0x9E3779B97F4A7C15
+fixed uint64:MIX1  = (1u64 << 63u64) | 03F58476D1CE4E5B9hexu64;  // 0xBF58476D1CE4E5B9
+fixed uint64:MIX2  = (1u64 << 63u64) | 014D049BB133111EBhexu64;  // 0x94D049BB133111EB
+... <-state = (<-state) +% GAMMA;  z = (z ^ (z >> 30u64)) *% MIX1;  z = (z ^ (z >> 27u64)) *% MIX2;
+```
+
+**✅ CHECKED HERE, NOT TAKEN:** all four constructed constants equal the published values, computed independently; each
+low half is below 2⁶³ and so is spellable (D-148); `FNV_PRIME` = `0x100000001B3`. The `hex` suffix exists at OUR pin: its
+lexer knows it, and a lexer test at `3d15ac9` lexes `0CBF29CE484222325hexu64`. `<<` and `|` on `uint64` are already used
+by regex's `byteset.npk`. *So "compiles on every pin today" holds for ours as far as a read can show. This seat does not
+run the compiler.*
+
+**OUR EXPOSURE: NONE.** D-312 is additive. **There are 0 `+%` / `-%` / `*%` in our code**, so the new tokens re-lex nothing, and
+TYPE-078 applies only to the new operators. **For the consumers to come**, meaning `nitpick-posix`'s hash tables and the
+regex lazy-DFA cache: FNV-1a and splitmix64 now have a first-class spelling, and the examples above can be copied as
+written. *Worklist item 5 is unchanged: use `~0u64`, which works on every pin; `0u64 -% 1u64` becomes an equal
+alternative only after D-312 lands.*
+
 ### ⭐⭐ `35ad9e1` LANDED — **1.5.8 IS CLOSED.** STEP 4: THE ONE-HOP SNAPSHOT REFRESH — **AND F7's PREDICTED DIGEST HELD TO 64 HEX, RECOMPUTED HERE FROM THE TRACKED TREE.** Notice 31, received 2026-09-19 10:31 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 ## ⭐ THE FIRST LADDER DIGEST THIS BOARD HAS RECOMPUTED ITSELF
