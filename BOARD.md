@@ -889,6 +889,45 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ D-313 (THE AUTHOR, TODAY): **`sealed` FIELDS — DEF-72 AND DEF-73 CLOSED BY SEALING THE BUILT-IN HEADERS AND THE PRELUDE `List`.** MEASURED AT `_s11`'s REQUEST: **ZERO EXPOSURE.** Received 2026-09-19 11:18 EDT. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+```
+DEF-72   a string's/slice's/buffer's .ptr .len .cap were ASSIGNABLE: s.len = 4096 on a 6-byte string, then a slice
+         reads 96 bytes past the block
+DEF-73   the prelude List's items/count/cap were ASSIGNABLE: a.cap = 100 on a one-element list, then 40 pushes
+         overwrite ANOTHER list's element on the heap
+D-313    field qualifier `sealed`: readable everywhere, WRITTEN only by the module declaring the struct -- writes are
+         assignment, compound assignment, struct literals, moves/passes out of the field, @ / $$m / Self-> receivers
+         (a $$i claim reads and stays allowed); a write from outside is NITPICK-TYPE-079
+sealed   by definition: ptr/len/cap of string, cstring, slices, buffer; the prelude List's items/count/cap (with new
+         checked operations for truncation and pops, which replace ~150 direct .count writes in the compiler's tree)
+lands    1.5.8b step 1, the first code step; views come only from the primitives, whose lengths step 6 bounds to [0, 2^47]
+```
+
+**MEASURED, AS ASKED.** There are 137 writes to fields named `ptr`/`len`/`cap`/`items`/`count` in our 170 tracked `.npk`.
+**Each was resolved to its base's declared type, with none left unresolved:**
+
+```
+(1) built-in headers (string/cstring/slice/buffer .ptr/.len/.cap)   0 writes
+(2) the prelude List: fields or literals                             0 -- we do not use List at all (0 `List<`)
+    our own structs                                                  137 -- Vec 128, Bytes 6, SparseSet 3
+```
+
+**⚠ A MEASURING TRAP, CAUGHT AND PASSED ON:** the first pass counted five **casts** as writes (`(argv.len =>! int32)`,
+`v.ptr =>! wild int8->`), because `=>!` begins with `=`. Reading the five lines found it. *This is the same family as the
+`=` inside `==`: a pattern for "assignment" has to exclude every operator that starts with `=`.* It was flagged to `_s11`
+for its own sweep.
+
+**(3), the List operations a real library container needed:** our own `Vec<T>` (`nitpick-regex/src/core/vec.npk`)
+provides, beyond init/reserve/push, **get, set, pop, insert, remove (order-preserving), swap_remove, truncate, clear,
+free, free_owning** (which drops owned elements) **and init_zeroed**. The shrinking five are pop, truncate, clear, remove and
+swap_remove. That was sent as design data for the prelude's new operations.
+
+**⭐ AND D-313 CLOSES THE SAME HOLE IN OUR OWN CODE.** Our `Vec<T>` has exactly DEF-73's shape: a `wild` `items` plus
+writable `count` and `cap`. **Sealing it costs nothing, as measured:** no file writes an imported `Vec`'s fields from
+outside `vec.npk` (every other writer is a probe declaring its own local `Vec`), and `Bytes` and `SparseSet` are written
+only in their own modules. **Added to the re-pin worklist as item 13.**
+
 ### ✅ THE AUTHOR'S DECISION: **READINESS TO RESUME IS EVALUATED AT THE CLOSE OF THE ENTIRE 1.5 CYCLE**, NOT AT 1.5.8c. 2026-09-19. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 In his words: *"I am not in any rush to resume and would rather wait until we are sure we won't have to redo a lot of
@@ -1025,6 +1064,8 @@ entry that measured it.*
 12  nitpick-posix PLANNING FACTS: EPIPE, not death (DEF-68); /dev/null on a closed 0-2 (DEF-69),   F6, F7, notices 25, 30,
     Unreachable before main without /dev/null; fixed 8 MiB stacks, whatever ulimit -s says;       21 (TCB 5 item 17)
     real child processes are never explored
+13  SEAL our own containers (D-313): regex Vec<T> items/count/cap, Bytes, SparseSet -- DEF-73's      D-313 entry
+    shape in our code; zero writers outside their declaring modules, so the change is free
 ```
 
 **NEXT (forecast):** 1.5.8b step 0, the plan with D-308…D-311 and S-92 (the wrapping design, with our worked examples).
