@@ -889,6 +889,77 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠⚠ `b7244d2` LANDED — **1.5.8 STEP 3: THE LAST NET (D-307; DEF-68 FIXED). `(MachineFault)` IS NOW ARMED IN EVERY PROGRAM — AND A 1.5.8b FORECAST THAT FINDS A CONFLICT IN THE COMPILER'S OWN SPEC.** Notice 28, received 2026-09-19 10:02 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `4f4a08e3…` / 63 272 B.**
+
+## ⚠⚠ THE ANCHOR IS NOW `4f4a08e3…` / 63 272 B — superseding `80fc6471…` / 62 312 B
+
+**✅ Verified.** The five previous values are this board's, to 64 hex, and `builder.o` is exact:
+
+```
+npkrt.o    4f4a08e3...     63,272 B  MOVED +960   (was 80fc6471…, 62,312 B)   the new anchor
+builder.o  425398dc...  9,814,848 B  unchanged
+builder    1f50eb63...  8,556,400 B  MOVED +600   (was 88ab3cc2…, 8,555,800 B)
+npkc.ll    47b1059b... 25,163,772 B  MOVED +377   (was 8087c105…, 25,163,395 B) -- THE EMISSION (D-265)
+npkc.o     1ebccef3...  9,900,392 B  MOVED +96    (was 65eeedbd…, 9,900,296 B)
+npkc       a7641385...  8,628,088 B  MOVED +648   (was 6b76d73e…, 8,627,440 B)
+```
+
+**✅ THE HARNESS CLOSES EXACTLY:** programs 293 → **300** and parity 1535 → **1550**. The diff adds seven program files,
+and one of them, `machine_fault_thread.npk`, is explored, so 7 × 2 + 1 = **15**. The trap-route model gained
+`(bad uncontrolled …)` and its control `no-nodefer`, which adds a floor-model ROW (25 → 26) but no parity verdict,
+consistent with `fc71d1e`. The floor goes 385 → 388 rows over 89 → 90 symbols, with **7 `budget` unchanged**. DEF-68
+is tracked as fixed.
+
+**WHAT LANDED:** SIGSEGV, SIGBUS, SIGILL and SIGFPE reach `failsafe` as `MachineFault` (4120) on the faulting thread's
+signal stack. *"A program can fault the CPU only through JIT (`wildx`) code or a floor defect."* Ours has 0 `wildx`,
+**yet REACH arms `MachineFault` in every program: at the re-pin, this is the second of the two arms our 145
+`failsafe` definitions need.** SA_NODEFER sends a fault inside a fault's `failsafe` to the re-entry exit 70, where the
+kernel used to kill it (132). **DEF-68 has landed as F6 forecast:** a write into a broken pipe returns EPIPE, and
+`prog | head` no longer kills the program. There are five more `rt_sigaction` calls at startup.
+
+## ⚠⚠ D-310 (1.5.8b, SETTLED BY THE AUTHOR TODAY): MEASURED AT `_s11`'s REQUEST — TWO SITES, AND THEY EXPOSE A SPEC CONFLICT
+
+**The forecast:** D-310 refuses at compile time (**NITPICK-TYPE-076**) an integer `+ - *` or negation whose operands are
+both compile-time constants and whose value does not fit its width. That arithmetic *"currently compiles to a check
+that always traps"*, while constant arithmetic that fits is folded. *"Please measure whether any of your code has such
+an expression before it lands."*
+
+**Measured.** A scanner covered every constant `+`, `-`, `*` and negation in our 170 tracked `.npk`, with `fixed` names
+resolved and wrapping as today's folding does. It was **self-tested on three must-flag and four must-not-flag cases**,
+and its real-code control is that it finds exactly the two sites an independent grep found:
+
+```
+nitpick-time/tests/unit/bytes_put_int.npk:48   fixed uint64:U64_MAX = 0u64 - 1u64;
+nitpick-time/tests/unit/limits_named.npk:29    fixed uint64:U64_MAX = 0u64 - 1u64;
+```
+
+**Both are the spelling the compiler's own `LEXICAL_REFERENCE.md` D-148 prescribes,** and both comments cite it by name.
+At `b7244d2`, D-148 still reads *"`uint64` above 2⁶³−1 (`0u64 - 1u64` is the maximum)"* in its list of values a literal
+cannot spell. Our own measurement at pin `0dfddac` showed the `fixed` initialiser folding to 18 446 744 073 709 551 615,
+while the same expression as a runtime statement trapped `IntOverflow` (exit 93).
+
+**⚠ THE CONFLICT: AFTER D-310, THE UPPER HALF OF `uint64` HAS NO CONSTANT SPELLING AT ALL.** A literal cannot spell it
+(D-148), and the subtraction that D-148 prescribes would be refused (D-310). *The way out is for 1.5.8b to exempt
+`fixed` initialisers, widen the unsigned literal envelope, or supply a named maximum.* **That decision belongs to the
+compiler's plan, and it has been sent to `_s11`.** We will follow whichever spelling the plan gives. It is two lines in
+two test files.
+
+**The compiler's own tree at `b7244d2`: 0 sites in code.** An independent grep found one in a STRING, which a source
+scanner cannot see: `derive_gen.npk:207`, `BASIS_TEXT` = `"(0u64 - 3750763034362895579u64)"`, the FNV-1a 64 offset basis
+(2⁶⁴ − 3750763034362895579 = 14 695 981 039 346 656 037, checked). **That looked like every `derive` user refused by code
+it never wrote, and it is not: `BASIS_TEXT` and `PRIME_TEXT` have NO CALLER anywhere in the tree** (only the seed's
+compiled copy and `done/0.9/0.9.9.md` mention them). *So it is dead code, and harmless. Its comment claims "unsigned
+subtraction wraps by definition (D-037)", which sits badly with D-210, and that was flagged to `_s11` in one line. The
+lesson is one this board keeps meeting: **a sweep of source text is blind to code a generator emits from a string, so
+check a generator's templates by hand.***
+
+**D-308 (also 1.5.8b):** a struct field may carry `limit<Rules>`. The prelude's `List<T>` will limit `count` and `cap` to
+[0, 2⁴⁷], and the allocator will refuse requests above 2⁴⁷ bytes. **We allocate nowhere near that.** *If its failure
+identity is new and universal, it joins the re-pin sweep, as `_s11` has undertaken to state.*
+
+**NEXT:** step 3b (per-slot thread pools, DEF-66), step 3c (the standard descriptors, DEF-69), then step 4 (the snapshot
+refresh, 1.5.8 proper's close, with the predicted `npkc.ll` = `b7585e71…` / 25 208 600 B). Pin anchor: `b7244d2`.
+
 ### ⭐ `4d5fd77` LANDED — **1.5.8 STEP 2c: THE EXPLORER HOLDS (DEF-67 FIXED) — AND DEF-57's REGRESSION TEST HAD GONE SILENTLY BLIND.** Notice 27, received 2026-09-19 08:54 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `80fc6471…` / 62 312 B.**
 
 **✅ Verified.** All six rows equal notice 26's. The diff adds exactly one file, **`runtime/explore/controls/frozen-traps.ctl`**,
