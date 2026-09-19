@@ -889,6 +889,76 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐⭐ `35ad9e1` LANDED — **1.5.8 IS CLOSED.** STEP 4: THE ONE-HOP SNAPSHOT REFRESH — **AND F7's PREDICTED DIGEST HELD TO 64 HEX, RECOMPUTED HERE FROM THE TRACKED TREE.** Notice 31, received 2026-09-19 10:31 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+## ⭐ THE FIRST LADDER DIGEST THIS BOARD HAS RECOMPUTED ITSELF
+
+F7 stated before the landing: *"New snapshot: sha256 `b7585e715ea5…`, 25,208,600 bytes. After it, build/npkc.ll IS the
+snapshot's bytes."* **The snapshot is a TRACKED file, so it was hashed here, at `35ad9e1`:**
+
+```
+git show 35ad9e1:bootstrap/seed/stage1.ll | sha256sum
+   -> b7585e715ea5f24fc701b86ded63bedea7d5b9e232179efdad6b9aa989b8c1c3, 25 208 600 bytes
+F7's prediction, recorded on this board before the landing   b7585e715ea5…  25 208 600   IDENTICAL
+notice 31's npkc.ll row                                       b7585e715ea5…  25 208 600   IDENTICAL
+```
+
+*Until now this board checked a ladder digest only against a notice's internal consistency and its own history, and
+never against `../nitpick/build/`, which is gitignored and stale (hazard 11). **When the builder IS the tree's own
+compiler, the EMISSION row, the one that "travels across machines", can be recomputed from a tracked file.** That is
+now a method, not a one-off: after any one-hop refresh, `git show <sha>:bootstrap/seed/stage1.ll | sha256sum` should
+equal the notice's `npkc.ll` row.*
+
+**✅ Verified otherwise:** the five previous values are this board's, to 64 hex, `npkrt.o` is exact, and no `.npk` or
+floor line changed, so every harness line holds (306 · 441 / 275 · 388 / 381 / 7 · 1564 · `ok 52`).
+
+```
+npkrt.o    bb180934...     72,560 B  unchanged      <- the anchor
+builder.o  821ecf8d... 10,062,336 B  MOVED +247,488 (was 425398dc…, 9,814,848 B) -- the refreshed builder
+builder    14172e43...  8,734,168 B  MOVED +169,552 (was eb687d5a…, 8,564,616 B)
+npkc.ll    b7585e71... 25,208,600 B  MOVED +44,828  (was 47b1059b…, 25,163,772 B) -- THE EMISSION (D-265) = the snapshot
+npkc.o     90c9bac3... 10,062,336 B  MOVED +161,944 (was 1ebccef3…, 9,900,392 B)
+npkc       ecf86e47...  8,734,168 B  MOVED +97,872  (was 42267e64…, 8,636,296 B)
+```
+
+*As at `cd1ed86`, the builder IS this tree's compiler, so `builder.o` = `npkc.o` = 10 062 336 B and `builder` = `npkc` =
+8 734 168 B in size, with different digests (the STAMP).* All 3 202 of the builder's defines carry the stack prologue, and
+it compiles `src/` under `ulimit -s 1024`, reproducing the snapshot byte for byte. **Docs:** VERIFICATION_REFERENCE §7b
+re-homes the five kinds (overflow, bounds and cast-range to 1.5.8b; terminate and stack-depth to 1.5.8c), and there are
+new sections §9.5 (the floor's stack) and MEMORY_REFERENCE §5.
+
+**THE PIN TARGET, RECORDED AND NOT ACTED ON:** *"Pin anchor: 35ad9e1, 1.5.8's close. This is the natural re-pin point if
+you resume before 1.5.8b's first language change (D-310's TYPE-076) lands."* **This board's resume signal stays 1.5.8c's
+close** (the F7 entry). `35ad9e1` is where to re-pin only if the author chooses to resume early.
+
+## 📋 THE RE-PIN WORKLIST, CONSOLIDATED AT 1.5.8's CLOSE — FOR `nitpick-libs_s5`
+
+*Gathered from twenty entries into one list, because a successor should not have to assemble it. Each line cites the
+entry that measured it.*
+
+```
+ 1  RE-PIN to a tree at or after 1.5.8c's close; re-commission (the canary, P-1/probe13a)         the F7 entry
+ 2  (StackExhausted) + (MachineFault) in ALL 145 failsafe definitions (141 direct + 4             F5, notices 25, 28
+    macro:posix_failsafe), each with its OWN exit code; re-run the shared-code check after
+ 3  (DecreasesViolated) -- only if 1.5.8c makes it universal; if so, all 145 as well              F5, notice 26
+ 4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
+    92 in tests, probes and harnesses; each library loop needs a real termination measure
+ 5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311
+ 6  (ShiftRange) in every root reaching the 6 computed shifts (byteset.npk:70,77,84; probe11)     1.5.4b entry
+ 7  CastRange: none owed -- no float anywhere in our code (checked three ways)                    F5, notice 23
+ 8  THREAD HOLD: satisfied at any pin at or after 35ad9e1 (DEF-57, -60, -65, -66 all fixed)       notices 18-29
+ 9  D-308's failure identity -- joins this list only if 1.5.8b makes it new and universal         notice 28
+10  REGRESSION TESTS carry their control: run each once against the pre-fix code and keep it     notice 27 (DEF-67)
+11  the 0.1 gap: small_free is TESTED at the call site in the compiler's programs, NOT in ours     notices 19, 21
+    (TCB 5 item 16); PROVED nowhere (6 residue rows); our own calls are tested only if explored
+12  nitpick-posix PLANNING FACTS: EPIPE, not death (DEF-68); /dev/null on a closed 0-2 (DEF-69),   F6, F7, notices 25, 30,
+    Unreachable before main without /dev/null; fixed 8 MiB stacks, whatever ulimit -s says;       21 (TCB 5 item 17)
+    real child processes are never explored
+```
+
+**NEXT (forecast):** 1.5.8b step 0, the plan with D-308…D-311 and S-92 (the wrapping design, with our worked examples).
+**D-310's TYPE-076 gets its own forecast before it lands.**
+
 ### ✅ `6340d5c` LANDED — **1.5.8 STEP 3c: THE STANDARD DESCRIPTORS (DEF-69 FIXED). THE FLOOR-ONLY SHAPE, A FIFTH TIME.** Notice 30, received 2026-09-19 10:29 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `bb180934…` / 72 560 B.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `bb180934…` / 72 560 B — superseding `bcd0e8ca…` / 64 968 B
