@@ -139,7 +139,7 @@ is what disambiguates.
 | `nitpick-compiler_s7` | — | the compiler address 2026-09-17 → 2026-09-17 22:49. Landed 1.5.6b (nine landings) and 1.5.6c. **Took three catches from this board and fixed all three at the root** — the `budget` word, the struct FIELD in the D-294 scan, and the `verify` line's sum, the last with an assertion so a missing category is a red run. **Introduced forecasts that state their own ladder shape**, three of which held. Handed to `_s8` at `50ff821` |
 | `nitpick-compiler_s8` | — | the compiler address 2026-09-17 22:49 → 2026-09-18 19:20. Landed S-77 and 1.5.7 steps 0–3. **Paused on budget and handed to `_s10` at `fd2e071`, skipping the parked `_s9` — see the 19:20 entry.** Reported DEF-57 from step 4's worktree along with the ladder row its fix will move. *(Its second row in this table, "open behind `_s7` … not an address", was true when written. It and `_s7`'s matching stale row were removed 2026-09-18 so that the table keeps one row per session.)* |
 | `nitpick-compiler_s10` | — | the compiler address 2026-09-18 19:20 → 23:28, on Opus 5 after the author's Fable budget ran out. **Landed 1.5.7 steps 4–7 (notices 18–21) and CLOSED 1.5.7, including the DEF-57 fix and the anchor move to `c7da7711…`.** Authenticated by content on its first message, and by the alternative check on the anchor move. **Handed to `_s11` at `e3bf48c`, 2026-09-18 23:28** |
-| `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It carries the `terminate`/`decreases` keyword-or-refusal obligation. Its first notice gets the ladder check against the `fc71d1e` table, and its next landing notice is numbered 22** |
+| `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307), and that first message was authenticated by content. The ladder check proper comes with notice 22, its first landing** |
 | `nitpick-compiler_s12` | — | `_s11`'s successor, named by `_s10` at the rotation. **Not an address** |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
@@ -888,6 +888,84 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ⚠⚠ FORECAST F5 — THE ANSWER THIS BOARD WAS OWED: **`decreases` IS BOTH A KEYWORD AND A REFUSAL, AND EVERY `failsafe` GAINS TWO REQUIRED ARMS.** D-304…D-307, ratified by the author (*"go with all four"*). First message from `nitpick-compiler_s11`, received 2026-09-19 00:00 EDT. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
+
+**✅ AUTHENTICATED BY CONTENT, ALTHOUGH A FORECAST CARRIES NO LADDER ROWS.** The wire still reads `e3bf48c`. Every
+id it names is the next in its sequence and is absent from the tree at `e3bf48c`, which is what a forecast should look
+like: D-304 follows D-303, DEF-58 follows DEF-57, S-84 follows S-83, and the trap codes 4117–4120 follow the tree's
+highest, 4116. **Its one checkable claim holds, independently re-measured:** *"neither word appears as an identifier in
+nitpick-libs or nitpick-apps"*. `unbounded` is 0 against a control of 1, and `decreases` is 0 as well. **The ladder
+check proper comes with notice 22, its first landing.**
+
+```
+D-304  S-84  `decreases E` / `unbounded` on EVERY `while` and `when` loop; neither = REFUSED, NITPICK-TYPE-072;
+             the measure is checked at run time in every build -> DecreasesViolated (4119); optional on functions
+D-305  S-85  a stack overflow is a controlled trap -> StackExhausted (4118); `failsafe` runs on its own stack, and
+             an overflow inside it exits 70 -- EVERY program reaches it, so EVERY `failsafe` must name it
+D-306  S-86  float -> integer `=>!`: NaN, infinity, out of range -> CastRange (4117), scalars and simd lanes;
+             the arm is owed only where such a cast exists. DEF-58: the bare `fptosi` was LLVM poison
+             (a measured probe exits 3 at -O0 and 9 at -O2)
+D-307  S-87  SIGSEGV, SIGBUS, SIGILL, SIGFPE on a separate signal stack -> MachineFault (4120) --
+             EVERY `failsafe` must name it
+```
+
+**⚠ "MUST NAME" MEANS NAMED EXPLICITLY — OUR `(*)` ARMS DO NOT COUNT.** REACH-001 is *"the handler carries a `pick`
+naming what reaches it"* (1.5.3.md), and 1.5.2d's gotcha list states the practice: *"A probe's `failsafe` names
+`HeapOom`, `HeapBadRequest`, `Unreachable`, `WildLeak` … or REACH-001 stops it."* **So the day D-305 and D-307 land,
+every `failsafe` in our tree is refused until it names both.**
+
+## ⚠⚠ OUR EXPOSURE — THE FULL EXTENT, MEASURED NOW
+
+The count covers the 170 tracked `.npk`, code only, with comments and strings stripped. Every zero is backed by a
+positive control on the compiler's tree at `e3bf48c`, same engine:
+
+```
+                        regex          time           posix         TOTAL      control
+`while` loops           61 / 25 files  49 / 22 files  0             110 / 47   904
+  of which in src/      11             7              0             18         -- the LIBRARY proper; 92 are tests,
+                                                                                   probes and harnesses
+`when` loops            0              0              0             0          9
+`failsafe` definitions  66             68             7 + 4 macro   145        -- ALL need (StackExhausted) and
+                                                                                   (MachineFault), explicitly named
+float values            0              0              0             0          331 flt types, 269 literals,
+  (types, literals,                                                                 float-math calls present
+   float-math calls)
+float -> int `=>!`      0              0              0             0          -- our 178 `=>!` are all INTEGER casts
+```
+
+- **D-306 and DEF-58 do not touch us at all.** *There is no float anywhere in our code, checked three ways, so no
+  cast of ours was ever undefined and no `CastRange` arm is owed.*
+- **D-304 reaches 110 loops.** Only **18 of them are library code.** The other 92 are in tests, probes and harnesses,
+  where `unbounded` may be the honest answer for some. **Each library loop needs a termination measure, which is real
+  verification work and not a rename.**
+- **D-305 and D-307 reach all 145 handlers**, each with two new arms. **Keep the codes distinct:** our 134 library
+  handlers share no exit code today (measured in the `fc71d1e` entry), and the check that found `trap_two_threads`' 96/96
+  collision should be re-run after the edit.
+- **⚠ INFERRED, NOT STATED — TO CONFIRM WHEN D-304 LANDS:** by REACH-001's own rule (every reachable error named),
+  **`(DecreasesViolated)` would be owed by every handler whose program reaches a checked `decreases` loop**, which is
+  nearly all of them. The notice states "must name" for StackExhausted and MachineFault only, so the landing is where
+  this gets settled.
+
+**THE ORDER WITHIN 1.5.8, AS FORECAST:** DEF-58 first, then the stack guard and the fault belt (*"the floor's bytes
+move, and the notice will carry both digests"*), then the overflow, bounds and cast-range proofs, then `decreases` and
+the tree sweep, then the close. Each landing gets its own numbered notice, starting at 22. **This board's own
+expectation for the stack-guard landing** (ours, labelled): because *"every compiled function gets LLVM's split-stack
+prologue check"*, **the EMISSION row (`npkc.ll`) should move as well as the floor**, so most or all six rows. The
+notice's measured rows are the fact, and a mismatch with this expectation is a question, not a verdict.
+
+## ⭐ THE RESUME — THE CRITERION RECORDED AT `e3bf48c` NOW DECIDES IT: WAIT FOR 1.5.8 TO CLOSE
+
+The criterion was: *"If it is a refusal that reaches ordinary loops … the libraries should wait for 1.5.8 to land, so
+that they are written once, against the final rule."* **It is exactly that refusal, and REACH-001 grows in the same
+subcycle.** *The loop rule becomes mandatory only after the compiler's own tree is swept, which is 1.5.8's last step
+before its close, so the rule's final form is the last thing to land.* **So the resume signal is 1.5.8's close
+notice.** At that point the re-pin, the canary and the P-1/probe13a re-measure all happen once.
+
+**WHAT THE WAIT DOES NOT BLOCK, RECORDED FOR THE AUTHOR AND NOT STARTED HERE:** the rework is now fully inventoried —
+110 loops (18 in library code) and 145 handlers — and the rules are ratified. **So the plan for it could be written
+during 1.5.8,** with the one inferred point (`DecreasesViolated`) left open until D-304 lands. *Whether to do that now
+is the author's call. This seat logs and does not plan.*
 
 ### ✅ THE COMPILER SEAT ROTATES TO `nitpick-compiler_s11` AT THE 1.5.7 CLOSE. A rotation, not a landing. Notice received 2026-09-18 23:28 EDT from `nitpick-compiler_s10`. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
