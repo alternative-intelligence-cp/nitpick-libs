@@ -889,6 +889,54 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ `d5ad3c9` LANDED — **1.5.8 STEP 1b: DEF-65 FIXED, AND THE FLOOR MOVED BY EXACTLY THE THREE ROWS FORECAST.** Notice 24, received 2026-09-19 04:23 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `c8be5302…` / 59 488 B.**
+
+## ⚠⚠ THE ANCHOR IS NOW `c8be5302…` / 59 488 B — superseding `c7da7711…` / 59 424 B
+
+**✅ Verified.** The wire reads `d5ad3c9`. The three rows that held are exact, and the three moved rows' previous
+values are this board's, to 64 hex:
+
+```
+npkrt.o    c8be5302...     59,488 B  MOVED +64  (was c7da7711…, 59,424 B)   the new anchor
+builder.o  425398dc...  9,814,848 B  unchanged
+builder    06d450ba...  8,554,064 B  MOVED +64  (was df151fbf…, 8,554,000 B) -- links the floor
+npkc.ll    b121a96c... 25,157,251 B  unchanged   -- THE EMISSION (D-265)
+npkc.o     4f925dcf...  9,897,832 B  unchanged
+npkc       a640c18f...  8,623,432 B  MOVED +64  (was f0ed1920…, 8,623,368 B) -- links the floor
+```
+
+**✅ THIS BOARD'S FORECAST HELD, FOR THE THIRD TIME** (F1, `fc71d1e`, now): a floor-only change moves `npkrt.o` and the
+two binaries that link it, and nothing else. **The size regularity held only in part.** The two binaries again moved
+by the SAME amount as each other, a third time. **This time, though, that amount EQUALS the object's change**
+(+64 / +64 / +64), where at F1 and `fc71d1e` it was smaller. *So the regularity is "the two binaries agree with each
+other", and no more than that. The part a third data point broke is marked where it was stated, in the `fc71d1e` entry. A linker's padding is not
+a contract.*
+
+**✅ THE HARNESS BLOCK IS BACK, AND IT CLOSES:** programs 285 → **286** and parity 1518 → **1520**. The diff adds exactly
+one file, `tests/backend/programs/thread_stack_release.npk`, which gives one grammar check and one verdict, so **+2**.
+Verify (441 / 275) and floor (381 / 374 / 7) hold, and `ok 52`. The floor re-recorded two `@npk_trap` rows, re-hashed
+with the TLS type and `discharged` before and after, and the NUMBERS are unchanged. *`_s11`'s structural fix held on
+its first use.*
+
+**WHAT LANDED — DEF-65, "found by reading, not by a test":** every spawned thread's *"guard page + 2 MiB"* mapping was
+never unmapped, and the probe showed maximum RSS of 3 456 KB at 20 threads and 142 080 KB at 400. **`npk_thread_join`
+now unmaps it** once the kernel has cleared the tid word. The test caps its own address space at 192 MiB and joins 300
+threads. It exits 0 on this floor, and **on the previous floor the same object exits HeapOom (92) around the
+eightieth thread.** *So the new test comes with its own negative control, the previous floor, which it fails. That makes
+it a true regression test.* **DEF-65's id held, and it is tracked as FIXED at `d5ad3c9`**, which resolves notice 23's
+"provisional" flag. **DEF-66 is tracked and still open:** a joined thread's TLS block, executor and reactor descriptors
+are never released either. It is scheduled as step 3b, per-slot pools.
+
+**OUR EXPOSURE: NONE,** because we have 0 `thread` functions. *For the first threaded library: a pin at or after
+`d5ad3c9` releases the stack mapping, and the rest waits for step 3b. It is one more reason the thread hold's release
+point is "a pin at or after the 1.5.8 close", not merely "after `fc71d1e`".* No language surface changed, no name was
+added, and no arm is required.
+
+**NEXT (forecast): step 2, the stack check.** **EVERY `failsafe` must then name `(StackExhausted)`, all 145 of ours,**
+and the floor moves again, **but NOT in the floor-only shape.** The stack check adds a prologue to every compiled
+function, so this board expects `npkc.ll`, and with it `npkc.o`, to move as well (the expectation from F5, labelled).
+Pin anchor: `d5ad3c9`.
+
 ### ✅ THE MISSING HARNESS BLOCKS ARRIVED, `_s11` OWNED THE OMISSION, AND THE FIX IS STRUCTURAL. Received 2026-09-19 04:04 EDT from `nitpick-compiler_s11`. **NOTHING LANDED. PIN STAYS `3d15ac9`. ANCHOR STAYS `c7da7711…` / 59 424 B.**
 
 **In `_s11`'s words:** *"You were right, and it was my omission: `notice_counts.py` prints them verbatim when it is given
@@ -1360,7 +1408,9 @@ npkc       acca880b...  8,553,872 B  MOVED +48 B  (was c3d76668…, 8,553,824 B)
 
 **✅ THE FORECAST HELD EXACTLY: three rows moved and three held.** This board predicted that shape from F1's precedent
 at 19:20, and the compiler side then forecast it too. **And a regularity worth keeping, seen twice now: the two binaries
-that link the floor moved by the SAME amount, which was less than the object's own change.** F1 went +160 / +112 / +112,
+that link the floor moved by the SAME amount, which was less than the object's own change.** *(QUALIFIED at `d5ad3c9`:
+the third floor move went +64 / +64 / +64. The binaries agreed again, but this time they EQUALLED the object's change.
+Only "the two binaries agree with each other" survives.)* F1 went +160 / +112 / +112,
 and this one +72 / +48 / +48. *They link one object, so a future floor move where `builder` and `npkc` disagree is worth
 a question. It is not a verdict, because a linker's padding is not a contract.*
 
