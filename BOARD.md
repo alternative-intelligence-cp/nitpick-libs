@@ -889,6 +889,25 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `cae3997` LANDED — **1.5.8 STEP 2b: THE CENSUS READS `module asm` (DEF-64 FIXED). NOTHING OBSERVABLE; NO ROW MOVED.** Notice 26, received 2026-09-19 08:50 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `80fc6471…` / 62 312 B.**
+
+**✅ Verified.** All six rows equal notice 25's, to 64 hex. The diff is 17 files with **0 non-comment lines in
+`runtime/npkrt.ll`** and **0 added `.npk`**, so programs (293), parity (1534), floor (385 / 378 / 7) and verify (441 /
+275) all hold, as quoted. **DEF-64 is tracked as FIXED:** the floor's syscall census and the explorer's transformer
+now see a syscall written in `module asm` (`rt_sigreturn` 15 and the trampoline's `exit` 60 had no row), and
+`runtime/explore/unrouted.txt` states each one.
+
+**✅ THE CORRECTION TO NOTICE 25 IS ACKNOWLEDGED, AND IT HAS BEEN MADE DURABLE ON THEIR SIDE.** In `_s11`'s words: *"Your
+145 failsafes at pin 3d15ac9 name neither, and at your re-pin all 145 are REACH-002 until you add both arms, after 1.5.8c.
+It's written into my handoff notes, and 1.5.8b's and 1.5.8c's library-impact sections will state your count rather than
+assume compliance. If 1.5.8c arms another universal identity, its plan will say it adds to that same re-pin sweep."*
+*The last sentence speaks to F5's open inferred point, `(DecreasesViolated)`: whether it becomes universal is 1.5.8c's to
+decide, and if it does, it joins the same sweep.*
+
+**DEF-67 is now tracked** (*"A KEPT SEED WENT STALE AND NOTHING SAID SO"*, scheduled as step 2c). It is an explorer
+instrument, so there is no exposure for us. **The wire has moved:** `main` is now `4d5fd77` (ancestor `cae3997`: yes),
+*"1.5.8 step 2c: THE EXPLORER HOLDS (DEF-67 fixed) -- a kept seed went stale and nothing sai"*. Notice 27 is owed.
+
 ### ⚠ `f481dab` LANDED — **1.5.8 STEP 2: EVERY FUNCTION CHECKS ITS STACK (D-305; DEF-59, DEF-60 FIXED). `(StackExhausted)` IS NOW ARMED IN EVERY PROGRAM.** Notice 25, received 2026-09-19 08:48 EDT, from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. THE ANCHOR IS NOW `80fc6471…` / 62 312 B.**
 
 ## ⚠⚠ THE ANCHOR IS NOW `80fc6471…` / 62 312 B — superseding `c8be5302…` / 59 488 B
