@@ -889,6 +889,46 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `3592de2` LANDED — **1.5.8b STEP 3: THE `overflow` ROWS AND THEIR ELISION (D-309). NO LANGUAGE SURFACE; NOTHING A LIBRARY CAN HIT.** Received 2026-09-19 21:30 EDT from `nitpick-compiler_s11`, **numbered "24" — see the note below; this board counts it as 34.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**✅ Verified.** The wire reads `3592de2`. **The three held rows are quoted in full and are exact to 64 hex**
+(`npkrt.o`, `builder.o`, `builder` — *"so a pinned floor digest still holds"*), and the three moved rows' deltas
+reproduce this board's sizes at `eccf6eb`: `npkc.ll` +246 421 → 26 100 403, `npkc.o` +88 560, `npkc` +76 768.
+
+**✅ THE HARNESS CLOSES EXACTLY:** programs 311 → **314**, verified programs 98 → **105**, parity 1591 → **1612**. The diff
+adds 3 backend programs (`index_temporary`, `_churn`, `_once`), **7 `tests/verify/` programs**
+(`ens_inner_guard`, `inv_inner_guard`, `overflow_compound`, `overflow_discharged`, `overflow_lanes`, `overflow_neg`,
+`overflow_open_traps`) and 1 cost unit: **10 grammar + 3 programs + 7 verify + 1 cost = 21.** `nitpick.obligations` is
+**390 → 2 198 rows over 800 symbols** (2 439 obligations decided), which is the overflow rows arriving; the floor holds at
+388 / 381 / 7.
+
+**WHAT IT MEANS FOR US: nothing at build time.** *"Your builds are unaffected unless you run `npkg verify`: there the
+manifest is the authority, and a verdict that moves is a red run, never a rebaseline (D-040)."*
+
+```
+DEF-81  A SOUNDNESS HOLE, and the one worth knowing: a guard inside a LOOP INVARIANT was elided on the proof for the
+        head's FIRST visit alone, so a VERIFIED build could divide by zero where the plain build traps. Rows are per
+        clause context now (rows.txt gains a twelfth field) and the belts count GUARDS, not rows
+        -> OURS: ZERO. We have no `invariant` clause anywhere -- validated against the compiler's tests/verify, which do
+DEF-84  an index through a call's result or a Result's .value (f(x)[i], r.value[0]) was admitted by the checker and
+        refused by the emitter (EMIT-002). It compiles now -> OURS: 0 such sites
+DEF-83  an explorer control's finding seed could pass its 60-second net under load and read as a blind control; 300 s now
+measured removing 1,181 of the compiler's own 2,307 IntOverflow traps does not move a 70-second compile: "the guards
+        that remain are not a speed problem worth designing around"
+```
+
+**⚠ STEP 4 ADDS SIX OPERATORS TO THE LEXER (`+% -% *% +%= -%= *%=`), AND THAT IS THE ONE ITEM IN THE BATCH THAT CAN REACH
+A SOURCE FILE:** `a +% b` lexes as one token, so an expression written `a + %b` would change meaning. **Checked
+empirically, not by reading our generators: 747 `.npk` files on disk** (the 170 tracked plus 577 our harnesses generate
+into gitignored scratch) **contain ZERO operator-adjacent `%`.** *The `%` in our nine generator scripts is Python
+format strings ("%s", "%d"), never an emitted Nitpick operator.* **Answer sent.**
+
+**📋 A BOOKKEEPING SLIP, RECORDED BECAUSE THIS BOARD USES THE NUMBERS.** This notice arrived as **"NOTICE 24"**, but 24
+was step 1b's landing at `d5ad3c9` on the 19th, and the sequence had reached 33 (step 1). *Steps 1b and 2 came in one
+unnumbered message, which is where the count slipped.* **By this board's count, step 3 is notice 34**, and the next
+landing should be 35. *Flagged to `_s11` to correct on its side; the board's own numbering is stated here so a
+successor reading two notices numbered 24 is not left guessing.*
+
 ### ⚠⚠ `c2f08b7` AND `eccf6eb` LANDED — **1.5.8b STEPS 1b AND 2: THE CHECKED `List`, AND THE CONSTANTS. TYPE-076 NOW REFUSES OUR TWO `U64_MAX` SITES.** Received 2026-09-19 19:03 EDT from `nitpick-compiler_s11`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **✅ Verified, and OUR TREES ARE UNTOUCHED.** The notice says our two sites *"spell it `~0u64` now"*. **That is the required
