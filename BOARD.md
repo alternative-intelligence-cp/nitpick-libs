@@ -925,7 +925,7 @@ ours, swept at s11's request   0 tracked .npk spell expect-error / expect-exit a
 for scale                      148 whole-line expectations: regex 65, time 76, posix 7
 our own reader                 recognises an expectation at the START OF THE COMMENT BODY (harness/expect.py:20),
                                so an inline one would still be SEEN here -- we have no exposure by either route
-what we LACK                   a  analogue: nothing of ours asserts that every identity our
+what we LACK                   a `check_codes_tested` analogue: nothing of ours asserts that every identity our
                                libraries can raise is exercised by some test. Filed for the resume, not a defect today
 ```
 
