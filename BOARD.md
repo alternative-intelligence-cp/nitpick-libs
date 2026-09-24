@@ -891,6 +891,118 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐ `5ea6053` LANDED — **1.5.8c STEP 2: THE ONE-HOP SNAPSHOT REFRESH, AND THE SWEEP RECIPE HAS ARRIVED. NO LANGUAGE CHANGE; ONLY THE BUILDER ROWS MOVE. THE FORECAST HELD: THE TRACKED SEED IS THE EMISSION.** Notice 44, received 2026-09-24 ~13:34 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `5ea6053`, whose parent is `f578e6b`. The four held rows are exact to 64
+hex against notice 43's baseline. The two moved rows' previous digests equal it, and the deltas recompute: `builder.o`
++105 592 → 10 811 584, `builder` +92 232 → 9 346 856. The rows equal the compiler seat's `ladder_5ea6053.txt`.
+
+**✅ AND THE FORECAST RECORDED WITH NOTICE 43 HELD, RECOMPUTED HERE FROM THE TRACKED TREE:**
+
+```
+git -C ../nitpick show 5ea6053:bootstrap/seed/stage1.ll | sha256sum      (the size in a SEPARATE command)
+   -> 30b4f135ec49b6a3e772612c426c88e550f0ca0a10d6b44bf5de3d22db39b009, 26 843 449 bytes
+the npkc.ll row (unchanged since f578e6b)                                 IDENTICAL
+bootstrap/seed/STAMP, its sha256 and bytes lines                          IDENTICAL
+```
+
+*The notice's other claims were checked in the tree too:* the seed has 3,339 `define`s and no absolute `/home/` path;
+no `src/` byte changed; the manifests and the harness are unchanged (3402 / 981, 388 / 90; 327 · 120 · 3649 · 1682 ·
+ok 52), and the diff predicts +0. *`npkc.ll` byte-identical across a refresh that moved `builder.o` and `builder` is the
+ladder's own check that the fixpoint meant something.* The committed builder now parses `decreases`/`unbounded` and
+carries DEF-90's fix.
+
+**⭐ THE SWEEP RECIPE, VERBATIM (word for word, checked by script; only re-wrapped to the board's width), owed since notice 41.** It is recorded here in full because, until 1.5.8c step 5
+documents it, this message is its only copy. It is for the libraries' re-pin after the 1.5 close, when TYPE-072's
+`neither` shape refuses every clause-less `while`/`when`:
+
+```
+1. The dump. Build the parser-driven loop dump with the compiler under test from the pinned tree:
+       python3 bootstrap/harness/quickemit.py --keep meta/roadmap/1.5/tools/loop_dump.npk
+   (`.internal/quickemit/p_loop_dump_npk`; since 1.5.8c step 2 the committed snapshot builds it too). One line per
+   `while`/`when` of a file: the clause it carries, the parser's positions of its condition and body, and the names
+   the body WRITES (`=x` assigned, `@x` address-taken or a method receiver, `~x` moved).
+2. The tool, dry:
+       python3 meta/roadmap/1.5/tools/decreases_sweep.py .internal/quickemit/p_loop_dump_npk --report REPORT DIR...
+   It WRITES only the shape it proves monotone -- a counter stepped by a positive literal (`v = v + 1`, `v += 2`)
+   against a bound nothing in the body or its function writes or takes the address of (a literal, a plain name, a
+   name's `.len`/`.count`, a widening cast, arithmetic over those), a counter widened in the comparison
+   `(v => T) < bound`, a top-level `&&` with exactly one such comparison -- and LISTS every other loop by class for
+   a reader. Expect roughly 40% written, 60% listed (the compiler's tree: 392 / 570).
+3. The reading. One line per listed loop in `meta/roadmap/1.5/tools/decreases_read.txt` beside the tool (yours in
+   your tree), the tree's CURRENT line numbers:
+       stable    FILE:LINE            the tool's shape after you read that the bound is stable (a pointer's field
+                                      nothing grows)
+       hoist     FILE:LINE NAME       a call's result captured once before the loop into `T:NAME` (only where the
+                                      body cannot change it)
+       measure   FILE:LINE EXPR       `decreases EXPR`
+       unbounded FILE:LINE REASON     `unbounded`, with `// REASON` on the line above (D-316)
+       manual    FILE:LINE NOTE       you restructured the loop by hand and it carries its clause
+   Then `--write`: the tool applies the record from the end of each file backwards, refuses a directive it cannot
+   apply (the file untouched), reports a stale one. Hand edits move lines: regenerate the report before adding more,
+   and keep the record keyed to the tree you write.
+4. The idioms the compiler's 570 read loops used (each greppable in our record, the worked example): a scan is its
+   bytes left (`len - pos`); a walk along a chain built in order is `count - c`; a parser's loops are the tokens left
+   through ONE pure helper (`raw p_left(p)`); a doubling under a cap is `cap - c`; a numeric core's operand (`n`
+   under `n > 0`; a gcd's `y` on non-negative operands); `while (v > 0)` is `decreases v`; a hash probe carries a
+   probe counter bounded by the table's size; a call's result is HOISTED into a local
+   (`int32:n = raw f(x); while (i < n) decreases n - i`) -- a call in the measure needs the callee
+   `pure never fails` (TYPE-060); a two-level early exit (`i = n` to stop) still takes `n - i`. `unbounded` with its
+   reason for: a loop bounded by a deadline the program states (`DeadlineExceeded`'s kind of end -- the prelude's
+   retry loops, a refill, a write-until-taken), a worklist that grows as it drains (each item once), a fixed point
+   over a finite set, a spin on the clock, an event or dispatch loop that ends with its channel or child. Never a
+   trip budget (D-304's own objection to fuel).
+5. The arm. A program whose reachable code holds a `decreases` -- nearly every one, since the prelude's loops carry
+   measures now -- names `(DecreasesViolated)` in its `failsafe` (REACH-002 otherwise). Our arm sweeper's mechanical
+   case: the arm goes above a lone `(*) { exit V; }` line with the same exit, or before an inline `(*)`; the
+   runners' generated failsafes carry it too.
+6. The proof is the run: a wrong measure traps `DecreasesViolated` the first time the loop's head sees it, so every
+   swept loop must RUN under your tests; the `terminate` rows discharge a counter loop's measure (the entry row
+   `E >= 0`, the preservation row `E' < E`, one per `continue`) and a measure over an opaque value keeps its check.
+   A `decreases` in a `comptime` body is evaluated by the folder (TYPE-069 as a counterexample).
+```
+
+**Where its pieces are:** `bootstrap/harness/quickemit.py`, `meta/roadmap/1.5/tools/loop_dump.npk` and
+`decreases_sweep.py` are all present at `5ea6053`. **The worked example, the compiler's own `decreases_read.txt`, lands
+with step 3**: it is absent at `5ea6053` and present in the staged `863edb1`, with 570 directive lines. *For our 110
+loops the recipe's ratio suggests about 44 tool-written and 66 read. That is an estimate, not a measurement: the dump
+needs a built compiler, and this seat builds nothing.*
+
+**⚠ WHAT IT CHANGES ON THE WORKLIST — ITEM 3 IS NEAR-UNIVERSAL AFTER ALL.** By rule, `(DecreasesViolated)` is owed only by
+a program whose reachable code holds a `decreases`. But the compiler's step 3 sweeps the PRELUDE too, so the prelude's
+own loops carry measures. And since 6b, reach follows every call into the prelude. So *"REACH-002 will ask it of yours
+too once you re-pin past step 3"*: the compiler's own step 3 has every `failsafe` in its tree naming it. **Items 3 and
+4 are updated.** Readiness check (a)'s "is it universal": not by rule, but in effect yes.
+
+**THE STEP-4 ADVANCE, PREVIEWED** (the numbered advance notice follows before step 4 lands):
+
+- **(a)** TYPE-072's `neither` shape becomes a refusal.
+- **(b)** A FUNCTION's `decreases E` becomes LIVE. The recursive groups are Tarjan over the checker's recorded calls; a
+  call through a `dyn` or a function value is no edge. TYPE-074 (a cyclic group states its measures together) and
+  TYPE-075 are armed, with a check at every call inside a group. The `terminate` call rows and the `stack-depth` rows
+  come too, one per cyclic group; they are `open` where the group states no measure.
+- **(c)** TYPE-073 holds a FUNCTION's measure to at most 64 bits; a loop's measure keeps any width.
+- **An obligations directory's `index.txt` gains two columns.** That matters only to a reader that parses it itself,
+  and **none of our tracked files mentions `index.txt`**, so nothing of ours does.
+
+**NEXT:** 45 is step 3, the compiler's own sweep (`863edb1`, in its parity stage): 977 loops, all clausal (392 by the
+tool, 563 by the reading, 22 already), and every `failsafe` in its tree naming `(DecreasesViolated)`. There is no
+language change. Then the step-4 ADVANCE.
+
+**THE BASELINE NOTICE 45 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against `ladder_5ea6053.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B
+npkc.ll    30b4f135ec49b6a3e772612c426c88e550f0ca0a10d6b44bf5de3d22db39b009  26,843,449 B  THE EMISSION (D-265) = the seed
+npkc.o     08e9c2461da23b423f33c5da3eec14722aadf2fe823fc153930d9c13015f51bc  10,811,584 B
+npkc       aa95d96ee0dddecb6ffced34f6a91909636823fa984e9f9e66dc8c61c95858e7   9,346,856 B
+harness    programs 327 · verified 120 (3649 obligations) · floor 388 / 90 · parity 1682 · ok 52
+manifests  nitpick.obligations 3402 rows / 981 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 30b4f135... (the step-2 refresh)
+```
+
 ### ✅ `f578e6b` LANDED — **1.5.8c STEP 1: `decreases` AND `unbounded` ARE KEYWORDS, WITH THE CLAUSE, THE CHECK IN EVERY BUILD AND THE `terminate` ROWS. TYPE-072's `neither` SHAPE STAYS DORMANT. THE FIRST NOTICE FROM `nitpick-compiler_s13`.** Notice 43, received 2026-09-24 ~11:05 EDT. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ AUTHENTICATED BY CONTENT, AS EVERY NEW SENDER'S FIRST NOTICE IS (hazard 10), AND VERIFIED AGAINST THIS BOARD.** The
@@ -2339,9 +2451,10 @@ entry that measured it.*
     (the canary, P-1/probe13a). [Was "1.5.8c's close"; the author chose the whole cycle, 2026-09-19]  2026-09-19
  2  (StackExhausted) + (MachineFault) in ALL 145 failsafe definitions (141 direct + 4             F5, notices 25, 28
     macro:posix_failsafe), each with its OWN exit code; re-run the shared-code check after
- 3  (DecreasesViolated) -- NOT universal (1.5.8c step 1 advance): owed only by roots REACHING a    F5, notice 26,
-    written `decreases`; `unbounded` demands none. So after item 4's sweep: every root reaching a   1.5.8c step 1
-    swept counter loop -- read the REACH-002 lines, as 3b. Confirm at notice 43's landing           advance
+ 3  (DecreasesViolated) -- by rule owed only by roots REACHING a written `decreases` (`unbounded`    F5, notice 26,
+    demands none) -- but IN EFFECT NEAR-UNIVERSAL past 1.5.8c step 3: the PRELUDE's own loops       notices 43, 44
+    carry measures from that sweep, and reach follows calls into the prelude (6b). So plan for
+    all 145 handlers, and read the REACH-002 lines for the exact set, as 3b
  3b PRELUDE-REACHED ARMS (DEF-86, 1.5.8b step 6b): run the compiler over every root declaring       6b advance
     main, read each NITPICK-REACH-002 line, add (X) { exit N; } with the code (*) already gives.     notice
     Static view: 132/141 name OutOfBounds+IntOverflow; BadPath 0; TbbErr UNKNOWN (derive
@@ -2352,7 +2465,9 @@ entry that measured it.*
  4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
     92 in tests, probes and harnesses; each library loop needs a real termination measure
     REFUSED from 1.5.8c step 4. D-316: an event loop says `unbounded` with its reason on the line
-    above; a counter loop `decreases bound - v`; _s12 owes the sweep tool before step 3 lands.
+    above; a counter loop `decreases bound - v`. THE RECIPE is recorded verbatim in notice 44's
+    entry (dump -> the tool, dry -> a reading record -> --write -> the arms -> the run); expect
+    about 40% tool-written (the compiler: 392 / 570), so for our 110 about 44 and 66, an estimate.
     The clause does not parse at 3d15ac9: the sweep lands WITH the re-pin, or the re-pin is
     STAGED through a commit in [1.5.8c step 1, step 4), where the clause is accepted, not demanded
  5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311; REQUIRED
