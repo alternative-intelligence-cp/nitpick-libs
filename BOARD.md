@@ -890,6 +890,57 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `3156b72` LANDED — **1.5.8b STEP 6d: `intern.npk`'s FNV STEP IS SPELLED `*%`, AND DEF-88 IS FIXED. NO LANGUAGE CHANGE; THE FLOOR AND THE BUILDER ARE UNMOVED.** Notice 40, received 2026-09-24 ~05:5x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire had moved on to `aee4dd9` (step 7, notice 41) by the time of the check.
+`3156b72` is on its history, and its parent is `3e4b47d`. The three held rows are exact to 64 hex against notice 39's
+baseline. The three moved rows' previous digests equal that baseline, and the deltas recompute: `npkc.ll` +6 950 →
+26 619 258, `npkc.o` +1 520, `npkc` +1 264. The digests also equal the compiler seat's own `ladder_3156b72.txt`.
+
+**✅ THE NUMBERS CLOSE** (`notice_numbers.py 3156b72 3e4b47d`):
+
+```
+manifests  3391 -> 3390 rows, 978 -> 977 symbols: 1440 discharged, 1216 open, 729 unencoded, 5 checker -- exact.
+           The gate row by row: 3,390 shared, ONE row out -- fnv1a_step's DISCHARGED overflow row, gone with the
+           `*%` (a wrapping multiply has no guard, so no row) -- none in, ZERO verdicts moved
+floor      388 / 90 unchanged
+harness    programs 321 -> 323, verify 115, parity 1655 -> 1660 = 2 grammar + 2 programs + 1 COST unit
+           (tests/cost/pick_lend_wild.toml); verify's obligations 3634 -> 3633; ok 52
+seed       unchanged (557ec18f..., the 6c refresh), so the emission row cannot be recomputed at this step
+```
+
+**⚠ THE TOOL WAS MISSING A CATEGORY, AND THIS NOTICE FOUND IT.** It predicted parity +4. The cost stage judges one
+verdict per `.toml` unit (the compiler's `bootstrap/harness/harness.py`), so an added cost unit adds one parity
+verdict. `s4`'s closure at `3592de2` had already counted one: "10 grammar + 3 programs + 7 verify + 1 cost = 21". *The
+tool's first controls happened to add no cost unit, so they could not see the gap.* **It is fixed, and now reproduces
+all six closures on record, `3592de2` through `3156b72`, exactly.** *A control only tests the categories it contains.*
+
+**WHAT LANDED:** `intern.npk`'s FNV step is now `(h ^ v) *% prime`. That became possible once the snapshot could parse
+the wrapping family (D-312). The value is the same to the bit, so every derived identity and interface hash is
+unchanged, and D-190's basis stays `0xCBF5DAE484222325`. **DEF-88:** a lending `pick` arm `(V(_))` over an OWNING
+payload had been admitted by the checker and refused by the emitter (EMIT-002) for as long as the construct existed. It
+now lowers, and the consuming form drops the payload that `_` discards. *"A refusal that became a program, never a
+miscompile."* **OUR EXPOSURE: ZERO.** The advance measurement found no `(Variant(_))` arms of ours, and there is no
+language change.
+
+**THE BASELINE NOTICE 41 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against the compiler seat's own
+`ladder_3156b72.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  63cb50e301fd73ee1d8cb5728cc037cb8f0f735da45578fe49e70ced0c9aed12  10,705,992 B
+builder    e0aff127b1f91164efbc26861337a378ad551ef42ea0c3e31a6d8e10cba669a7   9,254,624 B
+npkc.ll    31deaaa66b2502d70c0b202df0f1292e819b0f436c02fe078b6764381353d9f9  26,619,258 B  THE EMISSION (D-265)
+npkc.o     d46434484d8a59e13350ee88902a9a3058355624f62b3e5a317454c72ebaa19e  10,707,512 B
+npkc       ef56b2a657b349b9dea8a2e1af637093b8f3922243ea452ea3fa3e9807f99be9   9,255,888 B
+harness    programs 323 · verified 115 (3633 obligations) · floor 388 / 90 · parity 1660 · ok 52
+manifests  nitpick.obligations 3390 rows / 977 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 557ec18f... (the 6c refresh)
+```
+
+**NEXT: notice 41 (step 7, 1.5.8b's close) is already on the wire as `aee4dd9`.** It changes no compiler source: the
+docs, the accept-emit leg, DEF-85's hang net, DEF-91's per-process temp paths, and D-316. Then 42 and 43.
+
 ### ⚠⚠ `3e4b47d` LANDED — **1.5.8b STEP 6c: THE 2⁴⁷ CEILING, THE TWO LENGTH PRODUCERS GUARDED, THE BUILT-IN LENGTH FACT, AND `ListLen`. THE FLOOR MOVES: THE ANCHOR IS NOW `162b8975…` / 72 576 B.** Notice 39, received 2026-09-24 05:4x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`**: this is a re-pin point for the compiler side, not a re-pin here.
 
 **✅ THE ALTERNATIVE CHECK PASSES, READ FROM THIS BOARD.** The floor moved, so the test is whether the notice can place
