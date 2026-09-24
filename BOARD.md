@@ -890,6 +890,101 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠⚠ `3e4b47d` LANDED — **1.5.8b STEP 6c: THE 2⁴⁷ CEILING, THE TWO LENGTH PRODUCERS GUARDED, THE BUILT-IN LENGTH FACT, AND `ListLen`. THE FLOOR MOVES: THE ANCHOR IS NOW `162b8975…` / 72 576 B.** Notice 39, received 2026-09-24 05:4x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`**: this is a re-pin point for the compiler side, not a re-pin here.
+
+**✅ THE ALTERNATIVE CHECK PASSES, READ FROM THIS BOARD.** The floor moved, so the test is whether the notice can place
+itself on this board's ladder. **All six rows moved, and all six quoted PREVIOUS digests equal notice 38's baseline to
+64 hex and to the byte**, with `npkrt.o`'s reading `bb180934…` / 72 560 B. Every delta recomputes. `3e4b47d`'s parent is
+`14ef02f`. Its tree differs from the staged `c2218af`, which was amended before landing. **The wire had already
+moved on to `3156b72` (6d, notice 40) when this was checked**, with `3e4b47d` as its parent.
+
+**✅ AND THE EMISSION ROW IS RECOMPUTED HERE, FROM THE TRACKED TREE:**
+
+```
+git -C ../nitpick show 3e4b47d:bootstrap/seed/stage1.ll | sha256sum      (and the size in a SEPARATE command)
+   -> 557ec18f71cc01a9980dcf7e8e03b7aa2d9712991147961644f12b70a40242cd, 26 612 308 bytes
+bootstrap/seed/STAMP at 3e4b47d, its sha256 and bytes lines               IDENTICAL
+notice 39's npkc.ll row                                                   IDENTICAL
+```
+
+*⚠ The first attempt here printed a different digest, and the fault was the command's, not the compiler's. A `tee
+>(wc -c …)` in the same pipe wrote the byte count INTO the stream `sha256sum` was hashing. Hash and count in separate
+commands.* **A LABEL DIFFERS, THE FACT DOES NOT:** the notice calls this "the bridging snapshot refresh", while the
+tracked STAMP says "the one-hop refresh at 1.5.8b step 6c". A seed that equals the emission is the ONE-HOP shape: at
+`c2f08b7`'s bridging refresh it did not (`4974aba2…` against `39a589df…`). *Where the project defines a term, the
+tracked STAMP is the definition to read.*
+
+**✅ THE NUMBERS CLOSE** (`notice_numbers.py 3e4b47d 14ef02f`):
+
+```
+manifests  3057 -> 3391 rows, 974 -> 978 symbols: 1441 discharged, 1216 open, 729 unencoded, 5 checker -- exact.
+           The gate re-derived row by row: 2,378 shared, 679 out, 1,013 in, ZERO verdicts moved, ZERO discharged
+           counts fell. The new `limit` kind: 82 discharged, 176 open
+floor      388 / 90, 381 + 7, 362 + 26: the same counts, re-recorded; runtime/npkrt.ll, .spec and .obligations moved
+harness    the diff adds five .npk -- alloc_ceiling and len_ceiling (programs), len_fact and list_len (verify),
+           reach_len (rejection): programs 319 -> 321, verify 113 -> 115, parity 1645 -> 1655 (+10 = 5 grammar + 2 +
+           2 + 1), as quoted; verify's obligations 3299 -> 3634; ok 52
+seed       MOVED to 557ec18f... (above); the prelude MOVED (ListLen)
+```
+
+**WHAT LANDED** (D-308 §§6–7, each named in the advance notice):
+
+1. **The ceiling:** a request above 2⁴⁷ bytes is `HeapBadRequest` (−4102) at all three allocator entries, by one
+   unsigned compare each. That is the +16 B.
+2. **The two length producers:** `string_from_bytes(ptr, len)` and `#wild_slice<T>(ptr, count)` trap `OutOfBounds`
+   for a length outside `[0, 2⁴⁷]`, and a narrow count is widened by its sign first (DEF-87). So a caller must name
+   `(OutOfBounds)`; 64 compiler roots gained the arm.
+3. **The length fact:** every `.len`/`.cap` of a string, cstring, slice, buffer or `List` is known to lie in `[0, 2⁴⁷]`.
+4. **`ListLen`:** `pub Rules<int64>:ListLen` sits on the prelude `List`'s `count`/`cap`. **`ListLen` is now a PRELUDE
+   NAME**, so a program declaring its own is RESOLVE-001. And `@l.count` / `$$m l.cap` outside the prelude are now
+   TYPE-063 (they were TYPE-079).
+5. **D-315**, below.
+6. **Housekeeping:** the refresh, DEF-76's three spec sentences, and DEF-89 (the harness's own code-declaration
+   regex).
+
+**OUR EXPOSURE, MEASURED over 171 tracked `.npk`, as `_s12` asked ("measure it in your trees"):**
+
+```
+ListLen as a name of ours          0   control: 4 in the compiler's prelude at 3e4b47d; synthetic cases pass
+@ or $$m of a .count / .cap        0   control: 6 (tests/types/rejection/header_writes.npk and others)
+@ or $$m of ANY field              7   ALL inside their declaring module, none of a limited field: sparseset.npk x4
+                                        (it declares SparseSet); probe08 x2 and probe11 x1, each on its OWN local
+                                        SparseSet / Vec. Zero exposure, and item 13's sealing/hiding keeps all 7 legal
+(OutOfBounds), (LimitViolated)         as the advance notice measured; the exact arms are the REACH-002 lines at the
+                                        re-pin (worklist item 3b)
+```
+
+*⚠ THE 7 CORRECT A SENTENCE ON THIS BOARD.* The `c5ba885` entry said "we take no field's address". Literally we take
+seven. What it meant, and what holds, is that we take no LIMITED field's address and none across a module. Corrected in
+place.
+
+**✅ S-95 IS SETTLED: D-315, THE AUTHOR'S DECISION OF 2026-09-23, LANDED HERE.** *"i am sure your recommendation is
+likely fine as long as it doesn't compromise on safety anywhere."* The "legal only in `wild` context" sentence for
+`#wild_slice` is STRUCK. The `#wild_` spelling is the acknowledgement, and nothing refuses anew (D-315 in
+`meta/specs/DECISIONS.md` at `3e4b47d`; S-95 SETTLED in `OPEN_DECISIONS`). **For us: nothing changes at our 22
+`#wild_slice` sites, and item 2's length guard is a check we did not have before.** *This closes the item `s4` undertook
+to log for the author.*
+
+## ⚠⚠ THE ANCHOR IS NOW `162b8975…` / 72 576 B — superseding `bb180934…` / 72 560 B
+
+**THE BASELINE NOTICE 40 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against the compiler seat's own
+`ladder_3e4b47d.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  63cb50e301fd73ee1d8cb5728cc037cb8f0f735da45578fe49e70ced0c9aed12  10,705,992 B
+builder    e0aff127b1f91164efbc26861337a378ad551ef42ea0c3e31a6d8e10cba669a7   9,254,624 B
+npkc.ll    557ec18f71cc01a9980dcf7e8e03b7aa2d9712991147961644f12b70a40242cd  26,612,308 B  THE EMISSION (D-265) = the seed
+npkc.o     4a2bcf6bbb06d7bf634bd18af15840252eaf1cdf0926fb985d0ad9cbac1696d3  10,705,992 B
+npkc       9e52dcf16702c3d57f2f0766e4fe38d088280ec6c87b7037b899841d45aad38a   9,254,624 B
+harness    programs 321 · verified 115 (3634 obligations) · floor 388 / 90 · parity 1655 · ok 52
+manifests  nitpick.obligations 3391 rows / 978 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 557ec18f... (the 6c refresh)
+```
+
+**NEXT: notice 40 (6d) is already on the wire as `3156b72`**, with "no language change, the floor unmoved". Then 41 is
+step 7 (1.5.8b's close), 42 is 1.5.8c step 0, and 43 is step 1.
+
 ### ✅ `14ef02f` LANDED — **1.5.8b STEP 6b: THE REACH ANALYSIS FOLLOWS EVERY CALL INTO THE PRELUDE (DEF-86). THE FLOOR IS UNMOVED — AND THIS IS THE FIRST NOTICE CHECKED AGAINST A FULL BASELINE ON THIS BOARD.** Notice 38, received 2026-09-24 02:3x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **✅ Verified against THIS BOARD, not a session's context.** The wire reads `14ef02f`, whose parent is `c5ba885`. The
@@ -1370,7 +1465,8 @@ TYPE-063  extended: a limited field HAS NO ADDRESS, asked BEFORE the pointer-bas
           refuses too
 ```
 
-**OUR EXPOSURE AT STEP 6: ZERO** — no floor byte, no `npkrt.o` row, no reserved word, and we take no field's address.
+**OUR EXPOSURE AT STEP 6: ZERO** — no floor byte, no `npkrt.o` row, no reserved word, and we take no field's address. *(Corrected 2026-09-24 by `s5`: literally we take seven field
+addresses, all inside their declaring module and none of a limited field, so the zero holds; see notice 39's entry.)*
 **AND ONE THING IS UNBLOCKED:** *"the mechanism you said you wanted for your own `Vec` — `hidden` items, `sealed`
 count/cap, and `limit<VecLen>` — is now complete and landed."* **⚠ THE CAUTION THAT WOULD OTHERWISE BITE THE
 IMPLEMENTER:** *"it must admit the vacant value, so a rule like `$ >= 0i64` is fine and one like `$ > 0i64` will refuse
