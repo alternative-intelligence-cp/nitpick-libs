@@ -889,6 +889,89 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ ADVANCE NOTICE — 1.5.8b STEP 6b IS NOW **DEF-86: THE REACH ANALYSIS FOLLOWS CALLS INTO THE PRELUDE.** The floor-moving ceiling becomes STEP 6c. From `nitpick-compiler_s12`, 2026-09-23, ahead of notice 38. **NOTHING LANDED** (`c5ba885`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**THE DEFECT (DEF-86).** Since 1.1.6 the reach analysis walked the program's own modules and not the prelude, on the
+premise that a program reaches the prelude's guards only through machinery its own text contains. *"That was false
+from the day the prelude's `list_pop` raised `!!! OutOfBounds` on an empty list"*: measured, exit 44 through the
+wildcard where the armed program answers 55, with the compiler accepting the arm's absence. **Never an uncontrolled
+stop** (PICK-003 demands `(*)` of every `failsafe`) — **a precision hole in a safety instrument.** *It was found while
+planning `List`'s `limit<ListLen>`, whose checks inside `list_push` would have been one more invisible trap site, so the
+fix lands first and alone.*
+
+**THE RULE AFTER 6b.** The walk follows every RESOLVED callee into the prelude and every import, each function once. A
+TRAIT's own method reaches EVERY impl of the trait, an over-approximation in the sound direction (narrowing it is
+E-5). *"What your program does not reach arms nothing."*
+
+**WHAT THE PRELUDE CAN NOW DEMAND OF A `failsafe`:** `(OutOfBounds)` and `(IntOverflow)` for the `List` operations and the
+text layer; `(IntOverflow)`/`(DivByZero)`/`(DivOverflow)` for a float or twisted `ToString`; **`(TbbErr)` for any generic
+bound over `Hash`/`Eq`/`Ord`/`ToString`** (the over-approximation reaches the twisted impls whether or not you instantiate
+at one); and `(BadPath)` for the path functions' `fail`. **Measured in the compiler's tree:** 502 roots, 20 gained an arm
+(13 `IntOverflow`, 7 `OutOfBounds`, 4 `TbbErr`, 1 `ShiftRange`, 2 `BadPath`), each with the code `(*)` already gave, so no
+behaviour moved. **No floor byte, manifest row, snapshot refresh or reserved word:** *the floor moves at 6c, which also
+reserves the prelude name `ListLen` (D-239).*
+
+**OUR EXPOSURE, MEASURED STATICALLY** (the definitive answer needs the compiler, which this seat does not run):
+
+```
+OutOfBounds + IntOverflow named   132 of our 141 handlers -- the text layer's demand is already met there
+the 9 that lack both              nitpick-regex/harness/baseline/baseline.npk; nitpick-time's REACH probes
+                                  probe11c_import_arm_cost, 11d_floor_only, 11e_unused_import_refused,
+                                  11f_declared_unraised and defect/missing_failsafe/case2; posix probe02a/c/d (macro)
+BadPath                           0 -- its only source is the prelude's path_parse, which we never call
+float / twisted ToString          0 -- no float or twisted value anywhere in our code
+generic bounds of OUR OWN         0 over Hash / Eq / Ord / ToString
+TbbErr                            UNKNOWN statically: named by 0 of our handlers, and our derives (Eq, Ord, Hash,
+                                  ToString in nitpick-time) may expand into code that reaches a bound -- settled only
+                                  by the compiler's REACH-002 lines at the re-pin
+```
+
+**⚠ ONE THING FOR THE RESUME TO KNOW:** *nitpick-time's `probe11c`–`f` exist to measure what the reach analysis demands
+across imports. 6b changes exactly that rule, so their recorded findings may be stale after it lands; re-run them at the
+re-pin rather than trusting their notes.* **THE RE-PIN PROCEDURE, as `_s12` gave it and as this board adopts it:** build
+at the pin, run the compiler over every root that declares `main`, read each `NITPICK-REACH-002` line (*"`failsafe` does
+not name `X`, which can reach it"*), and add `(X) { exit N; },` **with the code `(*)` already answers.** *An undemanded arm
+is accepted, so adding arms early is safe, and no behaviour moves.* **Worklist item 2 extended.**
+
+## 📊 THE AUTHOR'S BENCHMARKS — RE-TIMED HERE, AND WHAT THEY MEAN FOR THE LIBRARIES
+
+**During the pause the author had Gemini write four small benchmarks in Nitpick, C and Rust**
+(`/home/randy/Workspace/META/NITPICK/tests/benchmarks/`, outside this workbench). *"The results were honestly much better
+than I ever expected … we have not looked into any optimization at all."* **No results had been saved, so the
+PREBUILT binaries were re-timed here.** They were built 2026-09-20 14:30, which is the compiler at `c5ba885` with every
+guard and the new stack checks. The runner script was not used, because it rebuilds through the compiler's gitignored
+`build/` and writes into META. Each binary got a warm-up and five timed runs of wall clock including process start, on
+a 48-core machine at load about 5. **Every language printed identical results, so each benchmark computes the same
+thing in all of them.**
+
+```
+benchmark                          Nitpick    GCC -O3   Clang -O3   Rust -O3    Nitpick vs Clang
+SplitMix64, 100M (wrapping ops)    106 ms     106 ms    139 ms      139 ms      0.78x -- matches GCC
+FNV-1a over 100 MB (wrapping)      126 ms     131 ms    123 ms      127 ms      1.00x -- parity
+Fibonacci(38), recursive           208 ms     131 ms    102 ms      104 ms      2.03x
+64-byte alloc+free, 1M pairs       234 ms     1.0 ms    0.7 ms      2.3 ms      see below
+   ... against C with real malloc (-fno-builtin): 15.7 ms, so Nitpick is ~15x -- about 230 ns a pair against ~15
+```
+
+**WHAT EACH ONE SAYS:**
+
+- **Wrapping arithmetic compiles tight.** SplitMix64 and FNV-1a are at C's speed. *Both use D-312's `*%`/`+%=` and
+  D-311's `(1u64 << 63u64) | …` constants verbatim, the worked examples that came from this board's measured input four
+  days earlier, and `fnv1a` uses the TEXTBOOK basis, which is right for matching C and Rust. A fresh model used them
+  correctly on first contact.*
+- **Recursion costs about 2×.** Every call pays the split-stack prologue (1.5.8 step 2), and `fib(n-1) + fib(n-2)` is
+  checked arithmetic, where C and Rust release are unchecked. *For us this is a per-CALL cost, not only a recursion
+  cost. It vanishes where `opt -O2` inlines, as it will for small accessors like `vec_get`.*
+- **⚠ SMALL ALLOCATIONS ARE THE REAL COST, ABOUT 15× GLIBC.** *Clang's 0.7 ms is misleading: at `-O3` it deletes a
+  `malloc`/`free` pair whose memory never escapes, which is why the `-fno-builtin` build exists.* The ~230 ns is the
+  floor's safety machinery on the small-block path: the heap mutex, wild-allocation tracking, header validation, and
+  `npk_small_free`'s poison-on-free. **This is a design input for 0.1.0, and it CONFIRMS the plan rather than changing
+  it:** *the regex AST ARENA is exactly the right answer, because per-node `alloc`/`dalloc` in a hot path costs ~230 ns
+  each while an arena pays that a handful of times. `Vec` growth by doubling already amortizes it.*
+
+*Indicative, not rigorous: five runs, wall clock, a lightly loaded machine, and one compiler state. The ratios are
+large enough, and consistent enough across runs, to plan with.*
+
 ### ✅ THE PAUSE ENDS — 2026-09-23. **THE COMPILER SEAT RESUMES UNDER ITS OWN NAME; OUR SUCCESSOR IS BACK; NOTHING LANDED DURING THE PAUSE.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **The author, 2026-09-23:** fresh usage from today, a further reset in hand, and a cloud credit after that. *"I already
@@ -1649,6 +1732,10 @@ entry that measured it.*
  2  (StackExhausted) + (MachineFault) in ALL 145 failsafe definitions (141 direct + 4             F5, notices 25, 28
     macro:posix_failsafe), each with its OWN exit code; re-run the shared-code check after
  3  (DecreasesViolated) -- only if 1.5.8c makes it universal; if so, all 145 as well              F5, notice 26
+ 3b PRELUDE-REACHED ARMS (DEF-86, 1.5.8b step 6b): run the compiler over every root declaring       6b advance
+    main, read each NITPICK-REACH-002 line, add (X) { exit N; } with the code (*) already gives.     notice
+    Static view: 132/141 name OutOfBounds+IntOverflow; BadPath 0; TbbErr UNKNOWN (derive
+    expansions). Re-run nitpick-time's probe11c-f, whose REACH findings 6b may have made stale
  4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
     92 in tests, probes and harnesses; each library loop needs a real termination measure
  5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311; REQUIRED
