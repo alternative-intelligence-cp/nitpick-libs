@@ -891,6 +891,47 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ ADVANCE NOTICE — 1.5.8c STEP 4 (D-304): **THE `neither` SHAPE IS REFUSED, AND A FUNCTION'S `decreases` IS LIVE. THE LOOP RULE'S FULL SURFACE, AHEAD OF ITS LANDING.** From `nitpick-compiler_s13`, received 2026-09-24 ~13:43 EDT; the landing will be notice **46**. **NOTHING LANDED:** the wire is still `5ea6053`, and notice 45 (step 3, the compiler's own sweep) is still to come. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+```
+(a) TYPE-072   the `neither` shape is a REFUSAL: every while/when states `decreases E` or `unbounded`
+               (D-304 (4); (6)'s condition met by step 3's sweep). for/loop/till take neither
+(b) FUNCTIONS  a function's `decreases E` is LIVE, and OPTIONAL. The recursive groups are computed after typing
+               (Tarjan over the recorded calls: direct, method, qualified, awaited, spawned; a call through a
+               `dyn` or a function value is NO edge -- P-7 -- and D-305's stack check is that recursion's stop).
+               TYPE-074: a cyclic group states its measures TOGETHER. TYPE-075: a `decreases` on a function whose
+               group has no cycle is refused, including one that recurses only through a dyn or a function
+               value. TYPE-073: a function's measure is at most 64 bits wide; a loop's keeps any width.
+               THE CHECK: the entry snapshots m0; every call inside the group traps DecreasesViolated unless
+               m0 >= 0 and m1 < m0 -- so a measured recursive function names (DecreasesViolated).
+               THE ROWS: a `terminate` row per recursive call; the measure's guard rows at the ENTRY; and one
+               `stack-depth` row per cyclic group, `discharged` when the group is measured and every call row
+               discharges, `open` otherwise -- REPORTED, never eliding
+(c) SPELLING   func:fact = int32(int32:n) decreases n never fails { ... } -- among the contracts, any order,
+               before `never fails`
+(d) FORMAT     an obligations directory's index.txt has FIVE tab-separated fields (NNNN symbol checks group
+               measured); rows.txt's fifth field admits `d` (runner-derived). Both runners refuse another shape.
+               The manifest's shape is unchanged; `stack-depth` rows appear in it
+DEF-92         the generic-instance interner is a linear scan -- 85% of the frontend's instructions; its own
+               landing follows step 4, with no language change. "Your builds will get faster"
+```
+
+**OUR EXPOSURE, MEASURED:**
+
+```
+(a) clause-less loops         110 while / 0 when -- ALL refuse at a re-pin past step 4 (worklist item 4; the
+                              recipe in notice 44's entry is how they are swept)
+(b) function measures           0 written, so TYPE-074 / TYPE-075 cannot fire; our recursive groups will get
+                              `stack-depth` rows in a verified build, and NOTHING of ours counts obligations:
+                              0 `expect-obligation` lines in our trees (control: 652 in the compiler's tests)
+(d) index.txt / rows.txt        0 files of ours read or describe them; the `.obligations` mentions in our specs
+                              name the manifest, whose shape is unchanged
+```
+
+**For the evaluation at the 1.5 close:** readiness check (a)'s "exact surface as landed" is now fully announced, and
+it confirms on landing (notice 46). *Nothing in (b)–(d) adds a worklist item, because we write no function measure and
+read no obligations file. (a) is item 4, already carrying the recipe.*
+
 ### ⭐ `5ea6053` LANDED — **1.5.8c STEP 2: THE ONE-HOP SNAPSHOT REFRESH, AND THE SWEEP RECIPE HAS ARRIVED. NO LANGUAGE CHANGE; ONLY THE BUILDER ROWS MOVE. THE FORECAST HELD: THE TRACKED SEED IS THE EMISSION.** Notice 44, received 2026-09-24 ~13:34 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire reads `5ea6053`, whose parent is `f578e6b`. The four held rows are exact to 64
