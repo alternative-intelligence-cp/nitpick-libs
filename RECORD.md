@@ -6315,3 +6315,10 @@ without anyone noticing.* **From here on, the newest landing entry carries the s
 compiler's tracked tree, and predicts the harness deltas from the diff. Its controls reproduce the two closures on
 record exactly. *Its one trap was found by falling into it: a manifest's symbol is the row's last field, and `@main` is
 unquoted.*
+
+**Closed with both signals.** `s5` said it had no further questions, and `s4` said "safe to close" after re-verifying
+the pushed board read-only. **`s4` disclosed one write of its own under `s5`'s lock:** a `git fetch` in the shared
+checkout while answering a question. The logs bear out that it was harmless: `origin/main` moved only by pushes, and
+`FETCH_HEAD` was overwritten by the holder's own later fetch. *The rule it leaves is small and exact: a session that
+does not hold the lock reads the remote with `git ls-remote`, which writes nothing, and never with `git fetch`,
+which writes `.git` in the one checkout every seat shares.*
