@@ -890,6 +890,36 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `68b6e05` LANDED — **1.5.8c STEP 0: THE FOUR CODES ARE DECLARED, AND NOTHING EMITS THEM YET. NO LANGUAGE CHANGE; THE FLOOR AND THE BUILDER ARE UNMOVED.** Notice 42, received 2026-09-24 ~08:13 EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `68b6e05`, whose parent is `aee4dd9`. The three held rows are exact to
+64 hex against notice 41's baseline. The three moved rows' previous digests equal it, and the deltas recompute:
+`npkc.ll` +2 160 → 26 621 418, which is the four string functions, then `npkc.o` +768 and `npkc` +568. The rows equal
+the compiler seat's own `ladder_68b6e05.txt`. **The numbers are unchanged, and the diff predicts +0:** manifests 3390 /
+977 and 388 / 90; harness 323 · 115 · 3633 · 1660 · ok 52. The diff is 6 paths, and one `.npk` is modified.
+**Checked in the tree:** NITPICK-TYPE-072, 073, 074 and 075 are all declared under `src/`, and D-316 (S-96) is in
+`meta/specs/DECISIONS.md`. **OUR EXPOSURE: ZERO**, because nothing in the compiler's behaviour changes.
+
+**THE BASELINE NOTICE 43 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against `ladder_68b6e05.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  63cb50e301fd73ee1d8cb5728cc037cb8f0f735da45578fe49e70ced0c9aed12  10,705,992 B
+builder    e0aff127b1f91164efbc26861337a378ad551ef42ea0c3e31a6d8e10cba669a7   9,254,624 B
+npkc.ll    2301c0fae8277c22979b5e658a83550e7dce9f019617ad7116e8edf54bcfb731  26,621,418 B  THE EMISSION (D-265)
+npkc.o     f3744c6dfeb03713c0e9529059a76e01feaf5b80941d023d4fd3ec776f81ceaf  10,708,280 B
+npkc       35af45766348a95357f5300bbd106a5ef6b9aa1e2f089368ed88287e705203a2   9,256,456 B
+harness    programs 323 · verified 115 (3633 obligations) · floor 388 / 90 · parity 1660 · ok 52
+manifests  nitpick.obligations 3390 rows / 977 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 557ec18f... (the 6c refresh)
+```
+
+**NEXT: 43, 1.5.8c step 1, the mechanism (the advance entry's items, with DEF-90).** Its first full harness found two
+of `_s12`'s own slips: a parser unit test's header count, and a manifest not re-recorded for the step's own
+arithmetic. Both are fixed, and the re-recorded manifest reads 3,649 obligations (1,683 discharged, 1,227 open, 734
+unencoded). *That makes a forecast for 43's own numbers,* and the harness is restarting on the amended commit. The
+floor does not move at 43.
+
 ### ✅ `aee4dd9` LANDED — **1.5.8b STEP 7: THE CLOSE. 1.5.8b IS COMPLETE. NO COMPILER SOURCE MOVED, AND EVERY LADDER ROW HELD.** Notice 41, received 2026-09-24 ~06:0x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire reads `aee4dd9`, whose parent is `3156b72`. All six rows held, exact to 64
