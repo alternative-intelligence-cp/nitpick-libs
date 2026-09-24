@@ -979,7 +979,10 @@ command's: `tail` succeeded, so the failed gate gated nothing. *Every earlier ru
 slipped through, but the gate had not been gating since this seat started piping it.* **Fixed forward:** the path is
 now relative, and the gate runs unpiped so that its status decides. **The leaked string remains in the history of one
 pushed commit (`44014aa`).** *Removing it would need a history rewrite and a force push, which this seat will not do
-without the author's word.* The same family as the silent fixture in 6b's notice: **a check whose result nothing
+without the author's word.* **The author's word, 2026-09-23: leave it.** *"it's just a path. nothing more than my first name in
+it and anyone looking would know that already."* *So the history stays as it is. The rule that survives is the
+repository's own: a leaked path is still fixed forward in the tree, because `check_refs.py` forbids absolute paths in
+tracked files. Only the history rewrite is unnecessary.* The same family as the silent fixture in 6b's notice: **a check whose result nothing
 reads is not a check.**
 
 ### ✅ THE PAUSE ENDS — 2026-09-23. **THE COMPILER SEAT RESUMES UNDER ITS OWN NAME; OUR SUCCESSOR IS BACK; NOTHING LANDED DURING THE PAUSE.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
