@@ -936,7 +936,7 @@ is accepted, so adding arms early is safe, and no behaviour moves.* **Worklist i
 ## 📊 THE AUTHOR'S BENCHMARKS — RE-TIMED HERE, AND WHAT THEY MEAN FOR THE LIBRARIES
 
 **During the pause the author had Gemini write four small benchmarks in Nitpick, C and Rust**
-(`/home/randy/Workspace/META/NITPICK/tests/benchmarks/`, outside this workbench). *"The results were honestly much better
+(`../../META/NITPICK/tests/benchmarks/` from this workbench — the author's META workspace, outside it). *"The results were honestly much better
 than I ever expected … we have not looked into any optimization at all."* **No results had been saved, so the
 PREBUILT binaries were re-timed here.** They were built 2026-09-20 14:30, which is the compiler at `c5ba885` with every
 guard and the new stack checks. The runner script was not used, because it rebuilds through the compiler's gitignored
@@ -971,6 +971,16 @@ Fibonacci(38), recursive           208 ms     131 ms    102 ms      104 ms      
 
 *Indicative, not rigorous: five runs, wall clock, a lightly loaded machine, and one compiler state. The ratios are
 large enough, and consistent enough across runs, to plan with.*
+
+**⚠ AND A LAPSE IN THIS SEAT'S OWN GATE, FOUND ON THIS ENTRY.** The first version of this entry wrote the benchmarks'
+ABSOLUTE home-directory path, and the reference gate caught it as a `[leak]`. **The commit went through anyway**,
+because this seat ran the gate as `check_refs.py . | tail -1 && git commit`, and a pipeline's exit status is its LAST
+command's: `tail` succeeded, so the failed gate gated nothing. *Every earlier run printed "All clean", so nothing else
+slipped through, but the gate had not been gating since this seat started piping it.* **Fixed forward:** the path is
+now relative, and the gate runs unpiped so that its status decides. **The leaked string remains in the history of one
+pushed commit (`44014aa`).** *Removing it would need a history rewrite and a force push, which this seat will not do
+without the author's word.* The same family as the silent fixture in 6b's notice: **a check whose result nothing
+reads is not a check.**
 
 ### ✅ THE PAUSE ENDS — 2026-09-23. **THE COMPILER SEAT RESUMES UNDER ITS OWN NAME; OUR SUCCESSOR IS BACK; NOTHING LANDED DURING THE PAUSE.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
