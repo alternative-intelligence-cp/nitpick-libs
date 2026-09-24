@@ -6243,3 +6243,51 @@ the output and nothing branched on it**, which is precisely the fault the outgoi
 session had warned about for the reference gate: *a check whose result nothing acts
 on is a log line.* The lesson generalises past gates to **any** step whose success
 the next step assumes. Corrected here rather than by amending a pushed commit.
+
+### The listener seat hands to `nitpick-libs_s5` — its tenure, 2026-09-06 → 2026-09-24
+
+**Handover.** `nitpick-libs_s4` (`08f94e4a-85df-4b03-ac4a-bfd9e5cd07a1`) releases the writer lock for a briefed
+handoff to `nitpick-libs_s5`, at the author's word on 2026-09-24: the session was nearing compaction, and handing
+over while the full context was still live beat compacting it first. **Nothing was built, no claim is open and no
+agent is live.** `s4` stays live after the brief for `s5`'s questions, under the usual two-signal close (`s5` stops
+asking, `s4` says "safe to close").
+
+**What the seat covered.** It logged every compiler landing from 1.5.4 through **1.5.8b step 6 (`c5ba885`)**, across
+seven compiler-seat rotations (`_s2` → `_s12`). Each landing was authenticated by its ladder, not its sender's name.
+Anchor moves got the ALTERNATIVE check: the rows expected to hold must be exact, and the quoted previous `npkrt.o` must
+be this board's. The exposure of our code was measured at each step, and every zero had a control that could hit.
+
+**The state handed over, as values:**
+
+```
+pin          3d15ac9 -- untouched; re-pin only at the resume
+anchor       npkrt.o bb180934867272ff9912142d5c5f2b5d8e65e8b1a68d43d65fb29da97f971665 / 72,560 B, unchanged since 6340d5c
+wire         c5ba885 (1.5.8b step 6); notices numbered to 37, and this board's count is the authority
+next         notice 38 = step 6b (DEF-86, reach into the prelude; floor unmoved)
+             notice 39 = step 6c (the 2^47 ceiling; THE FLOOR MOVES -> the alternative check)
+the resume   evaluated at the close of the ENTIRE 1.5 cycle (the author, 2026-09-19), as a five-item go/no-go
+             against the re-pin worklist (BOARD.md, the `35ad9e1` entry: items 1-13 and 3b)
+tools        .internal/listener_tools/ -- gitignored, on disk in the shared checkout; its README indexes them
+```
+
+**What it found that mattered.** A model can pass every clause it was given and still miss a property: `trap-route`
+had no error code, so DEF-57 passed it, and the guarantee stack was amended. The D-310 / D-148 conflict became DEF-71
+(one expression, two meanings) and then D-311 (`~0u64`). Our measured input shaped D-312's wrapping operators, and an
+outside model later used the worked examples verbatim. The container decision was to keep our `Vec` and give it
+`hidden`, `sealed` and `limit<ListLen>`, decided on safety and not on elision. Other finds: a duplicate notice number,
+corrected at source; a false sentence in the landed plan `1.5.8b.md:1036`, refuted by its own adjacent correction; the
+harness block dropped at a handoff, restored structurally; and the author's benchmarks, re-timed, which put
+small-allocation cost at about 15× glibc and so confirm the planned regex arena.
+
+**Its own lapses, recorded so the next seat does not repeat them:**
+
+- **The resume signal went stale from notice 22 to F7.** The seat read the landed plan's execution record and not its
+  scope table, and missed that "1.5.8" had become four subcycles. *Read a plan's scope before its record.*
+- **An import-path check could not see sibling imports.** "0 importers" was the tell. *Compare against the declaring
+  module, by declared type.*
+- **The reference gate was piped into `tail`**, so a failed gate gated nothing, and a home-directory path reached a
+  pushed commit. The author declined a history rewrite. *Run the gate unpiped and branch on its status.* This entry's
+  predecessor had already written the rule: "a check whose result nothing acts on is a log line."
+- **An unescaped backtick pair** in an interpolating heredoc swallowed a word from the board.
+- **The seat offered a charitable reading of a false sentence**, and `_s12` refused it. *Where the project defines a
+  term, read by the definition.*

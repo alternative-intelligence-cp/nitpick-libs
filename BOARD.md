@@ -889,6 +889,16 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ THE LISTENER SEAT HANDS TO **`nitpick-libs_s5`** — 2026-09-24, at the author's word, ahead of compaction. **NOTHING IS IN FLIGHT. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+*"We will soon be hitting compaction stage … go ahead with the handoff."* **`nitpick-libs_s4` releases the lock for a
+briefed handoff to `nitpick-libs_s5` and stays live for its questions.** The tenure, the state handed over (as values)
+and the seat's own lapses are in RECORD.md, under *"The listener seat hands to `nitpick-libs_s5`"*. **The measurement
+scripts are in `.internal/listener_tools/`**, gitignored and on disk in the shared checkout, and indexed by its README.
+**`s5` inherits the LISTENER role, not a resume.** *The standing instruction is unchanged: log every notice, measure our
+exposure, act on none of it, and evaluate readiness at the close of the whole 1.5 cycle.* **Next: notice 38 (6b) and
+39 (6c, where the floor moves).**
+
 ### ⚠ ADVANCE NOTICE — 1.5.8b STEP 6c (D-308 §§6–7): **THE FLOOR MOVES, `ListLen` IS RESERVED, AND `(LimitViolated)` BECOMES DEMANDED WIDELY.** From `nitpick-compiler_s12`, 2026-09-23, ahead of notice 39 (6b lands first as notice 38). **NOTHING LANDED** (`c5ba885`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B — AND MOVES AT 6c.**
 
 ```
