@@ -126,9 +126,9 @@ is what disambiguates.
 | Session | Was | Role |
 |---|---|---|
 | `nitpick-libs_s3` | — | the **eighth** orchestrator. **CLOSED 2026-09-06 13:39** — released the lock cleanly, briefed this session over a long but deliberately bounded overlap, and its socket is now gone. Most of the hazard list on the writer line is its work, including the four traps it recorded against itself |
-| `nitpick-libs_s4` | — | **THIS WORKBENCH'S CURRENT WRITER — and a LISTENER, not the ninth orchestrator.** Holds the lock only to log compiler notices and will not dispatch. Found the `:1384` kept-pin count trap by reading the board it inherited, and closed the compiler-address gap by asking rather than inferring |
-| `nitpick-libs_s5` | — | **THE SUCCESSOR. HAND OFF TO THIS ONE, NOT TO A HIGHER NUMBER.** Parked and unbriefed, opened 04:1x in the terminal `s2` was closed from; alive and idle at 2026-09-06 13:39, 9 h old. **Re-confirmed by `nitpick-libs_s6`, which declined the seat and pointed back at this row** rather than accepting a handoff that was not its to take |
-| `nitpick-libs_s6` | — | the spare **behind** the spare, opened 2026-09-06 13:39 as `s3` closed. **Parked: no task, nothing written, nothing queued** — asked and answered about itself, its user's only instruction so far being a `/rename`. Undertook to message before it ever writes. **Re-verified this board's writer line with the documented value-read, the single-clone sweep and `HEAD == origin/main` rather than taking them on report**, and contributed hazard 7's passive demonstration |
+| `nitpick-libs_s4` | — | the **ninth** lock-holder and **the FIRST LISTENER**, 2026-09-06 13:24 → 2026-09-24 00:09. Logged every compiler landing from 1.5.4 to notice 37 (`c5ba885`) across seven compiler-seat rotations, authenticating each by its ladder rather than its sender's name. Found the `:1384` kept-pin count trap by reading the board it inherited, and closed the compiler-address gap by asking rather than inferring. **Released the lock for a briefed handoff to `s5` and stays live for its questions under the two-signal close**; the author then closes it and reuses its terminal for `s7` |
+| `nitpick-libs_s5` | — | **THIS WORKBENCH'S CURRENT WRITER — the LISTENER, from 2026-09-24 00:13** (`5b78e669…`), on a briefed handoff from `s4`. Holds the lock only to log compiler notices and will not dispatch. *Earlier:* parked and unbriefed from 2026-09-06 04:1x, in the terminal `s2` was closed from; `s6` declined the seat and pointed back at this row |
+| `nitpick-libs_s6` | — | **THE SUCCESSOR. HAND OFF TO THIS ONE, NOT TO A HIGHER NUMBER.** Parked and unbriefed (idle in `ListAgents`, 2026-09-24). Opened 2026-09-06 13:39 as `s3` closed. **Parked: no task, nothing written, nothing queued**, asked and answered about itself then. It undertook to message before it ever writes. **Re-verified this board's writer line with the documented value-read, the single-clone sweep and `HEAD == origin/main` rather than taking them on report**, and contributed hazard 7's passive demonstration |
 | `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **GONE** — confirmed by `_s2` 2026-09-06 13:34 and by its absence from `ListAgents`; it ran 1.5.2g step 1 in worktree `g1` this morning. *(This row previously read "stood down from the role, still alive".)* |
 | `nitpick-compiler_s1` | `nitpick-e3` | **THE COMPILER ADDRESS UNTIL 2026-09-06 16:16, NOW HANDING OFF TO `_s2`.** Goes quiet once `_s2` confirms; **a message sent there after that will not be read.** Landed 1.5.3. Made two falsifiable predictions that held, took a wording correction without defensiveness, and sent three unasked-for corrections of which the last refuted this board's own `failsafe` reading |
 | `nitpick-compiler_s2` | — | the compiler address 2026-09-06 → 09-07. **Ran OUT OF QUOTA before it could name a successor**, announcing only *"the resumed session"* — the gap hazard 10 exists for |
@@ -140,7 +140,7 @@ is what disambiguates.
 | `nitpick-compiler_s8` | — | the compiler address 2026-09-17 22:49 → 2026-09-18 19:20. Landed S-77 and 1.5.7 steps 0–3. **Paused on budget and handed to `_s10` at `fd2e071`, skipping the parked `_s9` — see the 19:20 entry.** Reported DEF-57 from step 4's worktree along with the ladder row its fix will move. *(Its second row in this table, "open behind `_s7` … not an address", was true when written. It and `_s7`'s matching stale row were removed 2026-09-18 so that the table keeps one row per session.)* |
 | `nitpick-compiler_s10` | — | the compiler address 2026-09-18 19:20 → 23:28, on Opus 5 after the author's Fable budget ran out. **Landed 1.5.7 steps 4–7 (notices 18–21) and CLOSED 1.5.7, including the DEF-57 fix and the anchor move to `c7da7711…`.** Authenticated by content on its first message, and by the alternative check on the anchor move. **Handed to `_s11` at `e3bf48c`, 2026-09-18 23:28** |
 | `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307). Its first landing, notice 22 (`cd1ed86`), passed the ladder check proper. Notices 22–23 omitted the harness lines. Asked, it supplied both blocks (both green) and owned the omission: the helper had not been given the log. From notice 24 the helper always passes the log, and `land_step.sh` refuses a log with no `ok` line** |
-| `nitpick-compiler_s12` | — | `_s11`'s successor, named by `_s10` at the rotation. **Not an address** |
+| `nitpick-compiler_s12` | — | **THE COMPILER ADDRESS since `_s11` rotated out at its budget (2026-09-20).** Its first landing notice was 37 (`c5ba885`), authenticated by its ladder. It accepted this board's `npkrt.o`-history correction and wrote it into its successor's state file. Paused until 2026-09-23, then resumed under its own name. **Its successors `_s13` and `_s14` are parked** (idle in `ListAgents`, 2026-09-24) and are not addresses |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
@@ -889,6 +889,109 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ THE LISTENER SEAT IS TAKEN BY **`nitpick-libs_s5`** — 2026-09-24 00:13 EDT. **AND THE BASELINE NOTICE 38 MUST QUOTE IS NOW ON THIS BOARD IN FULL: THE LADDER HAD NEVER BEEN RECORDED BEYOND 8 HEX, AND NOTICE 37's HARNESS BLOCK NOT AT ALL.** **NOTHING LANDED** (`c5ba885`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**The take, checked rather than assumed.** The writer line reads `5b78e669-b37d-4e2d-97d2-1e209704664c` on `origin/main`
+by the value-read (`63879b1`), and the marker is 37 bytes. **Eight trees discovered, all `dirty=0`, all
+`ahead/behind=0/0`.** The wire is still `c5ba885`. `nitpick-libs_s4` stays live for questions under the two-signal close.
+**The role is unchanged: log, measure, act on nothing; readiness is evaluated at the close of the whole 1.5 cycle.**
+
+**⚠ WHAT READING IN FOUND: THE LADDER CHECKS RAN AGAINST A SESSION, NOT AGAINST THIS BOARD.**
+
+```
+the ladder    8-hex prefixes only, in every entry. The three EMISSION rows at c5ba885 (npkc.ll, npkc.o, npkc)
+              appear nowhere, not even as prefixes: the c5ba885 entry recorded their deltas
+the harness   the last values recorded were 3207f72's; notice 37's block was never written down
+the extent    this board holds 5 distinct 64-hex strings and NONE is a ladder row of notices 17-37: two are seed
+              snapshots (4974aba2..., b7585e71...), three predate the listener seat (the pinned npkc and npkrt.o,
+              one cross-machine npkc.ll). RECORD.md holds one, the anchor, written at the handoff. The
+              compiler's TRACKED tree at c5ba885 holds none of the six (git grep)
+```
+
+**So "exact to 64 hex" has been checked against the listener's own context** (the previous notice's text, held in
+the seat), **and the full values would have closed with `s4`.** *That is not one entry's lapse: the prefix-only ladder
+predates the listener seat: the first prefix-only row is at `ed78b5c` (2026-09-06 09:50), under the eighth orchestrator.
+It was sound while one session held every notice in context, and it stops being sound at a handoff.* **From this entry on, the newest landing entry carries the six rows in
+full 64 hex**, so the check reads from the tracked document.
+
+**NOTICE 37's LADDER, VERBATIM**, received 2026-09-20 11:31 EDT from `nitpick-compiler_s12`. It is taken from the
+PRIMARY record, the notice as delivered in `s4`'s transcript, not from a transcription of it. The nine lines between
+the fences are 885 B, and hash to `11bb7aff383f88a6bbea57998245f0f800d787856c9f6f2a96df04d04c7cb58f` with each line
+newline-terminated. That is also the hash of `s4`'s copy:
+
+```
+npkrt.o    bb180934867272ff9912142d5c5f2b5d8e65e8b1a68d43d65fb29da97f971665    72560 B  unchanged
+builder.o  7796bb38637de695d270abc9132f213545ef7cd6bec3f7f2cfc6c3796d703979 10318760 B  unchanged
+builder    d0be01fea4095e1b2cf9797de25ac8ceb0c4ab30d1b70d3696e623bb40e219c2  8926544 B  unchanged
+npkc.ll    46f9458054f0f1842369391f05b7ba8e04369592a605e984fc9f886f6c447d0a 26466272 B  MOVED +119600 B
+           (was 48efbebf9117543ecdf29117a1e85e34fde9f5f97c4e9063262ef06c29ea18fa, 26346672 B)
+npkc.o     779b32805e2d6bbc68190196d32dd24b17824fbc52ac901eedd82755fd5d1f9b 10642328 B  MOVED +67760 B
+           (was 39705df49cf9d2e91ad5c9c60894c366e2b027bf638e61c51d5bcdfa9c941288, 10574568 B)
+npkc       ea2d334f90faecb6266bc75996f26758013ffb7f48bbbf904126f9f115efa26f  9212544 B  MOVED +61640 B
+           (was 6003e2ae0a15d1f85793057dc512e3ed4b84a65f5197383119071b1ea0f9580b, 9150904 B)
+```
+
+**NOTICE 37's HARNESS BLOCK, VERBATIM**, supplied by `s4` from the notice as received. *Recording it was owed by the
+`c5ba885` entry, and by `s4`'s own account the omission is its own.*
+
+```
+NUMBERS (generated from the manifests at this tree; the verdict words are the manifests' own):
+  nitpick.obligations       3049 rows over 970 symbols -- 1179 open, 1143 discharged, 722 unencoded, 5 checker
+  runtime/npkrt.obligations  388 rows over  90 symbols --  381 discharged, 7 budget  (362 floor-spec, 26 floor-model)
+
+THE HARNESS'S OWN LINES, VERBATIM (harness_s11s_158b6_run4.log):
+  programs    318 real-backend program(s)
+  verify      113 verified program(s): obligations decided, elided where discharged, run at -O0 and -O2
+  verify      3291 obligation(s): 1379 discharged, 1185 open, 0 budget, 722 unencoded, 5 checker;
+              nitpick.obligations matches; 1379 guard(s) elided; the verified compiler rebuilds itself byte-identically
+  floor       388 floor obligation(s) over 90 specified symbol(s): 381 discharged, 7 budget (residue);
+              runtime/npkrt.obligations matches
+  parity      1641 verdict(s) agree between the two runners; npkc byte-identical; the verified compiler byte-identical
+  ok  52 test(s) passed
+```
+
+**✅ CHECKED HERE, WHERE THE TRACKED TREE CAN CHECK IT:**
+
+```
+manifests  recomputed from c5ba885's tracked files: 3049 rows / 970 symbols, all four verdict counts exact; the floor
+           manifest 388 / 90, 381 + 7, 362 + 26, exact and UNCHANGED since 3207f72
+harness    closes against the diff: 3207f72..c5ba885 adds exactly three .npk -- field_limit_trap (program),
+           field_limits (rejection), field_limit (verify) -> programs +1, verify +1, parity +6 = 3 grammar + 3.
+           PREDICTED HERE from the diff (318 / 113 / 1641) BEFORE s4 supplied the block, and it matched exactly
+sizes      all six chain back to the byte through this board's recorded deltas (step 3's implied +246 421 /
+           +88 560 / +76 768 equal its entry); the three held rows' prefixes match
+digests    all six match the notice's source file (the compiler's .internal/handoff_s11/
+           ladder_c5ba885.txt) AND the compiler seat's own REBUILD of 2026-09-23 22:30 (handoff_s12/
+           baseline_ladder.log, "ok built build/npkc"), which is a genuine reproduction three days later; the
+           three "was" rows match its ladder_3207f72.txt; the deltas recompute exactly (119600 / 67760 / 61640).
+           That .internal/ is UNTRACKED and clearable at any rotation: it corroborates today, it stores nothing
+```
+
+**THE BASELINE NOTICE 38 MUST QUOTE AS ITS PREVIOUS VALUES:**
+
+```
+npkrt.o    bb180934867272ff9912142d5c5f2b5d8e65e8b1a68d43d65fb29da97f971665      72,560 B  the anchor, since 6340d5c
+builder.o  7796bb38637de695d270abc9132f213545ef7cd6bec3f7f2cfc6c3796d703979  10,318,760 B
+builder    d0be01fea4095e1b2cf9797de25ac8ceb0c4ab30d1b70d3696e623bb40e219c2   8,926,544 B
+npkc.ll    46f9458054f0f1842369391f05b7ba8e04369592a605e984fc9f886f6c447d0a  26,466,272 B  THE EMISSION (D-265)
+npkc.o     779b32805e2d6bbc68190196d32dd24b17824fbc52ac901eedd82755fd5d1f9b  10,642,328 B
+npkc       ea2d334f90faecb6266bc75996f26758013ffb7f48bbbf904126f9f115efa26f   9,212,544 B
+harness    programs 318 · verified 113 (3291 obligations) · floor 388 / 90 · parity 1641 · ok 52
+manifests  nitpick.obligations 3049 rows / 970 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 4974aba2... (the c2f08b7 refresh); it equals npkc.ll only at a one-hop refresh
+```
+
+**THE NEXT CLOSURE IS A COMMAND:** `python3 .internal/listener_tools/notice_numbers.py <38's sha> c5ba885` recomputes
+the manifests and the seed from the tracked tree and predicts the harness deltas from the diff. **Controls: it
+reproduces `3592de2..3207f72` (+23) and `3207f72..c5ba885` (+6) exactly.** *One trap it avoids, found here by falling
+into it first: a manifest's symbol is its LAST field, and `@main` is unquoted, so counting `@"…"` reads 968 where the
+notice rightly says 970.*
+
+**⚠ FOR NOTICE 38, TWO BELTS ON THE ADDRESS.** `s4` introduced this seat to `nitpick-compiler_s12`: delivered, not yet
+acknowledged, because `_s12` has been busy since. `s4` will forward verbatim any notice that still reaches it, and this
+seat will greet `_s12` when it next shows idle. **S-95 is owed TO us, not by us:** the author answered `_s12` directly,
+and the outcome arrives with 38, 39 or the step records, to be logged then.
+
 ### ✅ THE LISTENER SEAT HANDS TO **`nitpick-libs_s5`** — 2026-09-24, at the author's word, ahead of compaction. **NOTHING IS IN FLIGHT. PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 *"We will soon be hitting compaction stage … go ahead with the handoff."* **`nitpick-libs_s4` releases the lock for a
@@ -1135,6 +1238,12 @@ land then; 6b moves the floor. **Nothing is owed from us before that.**
 previous digests IN FULL again**, each equal to this board's, with the deltas agreeing: `npkc.ll` +119 600 → 26 466 272,
 `npkc.o` +67 760, `npkc` +61 640. *The full "was" digests are back after two notices of deltas alone; worth noting
 because a delta fixes only the previous SIZE.*
+
+**⚠ ADDED 2026-09-24 BY `nitpick-libs_s5`:** *"each equal to this board's"* above was checked against the previous
+notice held in the seat's context, because this board held those digests to 8 hex at most, and the three emission rows
+not at all. **This entry also recorded neither the ladder in full nor notice 37's harness block.** Both are now on the
+board verbatim, with their checks, in the entry *"THE LISTENER SEAT IS TAKEN BY `nitpick-libs_s5`"*, which is the
+baseline notice 38 must quote. *By `s4`'s own account, the omission is its own.*
 
 **✅ AND THE CORRECTION WAS ACCEPTED AND RE-VERIFIED AT SOURCE.** `_s12`: *"That is wrong and your board is right. I
 verified it in git independently: `runtime/npkrt.ll` last changed at `6340d5c` (1.5.8 step 3c), and **fourteen commits

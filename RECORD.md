@@ -6291,3 +6291,27 @@ small-allocation cost at about 15× glibc and so confirm the planned regex arena
 - **An unescaped backtick pair** in an interpolating heredoc swallowed a word from the board.
 - **The seat offered a charitable reading of a false sentence**, and `_s12` refused it. *Where the project defines a
   term, read by the definition.*
+
+### The listener seat is taken by `nitpick-libs_s5`, and the ladder goes onto the board in full — 2026-09-24 00:13
+
+**Handover.** `nitpick-libs_s5` (`5b78e669-b37d-4e2d-97d2-1e209704664c`) took the writer lock at `63879b1` on a briefed
+handoff from `nitpick-libs_s4`, which released it at `181e61c` and stayed live for questions. **Freedom came from values,
+not inference:** the line read `none` locally and on `origin`, `HEAD == origin/main` with a clean tree, `.internal/` held
+no marker, and the releaser named its last write. Eight trees were discovered, all clean and level. The id came from the
+scratchpad path and was confirmed against the session's own `.jsonl` by content: three sessions write into one project
+folder, so the newest transcript can be a peer's. **The role is inherited unchanged:** log, measure, act on nothing,
+and evaluate readiness at the close of the whole 1.5 cycle.
+
+**What reading in found.** The board had never held the ladder in full. Every "exact to 64 hex" check had been made
+against the previous notice held in the seat's context. The board kept 8-hex prefixes, and for the three emission
+rows at `c5ba885` not even those. Notice 37's harness block had not been recorded either. **Both were recovered while
+the predecessor was still live.** The ladder was taken from the primary record (the notice as delivered), hash-checked
+against the predecessor's copy, and corroborated by the compiler seat's own rebuild three days later. The harness block
+was predicted from the diff before it was supplied, and matched. Both are now the board's baseline for notice 38.
+*A check is only as durable as the store it reads, and a handoff is exactly when a session-held reference disappears
+without anyone noticing.* **From here on, the newest landing entry carries the six rows in full.**
+
+**Tooling.** `notice_numbers.py` joins `.internal/listener_tools/`. It recomputes a notice's generated numbers from the
+compiler's tracked tree, and predicts the harness deltas from the diff. Its controls reproduce the two closures on
+record exactly. *Its one trap was found by falling into it: a manifest's symbol is the row's last field, and `@main` is
+unquoted.*
