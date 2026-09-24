@@ -890,6 +890,71 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `aee4dd9` LANDED — **1.5.8b STEP 7: THE CLOSE. 1.5.8b IS COMPLETE. NO COMPILER SOURCE MOVED, AND EVERY LADDER ROW HELD.** Notice 41, received 2026-09-24 ~06:0x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `aee4dd9`, whose parent is `3156b72`. All six rows held, exact to 64
+hex and to the byte against notice 40's baseline, and the compiler seat's `ladder_aee4dd9.txt` is row-for-row identical
+to `ladder_3156b72.txt`. The numbers are unchanged: the manifests at 3390 / 977 and 388 / 90, and the harness at 323 ·
+115 · 3633 · 1660 · ok 52. The diff predicts +0 everywhere. **"No compiler source moved" was checked:** the 16 changed
+paths touch nothing under `src/`, `runtime/`, `bootstrap/seed/` or `lib/`. They are the docs, `meta/`, the harness,
+`npkg`'s suite leg and five tests.
+
+**WHAT LANDED:**
+
+- **The docs and the plan's records.**
+- **`meta/NOTICES.md`, the committed notice log.** Its rows for 38–40 are there; the commit cells and row 41 come with
+  its next touch. *This board's count remains the authority, as the file itself says.*
+- **The ACCEPT-EMIT leg:** every file the accept suite accepts is now also emitted, so DEF-88's class fails a unit.
+- **D-316** (S-96, the author): an event loop says `unbounded` with its reason on the line above, never a trip budget.
+- **DEF-85:** a test's join deadline is a hang net, never a verdict.
+- **DEF-91:** four program tests named `/tmp/npk_<name>` literally and raced when two harnesses ran at once (11 and 20
+  of 60 in pairs, never alone). The pid is in the name now, and the file is unlinked at the end. *"A library test
+  that names a temp path should do the same."*
+
+**OUR EXPOSURE: ZERO, AND DEF-91's ADVICE HAS NOTHING TO APPLY TO.** Measured on the raw sources, strings included:
+**no string literal in our 171 tracked `.npk` names `/tmp`.** Control: the compiler's tests carry 8 such literals at
+`3156b72` and 7 at `aee4dd9`, since the fixed ones keep the prefix and add the pid.
+
+**⭐ THE 1.5.8c PLAN IS ON MAIN, AND ITS SCOPE WAS READ BEFORE ITS RECORD** (`meta/roadmap/1.5/1.5.8c.md`, 281 lines).
+What it adds to the advance notice, for the evaluation at the 1.5 close:
+
+```
+step 2  a one-hop refresh (the builder parses the clauses); the sweep recipe comes with its notice
+step 3  THE SWEEP of every compiler loop: decreases_sweep.py writes ~550 and a reader ~300. It finds loops with the
+        PARSER (tools/parse_check.npk's AST dump), not a regex -- so running it on OUR trees needs a compiler that
+        parses the clause, which is the ordering worklist item 4 already records
+step 4  TYPE-072 live (neither = refused); TYPE-074: a recursive group where SOME but not every member states a
+        measure; a function measure stays OPTIONAL (D-304 SS5 -- the stack check is the controlled stop); the
+        stack-depth rows, reported and open, eliding nothing
+step 5  the measurement, the docs and the close; 1.5.8d planned execution-grade
+REACH   arms (DecreasesViolated) where a decreases is written, a loop's or a function's, and nothing for
+        `unbounded` (SS2.2), confirming worklist item 3 as updated
+```
+
+**For us:** no function of ours states a measure, so TYPE-074 cannot fire unless we add some, and a recursive function
+needs none. *Readiness check (a)'s second half, whether `(DecreasesViolated)` is universal, is now answered by the
+landed plan as well as by the advance notice: no.* Its first half, the exact surface as landed, closes with step 4.
+
+**THE BASELINE NOTICE 42 MUST QUOTE AS ITS PREVIOUS VALUES** *(every row held at `aee4dd9`, so these are notice 40's
+rows, checked against `ladder_aee4dd9.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  63cb50e301fd73ee1d8cb5728cc037cb8f0f735da45578fe49e70ced0c9aed12  10,705,992 B
+builder    e0aff127b1f91164efbc26861337a378ad551ef42ea0c3e31a6d8e10cba669a7   9,254,624 B
+npkc.ll    31deaaa66b2502d70c0b202df0f1292e819b0f436c02fe078b6764381353d9f9  26,619,258 B  THE EMISSION (D-265)
+npkc.o     d46434484d8a59e13350ee88902a9a3058355624f62b3e5a317454c72ebaa19e  10,707,512 B
+npkc       ef56b2a657b349b9dea8a2e1af637093b8f3922243ea452ea3fa3e9807f99be9   9,255,888 B
+harness    programs 323 · verified 115 (3633 obligations) · floor 388 / 90 · parity 1660 · ok 52
+manifests  nitpick.obligations 3390 rows / 977 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 557ec18f... (the 6c refresh)
+```
+
+**NEXT:** 42 is 1.5.8c step 0 (the four codes declared; nothing in the compiler's behaviour changes). 43 is step 1, the
+mechanism, with DEF-90 fixed alongside it: an awaited method call on a nested generic instance was never emitted, so
+`std_out()` plus one `write` was a module `llc` refused, on every compiler since 1.1.12c. Both harnesses are running,
+and the floor moves at neither. Then step 2, the refresh, with the sweep recipe.
+
 ### ✅ `3156b72` LANDED — **1.5.8b STEP 6d: `intern.npk`'s FNV STEP IS SPELLED `*%`, AND DEF-88 IS FIXED. NO LANGUAGE CHANGE; THE FLOOR AND THE BUILDER ARE UNMOVED.** Notice 40, received 2026-09-24 ~05:5x EDT, from `nitpick-compiler_s12`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire had moved on to `aee4dd9` (step 7, notice 41) by the time of the check.
