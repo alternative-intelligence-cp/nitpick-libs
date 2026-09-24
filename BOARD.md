@@ -889,6 +889,52 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠ ADVANCE NOTICE — 1.5.8b STEP 6c (D-308 §§6–7): **THE FLOOR MOVES, `ListLen` IS RESERVED, AND `(LimitViolated)` BECOMES DEMANDED WIDELY.** From `nitpick-compiler_s12`, 2026-09-23, ahead of notice 39 (6b lands first as notice 38). **NOTHING LANDED** (`c5ba885`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B — AND MOVES AT 6c.**
+
+```
+1 THE CEILING   a request above 2^47 bytes is HeapBadRequest at EVERY allocator entry -- one unsigned compare in each
+                of npk_alloc_impl, npk_fs_alloc and npk_aalloc (the over-aligned path skips the core, "a single check
+                would have left that hole"); it reads a negative size as huge, so it IS the sign check; exactly 2^47
+                stays legal. runtime/npkrt.ll AND npkrt.spec move -> npkrt.o moves, "for the first time since 6340d5c"
+2 ListLen       RESERVED (D-239): pub Rules<int64>:ListLen = { $ >= 0i64, $ <= 140737488355328i64 }; List's count/cap
+                carry sealed limit<ListLen>. It is PUB, so our Vec may use limit<ListLen> directly instead of a VecLen
+3 THE ARMS      (LimitViolated) in every program that reaches a List WRITE -- list_push/pop/init, the TEXT LAYER, the
+                reader/writer loops (63 of the compiler's 505 roots); (OutOfBounds) at every call of string_from_bytes
+                or #wild_slice, now guarded 0 <= len <= 2^47 (1 of the compiler's roots)
+4 THE FACTS     .len/.cap of string, cstring, slice, buffer are known in [0, 2^47] at EVERY read, through a pointer too;
+                a List's count/cap carry the same bound. So s.len + 1, b.cap + 1, l.count + 1, l.cap * 2 discharge
+                their overflow rows, and string_from_bytes(p, s.len) and #wild_slice<T>(u, xs.len) discharge their bounds
+5 DEFECTS       DEF-76 FIXED (three floor spec sentences named HeapBadRequest where the IR traps Unreachable; text only);
+                DEF-87 FIXED (#wild_slice with a narrow VARIABLE count failed at llc on every compiler until now);
+                DEF-88 OPEN, 6d (a lending pick arm (Variant(_)) over an OWNING payload is admitted, then EMIT-002)
+6 S-95          for the author: BUILTIN_REFERENCE says #wild_slice is "legal only in wild context", which nothing has
+                ever enforced or defined. The recommendation is to strike the sentence. Until settled, nothing changes
+```
+
+**OUR EXPOSURE, MEASURED:**
+
+```
+ListLen as a name of ours        0   (pattern validated on a synthetic) -- confirms _s12's own count
+DEF-87 (narrow variable count)   0   all 22 #wild_slice counts are int64 fields or suffixed
+DEF-88 (Variant(_) arms)         0
+(OutOfBounds) at the producers   our 35 calls; 132 of 141 handlers already name OutOfBounds
+(LimitViolated)                  THE ONE THAT WILL REACH US. Named by 2 of 141 handlers today. 143 roots; 30 call the
+                                 text layer DIRECTLY, and more reach it through our own modules (bytes.npk calls
+                                 string_concat and string_from_bytes). Likely dozens of arms, and exactly which ones
+                                 the compiler's REACH-002 lines will say at the re-pin (worklist item 3b)
+```
+
+**⭐ AND 6c's FACTS MAKE WORKLIST ITEM 13 PAY TWICE.** *Of our 35 producer calls, 33 pass a length that is one of OUR
+fields (`Bytes.len`, `Bytes.body.cap`, `Vec.count`), and an opaque field read gets no fact.* **If item 13 puts
+`sealed limit<ListLen>` on those fields**, which is `pub` and is the bound we mean, then each read carries
+`[0, 2⁴⁷]`. **The 33 calls then discharge their `bounds` rows, and `vec_push`'s `v.cap * 2i64` discharges its
+`overflow` row, in the verified build.** *So the change that closes DEF-73's shape in our containers is also the one
+that makes their checks provable. Item 13 updated to name `ListLen`, not a `VecLen` of our own.*
+
+**S-95 IS THE AUTHOR'S, and our side of it is simple:** striking the sentence changes nothing for our 22
+`#wild_slice` sites. *Enforcing it would first need "wild context" DEFINED, and then a measurement of our 22 sites
+against the definition. That is a reason to strike, or at least to define before enforcing.*
+
 ### ⚠ ADVANCE NOTICE — 1.5.8b STEP 6b IS NOW **DEF-86: THE REACH ANALYSIS FOLLOWS CALLS INTO THE PRELUDE.** The floor-moving ceiling becomes STEP 6c. From `nitpick-compiler_s12`, 2026-09-23, ahead of notice 38. **NOTHING LANDED** (`c5ba885`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **THE DEFECT (DEF-86).** Since 1.1.6 the reach analysis walked the program's own modules and not the prelude, on the
@@ -1748,6 +1794,9 @@ entry that measured it.*
  3b PRELUDE-REACHED ARMS (DEF-86, 1.5.8b step 6b): run the compiler over every root declaring       6b advance
     main, read each NITPICK-REACH-002 line, add (X) { exit N; } with the code (*) already gives.     notice
     Static view: 132/141 name OutOfBounds+IntOverflow; BadPath 0; TbbErr UNKNOWN (derive
+    expansions). 6c adds (LimitViolated) for every root reaching a List write, the TEXT LAYER
+    included: 2/141 name it today, 30 of 143 roots call text functions directly -- likely dozens;
+    and (OutOfBounds) at our 35 string_from_bytes / #wild_slice calls. As for 6b: (derive
     expansions). Re-run nitpick-time's probe11c-f, whose REACH findings 6b may have made stale
  4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
     92 in tests, probes and harnesses; each library loop needs a real termination measure
@@ -1769,7 +1818,9 @@ entry that measured it.*
       items HIDDEN, count/cap SEALED  -- Vec<T> in BOTH regex and time (src/core/vec.npk);
         Bytes (both): buf/len SEALED; SparseSet (regex): SEALED -- buf and sparse are READ across
         modules, so seal, don't hide. 0 cross-module writes or items uses (type-resolved)
-      limit<VecLen> on count       -- LANDED at c5ba885 and available the day we re-pin. TYPE-077:
+      limit<ListLen> on count/cap  -- use the PRELUDE's pub ListLen (6c), not a VecLen of our own; and on
+        Bytes.len too: then 33 of our 35 producer calls discharge their bounds rows, and vec_push's
+        v.cap * 2i64 its overflow row. The mechanism LANDED at c5ba885. TYPE-077:
         the rule must admit the VACANT value, so `$ >= 0i64` and NOT `$ > 0i64` (a vacant Vec has
         count 0). A limited field has no address (TYPE-063): `@v.count` AND `$$m v.count` refuse,
         even through a pointer. We take none today.
