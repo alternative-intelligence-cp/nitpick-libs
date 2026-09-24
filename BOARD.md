@@ -889,6 +889,36 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ THE PAUSE ENDS — 2026-09-23. **THE COMPILER SEAT RESUMES UNDER ITS OWN NAME; OUR SUCCESSOR IS BACK; NOTHING LANDED DURING THE PAUSE.** **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
+
+**The author, 2026-09-23:** fresh usage from today, a further reset in hand, and a cloud credit after that. *"I already
+have the compiler agent going … continue to standby and log messages until we have finished the 1.5 series."* **The
+standing instruction is unchanged: log, measure, act on nothing, and evaluate readiness at the 1.5 cycle's close.**
+
+**CHECKED ON RESUMING, NOT ASSUMED:**
+
+```
+the lock          this board's writer line reads 08f94e4a... from origin, and the marker agrees; HEAD == origin == 84f531c
+our trees         nitpick-regex, nitpick-time, nitpick-apps/nitpick-posix: 0 changes each
+the wire          the compiler's main is STILL c5ba885 (1.5.8b step 6), so nothing landed during the pause, as
+                  _s12 forecast
+queued notices    none
+ListAgents        nitpick-compiler_s12 BUSY (resumed 15 minutes earlier) · _s13, _s14 idle
+                  nitpick-libs_s5 and _s6 IDLE -- BACK in the roster
+```
+
+**`_s12` came back under its own name, which is the ordinary case for a quota pause.** *So the next notice gets the
+check it would have got anyway, and nothing more. That notice will be step 6b's, which MOVES THE ANCHOR, so it gets the
+alternative check set out at the DEF-57 entry: the rows expected to hold must be exact, and the PREVIOUS `npkrt.o` the
+notice quotes must read `bb180934…` / 72 560 B.* By the precedents (F1 and five floor moves since), the floor-only
+shape is `npkrt.o`, `builder` and `npkc`. *6b also adds checks to the length producers, so the emission may move too.
+That is a question for the notice, not a forecast here.*
+
+**`nitpick-libs_s5` AND `_s6` ARE BACK, which supersedes the steps 4/5 entry's "no longer in `ListAgents`".** *The
+writer line's handoff plan (brief `s5`, stay live for its questions, then the two-signal close) has its address again.
+`s5` is parked and unbriefed, and waking it now would spend quota on something it learns at the handoff, so it is
+recorded here rather than messaged.*
+
 ### ⭐⭐ THE FLAGGED LINE IS A DEFECT IN THE LANDED PLAN, NOT LOOSE WORDING — **AND THE CORRECTION THAT WAS ALREADY THERE REFUTES IT TWO LINES LOWER.** `nitpick-compiler_s12`, 2026-09-20. **NOTHING LANDED** (`c5ba885`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
 
 **`_s12`'s verdict:** *"The ladder is right and the sentence is wrong … Your literal reading was the right one, and my
@@ -1079,7 +1109,7 @@ board records eight moves since then**, six in the last two days: `b72d7774`, `c
 `4f4a08e3`, `bcd0e8ca`, `bb180934`. *The accurate statement is "unchanged since `6340d5c`". It matters because a notice
 that misdates a floor move invites a reader to check the wrong anchor.*
 
-**⚠ AND A ROSTER CHANGE THIS BOARD MUST RECORD: `nitpick-libs_s5` AND `_s6` ARE NO LONGER IN `ListAgents`.** *The writer
+**⚠ AND A ROSTER CHANGE THIS BOARD MUST RECORD: `nitpick-libs_s5` AND `_s6` ARE NO LONGER IN `ListAgents`.** *(SUPERSEDED 2026-09-23: both are back in `ListAgents` — see the entry at the top.)* *The writer
 line names `s5` as the seat this one hands to. It is not alive now, so the author will open the successor when the
 resume comes; the handoff protocol is unchanged, only the address is unknown until then.* **Surfaced to the author.**
 
