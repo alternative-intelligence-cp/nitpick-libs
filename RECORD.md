@@ -6436,3 +6436,25 @@ canary. Two helpers, one name, two denominators. The *"`probe13a` will no longer
 text and not `s5`'s. `s5` also relayed three things the author said that the board did not hold: quota priority
 (`claude-skills-devTeam` pauses first), rotation practice (keep a clean point close), and an undecided cloud agent,
 which would be a second checkout under W-16. They are on the board now, without personal figures.
+
+### Width 2 and a planner for `nitpick-time` 0.1.1 — the author's answers, and the first dispatch since the pause — 2026-09-25 08:10
+
+**question answered — width.** *"Lets go with a width of two for now."* Streams 1 and 2 (W-5): `nitpick-regex` and
+`nitpick-time`; `nitpick-posix` is stream 3's and waits. **Planners do not count against width, but at most one runs
+at a time (P-12)**, so the streams start staggered: stream 2's planner now, stream 1's when it reports.
+
+**question answered — how `nitpick-time` 0.1.1 is planned** (raised 2026-09-06, `RECORD.md` at the 0.1.0 advance):
+*"i'm fine with having the planning agent write a plan first. I like good plans :-)"* A planner dispatch.
+
+**decision (orchestrator, cross-stream):** `(StackExhausted)` → 106 and `(MachineFault)` → 107 in every library, the
+canary's codes, because every code 80–99 is in use somewhere and two planners must not choose differently.
+
+**dispatch `s2-ntime-0.1.1-0810`** — `npk:planner`, `nitpick-time` 0.1.1, at `c3bdae2`. It plans **the adoption to the new pin**
+(worklist items 5, 2, 3, 3b, 6, 4 and 13 as they apply here, P-1's now-void safety argument, and the CI pin bump,
+ordered so CI never runs adopted code at `3d15ac9`) as the subcycle before 0.1.1, **and `0.1.1.md`**. At this pin the
+library does not compile until the adoption lands: every failsafe lacks two arms and every loop a clause.
+
+**stream idle — s1**, by P-12 and not by choice: its next item is also a planner (regex's adoption), and the one
+planner slot is stream 2's. It starts when `s2-ntime-0.1.1-0810` reports.
+
+**roster:** `nitpick-libs_s5` closed by the author on both signals; `nitpick-libs_s8` opened in its terminal as `s7`'s spare.
