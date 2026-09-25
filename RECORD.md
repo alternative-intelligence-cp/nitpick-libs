@@ -6756,3 +6756,11 @@ them as "Clam timed out"**, because `clam.py` maps a child's SIGTERM or SIGKILL 
 visible only because this seat read the machine's journal. The runner now classifies a kill as *"KILLED BY THE MACHINE: no
 result"*, and runs each heavy task alone behind a 100 GiB-available guard — chosen over a `MemoryMax` cap, which would turn a
 legitimate 83 GiB run into a kill.
+
+**playbook, 13:30 — the second pass lands the findings recorded since the first** (`nitpick-time` 0.1.1, `nitpick-regex` 0.0.4c, and the
+compiler seat's `clam.py`): §2 — a sealed field's address is a write whatever the callee does, `hidden` binds the library's other
+modules too, DEF-96 confirmed and moving `main` free at old pins; §6 — a literal-divisor rule's literal must stand alone, a helper's
+docstring is a claim to measure; §9 — **a test's value and a specification's value are two lists nobody diffs**, derived relations all
+hold around one wrong root, a second method must differ across the whole domain, **a control must be one the WRONG implementation
+fails**, a positive test equal to the vacant value tests nothing, `Result.value` after `is_error`, and **a wrapper can launder a
+kill into a verdict**.

@@ -108,7 +108,11 @@ constructed invalid"* can now be made true. **But a sealed field is not a hidden
 one:** it still admits a write THROUGH its pointer (`b.buf.ptr[0] = x`) and a
 whole-struct copy (`Vec<int64>:w = v`) — **and that copy is a second handle on the block: after `vec_free(@v)`,
 `vec_at(@w, 0)` reads the poison, exit 170, a use-after-free measured in `nitpick-time`**; only taking the field's address outside
-its module is refused (`TYPE-079`) — the board's question 9. A limited field is
+its module is refused (`TYPE-079`) — the board's question 9. **A sealed field's ADDRESS is a write whatever the callee does:**
+`@s.dense` handed to a callee that only reads through it is still `TYPE-079`, so a container holding containers
+exposes them by value (`vec_get(s.sparse, k)`) or through its own functions, never `@s.inner`. **And `hidden` binds the
+library's OTHER modules too** — `sparseset.npk` reading `Vec.items` is `TYPE-080` — because its line is the declaring
+module, not the library. A limited field is
 written **`sealed limit<R> int64:f`**, qualifier first; the compiler's
 `TYPE_REFERENCE` §9.1.2 example (`limit<R> sealed`) is `NITPICK-PARSE-001`, and is
 corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
@@ -250,8 +254,12 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
 `c3bdae2` `npkc` also accepts `func:main = int32(int32:argc, cstring[]:argv)`,
 emits a two-parameter `@main`, and hands the extra parameter an unrelated value
 (`argc` negative with no arguments; at `3d15ac9` `argv` was wrong as well).
-Reported to the compiler as a defect on 2026-09-25. Until it is refused, the
-two-parameter form compiles and lies.
+Reported on 2026-09-25 and confirmed as **DEF-96**: from 1.6.0 step 3c,
+`NITPICK-TYPE-083` refuses every `main` that is not exactly `int32(cstring[]:argv)` or
+`int32(cstring[]:_~argv)` — no parameter, another type and another return included.
+**Moving costs nothing at old pins:** `950bb1d` already accepts the one-parameter form,
+so an old-pin control stays byte-identical. The ecosystem's exposure was seven files and
+is zero.
 
 ### A file's name is part of the language
 
@@ -1063,7 +1071,11 @@ row naming the new decision and then the old one in the passive reads as the new
 *"it supersedes <old>"*. **And a checked tag guards only itself:** `check_denominators` passed a harness whose prose said
 33 beside its tag of 34, because the tag is checked and the untagged number beside it is not. **`gh run view --log` and `--log-failed` can print
 nothing and exit 0 for a run whose log exists** — measured twice on 2026-09-25 — so read a run's log through
-`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log.
+`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log. **A lexical "literal divisor" rule must require the literal
+to stand ALONE:** one that allows an optional `(` and ends at `\b` admits `/ (400i64 + m)` and `/ 256i64 =>! uint8` —
+which is 0 — so nothing that binds tighter than `/` may follow it (the compiler's `OP_REFERENCE` §0). **And a helper's
+docstring is a claim to measure:** `nitpick-time`'s `code_lines` never blanked string bodies, though a retired check's
+docstring and a reviewed plan both said it did.
 
 ## 7. Repository conventions
 
@@ -1254,6 +1266,25 @@ repositories reads one thing.
   printed a pin-specific finding (every `src` file refused by `llc`) as
   present-tense fact on every run for four pins after it stopped being true. A
   message that states a measurement dates it.
+- **A test's asserted value and a specification's stated value are two lists nobody diffs.** `nitpick-time`'s probe
+  asserted the range's first day as -4 371 587 from its very first cycle, while `CALENDAR.md` and the public
+  `NTIME_DAY_MIN` said -4 371 588 — both green for three weeks. **Diff them**, and when a value is wrong, show the test
+  red at the old value before moving it.
+- **Relations among numbers derived from one wrong number all hold.** Only a recomputation by an INDEPENDENT method
+  catches the root — and **a second method that equals the first on part of its domain is one method there** (a
+  400-year shift of zero), so force the two to differ across the whole range.
+- **A control must be a case the WRONG implementation gets wrong**, not merely one the right implementation gets right:
+  `y +% 1i64` as the control for "`+%` is not a division" also passes a checker that misreads `+%`, because `1i64` is a
+  valid divisor either way; `y +% m` discriminates.
+- **A positive test whose expected value equals the vacant value tests nothing.** After one insert `sparse[3]` is 0 —
+  which `calloc` also wrote. Choose inputs whose correct answer the untouched state cannot produce, and show a copy of the
+  test expecting the vacant value FAILS.
+- **Read `Result.value` only after testing `is_error`** (`NITPICK-TAINT-001` refuses it otherwise), so a refusal exits
+  with the test's own code rather than an anonymous identity arm, and mutation results stay readable.
+- **A tool's wrapper can launder a kill into a verdict.** The compiler seat's `clam.py` maps a child's SIGTERM or
+  SIGKILL to its own timeout code, so six earlyoom kills sat in its evidence as *"Clam timed out"* until the machine's
+  journal was read. Read how any harness maps a signal death before trusting a "timeout" or "failed" row — ours
+  included.
 
 ---
 
