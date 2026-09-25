@@ -66,6 +66,7 @@ list of the ones that reach a library.
 | there is no format-specifier language | D-053 | no `printf`, no `strftime`. Formatting is ordinary functions returning `string`, spliced by `&{ }` |
 | `Default` and `Display` are not derivable | D-123 | a default that carries meaning is a value nobody chose |
 | operator overloading is forbidden | OP_REFERENCE | `a.eq(b)`, not `==`, on anything that is not a scalar |
+| **⚠ AT `c3bdae2` THE RUNTIME DOES INSTALL SIGNAL ACTIONS — the row below held only through `3d15ac9`** | measured: `rt_sigaction` in `runtime/npkrt.ll` — 0 mentions at `aaffb87` and `3d15ac9`, 2 at `c3bdae2`; D-291, D-307, DEF-68 | `SIGUSR1` → the stop handler; `SIGSEGV`, `SIGBUS`, `SIGILL`, `SIGFPE` → `MachineFault`; **`SIGPIPE` gets a returning handler, so a write to a dead peer answers `EPIPE` instead of killing the process** — plan for the error, not the death |
 | **the runtime installs no signal disposition, for anything** | measured: no `rt_sigaction` in `npkrt.ll` | **every signal's default is live.** `SIGPIPE` terminates the process. A write to a pipe or socket whose peer died is lethal unless you passed `MSG_NOSIGNAL` (`send` only) or blocked the signal |
 
 > **The last row cost this ecosystem a shipped specification error.** `ntui`
@@ -337,7 +338,7 @@ So:
 7. **At `c3bdae2` the floor is six, and two of them are new.** Every program's
    `failsafe` names `HeapBadRequest`, `HeapOom`, `Unreachable`, `WildLeak`,
    **`StackExhausted` and `MachineFault`** — the last two demanded in EVERY
-   program since cycle 1.5, the canary included. Beyond the floor, REACH demands
+   program since cycle 1.5, the canary included — and a harness's GENERATED `failsafe` templates owe them as surely as its files do. Beyond the floor, REACH demands
    what the program's own code can reach: `DecreasesViolated` wherever a root
    reaches a written `decreases` (20 of `nitpick-time`'s 61 roots, all through its
    own loops — the compiler's *"near-universal"* describes its own programs),
@@ -362,6 +363,11 @@ So:
    the code part of a line** (a dry run matched one inside a comment and broke the
    file), and it carries a table of each deliberate refusal's subject, or it arms a
    probe with the one identity whose absence the probe asserts.
+10. **A live contract adds an identity, and a live `requires` PRE-EMPTS a trap the body already has.** On an accessor
+   whose body traps `OutOfBounds`, uncommenting a `requires` makes the out-of-range call trap `RequiresViolated` (116)
+   before the body runs — measured on `nitpick-regex`'s `vec_get`, 116 where it was 94 — and every consumer then owes
+   that arm. So *"hand-spell the trap so nothing changes when the clause is uncommented"* is false at `c3bdae2`:
+   something changes in every consumer's `failsafe`. The board's Q-6 carries the consequence.
 
 ---
 
@@ -1055,7 +1061,9 @@ and a failing scan blocks every worker commit, so check each sibling before its 
 dispatch. **`check_refs` credits a passive-voice supersede to the NEAREST decision id before the word**, so a
 row naming the new decision and then the old one in the passive reads as the new one replaced — write the active voice,
 *"it supersedes <old>"*. **And a checked tag guards only itself:** `check_denominators` passed a harness whose prose said
-33 beside its tag of 34, because the tag is checked and the untagged number beside it is not.
+33 beside its tag of 34, because the tag is checked and the untagged number beside it is not. **`gh run view --log` and `--log-failed` can print
+nothing and exit 0 for a run whose log exists** — measured twice on 2026-09-25 — so read a run's log through
+`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log.
 
 ## 7. Repository conventions
 
@@ -1327,6 +1335,9 @@ design fresh.
   compiler seat's *"your six … and nowhere else"* for DEF-96 was off by one the same day: the canary.)
 - **A count of pins taken from the workbench's toolchain directories is not one repository's count of pins** — `3d15ac9`
   is kept here and was never `nitpick-time`'s.
+- **Rehearse a plan in its real position, or record which legs ran.** A dry run in a relocated copy SKIPS any leg that
+  finds a tool by a checkout-relative path (`nitpick-regex`'s floor leg reaches `../.internal/toolchain/950bb1d`), and a
+  skipped leg reads exactly like a held one.
 
 ---
 

@@ -6656,3 +6656,23 @@ clean (69 md, leak scan 193 of 193); `check_record` clean; the harness re-run at
 5 pending, 78.0 s. **`nitpick-time` 0.1.0c DONE.** **advance `nitpick-time` 0.1.0c → 0.1.1**, the algorithms. **dispatch
 `s2-ntime-0.1.1-1221`** — `npk:worker`. Its NOTES carry `EnsuresViolated` 117, not the plan's 110 (an ordinary exit in regex's
 `vec_unit.npk`), and D-089's one-parameter `main` for any file it adds, ahead of DEF-96.
+
+### `nitpick-regex` 0.0.4b reports DONE — its CI green after nineteen days, and S-42's emission holds across two machines — 2026-09-25 12:30
+
+**report `s1-nregex-0.0.4b-1129` — DONE**, 59 min, 619 k tokens. Six commits and the plan commit that rode push A, all pushed;
+`check_record` clean; harness 146/146 at `c3bdae2`. **Regex's CI is green again**, read from GitHub: red since `ab93eae`
+(run `34047719942`, 2026-09-06), green from `442fc9b` — the walk that prunes a nested repository — through the adoption
+`f19598c` and the record `e651206`.
+
+**S-42 OBSERVED ACROSS MACHINES FOR THE FIRST TIME, and read here rather than taken from the report.** CI prints the emission
+digest, and at two pins GitHub's runner equals what was recorded on this machine: `c3bdae2` — runner `4029fc70…` == notice
+50's row; `3d15ac9` — runner `05457db4…` == RX-141's developer-machine value. Read through the jobs API, because `gh run
+view --log` printed nothing for both runs — the worker's own finding, reproduced here. Turning the print into an assertion is
+regex's decision to supersede RX-141, not this seat's. Relayed to `nitpick-compiler_s15`.
+
+**Verified here and landed in `PLAYBOOK.md`:** the runtime DOES install signal actions at `c3bdae2` (`rt_sigaction` in
+`npkrt.ll`: 0 at `aaffb87` and `3d15ac9`, 2 at `c3bdae2`) — `SIGPIPE` answers `EPIPE` now, so §2's *"no signal
+disposition"* row is superseded by a new row above it; plus a harness's generated `failsafe` templates owe the six, a live
+`requires` pre-empting a body's trap (§3 item 10), the `gh` log trap, and rehearsing a plan in its real position. **For
+0.0.4c:** its plan's numbers come from a relocated rehearsal that skipped the `950bb1d` floor leg, which now runs in the real
+checkout — expect its lines where the plan says SKIPPED. **dispatch `s1-nregex-0.0.4b-verify-1230`** — `npk:verifier`, `sonnet`.
