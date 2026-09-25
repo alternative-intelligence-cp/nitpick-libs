@@ -6713,3 +6713,17 @@ reads `Result.value` after testing `is_error`, so a refusal exits with the test'
 verifier, per the author's standing preference for plans first** (*"I like good plans"*). Q-6's live-contract cost is now measured:
 `cal` 11 → 12, the umbrella 13 → 14, the arm 117. **dispatch `s2-ntime-0.1.1-verify-1316`** — `npk:verifier`, `sonnet`, told to read the literal-divisor
 check against TM-163, where the worker recorded three measured departures from the plan's §3. Memory 63 GiB available at dispatch.
+
+**verify `s2-ntime-0.1.1-verify-1316` PASS** (`sonnet`): tree clean; the last commit `cycle 0.1.1:`; `check_refs` clean (69 md, leak
+scan 196 of 196); `check_record` clean; the harness re-run GREEN at `c3bdae2`, 78 units, the self-check's 20 planted violations
+caught — TM-163's recorded departure, exercised. **`nitpick-time` 0.1.1 DONE.** **advance 0.1.1 → 0.1.2**, which has no plan file.
+**The planner was HELD by this seat's memory floor** — 21 GiB available, below 32, while the compiler's `clam` ran — **and dispatched
+at 13:23 as `s2-ntime-0.1.2-1323` when it recovered to 142 GiB.** The floor did its job the first time it was tested.
+
+**earlyoom FIRED — the first time since it was installed, found by that verifier and read here from its journal.** At 12:51 and
+12:54, with available RAM at or below 10 %, it sent SIGTERM to the k3s pods `traefik` (93 MiB, 75 MiB) and `coredns` (59 MiB,
+48 MiB) FIRST, and then to the compiler seat's `clam` at **55 618 MiB** and **38 801 MiB** resident. **The pods went first
+because Kubernetes sets a high `oom_score_adj`** (badness 1333 against `clam`'s ~1000): ~150 MB of the author's services stopped
+to no effect before the real consumer. `--prefer` adds 300 and `--avoid` subtracts 300, so only both together reorder them. No
+library process was touched. **`nitpick-compiler_s15` was told within the hour** that the two `clam` runs ending ~12:51:23 and
+~12:54:43 are the machine's, not Clam's — genuine cost data, but not soundness or determinism evidence for D-320.
