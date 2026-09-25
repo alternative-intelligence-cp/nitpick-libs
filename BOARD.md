@@ -122,6 +122,10 @@ generation. Earlier boards and briefs warned that *"names are not durable,
 project segment and the generation number are stable and worth reading.**
 `ListAgents` remains the authority on who is *alive*, and the bracketed `[ref]`
 is what disambiguates.
+**FROM GENERATION 9 THE `s` IS DROPPED — the author, 2026-09-25:** `nitpick-libs_s8` is followed by
+**`nitpick-libs_9`**, launched by his `claun` tool, which allocates each project's next number (`claun <project>`;
+`claun -l` lists them). **So a peer named `<project>_<N>` with no `s` is this same rotation, one generation on — not a
+stranger and not a second convention.** Copy names from `ListAgents` verbatim, `s` or not; the successor is still N+1.
 
 | Session | Was | Role |
 |---|---|---|

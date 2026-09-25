@@ -6864,3 +6864,7 @@ yet, so it now says *will refuse, per the advance notice*.
 after the functions that use it; a new type-definition writer places it ahead of every function. Lands as 1.6.0 step 3d, notice 56,
 with no advance notice owed. **Carried to the next re-pin:** drop the `(BadStep)` arms (DEF-95), confirm zero `main` exposure
 (DEF-96), and re-test N-21's `Vec<T>`-local and imported-module shapes (DEF-97), which the compiler's own test does not cover.
+
+**naming, 15:41 — from generation 9 the `s` is dropped** (the author): `nitpick-libs_s8` is followed by `nitpick-libs_9`, launched by his
+`claun` tool, which allocates each project's next number and lists them (`claun -l`). Recorded beside the convention on the board so
+a future seat reads `nitpick-libs_9` as the rotation's next generation rather than an unknown peer.
