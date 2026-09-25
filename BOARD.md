@@ -900,6 +900,36 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `395308f` LANDED — **1.6.0 STEP 3e: DEF-98 — OUR BLOCK-STRING FINDING (`nitpick-regex`'s probe 15), FIXED IN THE LEXER. THE GRAMMAR STANDS; A REFUSAL REMOVED.** Notice 57, received 2026-09-25 ~19:4x EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+The lexer closed a block string on two quotes where `LEXICAL_REFERENCE` §6.3 closes it on three, so `"""a""b"""` ate the `b` and was
+refused `NITPICK-PARSE-003`. The close now reads three quotes; a body may hold any run of quotes shorter than three, and §6.3 says so
+in one added sentence. Our control pair both exit 0 there; `dyn_slots` emits byte-identical IR. Tests: two cases in
+`tests/frontend/lexer_strings.npk`, and `tests/backend/programs/block_string_quotes.npk`. Manifest 5 890 → 5 892 rows (the new peek's two
+overflow rows), zero verdicts moved, zero discharged counts fell; the floor's 388 unmoved. **Until a pin of ours carries 3e, no library
+may spell `""` inside a block string** — the compiler's own `src/` has the same constraint until a snapshot carries it (D-205).
+
+**✅ VERIFIED HERE BY THE LADDER, against notice 56's baseline, by script to 64 hex with a control that fails on a one-digit-off
+digest:** the three unchanged rows equal it; each moved row's quoted previous value equals it, and each delta recomputes — `npkc.ll`
++2 372 B, `npkc.o` +816 B, `npkc` +600 B (the lexer grew; every program's emission is byte-identical). In the compiler tree, read-only:
+`395308f` exists, `f758995` is its ancestor, `src/` changed only `frontend/lexer.npk` (16 insertions, 1 deletion), nothing under
+`runtime/` or `bootstrap/`, and both tests are present. Harness: programs 334 · verified 125 · floor 388 / 90 · parity **1729** · ok 52.
+
+**THE BASELINE NOTICE 58 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `395308f`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    0f97d275941f62874fcf42bdc66f21d44bf322b7506062b9d835f0ab0cc1f31c  28,126,835 B
+npkc.o     957124f40b67b4d392bfbdffc1e3463fd8da5972a61ed649828e8629474fb0bc  11,323,104 B
+npkc       f94a035b88c0d48c710b6e92c834690a838d81eb2420dcf7f03dc4dd8dccccfa  9,733,296 B
+```
+
+**Next:** 3f (`6fb85d3`, DEF-99 / `TYPE-084`, in its harness, ~21:30) as **58**; then step 3's runs, with DEF-100 and DEF-101 as documents,
+as **59**. No floor move planned. **The re-pin checks stay five**; check (4) — `probe15_block_string_close` flips from refused to accepted,
+and regex's source reader moves to the grammar's rule — now has its fix landed on the compiler's `main`.
+
 ### ✅ `f758995` LANDED — **1.6.0 STEP 3d: DEF-97 — OUR GENERIC-INSTANCE FINDING (`nitpick-regex`'s N-21), FIXED. A REFUSAL REMOVED; NOTHING THAT COMPILED CHANGES.** Notice 56, received 2026-09-25 ~18:10 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.** **AND WITH IT AN ADVANCE NOTICE: OUR O-N20 — A MOVE OUT OF `fixed` STORAGE — IS DEF-99, REFUSED AS `NITPICK-TYPE-084` AT STEP 3f, NOTICE 58.**
 
 A generic struct instance used only inside a generic function had its `= type` line written to the module's tail, after the

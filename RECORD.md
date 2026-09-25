@@ -7044,3 +7044,8 @@ change, since our pin lacks 3f. 146 GiB available.
 `enum =>! intN` reads the tag at every shape; a tag-only enum takes `intN =>! enum` (`=>` is `TYPE-009`); a payload-carrying enum admits
 neither spelling (`TYPE-032`); D-140 unchanged. **Two documentation defects from this seat today (DEF-100, DEF-101), both of the shape
 the compiler seat says its tree keeps finding: a reference stating more than the tools do.**
+
+**notice 57, ~19:4x — `395308f`, 1.6.0 step 3e: DEF-98 fixed in the lexer** (the grammar stands; a refusal removed). **Authenticated by
+the ladder against notice 56's baseline**, by script with a control: unchanged rows equal it, each moved row's previous value equals it
+and each delta recomputes; `src/` changed only `frontend/lexer.npk`. The baseline for 58 is recorded. No re-pin on it. **Notices counted
+to 57.**
