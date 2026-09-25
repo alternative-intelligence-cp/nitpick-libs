@@ -6914,3 +6914,8 @@ value equals it and each delta recomputes; the only `src/` change is `reach.npk`
 tracked seed is still `4029fc70…` — no snapshot refresh — so the emission row was authenticated by the ladder, not recomputed from the
 tree. **New baseline recorded on the board for notice 55.** Exposure: none; the `(BadStep)` arms become droppable at the next re-pin
 past it. **Notices counted to 54.**
+
+**notice 55, 17:55 — `d156c4f`, 1.6.0 step 3c: DEF-96 fixed as a refusal** (`TYPE-083`). **Our exposure is zero:** the seven measured were
+moved before it landed — the canary this morning, regex's six at `7fd1267`. **Authenticated by the ladder against notice 54's baseline:**
+unchanged rows equal it, each moved row's previous value equals it and each delta recomputes; the only `src/` changes are the checker's
+two files. `PLAYBOOK.md`'s DEF-96 line now says it has landed on the compiler's `main` but no pin of ours carries it. **Notices counted to 55.**

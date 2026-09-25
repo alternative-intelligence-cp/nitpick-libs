@@ -899,6 +899,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `d156c4f` LANDED — **1.6.0 STEP 3c: DEF-96 — OUR TWO-PARAMETER `main` FINDING, FIXED AS A REFUSAL. OUR EXPOSURE IS ZERO: ALL SEVEN WERE MOVED BEFORE IT LANDED.** Notice 55, received 2026-09-25 ~17:55 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+`main` is `NITPICK-TYPE-083` unless it is exactly `int32(cstring[]:argv)` — the arity, the parameter's type and the return each refuse
+— and `failsafe`'s `int32` return joins `TYPE-044`. D-089 §4 already said so; the check is new, the rule is not. **Its note says to
+move regex's six at the next dispatch: they were moved at `7fd1267` (regex 0.0.4c), and the canary this morning, so nothing of ours
+refuses at 3c.** Check 2 of the four carried to the next re-pin confirms it there.
+
+**✅ VERIFIED HERE BY THE LADDER, against notice 54's baseline:** the three unchanged rows equal it; each moved row's quoted previous
+value equals it, and each delta recomputes — `npkc.ll` +10 336 B, `npkc.o` +8 368 B, `npkc` +7 848 B (the checker grew; every
+well-formed program's emission is byte-identical). `dfbaf1a` an ancestor; `src/` changed only `type_codes.npk` and `type_stmt.npk`;
+nothing under `runtime/` or `bootstrap/`; **`TYPE-083` now exists in the compiler's tree.** Harness: programs 332 · verified 125 · floor
+388 / 90 · parity **1725** · ok 52.
+
+**THE BASELINE NOTICE 56 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `d156c4f`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    fe22449a51a732ecf2629dd83f6ad7aea42c22993c83cdff597823eded29c0b0  28,123,543 B
+npkc.o     fa018c5fd2a613ee3504519246da47431ecff7f3d98a931e0cef9f93cbff055a  11,321,712 B
+npkc       b4a143c956d53f59da965990a2558e7716428e99119692707981050f6a2985e1  9,732,248 B
+```
+
+Next: 3d (`f758995`, DEF-97, notice 56, within the hour), then 3e (`395308f`, DEF-98) as 57, then step 3's runs as 58.
+
 ### ✅ `dfbaf1a` LANDED — **1.6.0 STEP 3b: DEF-95 — OUR `(BadStep)` FINDING, FIXED. A DEMAND REMOVED, NO LANGUAGE CHANGE. THE FIRST ROWS TO MOVE SINCE THE PIN.** Notice 54, received 2026-09-25 ~17:43 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 REACH armed `BadStep` for every counted loop while the emitter guards only a COMPUTED step; the walk now asks the emitter's own

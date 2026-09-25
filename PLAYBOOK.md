@@ -254,8 +254,8 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
 `c3bdae2` `npkc` also accepts `func:main = int32(int32:argc, cstring[]:argv)`,
 emits a two-parameter `@main`, and hands the extra parameter an unrelated value
 (`argc` negative with no arguments; at `3d15ac9` `argv` was wrong as well).
-Reported on 2026-09-25 and confirmed as **DEF-96**: from 1.6.0 step 3c — per the compiler seat's
-ADVANCE NOTICE; no pin carries it yet — `NITPICK-TYPE-083` will refuse every `main` that is not exactly `int32(cstring[]:argv)` or
+Reported on 2026-09-25 and confirmed as **DEF-96**: from 1.6.0 step 3c — landed on the compiler's
+`main` at `d156c4f` (notice 55), though no pin of ours carries it yet — `NITPICK-TYPE-083` will refuse every `main` that is not exactly `int32(cstring[]:argv)` or
 `int32(cstring[]:_~argv)` — no parameter, another type and another return included.
 **Moving costs nothing at old pins:** `950bb1d` already accepts the one-parameter form,
 so an old-pin control stays byte-identical. The ecosystem's exposure was seven files and
