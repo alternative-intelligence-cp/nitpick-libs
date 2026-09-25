@@ -6828,3 +6828,8 @@ scan 200 of 200); `check_record` clean; the harness re-run GREEN at `c3bdae2`, 8
 subcycles closed and verified since the pause.** **advance `nitpick-time` 0.1.2 → 0.1.3**, which has no plan file: **dispatch `s2-ntime-0.1.3-1507`** —
 `npk:planner`. Its NOTES carry the weekday rider's trap (as first written it passes a weekday missing its `%` correction) and the
 `check_no_owning_fields` re-measurement owed since the playbook's TYPE-046 row was found false.
+
+**notice 53, 15:13 — `8fbde77`, 1.6.0 step 2**: the gate's input set and seven planted controls. **Authenticated the same three ways** — six
+rows equal the baseline, `2cd5176` an ancestor with nothing under `src/`, `runtime/` or `bootstrap/` changed, the emission recomputed from
+the seed. **Exposure: none.** Step 3b (DEF-95's fix) came back red in its first harness — 82 manifest rows re-keyed by one newly interned
+type, no verdict moved — after the seat had asserted *"the manifest unchanged"* unmeasured; re-recorded and re-running. **Notices counted to 53.**

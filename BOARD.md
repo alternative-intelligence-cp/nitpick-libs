@@ -895,6 +895,24 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `8fbde77` LANDED — **1.6.0 STEP 2: THE GATE'S INPUT SET AND SEVEN PLANTED CONTROLS. NO LANGUAGE CHANGE, NOTHING MOVED.** Notice 53, received 2026-09-25 ~15:13 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+The analyzers' inputs, every digest recorded — the plain emissions, the whole-program forms by text concatenation with the floor,
+the verified emission, the datalayout twins, the opt pairs — and **seven planted-defect controls**, each a program the compiler
+accepts with its guard removed from the EMISSION, run plain and planted five times and shown to exhibit its defect. Nothing built
+into anything.
+
+**✅ VERIFIED HERE, the same three ways:** the six rows EQUAL notice 50's baseline on this board; `2cd5176` an ancestor and 0 files
+changed under `src/`, `runtime/` or `bootstrap/` (21 in all, every one under `meta/` or `CLAUDE.md`); the emission recomputed from the
+tracked seed at `8fbde77`, `4029fc70…` / 28 111 929 B. **Our exposure: none.**
+
+**Step 3b — DEF-95's fix, our `(BadStep)` finding — came back RED in its first harness, and the compiler seat said why without
+softening it:** the `reach.npk` change interned one new type and renumbered every type after it, re-keying 82 manifest rows — zero
+verdicts moved, zero discharged counts fell — **after the seat had asserted "the manifest unchanged" without measuring it.** Re-recorded,
+the lesson amended into its `CLAUDE.md`, the harness re-running. Notice 54 follows the green run; 3c (DEF-96, notice 55) gets the same
+re-record. **The baseline notice 54 must quote: notice 50's six rows, unchanged** — and 54, being a `src/` change, is the first that may
+move one.
+
 ### ✅ `2cd5176` LANDED — **1.6.0 STEP 1: THE PINNED ENGINE BUILDS, OUTSIDE THE TREE. NO LANGUAGE CHANGE, NOTHING MOVED.** Notice 52, received 2026-09-25 ~12:52 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 `meta/roadmap/1.6/tools/engines.sh` builds Clam (LLVM 18.1.3), NIKOS and Alive2 (LLVM 20.1.2) and z3 at pinned commits into
