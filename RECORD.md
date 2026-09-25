@@ -6547,3 +6547,11 @@ running daemon's arguments read from `ps`, since a defaults-file edit applies on
 **A correction by this seat to its own hazard (12) and to its note to the running worker:** earlyoom sends SIGTERM
 before SIGKILL, so its likelier signature is exit 143 and not only 137; and with `-s 100` it acts on RAM alone, so a kill
 can come while swap has room. Both are corrected, and the worker was told.
+
+**10:50 — earlyoom now avoids Claude sessions, at the author's request** (*"lets add that flag so it avoids closing claude
+itself if possible"*): `--avoid ^claude$`, applied from this session with `sudo` and verified from the running daemon
+and its startup log (`Will avoid killing process names that match regex '^claude$'`). **The first attempt failed
+harmlessly:** `sudo` in this shell is an alias for a wrapper that re-splits its arguments, so a quoted `sed` script
+arrived in pieces and `sed` refused it; the file was untouched and the daemon restarted on its old arguments. **The
+working method passes only paths through `sudo`:** the new file built in the scratchpad, `sudo install -m 644`, `cmp`.
+The SIGKILL threshold is also made precise here: below 5 % RAM *and* swap half used.
