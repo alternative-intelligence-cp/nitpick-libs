@@ -900,7 +900,7 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
-### ✅ `395308f` LANDED — **1.6.0 STEP 3e: DEF-98 — OUR BLOCK-STRING FINDING (`nitpick-regex`'s probe 15), FIXED IN THE LEXER. THE GRAMMAR STANDS; A REFUSAL REMOVED.** Notice 57, received 2026-09-25 ~19:4x EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+### ✅ `395308f` LANDED — **1.6.0 STEP 3e: DEF-98 — OUR BLOCK-STRING FINDING (`nitpick-regex`'s probe 15), FIXED IN THE LEXER. THE GRAMMAR STANDS; A REFUSAL REMOVED.** Notice 57, received 2026-09-25 ~19:12 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 The lexer closed a block string on two quotes where `LEXICAL_REFERENCE` §6.3 closes it on three, so `"""a""b"""` ate the `b` and was
 refused `NITPICK-PARSE-003`. The close now reads three quotes; a body may hold any run of quotes shorter than three, and §6.3 says so

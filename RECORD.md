@@ -7049,3 +7049,4 @@ the compiler seat says its tree keeps finding: a reference stating more than the
 the ladder against notice 56's baseline**, by script with a control: unchanged rows equal it, each moved row's previous value equals it
 and each delta recomputes; `src/` changed only `frontend/lexer.npk`. The baseline for 58 is recorded. No re-pin on it. **Notices counted
 to 57.**
+*Correction to the line above: notice 57 arrived at about 19:12, not "19:4x"; the board's entry is fixed.*
