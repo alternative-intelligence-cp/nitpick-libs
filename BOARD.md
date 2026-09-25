@@ -893,6 +893,39 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⭐⭐⭐ THE AUTHOR SAYS GO — **THE PAUSE ENDS. THE LIBRARIES RESUME ON A RE-PIN TO `c3bdae2`, BY A BRIEFED HANDOFF FROM `nitpick-libs_s5` TO `nitpick-libs_s6`.** 2026-09-25 ~07:32 EDT.
+
+**In his words:** *"i think we go ahead and give it a try. If it looks like things aren't gonna work out we can always
+pause."* **The resume is a TRIAL, not a commitment.** Pausing again is the expected move if the compiler's churn starts
+forcing rework, and it is better said early than late.
+
+**It ends the way the pause said it would: by handoff, not by the listener resuming.** `s5` releases the lock to `s6`,
+the session that builds. `s6` starts with a full context, where `s5` carries a long one.
+
+**THE RE-PIN IS READY TO TAKE — checked by `s5` read-only, and `s6` repeats every check itself before copying:**
+
+```
+candidate     c3bdae2, the 1.5 close -- the readiness evaluation below, item (d)
+../nitpick    HEAD == c3bdae2 [main], status clean, no worktrees
+build/npkc    5fd636b9ab557c19a0738e6f316f3347cc4ed29dd9a77f72199d6380c0c36323   9,724,160 B  == notice 50, to 64 hex
+build/npkrt.o 162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  == notice 50, to 64 hex
+provenance    npkc's mtime 07:15:26 is 525 s AFTER c3bdae2's commit (07:06:41); both files were built after the landing
+```
+
+*Hazard 11 still stands: `../nitpick/build/` is trusted ONLY because both digests equal notice 50's full rows, recorded
+on this board. Copy the files into `.internal/toolchain/c3bdae2/`, re-hash the copies, write `PIN.md`, and commission:
+the canary (`tools/canary.npk`) and P-1/probe13a, against the COPIED binaries.*
+
+**THEN THE WORKLIST, IN ORDER** (the readiness evaluation's item (e)): item 1, the re-pin and commissioning. Then item 5
+at any time, since it compiles at every pin. Then items 2, 3, 3b and 6, the arms, from the compiler's REACH-002 lines
+over every root. Then item 4, the sweep, with the recipe in notice 44's entry and its tools now under
+`meta/roadmap/done/1.5/tools/`. Then item 13, the `Vec` properties. **Library work then resumes where cycle 0.0 paused**:
+the `CLAIMED s1` (nitpick-regex) and `CLAIMED s2` (nitpick-time) holds exist for exactly this. **`s6` asks the author which
+width to run** before dispatching anything.
+
+**The compiler address is `nitpick-compiler_s15` (cycle 1.6).** Its next notice is 51, and it gets the ladder check against
+the baseline at `c3bdae2`, recorded in full with notice 50.
+
 ### ⭐⭐⭐ `c3bdae2` LANDED — **1.5.8d STEPS 1–3: THE CLOSE OF CYCLE 1.5.** The snapshot is refreshed from the final `src/`, the docs are synced, and `meta/roadmap/1.5/` is archived to `done/1.5/`. **NO LANGUAGE CHANGE, NO FLOOR BYTE; EVERY BUILDER ROW MOVED. THE FORECAST HELD TO 64 HEX. THIS IS THE LANDING AT WHICH READINESS IS EVALUATED — SEE THE ENTRY BELOW.** Notice 50, received 2026-09-25 ~07:20 EDT, from `nitpick-compiler_s14`. **PIN STAYS `3d15ac9` until the author's go. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire reads `c3bdae2`, whose parent is `c93d80d`. `npkrt.o` is exact to 64 hex.

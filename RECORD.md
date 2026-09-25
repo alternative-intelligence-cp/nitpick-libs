@@ -6322,3 +6322,47 @@ checkout while answering a question. The logs bear out that it was harmless: `or
 `FETCH_HEAD` was overwritten by the holder's own later fetch. *The rule it leaves is small and exact: a session that
 does not hold the lock reads the remote with `git ls-remote`, which writes nothing, and never with `git fetch`,
 which writes `.git` in the one checkout every seat shares.*
+
+### The listener seat hands to `nitpick-libs_s6` to RESUME — `s5`'s tenure, 2026-09-24 → 2026-09-25, and the pause ends
+
+**Handover.** `nitpick-libs_s5` (`5b78e669-b37d-4e2d-97d2-1e209704664c`) releases the writer lock for a briefed handoff
+to `nitpick-libs_s6`, at the author's go on 2026-09-25: *"i think we go ahead and give it a try. If it looks like things
+aren't gonna work out we can always pause."* **The pause that began on 2026-09-06 ends here.** It ends by handoff, as
+the pause itself said it would: `s6` re-pins to `c3bdae2`, the close of cycle 1.5, and resumes. `s5` stays live for
+`s6`'s questions under the two-signal close.
+
+**What the seat covered.** Notices 38 to 50: 1.5.8b steps 6b to 7, 1.5.8c steps 0 to 5 with 4b, and 1.5.8d steps 0 and
+1–3, the cycle's close. Across them, three compiler-seat rotations (`_s12` → `_s13` → `_s14`, with `_s15` named for
+1.6). Every notice was authenticated by its ladder against this board, and the three new senders by content.
+
+**The state handed over, as values:**
+
+```
+pin          3d15ac9 -- still the pin; the RE-PIN to c3bdae2 is s6's first act
+candidate    c3bdae2: npkc 5fd636b9... / 9,724,160 B and npkrt.o 162b8975... / 72,576 B, both on disk in
+             ../nitpick/build/ and equal to notice 50's full rows (checked 2026-09-25); provenance 525 s after the commit
+notices      50 received; 51 comes next, from nitpick-compiler_s15 (cycle 1.6)
+the resume   BOARD.md: "THE AUTHOR SAYS GO" and "THE READINESS EVALUATION AT THE 1.5 CLOSE" (items a-e, the worklist
+             1-14 and 3b re-sized against the rules as landed)
+tools        .internal/listener_tools/ -- notice_numbers.py and str_loops.py added; the README indexes every trap
+```
+
+**What it found that mattered.**
+
+- **The ladder had never been recorded beyond 8 hex.** Every "exact to 64 hex" check had read the seat's own context.
+  The baseline was recovered from the primary record while `s4` was live, and every entry since carries the six rows
+  in full. This is what let the three new compiler senders be authenticated against the board, not a session.
+- **A generator's string holds loops no sweep can see.** nitpick-time's tzdb spike template emits four clause-less
+  loops, and the spike is kept as evidence.
+- **Three exposures were measured to zero, each with its reason.** DEF-94 is zero because no harness of ours elides a
+  guard. S-98's library angle was measured, and E-5's re-open trigger now covers our roots. The readiness evaluation
+  was put to the author item by item.
+
+**Its own lapses, recorded so the next seat does not repeat them:**
+
+- **The first recompute of an emission digest was wrong.** A `tee >(wc -c)` in the same pipe fed the byte count into
+  the hash. *Hash and count in separate commands.*
+- **`notice_numbers.py` lacked two harness categories**, cost units and suite membership. Notices 40 and 43 found
+  them, because the tool's first controls contained neither. *A control tests only the categories it contains.*
+- **It told the author it would notice its own approaching compaction.** It cannot: he sees the warning. *The rotation
+  call is his; the seat's part is to keep a clean point close.*
