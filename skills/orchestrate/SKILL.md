@@ -230,6 +230,11 @@ A finding is a re-dispatch with the finding in `NOTES:`. Then by status:
 `findings-for-playbook` lines go into `RECORD.md` under the report line; you
 decide whether each becomes a playbook edit and you make that edit (W-16).
 `open-questions-raised` are noted; they live in the repository.
+A report that shows a registry defect fixed — a moved `EXPECT_EXEMPT`
+verdict, a decision discharging an `O-N` — strikes that entry in
+`meta/OPEN_QUESTIONS.md`, with its evidence, in the commit that records the
+report. The registry is read as live state; on 2026-09-25 nine of its twelve
+open entries had been fixed for up to three weeks.
 
 ## 8. Verification (W-21)
 

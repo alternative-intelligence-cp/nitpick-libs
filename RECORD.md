@@ -7003,3 +7003,8 @@ committed, so its strike cites the compiler's `tests/accept/reexport/`.
 **The compiler seat, 18:3x:** it stopped its `clam` run at 18:12 and skipped the eight Clam settings that exceed this machine
 (>134 GiB resident; killed at the line on every attempt), recording the seven kills as one row — *"exceeds the machine"* — not seven
 results, and credited this seat's journal reads in its step-3 record. Notice 57 will quote the `f758995` rows.
+
+**18:55 — the registry rule, made durable, and a heading corrected.** `skills/orchestrate/SKILL.md` §7 now says it: a report that shows a
+registry defect fixed strikes that entry, with its evidence, in the commit that records the report. The documentation defect is sent to
+`nitpick-compiler_s15` (non-blocking), with the note that the three-week staleness was this workbench's bookkeeping, not the compiler
+side's. *The entry above is headed "19:0x"; it was written at 18:50.*
