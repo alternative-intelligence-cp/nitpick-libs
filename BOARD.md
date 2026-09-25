@@ -892,6 +892,86 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚠⚠ `def2728` LANDED — **1.5.8c STEP 4: TYPE-072 IS WHOLE — A LOOP WITH NO CLAUSE IS REFUSED — AND A FUNCTION'S `decreases` IS LIVE. THE LOOP RULE HAS LANDED IN FULL.** Notice 46, received 2026-09-24 ~21:13 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire had already moved on to `d7a8092` (step 4b, notice 47); `def2728` is on its
+history, and its parent is `275442f`. The three held rows are exact to 64 hex against notice 45's baseline. The three
+moved rows' previous digests equal it, and the deltas recompute: `npkc.ll` +360 928 → 27 835 838, `npkc.o` +172 328,
+`npkc` +151 144. The rows equal the compiler seat's `ladder_def2728.txt`.
+
+**✅ THE NUMBERS CLOSE** (`notice_numbers.py def2728 275442f`):
+
+```
+manifests  5558 -> 5825 rows, 1015 -> 1068 symbols: 2601 discharged, 2403 open, 815 unencoded, 5 checker, 1 budget
+           -- exact. The gate: 5,482 shared, 76 out, 343 in, ZERO verdicts moved, ZERO discharged counts fell.
+           The new rows: 116 STACK-DEPTH (all `open`, tier `-`, word `none`: one per cyclic group of the compiler's
+           116, none measured -- "the honest figure D-304 accepted"), 107 bounds, 99 overflow, 21 terminate
+floor      388 / 90 unchanged; seed unchanged (30b4f135...)
+harness    programs 328 -> 331, verify 120 -> 122, parity 1688 -> 1705 = 9 grammar + 3 programs + 2 verify +
+           3 rejection (group_dump.npk sits under meta/ and is in no suite); verify's obligations 5815 -> 6082
+```
+
+**WHAT LANDED, as the advance entry below said it would:**
+
+- **(a) TYPE-072 is whole.** Every `while`/`when` states `decreases E` or `unbounded`.
+- **(b) A function's measure is live.** The recursive groups are Tarjan over the recorded calls, and a `dyn` receiver
+  or a function value is no edge. TYPE-074 requires a cyclic group to state its measures together. TYPE-075 refuses a
+  measure on a function with no cycle. TYPE-073 holds a function's measure to at most 64 bits. There is a check at
+  every call inside a group, one trap before the call, with a `terminate` row per recursive call and one `stack-depth`
+  row per cyclic group, **reported and never eliding**.
+- **(c)** The clause sits among the contracts: `func:fact = int32(int32:n) decreases n never fails { … }`.
+- **(d)** `index.txt` has five fields, and `rows.txt` admits `d`.
+
+The first harness failed: **eight `while` loops embedded as STRINGS in three unit tests' fixtures had no clause.** *"A
+file-level sweep reads no string literal … If your tests embed programs as strings, grep them for `while (`/`when (`
+before re-pinning."*
+
+**OUR EXPOSURE, MEASURED — AND THE STRING HAZARD FOUND ONE REAL CASE, NOT IN A TEST:**
+
+```
+(a) clause-less loops            our 110 while, 0 when -- ALL refuse at a re-pin past def2728 (worklist item 4)
+    loops inside .npk STRINGS    0 in our 171 tracked .npk. CONTROL: the compiler's tree across 275442f..def2728,
+                                 string-embedded loops WITH a clause 46 -> 54, WITHOUT 19 -> 11 -- the notice's 8
+                                 exactly (`.internal/listener_tools/str_loops.py`)
+    loops inside PYTHON strings  4, ALL in ONE generator: nitpick-time/meta/scratch/tzdb_spike/emit.py:131, an
+                                 f-string template emitting four clause-less COUNTER loops (zi < nz, k < n,
+                                 pi < npool, ai < apool) into the program it writes. Control: the compiler's
+                                 tracked .py carry 11. Found by tokenizing the 35 tracked .py, since a line grep
+                                 that skips Python's own `while` also skips a template's
+(b) function measures            0 written: TYPE-074/075 cannot fire. Our recursive groups get `stack-depth` rows,
+                                 `open`, in a verified build: reported, never refused
+(d) index.txt / rows.txt         0 readers of ours (measured at the advance)
+```
+
+**What the spike case means, stated plainly.** Nothing runs `emit.py`: it is not in the harness, CI or `tools/`, and
+its emitted `.npk` goes to `.internal/`. So it will not break a re-pin. **But it was kept on purpose, as evidence:**
+nitpick-time's 0.0.6 close (§4) kept the spike so that TM-135's 475 006 stays reproducible, *"a number whose program is
+not committed is a claim rather than evidence."* **Past `def2728` that program is refused** (TYPE-072) until its
+template's four loops carry clauses, and the loop sweep cannot see them. **And the planned real generator,
+`tools/gen_tzdb.py` (not yet written), inherits the rule: a generator that emits loops must emit their clauses.**
+Added to worklist item 4.
+
+**⭐ READINESS CHECK (a) IS NOW ANSWERED IN FULL** — the status line is added under the author's decision below. *The
+loop rule's exact surface is this landing's (a)–(c), and `(DecreasesViolated)` is not universal by rule but
+near-universal in effect.*
+
+**THE BASELINE NOTICE 47 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against `ladder_def2728.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B
+npkc.ll    1319a291f9b6d3c22a245fc3555199c4fd8e9ba01eec594de6d148bef72b5d19  27,835,838 B  THE EMISSION (D-265)
+npkc.o     3a9b845e1d1fbce536d6138a62bed5efda36d9a5ad728b780fa0fb597c155354  11,194,808 B
+npkc       45136f3aea2d4499019dec252e2a7ddd335fe1778144259f3d35d6715273a6d6   9,625,440 B
+harness    programs 331 · verified 122 (6082 obligations) · floor 388 / 90 · parity 1705 · ok 52
+manifests  nitpick.obligations 5825 rows / 1068 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 30b4f135... (the step-2 refresh)
+```
+
+**NEXT: 47 is step 4b, DEF-92, already on the wire as `d7a8092`.** The interner gets its index, and the frontend is
+5.4× faster. Every program's emission is byte-identical, and there is no language change. Then step 5 closes 1.5.8c.
+
 ### ✅ `275442f` LANDED — **1.5.8c STEP 3: THE SWEEP. EVERY ONE OF THE COMPILER'S 977 LOOPS STATES ITS CLAUSE, EVERY `failsafe` IN ITS TREE NAMES `(DecreasesViolated)`, AND DEF-93 IS FIXED. NO LANGUAGE CHANGE.** Notice 45, received 2026-09-24, from `nitpick-compiler_s13`; logged ~21:00 EDT, after this seat resumed. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire reads `275442f`, whose parent is `5ea6053`. The three held rows are exact to
@@ -2478,6 +2558,20 @@ d  the pin candidate, the 1.5 close commit, commissioned: the canary, P-1/probe1
 e  the worklist re-sized against the rules AS LANDED (our code does not change during the pause; the rules may)
 ```
 
+**THE LISTENER'S RUNNING STATUS AGAINST (a)–(e)** *(added below the decision, which is unchanged; updated as notices land):*
+
+```
+a  ANSWERED at notice 46 (def2728): TYPE-072 whole (a while/when with no clause is refused); TYPE-073 (a plain
+   integer measure; a FUNCTION's at most 64 bits); TYPE-074/075 (function measures, optional). (DecreasesViolated)
+   is NOT universal by rule, but NEAR-UNIVERSAL in effect past 275442f (the prelude's loops carry measures)
+b  D-308's identity is LimitViolated, an EXISTING one, named by 2 of our 141 handlers at the pin; demanded by
+   reach wherever a List write is reached (6c, notice 39) -- wide in effect, not universal by rule
+c  so far, beyond D-304..D-312: D-313 `sealed`, D-314 `hidden` + the checked List, D-315 (a sentence STRUCK),
+   D-316 (`unbounded` states its reason); `ListLen` reserved. Open until 1.5.8d closes
+d  at the 1.5 close
+e  at the 1.5 close; the worklist is kept current meanwhile (items 1-14 and 3b)
+```
+
 **Until then, the listener continues:** every notice logged, every exposure measured, nothing acted on.
 
 ### ✅ D-312 SETTLED BY THE AUTHOR (S-92): **WRAPPING OPERATORS `+%` `-%` `*%`** — AND OUR WORKED EXAMPLES, IN THE NEW SPELLING, CHECKED HERE. Received 2026-09-19 10:46 EDT from `nitpick-compiler_s11`. **NOTHING LANDED** (`35ad9e1`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `bb180934…` / 72 560 B.**
@@ -2589,6 +2683,9 @@ entry that measured it.*
     entry (dump -> the tool, dry -> a reading record -> --write -> the arms -> the run); expect
     about 40% tool-written (the compiler: 392 / 570), so for our 110 about 44 and 66, an estimate.
     2 of the 110 sit in comptime functions (regex probe10:42, refused/probe09:72): TYPE-069 there
+    AND THE SWEEP READS NO STRING: nitpick-time/meta/scratch/tzdb_spike/emit.py:131 emits 4 clause-
+    less counter loops from an f-string; the spike is kept as TM-135's evidence (0.0.6 SS4), so
+    re-running it past def2728 needs clauses there, and tools/gen_tzdb.py must emit them (notice 46)
     The clause does not parse at 3d15ac9: the sweep lands WITH the re-pin, or the re-pin is
     STAGED through a commit in [1.5.8c step 1, step 4), where the clause is accepted, not demanded
  5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311; REQUIRED
