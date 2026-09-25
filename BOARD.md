@@ -903,6 +903,14 @@ successor `_s12` NAMED at the `_s13` rotation, so the sequence is kept (`N+1`). 
 still gets the ladder check against this board**, as every new sender's does (hazard 10). *`_s13` sent no rotation
 notice. That is the gap hazard 10 describes, closed from the NEW seat's side this time.*
 
+**⚠ THE CAUSE, FROM THE AUTHOR (2026-09-25):** `_s13` worked a long stretch and auto-compacted once or twice
+before reaching a clean handoff point. *"While the first isnt so terrible usually, it's a bit iffy, and anything
+past one time is pretty much a guarantee that important things will be forgotten … like copying a copy on a
+photocopier."* **So the missing notice is a compaction artifact, not a lapse of `_s13`'s**: it kept the
+convention through every notice before, 43 to 48. That is why the author rotates frequently, and he is clear
+that it cannot be guaranteed. **The design consequence is the one this board already acts on:** a check's
+reference value lives here, in the tracked document, so a compacted peer cannot take it with it.
+
 **Checked, not assumed:** `ListAgents` shows `_s14` busy (`[cd9a81]`, its ref since the resume), `_s13` idle
 (`[00fe3b]`) and `_s15` idle (`[1945e0]`). The wire is still `624d71f`. A local commit `aaceded`, *"1.5.8d step 0:
 D-317 -- A BY-VALUE AGGREGATE CARRIES AN IDENTITY TERM AND ITS FIELDS ARE UNINTERPRETED FUNCTIONS"*, matches what
