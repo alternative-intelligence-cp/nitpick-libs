@@ -892,6 +892,94 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `624d71f` LANDED — **1.5.8c STEP 5: THE CLOSE. 1.5.8c IS COMPLETE. NOTHING MOVED — NO `src/` BYTE, NO LADDER ROW, NO MANIFEST ROW.** Notice 48, received 2026-09-25 ~00:12 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `624d71f`, whose parent is `d7a8092`. All six rows HELD, exact to 64
+hex and to the byte against notice 47's baseline, and they equal the compiler seat's `ladder_624d71f.txt`. **"Nothing
+moved" was checked:** `nitpick.obligations` is the SAME BLOB as at `d7a8092`, no path under `src/`, `runtime/`,
+`bootstrap/seed/` or `lib/` changed, and the diff predicts +0. The harness is unchanged at 331 · 122 · 6118 · 1705 ·
+ok 52. The only `.npk` files added are two E-6 probes under `meta/`, which are in no suite.
+
+**THE RESIDUE, BY CAUSE** (the residue report now reads `terminate` and `stack-depth`):
+
+```
+terminate  1,183 SITES over the compiler's own build: 684 discharged, 499 open --
+             240 read a field through a POINTER (DEF-14: a fresh term per read; E-4, 1.6 leg B)
+             195 read a field of a BY-VALUE aggregate, or pass one to a pure call in the measure
+                 (NEW lead E-6: an aggregate has no value term yet)
+              64 open on their merits
+stack-depth  116 rows, all open: no group of the compiler's states a measure
+```
+
+*⚠ **Not a discrepancy:** the manifest holds 1,174 `terminate` ROWS (675 / 499). The report counts SITES in the
+verified build's `rows.txt`, while the manifest keys DISTINCT rows by hash. The two agree on open (499); the 9 extra
+sites are all discharged.*
+
+**⭐ WHAT IT MEANS FOR OUR LOOPS, and it sizes the reading at the sweep.** *"A measure decides only over STABLE terms —
+`x.count - i` with `x` a pointer parameter, or a field of a by-value struct, keeps its check (correct, unproven); the
+`hoist` idiom (`int64:n = x.count;` before the loop where the body cannot change it, `decreases n - i`) is what the
+solver reads."* **Measured, statically, over our 110 loop conditions:** 74 name only locals and literals, **35 read a
+FIELD (6 of them in library `src/`), which are the hoist candidates**, 1 calls a function, and none is `while (true)`.
+*Control: the compiler's 976 conditions split 551 / 313 / 34 calls / 78 `while (true)`.* Added to worklist item 4.
+
+**⭐ 1.5.8d — THE CYCLE'S CLOSE — IS PLANNED, AND ITS SCOPE WAS READ BEFORE ITS RECORD** (`meta/roadmap/1.5/1.5.8d.md`,
+472 lines):
+
+```
+step 0   E-6, a by-value aggregate as a term -- IF S-97 is ratified (recommended). Encoder-only: it moves the
+         compiler's manifest and NOTHING language-visible. Target: 195 of its 499 open terminate sites
+step 0b  E-5, the bound-call narrowing -- ONLY if S-98 goes against the recommendation ("decide it out")
+step 1   THE REFRESH from the final src/ (D-203): builder.o and builder MOVE at notice 49; npkrt.o does NOT
+step 2+3 the doc sync and THE ARCHIVE as one commit: meta/roadmap/1.5/ -> meta/roadmap/done/1.5/
+step 3   one full harness, repro, selfhost, parity; push; NOTICE 49 ("next: 1.6.0"); then a briefing of a FRESH
+         session for 1.6.0 -- so the compiler address is expected to change after 49
+NOT      no test, no harness code, no floor byte, no spec or model changes at the close; E-4 is handed to 1.6
+```
+
+**TWO THINGS FOR THIS BOARD:**
+
+- **The recipe's paths MOVE at the close.** `meta/roadmap/1.5/tools/decreases_sweep.py`, `decreases_read.txt` and
+  `loop_dump.npk` become `meta/roadmap/done/1.5/tools/…`. Notice 44's entry keeps the recipe verbatim with the old
+  paths, and **worklist item 4 records the move.**
+- **⭐ S-98 has a LIBRARY ANGLE, and the author decides it.** E-5 is DEF-86's over-approximation: a trait-method call on
+  a bound parameter reaches EVERY impl of its trait. That is how a root that never touches a `tbb` type can be asked for
+  `(TbbErr)`: `TbbErr` is raised only where a `tbb` type is touched (`reach.npk`), so the ask can only arrive through a
+  `tbb` impl. Its measured cost in the compiler is four test arms, all `TbbErr`. **"Decided out" keeps a re-open
+  trigger that names us: *"a library or app root that must name an identity its instantiations can never raise in more
+  than one arm."*** Measured here:
+
+  ```
+  our trait declarations 0 · dyn 0 · impl blocks 3 (all regex probes) · derives 14 in 9 files (5 in nitpick-time's
+  src/cal/cal.npk: Eq, Ord, Clone, Debug) · handlers naming TbbErr 0 of 141 (control: 42 in the compiler)
+  ```
+
+  **So whether E-5 costs us is unknowable until the re-pin's REACH-002 lines, which is worklist item 3b's `TbbErr
+  UNKNOWN`.** *If a `(TbbErr)` arm is demanded of our roots in more than one place, with no `tbb` in our code, that
+  MEETS E-5's re-open trigger and goes to the compiler side.* Added to item 3b. **Nothing here argues S-98 either way:
+  deciding it out is compatible with our position, because the trigger covers the case that would cost us.**
+
+**READINESS (d) now has a named candidate:** the 1.5 close commit, 1.5.8d step 3's. The floor does not move at the
+close, so **the anchor `162b8975…` / 72 576 B is expected to carry to it**, while the builder rows move.
+
+**THE BASELINE NOTICE 49 MUST QUOTE AS ITS PREVIOUS VALUES** *(every row held at `624d71f`, so these are notice 47's
+rows, checked against `ladder_624d71f.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B  expected to MOVE at 49
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B  expected to MOVE at 49
+npkc.ll    bf26b32deec6217a634b86af890a6c5daa01107bfc08be1de1fdf2d870dea990  27,867,329 B  THE EMISSION (D-265)
+npkc.o     02ca6dba1420b4e982cbaef922a2a6456608625303cc44c30a11201473f3f24f  11,208,304 B
+npkc       19ec0f2f039b905fe56c81002d1f9ab9188e127df1a4ccacb735434066bc0dbd   9,636,024 B
+harness    programs 331 · verified 122 (6118 obligations) · floor 388 / 90 · parity 1705 · ok 52
+manifests  nitpick.obligations 5861 rows / 1072 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 30b4f135... (the step-2 refresh) -- REFRESHED at the close
+```
+
+**FORECAST FOR 49, checkable here:** at a refresh the tracked seed equals the emission, as at `5ea6053`. So at 49,
+`git -C ../nitpick show <49's sha>:bootstrap/seed/stage1.ll | sha256sum` must equal notice 49's `npkc.ll`, and
+`npkrt.o` must be exact.
+
 ### ✅ `d7a8092` LANDED — **1.5.8c STEP 4b: DEF-92 FIXED — THE GENERIC-INSTANCE INTERNER GETS ITS INDEX, AND THE FRONTEND IS 5.4× FASTER. NO LANGUAGE CHANGE, NO FLOOR BYTE, NO REFRESH.** Notice 47, received 2026-09-24 ~21:36 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire reads `d7a8092`, whose parent is `def2728`. The three held rows are exact to
@@ -2606,7 +2694,8 @@ b  D-308's identity is LimitViolated, an EXISTING one, named by 2 of our 141 han
    reach wherever a List write is reached (6c, notice 39) -- wide in effect, not universal by rule
 c  so far, beyond D-304..D-312: D-313 `sealed`, D-314 `hidden` + the checked List, D-315 (a sentence STRUCK),
    D-316 (`unbounded` states its reason); `ListLen` reserved. Open until 1.5.8d closes
-d  at the 1.5 close
+d  the candidate is NAMED: the 1.5 close commit (1.5.8d step 3). The floor does not move at the close, so the
+   anchor 162b8975... / 72,576 B is expected to carry to it; the builder rows move (notice 48)
 e  at the 1.5 close; the worklist is kept current meanwhile (items 1-14 and 3b)
 ```
 
@@ -2714,6 +2803,9 @@ entry that measured it.*
     included: 2/141 name it today, 30 of 143 roots call text functions directly -- likely dozens;
     and (OutOfBounds) at our 35 string_from_bytes / #wild_slice calls. As for 6b: (derive
     expansions). Re-run nitpick-time's probe11c-f, whose REACH findings 6b may have made stale
+    TbbErr's only route to a root that never touches tbb is E-5's fan-out (a trait call reaches
+    EVERY impl). If S-98 decides E-5 out and a (TbbErr) arm is demanded of our roots in MORE THAN
+    ONE place, that meets E-5's re-open trigger (1.5.8d SS2.2): report it to the compiler side
  4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
     92 in tests, probes and harnesses; each library loop needs a real termination measure
     REFUSED from 1.5.8c step 4. D-316: an event loop says `unbounded` with its reason on the line
@@ -2724,6 +2816,9 @@ entry that measured it.*
     AND THE SWEEP READS NO STRING: nitpick-time/meta/scratch/tzdb_spike/emit.py:131 emits 4 clause-
     less counter loops from an f-string; the spike is kept as TM-135's evidence (0.0.6 SS4), so
     re-running it past def2728 needs clauses there, and tools/gen_tzdb.py must emit them (notice 46)
+    HOIST: a measure over x.count with x a POINTER or a BY-VALUE struct keeps its check (unproven);
+    35 of our 110 conditions read a field (6 in src/). PATHS: the recipe's tools move to
+    meta/roadmap/done/1.5/tools/ at the 1.5 close (notice 48)
     The clause does not parse at 3d15ac9: the sweep lands WITH the re-pin, or the re-pin is
     STAGED through a commit in [1.5.8c step 1, step 4), where the clause is accepted, not demanded
  5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311; REQUIRED
