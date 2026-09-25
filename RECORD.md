@@ -6968,3 +6968,38 @@ planner's pass-3 matrix and did not change its result.
 
 **dispatched 18:14:** `s2-ntime-0.1.3-1814` (`npk:worker`, 0.1.3) and `s1-nregex-0.0.4d-1814` (`npk:planner`, 0.0.4d) — width 2
 with one planner, P-12. 61 GiB available at dispatch, above this seat's 32 GiB floor, with a `clam` run live.
+
+### The compiler-defect registry was stale for nine of its twelve open entries — audited, spot-checked and struck — 2026-09-25 19:0x
+
+**report `wb-registry-sweep-1821` (`npk:auditor`, read-only), 31 min:** of the twelve un-struck entries, **9 DISCHARGED** — O-N4,
+O-N9, O-N10, O-N11, O-N12, O-N13, O-N15 (all fixed since `94874ce`, 2026-09-04), O-N16 (since `0dfddac`) and O-N17 (since
+`aaffb87`) — and **3 STILL OPEN**: O-N1 (`clone_exec` has no signal-mask slot), O-N2 (`npkg` cannot build a library or resolve
+`[dependencies]`) and O-N5 (one artifact per build), none on the compiler's 1.5 or 1.6 map. Every "passes now" carries a control
+that failed at an older kept pin as its entry describes, and adversarial variants hold (O-N9's seven escape routes, O-N10's
+two-field payloads, O-N11's imported `failsafe`, O-N13's glob spellings). **Spot-checked here before striking:** `view_escape/case5`
+refused `BORROW-001` at `c3bdae2` and `run:170` at `950bb1d`; `missing_failsafe/case1` refused `REACH-003`; `generic_element_move/case1`
+runs 0 at `c3bdae2` and fails `llc` at `94874ce`; O-N15's bound read at `c3bdae2`; every upstream id cited (DEF-1, DEF-3/D-249,
+DEF-4/D-250, DEF-5, DEF-7, DEF-8's `8dbef43`, `39e69cc`, `0880771`) found in the compiler tree at the pin.
+
+**The finding is the staleness, not the defects.** `BOARD.md` recorded O-N4 discharged on 2026-09-04 and `nitpick-time` struck five of
+these in its own file by 09-06, **while this registry — which planners and dispatches read as live state — carried all nine as open for
+three weeks.** Nothing checks the registry against the libraries' own records; a discharge was recorded wherever it was measured and
+never carried back. **Rule for this seat from here:** when a library's harness names a registry defect's verdict moving, strike the
+registry entry in the same board commit that records the report. The strikes carry text corrections where the entries were wrong
+beyond staleness (O-N4's 281 s is `probe04`'s 30 000 rows, not TM-007's tzdb; O-N9's disposition is Q-8, not Q-5, and was ruled
+blocking; O-N11 was sent and accepted as DEF-5 on 09-03; O-N17's `vec_pop<T>` ships, and `List<T>` has nine functions, not three).
+The board's *"O-N9, O-N10, O-N11 … not yet measured here"* is corrected.
+
+**Correction against this seat:** the 18:14 entry above said *"the other thirteen un-struck entries (O-N1, 2, 4, 5, 9–13, 15–17)"*. The
+list it gave has **twelve**; thirteen counted O-N20, which was raised that hour.
+
+**Beyond the twelve:** (1) `nitpick-regex`'s own `meta/OPEN_QUESTIONS.md` still heads O-N12, O-N13, O-N15 and O-N16 *"PROVISIONAL"* —
+owed to its next worker (0.0.4d), noted on its in-flight row; (2) **the compiler's `BUILD_REFERENCE.md` describes O-N2's missing
+features as working** — `target = "library"` and dependency-root `use` with no status note, and `npkg update` as the command that
+resolves and vendors, while `npkg/main.npk` refuses `update` — verified here read-only at `c3bdae2` (unchanged at `f758995`), recorded
+in O-N2 and relayed to `nitpick-compiler_s15` as a documentation defect, non-blocking; (3) O-N13's named reproduction was never
+committed, so its strike cites the compiler's `tests/accept/reexport/`.
+
+**The compiler seat, 18:3x:** it stopped its `clam` run at 18:12 and skipped the eight Clam settings that exceed this machine
+(>134 GiB resident; killed at the line on every attempt), recording the seven kills as one row — *"exceeds the machine"* — not seven
+results, and credited this seat's journal reads in its step-3 record. Notice 57 will quote the `f758995` rows.

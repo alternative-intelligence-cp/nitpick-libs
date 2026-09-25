@@ -394,8 +394,8 @@ file existed — the check works.
   shape — a document describing evidence rather than holding it — and it is
   owed at this repository's next claim.**
 
-- **O-N17 — a generic function that moves OUT of an indexed element at an
-  owning `T` calls a `@npk.vacant.<n>` helper the emitter never defines.**
+- ~~**O-N17 — a generic function that moves OUT of an indexed element at an
+  owning `T` calls a `@npk.vacant.<n>` helper the emitter never defines.**~~ — **DISCHARGED — the generic move out of an owning element links and runs since `aaffb87`** (compiler `0880771`, 1.5.2d step 4). All five `generic_element_move/` cases run 0 at `c3bdae2` (`llc` refused `@npk.vacant.<n>` at `94874ce` and `0dfddac`), and **the entry's own warning was measured, not assumed**: a generic `vec_clear<string>` really drops — `peak_live` stays at 59 B over 10 000 rounds against 110 048 B with the clear removed — while the exit code is 0 either way (`nitpick-time` TM-136). *Correction to the text below:* `vec_pop<T>` is not HELD — `nitpick-time` ships it written with `move(s[…])`, as O-N19 says; and the prelude's `List<T>` has nine public functions at `c3bdae2`, not three. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.*
   Raised by `nitpick-time` 0.0.4, 2026-09-05, against the pinned `0dfddac`, and
   **reproduced by the orchestrator before it was sent upstream.** `npkc` exits
   **0** and writes the `.ll`; `llc` exits **1** and writes no object, on
@@ -470,8 +470,8 @@ file existed — the check works.
   `nitpick-compiler_s0` 2026-09-05** under the lifted constraint, explicitly
   as a catalogue-quality report rather than an interrupt to their 1.5.2d.
 
-- **O-N16 — DEF-8's landing note states a premise about this workbench that is
-  false, and reaches the right conclusion by the wrong route.** Raised by
+- ~~**O-N16 — DEF-8's landing note states a premise about this workbench that is
+  false, and reaches the right conclusion by the wrong route.**~~ — **DISCHARGED — DEF-8's closing note was corrected upstream the day this entry was catalogued** (compiler `8dbef43`, 2026-09-04; in every pin from `0dfddac`): it now says the workbench does write the shape and is untouched because its containers fall outside `decl_is_list` (which now requires the prelude's scope, the name `List` and the fields `items`, `count`, `cap`). The entry's own text said so, and it was never struck. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by
   `nitpick-regex` 0.0.3, 2026-09-04, against the pinned `94874ce`; its local id
   is also `O-N16`. ~~**CATALOGUED, NOT RAISED**~~ — **the catalogue-don't-raise
   constraint was LIFTED by the author on 2026-09-05 ("raise as found"), and
@@ -501,8 +501,8 @@ file existed — the check works.
   three probes re-running clean would confirm them in it. *Recommendation:*
   correct the note's reason rather than its verdict, and fold it into whatever
   batch reopens — it is one sentence and needs no code.
-- **O-N15 — `npkg` accepts an `expect-exit:` above 255, which no run can
-  satisfy.** Raised by `nitpick-regex` 0.0.2, 2026-09-04, against the pinned
+- ~~**O-N15 — `npkg` accepts an `expect-exit:` above 255, which no run can
+  satisfy.**~~ — **DISCHARGED since `94874ce`** — `npkg`'s `expect_read` refuses an `expect-exit:` outside 0..255 and −1..−64 by name (`npkg/expect.npk:146–151` at `c3bdae2`; compiler `39e69cc`, 1.5.1b step 5; its self-check carries an `expect-exit: 321` that must fail). No bound existed at `950bb1d`. *A source reading at the commit, not a build of `npkg`.* *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by `nitpick-regex` 0.0.2, 2026-09-04, against the pinned
   `950bb1d`. `expect_read` accepts the value and `run_binary` then compares it
   against a one-byte process status, so the test fails forever with a message
   that is true and useless. **W-27: blocks nothing, inconveniences nobody
@@ -530,7 +530,7 @@ file existed — the check works.
   own case, since both are about a root's obligation to supply that symbol.
   Reproduction: `nitpick-regex/tests/conformance/TRANSCRIPT.txt` §A. Under
   verification at the time of writing.
-- **O-N13 — a `pub use` is SILENTLY downgraded to a plain `use`.** Raised by
+- ~~**O-N13 — a `pub use` is SILENTLY downgraded to a plain `use`.**~~ — **DISCHARGED — a `pub use` after a plain `use` re-exports since `94874ce`** (the compiler's DEF-7, 1.5.1b step 3c; `symbols.npk:588` gives the earlier binding `SYM_PUB`; tested upstream in `tests/accept/reexport/`). The named reproduction cannot be re-run — `TRANSCRIPT.txt` §E2/§E3 recorded files that were never committed — so the audit rebuilt the §E2 shape from the real umbrella at `d84b185`: refused `RESOLVE-002` at `950bb1d`, runs 0 at `94874ce` and `c3bdae2`; the plain-`use` control stays refused. **Cite `tests/accept/reexport/` as the evidence from here on.** *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by
   `nitpick-regex` 0.0.1, 2026-09-03. When the same path was plain-`use`d earlier
   in the same file, `symtab_bind_import` declines a name already bound and
   returns the prior binding **without merging `SYM_PUB`**, at no severity and
@@ -544,8 +544,8 @@ file existed — the check works.
   planned. Same family as O-N10's quiet half: the loud failure is an
   inconvenience and the silent wrong answer is the defect. Reproduction:
   `tests/conformance/TRANSCRIPT.txt` §E2 against §E3. Under verification.
-- **O-N12 — `>>>` and `string_repeat` are documented in the compiler's
-  references and absent from the compiler.** Raised by `nitpick-regex` 0.0.0,
+- ~~**O-N12 — `>>>` and `string_repeat` are documented in the compiler's
+  references and absent from the compiler.**~~ — **DISCHARGED — the documents were corrected, as recommended**, at the compiler's 1.5.1b step 2 (present in `94874ce`): the `>>>` row is gone, `>>` is described by the operand's signedness (`TYPE_REFERENCE.md:2038`), and the "fast compiler intrinsics" sentence now reads UNCLAIMED (`BUILTIN_REFERENCE.md:179–186`). At `c3bdae2` `>>>` does not lex (`PARSE-002`) and `string_repeat` does not resolve (`RESOLVE-002`), as documented, and `>>` is logical on an unsigned operand and arithmetic on a signed one. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by `nitpick-regex` 0.0.0,
   2026-09-03, against the pinned toolchain `950bb1d`. `>>>` does not parse;
   `string_repeat` is documented and not there. **Blocks nothing** (W-27): both
   have working substitutes, and the substitute for `>>>` is that **`>>` on an
@@ -558,8 +558,8 @@ file existed — the check works.
   documentation true at the cost of a redundant operator; deleting it makes the
   documentation true and the language smaller. Settled by: the compiler session.
   Under verification at the time of writing.
-- **O-N11 — a program with `main` and no `failsafe` compiles at `npkc` exit 0,
-  and the REACH-002 arm contract is discharged by deleting the handler.**
+- ~~**O-N11 — a program with `main` and no `failsafe` compiles at `npkc` exit 0,
+  and the REACH-002 arm contract is discharged by deleting the handler.**~~ — **DISCHARGED — refused at `NITPICK-REACH-003` at `main` since `94874ce`**, naming every identity the missing handler owes (the compiler's DEF-5, 1.5.1b step 1b). `missing_failsafe/` `case1` and `case3` are refused at `c3bdae2` and `case2` runs 0 (`nitpick-time` TM-112); a `failsafe` placed in an imported module is refused `RESOLVE-013`. *Correction to the text below:* it was sent, and accepted upstream as DEF-5, on 2026-09-03 — "PROVISIONAL … not sent" was stale from that day. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.*
   Raised by `nitpick-time` 0.0.0 probe 11 (its local O-N5), 2026-09-03, against
   the pinned toolchain `950bb1d`. **The number is allocated; the finding is
   PROVISIONAL until the verifier answers**, and it has not been sent to the
@@ -585,16 +585,16 @@ file existed — the check works.
   `nitpick-time/tests/probe/defect/missing_failsafe/` (three cases, a
   transcript, and a support-module control that rules out the
   library-versus-executable diagnosis).
-- **O-N1 — `clone_exec` has no signal-mask slot.** Raised by `nitpick-tui`
+- **O-N1 — `clone_exec` has no signal-mask slot.** **STILL OPEN at `c3bdae2` and at the compiler's HEAD** (the registry audit, 2026-09-25: the child path issues no `rt_sigprocmask`, the parameter block has no mask word, and nothing upstream records the request). *Its reach is wider than "`ntui` 0.1.6 only"*: `nitpick-tui`'s cycle 0.15 README also exercises the O-N1 signal-mask window. Raised by `nitpick-tui`
   (its O-N1). Bites `ntui` 0.1.6 only, and it has a working answer already.
 - **O-N2 — `npkg` cannot build a library, and `[dependencies]` resolves to
-  nothing.** Raised by every repository: `nitpick-tui` O-N2, `nitpick-sockets`
+  nothing.** **STILL OPEN at `c3bdae2` and at the compiler's HEAD** (the registry audit, 2026-09-25: the manifest stores neither `target` nor any dependency; `rootlist_add` has no caller outside a unit test; a `[dependencies]` probe fails `RESOLVE-005`; not on the 1.5 or 1.6 map). **And the compiler's `BUILD_REFERENCE.md` describes it as working** — `target = "library"` and the dependency-root `use "nfs/…"` form (§1, §3) with no status note, and `npkg update` as the command that "resolves versions; writes `nitpick.lock` and vendors source" (§7), while `npkg/main.npk` refuses `update` — the O-N12 shape on this entry's subject; verified here read-only and relayed to the compiler seat 2026-09-25. Raised by every repository: `nitpick-tui` O-N2, `nitpick-sockets`
   O-N2, `nitpick-posix` O-N2, `nitpick-time` O-N1, `nitpick-parse` O-N1,
   `nitpick-regex` **O-G3** (renumbered from its local `O-N3` at 0.0.1, so `O-N` there now means this registry alone). Blocks nothing — the Python harness is the plan — and
   has a long lead time. Not on the compiler's 1.5 or 1.6 map.
-- **O-N5 — `npkg` cannot build more than one artifact.** Raised by
+- **O-N5 — `npkg` cannot build more than one artifact.** **STILL OPEN at `c3bdae2` and at the compiler's HEAD** (the registry audit, 2026-09-25: one `[build] entry`, one `output`, no `bin` section). Raised by
   `nitpick-posix` (its O-N5). Blocks nothing; the harness does it.
-- **O-N4 — `npkc` is quadratic in the size of one declaration.** Raised by
+- ~~**O-N4 — `npkc` is quadratic in the size of one declaration.**~~ — **DISCHARGED — linear on all three axes since `94874ce`** (the compiler's DEF-1, 1.5.1b step 3, where the builders write into a `Sink`). At `c3bdae2` the committed 4 000-row case compiles in 0.37 s / 14 MiB (5.3 s / 580 MiB at `950bb1d`), and `probe04`'s 30 000 rows in 1.39 s / 26.5 MiB (281 s / 30.9 GiB when raised); array rows, statements and string-literal bytes each scale linearly to 32k rows, 16k statements and 960 kB. `BOARD.md` recorded it discharged on 2026-09-04 and `nitpick-time` re-measured it at `aaffb87`, **yet this entry stayed OPEN for three weeks.** *Correction to the text below:* the 281 s / 30.9 GiB figure is `probe04`'s 30 000 rows, not TM-007's 26 838-row tzdb. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by
   `nitpick-time` (its O-N4), which is also the local id, so this section keeps
   it. Three independent axes — array-initialiser elements, function-body
   statements, string-literal bytes — with the string axis flat in memory and
@@ -615,8 +615,8 @@ file existed — the check works.
   append-only and is never rewritten. That is why this line exists — so the
   reference resolves and the mistake stays visible. `check_refs.py` caught it,
   which is the second time this file's existence has paid for itself.
-- **O-N10 — `#[derive(…)]` on a payload enum is refused one way and silently
-  wrong the other.** Raised by `nitpick-time` 0.0.0's probe 05. `#[derive(Eq)]`
+- ~~**O-N10 — `#[derive(…)]` on a payload enum is refused one way and silently
+  wrong the other.**~~ — **DISCHARGED since `94874ce`** (the compiler's DEF-4 / D-250, 1.5.1b step 3b): `derive(Eq)` on a payload enum builds and tells payloads apart, and `derive(Ord)` orders by payload (`case2` went from 221 to 121). Recorded in `nitpick-time` TM-111 and `nitpick-regex` RX-125; covered upstream by `tests/backend/programs/derive_payload.npk`, which the entry's text below says did not exist. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by `nitpick-time` 0.0.0's probe 05. `#[derive(Eq)]`
   on an enum with a payload does **not** compile — `NITPICK-TYPE-034`, reported
   inside `<derived-1>` — while `#[derive(Ord)]` on the same declaration
   compiles and produces a **tag-only** `cmp`, so `Literal(7).cmp(Literal(9))`
@@ -627,8 +627,8 @@ file existed — the check works.
   payload enum is exposed and no rule needs either derive on it — but it
   blocks the first library that wants one, and it should be raised with a
   request for a test in the compiler's tree.
-- **O-N9 — D-004's escape rule is enforced for `@`-borrows and not for slice
-  views.** Raised by `nitpick-time` 0.0.0 while mapping probes 09 and 10's
+- ~~**O-N9 — D-004's escape rule is enforced for `@`-borrows and not for slice
+  views.**~~ — **DISCHARGED — refused at `NITPICK-BORROW-001` since `94874ce`** (the compiler's DEF-3 / D-249, 1.5.1b step 2). `view_escape/` cases 3–5 are refused at `c3bdae2` (case 5 ran to the `0xAA` poison, 170, at `950bb1d`) and case 6, the legal view parameter, still runs 0 (`nitpick-time` TM-110); seven further escape routes — an alias, a sub-view, an identity function, a `.ptr` laundering through `string_from_bytes` — are all refused. *Corrections to the text below:* its disposition is **Q-8**, not Q-5, and the author answered Q-8 *blocking*, so "not O-N4-style blocking" did not stand. *Re-measured by the workbench's registry audit (`wb-registry-sweep-1821`) 2026-09-25, each with a control at an older kept pin; spot-checked by the orchestrator.* Raised by `nitpick-time` 0.0.0 while mapping probes 09 and 10's
   borrow edges. `string_bytes` on a local `string` yields a `uint8[]` that can
   be **returned out of its owning frame with no diagnostic**, and reading it
   afterwards reads freed memory — measured, the caller gets something other
