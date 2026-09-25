@@ -6401,3 +6401,30 @@ second triage and regex's HEAD, and the workbench's third pass `f1071fb` reads *
 that close against `f1071fb`'s findings, and time's next act is 0.1.1's plan, preceded by the CI pin bump as its own
 commit (questions row 6). `s5`'s brief said library work resumes "where cycle 0.0 paused" — right for regex; `s5`
 corrected it for time itself when asked.
+
+### The pin moves to `c3bdae2` — the first re-pin since the pause; the canary gains two arms, and `probe13a` is refused for the wrong reason — 2026-09-25
+
+pin c3bdae2, tree clean.
+
+**Provenance and digests** as the board's entry records: both guards clear on the first attempt; the COPIES equal
+notice 50's rows to 64 hex by script, with a control that can fail; `npkrt.o` moved from the `3d15ac9` pin's 55 576 B
+to the 72 576 B anchor.
+
+**Commissioning.** The canary as it stood was refused at the new pin by `NITPICK-REACH-002` ×2 (`StackExhausted`,
+`MachineFault`) while the kept `3d15ac9` pin still compiled it to the recorded 50 482 B / 14, so the refusal is the
+pin's. It sat outside the failsafe census, which counts 141 handlers in regex, time and posix; the canary lives in
+`tools/`. Amended with canary-local codes 106/107, it compiles: 55 414 B, 14 `define`s, flat across cycle 1.5. A
+malformed file exits 1 at `NITPICK-PARSE-001` writing none, and its input is now in `tools/canary.md`. **`probe13a` is
+refused by REACH-002 ×2, not by the `RUNG-001` it asserts, and before `prove` is judged; unmasked in a scratch copy,
+`prove` lowers to nothing in a plain build.** No library tree was touched.
+
+**An orchestrator edited a `.npk` file, and says so.** `tools/canary.npk` is the pin procedure's own instrument,
+committed by the seventh orchestrator, and the change is the two arms the compiler's diagnostic names — so it was made
+here rather than dispatched, which would have waited on the width. It is not library code and it gates nothing of its
+own. If the author would rather an agent make even instrument edits, that is a one-line rule for orchestrate §1.
+
+**Two lapses of this seat, both on the canary's exit codes, both caught before any commit.** The first pick (93/98)
+came from a scan over a hand-picked identity list that omitted `IntOverflow` (93, ×128), found when the unmasked
+probe's own failsafe used 93. The second (101/102) was chosen in the same command that printed the free list, before
+reading it. Both are rules the handoff brief named: a control tests only the categories it contains, and a check belongs
+on the right side of the write.

@@ -56,6 +56,9 @@ denominator is unstated is how this workbench keeps getting caught.
 | `aaffb87` (1.5.2d) | a session scratchpad, source **lost** | 50 560 | **14** |
 | `aaffb87` (1.5.2d) | this session's scratchpad | 50 482 | **14** |
 | `3d15ac9` (1.5.2f) | this session's scratchpad | **50 482** | **14** |
+| `3d15ac9` (1.5.2f) | the workbench root, 2026-09-25 — the control for the row below | 50 482 | **14** |
+| `c3bdae2` (1.5 close) | the workbench root — the source above, **unchanged** | **REFUSED** — `NITPICK-REACH-002` ×2 | — |
+| `c3bdae2` (1.5 close) | the workbench root — the **AMENDED** source | **55 414** | **14** |
 
 **The 78-byte gap between rows one and two is a DIFFERENT PROGRAM, not a
 compiler change** — the source of row one no longer exists, so this canary is a
@@ -67,3 +70,41 @@ same program through both pinned compilers on this machine: the differential the
 board's method requires. **`nitpick-compiler_s0` predicted the 1.5.2f point
 would be FLAT, and it is — byte-identical and define-identical.** A prediction
 that forbids all movement is falsified by any movement; this one was not.
+
+## The source changed at 1.5, and the series breaks there
+
+**At `c3bdae2` the canary as it stood is REFUSED** — exit 1, no IR, exactly two
+`NITPICK-REACH-002` lines: its failsafe names neither `StackExhausted` nor
+`MachineFault`, which the compiler now arms in every program (D-179: `(*)`
+counts for nothing). **The same unchanged source still compiles at the kept
+`3d15ac9` pin to the recorded 50 482 B / 14**, so the refusal is the pin's.
+
+It was amended on 2026-09-25 with two arms and **canary-local exit codes 106
+and 107** — chosen because every code in 80..99 is already in use somewhere in
+the six work repositories, and asserted unused before the edit. **They are not
+a convention:** item 2 of the re-pin worklist decides the libraries' codes for
+these two identities, and the canary follows it if it differs.
+
+**The amended source is refused by the `3d15ac9` pin** (`NITPICK-RESOLVE-002`:
+the identities do not exist there). So each source compiles only on its own side
+of 1.5 and **no single program spans the break.** The define count — 14 on both
+sides — is the half that carries across, as it did at the 78-byte gap above.
+
+## The other direction
+
+A pin is commissioned in both directions: the canary must compile, **and a
+malformed file must fail**, or the reading could not have come out any other
+way. The input, recorded here because the earlier one lived only in a scratchpad
+— the defect this file was written to end:
+
+```
+mod:canary_malformed;
+
+func:main = int64( {
+```
+
+**Name the file `canary_malformed.npk`.** A file's header must name the file, so
+under any other name the resolver refuses first with `NITPICK-RESOLVE-012` and
+the parser is never reached — measured 2026-09-25, when the first attempt did
+exactly that. Under the right name it exits 1 at `NITPICK-PARSE-001` writing no
+IR, at `c3bdae2` and at `3d15ac9` alike, measured 2026-09-25.
