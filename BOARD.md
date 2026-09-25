@@ -911,10 +911,14 @@ llvm        20.1.2
 exits 1 at the new pin with exactly two `NITPICK-REACH-002` lines: its failsafe names neither `StackExhausted` nor
 `MachineFault`. **Control: the same unchanged source against the kept `3d15ac9` pin still compiles — exit 0, 14
 `define`s, 50 482 B, the recorded series value — so the refusal is the pin's, not the source's.** *The readiness
-evaluation did not forecast it, and the reason is a denominator:* `failsafe_arms.py` censuses `ours()` — **141
-handlers, in `nitpick-regex` (66), `nitpick-time` (68) and `nitpick-posix` (7)** — and the canary lives in this
-workbench's `tools/`, outside that set. **It was a 146th failsafe that nothing counted, and it is the pin's own
-commissioning instrument**: hazard 6's family again, the thing nobody thinks of as code. **Amended here** with the two
+evaluation did not forecast it, and the reason is a denominator — `s5`'s own census, as `s5` volunteered
+at the handoff:* `failsafe_arms.py` counts `ours()` from `ours.py` — **141 handlers, in `nitpick-regex` (66),
+`nitpick-time` (68) and `nitpick-posix` (7)**, the six work repositories and NOT this workbench — so the canary in
+`tools/` was **a 146th failsafe the arms census did not count, and it is the pin's own commissioning instrument.**
+**The sharper finding: there are TWO `ours()`.** `ours.py`'s lists the six work repositories (170 tracked `.npk`);
+`str_loops.py` defines its own over the same six **plus `.`** (171, the canary included). So `s5`'s keyword and loop
+counts included the canary and its arms count did not — **two helpers, one name, two denominators**: hazard 6's
+family one level down. The listener tools' README now says so. **Amended here** with the two
 arms and **canary-local exit codes 106 and 107**, asserted unused in all six work repositories before the edit. It
 compiles at exit 0: **55 414 B, 14 `define`s — the define count is FLAT across the whole of cycle 1.5.** The amended
 source is refused by the `3d15ac9` pin (`RESOLVE-002`: the identities do not exist there), so the series breaks
@@ -950,6 +954,19 @@ failed twice in ten minutes.** The first pick (93/98) came from a scan over **a 
 `(IntOverflow) { exit 93i32; }`, is what exposed it. The second (101/102) was chosen **in the same command that printed
 the free list, before reading it** — hazard 5's tell, the check on the wrong side of the write. The third was asserted
 free by script before the edit. Neither wrong pick reached a commit.
+
+**(4) RELAYED BY `s5` AT THE HANDOFF — three things the author said that this board did not hold.** Two are in the
+project's auto-memory as well; all three are here because `s5` closes after this handoff.
+
+- **Quota priority.** If tokens run short, `claude-skills-devTeam` is paused FIRST; the compiler and library seats
+  keep priority. It bears on width, and width is still his call.
+- **Rotation.** He sees the auto-compact warning and sometimes the token count, and plans a rotation above ~900k;
+  **the seat sees neither.** So keep a clean point close — committed and pushed after each unit — and if he asks
+  whether to interrupt, give an honest estimate of what is left, not a reassurance. A rotation will sometimes come
+  late: `nitpick-compiler_s13` compacted before a clean point, and a notice was lost.
+- **A cloud agent, undecided.** He has mentioned coordinating work with one. Nothing is decided. **If it happens, a
+  cloud clone is a SECOND CHECKOUT**, so W-16's one-writer rule applies to it exactly as to a local session: it holds
+  this lock to write here, or it does not write. Hazard 7's shared-directory argument does not cover it; W-16 does.
 
 **Next, in order:** item 5 at any time; items 2, 3, 3b and 6 from the REACH-002 lines over every root; item 4, the
 sweep; item 13. **Dispatch waits on the author's width.**

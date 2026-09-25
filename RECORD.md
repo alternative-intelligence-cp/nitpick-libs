@@ -6428,3 +6428,11 @@ came from a scan over a hand-picked identity list that omitted `IntOverflow` (93
 probe's own failsafe used 93. The second (101/102) was chosen in the same command that printed the free list, before
 reading it. Both are rules the handoff brief named: a control tests only the categories it contains, and a check belongs
 on the right side of the write.
+
+**Attribution, corrected at `s5`'s request.** The census that missed the canary is `s5`'s `failsafe_arms.py`, which
+`s5` said itself. It counts `ours()` from `ours.py`, the six work repositories and not this workbench, while
+`str_loops.py` defines its own `ours()` over the same six plus `.`, so `s5`'s loop and keyword counts did include the
+canary. Two helpers, one name, two denominators. The *"`probe13a` will no longer be refused"* forecast is older board
+text and not `s5`'s. `s5` also relayed three things the author said that the board did not hold: quota priority
+(`claude-skills-devTeam` pauses first), rotation practice (keep a clean point close), and an undecided cloud agent,
+which would be a second checkout under W-16. They are on the board now, without personal figures.
