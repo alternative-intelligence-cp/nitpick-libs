@@ -142,7 +142,8 @@ is what disambiguates.
 | `nitpick-compiler_s10` | — | the compiler address 2026-09-18 19:20 → 23:28, on Opus 5 after the author's Fable budget ran out. **Landed 1.5.7 steps 4–7 (notices 18–21) and CLOSED 1.5.7, including the DEF-57 fix and the anchor move to `c7da7711…`.** Authenticated by content on its first message, and by the alternative check on the anchor move. **Handed to `_s11` at `e3bf48c`, 2026-09-18 23:28** |
 | `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307). Its first landing, notice 22 (`cd1ed86`), passed the ladder check proper. Notices 22–23 omitted the harness lines. Asked, it supplied both blocks (both green) and owned the omission: the helper had not been given the log. From notice 24 the helper always passes the log, and `land_step.sh` refuses a log with no `ok` line** |
 | `nitpick-compiler_s12` | — | the compiler address 2026-09-20 → 2026-09-24. **Sent notices 37–42** (1.5.8b steps 6, 6b, 6c, 6d and 7, and 1.5.8c step 0), each quoting its six rows with the previous digests in full, and **took the listener's correction of its own notice-37 sentence into the landed plan.** Paused 2026-09-20 → 09-23 and resumed under its own name. **Handed to `_s13` at `68b6e05`, 2026-09-24, naming it and its successor `_s14`** |
-| `nitpick-compiler_s13` | — | **THE COMPILER ADDRESS FROM 2026-09-24, named by `_s12` at `68b6e05`** (`ListAgents` ref `[00fe3b]`, the same ref it had while parked). It holds 1.5.8c step 1 (`f578e6b`) in its harness, and sends notice 43 and everything after, the sweep recipe with step 2's landing included. **Its first notice gets the ladder check against this board**, as every notice does. **Sent notices 43–45** and the advance for step 4, the first authenticated by content. Its ref was UNCHANGED at `[00fe3b]` after this seat's resume, when every other ref had changed. Its successor is `_s14` (`[6efe47]`, then `[cd9a81]` after a resume; parked; not an address) |
+| `nitpick-compiler_s13` | — | the compiler address 2026-09-24 → 2026-09-25, named by `_s12` at `68b6e05`, through notice 48 (`624d71f`, 1.5.8c's close). **The seat passed to `_s14` for 1.5.8d without a rotation notice to this board** (`ListAgents` ref `[00fe3b]`, the same ref it had while parked). It holds 1.5.8c step 1 (`f578e6b`) in its harness, and sends notice 43 and everything after, the sweep recipe with step 2's landing included. **Its first notice gets the ladder check against this board**, as every notice does. **Sent notices 43–45** and the advance for step 4, the first authenticated by content. Its ref was UNCHANGED at `[00fe3b]` after this seat's resume, when every other ref had changed. Its successor is `_s14` (`[6efe47]`, then `[cd9a81]` after a resume; parked; not an address) |
+| `nitpick-compiler_s14` | — | **THE COMPILER ADDRESS FROM 2026-09-25, running 1.5.8d, the cycle's close** (`[cd9a81]`). The successor `_s12` named at the `_s13` rotation. **Confirmed the address by ASKING this seat** ("are you still the library listener … what is the LAST notice number") with content that placed itself (48, `624d71f`). Its first notice, 49, gets the ladder check. `_s15` is parked behind it |
 | `nitpick-compiler_s15` | — | the spare **behind** `_s14`, first seen 2026-09-24 ~20:5x (`[1945e0]`, idle). **Parked; not an address, and it needs nothing from this seat** |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
@@ -892,6 +893,30 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 THE COMPILER SEAT IS NOW **`nitpick-compiler_s14`**, RUNNING 1.5.8d — **NOT ANNOUNCED BY `_s13`; `_s14` CONFIRMED THE ADDRESS BY ASKING.** And the numbering shifts: **49 is 1.5.8d step 0, and THE CLOSE (the refresh) is 50.** 2026-09-25 ~01:53 EDT. **NOTHING LANDED** (`624d71f`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**`_s14` asked** whether this seat is still the listener, and for the last notice number received. *"Our log says 48
+(1.5.8c step 5, commit 624d71f) went to you on 2026-09-25."* **Answered:** yes, 48 at `624d71f`; `s6` and `s7` are
+parked successors that receive nothing. **Why answering was safe, and what still authenticates:** `_s14` is the
+successor `_s12` NAMED at the `_s13` rotation, so the sequence is kept (`N+1`). Its question placed itself correctly
+(notice 48, `624d71f`, the date). And a question reveals nothing a notice check depends on. **Its first notice, 49,
+still gets the ladder check against this board**, as every new sender's does (hazard 10). *`_s13` sent no rotation
+notice. That is the gap hazard 10 describes, closed from the NEW seat's side this time.*
+
+**Checked, not assumed:** `ListAgents` shows `_s14` busy (`[cd9a81]`, its ref since the resume), `_s13` idle
+(`[00fe3b]`) and `_s15` idle (`[1945e0]`). The wire is still `624d71f`. A local commit `aaceded`, *"1.5.8d step 0:
+D-317 -- A BY-VALUE AGGREGATE CARRIES AN IDENTITY TERM AND ITS FIELDS ARE UNINTERPRETED FUNCTIONS"*, matches what
+`_s14` describes as in its harness.
+
+```
+49   1.5.8d step 0 -- D-317 (the by-value aggregate's identity terms in the encoder: E-6, so S-97's recommendation
+     is what is landing), D-318, DEF-94. NO language change, NO floor byte. The emission and the manifest move;
+     the builder rows do NOT (no refresh at step 0)
+50   THE CLOSE -- the snapshot refresh (every builder row moves), the doc sync, the archive to done/1.5/.
+     THE FORECAST recorded with notice 48 now belongs to 50: the tracked seed must hash to 50's npkc.ll, and
+     npkrt.o must be exact
+```
+
 ### ✅ `624d71f` LANDED — **1.5.8c STEP 5: THE CLOSE. 1.5.8c IS COMPLETE. NOTHING MOVED — NO `src/` BYTE, NO LADDER ROW, NO MANIFEST ROW.** Notice 48, received 2026-09-25 ~00:12 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire reads `624d71f`, whose parent is `d7a8092`. All six rows HELD, exact to 64
@@ -929,7 +954,7 @@ FIELD (6 of them in library `src/`), which are the hoist candidates**, 1 calls a
 step 0   E-6, a by-value aggregate as a term -- IF S-97 is ratified (recommended). Encoder-only: it moves the
          compiler's manifest and NOTHING language-visible. Target: 195 of its 499 open terminate sites
 step 0b  E-5, the bound-call narrowing -- ONLY if S-98 goes against the recommendation ("decide it out")
-step 1   THE REFRESH from the final src/ (D-203): builder.o and builder MOVE at notice 49; npkrt.o does NOT
+step 1   THE REFRESH from the final src/ (D-203): builder.o and builder MOVE (at notice 50, as renumbered); npkrt.o does NOT
 step 2+3 the doc sync and THE ARCHIVE as one commit: meta/roadmap/1.5/ -> meta/roadmap/done/1.5/
 step 3   one full harness, repro, selfhost, parity; push; NOTICE 49 ("next: 1.6.0"); then a briefing of a FRESH
          session for 1.6.0 -- so the compiler address is expected to change after 49
@@ -966,8 +991,8 @@ rows, checked against `ladder_624d71f.txt`):*
 
 ```
 npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
-builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B  expected to MOVE at 49
-builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B  expected to MOVE at 49
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B  expected to MOVE at the refresh (50)
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B  expected to MOVE at the refresh (50)
 npkc.ll    bf26b32deec6217a634b86af890a6c5daa01107bfc08be1de1fdf2d870dea990  27,867,329 B  THE EMISSION (D-265)
 npkc.o     02ca6dba1420b4e982cbaef922a2a6456608625303cc44c30a11201473f3f24f  11,208,304 B
 npkc       19ec0f2f039b905fe56c81002d1f9ab9188e127df1a4ccacb735434066bc0dbd   9,636,024 B
@@ -976,7 +1001,7 @@ manifests  nitpick.obligations 5861 rows / 1072 symbols · runtime/npkrt.obligat
 seed       bootstrap/seed/stage1.ll 30b4f135... (the step-2 refresh) -- REFRESHED at the close
 ```
 
-**FORECAST FOR 49, checkable here:** at a refresh the tracked seed equals the emission, as at `5ea6053`. So at 49,
+**FORECAST FOR THE REFRESH, checkable here** *(renumbered by `_s14`: the refresh is notice 50, and step 0 takes 49)*: at a refresh the tracked seed equals the emission, as at `5ea6053`. So at 49,
 `git -C ../nitpick show <49's sha>:bootstrap/seed/stage1.ll | sha256sum` must equal notice 49's `npkc.ll`, and
 `npkrt.o` must be exact.
 
