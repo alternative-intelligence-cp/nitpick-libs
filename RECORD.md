@@ -7008,3 +7008,7 @@ results, and credited this seat's journal reads in its step-3 record. Notice 57 
 registry defect fixed strikes that entry, with its evidence, in the commit that records the report. The documentation defect is sent to
 `nitpick-compiler_s15` (non-blocking), with the note that the three-week staleness was this workbench's bookkeeping, not the compiler
 side's. *The entry above is headed "19:0x"; it was written at 18:50.*
+
+**19:0x — DEF-100.** The `BUILD_REFERENCE.md` documentation defect is recorded upstream as **DEF-100** and fixed as a document: dated
+status notes on §1's `target` (read by nothing), §3's dependency-root form (PLANNED; `RESOLVE-005` today) and §7's `npkg update`
+(PLANNED, the refusal quoted), landing with step 3 as notice 59. O-N2 and O-N5 stay open with nothing waiting; O-N2's entry says so.
