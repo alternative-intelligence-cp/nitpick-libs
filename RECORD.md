@@ -6541,3 +6541,9 @@ was running along with the claude skills devTeam agents doing their thing and th
 machine now kills the largest process under memory pressure instead of freezing, so **hazard (12)**: a SIGKILL'd step
 is an environment event until `journalctl -u earlyoom` says otherwise. The running worker was told. This seat checks
 `free -g` before each dispatch (146 GiB available at this entry).
+
+**10:43 — a 16 GiB swap file and `earlyoom -r 3600 -s 100`, both verified LIVE** (swap active and in `/etc/fstab`; the
+running daemon's arguments read from `ps`, since a defaults-file edit applies only on restart — it restarted 10:41:23).
+**A correction by this seat to its own hazard (12) and to its note to the running worker:** earlyoom sends SIGTERM
+before SIGKILL, so its likelier signature is exit 143 and not only 137; and with `-s 100` it acts on RAM alone, so a kill
+can come while swap has room. Both are corrected, and the worker was told.
