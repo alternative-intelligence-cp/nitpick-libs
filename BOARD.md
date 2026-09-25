@@ -143,8 +143,8 @@ is what disambiguates.
 | `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307). Its first landing, notice 22 (`cd1ed86`), passed the ladder check proper. Notices 22–23 omitted the harness lines. Asked, it supplied both blocks (both green) and owned the omission: the helper had not been given the log. From notice 24 the helper always passes the log, and `land_step.sh` refuses a log with no `ok` line** |
 | `nitpick-compiler_s12` | — | the compiler address 2026-09-20 → 2026-09-24. **Sent notices 37–42** (1.5.8b steps 6, 6b, 6c, 6d and 7, and 1.5.8c step 0), each quoting its six rows with the previous digests in full, and **took the listener's correction of its own notice-37 sentence into the landed plan.** Paused 2026-09-20 → 09-23 and resumed under its own name. **Handed to `_s13` at `68b6e05`, 2026-09-24, naming it and its successor `_s14`** |
 | `nitpick-compiler_s13` | — | the compiler address 2026-09-24 → 2026-09-25, named by `_s12` at `68b6e05`, through notice 48 (`624d71f`, 1.5.8c's close). **The seat passed to `_s14` for 1.5.8d without a rotation notice to this board** (`ListAgents` ref `[00fe3b]`, the same ref it had while parked). It holds 1.5.8c step 1 (`f578e6b`) in its harness, and sends notice 43 and everything after, the sweep recipe with step 2's landing included. **Its first notice gets the ladder check against this board**, as every notice does. **Sent notices 43–45** and the advance for step 4, the first authenticated by content. Its ref was UNCHANGED at `[00fe3b]` after this seat's resume, when every other ref had changed. Its successor is `_s14` (`[6efe47]`, then `[cd9a81]` after a resume; parked; not an address) |
-| `nitpick-compiler_s14` | — | **THE COMPILER ADDRESS FROM 2026-09-25, running 1.5.8d, the cycle's close** (`[cd9a81]`). The successor `_s12` named at the `_s13` rotation. **Confirmed the address by ASKING this seat** ("are you still the library listener … what is the LAST notice number") with content that placed itself (48, `624d71f`). Its first notice, 49, gets the ladder check. `_s15` is parked behind it |
-| `nitpick-compiler_s15` | — | the spare **behind** `_s14`, first seen 2026-09-24 ~20:5x (`[1945e0]`, idle). **Parked; not an address, and it needs nothing from this seat** |
+| `nitpick-compiler_s14` | — | the compiler address 2026-09-25 for 1.5.8d, **the cycle's close** (`[cd9a81]`). The successor `_s12` named at the `_s13` rotation; **confirmed the address by ASKING this seat**, with content that placed itself (48, `624d71f`). **Sent notices 49 (`c93d80d`, step 0) and 50 (`c3bdae2`, THE CLOSE)**, both authenticated by their ladders, and stated the refresh's digest in advance, which held to 64 hex. **Briefed `_s15` for 1.6 at the close** |
+| `nitpick-compiler_s15` | — | **THE COMPILER ADDRESS FOR CYCLE 1.6, named by `_s14` in notice 50** ("the compiler seat for it is `nitpick-compiler_s15`, briefed by message at this close"; `[1945e0]`). **Its first notice gets the ladder check against the baseline at `c3bdae2`** (hazard 10) |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
@@ -892,6 +892,145 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ⭐⭐⭐ `c3bdae2` LANDED — **1.5.8d STEPS 1–3: THE CLOSE OF CYCLE 1.5.** The snapshot is refreshed from the final `src/`, the docs are synced, and `meta/roadmap/1.5/` is archived to `done/1.5/`. **NO LANGUAGE CHANGE, NO FLOOR BYTE; EVERY BUILDER ROW MOVED. THE FORECAST HELD TO 64 HEX. THIS IS THE LANDING AT WHICH READINESS IS EVALUATED — SEE THE ENTRY BELOW.** Notice 50, received 2026-09-25 ~07:20 EDT, from `nitpick-compiler_s14`. **PIN STAYS `3d15ac9` until the author's go. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `c3bdae2`, whose parent is `c93d80d`. `npkrt.o` is exact to 64 hex.
+The five moved rows quote previous digests equal to notice 49's baseline, and every delta recomputes: `builder.o`
++501 472, `builder` +377 304, `npkc.ll` +57 697, `npkc.o` +17 208, `npkc` +9 200. The rows equal the compiler seat's
+`ladder_c3bdae2.txt`.
+
+**✅ THE FORECAST RECORDED WITH NOTICE 49 HELD, RECOMPUTED HERE FROM THE TRACKED TREE:**
+
+```
+git -C ../nitpick show c3bdae2:bootstrap/seed/stage1.ll | sha256sum      (the size in a SEPARATE command)
+   -> 4029fc70efbe9cd3da26b7fb379b477b5dc9417bba3cb0359d5dd25126a1f337, 28 111 929 bytes
+notice 50's npkc.ll row / bootstrap/seed/STAMP / _s14's advance figure    IDENTICAL, all three
+the seed's own claims: 3,392 defines, EVERY ONE carrying "split-stack", 0 absolute /home paths    CHECKED
+```
+
+**✅ "NOTHING IN THE LANGUAGE, THE PRELUDE, THE FLOOR OR THE MANIFEST MOVED" — CHECKED, NOT TAKEN:**
+
+- **The source:** `src/`'s diff is 6 changed lines in 2 files, all comments. `src/prelude/` is unchanged.
+- **The runtime:** the one `runtime/` change is a comment line in the explorer's TEST-ONLY shim (`runtime/explore/npkx.ll`,
+  re-pointing a citation to `done/1.5/`). It is never linked into an artifact.
+- **The manifests:** `nitpick.obligations` and `runtime/npkrt.obligations` are the SAME BLOBS as at `c93d80d`, so
+  5,890 rows and 388 / 90. `stack-depth` reads 117, all open, as the 1.6 README says.
+- **The tests:** the harness is unchanged (331 · 125 · 6149 · 1711 · ok 52), and the diff predicts +0; the archive's
+  moved `.npk` files are under `meta/` and in no suite.
+- **The archive:** `meta/roadmap/1.5/` is gone. `done/1.5/tools/` holds `decreases_sweep.py`, `decreases_read.txt` and
+  `loop_dump.npk`, the recipe's new paths as worklist item 4 recorded.
+
+**WHAT IS NEXT ON THE COMPILER SIDE:** cycle 1.6. 1.6.0 is the bring-up gate: Clam/Crab against IKOS, decided by
+measurement over three emissions. **The compiler seat for 1.6 is `nitpick-compiler_s15`, briefed by `_s14` at this
+close.** Its first notice gets the ladder check against the baseline below. *"No floor move at 1.6.0; a re-pin notice
+precedes any."*
+
+**THE BASELINE NOTICE 51 MUST QUOTE AS ITS PREVIOUS VALUES — AND THE PIN CANDIDATE'S OWN ROWS** *(checked by script
+against `ladder_c3bdae2.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be   9,724,160 B
+npkc.ll    4029fc70efbe9cd3da26b7fb379b477b5dc9417bba3cb0359d5dd25126a1f337  28,111,929 B  THE EMISSION = the tracked seed
+npkc.o     f41ebbf43c94c797ed1d02d1644363b4464cec0e42386298870ea94db1ee9823  11,313,056 B
+npkc       5fd636b9ab557c19a0738e6f316f3347cc4ed29dd9a77f72199d6380c0c36323   9,724,160 B
+harness    programs 331 · verified 125 (6149 obligations) · floor 388 / 90 · parity 1711 · ok 52
+manifests  nitpick.obligations 5890 rows / 1078 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 4029fc70... (the 1.5 close's refresh)
+```
+
+## ⭐⭐⭐ THE READINESS EVALUATION AT THE 1.5 CLOSE — FIVE ITEMS, EACH WITH ITS EVIDENCE, FOR THE AUTHOR'S GO / NO-GO
+
+*As the author decided on 2026-09-19: "a concrete go/no-go against the re-pin worklist, not an open judgement." **The
+decision is the author's.** This entry assembles the facts; it acts on nothing.*
+
+**(a) THE LOOP RULE AS LANDED — ANSWERED** (notices 43–46):
+
+- **The rule:** TYPE-072 is whole, so every `while`/`when` states `decreases E` or `unbounded`, and `for`/`loop`/`till`
+  take neither. TYPE-073 requires a plain integer measure, at most 64 bits for a function. Function measures are
+  OPTIONAL: TYPE-074 makes a cyclic group state its measures together, and TYPE-075 refuses a measure with no cycle.
+- **The arm:** `(DecreasesViolated)` is not universal by rule but near-universal in effect past `275442f`, because the
+  prelude's own loops carry measures.
+- **Our cost:** 110 loops (18 in library `src/`), with the recipe in notice 44's entry.
+
+**(b) D-308's FAILURE IDENTITY — ANSWERED** (notice 39): it is `LimitViolated`, an EXISTING identity, demanded by reach
+wherever a `List` write is reached, the text layer included. It is wide in effect but not universal by rule. It
+folds into item 3b, and **item 9 is CLOSED.**
+
+**(c) LANGUAGE ADDITIONS IN 1.5.8b–d BEYOND D-304…D-312 — A CLOSED LIST NOW THAT THE CYCLE IS:**
+
+- **The additions:** D-313 `sealed` and D-314 `hidden` are two keywords, with the prelude `List` bounds-checked.
+  Measured at their forecasts: zero of ours as identifiers.
+- **A reserved name:** `ListLen` is now a prelude name (6c); zero of ours.
+- **The rest:** D-315 STRUCK a never-enforced sentence, D-316 fixes the idiom for `unbounded`'s reason, and D-317 and
+  D-318 are the encoder and the reach analysis, not the language.
+- **Fixes with a library edge:** DEF-86 (reach into the prelude, item 3b), DEF-93 (`pub Rules` means pub; zero of ours
+  export a rule) and DEF-90 (the `TextWriter` nesting compiles, item 14).
+
+**(d) THE PIN CANDIDATE — NAMED AND AUTHENTICATED; COMMISSIONING IS THE RE-PIN'S FIRST ACT:**
+
+- **The candidate:** `c3bdae2`. Its six rows are recorded above in full and placed themselves on this board's ladder,
+  and its emission row was recomputed here from the tracked seed.
+- **The two artifacts a pin copies:** `npkc` `5fd636b9…` / 9 724 160 B and `npkrt.o` `162b8975…` / 72 576 B. **Check
+  both digests at the copy.** `../nitpick/build/` is never trusted without that check (hazard 11).
+- **Commissioning:** the canary (`tools/canary.npk`) and P-1/probe13a run against the COPIED binaries. So commissioning
+  cannot precede the pin, and it waits for the go.
+
+**(e) THE WORKLIST RE-SIZED AGAINST THE RULES AS LANDED.** Our trees are unchanged since 2026-09-06, and the counts are
+`failsafe_arms.py`'s, today:
+
+```
+ 1  RE-PIN to c3bdae2 and commission it, per (d)                  first; everything below needs it except 5
+ 2  (StackExhausted) + (MachineFault): named by 0 of 141 today     all 145 (141 + 4 macro), one arm each, own code
+ 3  (DecreasesViolated): named by 0 of 141 today                   plan for all 145, near-universal in effect
+ 3b the REACH-002 lines over every root, which needs the built compiler: the exact (LimitViolated) set (2 of 141
+    name it today; likely dozens); (OutOfBounds) at our 35 producer calls (132 of 141 name it); (TbbErr) only
+    through E-5, which is DECIDED OUT (D-318): if it is demanded in more than one arm, report it (the re-open
+    trigger)
+ 4  THE SWEEP: 110 loops, 18 in library src/, with the recipe      THE ONE SUBSTANTIVE ITEM. Tools under
+    (notice 44) and its tools under done/1.5/tools/. Hoist         done/1.5/tools/; the 18 library loops need
+    candidates 35 (6 in src/); 2 comptime (TYPE-069); the tzdb     real measures, and the other 92 are tests,
+    spike template's 4 loops, by hand                               probes and harnesses
+ 5  ~0u64 at 2 sites in nitpick-time's tests                       two lines; can land BEFORE the re-pin
+ 6  (ShiftRange) in the roots reaching the 6 computed shifts       named by 0 today; from the REACH-002 lines
+ 7  CastRange                                                      none owed (no float of ours)
+ 8  thread hold                                                    satisfied at c3bdae2
+ 9  D-308's identity                                               CLOSED: existing (LimitViolated), in 3b
+10  regression tests carry their control                           a discipline; no count
+11  the 0.1 gap (small_free tested only at the compiler's sites)   unchanged; a planning fact
+12  nitpick-posix planning facts                                   unchanged; planning facts
+13  Vec / Bytes / SparseSet: hidden, sealed, limit<ListLen>        DESIGN, decided; TYPE-077's vacant-value rule
+14  nitpick-sockets: DEF-90's nesting                              satisfied at c3bdae2
+```
+
+**Sized plainly:**
+
+- **Mechanical:** items 2, 3, 3b and 6 add arms across at most 145 handlers, driven by the compiler's own REACH-002
+  output.
+- **Substantive:** item 4. The 18 library loops need real measures.
+- **Decided design:** item 13.
+- **Trivial:** item 5, two lines.
+- **Settled at the candidate:** items 7, 8, 9 and 14.
+
+**THE RESIDUAL RISK IS CYCLE 1.6.** It is instrument work: leg A (abstract interpretation over the emitted IR), leg B
+(Z3, untouched) and leg C (Alive2). No floor move is planned at 1.6.0, and a re-pin notice precedes any. **But its map
+says "Everything entering the LANGUAGE still lands before the evidence campaign closes"**, so an analyzer finding COULD
+become a language rule, as the instruments' findings became D-310 and D-304 during 1.5. *So far, instrument findings
+were fixed compiler-side without library changes, except where the author ratified a rule.*
+
+**WHAT EACH ANSWER MEANS:**
+
+- **GO:** the pause ends by HANDOFF, not by the listener resuming (the author's instruction). The lock goes to
+  `nitpick-libs_s6` by a briefed handoff; `s6` re-pins to `c3bdae2` and commissions; then the worklist in order —
+  1, then 5 at any time, then 2, 3, 3b and 6 from the REACH-002 lines, then 4, then 13. Library work then resumes where
+  cycle 0.0 paused: the `CLAIMED s1` / `CLAIMED s2` holds exist for exactly this.
+- **NO-GO:** the listener continues into 1.6, and the author names the next evaluation point.
+
+**BY THE FIVE ITEMS AS WRITTEN, THE ANSWER IS READY: (a), (b), (c) and (e) are answered, and (d) is named and
+authenticated, with commissioning as the re-pin's first act.** Whether that meets *"sure we won't have to redo a lot of
+work"*, given 1.6's residual risk, is the author's call.
 
 ### ✅ `c93d80d` LANDED — **1.5.8d STEP 0: D-317 (E-6: A BY-VALUE AGGREGATE CARRIES AN IDENTITY TERM), D-318 (E-5 DECIDED OUT), AND DEF-94 FIXED. NO LANGUAGE CHANGE, NO FLOOR BYTE. THE FIRST NOTICE FROM `nitpick-compiler_s14`.** Notice 49, received 2026-09-25 ~07:15 EDT. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
@@ -2796,11 +2935,11 @@ a  ANSWERED at notice 46 (def2728): TYPE-072 whole (a while/when with no clause 
    is NOT universal by rule, but NEAR-UNIVERSAL in effect past 275442f (the prelude's loops carry measures)
 b  D-308's identity is LimitViolated, an EXISTING one, named by 2 of our 141 handlers at the pin; demanded by
    reach wherever a List write is reached (6c, notice 39) -- wide in effect, not universal by rule
-c  so far, beyond D-304..D-312: D-313 `sealed`, D-314 `hidden` + the checked List, D-315 (a sentence STRUCK),
-   D-316 (`unbounded` states its reason); `ListLen` reserved. Open until 1.5.8d closes
-d  the candidate is NAMED: the 1.5 close commit (1.5.8d step 3). The floor does not move at the close, so the
-   anchor 162b8975... / 72,576 B is expected to carry to it; the builder rows move (notice 48)
-e  at the 1.5 close; the worklist is kept current meanwhile (items 1-14 and 3b)
+c  CLOSED at the 1.5 close: beyond D-304..D-312, D-313 `sealed` and D-314 `hidden` (+ the checked List); `ListLen`
+   reserved; D-315 STRUCK a sentence; D-316 the `unbounded` idiom; D-317/D-318 are not language. Zero of ours hit
+d  NAMED AND AUTHENTICATED at notice 50: c3bdae2, the 1.5 close; the anchor carried (162b8975... / 72,576 B);
+   commissioning is the re-pin's first act and waits for the go
+e  RE-SIZED at the 1.5 close -- see THE READINESS EVALUATION entry (notice 50). ALL FIVE ARE NOW BEFORE THE AUTHOR
 ```
 
 **Until then, the listener continues:** every notice logged, every exposure measured, nothing acted on.
