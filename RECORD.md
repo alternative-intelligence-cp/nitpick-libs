@@ -6811,3 +6811,14 @@ leak scan 194 of 194); `check_record` clean; the harness re-run 174/174. **Cycle
 `s1-nregex-0.0-audit4-1444`** — `npk:auditor`, the fourth pass (W-22). **Scoped wider than the close worker proposed:** it recommended `d1f13a4..HEAD`, the
 triage alone; this seat scoped it to `ab93eae..HEAD` — everything the third pass never saw, the adoption and item 13 included —
 because an audit that sees only the triage would certify a tree it did not read.
+
+**report `s2-ntime-0.1.2-1424` — DONE**, 15:03, 39 min, 552 k tokens. **The sweep:** every one of 7 304 484 day numbers and dates round-trips,
+and all 239 988 month lengths agree — `1dc627f` and `7689432`, pushed; **CI green on GitHub for both**; `check_record` clean; harness GREEN
+81 units. **findings-for-playbook** (for the next pass): a stale claim found once is a list — a three-phrasing `git grep --untracked -i`
+found the plan's one stale sentence live in two more files; a docstring's claim about its own coverage is a list to check; **a rule a
+commit records binds the text the same commit writes**; a grep pattern for decision ids written in prose is itself a citation to the
+reference checkers; *"caught by nothing else"* is checked by listing every caller of the mutated function; extracting a plan's fenced
+blocks mechanically makes *"worked as written"* checkable. **for-the-author:** the public `README.md` says *"Status: planning. No code
+yet."* — false since 0.0.4, owed to cycle 0.1's close; **Q-6 re-measured: A costs a twelfth arm and no measurable time, and adds no
+evidence the civil walk does not already give** — the worker recommends A′ for cycle 0.1. **dispatch `s2-ntime-0.1.2-verify-1503`** — `npk:verifier`, `sonnet`, told
+to read `check_denominators`' 32 tags (the plan said 30) against TM-168, which records the two extra.
