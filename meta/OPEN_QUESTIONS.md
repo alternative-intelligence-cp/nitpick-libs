@@ -581,7 +581,7 @@ file existed — the check works.
   return value" is conformance with a documented language rule rather than a
   workaround for a defect. Disposition is Q-5.
 - ~~**O-N8 — `npkc` silently merges two files when a `mod:` name mismatches its
-  basename.**~~ — **DISCHARGED 2026-09-25, at `c3bdae2`, by the compiler's D-248** (S-21, settled 2026-09-03, landed at 1.5.1b step 1): a file's header is mandatory and must name the file, so a mismatch is now refused at the first step — `NITPICK-RESOLVE-012`, measured here on 2026-09-25 (`malformed.npk` declaring `mod:bad;`). Reported by `nitpick-time`'s 0.1.0b worker, confirmed by this orchestrator. The original text follows, kept. Raised by `nitpick-time` 0.0.0 alongside O-N4, but never given a
+  basename.**~~ — **DISCHARGED by the compiler's D-248** (S-21, settled 2026-09-03, landed at 1.5.1b step 1) — a file's header is mandatory and names the file, so the silent merge is refused since `94874ce`: O-N8's own shape (a root whose header names a sibling's basename) was measured at all six kept pins on 2026-09-25 — accepted silently at `950bb1d` (exit 0, no diagnostic) and refused `NITPICK-RESOLVE-012` at `94874ce`, `0dfddac`, `aaffb87`, `3d15ac9` and `c3bdae2`. Reported by `nitpick-time`'s workers at 0.1.0b and 0.1.0c, confirmed by this orchestrator; the first strike said *"at `c3bdae2`"*, which was true and understated. The original text follows, kept. Raised by `nitpick-time` 0.0.0 alongside O-N4, but never given a
   local id there, so it is a new ecosystem-wide request and takes the next
   free number under this section's own rule. When a root file's `mod:` differs
   from its basename **and a sibling carries that basename**, `npkc` compiles

@@ -6640,3 +6640,13 @@ returning `int32`. **Our exposure measured in full: 171 tracked `.npk`, 144 `mai
 two-parameter mains, and the canary's `int64()`), 0 failsafes.** **The canary moved at once** to the accepted form at
 `c3bdae2` (14 defines, 55492 B), so the next re-pin measures one source through two pins. Regex's six move in its next
 dispatch after 0.0.4b.
+
+**report `s2-ntime-0.1.0c-1131` — DONE**, 12:18, 44 min, 560 k tokens. `5c6d6f3` (the access properties) and `ccb5978` (the
+record), pushed; **CI green on GitHub for both**, read there; `check_record` clean; harness GREEN 75 units; `stash@{0}` dropped
+as dispatched. **A second gap for question 9, measured:** a whole-struct copy of a `Vec` is a second handle on its block, and
+after `vec_free` the copy reads the poison (exit 170, a use-after-free); hiding and sealing cannot stop a copy, which names no
+field. Recommendation added to question 9: `Vec` move-only by construction. **O-N8's discharge made precise:** its own shape
+measured here at all six kept pins — accepted silently at `950bb1d`, refused `RESOLVE-012` from `94874ce` on — so the
+registry's and the playbook's *"at `c3bdae2`"* were true and understated, and both now say *since `94874ce`*. **Playbook:**
+the `Vec` copy, `check_refs`' passive-voice attribution, a checked tag guarding only itself, a count dated before its step, and
+a workbench pin count that is not a repository's. **dispatch `s2-ntime-0.1.0c-verify-1218`** — `npk:verifier`, `sonnet`.

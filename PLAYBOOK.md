@@ -105,7 +105,8 @@ of a type with a sealed field is refused (`NITPICK-TYPE-079`), and a declared bu
 unassigned value cannot be read (`NITPICK-ASSIGN-001`), so a library's *"cannot be
 constructed invalid"* can now be made true. **But a sealed field is not a hidden
 one:** it still admits a write THROUGH its pointer (`b.buf.ptr[0] = x`) and a
-whole-struct copy (`Vec<int64>:w = v`); only taking the field's address outside
+whole-struct copy (`Vec<int64>:w = v`) — **and that copy is a second handle on the block: after `vec_free(@v)`,
+`vec_at(@w, 0)` reads the poison, exit 170, a use-after-free measured in `nitpick-time`**; only taking the field's address outside
 its module is refused (`TYPE-079`) — the board's question 9. A limited field is
 written **`sealed limit<R> int64:f`**, qualifier first; the compiler's
 `TYPE_REFERENCE` §9.1.2 example (`limit<R> sealed`) is `NITPICK-PARSE-001`, and is
@@ -289,11 +290,7 @@ name it was given happens to resolve to a different file. Raised as **O-N8**
 (the compiler's DEF-2); until it lands, *a build that mysteriously grows a
 second `main` is this, not your program*.
 
-**LANDED, AND O-N8 IS STRUCK (2026-09-25).** At `c3bdae2` D-248 is live: a header
-that does not name its file is refused at the first step with
-`NITPICK-RESOLVE-012` — *"a file's header names the file"* — so the silent merge
-above can no longer happen. Measured at the re-pin, when a control file declaring
-`mod:bad;` in `malformed.npk` was refused that way before the parser was reached.
+**LANDED LONG AGO, AND O-N8 IS STRUCK (2026-09-25).** D-248 is live — a header that does not name its file is refused at the first step with `NITPICK-RESOLVE-012`, *"a file's header names the file"* — and the silent merge above is refused since `94874ce`: O-N8's own shape (a root whose header names a sibling's basename) was measured at all six kept pins on 2026-09-25 — accepted silently at `950bb1d` (exit 0, no diagnostic) and refused `NITPICK-RESOLVE-012` at `94874ce`, `0dfddac`, `aaffb87`, `3d15ac9` and `c3bdae2`. The paragraph above had been describing a fixed defect as live for three weeks, which is the stale-note shape this workbench keeps meeting.
 
 ---
 
@@ -1055,7 +1052,10 @@ comparison of sizes silently compared layout. **The widened leak scan fails any
 repository whose committed transcripts hold absolute paths** — it has read every
 tracked text file since 2026-09-06, after some transcripts were already committed —
 and a failing scan blocks every worker commit, so check each sibling before its next
-dispatch.
+dispatch. **`check_refs` credits a passive-voice supersede to the NEAREST decision id before the word**, so a
+row naming the new decision and then the old one in the passive reads as the new one replaced — write the active voice,
+*"it supersedes <old>"*. **And a checked tag guards only itself:** `check_denominators` passed a harness whose prose said
+33 beside its tag of 34, because the tag is checked and the untagged number beside it is not.
 
 ## 7. Repository conventions
 
@@ -1322,6 +1322,11 @@ design fresh.
   different question and read them for three cycles as *"owe an element drop"*;
   measured, `vec_pop` owes none (two million push/pop cycles at 120 B peak, against
   `vec_clear`'s 48 MB).
+- **A count written before the step that adds files counts the old tree.** *"Exactly nine roots, and nowhere else"* was
+  contradicted by the same plan's later probes — a tenth root. Date every such count to the step it is true at. (The
+  compiler seat's *"your six … and nowhere else"* for DEF-96 was off by one the same day: the canary.)
+- **A count of pins taken from the workbench's toolchain directories is not one repository's count of pins** — `3d15ac9`
+  is kept here and was never `nitpick-time`'s.
 
 ---
 
