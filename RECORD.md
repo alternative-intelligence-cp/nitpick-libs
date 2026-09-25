@@ -6859,3 +6859,8 @@ yet, so it now says *will refuse, per the advance notice*.
 
 **dispatch `s1-nregex-0.0.5-1522`** — `npk:worker`, 0.0.5, `AUDIT:` the fourth pass: BL-7, the premise and reach of BL-8, and N-18 to N-23 triaged;
 **move-only itself is the author's to decide** (question 9) and is not this worker's to implement.
+
+**DEF-97, 15:30 — N-21 confirmed and fixed by `nitpick-compiler_s15`:** a generic instance's header was written to the module's tail
+after the functions that use it; a new type-definition writer places it ahead of every function. Lands as 1.6.0 step 3d, notice 56,
+with no advance notice owed. **Carried to the next re-pin:** drop the `(BadStep)` arms (DEF-95), confirm zero `main` exposure
+(DEF-96), and re-test N-21's `Vec<T>`-local and imported-module shapes (DEF-97), which the compiler's own test does not cover.

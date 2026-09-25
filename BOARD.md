@@ -982,7 +982,19 @@ zero-parameter `main`, unlike the compiler's own eight.
 
 - **The canary is MOVED NOW**, at `c3bdae2`, to `int32(cstring[]:_~argv)`: 14 `define`s, 55 492 B. Moving it before the next
   re-pin keeps its method — the same source through both pins — and `tools/canary.md` records the new row.
-- **`nitpick-regex`'s six move before the next re-pin**, in its next dispatch after 0.0.4b. The accepted form compiles at
+- **`nitpick-regex`'s six move before the next re-pin**, in its next dispatch after 0.0.4b.
+
+**AND A THIRD DEFECT FROM THE LIBRARY SIDE TODAY — DEF-97, confirmed and FIXED by `nitpick-compiler_s15` at 15:30.** Found by
+`nitpick-regex`'s fourth audit (N-21), reproduced here, relayed: a generic instance interned while a generic body is emitted had its
+type header written to the module's TAIL, after the `alloca` that uses it, so `npkc` exited 0 and `llc` refused. Fixed by a
+type-definition writer that places a header ahead of every function; it lands as **1.6.0 step 3d, notice 56**, after 54 and 55 —
+**no advance notice owed, since a module `llc` refused now compiles and nothing that compiled changes.** DEF-95, DEF-96 and DEF-97:
+three defects this ecosystem found today, each fixed on the compiler side within hours.
+
+**CARRIED TO THE NEXT RE-PIN — three checks, each against the pin that first carries the fix:** drop the literal-step `(BadStep)`
+arms once DEF-95 is in; confirm no `main` of ours is refused under DEF-96 (the measured exposure is zero); **and re-test N-21's two
+library shapes under DEF-97 — a generic helper with a `Vec<T>` local called `::<int64>`, and the struct in an imported module** —
+which the compiler seat's test does not cover separately. If either still refuses there, it is a new report. The accepted form compiles at
   `c3bdae2` too, so nothing waits for notice 55, and 0.0.4b is not interrupted for it.
 
 ### 📋 OUR THREE PLANNING FINDINGS, CONFIRMED BY `nitpick-compiler_s15` — **ONE IS A COMPILER DEFECT, DEF-95.** 2026-09-25 09:36 EDT.
