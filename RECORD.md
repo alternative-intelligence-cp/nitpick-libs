@@ -6458,3 +6458,49 @@ library does not compile until the adoption lands: every failsafe lacks two arms
 planner slot is stream 2's. It starts when `s2-ntime-0.1.1-0810` reports.
 
 **roster:** `nitpick-libs_s5` closed by the author on both signals; `nitpick-libs_s8` opened in its terminal as `s7`'s spare.
+
+### `nitpick-time`'s planner reports: three plans, a real off-by-one found at planning, and both streams dispatched — 2026-09-25 09:33
+
+**report `s2-ntime-0.1.1-0810` — NEEDS-DECISION**, 76 min, 852 k tokens, 241 tool uses. Three plans at `e0627d3`:
+`0.1.0b` the adoption to `c3bdae2` (991 lines), `0.1.0c` the access properties (419), `0.1.1` the algorithms (488),
+all PLANNED, with the adoption's and the access properties' end states **dry-run GREEN at `c3bdae2`** in scratch copies
+(70 and 75 units). **Verified here, then pushed:** `check_record`'s one finding is `[no-report]`, expected of a
+PLANNED file from a planning dispatch; `check_refs`'s 148 `[leak]` findings are all pre-existing (six committed
+transcripts) and **none is in a file this commit touched**; `check_specs_current` reports and never fails
+(`harness/checks.py:821`), so the one unresolved citation (C-8c, cited ahead of the rule `0.1.0c` adds) cannot turn
+CI red; the harness at CI's pin `aaffb87` is GREEN, 67 units (the planner's run on an export).
+
+**The planner found a real defect, and it checks out.** `NTIME_DAY_MIN = -4 371 588` is -10000-12-31, not
+-9999-01-01 (`-4 371 587`), so the range holds 7 304 484 days and `NTIME_SECS_MIN` should be `-377 705 116 800`.
+Both names have been public since 0.0.4; nothing consumes them. `0.1.1`'s first step fixes it, test failing first.
+**This seat's first recomputation said the opposite and was wrong:** a port of Hinnant's `(y-399)/400` into Python,
+whose `//` already floors, floors negative years twice (era -26 for y = -10000, not -25). A second method — 10 000
+years as 25 whole 400-year cycles — disagreed, and the corrected port passes three controls: the epoch, 192 dates
+against `datetime`, and the cycle method. **The first check had no control that could hit; the second had three.**
+
+**decision (orchestrator, cross-stream):** `(DecreasesViolated)` → 108, `(LimitViolated)` → 109 in every library,
+extending 106/107; `LimitViolated` leaves 97, which also means `DivByZero`. The author may override.
+
+**question queued — Q-6**, what replaces `VERIFICATION.md` P-1 in all six repositories; recommendation A′. Nothing
+waits on it. **Planner addition, accepted by default:** `0.1.0c` also seals every field of `CivilDate` and
+`CivilTime` (PD-9, PD-10), restoring C-8's guarantee and retiring `check_civil_literal`. **Noted:** `NPK_HEAP_STATS`
+exists at `aaffb87` and `c3bdae2`, contrary to `0.1.0.md` §8, so the memory gate is placed as `0.1.4b`, unplanned.
+
+**findings-for-playbook** (edits to `PLAYBOOK.md` owed by this seat, not yet made): "a pub struct has no private
+fields" is obsolete — `sealed`/`hidden` exist; the failsafe floor is 6 at `c3bdae2`, and `DecreasesViolated` was
+demanded by 20 of `nitpick-time`'s 61 roots, all through its own loops; **a REACH-002 demand stays hidden while an
+earlier phase refuses the file** — clauses first, then read REACH-002 again, then the arms; an arm sweeper must match
+`(*)` in code, not comments; a test's computed exit code must not equal an arm code; `for (int64:i in a..b)` is
+inclusive and needs no measure or arm, while `till` and `loop` arm `BadStep` even with a literal step; a limited
+field is written `sealed limit<R> int64:f`; the widened leak scan fails any repository whose committed transcripts hold
+absolute paths.
+
+**relayed to `nitpick-compiler_s15`, none blocking:** (a) `done/1.5/tools/loop_dump.npk`'s `use` paths are one
+level too shallow since the archive (verified by reading: `../../../../src` from depth 5); (b) `TYPE_REFERENCE`
+§9.1.2's example writes `limit<r_level> sealed`, which is `PARSE-001` — verified here by compiling both orders, and
+it contradicts the section's own prose; (c) REACH arms `BadStep` for `till`/`loop` with a literal step, though the
+references say a literal step has no guard (the planner's measurement).
+
+**dispatch `s2-ntime-0.1.0b-0933`** — `npk:worker`, `nitpick-time` 0.1.0b. **dispatch `s1-nregex-0.0.5-0933`** —
+`npk:planner`, `nitpick-regex`: its adoption, and the third pass read against the new pin. Width 2: one worker, and
+the one planner (P-12).
