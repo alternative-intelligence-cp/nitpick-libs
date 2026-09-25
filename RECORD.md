@@ -6616,3 +6616,10 @@ planting `decreases 0i64 - 1i64` in each loop proves every swept loop runs under
 rehearsed by running its fenced blocks verbatim** — five defects found that way before dispatch.
 
 **dispatch `s1-nregex-0.0.4b-1129`** — `npk:worker`, `nitpick-regex` 0.0.4b. Memory 145 GiB available at dispatch.
+
+**verify `s2-ntime-0.1.0b-verify-1126` PASS** (`sonnet`), 11:31: tree clean; the last commit `cycle 0.1.0b:`; `check_refs`
+clean (69 md, leak scan 188 of 188); `check_record` clean; the harness re-run at `c3bdae2` GREEN — 70 units, 0 failures,
+5 pending, 83.3 s. **`nitpick-time` 0.1.0b DONE — the first library subcycle closed since the pause.**
+**advance `nitpick-time` 0.1.0b → 0.1.0c.** **dispatch `s2-ntime-0.1.0c-1131`** — `npk:worker`, 0.1.0c, the access properties. Its NOTES
+carry three loose ends: drop `stash@{0}` (the dead predecessor's work, superseded by the verified 0.1.0b); record O-N8's
+discharge where this repository still describes it as live; and question 9 applies to this library's `Bytes` too.
