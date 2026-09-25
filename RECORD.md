@@ -6580,3 +6580,39 @@ striking anything in the registry.
 
 **The `sudo` wrapper was fixed by the author** to `/usr/bin/sudo -A "$@"`, and verified here with a two-argument test that
 keeps `'a b'` whole — the entry above saying `sudo` re-splits its arguments is now history.
+
+### `nitpick-regex`'s planner reports: two rehearsed plans, a nineteen-day-old red CI, and two registry questions discharged — 2026-09-25 11:29
+
+**report `s1-nregex-0.0.5-0933` — NEEDS-DECISION**, 68 min of wall time across the hard reset, 837 k tokens. Plans at
+`5301c34`: **`0.0.4b`** (the adoption, 1 519 lines) and **`0.0.4c`** (item 13, 527 lines), both PLANNED, **rehearsed by
+running their own fenced blocks in a fresh clone at `c3bdae2` — 146/146 and 158/158 GREEN** — which found five defects
+in the plans before any worker saw them. Its harness at regex's CI pin `3d15ac9` is GREEN 141/141. **Verified here:** the
+one `check_refs` finding (RX-130's unmarked supersede) predates the commit and is `0.0.4b`'s commit 0; **regex's CI red
+since `ab93eae` is real** (run `34047719942`, 2026-09-06, read from GitHub). **The plan commit is not pushed alone**, on
+the planner's recommendation, since that would add one more red run; `0.0.4b`'s push A carries it with the fix.
+
+**decision (orchestrator, cross-stream):** `(ShiftRange)` 115, `(RequiresViolated)` 116, `(EnsuresViolated)` 117 in every
+library — unused in all six repositories, by a scan whose control reads 111 as used. `nitpick-time`'s `0.1.1` §6 proposed
+110 for `EnsuresViolated`, which is an ordinary exit in regex's `vec_unit.npk`: it is 117.
+
+**registry: O-N8 and O-N14 discharged**, each confirmed here before striking. O-N8 by the compiler's D-248 (a file's header is
+mandatory and names the file; `RESOLVE-012`, measured this morning) — `nitpick-time`'s 0.1.0b worker reported it. O-N14:
+`declare i32 @npk_failsafe(i32)` exists from `94874ce` (0 declare lines at `950bb1d`, 1 at `94874ce` and `c3bdae2`) —
+regex's planner reported it.
+
+**relayed to `nitpick-compiler_s15`:** `npkc` accepts a two-parameter `main` — compiled here at `c3bdae2`, exit 0, no
+diagnostic, emitting `define i32 @main(i32 %a0, { ptr, i64 } %a1)` — while the references fix `main` at one parameter (the
+planner cites D-089). The planner measured `argc` holding an unrelated value (negative with no arguments) and, at
+`3d15ac9`, `argv` wrong too. Six regex files use the form and discard both parameters, so nothing depends on it.
+
+**question queued — 9** (item 13's sealed `buf` still admits a write through its pointer; recommendation: hidden plus an
+accessor, in its own subcycle after the close). **Q-6** gains regex's measurement.
+
+**findings-for-playbook** (owed, with the earlier lists): a deliberate REACH-002 refusal can pass B-7 while testing the wrong
+identity — every REACH-002 line has one code, so a refusal must name every other demanded arm and a check must confirm its
+single line names its subject; a harness message goes stale like prose (RX-115's "every src file is refused by `llc`" printed
+as present-tense fact for four pins); a sealed field still allows a write through its pointer and a whole-struct copy;
+planting `decreases 0i64 - 1i64` in each loop proves every swept loop runs under the tests (11 of 11); **a plan can be
+rehearsed by running its fenced blocks verbatim** — five defects found that way before dispatch.
+
+**dispatch `s1-nregex-0.0.4b-1129`** — `npk:worker`, `nitpick-regex` 0.0.4b. Memory 145 GiB available at dispatch.

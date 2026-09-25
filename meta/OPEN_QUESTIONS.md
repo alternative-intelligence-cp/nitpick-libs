@@ -449,8 +449,8 @@ file existed — the check works.
   repository's own `harness/expect.py` already refuses such a value (RX-122),
   so nothing here waits on it, and the same guard is the right shape for every
   library harness. **INDEPENDENTLY VERIFIED 2026-09-04** from the compiler's source at the pin: `expect_read`'s `expect-exit:` handling checks only `text_int`'s `is_error` with no upper bound, and `run_binary` compares the OS-truncated one-byte status against that unbounded value with `!=`. Sent to the compiler session.
-- **O-N14 — there is no library object: `npkc` emits calls to `@npk_failsafe`
-  and never a `declare`.** Raised by `nitpick-regex` 0.0.1, 2026-09-03, against
+- ~~**O-N14 — there is no library object: `npkc` emits calls to `@npk_failsafe`
+  and never a `declare`.**~~ — **DISCHARGED — `npkc` has emitted `declare i32 @npk_failsafe(i32)` since `94874ce`**; measured at three pins on 2026-09-25: 0 declare lines at `950bb1d`, 1 at `94874ce`, 1 at `c3bdae2`. Reported by `nitpick-regex`'s planner, confirmed by this orchestrator. The original text follows, kept. Raised by `nitpick-regex` 0.0.1, 2026-09-03, against
   the pinned `950bb1d`. Any translation unit that is not a program root compiles
   at `npkc` exit 0 and is then refused by `llc` for an undefined
   `@npk_failsafe`. **Confirmed at the emitter by this orchestrator**: the symbol
@@ -580,8 +580,8 @@ file existed — the check works.
   O-N4-style blocking**, because obeying "a view is a parameter, never a
   return value" is conformance with a documented language rule rather than a
   workaround for a defect. Disposition is Q-5.
-- **O-N8 — `npkc` silently merges two files when a `mod:` name mismatches its
-  basename.** Raised by `nitpick-time` 0.0.0 alongside O-N4, but never given a
+- ~~**O-N8 — `npkc` silently merges two files when a `mod:` name mismatches its
+  basename.**~~ — **DISCHARGED 2026-09-25, at `c3bdae2`, by the compiler's D-248** (S-21, settled 2026-09-03, landed at 1.5.1b step 1): a file's header is mandatory and must name the file, so a mismatch is now refused at the first step — `NITPICK-RESOLVE-012`, measured here on 2026-09-25 (`malformed.npk` declaring `mod:bad;`). Reported by `nitpick-time`'s 0.1.0b worker, confirmed by this orchestrator. The original text follows, kept. Raised by `nitpick-time` 0.0.0 alongside O-N4, but never given a
   local id there, so it is a new ecosystem-wide request and takes the next
   free number under this section's own rule. When a root file's `mod:` differs
   from its basename **and a sibling carries that basename**, `npkc` compiles
