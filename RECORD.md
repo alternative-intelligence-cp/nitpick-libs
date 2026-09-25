@@ -6694,3 +6694,22 @@ link proved impossible, so the solver is a digest-pinned shared library (D-321's
 ways** — six rows equal the baseline, `a3b917f` an ancestor with nothing under `src/`, `runtime/` or `bootstrap/` changed, the
 emission recomputed from the seed. **Exposure: none.** Next: 53 (step 2), **54 (step 3b: DEF-95's fix)**, **55 (step 3c: DEF-96)**.
 **Notices counted to 52.**
+
+**report `s2-ntime-0.1.1-1221` — DONE**, 13:16, 54 min, 709 k tokens. `d83e9ea` and `c7a60ac`, pushed; **CI green on GitHub for
+both**; `check_record` clean; harness GREEN 78 units. **The date constant is corrected, and how it was found is the lesson:
+`nitpick-time`'s own probe07 had asserted the right first day, -4 371 587, since cycle 0.0.0, while `CALENDAR.md` and the public
+`NTIME_DAY_MIN` said -4 371 588 — both green for three weeks, because a test's asserted value and a spec's stated value are two
+lists nobody diffs.** Only a recomputation by an independent algorithm, seen red at the old value first, caught it.
+
+**findings-for-playbook** (to land with the next pass): a test's value and a spec's value are two lists nobody diffs; relations
+among numbers derived from one wrong number all hold; **a control must be a case the WRONG implementation gets wrong** (`y +% 1i64`
+passes a checker that misreads `+%`; `y +% m` discriminates); a lexical literal-divisor rule must require the literal to stand
+alone (`/ (400i64 + m)` and `/ 256i64 =>! uint8` — which is 0 — slipped through); a helper's docstring is a claim to measure;
+**a second method that equals the first on part of its domain is one method there** — this seat's own two-method recomputation
+of that very constant this morning was independent only because it happened to use a 400-year shift that is not zero; a test
+reads `Result.value` after testing `is_error`, so a refusal exits with the test's own code.
+
+**for-the-author, from the worker:** 0.1.2 (the sweep, the cycle's gate) has no plan file — **a planner is dispatched after the
+verifier, per the author's standing preference for plans first** (*"I like good plans"*). Q-6's live-contract cost is now measured:
+`cal` 11 → 12, the umbrella 13 → 14, the arm 117. **dispatch `s2-ntime-0.1.1-verify-1316`** — `npk:verifier`, `sonnet`, told to read the literal-divisor
+check against TM-163, where the worker recorded three measured departures from the plan's §3. Memory 63 GiB available at dispatch.
