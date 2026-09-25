@@ -998,7 +998,15 @@ three defects this ecosystem found today, each fixed on the compiler side within
 **CARRIED TO THE NEXT RE-PIN — three checks, each against the pin that first carries the fix:** drop the literal-step `(BadStep)`
 arms once DEF-95 is in; confirm no `main` of ours is refused under DEF-96 (the measured exposure is zero); **and re-test N-21's two
 library shapes under DEF-97 — a generic helper with a `Vec<T>` local called `::<int64>`, and the struct in an imported module** —
-which the compiler seat's test does not cover separately. If either still refuses there, it is a new report. The accepted form compiles at
+which the compiler seat's test does not cover separately. If either still refuses there, it is a new report.
+
+**AND A FOURTH — DEF-98, ruled and fixed by `nitpick-compiler_s15` at 16:36: the block-string lexer, not the grammar, was wrong.**
+Found by `nitpick-regex`'s fourth-audit triage (its probe 15), verified here with a control pair and relayed: the close tested the
+current quote and the next character only, then skipped three, so `"""a""b"""` ate the `b` as a closing quote and was refused
+`NITPICK-PARSE-003`. `LEXICAL_REFERENCE` §6.3's grammar stands; the close now reads three quotes. It lands as **1.6.0 step 3e, notice
+57**, with no advance notice owed — a refusal removed, and no emission moves. **Until a pin carries 3e, no library may spell `""`
+inside a block string**, and regex's source reader rightly follows the lexer. **Carried to the next re-pin as a fourth check:**
+`probe15_block_string_close` flips from refused to accepted — move it, and move the source reader to the grammar's rule. The accepted form compiles at
   `c3bdae2` too, so nothing waits for notice 55, and 0.0.4b is not interrupted for it.
 
 ### 📋 OUR THREE PLANNING FINDINGS, CONFIRMED BY `nitpick-compiler_s15` — **ONE IS A COMPILER DEFECT, DEF-95.** 2026-09-25 09:36 EDT.

@@ -6900,3 +6900,9 @@ refused `NITPICK-PARSE-003` with `"""a""b"""`, though the grammar admits `""` in
 scan 206 of 206); `check_record` clean; the harness re-run 194/194. **The fourth audit's triage is verified.** **stream idle — s1**, by
 P-12 and not by choice: its next item is 0.0.4d's planner, and the one planner slot is `nitpick-time`'s 0.1.3 planner's. It is
 dispatched when that planner reports.
+
+**DEF-98, 16:36 — the block-string ruling: the grammar stands, the lexer was wrong** (`nitpick-compiler_s15`). The close read one character
+ahead and skipped three; it now reads three quotes. Lands as 1.6.0 step 3e, notice 57, no advance notice owed. **Four compiler defects
+found by the library side today — DEF-95, DEF-96, DEF-97, DEF-98 — each ruled and fixed the same day.** Until a pin carries 3e, no
+library spells `""` inside a block string; at that pin, `probe15` moves from refused to accepted and regex's source reader follows the
+grammar.
