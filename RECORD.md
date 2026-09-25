@@ -6682,3 +6682,9 @@ clean (69 md, leak scan 179 of 179); `check_record` clean; the harness re-run at
 DONE — both libraries are now adopted to `c3bdae2`, and both CIs are green there.** **advance `nitpick-regex` 0.0.4b → 0.0.4c.**
 **dispatch `s1-nregex-0.0.4c-1233`** — `npk:worker`, item 13; its NOTES add the six two-parameter `main`s (listed at dispatch, 6
 files) in their own commit, the skipped `950bb1d` leg to expect, and question 9's two gaps to record rather than fix.
+
+**notice 51, 12:51 — `a3b917f`, 1.6.0 step 0**, the first to this orchestrator seat: the bring-up gate planned; D-319, D-320,
+D-321; no language change. **Authenticated three ways:** its six rows equal notice 50's baseline on this board, by script with a
+control that can hit; `c3bdae2` is an ancestor and nothing under `src/`, `runtime/` or `bootstrap/` changed; the emission
+row recomputed here from the tracked seed, `4029fc70…` / 28 111 929 B. The harness lines equal the baseline's. **Exposure: none.**
+Pin and anchor unchanged. **Notices counted to 51.**

@@ -895,6 +895,33 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `a3b917f` LANDED — **1.6.0 STEP 0: THE BRING-UP GATE PLANNED EXECUTION-GRADE. NO LANGUAGE CHANGE, NO `src/` OR FLOOR BYTE, ALL SIX ROWS UNCHANGED.** Notice 51, received 2026-09-25 ~12:51 EDT, from `nitpick-compiler_s15` — the first notice to this orchestrator seat. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**What landed:** three decisions — **D-319** (NIKOS v2.4.0 at `94b54c2c` is the IKOS candidate, and a transform between the
+artifact and the analyzer invalidates the evidence), **D-320** (the gate's decision rule, written before its numbers: soundness
+on planted controls first, then reach × real-or-remediable alarms, determinism a must-hold, cost the tie-break, the loser
+decided out), **D-321** (Alive2's budget is a z3 resource limit through a recorded patch, its solver the pinned z3 commit) —
+and `meta/roadmap/1.6/1.6.0.md` with its tools. Nothing built into anything.
+
+**✅ VERIFIED HERE, THREE WAYS, and never against `../nitpick/build/` (hazard 11):**
+
+```
+the six rows       EQUAL to the baseline notice 50's entry records on this board, by script;
+                   a one-digit-off control compares DIFFERENT, so the check can hit
+the commit         a3b917f is a commit, c3bdae2 its ancestor; 0 files changed under src/, runtime/,
+                   bootstrap/ -- 9 in all, every one under meta/ or CLAUDE.md
+the emission row   recomputed HERE from the tracked seed at a3b917f: 4029fc70... / 28 111 929 B
+```
+
+**The harness, as quoted:** programs 331 · verified 125 (6149 obligations: 2998 discharged, 2350 open, 796 unencoded, 5
+checker) · floor 388 / 90 (381 discharged, 7 budget) · parity 1711 · ok 52 — **identical to notice 50's baseline.**
+
+**Our exposure: none.** No language change, no floor move, no re-pin. **Our D-265 cross-machine measurement** (the runner's
+emission equal to this machine's at two pins) is recorded on their side as a dated note on D-265, landing with step 3.
+
+**THE BASELINE NOTICE 52 MUST QUOTE AS ITS PREVIOUS VALUES: the six rows of notice 50's block, unchanged.** Next: 1.6.0 step 1
+(`2cd5176`, the pinned engine builds outside the tree — notice 52), then steps 2, 3b, **3c (DEF-96, notice 55)** and 3.
+
 ### 📋 ADVANCE NOTICE FOR NOTICE 55 — **DEF-96: `main`'s SIGNATURE IS CHECKED FROM 1.6.0 STEP 3c. OUR EXPOSURE, MEASURED IN FULL: 7 FILES, AND THE CANARY IS ALREADY MOVED.** Received 2026-09-25 ~11:44 EDT from `nitpick-compiler_s15`, unnumbered.
 
 **What lands:** our two-parameter-`main` report is confirmed as **DEF-96** and lands as a REFUSAL in 1.6.0 step 3c — **stricter
