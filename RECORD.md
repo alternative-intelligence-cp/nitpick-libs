@@ -6744,3 +6744,15 @@ state cannot produce; `950bb1d` accepts the one-parameter `main`, so moving it a
 **earlyoom's tally, read here: TEN SIGTERMs to the compiler's `clam` between 12:51 and 13:22** (every three to four minutes,
 largest 82 686 MiB resident) and **eight each to `traefik` and `coredns`**. The compiler seat was first told "two" and has been
 corrected, with the suggestion — its call — of one run at a time or a per-run memory cap. **dispatch `s1-nregex-0.0.4c-verify-1326`** — `npk:verifier`, `sonnet`.
+
+**verify `s1-nregex-0.0.4c-verify-1326` PASS** (`sonnet`), 13:29: tree clean; the last commit `cycle 0.0.4c:`; `check_refs` clean (69 md,
+leak scan 185 of 185); `check_record` clean; the harness re-run 158/158 at `c3bdae2`; question 9's gaps documented as open in the
+tree, as dispatched. **`nitpick-regex` 0.0.4c DONE — item 13 is landed in both libraries and verified in both.** **advance
+`nitpick-regex` 0.0.4c → 0.0.5**, cycle 0.0's close, attempted for the fourth time. **dispatch `s1-nregex-0.0.5-1329`** — `npk:worker`, `AUDIT:` the third
+pass, to triage every finding (W-22); `0.0.4b.md` §9 already read that pass against the new pin.
+
+**from `nitpick-compiler_s15`:** all ten `clam` kills are excluded from D-320's evidence and re-run. **Its runner had recorded six of
+them as "Clam timed out"**, because `clam.py` maps a child's SIGTERM or SIGKILL to its timeout code (rc 26) — six false verdicts,
+visible only because this seat read the machine's journal. The runner now classifies a kill as *"KILLED BY THE MACHINE: no
+result"*, and runs each heavy task alone behind a 100 GiB-available guard — chosen over a `MemoryMax` cap, which would turn a
+legitimate 83 GiB run into a kill.
