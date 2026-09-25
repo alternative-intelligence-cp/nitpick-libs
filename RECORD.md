@@ -7012,3 +7012,30 @@ side's. *The entry above is headed "19:0x"; it was written at 18:50.*
 **19:0x — DEF-100.** The `BUILD_REFERENCE.md` documentation defect is recorded upstream as **DEF-100** and fixed as a document: dated
 status notes on §1's `target` (read by nothing), §3's dependency-root form (PLANNED; `RESOLVE-005` today) and §7's `npkg update`
 (PLANNED, the refusal quoted), landing with step 3 as notice 59. O-N2 and O-N5 stay open with nothing waiting; O-N2's entry says so.
+
+### `nitpick-time` 0.1.3 DONE and VERIFIED PASS — cycle 0.1's gate is complete — and 0.1.3b dispatched — 2026-09-25 19:05
+
+**report `s2-ntime-0.1.3-1814` — DONE**, 43 min, 588 k tokens, 206 tool uses: `d16315f` (the derived fields — weekday, day-of-year,
+ISO week date, ordinal date — and the weekday cycle on the sweep) and `46c024a` (the record); **CI green on GitHub for both**; harness
+GREEN 86 units; `check_record` clean here. **verify `s2-ntime-0.1.3-verify-1901` (`sonnet`, 4 min) — PASS:** tree clean, the subject,
+`check_refs` clean (73 md, leak scan 208 of 208), `check_record` clean, the harness re-run GREEN 86 at `c3bdae2`; the work commit's
+27th path (`tests/unit/leap_rule.npk`, comment-only) is accounted for by the record's *"Found beyond the plan"* section, and
+`check_specs_current`'s one unresolved citation (S-19b, 0.1.3b's rule) is the plan's own prediction. **Cycle 0.1's gate is complete
+(PD-16):** the sweep over all 7 304 484 days, now with the weekday cycle. **for-the-author:** TM-175 (PD-26) and TM-176 (PD-27) accepted by
+default; the worker recommends keeping B-15's restatement. Q-6's note now records the author's answer; P-1's numbered decision and
+Q-6's strike are owed to 0.1.3c's plan together.
+
+**findings-for-playbook** (owed to the next playbook pass): (1) the compiler's `TYPE_REFERENCE.md` §9.3 says *"`intN => enum` is
+impossible in both spellings (D-140)"*, which the worker read as contradicting D-140. **Measured here it is half right:** at
+`c3bdae2` a payload-carrying enum refuses both spellings (`TYPE-032`), while a tag-only enum refuses `=>` (`TYPE-009`) and accepts
+`=>!`, which manufactures a tag that an exhaustive `pick` falls through — D-140's stated contract. The line sits in the payload-enum
+listing but reads as general; relayed as a scoping fix. Cite D-140, and measure. (2) For each thing a commit moves or resizes, sweep for
+statements of its old place and its old size — the two classes 0.1.3's plan missed after three rehearsals: comments naming a moved
+function's old holder, and prose stating an enum's variant count. (3) A plan hunk written while a question was open goes stale when the
+author answers before execution; the dispatch names the answered questions, and the worker reads them against every hunk that mentions
+them — this seat named Q-6, and the worker found the hunk. (4) A record naming "the next free decision number" cites an undeclared
+decision; write *"the number after TM-176"*.
+
+**dispatched 19:05:** `s2-ntime-0.1.3b-1905` (`npk:worker`, 0.1.3b). Its defect now has ids — O-N20 here, DEF-99 upstream,
+`NITPICK-TYPE-084` at step 3f — so the committed text cites them rather than landing "unnumbered"; the `EXPECT_EXEMPT` mechanics do not
+change, since our pin lacks 3f. 146 GiB available.
