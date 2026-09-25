@@ -6764,3 +6764,21 @@ docstring is a claim to measure; §9 — **a test's value and a specification's 
 hold around one wrong root, a second method must differ across the whole domain, **a control must be one the WRONG implementation
 fails**, a positive test equal to the vacant value tests nothing, `Result.value` after `is_error`, and **a wrapper can launder a
 kill into a verdict**.
+
+**report `s2-ntime-0.1.2-1323` — DONE (planning)**, 14:24, 60 min, 665 k tokens. `0.1.2.md` (1 861 lines) at `37734f6`, **verified here and
+pushed**: docs only (three files, all under `meta/`); `check_refs` clean; `check_record`'s `[no-report]` expected of a PLANNED file;
+**the real-checkout rehearsal restored the tree** — no stash, no untracked file. The plan: three sweep members over all 7 304 484
+days and 239 988 month lengths; the domains recomputed three independent ways (the leap rule summed, Python's ordinal under a
+400-year shift that is never zero, a closed form) and diffed against every place the tree states them; a 14-row mutation matrix;
+4.5 s and 125 MB, sequential. **PD-16, the planner's scope call, accepted by default:** the weekday rider moves to 0.1.3, where
+`weekday()` first exists, so **cycle 0.1's gate completes at 0.1.3** — the author may prefer pulling `weekday()` into 0.1.2 instead.
+
+**findings-for-playbook** (for the next pass): **all three of C-17's riders, as first written, pass a measured WRONG implementation**
+— *when a function is total, any check that builds its own input from the value under test is fooled*; **an exhaustive sweep earns
+its place with a mutant nothing else catches** — changing `z - 146096` to `z - 146097` breaks 24 of 7 304 484 days (the first of
+March of every negative era) and all 26 hand-picked vectors miss them; a plan placed a check one subcycle before its subject exists;
+an untagged number beside tagged ones goes stale anyway; a plan must never spell a denominator tag, since the checker reads roadmap
+files; rehearsing in the real checkout is cheap and safe with a restore protocol.
+
+**Q-6 gains a measurement:** under A each sweep owes 12 identities instead of 11 and runs within noise of A′ — A's cost is the arm,
+not time. **dispatch `s2-ntime-0.1.2-1424`** — `npk:worker`, 0.1.2. Memory 146 GiB available at dispatch.
