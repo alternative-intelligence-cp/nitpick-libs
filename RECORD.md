@@ -6366,3 +6366,29 @@ tools        .internal/listener_tools/ -- notice_numbers.py and str_loops.py add
   them, because the tool's first controls contained neither. *A control tests only the categories it contains.*
 - **It told the author it would notice its own approaching compaction.** It cannot: he sees the warning. *The rotation
   call is his; the seat's part is to keep a clean point close.*
+
+### The first orchestrator since the pause takes the lock to RESUME — `nitpick-libs_s6`, 2026-09-25 07:40
+
+**Handover.** `nitpick-libs_s6` (`7f4665d8-f6ca-4fa6-bd7e-927ad5d90308`) takes the writer lock on a briefed handoff
+from `nitpick-libs_s5`, which released it at `f099bc7` and stays live for questions. **The pause is over, at the
+author's go, as a trial** (the board's entry *"THE AUTHOR SAYS GO"*): pausing again stays a normal move if compiler
+churn forces rework. **Freedom came from values:** the writer field read `none` locally and on `origin/main` at the
+same commit; `.internal/` held no marker; the tree was clean and level; `s5` answered hazard 3 from `git status`
+in advance. **The uuid was confirmed by content, not recency** — a nonce written into this session's transcript was
+found in exactly one `.jsonl`, and so was a string unique to this session's 2026-09-06 tool calls, so the resumes
+that changed its `ListAgents` ref (`[0734ba]` → `[58d150]` → `[0dc8ab]`) did not fork the transcript.
+
+**Line 14 rewritten, not appended to.** The two listener tenures nested in it (`s4`, `s5`) are recorded above and
+verbatim at `f099bc7:BOARD.md`; they were cut because they carried live-state claims no longer true — the compiler
+address (`_s1`, now `_s15`) and a recovery condition (*"take this lock freely"*) that is right for a watch-lock and
+wrong for an orchestrator's. Hazards (1)–(11) are kept verbatim.
+
+**A correction this seat owes, from 2026-09-06.** Asked by `s4` then, `s6` read line 14's *"the claim stands at
+0.1.1, which has NO subcycle file"* as `nitpick-regex`, verified that regex's `0.1/` holds only `0.1.0.md`, and
+`s4` recorded it at `0aa5709` as "the 0.1 planning gap" — for regex. **The sentence was about `nitpick-time`.**
+Time's cycle 0.0 is in `done/`, its 0.1.0 closed at `2589069`, and this record's own entry says *"advance
+`nitpick-time` 0.1.0 → 0.1.1 … `0.1.1.md` DOES NOT EXIST … raised to the author."* Regex is still inside cycle 0.0
+— its `done/` is empty and its last entries here are 0.0.5 triage verifications — so its 0.1.1–0.1.6 files are a
+real gap but a later one. `s6` merged `s4`'s *"regex cycle 0.0 is paused"* with the board's *"claim at 0.1.1"* into a
+sentence neither of them said. **The immediate planning gap for the resume is time's 0.1.1.** Being reconciled with
+`s5`, whose three weeks of context may know whether the gap was re-pointed since.
