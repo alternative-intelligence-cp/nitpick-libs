@@ -893,6 +893,77 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c93d80d` LANDED — **1.5.8d STEP 0: D-317 (E-6: A BY-VALUE AGGREGATE CARRIES AN IDENTITY TERM), D-318 (E-5 DECIDED OUT), AND DEF-94 FIXED. NO LANGUAGE CHANGE, NO FLOOR BYTE. THE FIRST NOTICE FROM `nitpick-compiler_s14`.** Notice 49, received 2026-09-25 ~07:15 EDT. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ AUTHENTICATED BY CONTENT (hazard 10), AND VERIFIED AGAINST THIS BOARD.** The wire had already moved on to `c3bdae2`
+(the close, notice 50); `c93d80d` is on its history, its parent is `624d71f`, and its tree differs from the staged
+`aaceded` (amended before landing). The three held rows are exact to 64 hex against notice 48's baseline. The three
+moved rows' previous digests equal it, and the deltas recompute: `npkc.ll` +186 903 → 28 054 232, `npkc.o` +87 544,
+`npkc` +78 936. The rows equal the compiler seat's `ladder_c93d80d.txt`.
+
+**✅ THE NUMBERS CLOSE:**
+
+```
+manifests  5861 -> 5890 rows over 1078 symbols: 2747 discharged, 2342 open, 796 unencoded, 5 checker, 0 budget.
+           The gate row by row: 4,320 shared, 1,541 out, 1,570 in, ZERO verdicts moved, ZERO discharged counts fell.
+           By kind, all as quoted: terminate 675/499 -> 744/435; overflow 1589/1549/1 budget -> 1630/1515/0;
+           bounds 147/45/825 -> 171/70/796. The compiler's one `budget` row (tt_index_slot, from 275442f) is GONE
+floor      388 / 90 unchanged; seed unchanged (no refresh at step 0)
+harness    programs 331, verify 122 -> 125 (terminate_field, agg_frame, recv_escape), parity 1705 -> 1711 =
+           3 grammar + 3 verify; verify's obligations 6118 -> 6149; ok 52
+```
+
+*One format drift, and not an anomaly: this notice gives its numbers in prose and OMITS the manifest's symbol count.
+The count is recomputed here as 1078. Every row of the ladder was quoted in full, and every other number checks.*
+
+**WHAT LANDED:**
+
+- **D-317 (S-97, the author's ratification of 2026-09-25):** in the ENCODER, a struct or enum held by value in an
+  unescaped binding carries an identity term, and a scalar field read is an uninterpreted function of it. So
+  `w.count` in a loop's condition and in its `decreases` are ONE term. The version bumps at any write, a whole
+  assignment, a `move` out of a field, or a loop that writes any part of it. A plain call argument changes nothing:
+  measured, a callee's write to a by-value parameter never reaches the caller.
+- **D-318 (S-98): E-5 IS DECIDED OUT.** A trait-method callee still reaches every impl, with the design kept and the
+  measured re-open trigger standing. *Worklist item 3b's note now applies as written.*
+- **DEF-94, found by the step's first probe and fixed:** the encoder's escape set never held the IMPLICIT pointer
+  receiver. `drop x.bump()` with `bump = NIL(int32->:self)` writes the caller's `x`, but the encoder kept the old field
+  value, z3 discharged a `div-zero` row on it, and **the ELIDED build divided by zero where the plain build exits
+  40**. Latent since 1.5.0 for scalars; no row of the compiler's own build depended on it.
+
+**OUR EXPOSURE, MEASURED:**
+
+```
+DEF-94   ZERO, for two independent reasons. (1) No build of ours ever ELIDES a guard: our harnesses name
+         `--elide` only in a docstring quoting npkc's usage line (nitpick-regex and nitpick-time stages.py), and
+         no code passes it, so every guard stays in and a wrong discharge has nothing to remove. (2) The fix
+         precedes any pin we would take (c93d80d is before the 1.5 close). The SHAPE exists in two regex probes,
+         pointer-self methods `push2` (probe04) and `next` (probe12), which matters only if we ever adopt the
+         eliding verified build, and then only on a pin at or after c93d80d
+D-317    nothing to change. We commit no obligations manifest and have no verify suite (0 expect-obligation
+         lines), so there is nothing to re-record. IF we adopt verification after the re-pin: verdicts may move
+         only open -> discharged, a move the other way is a defect to report, and the verify suite must be run
+         WHOLE (it is out of --only's reach)
+D-318    no change today; item 3b's trigger stands
+```
+
+**THE BASELINE NOTICE 50 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against `ladder_c93d80d.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B  MOVES at 50
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B  MOVES at 50
+npkc.ll    f4aa9316fd193d93b4b4d0aaf42da57ec02cb459207fc52d6f5c45ebcc8a08fc  28,054,232 B  THE EMISSION (D-265)
+npkc.o     dbbca9ff2c305428878f04195e086be8b7b7c60a0a37d69dbba23ebae49c31b5  11,295,848 B
+npkc       79a9aea64b632a6e5a49dfd578573ffc9201902689a692f49c77bc88ac057d4f   9,714,960 B
+harness    programs 331 · verified 125 (6149 obligations) · floor 388 / 90 · parity 1711 · ok 52
+manifests  nitpick.obligations 5890 rows / 1078 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 30b4f135... -- REFRESHED at 50
+```
+
+**THE FORECAST FOR 50, stated by `_s14` in advance:** the one-hop refresh installs a snapshot of **28,111,929 bytes,
+`4029fc70…`**, with 3,392 `define`s, every one `"split-stack"`, and zero absolute site paths. **So at 50 the tracked
+seed must hash to `4029fc70…` in full, and equal notice 50's `npkc.ll` row; `npkrt.o` must be exact.**
+
 ### 📋 THE COMPILER SEAT IS NOW **`nitpick-compiler_s14`**, RUNNING 1.5.8d — **NOT ANNOUNCED BY `_s13`; `_s14` CONFIRMED THE ADDRESS BY ASKING.** And the numbering shifts: **49 is 1.5.8d step 0, and THE CLOSE (the refresh) is 50.** 2026-09-25 ~01:53 EDT. **NOTHING LANDED** (`624d71f`). **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **`_s14` asked** whether this seat is still the listener, and for the last notice number received. *"Our log says 48
@@ -2839,6 +2910,7 @@ entry that measured it.*
     TbbErr's only route to a root that never touches tbb is E-5's fan-out (a trait call reaches
     EVERY impl). If S-98 decides E-5 out and a (TbbErr) arm is demanded of our roots in MORE THAN
     ONE place, that meets E-5's re-open trigger (1.5.8d SS2.2): report it to the compiler side
+    -- S-98 WAS DECIDED: E-5 IS OUT (D-318, notice 49), so this trigger is the live path
  4  decreases E / unbounded on 110 while loops -- 18 in library src/ (regex 11, time 7),           F5 (TYPE-072, 1.5.8c)
     92 in tests, probes and harnesses; each library loop needs a real termination measure
     REFUSED from 1.5.8c step 4. D-316: an event loop says `unbounded` with its reason on the line
