@@ -7050,3 +7050,45 @@ the ladder against notice 56's baseline**, by script with a control: unchanged r
 and each delta recomputes; `src/` changed only `frontend/lexer.npk`. The baseline for 58 is recorded. No re-pin on it. **Notices counted
 to 57.**
 *Correction to the line above: notice 57 arrived at about 19:12, not "19:4x"; the board's entry is fixed.*
+
+### Regex's 0.0.4d plan and a sixth compiler defect today (O-N21); `nitpick-time` 0.1.3b VERIFIED PASS; the playbook pass; both streams re-dispatched — 2026-09-25 19:55
+
+**report `s2-ntime-0.1.3b-1905` — DONE**, 42 min, 517 k tokens: `80bf077` (the owning-field check re-founded on S-19b and widened;
+O-N20's reproduction committed) and `b0f9b62` (the record); **CI green on GitHub for both**; `check_record` clean here. **verify
+`s2-ntime-0.1.3b-verify-1947` (`sonnet`, 6 min) — PASS:** tree clean, the subject, `check_refs` clean (74 md, 217 of 217),
+`check_record` clean, the harness re-run GREEN 90 at `c3bdae2`; the three fault cases sit in `EXPECT_EXEMPT`, as designed; the 29th
+path (`meta/roadmap/0.5/README.md`, the hold's pointer) accounted for by the record. The dispatch's amendment — cite O-N20, DEF-99 and
+`TYPE-084` instead of "unnumbered" — was carried, and the repository gained its own O-N20 entry because `check_refs` requires one.
+**for-the-author:** TM-177 (PD-28) and TM-178 (PD-29) accepted by default; its own tenth open question — how the tzdb version string is held — stays open for cycle 0.5, (a) hold recommended. *(Named here without its id: the workbench's gate reads any library question id in this repository's prose as undefined — the §6 rule this commit writes, tripped twice today.)*
+**findings-for-playbook**, all four written into `PLAYBOOK.md` in this commit: a probe that exits while an owning value is live never
+reaches its drop; any `O-<letter><n>` in a library's prose needs a local entry; a row appended to a table can falsify the table's
+note; a sweep's recorded counts must come from the printed command.
+
+**report `s1-nregex-0.0.4d-1814` — DONE (planning)**, 94 min, 921 k tokens, 269 tool uses: `46ab35b` and `fdc190f`, all under
+`meta/` (the plan, four tools, the README row); `check_refs` clean; `check_record`'s `[no-report]` expected; rehearsed in the REAL
+checkout, 194 → 210 units GREEN, and restored; **verified here and pushed.** **The shape (PD-8):** `hidden string[0]:move_only` in
+`Vec` — 0 bytes, every bill unchanged, no new symbol; five alternatives measured and declined; no language-level move-only marker
+exists at `c3bdae2`. **The count, corrected:** 7 alias units — 6 defect shapes plus the swap control; RX-160's "seven plus the swap"
+counted eight. **Five of the six become refusals; the sixth is a LOAN** — a by-value parameter lends (the compiler's D-065, D-183),
+so no type can refuse it. `vec_get` keeps its signature (the audit's expectation, measured false); `Bytes.buf` is hidden here (9 test
+lines, not the 8 the board's question carried — a count to re-derive, the planner's own finding); A′ replaces P-1 as P-1b (PD-11).
+
+**compiler-defect — O-N21, the sixth from the library side today.** Assigning to an owning field of a lent parameter frees the
+caller's value; `@` of a lent parameter lets a callee free or grow the caller's container. **Reproduced here at `c3bdae2`, both legs:**
+exit 70 (the caller reads `0xAA`), 95 returning normally; controls — a local, a whole-binding assignment to a lent `string`, a `move`
+parameter — all behave. **Not a regression:** 70 at `0dfddac`, `950bb1d`, `3d15ac9`. **Our exposure, swept:** 219 tracked `.npk` files
+in six repositories, one hit — regex's deliberate unit; the sweep's first pass counted six, five of them `=>` conversions read as
+assignments, corrected and re-run with a planted-shape control. Registered as O-N21 and sent to `nitpick-compiler_s15` ~19:55 with two
+small verified items: `release` declares and cannot be called (`PARSE-002`), and `T[0]`'s support — which PD-8 rests on — asked to be
+confirmed (measured here: a `hidden string[0]` refuses a copy at `TYPE-046`; the `int64[0]` control lowers to `[0 x i64]`).
+
+**question 10 queued for the author** — does regex's cycle-0.0 close wait for O-N21's fix and a re-pin (recommended, the author's
+standing call), or close with the loan open (W-27)? 0.0.4d is identical under both. **Moved:** the registry audit's four PROVISIONAL
+strikes in regex's own `OPEN_QUESTIONS.md` go to the close (0.0.5), not to 0.0.4d, whose rehearsed plan they would perturb.
+
+**PLAYBOOK pass** (this commit): §6 — what `check_refs` and `check_denominators` read, and ugrep's completion-order counts; §9 — a
+control asserts its substitution matched, and a probe must reach its drop; §12 — six ways a rehearsed plan's text goes stale. **The
+gate caught the draft citing a library's question id in the workbench — the very trap being written down.**
+
+**dispatched 19:55:** `s1-nregex-0.0.4d-1955` (`npk:worker`) and `s2-ntime-0.1.4-1955` (`npk:planner`; 0.1.3c is gated on regex's
+0.0.4d landing and verifying, so 0.1.4 is the next ungated item). 146 GiB available.

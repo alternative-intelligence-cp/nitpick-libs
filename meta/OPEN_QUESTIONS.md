@@ -255,6 +255,46 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N21 — ASSIGNING TO AN OWNING FIELD OF A LENT (ORDINARY BY-VALUE) PARAMETER
+  FREES THE CALLER'S VALUE, AND `@` OF A LENT PARAMETER LETS A CALLEE FREE OR GROW
+  THE CALLER'S CONTAINER.** Raised by `nitpick-regex`'s 0.0.4d planner
+  (`0.0.4d.md` §1.4, §6.1), 2026-09-25, at pin `c3bdae2`; **the field face
+  reproduced by the orchestrator before it was sent, both legs, with controls.**
+  No `wild`, no pointer cast, no library code: `func:overwrite = NIL(Box:b)`
+  writes `b.s = …`; the caller then reads its own string's body as `0xAA`, the
+  allocator's free poison — **exit 70 at -O0 and under `opt -O2`** — or, returning
+  normally, frees it a second time: **95**. **Controls:** the write on a local
+  reads the new value; a whole-binding `s = …` to a lent `string` parameter
+  leaves the caller's value intact; the same write on a `move Box:b` parameter,
+  called with `move(b)`, runs 0 — so the compiler knows the parameter is lent,
+  and forgets it for a field. **Not a regression:** 70 at `0dfddac`, `950bb1d`,
+  `3d15ac9` and `c3bdae2`. Mechanism, the planner's reading: D-186's
+  unconditional field drop in the assignment lowering, reasoning that the
+  struct's owner is who overwrites it. **The `@p` face, the planner's
+  measurements:** a lent `Vec` freed or grown through `@p` leaves the caller
+  reading the poison or double-freeing (95); a lent `SparseSet` freed reads a
+  member ABSENT with its count at 1, no trap; a lent `Bytes` — move-only all
+  along — grown by its callee drops the caller's body (95). **Requested fix (the
+  planner's): hold loans read-only** — refuse an assignment into a place rooted
+  at a lent parameter, and `@` of one; stopping only the field drop leaves the
+  `@p` face.
+
+  **Impact (W-27). Our exposure is zero in `src/`:** 219 tracked `.npk` files in
+  the six repositories swept for by-value non-scalar parameters with a field
+  write or an `@` in the body — the only hit is `nitpick-regex`'s deliberate
+  `vec_alias_param_free`, and the sweep finds the probe's shape when planted.
+  **It holds `nitpick-regex`'s cycle-0.0 close gate** (*"every alias shape
+  refused"*), which cannot hold for the loan at `c3bdae2` — the author's call,
+  the board's question 10. **Sent to `nitpick-compiler_s15` 2026-09-25 ~19:55**,
+  with two small items from the same plan: `release` declares as a function name
+  and cannot be called (`PARSE-002`), and a request to confirm that `T[0]` is a
+  supported type (regex's move-only marker rests on it; measured: accepted, zero
+  bytes, owning when `T` owns).
+
+  Reproduction: `nitpick-regex/meta/roadmap/0.0/0.0.4d.md` §1.4 and §6.1 (at
+  `fdc190f`); its committed form lands with the 0.0.4d worker as
+  `tests/probe/probe17_lent_field_drop.npk`, with four library units.
+
 - **O-N20 — A MOVE OUT OF `fixed` STORAGE HOLDING AN OWNING VALUE COMPILES,
   AND THE PROGRAM FAULTS: THE MOVE STORES ITS VACANCY INTO AN LLVM `constant`
   GLOBAL.** Raised by `nitpick-time`'s 0.1.3 planner (`0.1.3b.md` §1, §3, §11),
@@ -297,10 +337,12 @@ file existed — the check works.
   defect holds the dependent work rather than being covered by a house rule.
   **Sent to `nitpick-compiler_s15` 2026-09-25, about 18:05**, asking for its `DEF`
   number and the refusal's diagnostic code, so the reproductions can take
-  `// expect-error:` with it the day it lands.
+  `// expect-error:` with it the day it lands. **Confirmed within the hour as the compiler's DEF-99, refused
+  as `NITPICK-TYPE-084` at 1.6.0 step 3f (notice 58)** — measured there against these
+  four reproducers read in place: case1–3 refuse, case4 runs 0.
 
-  Reproduction: `nitpick-time/tests/probe/defect/fixed_move_out/` once 0.1.3b
-  commits it — four cases, a README and a transcript at every kept pin, each in
+  Reproduction: `nitpick-time/tests/probe/defect/fixed_move_out/`, **committed at
+  `80bf077` (0.1.3b, verified PASS)** — four cases, a README and a transcript at every kept pin, each in
   that harness's `EXPECT_EXEMPT` at its -O0 verdict, so the verdicts MOVE and are
   named the day the refusal lands. **Raised by path and left unnumbered by the
   planner**, the rule written after the `O-N12` collision.

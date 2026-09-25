@@ -971,6 +971,8 @@ across the tree: `grep -rl --include='*.npk' .` from the root → **0**;
   **`/*/`** — every top-level directory ignored, which is precisely how the
   workbench avoids embedding a library as a gitlink. **The rule that makes the
   repository correct is the rule that makes its sweeps blind.**
+  **And given several files it prints per-file counts in COMPLETION order**, not
+  argument order, so compare such counts as a set (measured 2026-09-25).
 - **`git grep` from the root cannot see a library either**, for an unrelated
   reason: each library is a *separate checkout*, so none of its files are in
   this repository's index.
@@ -1076,6 +1078,16 @@ to stand ALONE:** one that allows an optional `(` and ends at `\b` admits `/ (40
 which is 0 — so nothing that binds tighter than `/` may follow it (the compiler's `OP_REFERENCE` §0). **And a helper's
 docstring is a claim to measure:** `nitpick-time`'s `code_lines` never blanked string bodies, though a retired check's
 docstring and a reviewed plan both said it did.
+
+**What `check_refs` and `check_denominators` actually read — measured at `nitpick-time` 0.1.3 and 0.1.3b, 2026-09-25.**
+**Links resolve even inside fences**, so a specification hunk embedded in a plan must also resolve from the plan file's own
+directory. **Decision and question citations are counted in prose with fences stripped but inline code NOT stripped**, so an
+inline `PD-28 -> TM-177` cites a decision that does not exist yet — and so does a record naming *"the next free number,
+TM-177"*: write *"the number after TM-176"*. **Any `O-<letter><n>` in a tracked markdown file's prose is read as a question
+THAT repository must define**, so a library citing a registry id (O-N20) first needs its own entry for it, as `nitpick-time`'s
+O-N17 to O-N19 have — a dispatch that says "cite the id" implies the entry. **`check_denominators` scans `meta/roadmap/`**, so a
+plan that quotes tool output must mask whole sweep tags there. **And `check_specs_current` is report-only** — it never fails a
+run — yet its expected lines still belong in a plan's expected output, or a careful executor stops on *"unresolved"*.
 
 ## 7. Repository conventions
 
@@ -1276,6 +1288,13 @@ repositories reads one thing.
 - **A control must be a case the WRONG implementation gets wrong**, not merely one the right implementation gets right:
   `y +% 1i64` as the control for "`+%` is not a division" also passes a checker that misreads `+%`, because `1i64` is a
   valid divisor either way; `y +% m` discriminates.
+- **A control must also assert that its substitution matched.** A mutation applied by text substitution that matches
+  nothing leaves the original program, which passes — so a no-op control reads as a caught mutant. Count the
+  substitutions and fail on zero.
+- **A probe that exits while an owning value is still live never reaches its drop**, so a fault AT the drop is
+  invisible to it: a scalar-pass probe of O-N20 exited 0 on both legs, while the same pass with the string dropped in a
+  callee stopped at 95 at all six kept pins. Put the drop inside the measured path — a function's return — or the probe
+  measures nothing.
 - **A positive test whose expected value equals the vacant value tests nothing.** After one insert `sparse[3]` is 0 —
   which `calloc` also wrote. Choose inputs whose correct answer the untouched state cannot produce, and show a copy of the
   test expecting the vacant value FAILS.
@@ -1556,3 +1575,23 @@ the new file is in the index the check reads. Or stage first and rely on
 `tracked-file-missing` to report the deletion case, which the check has done
 since `7da5c2d`. **A gate whose denominator omits the change being gated is not
 gating that change.**
+
+---
+
+**SIX WAYS A REHEARSED PLAN'S TEXT GOES STALE — FROM ONE DAY'S TWO SUBCYCLES, `nitpick-time` 0.1.3 AND 0.1.3b
+(2026-09-25), EACH FOUND AFTER REHEARSAL, SEVERAL AFTER THREE.**
+
+- **A tag-writing script must be idempotent.** A re-run wrote six tags twice, 47 where 41 belong; each script now
+  skips an edit already applied, and says so.
+- **An untagged number beside a tag goes stale unseen** — a library question's *"25"* beside a tag saying 26, a CI header's *"86
+  units"* — because the checker reads the tag and nothing reads the prose (§6's *"a checked tag guards only itself"*).
+- **For each thing a commit moves or resizes, sweep for statements of its old place and its old size.** Three
+  rehearsals swept four phrasings for stale claims and missed the two classes the plan's own changes made false:
+  comments naming a moved function's old holder, and prose stating an enum's variant count (*"an eleventh variant"*).
+- **A hunk written while a question was open goes stale when the author answers before execution.** The dispatch names
+  every answered question, and the worker reads each against every hunk that mentions it — 0.1.3's Q-6 note still read
+  *"it stays the author's"* after the author had answered.
+- **Appending a row to a table whose note generalises over its rows falsifies the note on arrival** (*"every defect in
+  it has since been fixed"*, above a new open defect). A hunk that adds a row owes a reading of the table's notes.
+- **A sweep's recorded counts must come from the command the record prints.** Two of 0.1.3b's sweep sets had excluded
+  a file the printed command does not; only re-running the printed commands on the committed tree found it.
