@@ -6688,3 +6688,9 @@ D-321; no language change. **Authenticated three ways:** its six rows equal noti
 control that can hit; `c3bdae2` is an ancestor and nothing under `src/`, `runtime/` or `bootstrap/` changed; the emission
 row recomputed here from the tracked seed, `4029fc70…` / 28 111 929 B. The harness lines equal the baseline's. **Exposure: none.**
 Pin and anchor unchanged. **Notices counted to 51.**
+
+**notice 52, 12:52 — `2cd5176`, 1.6.0 step 1**: the three engines and z3 built at pinned commits outside the tree; a static libz3
+link proved impossible, so the solver is a digest-pinned shared library (D-321's dated note). **Authenticated the same three
+ways** — six rows equal the baseline, `a3b917f` an ancestor with nothing under `src/`, `runtime/` or `bootstrap/` changed, the
+emission recomputed from the seed. **Exposure: none.** Next: 53 (step 2), **54 (step 3b: DEF-95's fix)**, **55 (step 3c: DEF-96)**.
+**Notices counted to 52.**

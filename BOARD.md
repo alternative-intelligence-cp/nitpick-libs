@@ -895,6 +895,23 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `2cd5176` LANDED — **1.6.0 STEP 1: THE PINNED ENGINE BUILDS, OUTSIDE THE TREE. NO LANGUAGE CHANGE, NOTHING MOVED.** Notice 52, received 2026-09-25 ~12:52 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+`meta/roadmap/1.6/tools/engines.sh` builds Clam (LLVM 18.1.3), NIKOS and Alive2 (LLVM 20.1.2) and z3 at pinned commits into
+`~/.local/src/1.6/`, with every binary's digest in `pins.txt`. Found on the way, and a dated note on D-321: a static libz3
+link is impossible (duplicate symbols between Alive2's `smt/` and z3's), so the solver is the pinned z3 as a shared library,
+digest-pinned. **Nothing of it is in the artifact or its gates.**
+
+**✅ VERIFIED HERE, the same three ways:** the six rows EQUAL notice 50's baseline on this board; `a3b917f` is an ancestor and
+0 files changed under `src/`, `runtime/` or `bootstrap/` (8 in all, every one under `meta/` or `CLAUDE.md`); the emission row
+recomputed from the tracked seed at `2cd5176`, `4029fc70…` / 28 111 929 B. The harness lines equal the baseline's.
+**Our exposure: none.**
+
+**Next, and two of them are ours:** step 2 (`8fbde77`, the input set and planted controls, notice 53); **step 3b (`91a7d99`) is
+DEF-95's fix — our `(BadStep)` finding — as notice 54**, after which a literal-step `till`/`loop` arm is droppable at our next
+re-pin; **step 3c (`8a9eb35`) is DEF-96, notice 55**; then step 3, the runs. No floor move, no re-pin. **The baseline notice 53
+must quote: notice 50's six rows, unchanged.**
+
 ### ✅ `a3b917f` LANDED — **1.6.0 STEP 0: THE BRING-UP GATE PLANNED EXECUTION-GRADE. NO LANGUAGE CHANGE, NO `src/` OR FLOOR BYTE, ALL SIX ROWS UNCHANGED.** Notice 51, received 2026-09-25 ~12:51 EDT, from `nitpick-compiler_s15` — the first notice to this orchestrator seat. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **What landed:** three decisions — **D-319** (NIKOS v2.4.0 at `94b54c2c` is the IKOS candidate, and a transform between the
