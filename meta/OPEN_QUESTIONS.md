@@ -255,9 +255,67 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
-- **O-N19 — `NITPICK-TYPE-046` IS NOT ENFORCED INSIDE A GENERIC FUNCTION BODY,
+- **O-N20 — A MOVE OUT OF `fixed` STORAGE HOLDING AN OWNING VALUE COMPILES,
+  AND THE PROGRAM FAULTS: THE MOVE STORES ITS VACANCY INTO AN LLVM `constant`
+  GLOBAL.** Raised by `nitpick-time`'s 0.1.3 planner (`0.1.3b.md` §1, §3, §11),
+  2026-09-25, at pin `c3bdae2`; **reproduced by the orchestrator before it was
+  sent, end to end, on both legs.** `move(NAMES[1i64])` out of a
+  `fixed string[2]` is **accepted** (`npkc` 0), and the IR stores
+  `{ ptr, i64, i64 } zeroinitializer` through a `getelementptr` into
+  `@"npk.case1_element_move.NAMES" = constant [...]` — a store into a constant,
+  which LLVM leaves undefined.
+
+  | case | shape | `npkc` | -O0 | `opt -O2` |
+  |---|---|---|---|---|
+  | `case1_element_move` | `move(NAMES[1i64])`, then dropped | 0 | **107**, `MachineFault` (the SIGSEGV) | **95**, `Unreachable` |
+  | `case2_element_pass` | `pass NAMES[i]` from a function returning `string` — an implicit move | 0 | **107** | **95** |
+  | `case3_scalar_move` | `move(V)` of a `fixed string` — no vacancy written at all, so a second owner | 0 | **95** | **95** |
+  | `case4_clone_control` | the same reads by `.clone()`, dropped, twice | 0 | 0 | 0 |
+
+  **The control isolates it to the move**: the same tables, strings and drops,
+  with only the move replaced by `.clone()`, run clean. **The copy is already
+  refused** at `NITPICK-TYPE-046` (`nitpick-time`'s `probe17b`, `probe17c`).
+  **The fix requested: the same compile-time refusal for the move** — a `fixed`
+  binding is immutable, and a move writes it.
+
+  **Not a regression.** The planner's transcript compiles and runs every case at
+  all six kept pins (`0dfddac` → `c3bdae2`): accepted at all six; at -O0 the
+  element cases die by SIGSEGV (139) at four, stop as `Unreachable` at `950bb1d`
+  and as `MachineFault` at `c3bdae2`, the first pin whose runtime handles the
+  signal; `Unreachable` under `opt -O2` at all six. The -O2 reading — the store
+  deleted as UB, the moved string's drop then freeing bytes the allocator never
+  handed out — is the planner's and fits the verdicts; this seat verified the
+  verdicts and the IR, not that mechanism.
+
+  **Impact (W-27). Blocks nothing today** — no `fixed` table in any library's
+  `src/` holds an owning value (`nitpick-time`'s S-19b and
+  `check_no_owning_fields`, which 0.1.3b widens). **It HOLDS `nitpick-time`'s
+  cycle-0.5 tzdb version string** — `ZONE_MODEL.md` Z-4's
+  `pub fixed string:TZDB_VERSION` and Z-6's `ntime_tzdb_version()` are case 3
+  and case 2 exactly — by that repository's PD-29 and its tenth `O-X`, until
+  the compiler refuses the move: the author's standing call that a compiler
+  defect holds the dependent work rather than being covered by a house rule.
+  **Sent to `nitpick-compiler_s15` 2026-09-25, about 18:05**, asking for its `DEF`
+  number and the refusal's diagnostic code, so the reproductions can take
+  `// expect-error:` with it the day it lands.
+
+  Reproduction: `nitpick-time/tests/probe/defect/fixed_move_out/` once 0.1.3b
+  commits it — four cases, a README and a transcript at every kept pin, each in
+  that harness's `EXPECT_EXEMPT` at its -O0 verdict, so the verdicts MOVE and are
+  named the day the refusal lands. **Raised by path and left unnumbered by the
+  planner**, the rule written after the `O-N12` collision.
+
+- ~~**O-N19 — `NITPICK-TYPE-046` IS NOT ENFORCED INSIDE A GENERIC FUNCTION BODY,
   SO A BARE COPY OF AN OWNING ELEMENT COMPILES, LINKS, RUNS, AND LEAVES TWO
-  OWNERS OF ONE HEAP BODY. THIS IS A USE-AFTER-FREE THAT EXITS 0.** Raised by
+  OWNERS OF ONE HEAP BODY. THIS IS A USE-AFTER-FREE THAT EXITS 0.**~~ —
+  **DISCHARGED — refused at `NITPICK-TYPE-046` at `c3bdae2`** (the compiler's
+  D-264). Measured by `nitpick-time`'s harness at 0.1.0b, whose
+  `check_exemptions_live` named both verdicts moving (`case1` from `run:0`,
+  `case4` from `run:170`, each to `npkc`; `nitpick-time` TM-154), and **re-run
+  by the orchestrator 2026-09-25**: `case1_generic_bare_copy` and
+  `case4_use_after_free` both exit `npkc` 1 at `NITPICK-TYPE-046`. *Struck late:
+  the registry still read OPEN a day after the fix was measured in a library.*
+  Raised by
   `nitpick-time` 0.0.5, 2026-09-05, at pin `aaffb87`; **reproduced by the
   orchestrator before it was sent, end to end.** `T:answer = s[i]` at an owning
   `T` inside a generic function is **accepted** (`npkc` 0, `.ll` written); the
@@ -301,8 +359,12 @@ file existed — the check works.
   unnumbered and cited it by path**, which is the rule written after the
   `O-N12` collision, applied correctly the first time it mattered.
 
-- **O-N18 — `.len` on a fixed-size array `T[N]` is accepted by the frontend and
-  cannot be lowered by the emitter.** Raised by `nitpick-time` 0.0.4,
+- ~~**O-N18 — `.len` on a fixed-size array `T[N]` is accepted by the frontend and
+  cannot be lowered by the emitter.**~~ — **DISCHARGED — lowers and runs at
+  `c3bdae2`** (the compiler's DEF-22). Measured by `nitpick-time`'s harness at
+  0.1.0b (`fixed_array_len/case1_local_array_len` moved from `npkc` to `run:0`;
+  `nitpick-time` TM-154), and **re-run by the orchestrator 2026-09-25: `run:0`.**
+  Raised by `nitpick-time` 0.0.4,
   2026-09-05, at pin `0dfddac`, writing `put_uint`'s allocation-free digit
   buffer; **reproduced by the orchestrator before it was sent.** `npkc` exits
   **1** and writes no `.ll`, with **`NITPICK-EMIT-002`** — whose own text says

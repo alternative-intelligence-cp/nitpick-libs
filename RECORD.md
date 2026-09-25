@@ -6919,3 +6919,52 @@ past it. **Notices counted to 54.**
 moved before it landed — the canary this morning, regex's six at `7fd1267`. **Authenticated by the ladder against notice 54's baseline:**
 unchanged rows equal it, each moved row's previous value equals it and each delta recomputes; the only `src/` changes are the checker's
 two files. `PLAYBOOK.md`'s DEF-96 line now says it has landed on the compiler's `main` but no pin of ours carries it. **Notices counted to 55.**
+
+### `nitpick-time`'s 0.1.3 planner reports: two rehearsed plans, and a compiler defect found at planning that the compiler confirmed within the hour — 2026-09-25 18:14
+
+**report `s2-ntime-0.1.3-1507` — DONE (planning)**, 173 min, 234 k tokens, 377 tool uses. `6709c2a`: `0.1.3.md` (the derived
+fields, the weekday rider, cycle 0.1's gate) and `0.1.3b.md` (`check_no_owning_fields`' premise re-measured), rehearsed three times
+in the REAL checkout and restored to `7689432` each time — GREEN 86 units after 0.1.3, 90 after 0.1.3b. **Verified here, then pushed:**
+docs only, 7 files, all under `meta/`; `check_refs` clean; both titles PLANNED, `check_record`'s one finding each the `[no-report]`
+expected of a plan; tree clean, no stash. **Order: 0.1.3 → 0.1.3b → 0.1.3c (the `Vec` move-only port, not planned — it follows
+regex's 0.0.4d design) → 0.1.4.** 0.1.3 needs no `Vec`, measured. **For the author, accepted by default:** PD-26 (C-14's boundary
+cases indexed by the wrong year; re-indexed — 41 vectors, each derived three ways), PD-27 (B-15's `cal_` prefix rule restated),
+PD-29 (the tzdb version string held behind the defect below). The planner still believed Q-6 open (it was answered at 15:56, after
+its dispatch); both plans are written for A′, so nothing changes.
+
+**compiler-defect — O-N20, a move out of `fixed` storage compiles and faults.** `fixed` is an LLVM `constant` global and the move
+stores its vacancy into it. **Reproduced here before sending, both legs at `c3bdae2`:** case1 (`move(NAMES[1i64])`) and case2 (a plain
+`pass NAMES[i]`) `npkc` 0 → 107 at -O0, 95 under `opt -O2`; case3 (a scalar `fixed string`) 95 both; case4, the `.clone()` control, 0
+both; and the IR read: a `store zeroinitializer` through a `getelementptr` into `@"npk.case1_element_move.NAMES" = constant`. Not a
+regression (all six kept pins, the planner's transcript). Registered as **O-N20**, sent to `nitpick-compiler_s15` ~18:05, and
+**confirmed as DEF-99 within the hour: refused as `NITPICK-TYPE-084` at 1.6.0 step 3f (notice 58, tonight)**, measured there against
+our four reproducers read in place. `PLAYBOOK.md` §2's TYPE-046 row now says the move compiles and faults and that nothing may depend
+on it.
+
+**notice 56, ~18:10 — `f758995`, 1.6.0 step 3d: DEF-97 (regex's N-21) fixed**, a refusal removed. Authenticated by the ladder
+against notice 55's baseline, by script with a control; `src/` changed only the two emitter files; the baseline for 57 is recorded.
+**The re-pin checks are now five** (DEF-99's the fifth). **No re-pin on this notice** — nothing of ours needs DEF-97 today, and the
+natural point is after 3f and step 3's runs, between subcycles. **Notices counted to 56.**
+
+**registry — two entries struck a day late.** O-N18 (DEF-22) and O-N19 (D-264) were measured landed by `nitpick-time`'s harness at
+0.1.0b (TM-154) and still read OPEN here; re-run at `c3bdae2` and struck. **Owed by this seat: the other thirteen un-struck entries
+(O-N1, 2, 4, 5, 9–13, 15–17) re-measured at `c3bdae2`** — the same staleness is likely in some of them, and a registry read as live
+state must not carry fixed defects as open.
+
+**decision (orchestrator):** P-1's A′ replacement for `nitpick-time` goes to **0.1.3c's plan**, not to the 0.1.3 worker — 0.1.3 and
+0.1.3b are rehearsed plans, and an unplanned decision would ride outside the rehearsal. The board's Q-6 row said "in the streams'
+next dispatches"; for regex that holds (the 0.0.4d planner has it).
+
+**findings-for-playbook** (edits owed to the next playbook pass): `check_refs` resolves markdown links inside fences, so a spec hunk
+embedded in a plan must also resolve from the plan file; it counts TM and question citations in prose with fences stripped but inline
+code NOT stripped, so an inline `PD-28 -> TM-177` cites an undeclared decision; `check_denominators` scans `meta/roadmap/`, so a plan
+quoting tool output must mask whole sweep tags; a tag-writing script must be idempotent (a re-run wrote 47 tags where 41 belong); a
+control must assert its substitution matched, or a no-op control silently passes; an untagged number beside a tag goes stale unseen;
+a report-only check still belongs in a plan's expected output; `grep` here is ugrep, whose per-file counts arrive in completion order.
+
+**earlyoom:** SIGTERM to the compiler seat's `clam` at 15:57, 16:17, 16:39, 16:58 (with `traefik` and `coredns`), 17:19, 17:39 and
+18:00 — seven, each at 132 753 to 134 609 MiB resident, about every 20 minutes. None was ours; the 17:39 kill came during the
+planner's pass-3 matrix and did not change its result.
+
+**dispatched 18:14:** `s2-ntime-0.1.3-1814` (`npk:worker`, 0.1.3) and `s1-nregex-0.0.4d-1814` (`npk:planner`, 0.0.4d) — width 2
+with one planner, P-12. 61 GiB available at dispatch, above this seat's 32 GiB floor, with a `clam` run live.
