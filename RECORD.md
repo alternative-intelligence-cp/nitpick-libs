@@ -6895,3 +6895,8 @@ premise is a claim about the whole plan — sweep for the property, not the prem
 `Vec` before 0.8"* survive could not match *"copyable"* or *"swapped"*). **Compiler-defect candidate, verified here and relayed:** the
 lexer and `LEXICAL_REFERENCE` §6.3 disagree on where a block string ends — the same program compiles with `"""ab"""` (exit 0) and is
 refused `NITPICK-PARSE-003` with `"""a""b"""`, though the grammar admits `""` inside. **dispatch `s1-nregex-0.0.5-verify-1631`** — `npk:verifier`, `sonnet`.
+
+**verify `s1-nregex-0.0.5-verify-1631` PASS** (`sonnet`), 16:34: tree clean; the last commit `cycle 0.0.5:`; `check_refs` clean (70 md, leak
+scan 206 of 206); `check_record` clean; the harness re-run 194/194. **The fourth audit's triage is verified.** **stream idle — s1**, by
+P-12 and not by choice: its next item is 0.0.4d's planner, and the one planner slot is `nitpick-time`'s 0.1.3 planner's. It is
+dispatched when that planner reports.
