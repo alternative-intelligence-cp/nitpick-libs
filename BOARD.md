@@ -899,6 +899,40 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `dfbaf1a` LANDED — **1.6.0 STEP 3b: DEF-95 — OUR `(BadStep)` FINDING, FIXED. A DEMAND REMOVED, NO LANGUAGE CHANGE. THE FIRST ROWS TO MOVE SINCE THE PIN.** Notice 54, received 2026-09-25 ~17:43 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+REACH armed `BadStep` for every counted loop while the emitter guards only a COMPUTED step; the walk now asks the emitter's own
+predicate. A root that already names the arm keeps compiling, so nothing of ours breaks. **Also landed here: our two document findings**
+— `done/1.5/tools/loop_dump.npk`'s `use` paths, and `TYPE_REFERENCE` §9.1.2's field order. The commit was AMENDED from the announced
+`91a7d99` after its first harness re-keyed 82 manifest rows (5 890 rows before and after, zero verdicts moved, the floor's 388 unmoved).
+
+**✅ VERIFIED HERE BY THE LADDER — the emission cannot be recomputed from the seed this time, and that is expected:**
+
+```
+unchanged   npkrt.o, builder.o, builder   EQUAL the baseline on this board
+moved       npkc.ll, npkc.o, npkc          each quoted PREVIOUS value EQUALS the baseline; each delta recomputes
+            28 113 207 - 28 111 929 = +1 278 B     11 313 344 - 11 313 056 = +288 B     9 724 400 - 9 724 160 = +240 B
+the commit  8fbde77 an ancestor; src/ changed ONLY src/frontend/analysis/reach.npk; runtime/ 0, bootstrap/ 0
+the seed    still 4029fc70... at dfbaf1a -- no snapshot refresh here, so the seed no longer equals the emission (D-205)
+```
+
+**The compiler's own source grew by the fix; every program's emission is byte-identical.** Harness: programs **332** (was 331) ·
+verified 125 (6149 obligations) · floor 388 / 90 · parity **1715** (was 1711) · ok 52. **Our exposure: none now; at the next re-pin
+past `dfbaf1a` our literal-step `(BadStep)` arms become droppable** — check 1 of the four carried to that re-pin.
+
+**THE BASELINE NOTICE 55 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `dfbaf1a`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    5c1fc8cd45204df3a514be3323751023b34e8099f4cf576006061c027e44b22c  28,113,207 B
+npkc.o     155ae6cba5fc10e7a86b612b064ea1dd6e268811d6c7339544b90a491ec50505  11,313,344 B
+npkc       2c20265d7bbb8f861ff90c34f53f5f07a3e7de952dddbb336c17a4fabe94e38d  9,724,400 B
+```
+
+Next: 3c (`d156c4f`, DEF-96, notice 55), 3d (`f758995`, DEF-97, 56), 3e (`395308f`, DEF-98, 57), then step 3's runs as 58.
+
 ### ✅ `8fbde77` LANDED — **1.6.0 STEP 2: THE GATE'S INPUT SET AND SEVEN PLANTED CONTROLS. NO LANGUAGE CHANGE, NOTHING MOVED.** Notice 53, received 2026-09-25 ~15:13 EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 The analyzers' inputs, every digest recorded — the plain emissions, the whole-program forms by text concatenation with the floor,

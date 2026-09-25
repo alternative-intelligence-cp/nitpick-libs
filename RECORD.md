@@ -6906,3 +6906,11 @@ ahead and skipped three; it now reads three quotes. Lands as 1.6.0 step 3e, noti
 found by the library side today — DEF-95, DEF-96, DEF-97, DEF-98 — each ruled and fixed the same day.** Until a pin carries 3e, no
 library spells `""` inside a block string; at that pin, `probe15` moves from refused to accepted and regex's source reader follows the
 grammar.
+
+**notice 54, 17:43 — `dfbaf1a`, 1.6.0 step 3b: DEF-95 fixed**, our `(BadStep)` finding, with our two document findings. **The first notice
+since the pin whose rows MOVE:** `npkc.ll` +1 278 B, `npkc.o` +288 B, `npkc` +240 B — the compiler's own source grew; every program's
+emission is byte-identical. **Authenticated by the ladder:** the three unchanged rows equal the baseline; each moved row's quoted previous
+value equals it and each delta recomputes; the only `src/` change is `reach.npk`, with nothing under `runtime/` or `bootstrap/`. The
+tracked seed is still `4029fc70…` — no snapshot refresh — so the emission row was authenticated by the ladder, not recomputed from the
+tree. **New baseline recorded on the board for notice 55.** Exposure: none; the `(BadStep)` arms become droppable at the next re-pin
+past it. **Notices counted to 54.**
