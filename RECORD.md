@@ -6805,3 +6805,9 @@ must be ones only its red prints — mutation-test every new case; **a test deri
 
 **question 9 now bears on the close** — the board's row states the choice and this seat's recommendation. **dispatch `s1-nregex-0.0.5-verify-1441`** — `npk:verifier`,
 `sonnet`; on PASS, the fourth audit, scoped as the worker recommends to `d1f13a4..HEAD`.
+
+**verify `s1-nregex-0.0.5-verify-1441` PASS** (`sonnet`), 14:44: tree clean; the last commit `cycle 0.0.5:`; `check_refs` clean (69 md,
+leak scan 194 of 194); `check_record` clean; the harness re-run 174/174. **Cycle 0.0's READY-TO-CLOSE verified.** **dispatch
+`s1-nregex-0.0-audit4-1444`** — `npk:auditor`, the fourth pass (W-22). **Scoped wider than the close worker proposed:** it recommended `d1f13a4..HEAD`, the
+triage alone; this seat scoped it to `ab93eae..HEAD` — everything the third pass never saw, the adoption and item 13 included —
+because an audit that sees only the triage would certify a tree it did not read.
