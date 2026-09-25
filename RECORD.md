@@ -6822,3 +6822,9 @@ blocks mechanically makes *"worked as written"* checkable. **for-the-author:** t
 yet."* — false since 0.0.4, owed to cycle 0.1's close; **Q-6 re-measured: A costs a twelfth arm and no measurable time, and adds no
 evidence the civil walk does not already give** — the worker recommends A′ for cycle 0.1. **dispatch `s2-ntime-0.1.2-verify-1503`** — `npk:verifier`, `sonnet`, told
 to read `check_denominators`' 32 tags (the plan said 30) against TM-168, which records the two extra.
+
+**verify `s2-ntime-0.1.2-verify-1503` PASS** (`sonnet`), 15:07: tree clean; the last commit `cycle 0.1.2:`; `check_refs` clean (70 md, leak
+scan 200 of 200); `check_record` clean; the harness re-run GREEN at `c3bdae2`, 81 units with the sweep. **`nitpick-time` 0.1.2 DONE — four
+subcycles closed and verified since the pause.** **advance `nitpick-time` 0.1.2 → 0.1.3**, which has no plan file: **dispatch `s2-ntime-0.1.3-1507`** —
+`npk:planner`. Its NOTES carry the weekday rider's trap (as first written it passes a weekday missing its `%` correction) and the
+`check_no_owning_fields` re-measurement owed since the playbook's TYPE-046 row was found false.
