@@ -7039,3 +7039,8 @@ decision; write *"the number after TM-176"*.
 **dispatched 19:05:** `s2-ntime-0.1.3b-1905` (`npk:worker`, 0.1.3b). Its defect now has ids — O-N20 here, DEF-99 upstream,
 `NITPICK-TYPE-084` at step 3f — so the committed text cites them rather than landing "unnumbered"; the `EXPECT_EXEMPT` mechanics do not
 change, since our pin lacks 3f. 146 GiB available.
+
+**19:1x — DEF-101.** The `TYPE_REFERENCE.md` §9.3 scoping fix is recorded upstream as **DEF-101**, a document fix landing with step 3:
+`enum =>! intN` reads the tag at every shape; a tag-only enum takes `intN =>! enum` (`=>` is `TYPE-009`); a payload-carrying enum admits
+neither spelling (`TYPE-032`); D-140 unchanged. **Two documentation defects from this seat today (DEF-100, DEF-101), both of the shape
+the compiler seat says its tree keeps finding: a reference stating more than the tools do.**
