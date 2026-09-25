@@ -6833,3 +6833,29 @@ subcycles closed and verified since the pause.** **advance `nitpick-time` 0.1.2 
 rows equal the baseline, `2cd5176` an ancestor with nothing under `src/`, `runtime/` or `bootstrap/` changed, the emission recomputed from
 the seed. **Exposure: none.** Step 3b (DEF-95's fix) came back red in its first harness — 82 manifest rows re-keyed by one newly interned
 type, no verdict moved — after the seat had asserted *"the manifest unchanged"* unmeasured; re-recorded and re-running. **Notices counted to 53.**
+
+### The fourth audit of `nitpick-regex` cycle 0.0 says DO NOT ACCEPT — and one of its blocking findings reverses this seat's recommendation to the author — 2026-09-25 15:22
+
+**audit filed**, `meta/audits/nitpick-regex-0.0-2026-09-25-fourth.md` (`s1-nregex-0.0-audit4-1444`, 34 min, verbatim, 361 lines):
+**DO NOT ACCEPT.** Scoped to `ab93eae..4420c45`, as this seat widened it. **BL-7:** a red unit leaves a GREEN run's count through a
+`/* */`-commented `use` in a sibling file — 173/173, exit 0, one edit in a file other than the red one — because the harness's import
+reader does not blank comments, while the compiler does; the triage had declared that route *"closed by the language"*. **BL-8:**
+N-15 was deferred on a false premise. Six non-blocking: N-18 (the S-23a check misses twelve shapes, eleven running), N-19, N-20,
+**N-21** (a compiler defect), N-22 and N-23. BL-5, N-13, N-14, N-16 and N-17 hold.
+
+**Verified here before acting on it.** BL-8's premise is false in the specs themselves: `COMPILE.md:35` (*"A `Program` is therefore
+copyable"*, three `Vec` fields at `:25-27`, built at cycle 0.6), `ENGINES.md:50` (*"swapped each byte"*, subcycle 0.7.0), and 0.7.2
+for the capture copy, with cycle 0.8 the lazy DFA. **N-21 reproduced here:** `npkc` exits 0 and `llc` refuses, the generic instance's
+type defined at IR line 826 after its first `alloca` at 322; the control, naming `Pair<int64>` once in `main`, defines it at line 16
+and links. Relayed to `nitpick-compiler_s15`.
+
+**A lapse of this seat's, and the most consequential of the day.** The premise *"nothing in the library copies a `Vec` before cycle
+0.8"* came from the close worker's triage (RX-156). **This seat put it to the author as fact and built a recommendation on it —
+close first, fix after — without checking it**, on the one claim that carried a decision, after checking nearly every other
+claim today. Three greps would have refuted it. **The board's question 9 row is corrected and the recommendation REVERSED:**
+`Vec` move-only, landed BEFORE the close as a 0.0.4d — the fourth audit's view, and where the author's standing call on memory
+safety points. **N-22 also named this seat's own wording:** `PLAYBOOK.md`'s DEF-96 line said TYPE-083 *refuses*; no pin carries it
+yet, so it now says *will refuse, per the advance notice*.
+
+**dispatch `s1-nregex-0.0.5-1522`** — `npk:worker`, 0.0.5, `AUDIT:` the fourth pass: BL-7, the premise and reach of BL-8, and N-18 to N-23 triaged;
+**move-only itself is the author's to decide** (question 9) and is not this worker's to implement.
