@@ -81,9 +81,9 @@ counts for nothing). **The same unchanged source still compiles at the kept
 
 It was amended on 2026-09-25 with two arms and **canary-local exit codes 106
 and 107** — chosen because every code in 80..99 is already in use somewhere in
-the six work repositories, and asserted unused before the edit. **They are not
-a convention:** item 2 of the re-pin worklist decides the libraries' codes for
-these two identities, and the canary follows it if it differs.
+the six work repositories, and asserted unused before the edit. **They became the
+convention the same day:** the orchestrator chose 106 and 107 for every
+library as well, so that the two streams could not choose differently.
 
 **The amended source is refused by the `3d15ac9` pin** (`NITPICK-RESOLVE-002`:
 the identities do not exist there). So each source compiles only on its own side
