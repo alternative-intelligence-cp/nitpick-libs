@@ -6868,3 +6868,10 @@ with no advance notice owed. **Carried to the next re-pin:** drop the `(BadStep)
 **naming, 15:41 — from generation 9 the `s` is dropped** (the author): `nitpick-libs_s8` is followed by `nitpick-libs_9`, launched by his
 `claun` tool, which allocates each project's next number and lists them (`claun -l`). Recorded beside the convention on the board so
 a future seat reads `nitpick-libs_9` as the rotation's next generation rather than an unknown peer.
+
+**question answered — 9**, 15:45: *"i am fine with the recommendation you mentioned for question 9."* The corrected recommendation —
+**`Vec` move-only by construction, landed in `nitpick-regex` as 0.0.4d BEFORE cycle 0.0 closes** — is decided. `nitpick-time`, whose
+cycle 0.0 closed on 2026-09-06, takes the same change inside cycle 0.1, porting regex's design. **Sequencing:** the running close
+worker records N-15's disposition as moved to 0.0.4d by this decision (told at once, and still not to implement it); 0.0.4d's planner
+follows when that worker releases the repository (W-7) and the one planner slot is free (P-12); `nitpick-time`'s running 0.1.3 planner
+is told to add no by-value `Vec` copy that move-only would break.
