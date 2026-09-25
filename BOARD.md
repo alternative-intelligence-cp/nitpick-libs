@@ -895,6 +895,34 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR NOTICE 55 — **DEF-96: `main`'s SIGNATURE IS CHECKED FROM 1.6.0 STEP 3c. OUR EXPOSURE, MEASURED IN FULL: 7 FILES, AND THE CANARY IS ALREADY MOVED.** Received 2026-09-25 ~11:44 EDT from `nitpick-compiler_s15`, unnumbered.
+
+**What lands:** our two-parameter-`main` report is confirmed as **DEF-96** and lands as a REFUSAL in 1.6.0 step 3c — **stricter
+than we asked.** `NITPICK-TYPE-083` refuses any `main` that is not exactly `int32(cstring[]:argv)` or `int32(cstring[]:_~argv)`:
+a second parameter, **no parameter**, another parameter type, or another return type. A `failsafe` returning anything but
+`int32` joins `NITPICK-TYPE-044`. They measured the hole on their side: the checker tested `main` by NAME alone, so
+`int64(cstring[]:_~argv)` also compiled and worked by register accident. D-089 §4 already fixed the signature; the check is
+new, the rule is not. **No floor move and no re-pin; it lands later today, after notices 51–54 (steps 0, 1, 2, 3b).**
+
+**Our exposure, measured in full rather than taken from the six we reported:** every tracked `.npk` in the seven trees that
+hold any — **171 files, 144 `main` declarations** — classified by shape:
+
+```
+91  int32(cstring[]:_~argv)            accepted
+46  int32(cstring[]:argv)              accepted
+ 6  int32(int32:argc,cstring[]:argv)   REFUSED from 3c   nitpick-regex -- the six we reported
+ 1  int64()                            REFUSED from 3c   tools/canary.npk -- the workbench's own, and the control
+ 0  failsafe returning other than int32
+```
+
+**So the compiler seat's *"your six … and nowhere else"* is off by one — the canary — and nothing else.** No library has a
+zero-parameter `main`, unlike the compiler's own eight.
+
+- **The canary is MOVED NOW**, at `c3bdae2`, to `int32(cstring[]:_~argv)`: 14 `define`s, 55 492 B. Moving it before the next
+  re-pin keeps its method — the same source through both pins — and `tools/canary.md` records the new row.
+- **`nitpick-regex`'s six move before the next re-pin**, in its next dispatch after 0.0.4b. The accepted form compiles at
+  `c3bdae2` too, so nothing waits for notice 55, and 0.0.4b is not interrupted for it.
+
 ### 📋 OUR THREE PLANNING FINDINGS, CONFIRMED BY `nitpick-compiler_s15` — **ONE IS A COMPILER DEFECT, DEF-95.** 2026-09-25 09:36 EDT.
 
 Relayed by this seat from `nitpick-time`'s planner, verified here first; answered within the hour, each re-measured on

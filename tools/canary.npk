@@ -1,7 +1,7 @@
 mod:canary;
 
-func:main = int64() {
-    pass 0i64;
+func:main = int32(cstring[]:_~argv) {
+    pass 0i32;
 };
 
 func:failsafe = int32(Error:e) {

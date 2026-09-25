@@ -6633,3 +6633,10 @@ scan; §9 — REACH-refusal tests that pass while testing the wrong identity, th
 messages; §10 — `decreases`, `unbounded`, `sealed`, `hidden`, and `RESOLVE-012`; §12 — rehearse every fenced command, and
 re-derive a list for a new question. **Not landed here, by design:** RX-120's re-dating is `nitpick-regex`'s and
 `nitpick-time`'s own specification, for their next dispatches.
+
+**advance notice, 11:44 — DEF-96, for notice 55** (`nitpick-compiler_s15`): `main`'s signature is checked from 1.6.0 step 3c,
+`NITPICK-TYPE-083` for anything but `int32(cstring[]:argv)` or `int32(cstring[]:_~argv)`, and `TYPE-044` for a `failsafe` not
+returning `int32`. **Our exposure measured in full: 171 tracked `.npk`, 144 `main`s — 137 accepted, 7 refused (regex's six
+two-parameter mains, and the canary's `int64()`), 0 failsafes.** **The canary moved at once** to the accepted form at
+`c3bdae2` (14 defines, 55492 B), so the next re-pin measures one source through two pins. Regex's six move in its next
+dispatch after 0.0.4b.

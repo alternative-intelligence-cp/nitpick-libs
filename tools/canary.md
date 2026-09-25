@@ -59,6 +59,7 @@ denominator is unstated is how this workbench keeps getting caught.
 | `3d15ac9` (1.5.2f) | the workbench root, 2026-09-25 — the control for the row below | 50 482 | **14** |
 | `c3bdae2` (1.5 close) | the workbench root — the source above, **unchanged** | **REFUSED** — `NITPICK-REACH-002` ×2 | — |
 | `c3bdae2` (1.5 close) | the workbench root — the **AMENDED** source | **55 414** | **14** |
+| `c3bdae2` (1.5 close) | the workbench root — `main` moved to D-089's signature, ahead of DEF-96 | **55 492** | **14** |
 
 **The 78-byte gap between rows one and two is a DIFFERENT PROGRAM, not a
 compiler change** — the source of row one no longer exists, so this canary is a
@@ -108,3 +109,15 @@ under any other name the resolver refuses first with `NITPICK-RESOLVE-012` and
 the parser is never reached — measured 2026-09-25, when the first attempt did
 exactly that. Under the right name it exits 1 at `NITPICK-PARSE-001` writing no
 IR, at `c3bdae2` and at `3d15ac9` alike, measured 2026-09-25.
+
+## `main` moved before the next re-pin, not at it
+
+On 2026-09-25 the compiler seat gave advance notice that DEF-96 lands in 1.6.0
+step 3c (notice 55): from then on `NITPICK-TYPE-083` refuses any `main` that is not
+exactly `int32(cstring[]:argv)` or `int32(cstring[]:_~argv)`. **The canary's was
+`int64()` — no parameter and the wrong return — so it would have been refused.** It
+moved at once, at `c3bdae2`, to `func:main = int32(cstring[]:_~argv) { pass 0i32; };`,
+which emits `define i32 @main({ ptr, i64 } %a0)` — the one slice the runtime's
+`npk_start_main` actually passes. **Moving it now rather than at the re-pin keeps the
+series' method intact:** the next re-pin compiles this same source through both pins,
+which is the only differential the canary exists to take.
