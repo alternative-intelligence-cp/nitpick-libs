@@ -892,6 +892,44 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `d7a8092` LANDED — **1.5.8c STEP 4b: DEF-92 FIXED — THE GENERIC-INSTANCE INTERNER GETS ITS INDEX, AND THE FRONTEND IS 5.4× FASTER. NO LANGUAGE CHANGE, NO FLOOR BYTE, NO REFRESH.** Notice 47, received 2026-09-24 ~21:36 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `d7a8092`, whose parent is `def2728`. The three held rows are exact to
+64 hex against notice 46's baseline. The three moved rows' previous digests equal it, and the deltas recompute:
+`npkc.ll` +31 491 → 27 867 329, `npkc.o` +13 496, `npkc` +10 584. The rows equal the compiler seat's
+`ladder_d7a8092.txt`. **The numbers close:** the manifests are 5825 → 5861 rows and 1068 → 1072 symbols, with 2608
+discharged, 2422 open, 825 unencoded, 5 checker and 1 budget, all exact. The harness is unchanged at 331 · 122 · 1705 ·
+ok 52, the diff predicts +0, and verify's obligations go 6082 → 6118. **Only `src/frontend/types.npk` changed under
+`src/`.** **The gate, row by row:** 5,799 shared rows, ZERO verdicts moved. **Exactly TWO (symbol, kind) discharged
+counts fell, both `tt_instance`'s own:** `overflow` 4 → 0 and `terminate` 2 → 0, the scan's rows, gone with the scan,
+as the notice says.
+
+**WHAT LANDED:** `tt_instance` walked EVERY item of the type table on every call. It was reached from the escape
+analysis at every field read on a generic instance, and it carried 85% of the frontend's instructions. It now has a
+hash index (`inst_index` in `types.npk`), entered in id order and never overwritten, so the first equal item along a
+probe is the earliest, which is exactly what the scan answered. **Quoted, and not checkable here, because this seat
+builds nothing:** the checker over the compiler's own source went 137 s → 25 s under the same load (5.4×), and all
+476 programs of the tree emit BYTE-IDENTICAL IR under step 4's compiler and this one, so no type id moved. **OUR
+EXPOSURE: ZERO.** *"Your builds get faster and nothing else changes; a re-pin needs nothing from you."*
+
+**THE BASELINE NOTICE 48 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against `ladder_d7a8092.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B
+npkc.ll    bf26b32deec6217a634b86af890a6c5daa01107bfc08be1de1fdf2d870dea990  27,867,329 B  THE EMISSION (D-265)
+npkc.o     02ca6dba1420b4e982cbaef922a2a6456608625303cc44c30a11201473f3f24f  11,208,304 B
+npkc       19ec0f2f039b905fe56c81002d1f9ab9188e127df1a4ccacb735434066bc0dbd   9,636,024 B
+harness    programs 331 · verified 122 (6118 obligations) · floor 388 / 90 · parity 1705 · ok 52
+manifests  nitpick.obligations 5861 rows / 1072 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 30b4f135... (the step-2 refresh)
+```
+
+**NEXT: 48 is 1.5.8c step 5, the subcycle's close.** It extends the residue report to `terminate` and `stack-depth`,
+brings the docs, and **plans `1.5.8d.md`**, the cycle close at which readiness is evaluated. *Its scope will be read
+before its record, as for 1.5.8c.* Its harness is running.
+
 ### ⚠⚠ `def2728` LANDED — **1.5.8c STEP 4: TYPE-072 IS WHOLE — A LOOP WITH NO CLAUSE IS REFUSED — AND A FUNCTION'S `decreases` IS LIVE. THE LOOP RULE HAS LANDED IN FULL.** Notice 46, received 2026-09-24 ~21:13 EDT, from `nitpick-compiler_s13`. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ Verified against this board.** The wire had already moved on to `d7a8092` (step 4b, notice 47); `def2728` is on its
