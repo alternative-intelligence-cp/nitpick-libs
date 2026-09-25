@@ -6676,3 +6676,9 @@ disposition"* row is superseded by a new row above it; plus a harness's generate
 `requires` pre-empting a body's trap (§3 item 10), the `gh` log trap, and rehearsing a plan in its real position. **For
 0.0.4c:** its plan's numbers come from a relocated rehearsal that skipped the `950bb1d` floor leg, which now runs in the real
 checkout — expect its lines where the plan says SKIPPED. **dispatch `s1-nregex-0.0.4b-verify-1230`** — `npk:verifier`, `sonnet`.
+
+**verify `s1-nregex-0.0.4b-verify-1230` PASS** (`sonnet`), 12:33: tree clean; the last commit `cycle 0.0.4b:`; `check_refs`
+clean (69 md, leak scan 179 of 179); `check_record` clean; the harness re-run at `c3bdae2` 146/146. **`nitpick-regex` 0.0.4b
+DONE — both libraries are now adopted to `c3bdae2`, and both CIs are green there.** **advance `nitpick-regex` 0.0.4b → 0.0.4c.**
+**dispatch `s1-nregex-0.0.4c-1233`** — `npk:worker`, item 13; its NOTES add the six two-parameter `main`s (listed at dispatch, 6
+files) in their own commit, the skipped `950bb1d` leg to expect, and question 9's two gaps to record rather than fix.
