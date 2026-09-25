@@ -6882,3 +6882,16 @@ build stage. Measured in support at `nitpick-time` 0.1.1 and 0.1.2 (a live contr
 evidence the sweep does not give) and at `nitpick-regex` (a live `requires` pre-empts a body's own trap). **Owed:** each repository's
 `VERIFICATION.md` P-1 replaced with A′ by a numbered decision — regex and time in their next dispatches, the other four when their
 streams run. **The questions table holds no open question from the author now.**
+
+**report `s1-nregex-0.0.5-1522` — READY-TO-CLOSE**, 16:31, 67 min, 741 k tokens. The fourth audit triaged in full (§11): **BL-7** fixed by
+one source reader that mirrors the compiler's lexer and a program suite that never skips a file declaring `main`; **BL-8** — the
+premise and reach corrected everywhere the tree stated them, **N-15 deferred to 0.0.4d, before the close, by the author's decision**;
+**N-18** by a default-deny S-23a check; N-19, N-20, N-22 and N-23 as the audit described; four decisions, RX-157 to RX-160. `4bab46f` and
+`acaf99c`, pushed; **CI green on GitHub for both**; harness 194/194. **findings-for-playbook** (for the next pass): a harness that reads
+source in more than one place disagrees with itself — one reader, mirroring the compiler's lexer; a denylist check of an ownership
+property is walked past by every kind it does not name — default-deny; a self-check over a mechanism with two defences is
+mutation-tested with each removed alone AND both removed; a known-failure marker is held on every leg and every run; **a deferral's
+premise is a claim about the whole plan — sweep for the property, not the premise's own words** (the sweep that let *"nothing copies a
+`Vec` before 0.8"* survive could not match *"copyable"* or *"swapped"*). **Compiler-defect candidate, verified here and relayed:** the
+lexer and `LEXICAL_REFERENCE` §6.3 disagree on where a block string ends — the same program compiles with `"""ab"""` (exit 0) and is
+refused `NITPICK-PARSE-003` with `"""a""b"""`, though the grammar admits `""` inside. **dispatch `s1-nregex-0.0.5-verify-1631`** — `npk:verifier`, `sonnet`.
