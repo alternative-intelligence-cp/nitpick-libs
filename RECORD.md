@@ -6535,3 +6535,9 @@ pin: `0.1.0b` §3 built that property by construction, and a real crash tested i
 **stale claim `s1-nregex-0.0.5-0933` — a planner with a clean tree, RESUMED from its saved transcript.** §4 says
 re-dispatch; its purpose is a safe recovery, and with nothing on disk to reconcile a resume is that and keeps the
 planner's analysis. The deviation is from §4's letter, not its intent, and is recorded here for that reason.
+
+**earlyoom installed by the author, 10:31** — *"it was probably a combination of the compiler agent and the harnesses it
+was running along with the claude skills devTeam agents doing their thing and then the library worker too."* The
+machine now kills the largest process under memory pressure instead of freezing, so **hazard (12)**: a SIGKILL'd step
+is an environment event until `journalctl -u earlyoom` says otherwise. The running worker was told. This seat checks
+`free -g` before each dispatch (146 GiB available at this entry).
