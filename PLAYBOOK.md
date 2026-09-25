@@ -51,7 +51,7 @@ list of the ones that reach a library.
 | plain integer `+ - *` **traps** on overflow | D-210 | widen explicitly and narrow with `=>!` at a point known to fit |
 | `/` and `%` by zero trap; signed `MIN / -1` traps | D-007 | a divisor is checked or proven on the same path |
 | indexing is bounds-checked and traps | D-070 | an out-of-range index is a crash, not corruption — route every index through one accessor pair |
-| owning values are **move-only** | TYPE-046 | no binding-to-binding copies of a `string`, `buffer`, `OwnedFd`. **A value stored in an array must have no owning field** |
+| owning values are **move-only** | TYPE-046 | no binding-to-binding copies of a `string`, `buffer`, `OwnedFd`. ~~**A value stored in an array must have no owning field**~~ **— FALSE at every kept pin, measured 2026-09-25: `string[2]`, an array of a struct holding a `string`, `Vec<string>` and `Bytes[2]` compile and run. TYPE-046 refuses a COPY of an owning place, not where an owner is stored — and a generic by-value accessor (`pass v.items[i]`) MOVES the element out, leaving a counted vacancy** |
 | borrows are second class | D-004 | a view cannot be returned, stored past the call, sent, or held across `await` |
 | a struct holding a borrow cannot be **returned** | D-004 | build it by struct literal at the call site |
 | `exit 0` with live `wild` allocations traps | D-151 | every `wild` byte is paired on every path; **make the test programs exit 0 so a leak is a trap** |

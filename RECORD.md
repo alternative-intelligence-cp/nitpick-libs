@@ -6782,3 +6782,26 @@ files; rehearsing in the real checkout is cheap and safe with a restore protocol
 
 **Q-6 gains a measurement:** under A each sweep owes 12 identities instead of 11 and runs within noise of A′ — A's cost is the arm,
 not time. **dispatch `s2-ntime-0.1.2-1424`** — `npk:worker`, 0.1.2. Memory 146 GiB available at dispatch.
+
+### `nitpick-regex`'s close reports READY-TO-CLOSE — the third pass triaged in full; a fourth audit and one decision stand between it and closing — 2026-09-25 14:41
+
+**report `s1-nregex-0.0.5-1329` — READY-TO-CLOSE**, 70 min, 949 k tokens. Five commits (`5c8b101`, `d666cf9`, `62a3404`, `72d2919`,
+`4420c45`), pushed; **CI green on GitHub** for all three runs; `check_record` clean; harness 174/174. Every third-pass finding
+triaged: **BL-5 answered by restriction** (RX-155 and S-23a — a `Vec` holds a `T` that owns nothing, enforced over `src/` by a new
+tree check), the removing verb the audit offered declined; **N-15 left OPEN against question 9**, as dispatched. `0.1.0.md`, cycle
+0.1's opening file, revised for what the adoption and the audit taught.
+
+**PLAYBOOK corrected here, verified first:** §2's TYPE-046 row said *"a value stored in an array must have no owning field"*; `string[2]:a;`
+compiles at `c3bdae2` (exit 0, no diagnostic, measured here), and the worker measured `string[2]`, a struct-of-string array,
+`Vec<string>` and `Bytes[2]` compiling and running at every kept pin. TYPE-046 refuses a COPY of an owning place. **Owed to
+`nitpick-time`'s next dispatch:** its `check_no_owning_fields` rests on that row's premise — for a `fixed` table, which may hold an
+owning field, the check's basis must be re-measured.
+
+**findings-for-playbook** (for the next pass): `&{…}` interpolates only in a backtick template; a self-check's fixture trees must not
+inherit the repository's own named-list checks, or every inner run is red for an unrelated reason; a self-check case's required words
+must be ones only its red prints — mutation-test every new case; **a test deriving its tested value from `argv.len` must assert it**
+(28 of 30 passed while testing a different value); a known-failure marker names the failure it excuses; at `c3bdae2` a file with
+`main`/`failsafe` imported by another is `RESOLVE-013` (D-248).
+
+**question 9 now bears on the close** — the board's row states the choice and this seat's recommendation. **dispatch `s1-nregex-0.0.5-verify-1441`** — `npk:verifier`,
+`sonnet`; on PASS, the fourth audit, scoped as the worker recommends to `d1f13a4..HEAD`.
