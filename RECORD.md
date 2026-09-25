@@ -6650,3 +6650,9 @@ measured here at all six kept pins — accepted silently at `950bb1d`, refused `
 registry's and the playbook's *"at `c3bdae2`"* were true and understated, and both now say *since `94874ce`*. **Playbook:**
 the `Vec` copy, `check_refs`' passive-voice attribution, a checked tag guarding only itself, a count dated before its step, and
 a workbench pin count that is not a repository's. **dispatch `s2-ntime-0.1.0c-verify-1218`** — `npk:verifier`, `sonnet`.
+
+**verify `s2-ntime-0.1.0c-verify-1218` PASS** (`sonnet`), 12:21: tree clean; the last commit `cycle 0.1.0c:`; `check_refs`
+clean (69 md, leak scan 193 of 193); `check_record` clean; the harness re-run at `c3bdae2` GREEN — 75 units, 0 failures,
+5 pending, 78.0 s. **`nitpick-time` 0.1.0c DONE.** **advance `nitpick-time` 0.1.0c → 0.1.1**, the algorithms. **dispatch
+`s2-ntime-0.1.1-1221`** — `npk:worker`. Its NOTES carry `EnsuresViolated` 117, not the plan's 110 (an ordinary exit in regex's
+`vec_unit.npk`), and D-089's one-parameter `main` for any file it adds, ahead of DEF-96.
