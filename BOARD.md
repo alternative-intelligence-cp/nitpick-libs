@@ -127,9 +127,9 @@ is what disambiguates.
 |---|---|---|
 | `nitpick-libs_s3` | — | the **eighth** orchestrator. **CLOSED 2026-09-06 13:39** — released the lock cleanly, briefed this session over a long but deliberately bounded overlap, and its socket is now gone. Most of the hazard list on the writer line is its work, including the four traps it recorded against itself |
 | `nitpick-libs_s4` | — | the **ninth** lock-holder and **the FIRST LISTENER**, 2026-09-06 13:24 → 2026-09-24 00:09. Logged every compiler landing from 1.5.4 to notice 37 (`c5ba885`) across seven compiler-seat rotations, authenticating each by its ladder rather than its sender's name. Found the `:1384` kept-pin count trap by reading the board it inherited, and closed the compiler-address gap by asking rather than inferring. **Released the lock for a briefed handoff to `s5`, answered its questions, and CLOSED 2026-09-24 on both signals**; its terminal now holds `s7` |
-| `nitpick-libs_s5` | — | **THIS WORKBENCH'S CURRENT WRITER — the LISTENER, from 2026-09-24 00:13** (`5b78e669…`), on a briefed handoff from `s4`. Holds the lock only to log compiler notices and will not dispatch. *Earlier:* parked and unbriefed from 2026-09-06 04:1x, in the terminal `s2` was closed from; `s6` declined the seat and pointed back at this row |
-| `nitpick-libs_s6` | — | **THE SUCCESSOR. HAND OFF TO THIS ONE, NOT TO A HIGHER NUMBER.** Parked and unbriefed (idle in `ListAgents`, 2026-09-24). Opened 2026-09-06 13:39 as `s3` closed. **Parked: no task, nothing written, nothing queued**, asked and answered about itself then. It undertook to message before it ever writes. **Re-verified this board's writer line with the documented value-read, the single-clone sweep and `HEAD == origin/main` rather than taking them on report**, and contributed hazard 7's passive demonstration |
-| `nitpick-libs_s7` | — | the spare **behind** the successor, opened 2026-09-24 by the author in the terminal `s4` was closed from (`ListAgents` ref `[72c6e8]`, idle). **Parked and unbriefed; it needs nothing from this seat, and learns its role when `s6` hands to it** |
+| `nitpick-libs_s5` | — | **THIS WORKBENCH'S CURRENT WRITER — the LISTENER, from 2026-09-24 00:13** (`5b78e669…`), on a briefed handoff from `s4`. **Its `ListAgents` ref was `[8742c1]` and became `[fdc2eb]` when the session RESUMED (2026-09-24 ~20:5x): a ref belongs to a process, not a session, so it is continuity across a rename and NOT across a resume.** Holds the lock only to log compiler notices and will not dispatch. *Earlier:* parked and unbriefed from 2026-09-06 04:1x, in the terminal `s2` was closed from; `s6` declined the seat and pointed back at this row |
+| `nitpick-libs_s6` | — | **THE SUCCESSOR. HAND OFF TO THIS ONE, NOT TO A HIGHER NUMBER.** Parked and unbriefed (idle in `ListAgents`, 2026-09-24; ref `[58d150]`, then `[0dc8ab]` after a resume). Opened 2026-09-06 13:39 as `s3` closed. **Parked: no task, nothing written, nothing queued**, asked and answered about itself then. It undertook to message before it ever writes. **Re-verified this board's writer line with the documented value-read, the single-clone sweep and `HEAD == origin/main` rather than taking them on report**, and contributed hazard 7's passive demonstration |
+| `nitpick-libs_s7` | — | the spare **behind** the successor, opened 2026-09-24 by the author in the terminal `s4` was closed from (`ListAgents` ref `[72c6e8]`, then `[04b272]` after a resume; idle). **Parked and unbriefed; it needs nothing from this seat, and learns its role when `s6` hands to it** |
 | `nitpick-compiler_s0` | `nitpick-bc` | the original compiler session. **GONE** — confirmed by `_s2` 2026-09-06 13:34 and by its absence from `ListAgents`; it ran 1.5.2g step 1 in worktree `g1` this morning. *(This row previously read "stood down from the role, still alive".)* |
 | `nitpick-compiler_s1` | `nitpick-e3` | **THE COMPILER ADDRESS UNTIL 2026-09-06 16:16, NOW HANDING OFF TO `_s2`.** Goes quiet once `_s2` confirms; **a message sent there after that will not be read.** Landed 1.5.3. Made two falsifiable predictions that held, took a wording correction without defensiveness, and sent three unasked-for corrections of which the last refuted this board's own `failsafe` reading |
 | `nitpick-compiler_s2` | — | the compiler address 2026-09-06 → 09-07. **Ran OUT OF QUOTA before it could name a successor**, announcing only *"the resumed session"* — the gap hazard 10 exists for |
@@ -142,7 +142,8 @@ is what disambiguates.
 | `nitpick-compiler_s10` | — | the compiler address 2026-09-18 19:20 → 23:28, on Opus 5 after the author's Fable budget ran out. **Landed 1.5.7 steps 4–7 (notices 18–21) and CLOSED 1.5.7, including the DEF-57 fix and the anchor move to `c7da7711…`.** Authenticated by content on its first message, and by the alternative check on the anchor move. **Handed to `_s11` at `e3bf48c`, 2026-09-18 23:28** |
 | `nitpick-compiler_s11` | `nitpick-compiler_s9` | **THE COMPILER ADDRESS FROM 2026-09-18 23:28, named by `_s10` at `e3bf48c`, the 1.5.7 close.** The author renamed it from `_s9` after `_s8` skipped it; it has the same `ListAgents` ref `[d56a00]`. **It DISCHARGED the `terminate`/`decreases` obligation with FORECAST F5 (2026-09-19 00:00, D-304…D-307). Its first landing, notice 22 (`cd1ed86`), passed the ladder check proper. Notices 22–23 omitted the harness lines. Asked, it supplied both blocks (both green) and owned the omission: the helper had not been given the log. From notice 24 the helper always passes the log, and `land_step.sh` refuses a log with no `ok` line** |
 | `nitpick-compiler_s12` | — | the compiler address 2026-09-20 → 2026-09-24. **Sent notices 37–42** (1.5.8b steps 6, 6b, 6c, 6d and 7, and 1.5.8c step 0), each quoting its six rows with the previous digests in full, and **took the listener's correction of its own notice-37 sentence into the landed plan.** Paused 2026-09-20 → 09-23 and resumed under its own name. **Handed to `_s13` at `68b6e05`, 2026-09-24, naming it and its successor `_s14`** |
-| `nitpick-compiler_s13` | — | **THE COMPILER ADDRESS FROM 2026-09-24, named by `_s12` at `68b6e05`** (`ListAgents` ref `[00fe3b]`, the same ref it had while parked). It holds 1.5.8c step 1 (`f578e6b`) in its harness, and sends notice 43 and everything after, the sweep recipe with step 2's landing included. **Its first notice gets the ladder check against this board**, as every notice does. Its successor is `_s14` (`[6efe47]`, parked; not an address) |
+| `nitpick-compiler_s13` | — | **THE COMPILER ADDRESS FROM 2026-09-24, named by `_s12` at `68b6e05`** (`ListAgents` ref `[00fe3b]`, the same ref it had while parked). It holds 1.5.8c step 1 (`f578e6b`) in its harness, and sends notice 43 and everything after, the sweep recipe with step 2's landing included. **Its first notice gets the ladder check against this board**, as every notice does. **Sent notices 43–45** and the advance for step 4, the first authenticated by content. Its ref was UNCHANGED at `[00fe3b]` after this seat's resume, when every other ref had changed. Its successor is `_s14` (`[6efe47]`, then `[cd9a81]` after a resume; parked; not an address) |
+| `nitpick-compiler_s15` | — | the spare **behind** `_s14`, first seen 2026-09-24 ~20:5x (`[1945e0]`, idle). **Parked; not an address, and it needs nothing from this seat** |
 | `claude-skills-devTeam_s<N>` | — | **Live on 2026-09-18 23:3x: `_s23`, `_s24`, `_s25` and `claude-skills-devTeam-test_s1`** (`_s22` is gone). This is the author's generalized orchestrator project. Its sessions do not write here, and this board does not track their roles, so re-derive them from `ListAgents`. *Earlier:* the `devteam` trio, **idle to conserve quota**. Segment read from `ListAgents` 2026-09-06 04:4x. This board previously said it was spelled `claud-`, "without the final `e`" — **and that was CORRECT WHEN WRITTEN, not a blunder.** The author had misspelled the names when he created the sessions, an earlier orchestrator observed the real spelling and warned others not to reconstruct it, and he then fixed his own typo by renaming. **The note outlived the thing it described.** See the paragraph below: this session first recorded it as a confident error by a predecessor, which was unfair, and the author supplied the correction |
 
 **Two consequences worth acting on.** The unidentified idle peer the fourth
@@ -890,6 +891,84 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### ✅ `275442f` LANDED — **1.5.8c STEP 3: THE SWEEP. EVERY ONE OF THE COMPILER'S 977 LOOPS STATES ITS CLAUSE, EVERY `failsafe` IN ITS TREE NAMES `(DecreasesViolated)`, AND DEF-93 IS FIXED. NO LANGUAGE CHANGE.** Notice 45, received 2026-09-24, from `nitpick-compiler_s13`; logged ~21:00 EDT, after this seat resumed. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ Verified against this board.** The wire reads `275442f`, whose parent is `5ea6053`. The three held rows are exact to
+64 hex against notice 44's baseline. The three moved rows' previous digests equal it, and the deltas recompute:
+`npkc.ll` +631 461 → 27 474 910, `npkc.o` +210 896, `npkc` +127 440. The rows equal the compiler seat's
+`ladder_275442f.txt`. The harness was green on its third run: the first two had six failures, all the sweep's
+fallout in tests and one tool, and the second run also found DEF-93.
+
+**✅ THE NUMBERS CLOSE** (`notice_numbers.py 275442f 5ea6053`):
+
+```
+manifests  3402 -> 5558 rows, 981 -> 1015 symbols: 2560 discharged, 2252 open, 740 unencoded, 5 checker, 1 budget
+           -- exact. The gate row by row: 2,796 shared, 606 out, 2,762 in, ZERO verdicts moved, ZERO discharged
+           counts fell. The new rows: 1,577 overflow (the measures' own subtractions), 1,160 TERMINATE
+           (670 discharged, 490 open -- exactly as quoted), 17 bounds, 8 limit
+floor      388 / 90 unchanged; seed unchanged (30b4f135...); the prelude MOVED (its loops carry measures now)
+harness    programs 327 -> 328, verify 120, parity 1682 -> 1688 = 3 grammar + 1 program + 2 rejection;
+           verify's obligations 3649 -> 5815; ok 52. 660 paths changed, 644 .npk modified
+```
+
+**Two things read in the tree rather than asked:**
+
+- **The notice's "563 decided by a reading (88 stable, 112 hoist, 289 measure, 72 unbounded, 9 by hand)" breakdown
+  sums to 570, and that is not an error.** The committed record `decreases_read.txt` holds 570 directives on 570
+  distinct loops. The step's execution record quotes the tool's own summary: *"decided by the reading: 563   manual
+  (clause present): 7"*. So 7 of the 9 hand edits had already written their clause before the tool's write, and are
+  counted among the "22 that already carried one": 392 + 563 + 22 = 977.
+- **The compiler's own manifest carries ONE `budget` row, new at this commit** (0 at `5ea6053`): an `overflow` row of
+  `npk.types.tt_index_slot`, verdict `budget`, RETAINED. So its check stays in the build. The notice lists it without
+  comment, and it is the compiler's residue, not ours. *Recorded because a first `budget` row in this manifest is worth
+  having dated.*
+
+**WHAT LANDED — and three things `_s13` says we will meet at a re-pin past this commit:**
+
+- **The sweep** covers `src/`, the prelude, `lib/`, `npkg/`, `tools/` and `tests/`. 392 loops were written by the
+  tool, 563 were applied from the reading, and 22 already had a clause. **The committed record,
+  `meta/roadmap/1.5/tools/decreases_read.txt`, is the worked example for the recipe in notice 44's entry.**
+- **EVERY `failsafe` names `(DecreasesViolated)`.** The prelude's loops (a hash, a decimal conversion, a string compare)
+  carry measures and reach nearly every program. *This is worklist item 3 as updated at notice 44, now confirmed.*
+- **The evaluator checks a measure it runs.** A `decreases` in a `comptime` body that does not shrink is a
+  counterexample, TYPE-069 at the loop's line.
+- **A measure may call a `pure never fails` function** (TYPE-060), and the prelude's and the parser's helpers it
+  needed are now declared `pure`.
+- **DEF-93 (fixed): a `Rules` declaration's `pub` was never stored.** `decl_flags` read the subject type's node index
+  as the flag word. So whether the prelude's `pub ListLen` reached a program was the PARITY OF A NODE INDEX: true from
+  6c until the sweep moved the nodes. A library's `pub Rules` was exported by the same coincidence. From this commit a
+  rule's `pub` means what a struct's does, and a rule without it is RESOLVE-003 at a `use` that names it.
+
+**OUR EXPOSURE, MEASURED:**
+
+```
+DEF-93                3 Rules declarations of ours, all `r_pos`, all WITHOUT pub, each in its own single-file regex
+                      probe (13b, 13e, refused/13f); all 4 limit<r_pos> uses are in the declaring file; no `use`
+                      names one. ZERO -- nothing of ours exports a rule. Control: the compiler at 275442f declares
+                      72 (2 pub, ListLen among them); synthetic pub / non-pub cases pass
+(DecreasesViolated)   near-universal at a re-pin past 275442f: worklist item 3, already updated
+comptime loops        2 of our 110 loops sit inside a comptime function (regex probe10:42, refused/probe09:72).
+                      At the sweep, the folder evaluates their measures, so a wrong one is TYPE-069 at COMPILE time
+                      rather than a trap at run time (26 comptime uses of ours, all in regex probes 09/10;
+                      control: 43 in the compiler)
+```
+
+**THE BASELINE NOTICE 46 MUST QUOTE AS ITS PREVIOUS VALUES** *(checked by script against `ladder_275442f.txt`):*
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824      72,576 B  THE ANCHOR, from 3e4b47d
+builder.o  9356d66677a06985a685235b69ef813ff67cc7d555ab90c971804dcb1789e91d  10,811,584 B
+builder    4f4c2e0d5530a3376c76c6bc4303959bf3a1a36b22a20be125852b5869105bfb   9,346,856 B
+npkc.ll    2a4113738ef357b128cfdab7aaafd2d66f0f3300434ac4a7a0d1c13548c36333  27,474,910 B  THE EMISSION (D-265)
+npkc.o     1196183b4765261790de5695a1cbe10615197bc153639812a8b4f5a2157465ba  11,022,480 B
+npkc       862457c91059991817d5af911e7693b030a1c77e61edacec5b9db39bf649909c   9,474,296 B
+harness    programs 328 · verified 120 (5815 obligations) · floor 388 / 90 · parity 1688 · ok 52
+manifests  nitpick.obligations 5558 rows / 1015 symbols · runtime/npkrt.obligations 388 / 90
+seed       bootstrap/seed/stage1.ll 30b4f135... (the step-2 refresh)
+```
+
+**NEXT: 46 is step 4, which the advance entry below describes. Its full harness runs after this landing.**
 
 ### ⚠ ADVANCE NOTICE — 1.5.8c STEP 4 (D-304): **THE `neither` SHAPE IS REFUSED, AND A FUNCTION'S `decreases` IS LIVE. THE LOOP RULE'S FULL SURFACE, AHEAD OF ITS LANDING.** From `nitpick-compiler_s13`, received 2026-09-24 ~13:43 EDT; the landing will be notice **46**. **NOTHING LANDED:** the wire is still `5ea6053`, and notice 45 (step 3, the compiler's own sweep) is still to come. **PIN STAYS `3d15ac9`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
@@ -2509,6 +2588,7 @@ entry that measured it.*
     above; a counter loop `decreases bound - v`. THE RECIPE is recorded verbatim in notice 44's
     entry (dump -> the tool, dry -> a reading record -> --write -> the arms -> the run); expect
     about 40% tool-written (the compiler: 392 / 570), so for our 110 about 44 and 66, an estimate.
+    2 of the 110 sit in comptime functions (regex probe10:42, refused/probe09:72): TYPE-069 there
     The clause does not parse at 3d15ac9: the sweep lands WITH the re-pin, or the re-pin is
     STAGED through a commit in [1.5.8c step 1, step 4), where the clause is accepted, not demanded
  5  fixed uint64:U64_MAX = ~0u64; in nitpick-time/tests/unit/{bytes_put_int,limits_named}.npk     D-311; REQUIRED
