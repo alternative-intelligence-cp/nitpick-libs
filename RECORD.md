@@ -6392,3 +6392,12 @@ Time's cycle 0.0 is in `done/`, its 0.1.0 closed at `2589069`, and this record's
 real gap but a later one. `s6` merged `s4`'s *"regex cycle 0.0 is paused"* with the board's *"claim at 0.1.1"* into a
 sentence neither of them said. **The immediate planning gap for the resume is time's 0.1.1.** Being reconciled with
 `s5`, whose three weeks of context may know whether the gap was re-pointed since.
+
+**Reconciled with `s5`, each point re-checked in the tree.** The error was confined to `s6`'s 2026-09-06 *reading*:
+the stream-2 row has said all along that `nitpick-time` 0.1.1 is not dispatched and has no file, and what `s4`
+recorded at `0aa5709` is true — of regex's cycle 0.1, the later gap. Regex stands at 0.0.5, the cycle-0.0 close:
+`e99edac` archived it and opened 0.1, `58f5237` reversed the archive in the first audit triage, `ab93eae` is the
+second triage and regex's HEAD, and the workbench's third pass `f1071fb` reads *"DO NOT ACCEPT"*. So regex resumes at
+that close against `f1071fb`'s findings, and time's next act is 0.1.1's plan, preceded by the CI pin bump as its own
+commit (questions row 6). `s5`'s brief said library work resumes "where cycle 0.0 paused" — right for regex; `s5`
+corrected it for time itself when asked.
