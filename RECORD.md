@@ -6727,3 +6727,20 @@ because Kubernetes sets a high `oom_score_adj`** (badness 1333 against `clam`'s 
 to no effect before the real consumer. `--prefer` adds 300 and `--avoid` subtracts 300, so only both together reorder them. No
 library process was touched. **`nitpick-compiler_s15` was told within the hour** that the two `clam` runs ending ~12:51:23 and
 ~12:54:43 are the machine's, not Clam's — genuine cost data, but not soundness or determinism evidence for D-320.
+
+**report `s1-nregex-0.0.4c-1233` — DONE**, 13:26, 51 min, 498 k tokens. `7fd1267` (the six two-parameter `main`s moved to D-089's
+form, in their own commit — **the ecosystem's DEF-96 exposure is now ZERO files**, the canary having moved earlier), `971ac43`
+(item 13: `Vec`, `Bytes` and `SparseSet` sealed, items hidden, `ListLen` on the counts) and `d1f13a4` (the record), all pushed;
+**CI green on GitHub for all three**; `check_record` clean; harness 158/158. **Question 9's two gaps re-measured against the sealed
+tree and left open, as dispatched:** a consumer's `b.buf.ptr[0i64] = 65u8` compiles and runs, and a whole-`Vec` copy reads the free
+poison after `vec_free` (exit 170 at -O0 and -O2), a second free exiting 95 — recorded in RX-153 and `SAFETY.md` S-23.
+
+**findings-for-playbook** (for the next pass): a sealed field's ADDRESS is a write whatever the callee does (`@s.dense` to a
+read-only callee is still `TYPE-079`), so a container of containers exposes them by value or through its own functions;
+**`hidden` binds the library's OTHER modules too** (`TYPE-080`: the line is the declaring module, not the library); **a positive test
+whose expected value equals the vacant value tests nothing** (`sparse[3]` is 0 after `calloc` too) — choose inputs the untouched
+state cannot produce; `950bb1d` accepts the one-parameter `main`, so moving it ahead of DEF-96 leaves an old-pin control identical.
+
+**earlyoom's tally, read here: TEN SIGTERMs to the compiler's `clam` between 12:51 and 13:22** (every three to four minutes,
+largest 82 686 MiB resident) and **eight each to `traefik` and `coredns`**. The compiler seat was first told "two" and has been
+corrected, with the suggestion — its call — of one run at a time or a per-run memory cap. **dispatch `s1-nregex-0.0.4c-verify-1326`** — `npk:verifier`, `sonnet`.
