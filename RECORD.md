@@ -6555,3 +6555,28 @@ harmlessly:** `sudo` in this shell is an alias for a wrapper that re-splits its 
 arrived in pieces and `sed` refused it; the file was untouched and the daemon restarted on its old arguments. **The
 working method passes only paths through `sudo`:** the new file built in the scratchpad, `sudo install -m 644`, `cmp`.
 The SIGKILL threshold is also made precise here: below 5 % RAM *and* swap half used.
+
+### `nitpick-time` 0.1.0b reports DONE — the first library subcycle since the pause — and goes to the verifier — 2026-09-25 11:26
+
+**report `s2-ntime-0.1.0b-1018` — DONE**, 66 min, 735 k tokens, 323 tool uses. Commits `d4bb310` (the transcripts' paths),
+`5bb2e6f` (CI's pin), `dcc8c72` (the adoption) and `3b319d3` (the record), all pushed. **Checked here before the
+verifier:** `check_record` clean; tree clean and level; the file's title DONE; **CI read from GitHub, not from the
+report** — run `36152772081` on `dcc8c72` success, run `36153771751` on `3b319d3` success. The dead predecessor's
+unfinished work is `stash@{0}`, set aside by the dirty-tree procedure; it is left for the next worker to drop once
+superseded work is confirmed.
+
+**findings-for-playbook** (owed to `PLAYBOOK.md` by this seat, with the earlier list): `decreases`, `unbounded`,
+`sealed` and `hidden` are refused as local names at `c3bdae2` (`NITPICK-PARSE-002`); RX-120's "identical undefined
+sets" were already false at `aaffb87` (2 vs 5 symbols) and are 5 vs 8 now, so its evidence needs re-dating; **a list
+carried into a new question answers it badly** — TM-132's five rows were read for three cycles as "owe an element
+drop", and `vec_pop` owes none (2 M push/pop cycles, `peak_live` 120 B against `vec_clear`'s 48 MB); a field-position
+`awk` over prefixed `nm` lines prints addresses, not sizes; O-N8's six-line recipe is refused `RESOLVE-012` at
+`c3bdae2` (D-248).
+
+**for-the-author, from the worker:** O-N8 appears fixed at `c3bdae2` by D-248 — this seat verifies that before
+striking anything in the registry.
+
+**dispatch `s2-ntime-0.1.0b-verify-1126`** — `npk:verifier`, `sonnet` (§12: every check it runs is a command with an exit code).
+
+**The `sudo` wrapper was fixed by the author** to `/usr/bin/sudo -A "$@"`, and verified here with a two-argument test that
+keeps `'a b'` whole — the entry above saying `sudo` re-splits its arguments is now history.
