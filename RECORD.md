@@ -6511,3 +6511,27 @@ references are right. The fix removes a demand, so no advance is owed; our arms 
 droppable then. (a) and (b) are fixed in 1.6.0's next docs landing. Notice 51, 1.6.0 step 0, is expected today.
 **From this point this seat writes `BOARD.md` atomically** (a temporary file, then a rename) while agents that read it
 are running.
+
+### A hard reset at ~09:59 kills both agents — and the adoption's commit order holds under a real crash — 2026-09-25 10:18
+
+**The machine froze and was hard-reset by the author at ~09:59**; no shortcut, logout or restart would respond. **The cause
+in the previous boot's journal is memory exhaustion without swap:** `systemd-journald: Under memory pressure, flushing
+caches` at 09:58:31 and 09:59:05, libinput's *"your system is too slow"* at 09:57:25, the boot ending 09:59:14, and **no
+OOM kill logged** — the machine has 157 GiB and **no swap**, so it thrashed rather than killing one process. **The library
+streams are unlikely to be the consumer:** both harnesses launch `npkc` only through `subprocess.run`, which waits —
+0 `Popen` sites, 0 pools or threads, measured with a control that found every launch (6 in time, 2 in regex). The rest
+of the load at 09:58 — the compiler's 1.6.0 harness, the devTeam sessions, ollama, k3s — was not this seat's to measure.
+
+**Swept after the resume, discovered:** 8 trees; 7 clean and level, no `.lock` files anywhere; `nitpick-time` 72 dirty
+and 2 ahead. The workbench clean at `1e9e365`, the lock and the 37-byte marker still this seat's, the pin's
+`SHA256SUMS` passing; **this session's id unchanged** (`7f4665d8…`, by a nonce found in exactly one transcript), though
+its `ListAgents` ref moved again to `[de22b2]`.
+
+**stale claim `s2-ntime-0.1.0b-0933` — RUNNING + dirty, re-dispatched (§4) as `s2-ntime-0.1.0b-1018` with `TREE: dirty`.** Its
+predecessor had made commits 0 (`d4bb310`, the transcripts' paths) and 1 (`5bb2e6f`, CI's pin) and was inside commit 2,
+the adoption. **Neither was pushed**, so CI never paired the new pin with an unadopted tree or adopted code with the old
+pin: `0.1.0b` §3 built that property by construction, and a real crash tested it.
+
+**stale claim `s1-nregex-0.0.5-0933` — a planner with a clean tree, RESUMED from its saved transcript.** §4 says
+re-dispatch; its purpose is a safe recovery, and with nothing on disk to reconcile a resume is that and keeps the
+planner's analysis. The deviation is from §4's letter, not its intent, and is recorded here for that reason.
