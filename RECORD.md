@@ -6623,3 +6623,13 @@ clean (69 md, leak scan 188 of 188); `check_record` clean; the harness re-run at
 **advance `nitpick-time` 0.1.0b → 0.1.0c.** **dispatch `s2-ntime-0.1.0c-1131`** — `npk:worker`, 0.1.0c, the access properties. Its NOTES
 carry three loose ends: drop `stash@{0}` (the dead predecessor's work, superseded by the verified 0.1.0b); record O-N8's
 discharge where this repository still describes it as live; and question 9 applies to this library's `Bytes` too.
+
+**playbook, 11:34 — the findings owed from three reports are landed in `PLAYBOOK.md`** (W-16; each was in this record first):
+§2 — *"a `pub struct` has no private fields"* marked SUPERSEDED at `c3bdae2` (`sealed`/`hidden` exist), with the two things
+a sealed field still admits (question 9), the `sealed limit<R>` order, and one-parameter `main`; §2's file-name section —
+D-248 landed, O-N8 struck; §3 — the six-identity floor, DEF-95's spurious `(BadStep)`, **the cross-stream exit-code
+convention**, and the order arms must be added in; §6 — the archived sweep tool, the `nm`-prefix `awk` trap, the widened leak
+scan; §9 — REACH-refusal tests that pass while testing the wrong identity, the planted-`decreases` proof, stale harness
+messages; §10 — `decreases`, `unbounded`, `sealed`, `hidden`, and `RESOLVE-012`; §12 — rehearse every fenced command, and
+re-derive a list for a new question. **Not landed here, by design:** RX-120's re-dating is `nitpick-regex`'s and
+`nitpick-time`'s own specification, for their next dispatches.

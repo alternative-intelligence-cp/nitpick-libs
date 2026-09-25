@@ -98,6 +98,19 @@ specification in this ecosystem was written in the shape of a language that has
 private fields and payload-carrying errors, because that is the shape its
 authors came from.**
 
+**⚠ THE FIRST OF THESE IS SUPERSEDED AT `c3bdae2`: the language now has what it
+lacked.** Measured by `nitpick-time`'s and `nitpick-regex`'s planners on
+2026-09-25. `sealed` and `hidden` (D-313, D-314) exist. A consumer's struct literal
+of a type with a sealed field is refused (`NITPICK-TYPE-079`), and a declared but
+unassigned value cannot be read (`NITPICK-ASSIGN-001`), so a library's *"cannot be
+constructed invalid"* can now be made true. **But a sealed field is not a hidden
+one:** it still admits a write THROUGH its pointer (`b.buf.ptr[0] = x`) and a
+whole-struct copy (`Vec<int64>:w = v`); only taking the field's address outside
+its module is refused (`TYPE-079`) — the board's question 9. A limited field is
+written **`sealed limit<R> int64:f`**, qualifier first; the compiler's
+`TYPE_REFERENCE` §9.1.2 example (`limit<R> sealed`) is `NITPICK-PARSE-001`, and is
+corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
+
 - **A `pub struct` has no private fields, and `opaque struct:Name = { … };` is
   refused** — the bodyless form is the extern-driver declaration (D-149). So a
   validating constructor guarantees the values **the library produces**, never
@@ -231,6 +244,13 @@ authors came from.**
   `NITPICK-TYPE-007`. A probe or program that wants `argv.len` must spell the
   parameter `cstring[]:argv`. Cheap, and it cost a probe a rewrite.
 
+**`main` takes ONE parameter — write `func:main = int32(cstring[]:_~argv)`.** At
+`c3bdae2` `npkc` also accepts `func:main = int32(int32:argc, cstring[]:argv)`,
+emits a two-parameter `@main`, and hands the extra parameter an unrelated value
+(`argc` negative with no arguments; at `3d15ac9` `argv` was wrong as well).
+Reported to the compiler as a defect on 2026-09-25. Until it is refused, the
+two-parameter form compiles and lies.
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may
@@ -268,6 +288,12 @@ case — so the resolver knows the rule and simply does not apply it when the
 name it was given happens to resolve to a different file. Raised as **O-N8**
 (the compiler's DEF-2); until it lands, *a build that mysteriously grows a
 second `main` is this, not your program*.
+
+**LANDED, AND O-N8 IS STRUCK (2026-09-25).** At `c3bdae2` D-248 is live: a header
+that does not name its file is refused at the first step with
+`NITPICK-RESOLVE-012` — *"a file's header names the file"* — so the silent merge
+above can no longer happen. Measured at the re-pin, when a control file declaring
+`mod:bad;` in `malformed.npk` was refused that way before the parser was reached.
 
 ---
 
@@ -311,6 +337,34 @@ So:
    compiler session hit the same class of trap on its first attempt to
    reproduce the curve — a different diagnostic (`RESOLVE-005`, exit 1 in
    0.04 s) and the identical failure. Two independent agents, same week.
+7. **At `c3bdae2` the floor is six, and two of them are new.** Every program's
+   `failsafe` names `HeapBadRequest`, `HeapOom`, `Unreachable`, `WildLeak`,
+   **`StackExhausted` and `MachineFault`** — the last two demanded in EVERY
+   program since cycle 1.5, the canary included. Beyond the floor, REACH demands
+   what the program's own code can reach: `DecreasesViolated` wherever a root
+   reaches a written `decreases` (20 of `nitpick-time`'s 61 roots, all through its
+   own loops — the compiler's *"near-universal"* describes its own programs),
+   `LimitViolated` where a limited value is written, `ShiftRange` at a computed
+   shift. **`(BadStep)` for a `till` or `loop` with a literal step is spurious —
+   the compiler's DEF-95 — so add it where demanded and drop it at DEF-95's
+   notice.** `for (int64:i in a..b)` is inclusive and needs no measure and no arm.
+8. **The exit codes are ONE convention across every library** (the
+   orchestrator's, 2026-09-25): 91 `HeapBadRequest`, 92 `HeapOom`, 93
+   `IntOverflow`, 94 `OutOfBounds`, 95 `Unreachable`, 96 `WildLeak`, **106
+   `StackExhausted`, 107 `MachineFault`, 108 `DecreasesViolated`, 109
+   `LimitViolated`, 115 `ShiftRange`, 116 `RequiresViolated`, 117
+   `EnsuresViolated`**, and 99 for the wildcard. The new ones sit above 99 because
+   every code from 80 to 99 was already in use somewhere, and 97, 89 and 90 already
+   meant different things in different repositories. **A test whose computed exit
+   equals an arm code cannot tell its answer from that trap**, so check every
+   `// expect-exit:` whenever codes are assigned.
+9. **Add arms in the order the compiler can see them.** A REACH-002 demand stays
+   hidden while an earlier phase refuses the file — `TYPE-072` refuses a
+   clause-less loop before REACH ever runs — so write the loop clauses first, then
+   read REACH-002 again, then add the arms. **An arm sweeper matches `(*)` only in
+   the code part of a line** (a dry run matched one inside a comment and broke the
+   file), and it carries a table of each deliberate refusal's subject, or it arms a
+   probe with the one identity whose absence the probe asserts.
 
 ---
 
@@ -991,6 +1045,18 @@ plausible number over a stated denominator and survives every check this
 workbench has** — it looks exactly like diligence. That is what let one count
 be wrong four times while each session did the thing the playbook told it to.
 
+**Three tooling facts from the 1.5 re-pin, 2026-09-25.** **The loop sweep's own tool
+stopped compiling when it was archived:** `done/1.5/tools/loop_dump.npk`'s relative
+`use` paths are one level short at its new depth, so notice 44's recipe fails as
+written — build a copy at its pre-archive depth in scratch (the compiler fixes it in
+its 1.6.0 docs). **A field-position `awk` over a transcript's prefixed `nm` lines
+(`  | `) prints addresses, not sizes** — the prefix shifts every field, so a
+comparison of sizes silently compared layout. **The widened leak scan fails any
+repository whose committed transcripts hold absolute paths** — it has read every
+tracked text file since 2026-09-06, after some transcripts were already committed —
+and a failing scan blocks every worker commit, so check each sibling before its next
+dispatch.
+
 ## 7. Repository conventions
 
 **A repository that holds only documents is still a repository, and a loop
@@ -1169,6 +1235,17 @@ repositories reads one thing.
 - **Whole-tree checks that diff the library against the documents describing
   it.** Every hole the compiler found was found by a check that diffs two
   lists, and none of them by a test.
+- **A deliberate REACH-002 refusal can pass D-237's set rule while testing the wrong
+  identity**, because every REACH-002 line carries the same code. So each such
+  refusal names every other arm REACH demands, and a check confirms that its single
+  REACH-002 line names its subject.
+- **Prove a sweep reached every loop:** plant `decreases 0i64 - 1i64` in each swept
+  loop and require every one to trap under the tests. `nitpick-regex` caught 11 of
+  11 in `src/` that way.
+- **A harness's own messages go stale like prose.** `nitpick-regex`'s harness
+  printed a pin-specific finding (every `src` file refused by `llc`) as
+  present-tense fact on every run for four pins after it stopped being true. A
+  message that states a measurement dates it.
 
 ---
 
@@ -1185,6 +1262,8 @@ The full table is `../nitpick/CLAUDE.md`. The ones a library reaches for:
 `Handle` `arena` `shared_arena` `Future` `Channel` `OwnedFd` `simd`
 `complex` `array` `func` `range` `struct` `enum` `assoc` `opaque` `trait`
 `impl` `Rules` `fixed` `NIL` `comptime` `derive` `macro` `inline` `noinline`
+`decreases` `unbounded` `sealed` `hidden` — **new at the 1.5 re-pin: refused as
+local names at `c3bdae2`** (`NITPICK-PARSE-002` at the declaration)
 **`stack`** — a MemoryQualifier beside `wild`, `wildx` and `defer`
 (`../nitpick/meta/specs/LEXICAL_REFERENCE.md:52`), confirmed against that file
 rather than reported.
@@ -1202,7 +1281,7 @@ Three shapes that surprise a C or Rust habit: adjacent string literals do not
 concatenate; `discard(x);` takes parentheses and `defer { … }` takes no
 trailing semicolon; declarations end `};` and control-flow blocks do not. And a
 file's `mod:` name must equal its basename, or the loader reports
-`NITPICK-RESOLVE-005` at line 1 and says nothing about the name.
+`NITPICK-RESOLVE-005` at line 1 and says nothing about the name. At `c3bdae2` it is D-248's `NITPICK-RESOLVE-012`, which does name it.
 
 ---
 
@@ -1233,6 +1312,16 @@ design fresh.
 - Every external dependency — a standard, a data release, a corpus, a
   reference implementation — is a row in `meta/research/CURRENCY.md` with the
   date it was checked (`skills/research/SKILL.md` §7).
+- **Every fenced command has been run, verbatim.** Rehearsing a plan by extracting
+  its code blocks and running them in a fresh clone found five defects in
+  `nitpick-regex`'s 0.0.4b and 0.0.4c before any worker saw them: an unexported
+  variable, two wrong greps, a restore check that could never pass, and a wrong
+  control. A plan whose commands were never run is a draft.
+- **A list built for one question is re-derived, not reused, for the next.**
+  `nitpick-time` carried five rows *"built on the move-out primitive"* into a
+  different question and read them for three cycles as *"owe an element drop"*;
+  measured, `vec_pop` owes none (two million push/pop cycles at 120 B peak, against
+  `vec_clear`'s 48 MB).
 
 ---
 
