@@ -6875,3 +6875,10 @@ cycle 0.0 closed on 2026-09-06, takes the same change inside cycle 0.1, porting 
 worker records N-15's disposition as moved to 0.0.4d by this decision (told at once, and still not to implement it); 0.0.4d's planner
 follows when that worker releases the repository (W-7) and the one planner slot is free (P-12); `nitpick-time`'s running 0.1.3 planner
 is told to add no by-value `Vec` copy that move-only would break.
+
+**question answered — Q-6**, 15:56: *"the recommendation on q-6 seems fine to me."* **A′** — obligations stay comments by default; a live
+contract only where a numbered decision accepts the failsafe identity it adds to every consumer; `prove` a comment until the verified-
+build stage. Measured in support at `nitpick-time` 0.1.1 and 0.1.2 (a live contract costs one arm per consumer and no time, and adds no
+evidence the sweep does not give) and at `nitpick-regex` (a live `requires` pre-empts a body's own trap). **Owed:** each repository's
+`VERIFICATION.md` P-1 replaced with A′ by a numbered decision — regex and time in their next dispatches, the other four when their
+streams run. **The questions table holds no open question from the author now.**
