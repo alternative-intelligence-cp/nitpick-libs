@@ -7517,3 +7517,12 @@ pin move, D-324) are under their harnesses.
 match its trait's in both directions. **Our exposure, measured by the compiler seat over our current 233 files, both checkers back to back:
 exactly one file, `nitpick-regex`'s own probe 18 — the shape it pins — refused at 42:39; no `TYPE-022` anywhere.** S-108 (a prelude `Copy`
 marker and a `never fails` `list_get`) is the author's. 69 lands after 67 and 68.
+
+**~05:2x — regex 0.0.4e reported DONE** (`s1-nregex-0.0.4e-0450`, ~30 min): `06d5c00` (the adoption — the loan refused, `vec_get<T: Pod>`, the
+block-string close moved), `b34b683` (the record), `37695a7` (an addendum); **CI green on all three at `c970483`, and CI's printed `npkc.ll`
+equals notice 66's row** — the D-265 emission agreeing on GitHub's runners at the new pin; the defect id O-N28 written before step 2 as the
+plan's scratch-rehearsed mode required. **A W-16 breach, self-disclosed and self-repaired:** importing `check_record.py` with `importlib` to
+dry-run a REPORT parse wrote `skills/check/scripts/__pycache__/` into the WORKBENCH (untracked), removed four minutes later; confirmed here —
+the workbench's status empty, no cache directory. **The lesson, for every dispatch:** run a workbench tool as a program, or under
+`python3 -B`, and read `git -C "$WB" status --short` before reporting; an import is a write. `check_record` is now run here under `-B`
+too. verify `s1-nregex-0.0.4e-verify-0522` dispatched.
