@@ -7118,3 +7118,9 @@ restored rehearsal cannot count the plan file in its tally; ugrep's completion o
 **dispatched 20:35:** the fifth W-22 audit, `s1-nregex-0.0-audit5-2035` (`npk:auditor`), scoped `4420c45..40074b6` — the fourth
 triage's fixes and 0.0.4d — with the accepting conditions for the post-re-pin tree to be stated, so the check after the re-pin can be
 narrow. **Regex's close waits for the pin carrying 3g** (question 10, recommended (a), not yet answered by the author).
+
+**notice 58, ~20:4x — `6fb85d3`, 1.6.0 step 3f: DEF-99 (our O-N20) fixed as a refusal, `NITPICK-TYPE-084`.** Authenticated by the
+ladder against notice 57's baseline, by script with a control; `src/` changed only three frontend files. The baseline for 59 is
+recorded. O-N20 stays open in the registry until a pin of ours carries it — the strike comes with the re-pin, when `nitpick-time`'s three
+verdicts move. **Notices counted to 58.** *(The board write ran before a registry assertion failed on a mid-line match; the script
+stopped, nothing was committed, and the registry edit was redone — the same commit carries both.)*

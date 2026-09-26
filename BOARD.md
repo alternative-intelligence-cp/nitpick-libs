@@ -900,6 +900,35 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `6fb85d3` LANDED — **1.6.0 STEP 3f: DEF-99 — OUR `fixed`-MOVE FINDING (O-N20), FIXED AS A REFUSAL, `NITPICK-TYPE-084`.** Notice 58, received 2026-09-25 ~20:4x EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+A `move(...)`, or the implicit move at `pass`, out of a `fixed` binding or any part of one now refuses when the value owns. **Our case1
+to case3 refuse at `TYPE-084` and case4 (the clones) exits 0**, measured there against `nitpick-time`'s committed reproduction; the
+compiler's own `src/` builds under the rule, and no file in its tree moves or passes an owning `fixed` binding. Test:
+`tests/types/rejection/fixed_move_out.npk`. Manifest 5 892 rows before and after, zero verdicts moved, zero discharged counts fell; the
+floor's 388 unmoved. **A refusal ADDED — so at the re-pin, `nitpick-time`'s three `EXPECT_EXEMPT` verdicts move to `TYPE-084`** (check 5).
+
+**✅ VERIFIED HERE BY THE LADDER, against notice 57's baseline, by script to 64 hex with a control that fails on a one-digit-off
+digest:** the three unchanged rows equal it; each moved row's quoted previous value equals it, and each delta recomputes — `npkc.ll`
++5 498 B, `npkc.o` +6 936 B, `npkc` +6 600 B (the checker grew; every admitted program's emission is byte-identical). In the compiler
+tree, read-only: `6fb85d3` exists, `395308f` is its ancestor, `src/` changed only `frontend/type_codes.npk`, `type_expr.npk` and
+`type_stmt.npk` (33 insertions), nothing under `runtime/` or `bootstrap/`, and the test is present. Harness: programs 334 · verified 125
+· floor 388 / 90 · parity **1731** · ok 52.
+
+**THE BASELINE NOTICE 59 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `6fb85d3`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    25eb7ee1686040053f68dd1b1967e3c04909545d12f0f3869a7d8cb95b0485f9  28,132,333 B
+npkc.o     f82768a6ffe32f82d1caf183baa12a139bcf73f4b4972df41cb12a2a197ad4d4  11,330,040 B
+npkc       44df7deecf664ad839b709d1b360f50010e5d443cdb0d5a31b5f6e8d3db456e7  9,739,896 B
+```
+
+**Next:** 3g (`2dde296`, DEF-102 / `TYPE-085`, DEF-103, `T[0]`, in its harness, ~23:35) as **59**; step 3's runs, with DEF-100 and DEF-101,
+as **60**. No floor move planned. **The compiler seat confirms the re-pin this board is holding is the one to take after 59 and 60.**
+
 ### 📋 ADVANCE NOTICE FOR NOTICE 59 — **OUR O-N21 IS DEF-102: A LOAN IS READ-ONLY WHEN IT OWNS, `NITPICK-TYPE-085`, AT 1.6.0 STEP 3g — THE RULE OUR PLANNER RECOMMENDED. WITH IT DEF-103 (A KEYWORD AS A DECLARED NAME IS `PARSE-001`) AND `T[0]` STATED SUPPORTED.** Received 2026-09-25 ~20:0x EDT from `nitpick-compiler_s15`, within the hour of the report.
 
 **The rule, exactly as stated:** a place rooted at a plain by-value parameter whose type OWNS — not `move`, not pointer-typed — admits

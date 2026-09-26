@@ -349,7 +349,8 @@ file existed — the check works.
   **Sent to `nitpick-compiler_s15` 2026-09-25, about 18:05**, asking for its `DEF`
   number and the refusal's diagnostic code, so the reproductions can take
   `// expect-error:` with it the day it lands. **Confirmed within the hour as the compiler's DEF-99, refused
-  as `NITPICK-TYPE-084` at 1.6.0 step 3f (notice 58)** — measured there against these
+  as `NITPICK-TYPE-084` at 1.6.0 step 3f — LANDED on the compiler's `main` at `6fb85d3`
+  (notice 58, 2026-09-25 ~20:4x), not yet in our pin** — measured there against these
   four reproducers read in place: case1–3 refuse, case4 runs 0.
 
   Reproduction: `nitpick-time/tests/probe/defect/fixed_move_out/`, **committed at
