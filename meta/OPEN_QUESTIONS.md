@@ -291,6 +291,16 @@ file existed — the check works.
   supported type (regex's move-only marker rests on it; measured: accepted, zero
   bytes, owning when `T` owns).
 
+  **CONFIRMED within the hour as the compiler's DEF-102 — a loan is read-only
+  when it owns, `NITPICK-TYPE-085`, at 1.6.0 step 3g (notice 59)** — the rule the
+  planner recommended, covering every write path (assignment into or to the
+  place, `@`, `$$i`/`$$m`, pointer-receiver calls, stateful operations), with one
+  measured exemption, a call through a `dyn` receiver. **Our exposure, re-swept
+  against that full rule:** 227 files, and only regex's five deliberate loan pins.
+  The two small items land with it: a keyword as a declared function or type
+  name is `NITPICK-PARSE-001` (DEF-103), and `T[0]` is stated supported in
+  `TYPE_REFERENCE` §9.2 with two tests.
+
   Reproduction: `nitpick-regex/meta/roadmap/0.0/0.0.4d.md` §1.4 and §6.1 (at
   `fdc190f`); its committed form lands with the 0.0.4d worker as
   `tests/probe/probe17_lent_field_drop.npk`, with four library units.

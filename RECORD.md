@@ -7092,3 +7092,11 @@ gate caught the draft citing a library's question id in the workbench — the ve
 
 **dispatched 19:55:** `s1-nregex-0.0.4d-1955` (`npk:worker`) and `s2-ntime-0.1.4-1955` (`npk:planner`; 0.1.3c is gated on regex's
 0.0.4d landing and verifying, so 0.1.4 is the next ungated item). 146 GiB available.
+
+**~20:0x — O-N21 is DEF-102.** The compiler seat confirmed it within the hour: **a loan is read-only when it owns,
+`NITPICK-TYPE-085`**, at 1.6.0 step 3g (notice 59, late tonight), with DEF-103 (a keyword as a declared name is `PARSE-001`) and `T[0]`
+stated supported. **Our exposure was RE-SWEPT against the full rule** — whole, compound, field and element writes, `@`, `$$i`/`$$m`, any
+method call and `for … in` rooted at a lent owning parameter — because the compiler seat's statement of our exposure rested on this
+seat's first sweep, which measured only two of those faces: 227 files, and the only hits are regex's five deliberate loan pins. The
+code is passed to regex's 0.0.4d worker as an optional amendment. **The re-pin to take is the one that carries 3g**; the checks carried
+to it are six. Question 10's recommendation now costs only that re-pin.
