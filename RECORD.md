@@ -7191,3 +7191,33 @@ that turns O-N23's silent form loud, not the guarantee.
 resolved an imported global's annotation in the use's scope at two sites; both now resolve in the declaration's home scope, as D-137
 and the symbol table since 0.8.1 already provide. **The re-pin to take is now the one carrying 3h**, closing DEF-95 to DEF-105; seven
 checks are carried to it. **Every one of the day's library-side defects confirmed within the hour of being sent.**
+
+### `nitpick-time` 0.1.4 VERIFIED PASS — every date of years 1 … 9999 agrees with Python; regex's fifth triage READY-TO-CLOSE at `c3bdae2`; 0.1.4b before 0.1.3c — 2026-09-25 22:17
+
+**report `s2-ntime-0.1.4-2133` — DONE**, 35 min, 473 k tokens: `486eaea` (the civil cross-oracle, exhaustive) and `648590f` (the record);
+CI green on both. **verify `s2-ntime-0.1.4-verify-2210` (`sonnet`, 7 min) — PASS:** tree clean, the subject, `check_refs` clean (76 md,
+222 of 222), `check_record` clean, the harness re-run GREEN 91 at `c3bdae2`; the work commit's twentieth path is §11's
+`meta/OPEN_QUESTIONS.md` (the O-N23 entry, with DEF-105), and the two by-the-id diffs and `_verdict`'s comment are exactly what the record
+says. **findings-for-playbook** (owed): a rehearsal that stubs a file or skips the hand edits cannot predict a sweep that reads them —
+predict "the rehearsal's tree plus the hand-edited files", or rehearse the hand edits; a statement generalising over a list's members can
+live far from the list — adding a member owes a grep for every statement of the bucket's membership; an expected-output block that drops
+lines its printed command prints reads as a difference — quote the whole output or say which lines were cut.
+
+**report `s1-nregex-0.0.5-2122` — READY-TO-CLOSE at `c3bdae2`**, 51 min, 705 k tokens: `be6511f` (the harness reads source as bytes,
+decodes import paths, and asks `npkc` for `main`) and `1b1a74f` (the record, §12); 214/214; CI green on `be6511f`. **The two defences
+are now independent by construction** — the `main` exception comes from the compiler's own output, not the reader it guards. N-25
+(O-N22 / DEF-104) and N-26 (O-N21's sixth shape) pinned as units that fault at `c3bdae2` by design. **for-the-author:** question 10, (a)
+recommended again; N-25 kept out of the gate (no `src/` exposure; its unit moves to `tests/rejection/` when `TYPE-047` refuses it) —
+**accepted here, the gate never named it**. **Owed to the re-pin subcycle**, noted on the board: the post-re-pin items; the colliding
+local O-N17 (*"the borrow tracker taints a function's return by SIGNATURE"*, measured at `3d15ac9`, never filed) — re-measure at the new
+pin, then register or close; probe06b's and probe07's headers still call O-N9 live. **findings-for-playbook** (owed): a second defence
+that reads through the first defence's reader is not a second defence — take the second answer from another mechanism and test it alone
+with the first stubbed out; Python's text mode is not the compiler's reading (open source as bytes; a `use` path is the literal's DECODED
+value); mutation-testing two defences with one reader defect measures their independence against that defect only — mutate the shared
+dependency; a skip that prints nothing shows only as a denominator one short — print the skipped set; a check that clears a type by
+resolving its name must refuse what it cannot resolve. **verify `s1-nregex-0.0.5-verify-2222` dispatched 22:22.**
+
+**decision (orchestrator), 22:2x — `nitpick-time`'s 0.1.4b BEFORE 0.1.3c.** 0.1.3c ports `Vec` move-only, whose loan rules change at
+tonight's re-pin (DEF-102/104 make a lent owning parameter read-only); planned against the pin carrying 3h, its loan tests are written as
+`TYPE-085` refusals from the start rather than pinned faults to move later — the rework today's plans kept paying for. 0.1.4b's subject,
+the runtime's heap statistics, does not move tonight (no floor move is planned). **dispatched 22:17:** `s2-ntime-0.1.4b-2217` (`npk:planner`).
