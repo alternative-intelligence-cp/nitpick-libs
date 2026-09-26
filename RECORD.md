@@ -7470,3 +7470,9 @@ and the CI pin bump — regex's folded into its cycle-0.0 close (the fifth audit
 **dispatched 03:05:** `s1-nregex-0.0.4e-0305` (`npk:planner`, **model named**) — regex's adoption to `c970483`, carrying the fifth audit's
 post-re-pin checklist, the carried checks, `FLOW-001`'s measurement, the CI pin bump and the registry tidying. `nitpick-time`'s adoption
 planner follows when the one planner slot frees (P-12).
+
+**~03:1x — F13, the advance notice for landing 67 (1.6.1 step 0):** DEF-107's freeze as `NITPICK-BORROW-015` (a view's root frozen for the
+view's lifetime — D-325, the author's), with DEF-109 to DEF-115 found building it (four borrow codes reaching new shapes, each a real
+dangling pointer measured at run time), and calls now read off each callee's own body. **Our exposure: zero, measured by the compiler seat**
+— its checker with the rule, swept over our 231 files, diffed per file and per code against `c970483`'s: no site moved. O-N27 is the
+author's S-107. **67 and 1.6.1 step 1's emission-text change are the next re-pin's; our pin stays `c970483`.**

@@ -900,6 +900,23 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F13 FOR LANDING 67 (1.6.1 STEP 0) — **DEF-107's FREEZE, `NITPICK-BORROW-015` (a view's root is frozen while the view is live — D-325, the author's), AND DEF-109 TO DEF-115, FOUR BORROW CODES REACHING NEW SHAPES. OUR EXPOSURE: ZERO — MEASURED BY THE COMPILER SEAT OVER ALL 231 OF OUR FILES.** Received 2026-09-26 ~03:1x EDT, from `nitpick-compiler_s16`. **Not landed yet; NOT in our pin `c970483`.**
+
+**`BORROW-015`:** a view — a view-maker's result, a range view, a call whose own body views what it was handed, a view moved through a call
+or pushed into a `List` — freezes its root from the holder's declaration to the end of its block: every write-capable access of what it
+views refuses (an assignment into the root, `@root` or `$$m root` handed to a callee that WRITES through it, a pointer-receiver call, a
+`move` out, `list_push` on a viewed list). Reads, `$$i`, disjoint fields and numeral ranges, and callees that write nothing stay. The
+remedy: end the view's block before writing its root, or copy the view. **And DEF-109 to DEF-115**, found building it — each a real
+dangling pointer measured at run time on `c970483`: `BORROW-001` now also reaches `pass @x` of a by-value parameter, an address pushed into
+a returned `List`, a borrow stored into a returned `dyn`'s cell or a returned `move` parameter; `BORROW-002` a view of the storage a store
+overwrites, a callee's store of this frame's view through a pointer parameter, a local's address stored into a lent `dyn`'s cell;
+`BORROW-009` a callee's store through a pointer binding; `BORROW-012` a temporary handed to a callee that views it. **Calls are now read off
+each callee's own body** (per-function summaries), so a callee that only reads freezes nothing. **Exposure, measured there, not here:** the
+checker with the rule swept over 1 030 files — the compiler's 799 and our 231 across `nitpick-time`, `nitpick-regex` and `nitpick-posix` —
+diffed per file and per code against `c970483`'s checker: **not one site of ours moved.** No language change, no emission change, no floor
+byte. **O-N27 (our false reject) is S-107 for the author**, recommended to be refined by the same summaries — not in this landing.
+**For us: 67 and 1.6.1 step 1 (the emission-text change) are the NEXT re-pin's**; the libraries' own harnesses re-measure the zero then.
+
 ### ✅ `77314e9` LANDED — **1.6.0 STEP 5b: TWO DOCUMENTS FROM OUR 0.1.4b PLANNING — D-292's DATED NOTE (a `peak_live` bound excludes the failsafe region) AND DEF-107 REGISTERED (the view freeze, S-106 — since ratified by the author as D-325).** Notice 65, received 2026-09-26 ~02:2x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`.** Documents only. **✅ VERIFIED HERE:** all six rows quoted unchanged, equal to the baseline for 65 (64's rows), by script with a control; `4e467bc` an ancestor; zero files under `src/`, `runtime/`, `bootstrap/`. **The baseline for 66 is the same rows, at `77314e9`.** Next: **66 (`c970483`, DEF-108, `FLOW-001`) — its harness green — then the re-pin.**
 
 ### ✅ `4e467bc` LANDED — **1.6.0 STEP 5: 1.6.0 IS COMPLETE. DOCUMENTS AND THE PLAN ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED. ⚠ FOREWARNED: 1.6.1 STEP 1 WILL CHANGE EVERY EMISSION'S TEXT.** Notice 64, received 2026-09-26 ~02:1x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**

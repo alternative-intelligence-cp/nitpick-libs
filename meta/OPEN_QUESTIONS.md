@@ -269,7 +269,8 @@ file existed — the check works.
   false accept:** both come from D-249's view rule keying on a call's shape rather
   than a value's provenance. **Sent to `nitpick-compiler_s15` 2026-09-26 ~00:4x as
   a design input to S-106** (DEF-107's decision), with the ordering: DEF-107 first
-  if only one can be had. **Exposure:** refused code, not unsafe code — it costs
+  if only one can be had. **Recorded by the compiler seat as S-107 for the author**, with the
+  recommendation that 1.6.1 step 0's per-function summaries refine the marking — not in landing 67. **Exposure:** refused code, not unsafe code — it costs
   `nitpick-time`'s cycle-0.4 formatter wrapper and `nitpick-regex`'s cycle-0.6
   replacement text a constructor shape; nothing today waits on it. **Regex's local
   entry is to be struck in favour of this one** at its re-pin subcycle.
@@ -312,7 +313,9 @@ file existed — the check works.
   the author:** freeze a view's root for the view's lexical lifetime — every
   write-capable access to the root refused in that span. **Until it is decided and
   lands:** a view's root must not be written while the view is live, and a view
-  meant to outlive a mutation is a copy. **Our exposure:** 4 view-maker sites in 23
+  meant to outlive a mutation is a copy. **THE FIX, announced (F13) for landing 67 (1.6.1 step 0): `NITPICK-BORROW-015`** — a view's root frozen
+  for the view's lifetime, every write-capable access refused; the compiler seat's sweep over our 231
+  files, per file and per code against `c970483`'s checker, moved **no** site of ours. **Our exposure:** 4 view-maker sites in 23
   `src/` files; three are consumed at once or feed a write into another object;
   the fourth is `bytes_take` itself, fixed by `nitpick-time`'s 0.1.4b (PD-39,
   copying, as `nitpick-regex`'s twin always did).
