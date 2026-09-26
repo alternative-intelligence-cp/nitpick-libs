@@ -7531,3 +7531,8 @@ too. verify `s1-nregex-0.0.4e-verify-0522` dispatched.
 of 232), `check_record` clean under `python3 -B`, the harness re-run 218/218 at `c970483`. **The sixth, accepting W-22 audit dispatched**
 (`s1-nregex-0.0-audit6-0530`, `opus` named), narrow by design: `40074b6..37695a7` measured item by item against the fifth audit's 23-item
 post-re-pin checklist, with the adoption's three corrections to it judged too. Question 11 stays the author's.
+
+**notice 67, ~05:4x — `2eea6f4`, 1.6.1 step 0: DEF-107 fixed (the view freeze, `BORROW-015`), DEF-109…115 with it.** Authenticated by the
+ladder against the rows at `c970483` (notice 66's, authenticated at the re-pin), with a control; `c970483` an ancestor; 6 `src/` files, none in
+`runtime/` or `bootstrap/`. **A lapse recorded:** filing 66 into the re-pin, this seat wrote no "BASELINE NOTICE 67" block; the check used 66's
+authenticated rows. The baseline for 68 is recorded. **Notices counted to 67.** Our pin stays `c970483`.

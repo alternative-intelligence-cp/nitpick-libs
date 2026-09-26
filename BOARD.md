@@ -900,6 +900,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `2eea6f4` LANDED — **1.6.1 STEP 0: DEF-107 FIXED (the view freeze, `NITPICK-BORROW-015`, D-325 — the author's), WITH DEF-109 TO DEF-115; CALLS READ OFF EACH CALLEE'S BODY.** Notice 67, received 2026-09-26 ~05:4x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c970483`** (taken at notice 66 — see the Toolchain header and `.internal/toolchain/c970483/PIN.md`). **ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+A refusal added and four reaching new shapes, as F13 announced; the emission grew by the new analyses' own code (+668 470 B); the
+compiler's own obligation rows 5 898 → 6 195 with no verdict moved among the shared ones; the checker over the compiler 27.5 s → 9.6 s.
+**Our exposure: zero, measured by the compiler seat over our 231 files before it landed (F13).**
+
+**✅ VERIFIED HERE BY THE LADDER, against the rows at `c970483` — notice 66's, authenticated at the re-pin** (by script with a control): the
+three unchanged rows equal them; each moved row's previous value equals them, and each delta recomputes — `npkc.ll` +668 470 B, `npkc.o`
++263 336 B, `npkc` +221 096 B. Read-only: `c970483` is an ancestor; 6 files changed under `src/`, none under `runtime/` or `bootstrap/`.
+Harness: programs 339 · verified 125 · floor 388 / 90 · parity **1756** · ok 52. *A lapse, recorded: filing 66 into the re-pin, this seat did
+not write a "BASELINE NOTICE 67" block; the check used notice 66's rows, authenticated at 03:0x and matching `PIN.md`'s two.*
+
+**THE BASELINE NOTICE 68 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `2eea6f4`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    2448b3b60d9eb18980597080209ce7bbf716ca64157ad2f0fb8872b1812ef21d  28,857,206 B
+npkc.o     905fcbdd623374e9b01b70e0edbdc287d1015df47d892e6db78f31193a9cb6bb  11,608,520 B
+npkc       c7212b6be06fe6a4b6ed3602d86e0b58d0f7e2109532099e888a73c519f2aee7  9,972,872 B
+```
+
+**Next:** 68 (the NIKOS pin move, D-324) and 69 (DEF-116 and DEF-117, our O-N28). **The next re-pin's candidates: 67, 69, and 1.6.1 step 1's
+emission-text change.**
+
 ### 📋 ADVANCE NOTICE F13 FOR LANDING 67 (1.6.1 STEP 0) — **DEF-107's FREEZE, `NITPICK-BORROW-015` (a view's root is frozen while the view is live — D-325, the author's), AND DEF-109 TO DEF-115, FOUR BORROW CODES REACHING NEW SHAPES. OUR EXPOSURE: ZERO — MEASURED BY THE COMPILER SEAT OVER ALL 231 OF OUR FILES.** Received 2026-09-26 ~03:1x EDT, from `nitpick-compiler_s16`. **Not landed yet; NOT in our pin `c970483`.**
 
 **`BORROW-015`:** a view — a view-maker's result, a range view, a call whose own body views what it was handed, a view moved through a call
