@@ -900,6 +900,8 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `9126350` LANDED — **1.6.1 STEP 0, THE NIKOS HALF (D-324): THE ANALYZER ENGINE'S THREE DEFECTS FIXED IN THE AUTHOR'S NIKOS FORK AND ITS PIN MOVED. TOOLS ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED.** Notice 68, received 2026-09-26 ~06:2x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c970483`.** **✅ VERIFIED HERE:** all six rows quoted unchanged, equal to the baseline for 68 (the rows at `2eea6f4`), by script with a control; `2eea6f4` an ancestor; zero files under `src/`, `runtime/`, `bootstrap/`. **The baseline for 69 is the same rows, at `9126350`.** **S-107 and S-108:** the relayed approval is recorded on both rows, dated; **their ratification waits for the author's word in the compiler seat**, which its report to him asks for plainly — nothing to re-ask from here.
+
 ### ✅ `2eea6f4` LANDED — **1.6.1 STEP 0: DEF-107 FIXED (the view freeze, `NITPICK-BORROW-015`, D-325 — the author's), WITH DEF-109 TO DEF-115; CALLS READ OFF EACH CALLEE'S BODY.** Notice 67, received 2026-09-26 ~05:4x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c970483`** (taken at notice 66 — see the Toolchain header and `.internal/toolchain/c970483/PIN.md`). **ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 A refusal added and four reaching new shapes, as F13 announced; the emission grew by the new analyses' own code (+668 470 B); the

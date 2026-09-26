@@ -7548,3 +7548,8 @@ the compiler seat's questions this seat relayed with the compiler seat's recomme
 our O-N27 — with the per-function summaries; S-108: a prelude `Copy` marker and a `never fails` `list_get`), are covered by the same words;
 **relayed to `nitpick-compiler_s16` verbatim, with the offer that the author confirm directly if its protocol requires his own hand.**
 **The fuzzer's M8 (the re-hunt) is running in the cloud** — it will find the compiler's `main` at `2eea6f4` or later.
+
+**notice 68, ~06:2x — `9126350`, 1.6.1 step 0's NIKOS half (D-324):** the analyzer engine's three defects fixed in the author's fork and
+its pin moved; tools only — all six rows unchanged, equal to the baseline for 68, checked by script with a control; zero files under
+`src/`, `runtime/`, `bootstrap/`. **Notices counted to 68.** **S-107 and S-108:** the compiler seat records the relayed approval but
+ratifies decisions only in its own session — its report asks the author directly; nothing is owed from here.
