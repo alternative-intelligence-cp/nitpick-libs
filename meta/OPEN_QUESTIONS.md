@@ -262,17 +262,19 @@ file existed — the check works.
   at `c3bdae2` and `1b4f0c6`. **Reproduced by the orchestrator 2026-09-26 11:34:** the 26 programs of F-018 … F-024
   and F-026, at `c3bdae2` identical to the session's lines, at `9f6f370` identical to its HUNT2 and `1b4f0c6`
   lines, and at our pin `c970483` the same verdicts — all live at the pin; F-025 by hand (the canary under
-  `--extra-picky=no-wildx`: 256 `WILDX-003` from the prelude at both). **Sent to `nitpick-compiler_19` 11:34.**
-  - **F-018** — a macro's free name, alone or as a comparison's operand, reads the call site's local: silent.
-  - **F-019** — a `'\u{…}'` escape typed `char8` and truncated to its low byte: silent.
-  - **F-020** — the scope-exit join relays the last-spawned child's error, not the first: silent.
-  - **F-021** — an expired `timedwait` returns success after the full wait: silent, an error become a success.
-  - **F-022** — a shared arena destroyed while a spawned thread holds it: use after destroy (`WildLeak`).
-  - **F-023** — an un-awaited `async` METHOD call accepted, emitting a call to an undefined symbol.
-  - **F-024** — `npkc` traps (exit 3) on three macro and depth shapes.
-  - **F-025** — `--extra-picky=no-wildx` refuses every program, at the prelude.
-  - **F-026** — `tfp64<Meters>` accepted with its unit ignored (`dim256`'s twin refused).
-  - **F-027** — 16 lower-priority rows; **F-028** — 94 documentation rows (`m11/RESULTS.md`, `REPORT.md` §12).
+  `--extra-picky=no-wildx`: 256 `WILDX-003` from the prelude at both). **Sent to `nitpick-compiler_19` 11:34.** **Registered there 11:47 as DEF-144 … DEF-154, in a NEW
+  subcycle 1.6.1e** planned after 1.6.1d step 3: the silent wrong answers and the memory fault first (DEF-144 …
+  DEF-148), then the refusals and traps (DEF-149 … DEF-152), then the two tables (DEF-153, DEF-154).
+  - **F-018** (DEF-144) — a macro's free name, alone or as a comparison's operand, reads the call site's local: silent.
+  - **F-019** (DEF-145) — a `'\u{…}'` escape typed `char8` and truncated to its low byte: silent.
+  - **F-020** (DEF-146) — the scope-exit join relays the last-spawned child's error, not the first: silent.
+  - **F-021** (DEF-147) — an expired `timedwait` returns success after the full wait: silent, an error become a success.
+  - **F-022** (DEF-148) — a shared arena destroyed while a spawned thread holds it: use after destroy (`WildLeak`).
+  - **F-023** (DEF-149) — an un-awaited `async` METHOD call accepted, emitting a call to an undefined symbol.
+  - **F-024** (DEF-150) — `npkc` traps (exit 3) on three macro and depth shapes.
+  - **F-025** (DEF-151) — `--extra-picky=no-wildx` refuses every program, at the prelude.
+  - **F-026** (DEF-152) — `tfp64<Meters>` accepted with its unit ignored (`dim256`'s twin refused).
+  - **F-027** (DEF-153) — 16 lower-priority rows; **F-028** (DEF-154) — 94 documentation rows (`m11/RESULTS.md`, `REPORT.md` §12).
   **Impact (W-27): blocks nothing. Our exposure, swept 11:34 over the six work repositories: none in any `src/`**
   — macros only in `nitpick-posix`'s probe 02 series (each emits a `failsafe`), `async` only in one regex probe
   (free functions, not F-023's method), no `\u{…}` escape, no `spawn`, `timedwait`, `shared_arena` or `tfp`, and
