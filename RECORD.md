@@ -7221,3 +7221,24 @@ resolving its name must refuse what it cannot resolve. **verify `s1-nregex-0.0.5
 tonight's re-pin (DEF-102/104 make a lent owning parameter read-only); planned against the pin carrying 3h, its loan tests are written as
 `TYPE-085` refusals from the start rather than pinned faults to move later — the rework today's plans kept paying for. 0.1.4b's subject,
 the runtime's heap statistics, does not move tonight (no floor move is planned). **dispatched 22:17:** `s2-ntime-0.1.4b-2217` (`npk:planner`).
+
+### `nitpick-regex` VERIFIED READY-TO-CLOSE at `c3bdae2`; `nitpick-fuzz` created for the author's cloud credit — 2026-09-25 22:26
+
+**verify `s1-nregex-0.0.5-verify-2222` (`sonnet`, 3 min) — PASS:** tree clean, the subject, `check_refs` clean (72 md, 222 of 222),
+`check_record` clean, 214/214 at `c3bdae2`, CI green on both commits. **Cycle 0.0 is READY-TO-CLOSE and waits for the re-pin carrying
+3h**; regex idles until then. *Correction: that verifier was dispatched at ~22:16; its label's `2222`, and the board's "dispatched
+22:22", were a mistyped time.*
+
+**`nitpick-fuzz` created (`94ae240`, public, 18 topics), at the author's go.** He has a free cloud credit to use and wanted a contained
+task from this project for a first cloud session; the compiler seat and the devTeam project did not fit (local-only material). **The task:
+a systematic hunt for compiler memory-safety defects** — an exhaustive grid of owning types × places × operations, compiled at `c3bdae2`
+and the compiler's newest `main`, run at both legs — because every serious defect of the day lived in that space and was found by hand.
+**Its recall gate** — the grid must re-find DEF-99, 102, 104 and 105 at the baseline before the hunt counts — uses nineteen programs in
+`known/`, **each re-measured here at the pin before the first commit, every verdict matching `KNOWN_DEFECTS.md`**; commissioning ran
+both directions. **A calibration checkpoint at M4 stops the run** for the author to check its cost. **The workbench's own guard refused
+the first commit into the new repository — W-7, no claim on the board — and was right:** `nitpick-fuzz` is now claimed under a new
+*Outside the streams — tools* section, the orchestrator writing `main`, a cloud session only its own branch. **Cloud-session facts, from
+the documentation (a guide agent, 2026-09-25):** Ubuntu 24.04, 4 vCPUs, 16 GB, 30 GB disk; "Trusted" network by default, GitHub
+reachable; work pushed to a branch, not `main`; a session keeps running with the browser closed; `claude --teleport` pulls a cloud session
+and its branch into a local terminal; the documentation describes cloud usage as drawing on the same plan usage as the CLI and does not
+describe a separate cloud credit, so the credit's own terms govern it.
