@@ -7407,3 +7407,13 @@ planner and worker; **reproduced here at `c3bdae2`** — a `f(Box->) -> string` 
 frame owning `b`, is refused `BORROW-001`, bound first or not; the parameter shape and the inline build compile and run. Sound and
 coarse: a false reject, the mirror of O-N25's (DEF-107's) false accept, both from a view rule keyed on shape rather than provenance.
 **Sent as a design input to S-106**, DEF-107 first if only one can be had. Regex's local entry is struck at its re-pin subcycle.
+
+**~00:5x — the second PLAYBOOK pass of the day**, from the reports since the first: §9 gains five testing rules (a control's result is
+its named line; a test of an owned answer reuses the source before reading it; derive every number an instrument prints before bounding
+it; a sample aligned with the domain's period aliases — 400 Gregorian years are 20 871 weeks; a low memory cap's control shares the
+program's runtime); §6 gains reading source as the compiler does (bytes, decoded `use` paths, refuse what cannot be resolved, print the
+skipped set, relative paths for tools that echo them, the tag and supersede traps in plan text); §12's list becomes eleven ways a
+rehearsed plan goes stale, and gains BL-9's pair — a second defence through the first's reader is not a second defence, and mutating one
+reader defect measures independence against that defect only. **The language's new rules (loans read-only, no writes into `fixed`
+parts, every path leaves, views frozen if S-106 is ratified) wait for the re-pin**, so the playbook does not state an unlanded rule as
+current.

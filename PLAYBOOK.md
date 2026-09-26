@@ -1080,6 +1080,18 @@ which is 0 — so nothing that binds tighter than `/` may follow it (the compile
 docstring is a claim to measure:** `nitpick-time`'s `code_lines` never blanked string bodies, though a retired check's
 docstring and a reviewed plan both said it did.
 
+**Reading source the way the compiler does — `nitpick-regex`'s fifth audit, 2026-09-25.** **Python's default text mode is
+not the compiler's reading:** `newline=None` makes a lone carriage return a line end, while the compiler ends a `//`
+comment at byte 10 only — so `// note<CR>use "x.npk"` is an import to the harness and a comment to the compiler. **Open
+`.npk` source as bytes** (or `newline=""`). **And a `use` path is the string literal's DECODED value** — an escaped
+`"..\x2f…"` path hid a syscall from the scan while the compiler followed it. **A check that clears a type by resolving
+its name must refuse what it cannot resolve** (a macro splice named after a POD struct was cleared as that struct).
+**A skip that prints nothing shows only as a denominator one short — print the skipped set.** **A tool that echoes its
+path argument prints a home directory when handed `$W/…`**, and the leak scan then fails the record that pastes the
+line — hand such tools relative paths. **A plan's hunks that carry whole `[[sweep:]]` tags turn its own commit red** —
+spell tags differently in the plan and let the apply script write them whole; **prose that describes `check_refs`'
+supersede trap re-triggers it**; and **a TM number in a script's printed output is a citation once quoted in a plan.**
+
 **What `check_refs` and `check_denominators` actually read — measured at `nitpick-time` 0.1.3 and 0.1.3b, 2026-09-25.**
 **Links resolve even inside fences**, so a specification hunk embedded in a plan must also resolve from the plan file's own
 directory. **Decision and question citations are counted in prose with fences stripped but inline code NOT stripped**, so an
@@ -1296,6 +1308,21 @@ repositories reads one thing.
   invisible to it: a scalar-pass probe of O-N20 exited 0 on both legs, while the same pass with the string dropped in a
   callee stopped at 95 at all six kept pins. Put the drop inside the measured path — a function's return — or the probe
   measures nothing.
+- **A control's result is its NAMED LINE, not its exit status.** A control that matched nothing was stopped by its
+  own assertion, and the check it then pointed at a missing file crashed with exit 1 — which looks exactly like a
+  caught corruption (`nitpick-time` 0.1.4's planning).
+- **A test of an OWNED answer uses the source again before it reads the answer.** `bytes_take` returned a view of its
+  sink typed as an owned `string` from cycle 0.0.4 to 0.1.4b, and its one test read the answer at once, so it
+  passed; reusing the sink rewrites the text (13) and growing it frees it (12). O-N25 is the language half.
+- **Derive every number an instrument prints from the source before you bound it**, and treat one that disagrees as
+  a finding: `NPK_HEAP_STATS` counted 25 allocations where the source makes 26, and the missing one was that
+  use-after-free.
+- **A sample aligned with a period of the domain aliases with it.** 400 Gregorian years are exactly 20 871 weeks, so
+  a weekly sample meets every 400-year leap day or none; a weekly sample passed a leap rule that drops them
+  (measured). Sample off the period, or exhaustively.
+- **A low address-space cap's control must share the program's runtime.** At `c3bdae2` a Nitpick program that
+  allocates nothing takes `HeapOom` below about 10.5 MiB, while `/bin/true` runs from 2.75 MiB — so a `/bin/true`
+  control at 8 MiB calls a correct remedy a leak. Control with a floor program built by the same toolchain.
 - **A positive test whose expected value equals the vacant value tests nothing.** After one insert `sparse[3]` is 0 —
   which `calloc` also wrote. Choose inputs whose correct answer the untouched state cannot produce, and show a copy of the
   test expecting the vacant value FAILS.
@@ -1579,8 +1606,8 @@ gating that change.**
 
 ---
 
-**EIGHT WAYS A REHEARSED PLAN'S TEXT GOES STALE OR MISCOUNTS — FROM ONE DAY'S THREE SUBCYCLES, `nitpick-time` 0.1.3 AND
-0.1.3b AND `nitpick-regex` 0.0.4d (2026-09-25), EACH FOUND AFTER REHEARSAL, SEVERAL AFTER THREE.**
+**ELEVEN WAYS A REHEARSED PLAN'S TEXT GOES STALE OR MISCOUNTS — FROM ONE DAY'S SUBCYCLES (`nitpick-time` 0.1.3 TO 0.1.4b,
+`nitpick-regex` 0.0.4d; 2026-09-25/26), EACH FOUND AFTER REHEARSAL, SEVERAL AFTER THREE.**
 
 - **A tag-writing script must be idempotent.** A re-run wrote six tags twice, 47 where 41 belong; each script now
   skips an edit already applied, and says so.
@@ -1604,3 +1631,19 @@ gating that change.**
 - **A rehearsal that restores its tree cannot count the plan file in its predicted `git status` tally**, yet the worker
   always edits the plan in the same commit (its title, its record). Predict *"N plus the plan file"*, or every worker's
   tally is one short.
+- **A rehearsal that stubs a file or skips the hand edits cannot predict a sweep that reads them** (0.1.4's stale-claim
+  searches printed 6, 6, 4, 3, 17 against the rehearsal's 5, 6, 4, 1, 15). Predict *"the rehearsal's tree plus the
+  hand-edited files"*, or rehearse the hand edits.
+- **A statement that generalises over a list's members can live far from the list** — adding a member to
+  `EXPECT_EXEMPT` falsified a comment in another function. A hunk that adds a member owes a grep for every statement
+  of the bucket's membership, not only the notes beside the table.
+- **The durable form of "quote a command's whole output" is a COMPARATOR**, a script extracted from the plan that
+  diffs each step's output against its block — 0.1.4b's seven blocks came back 0 differences that way, CI's log
+  included. Care drops lines; a comparator does not.
+
+**AND TWO FROM A BLOCKING AUDIT FINDING, `nitpick-regex`'s BL-9 (2026-09-25):** **a second defence that reads through the
+first defence's reader is not a second defence** — "never skip a file that declares `main`" asked the same reader as
+the import it guarded, so one reader defect defeated both; take the second answer from another mechanism (here the
+compiler's own IR) and test it alone with the first stubbed out. **And mutation-testing two defences with ONE reader
+defect measures their independence against that defect only** — a reader that reads too many imports left each
+holding, one that blanks too much failed both: mutate the shared dependency, not each defence's own code.
