@@ -7439,3 +7439,7 @@ control; `5bdae98` an ancestor; only checker files in `src/`; the three `import_
 only — all six ladder rows unchanged, equal to the baseline for 61, checked by script with a control; zero files under `src/`, `runtime/` or
 `bootstrap/` in either. The analyzer gate's result goes to the author as S-102 (Clam disqualified, NIKOS wins). The baseline for 63 is
 the same rows. **Notices counted to 62.**
+
+**notice 63, ~02:0x — `f87d2df`, 1.6.0 step 4b: DEF-106 (our O-N24) refused as `TYPE-086`.** Authenticated by the ladder against the baseline
+for 63 (61's rows, unchanged through 62), with a control; `996784e` an ancestor; only checker files in `src/`; the test present. Our exposure
+none. The baseline for 64 is recorded. **Notices counted to 63.**

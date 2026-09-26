@@ -900,6 +900,27 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `f87d2df` LANDED — **1.6.0 STEP 4b: DEF-106 (our O-N24, the fuzzer's first finding) — A WRITE INTO ANY PART OF A `fixed` BINDING IS REFUSED, `NITPICK-TYPE-086`, AS F11 ANNOUNCED.** Notice 63, received 2026-09-26 ~02:0x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+**✅ VERIFIED HERE BY THE LADDER, against the baseline for 63 (61's rows, unchanged through 62), by script with a control:** the three
+unchanged rows equal it; each moved row's previous value equals it, and each delta recomputes — `npkc.ll` +8 521 B, `npkc.o` +3 424 B,
+`npkc` +2 912 B. Read-only: `996784e` is an ancestor, `src/` changed only `frontend/type_codes.npk`, `frontend/type_expr.npk`, `frontend/type_stmt.npk`, nothing under `runtime/` or `bootstrap/`, and
+`tests/types/rejection/fixed_write.npk` is present. Harness: programs 338 · verified 125 · floor 388 / 90 · parity **1748** · ok 52.
+**Our exposure: none** (swept under the full rule — no sub-place write, no `fixed` field).
+
+**THE BASELINE NOTICE 64 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `f87d2df`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    4a5aed04672a9c9c90d6122fe6a1b378bf0b7b8f695245deedc887cbcf4dc7f3  28,156,482 B
+npkc.o     e54a42f75d9769f977585aa7063ae993c160a718d116d33f1a721cbc628a8017  11,334,256 B
+npkc       5dffd6ea5eb77a071e4b713ea8016477105ca9137898429f68dc603ca20b7729  9,742,672 B
+```
+
+**Next:** 64 (step 5, with the forewarning of 1.6.1 step 1's emission change), 65 (5b, D-292's dated note), 66 (5c, DEF-108 `FLOW-001`) — **then the re-pin.**
+
 ### ✅ `0da2be7` AND `996784e` LANDED — **1.6.0 STEPS 3 AND 4: THE ANALYZER GATE'S RUNS, AND ITS READING. TOOLS AND DOCUMENTS ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED.** Notices 61 and 62, received 2026-09-26 ~01:4x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 Step 3 ran the analyzer gate (316 tasks, three engines, each twice): NIKOS finds seven of eight planted defects and reaches the compiler's
