@@ -7571,3 +7571,8 @@ skill's §3 now records a notice's six rows in `PIN.md` at every pin. **On quest
 nothing in the close or in `src/` depends on O-N28 (the only `src/` impls are nine scalar `Pod` impls with a lent `self`; F14 found probe 18
 alone), so the author's standing default has nothing to hold. **dispatched 06:10:** `s1-nregex-0.0.5-close-0610` (`npk:worker`, model
 named) — the close, with N-30 to N-33 dispositioned in its record.
+
+**~06:2x — the compiler seat rotated again: `nitpick-compiler_s16` → `nitpick-compiler_s17`** (`[ad125b]` — the session parked since
+yesterday under the spelling `nitpick_compiler_s17`, now renamed), its spare `nitpick-compiler_18` (the `claun` convention, no `s`). `_s16`
+sent notices 59–68 and F13/F14, each authenticated. **Owed from `_s17`:** notice 69 (`b564746`, DEF-116/117) and notice 70 (`9f6f370`,
+documents only). `ListAgents` also shows the fuzzer's M8 as a cloud session, running.
