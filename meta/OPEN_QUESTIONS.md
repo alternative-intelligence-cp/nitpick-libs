@@ -261,7 +261,7 @@ file existed — the check works.
   `results/9126350/BISECT-3h.md`): twelve import cells whose own `struct:Box` shares its name
   with an imported table's row type gained `NITPICK-TYPE-007` exactly at 1.6.0 step 3h —
   DEF-105's fix resolving `TBL[i]` to the table's `Box` — and the message names both `Box`.
-  **Reproduced by the orchestrator 2026-09-26 ~06:3x at the pin `c970483`:** `use
+  **Reproduced by the orchestrator 2026-09-26 06:28 at the pin `c970483`:** `use
   "./rows.npk".ROWS;` beside the importer's own `struct:Row = { int64:x; int64:y; };`, then
   `Row:r = ROWS[1i64];`, is refused `NITPICK-TYPE-007` with *"expected `Row`, found `Row`"*;
   the control, the same program with the local struct renamed `Cell`, reads *"expected
@@ -320,7 +320,7 @@ file existed — the check works.
   entry is to be struck in favour of this one** at its re-pin subcycle.
 
 - ~~**O-N26 — A FUNCTION THAT FALLS OFF ITS END RETURNS A ZERO VALUE INSTEAD OF BEING
-  REFUSED — AND A FALLIBLE ONE RETURNS A SILENT SUCCESS CARRYING ZERO.**~~ — **DISCHARGED — refused `NITPICK-FLOW-001` at the pin `c970483`** (DEF-108, 1.6.0 step 5c, D-323); reproduced by the orchestrator 2026-09-26 ~06:4x at both pins: an empty `int64` body returns 0 at `c3bdae2` (exit 10, both legs), and a fallible function whose other path falls off returns a SUCCESS (exit 12, both legs) — both refused `FLOW-001` at `c970483`; the control, the same function failing explicitly on that path, compiles and takes the error path (0/0) at both pins. Kept with O-N24's cases. Seen by the
+  REFUSED — AND A FALLIBLE ONE RETURNS A SILENT SUCCESS CARRYING ZERO.**~~ — **DISCHARGED — refused `NITPICK-FLOW-001` at the pin `c970483`** (DEF-108, 1.6.0 step 5c, D-323); reproduced by the orchestrator 2026-09-26 06:21 at both pins: an empty `int64` body returns 0 at `c3bdae2` (exit 10, both legs), and a fallible function whose other path falls off returns a SUCCESS (exit 12, both legs) — both refused `FLOW-001` at `c970483`; the control, the same function failing explicitly on that path, compiles and takes the error path (0/0) at both pins. Kept with O-N24's cases. Seen by the
   author in `nitpick-fuzz`'s cloud session's reasoning on 2026-09-26 (the session had
   logged it as an observation, since it is not memory-unsafe) and **reported by him
   directly to the compiler seat**; **measured by the orchestrator at `c3bdae2`, both
@@ -365,7 +365,7 @@ file existed — the check works.
   copying, as `nitpick-regex`'s twin always did).
 
 - ~~**O-N24 — A WRITE INTO A `fixed` BINDING'S SUB-PLACE — AN ELEMENT, A FIELD —
-  COMPILES AND STORES INTO THE LLVM `constant` GLOBAL.**~~ — **DISCHARGED — refused `NITPICK-TYPE-086` at the pin `c970483`** (DEF-106, 1.6.0 step 4b); reproduced by the orchestrator 2026-09-26 ~06:4x by two new cases and a control, run by the same runner at both pins: a write into an owning element of a `fixed string[2]` exits 95/95 at `c3bdae2`; a write into a plain element of a `fixed int64[2]` exits 107 at -O0 and at -O2 **the write is dropped** — the read after it sees the old value, exit 11; both refused `TYPE-086` at `c970483`; the control, the same write into a local array, runs 0/0 at both. The cases are kept in the workbench's `.internal/`, for `nitpick-fuzz`'s `known/` once its M8 branch is merged. Found by `nitpick-fuzz`'s
+  COMPILES AND STORES INTO THE LLVM `constant` GLOBAL.**~~ — **DISCHARGED — refused `NITPICK-TYPE-086` at the pin `c970483`** (DEF-106, 1.6.0 step 4b); reproduced by the orchestrator 2026-09-26 06:21 by two new cases and a control, run by the same runner at both pins: a write into an owning element of a `fixed string[2]` exits 95/95 at `c3bdae2`; a write into a plain element of a `fixed int64[2]` exits 107 at -O0 and at -O2 **the write is dropped** — the read after it sees the old value, exit 11; both refused `TYPE-086` at `c970483`; the control, the same write into a local array, runs 0/0 at both. The cases are kept in the workbench's `.internal/`, for `nitpick-fuzz`'s `known/` once its M8 branch is merged. Found by `nitpick-fuzz`'s
   grid, 2026-09-25 (cells `c0039`, `c0040`, `c0185`, … at `c3bdae2` and at `6fb85d3`),
   and **reproduced and widened by the orchestrator before it was sent, both legs.**
   The whole binding's assignment is refused (`ASSIGN-002`), its address
@@ -388,7 +388,7 @@ file existed — the check works.
 
 - ~~**O-N23 — AN IMPORTED `fixed` BINDING'S DECLARED TYPE RESOLVES IN THE IMPORTER'S
   SCOPE, NOT ITS HOME SCOPE — SO A SAME-NAMED STRUCT IN THE IMPORTER SILENTLY
-  CHANGES THE TABLE'S LAYOUT, AND A WIDER ONE READS PAST ITS END.**~~ — **DISCHARGED at the pin `c970483`** (DEF-105, 1.6.0 step 3h — an imported `fixed` binding's type resolves in its home scope); re-run by the orchestrator 2026-09-26 ~06:4x at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def105_import_scope/`: `case1_table_only` refused `TYPE-001` at `c3bdae2`, compiles and runs 0/0 at `c970483`; `case2`, `case3` and `case6` read the wrong field (10/10) at `c3bdae2` and run 0/0 at `c970483`; `case4` and `case7` 0/0 at both; `case5` refused `RESOLVE-001` at both, as it should be. `nitpick-time` 0.1.4c commits the reproduction as `fixed_import_scope/`. Raised by
+  CHANGES THE TABLE'S LAYOUT, AND A WIDER ONE READS PAST ITS END.**~~ — **DISCHARGED at the pin `c970483`** (DEF-105, 1.6.0 step 3h — an imported `fixed` binding's type resolves in its home scope); re-run by the orchestrator 2026-09-26 06:21 at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def105_import_scope/`: `case1_table_only` refused `TYPE-001` at `c3bdae2`, compiles and runs 0/0 at `c970483`; `case2`, `case3` and `case6` read the wrong field (10/10) at `c3bdae2` and run 0/0 at `c970483`; `case4` and `case7` 0/0 at both; `case5` refused `RESOLVE-001` at both, as it should be. `nitpick-time` 0.1.4c commits the reproduction as `fixed_import_scope/`. Raised by
   `nitpick-time`'s 0.1.4 planner (`0.1.4.md` §3, `importscope.py`), 2026-09-25, at
   pin `c3bdae2`; **reproduced by the orchestrator before it was sent, both legs.**
   With `pub struct:Row = { int64:x; int64:y; };` and `pub fixed Row[2]:ROWS` in
@@ -420,7 +420,7 @@ file existed — the check works.
 
 - ~~**O-N22 — `NITPICK-TYPE-047` IS NOT ASKED OF A LENT `T` INSIDE A GENERIC BODY,
   SO A GENERIC FUNCTION HANDS BACK ITS LENT PARAMETER AS A SECOND OWNER — AND 3g'S
-  LOAN RULE ASKS THE SAME GATE.**~~ — **DISCHARGED — refused `NITPICK-TYPE-047` at the pin `c970483`** (DEF-104, 1.6.0 step 3g, through `type_owns_for_move`); re-run by the orchestrator 2026-09-26 ~06:4x at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def104_generic_lent/`: `gen_id` 95/95 and `gen_id_read` 70/70 at `c3bdae2`, both refused `TYPE-047` at `c970483`; `ctl_concrete` refused `TYPE-047` at both. **The gate reaches `T` PLACES as well** — `nitpick-regex`'s unchanged tree RED 78/223, `nitpick-time`'s `probe13d` refused — as this entry's correction says. Raised by `nitpick-regex`'s fifth cycle-0.0 audit
+  LOAN RULE ASKS THE SAME GATE.**~~ — **DISCHARGED — refused `NITPICK-TYPE-047` at the pin `c970483`** (DEF-104, 1.6.0 step 3g, through `type_owns_for_move`); re-run by the orchestrator 2026-09-26 06:21 at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def104_generic_lent/`: `gen_id` 95/95 and `gen_id_read` 70/70 at `c3bdae2`, both refused `TYPE-047` at `c970483`; `ctl_concrete` refused `TYPE-047` at both. **The gate reaches `T` PLACES as well** — `nitpick-regex`'s unchanged tree RED 78/223, `nitpick-time`'s `probe13d` refused — as this entry's correction says. Raised by `nitpick-regex`'s fifth cycle-0.0 audit
   (N-25), 2026-09-25, at pin `c3bdae2`; **reproduced by the orchestrator before it
   was sent, both legs.** `func:id<T> = T(T:x) never fails { pass x; };` at
   `string`: `npkc` 0, and **95** at -O0 and under `opt -O2` (both `a` and its
@@ -462,7 +462,7 @@ file existed — the check works.
 
 - ~~**O-N21 — ASSIGNING TO AN OWNING FIELD OF A LENT (ORDINARY BY-VALUE) PARAMETER
   FREES THE CALLER'S VALUE, AND `@` OF A LENT PARAMETER LETS A CALLEE FREE OR GROW
-  THE CALLER'S CONTAINER.**~~ — **DISCHARGED — refused `NITPICK-TYPE-085` at the pin `c970483`** (DEF-102, 1.6.0 step 3g); re-run by the orchestrator 2026-09-26 ~06:4x at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def102_lent_param/`: `lent_field` 70/70 and `lent_field_nodread` 95/95 at `c3bdae2`, both refused `TYPE-085` at `c970483`; `ctl_whole_lent_string` 21/21, then refused `TYPE-085` (the rule covers a whole-binding assignment); the controls `ctl_local` 22/22 and `ctl_move_param` 0/0 at both. `nitpick-regex` 0.0.4e's verified adoption turned its loan pins into refusals. Raised by `nitpick-regex`'s 0.0.4d planner
+  THE CALLER'S CONTAINER.**~~ — **DISCHARGED — refused `NITPICK-TYPE-085` at the pin `c970483`** (DEF-102, 1.6.0 step 3g); re-run by the orchestrator 2026-09-26 06:21 at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def102_lent_param/`: `lent_field` 70/70 and `lent_field_nodread` 95/95 at `c3bdae2`, both refused `TYPE-085` at `c970483`; `ctl_whole_lent_string` 21/21, then refused `TYPE-085` (the rule covers a whole-binding assignment); the controls `ctl_local` 22/22 and `ctl_move_param` 0/0 at both. `nitpick-regex` 0.0.4e's verified adoption turned its loan pins into refusals. Raised by `nitpick-regex`'s 0.0.4d planner
   (`0.0.4d.md` §1.4, §6.1), 2026-09-25, at pin `c3bdae2`; **the field face
   reproduced by the orchestrator before it was sent, both legs, with controls.**
   No `wild`, no pointer cast, no library code: `func:overwrite = NIL(Box:b)`
@@ -519,7 +519,7 @@ file existed — the check works.
 
 - ~~**O-N20 — A MOVE OUT OF `fixed` STORAGE HOLDING AN OWNING VALUE COMPILES,
   AND THE PROGRAM FAULTS: THE MOVE STORES ITS VACANCY INTO AN LLVM `constant`
-  GLOBAL.**~~ — **DISCHARGED — refused `NITPICK-TYPE-084` at the pin `c970483`** (the compiler's DEF-99, 1.6.0 step 3f); re-run by the orchestrator 2026-09-26 ~06:4x at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def99_fixed_move/`: at `c3bdae2` case1 107/95, case2 107/95, case3 95/95; at `c970483` all three refused `TYPE-084`; the control `case4_clone_control` 0/0 at both. `nitpick-time`'s 0.1.4c planner measured the same on its own `fixed_move_out/`, and Z-4's shape across an import refused too. Raised by `nitpick-time`'s 0.1.3 planner (`0.1.3b.md` §1, §3, §11),
+  GLOBAL.**~~ — **DISCHARGED — refused `NITPICK-TYPE-084` at the pin `c970483`** (the compiler's DEF-99, 1.6.0 step 3f); re-run by the orchestrator 2026-09-26 06:21 at both pins, by `nitpick-fuzz`'s `gen/run_known.py` (the recipe: `npkc`, then `llc` at -O0 and through `opt -O2`, `ld.lld -static` with the pin's `npkrt.o`) over `known/def99_fixed_move/`: at `c3bdae2` case1 107/95, case2 107/95, case3 95/95; at `c970483` all three refused `TYPE-084`; the control `case4_clone_control` 0/0 at both. `nitpick-time`'s 0.1.4c planner measured the same on its own `fixed_move_out/`, and Z-4's shape across an import refused too. Raised by `nitpick-time`'s 0.1.3 planner (`0.1.3b.md` §1, §3, §11),
   2026-09-25, at pin `c3bdae2`; **reproduced by the orchestrator before it was
   sent, end to end, on both legs.** `move(NAMES[1i64])` out of a
   `fixed string[2]` is **accepted** (`npkc` 0), and the IR stores

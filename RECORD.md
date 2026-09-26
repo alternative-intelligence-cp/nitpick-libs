@@ -7666,3 +7666,10 @@ for it so M9's branch stays a fast-forward. The O-N29 reproduction is kept besid
 **The author's call: hand this seat off at the next clean point** — to `nitpick-libs_s7` (`[ccf6b7]`), whose successor is
 `nitpick-libs_s8` (`[f95e71]`); the one after that is `nitpick-libs_9` (no `s`, `claun`'s form). The clean point is both running
 workers reported, verified and recorded, with no subagent in flight; the next dispatches are left to the successor.
+
+**06:38 (read from the clock) — a correction of this seat's own times, from the session's log and the commits.** Minutes after
+writing the rule to read the clock, this seat wrote "~06:4x" again. The true times: **the registry re-runs and reproductions
+(O-N20 to O-N24, O-N26) ran from 06:21, committed 06:24** — the entry above headed "~06:4x — registry" means 06:21–06:24; **the
+message to the M9 cloud session went at 06:27**, not "06:3x" as the M8 entry says; **O-N29's reproduction ran at 06:28**; and **the
+entry headed "~06:4x — two more corrections" was written at 06:35.** The registry and the board now carry the logged times; this
+entry corrects the record, which stays append-only.
