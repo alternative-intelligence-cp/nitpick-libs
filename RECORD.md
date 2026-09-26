@@ -7553,3 +7553,21 @@ our O-N27 — with the per-function summaries; S-108: a prelude `Copy` marker an
 its pin moved; tools only — all six rows unchanged, equal to the baseline for 68, checked by script with a control; zero files under
 `src/`, `runtime/`, `bootstrap/`. **Notices counted to 68.** **S-107 and S-108:** the compiler seat records the relayed approval but
 ratifies decisions only in its own session — its report asks the author directly; nothing is owed from here.
+
+### `nitpick-regex`'s sixth W-22 audit: ACCEPT — cycle 0.0 closes, after six passes — 2026-09-26 06:10
+
+**audit filed**, `meta/audits/nitpick-regex-0.0-2026-09-26-sixth.md` (`s1-nregex-0.0-audit6-0530`, 39 min, 422 k tokens, verbatim, 326
+lines, gated staged): **ACCEPT.** Narrow by design — `40074b6..37695a7` measured item by item against the fifth audit's 23-item post-re-pin
+checklist, every item re-measured at `c970483` in fresh clones with asserted substitutions, none taken from the record: **all 23 MET** —
+the pin and CI (CI's printed `npkc.ll` equal to notice 66's row), `rx120`, the bills and sizes unmoved, the loan refusals at their measured
+positions and each shown to be the pin's at `c3bdae2`, DEF-98's probe 15 and the source reader's close, **BL-9's plants each red, each
+defence holding alone, the pair failing only when both are removed**, N-24's plants, N-25's pin, the run (218/218; CI green). The
+adoption's three corrections to the checklist judged right, one overstating a word ("only" — a `#wild_slice` spelling also compiles, and
+`items` being `hidden` keeps it out of consumers' hands). **Five non-blocking findings:** N-30 (RX-168's `Pod`-for-a-struct half is pinned
+by nothing), N-31 ("step 5" for step 6 at ten sites), N-32 (the record's `-M40%` claim), N-33 (a dated instruction), **N-34 — the
+workbench's own: the pin's `npkc.ll` row, which CI's emission is compared against, was recorded in no tracked file; the auditor verified it
+from the compiler seat's transcript. FIXED this commit** — the six rows at `c970483` on the board and in `PIN.md`, and the orchestrate
+skill's §3 now records a notice's six rows in `PIN.md` at every pin. **On question 11 the auditor concurs with (b) on a stronger ground:**
+nothing in the close or in `src/` depends on O-N28 (the only `src/` impls are nine scalar `Pod` impls with a lent `self`; F14 found probe 18
+alone), so the author's standing default has nothing to hold. **dispatched 06:10:** `s1-nregex-0.0.5-close-0610` (`npk:worker`, model
+named) — the close, with N-30 to N-33 dispositioned in its record.
