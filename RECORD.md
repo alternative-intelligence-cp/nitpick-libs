@@ -7443,3 +7443,8 @@ the same rows. **Notices counted to 62.**
 **notice 63, ~02:0x — `f87d2df`, 1.6.0 step 4b: DEF-106 (our O-N24) refused as `TYPE-086`.** Authenticated by the ladder against the baseline
 for 63 (61's rows, unchanged through 62), with a control; `996784e` an ancestor; only checker files in `src/`; the test present. Our exposure
 none. The baseline for 64 is recorded. **Notices counted to 63.**
+
+**notice 64, ~02:1x — `4e467bc`, 1.6.0 step 5: 1.6.0 COMPLETE.** Documents and the plan only; all six rows unchanged, equal to the baseline for
+64 (checked by script with a control); zero files under `src/`, `runtime/`, `bootstrap/`. **Forewarned:** 1.6.1 step 1 changes every
+emission's text (the `target datalayout` line) with a snapshot refresh, a re-pin notice ahead of it — our re-pin at 66 lands before that
+change, so the text change is the NEXT re-pin's. **Notices counted to 64.**

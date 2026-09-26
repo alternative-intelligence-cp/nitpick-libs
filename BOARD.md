@@ -900,6 +900,15 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `4e467bc` LANDED — **1.6.0 STEP 5: 1.6.0 IS COMPLETE. DOCUMENTS AND THE PLAN ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED. ⚠ FOREWARNED: 1.6.1 STEP 1 WILL CHANGE EVERY EMISSION'S TEXT.** Notice 64, received 2026-09-26 ~02:1x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+D-322: NIKOS is the analyzer leg's engine; Clam decided out with its scorecard kept; E-8 settled — **the emission will state its own
+`target datalayout` line at 1.6.1 step 1, changing every emission's TEXT (the binary does not move), with a snapshot refresh — a re-pin
+notice will precede it.** `1.6.1.md` planned; S-103…S-105 owed to the author. **✅ VERIFIED HERE:** all six rows quoted unchanged, equal to
+the baseline for 64, by script with a control; `f87d2df` is an ancestor; zero files under `src/`, `runtime/`, `bootstrap/`. **The baseline
+for 65 is the same rows, at `4e467bc`.** **For us: our re-pin comes at 66, BEFORE 1.6.1 step 1** — so the emission-text change is the
+next re-pin's, and every library transcript that quotes an emission line will move then, not now.
+
 ### ✅ `f87d2df` LANDED — **1.6.0 STEP 4b: DEF-106 (our O-N24, the fuzzer's first finding) — A WRITE INTO ANY PART OF A `fixed` BINDING IS REFUSED, `NITPICK-TYPE-086`, AS F11 ANNOUNCED.** Notice 63, received 2026-09-26 ~02:0x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 **✅ VERIFIED HERE BY THE LADDER, against the baseline for 63 (61's rows, unchanged through 62), by script with a control:** the three
