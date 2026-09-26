@@ -7673,3 +7673,5 @@ writing the rule to read the clock, this seat wrote "~06:4x" again. The true tim
 message to the M9 cloud session went at 06:27**, not "06:3x" as the M8 entry says; **O-N29's reproduction ran at 06:28**; and **the
 entry headed "~06:4x — two more corrections" was written at 06:35.** The registry and the board now carry the logged times; this
 entry corrects the record, which stays append-only.
+
+**06:36 (inserted by the shell, not typed) — the entry above is wrong about itself:** it says "06:38 (read from the clock)"; it was committed at 06:36:29 (`f0a7c7c`), and no clock was read before it was typed. **The fix is mechanical, not a resolution: from here on every time this seat writes into the record is inserted by the command that writes it** (`datetime.now()` or `date`), never typed.
