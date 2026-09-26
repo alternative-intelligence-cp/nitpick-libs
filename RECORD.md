@@ -7124,3 +7124,31 @@ ladder against notice 57's baseline, by script with a control; `src/` changed on
 recorded. O-N20 stays open in the registry until a pin of ours carries it — the strike comes with the re-pin, when `nitpick-time`'s three
 verdicts move. **Notices counted to 58.** *(The board write ran before a registry assertion failed on a mid-line match; the script
 stopped, nothing was committed, and the registry edit was redone — the same commit carries both.)*
+
+### `nitpick-regex`'s fifth W-22 audit: DO NOT ACCEPT — the harness's one reader is not the compiler's; a seventh compiler defect today (O-N22) — 2026-09-25 21:22
+
+**audit filed**, `meta/audits/nitpick-regex-0.0-2026-09-25-fifth.md` (`s1-nregex-0.0-audit5-2035`, 45 min, 525 k tokens, verbatim,
+522 lines, gated staged): **DO NOT ACCEPT.** Scoped `4420c45..40074b6`. **BL-9:** `harness/lexical.py` — RX-157's "one reading of
+source", the fix for the fourth pass's BL-7 — differs from the compiler's lexer in two measured ways: **a lone carriage return**, which
+Python's default text mode turns into a line end while the compiler ends a line comment only at byte 10, takes a red unit out of a GREEN
+run (209/209, exit 0) and hides an owning field from the S-23a check (210/210) — defeating both of RX-157's defences at once, because the
+`main` exception is computed through the same reader; and **an escaped import path** (`"..\x2f..\x2fsrc/…"`), which the compiler
+decodes and the reader does not, hides a syscall from B-2 (213/213 GREEN where the plain path is red naming `npk_sys6`) and a forbidden
+`core`→`engine` import from `check_layering`. Nil blast radius today; it blocks because the tree states the property unqualified and
+a blocking fix reproduced its own finding's class. **Non-blocking:** N-24 (the S-23a check clears a macro splice named after a POD type;
+refuses a `fixed` field and a parenthesised discriminant), **N-25 (a compiler defect, below)**, **N-26 (a sixth loan shape: a `for`
+binding over an array of containers frees through `@x` — 3g's source treats the binding as a parameter, so it should be refused
+there)**, N-27 (RX-159's "every run" half unguarded), N-28 (self-check case 18 tests neither block-string close), N-29 (stale lines).
+**0.0.4d is sound:** every copy path refused or a loan (bar N-25), bills, sizes and symbols identical, WildLeak still 96. **The audit agrees
+the close should wait for the re-pin**, and gives a 23-item POST-RE-PIN CHECKLIST so the accepting check can be narrow.
+
+**compiler-defect — O-N22, the seventh from the library side today** (N-25): `TYPE-047` is not asked of a lent `T` in a generic body,
+so `func:id<T> = T(T:x) { pass x; }` duplicates ownership. **Reproduced here at `c3bdae2`, both legs:** 95 (a double free), 70 passing
+the result out; control — the same function for `string` — refused `TYPE-047`. **Read at `2dde296`: 3g's `place_lent_owning` asks
+the same `type_drops` gate**, so `TYPE-085` would not reach a lent `T` in a generic body either — sent to `nitpick-compiler_s15`
+~21:2x, **while 3g was still in its harness**, with the fix the audit names (ask `type_owns_for_move`, as D-264 did for `TYPE-046`).
+Our `src/` exposure: none. Registered as O-N22.
+
+**dispatched 21:22:** `s1-nregex-0.0.5-2122` (`npk:worker`, the close subcycle's fifth triage, `AUDIT:` the fifth pass) — BL-9 fixed
+and every N dispositioned at `c3bdae2`; the post-re-pin items wait for the re-pin subcycle. **question 10 unanswered; the close waits for
+the pin carrying 3g**, as recommended and as the audit concurs.

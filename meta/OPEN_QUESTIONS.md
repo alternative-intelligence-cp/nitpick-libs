@@ -255,6 +255,32 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N22 — `NITPICK-TYPE-047` IS NOT ASKED OF A LENT `T` INSIDE A GENERIC BODY,
+  SO A GENERIC FUNCTION HANDS BACK ITS LENT PARAMETER AS A SECOND OWNER — AND 3g'S
+  LOAN RULE ASKS THE SAME GATE.** Raised by `nitpick-regex`'s fifth cycle-0.0 audit
+  (N-25), 2026-09-25, at pin `c3bdae2`; **reproduced by the orchestrator before it
+  was sent, both legs.** `func:id<T> = T(T:x) never fails { pass x; };` at
+  `string`: `npkc` 0, and **95** at -O0 and under `opt -O2` (both `a` and its
+  "identity" are dropped — a double free); passing the result out and reading it,
+  **70**, the free poison. **Control:** the same function written for `string`,
+  `func:idstr = string(string:x)`, is refused `TYPE-047` — *"this parameter was lent,
+  not given"*. At `Vec<int64>` (the audit's measurement) the identity compiles and a
+  read after `vec_free(@a)` returns the poison — **a generic identity defeats
+  regex's move-only `Vec`.** **Mechanism, read here:** `refuse_move_of_borrowed`
+  returns early unless `type_drops(ty)`, false for an unsubstituted `T` — the
+  TYPE-047 sibling of what D-264 fixed for TYPE-046 (DEF-23, via
+  `type_owns_for_move`); and **at `2dde296` (3g), `place_lent_owning` ends in the
+  same `type_drops` gate**, so by that reading 3g's `TYPE-085` does not reach a lent
+  `T` in a generic body either (read, not built). **Requested:** ask
+  `type_owns_for_move` in both gates.
+
+  **Impact (W-27). Our exposure in `src/` is none** — no generic of ours takes a lent
+  bare `T` (`vec_push`, `vec_set`, `vec_insert` and `drop_element` take `move T`).
+  Regex pins the shape as a unit, PINNED, NOT ENDORSED. **Sent to
+  `nitpick-compiler_s15` 2026-09-25 ~21:2x, while 3g was still in its harness.**
+  Reproduction: the audit's N-25
+  (`meta/audits/nitpick-regex-0.0-2026-09-25-fifth.md`), rebuilt inline here.
+
 - **O-N21 — ASSIGNING TO AN OWNING FIELD OF A LENT (ORDINARY BY-VALUE) PARAMETER
   FREES THE CALLER'S VALUE, AND `@` OF A LENT PARAMETER LETS A CALLEE FREE OR GROW
   THE CALLER'S CONTAINER.** Raised by `nitpick-regex`'s 0.0.4d planner
