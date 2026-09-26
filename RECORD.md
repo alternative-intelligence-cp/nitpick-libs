@@ -7242,3 +7242,7 @@ the documentation (a guide agent, 2026-09-25):** Ubuntu 24.04, 4 vCPUs, 16 GB, 3
 reachable; work pushed to a branch, not `main`; a session keeps running with the browser closed; `claude --teleport` pulls a cloud session
 and its branch into a local terminal; the documentation describes cloud usage as drawing on the same plan usage as the CLI and does not
 describe a separate cloud credit, so the credit's own terms govern it.
+
+**~22:55 — the cloud run started.** The author launched it from his terminal (`claude --cloud`, in `nitpick-fuzz/` at `94ae240`), and it is
+visible in both the browser and the desktop app. It stops itself at M4; he checks the cost there. Its session id is kept locally in
+`.internal/cloud_sessions.md` — this board and record are public — and no cost figure will be written here.
