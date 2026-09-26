@@ -7281,3 +7281,8 @@ stray fetch touched nothing it reads. **The landing order:** 3g 59, 3h 60, step 
 one carrying 3h** — nothing of ours waits on 4b. **`nitpick-fuzz`'s `main` fast-forwarded to the session's branch (`1bcd82d`, M0–M4)**
 after review — only `PROGRESS.md` lost lines (its placeholders); the plan, the rules and the known list untouched; nothing large; no home
 path; `check_refs` clean — so a fresh session, in the cloud or here, starts from the checkpoint.
+
+**~23:5x — F11, the advance notice for 63 (DEF-106):** `NITPICK-TYPE-086` refuses a write into any part of a `fixed` binding, a `fixed`
+local's element, and anything under a `fixed` field; measured there on our four shapes and a control, and over 127 files of the
+compiler's tree. **Our exposure re-swept against the full rule** — the first sweep had measured module and local bindings only: 63
+bindings, 0 sub-place writes; 0 `fixed` fields declared anywhere — each sweep controlled by a planted write. Told to the compiler seat.
