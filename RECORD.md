@@ -7366,3 +7366,11 @@ poison) — are M7's candidates. **`nitpick-fuzz`'s `main` fast-forwarded to `40
 **It also saw the implicit zero result and logged it outside its brief** — the author's catch, now DEF-108. Cost details are kept locally,
 off this public record. **Eleven defect reports from the library side in 24 hours, ten confirmed and fixed or scheduled, one (O-N26) now
 being fixed.**
+
+**~01:0x — F-001 and F-002 measured at 3g by the compiler seat: both refused** (`TYPE-085` at the `for` binding's write, `TYPE-047` at the
+generic move) — faces of DEF-102 and DEF-104, no new numbers. **One open thread:** the F-002 control — a `move T:x` parameter called with
+`move(s)`, 21 on both legs at both kept compilers — exits **2** at 3g's tree, a code no path in the program produces. Sent back asking
+which step produced it: if the program runs and exits 2, it is a regression in exactly the spelling 3g prescribes as the loan's remedy.
+3g itself is being amended — its first harness went red on four of the compiler's own tests that passed a lent `T` out, each a real
+instance of the rule — so the shas quoted for 59 onward will change. *Correction to the entry above:* DEF-107 is not scheduled; it waits
+for the author's S-106.

@@ -373,8 +373,10 @@ file existed — the check works.
 
   **A further face, `nitpick-fuzz`'s F-002 (2026-09-26), reproduced here at `c3bdae2` on both legs:**
   `T:y = move(x);` of a lent `T` in a generic body frees the caller's value (70 / 95); the same written
-  for `string` is refused `TYPE-047`. 3g's switch of `refuse_move_of_borrowed` should refuse it;
-  **sent to the compiler seat to measure at `6f6f96b`.**
+  for `string` is refused `TYPE-047`. **Measured at 3g's tree by the compiler seat: refused `TYPE-047` at the
+  move — a face of DEF-104, no new number. ⚠ But the finding's CONTROL — the same body with a `move T:x`
+  parameter, called with `move(s)`, 21 at both kept compilers — EXITS 2 there, a code the program cannot
+  produce: asked to trace the step before 3g lands, since that control is the spelling 3g prescribes.**
 
   **Impact (W-27). Our exposure in `src/` is none** — no generic of ours takes a lent
   bare `T` (`vec_push`, `vec_set`, `vec_insert` and `drop_element` take `move T`).
@@ -436,7 +438,8 @@ file existed — the check works.
   a write through a `for` binding over an array of owning values — `for (Box:x in arr) { x.s = …; }`,
   or `@x` handed to a callee that frees or grows — frees what the element still owns (70 on a read,
   95 on the drop); the same writes on `arr[i]` run correctly. 3g's rule should refuse it (a `for`
-  binding is a `DeclParamDecl`); **sent to the compiler seat to measure at `6f6f96b`.**
+  binding is a `DeclParamDecl`); **sent to the compiler seat and MEASURED THERE at 3g's tree: every F-001 program
+  refuses `TYPE-085` at the write, the controls run — a face of DEF-102, no new number.**
 
   Reproduction: `nitpick-regex/meta/roadmap/0.0/0.0.4d.md` §1.4 and §6.1 (at
   `fdc190f`); **its committed form is `tests/probe/probe17_lent_field_drop.npk`
