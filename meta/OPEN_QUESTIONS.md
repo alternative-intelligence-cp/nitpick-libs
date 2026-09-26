@@ -262,7 +262,7 @@ file existed — the check works.
   cloud's committed `VERDICTS.txt`; at `9f6f370` identical to its `VERDICTS-9f6f370.txt` and to its HUNT2
   lines; **at our pin `c970483` every verdict the same as at `9f6f370`** — so all seven are live at the
   pin. **Sent to `nitpick-compiler_18` 2026-09-26 09:01.**
-  **Registered there as DEF-127 … DEF-133 (2026-09-26 ~09:1x, by `_18`'s message), all in 1.6.1d:** step 1
+  **Registered there as DEF-127 … DEF-133 (2026-09-26 09:16, `_18`'s message as delivered here), all in 1.6.1d:** step 1
   DEF-127 with the memory faults; step 2 the loop counts DEF-128, DEF-129, DEF-130 (DEF-128 needs the
   author's S-110 — a range value keeps its spelling, `{ T, T, bool }`, no `+1`); step 4 DEF-131 (S-111:
   `<=>` on floats refused), DEF-132, DEF-133 (S-112: a certain constant division by zero or MIN/−1
