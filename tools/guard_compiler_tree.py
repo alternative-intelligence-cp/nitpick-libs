@@ -217,14 +217,29 @@ def claimed(name: str, lines) -> bool:
     return any(l.startswith("|") and tag in l and "CLAIMED" in l for l in lines)
 
 
-def writer_allows(session_id: str, lines) -> bool:
+def writer_value(lines):
+    """The lock's value: the FIRST backticked token on the `Workbench writer:`
+    line, or its first word when it has none. Only that token is the lock; the
+    prose after it is history. Measured 2026-09-26: the live line said `none`
+    seven times and carried two session ids in its prose, and the old test --
+    `none` anywhere, or the id anywhere -- let every session through."""
     for l in lines:
         if l.startswith("**Workbench writer:**"):
-            val = l[len("**Workbench writer:**"):]
-            if re.search(r"\bnone\b", val):
-                return True
-            return bool(session_id) and session_id in val
-    return True                                    # no writer line: not enforced
+            rest = l[len("**Workbench writer:**"):].strip()
+            m = re.match(r"`([^`]*)`", rest)
+            if m:
+                return m.group(1).strip()
+            return rest.split()[0] if rest else ""
+    return None
+
+
+def writer_allows(session_id: str, lines) -> bool:
+    val = writer_value(lines)
+    if val is None:
+        return True                                # no writer line: not enforced
+    if val == "none":
+        return True
+    return bool(session_id) and session_id == val
 
 
 def repo_of(path: str):

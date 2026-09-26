@@ -62,6 +62,14 @@ def main():
         env = dict(os.environ, NPK_COMPILER_DIR=C, NPK_LIBS_DIR=L, NPK_APPS_DIR=A)
         DEFAULT = board("none", {"nitpick-tui", "nitpick-regex"})
         NAMED = board("`sess-A` since today", {"nitpick-tui", "nitpick-regex"})
+        # The lock is the line's FIRST token; the prose after it is history, and the
+        # live line (2026-09-26) mentioned `none` seven times and two session ids.
+        PROSE_NONE = board("`sess-A`, taken today — this line once read `none`, and none of that is the lock",
+                           {"nitpick-tui", "nitpick-regex"})
+        PROSE_ID = board("`sess-A` — previously `sess-B`, released", {"nitpick-tui", "nitpick-regex"})
+        TICKED_NONE = board("`none` — released by `sess-A` today", {"nitpick-tui", "nitpick-regex"})
+        BARE_ID = board("sess-A since today", {"nitpick-tui", "nitpick-regex"})
+        LONGER_ID = board("`sess-AB` since today", {"nitpick-tui", "nitpick-regex"})
 
         # (label, board text, session, tool, project, cwd, payload, should_block)
         B, S = DEFAULT, "sess-A"
@@ -167,6 +175,18 @@ def main():
             ("writer", NAMED, "sess-B", "Bash", L, L, "echo x > nitpick-regex/src/a.npk", False),
             ("writer", NAMED, "sess-B", "Bash", L, L, "mkdir -p .internal && touch .internal/x", True),
             ("writer", NAMED, "sess-B", "Bash", L, L, "sed -i 's/a/b/' nitpick-regex/README.md", False),
+            # --- only the first token is the lock ------------------------------
+            ("writer-prose", PROSE_NONE, "sess-B", "Bash", L, L, "echo x > PLAYBOOK.md", True),
+            ("writer-prose", PROSE_NONE, "sess-A", "Bash", L, L, "echo x > PLAYBOOK.md", False),
+            ("writer-prose", PROSE_ID, "sess-B", "Write", L, L, "RECORD.md", True),
+            ("writer-prose", PROSE_ID, "sess-A", "Write", L, L, "RECORD.md", False),
+            ("writer-prose", PROSE_ID, "sess-B", "Bash", L, L, "echo x > BOARD.md", False),
+            ("writer-none", TICKED_NONE, "sess-B", "Bash", L, L, "echo x > PLAYBOOK.md", False),
+            ("writer-none", TICKED_NONE, "sess-A", "Write", L, L, "RECORD.md", False),
+            ("writer-bare", BARE_ID, "sess-A", "Bash", L, L, "echo x > PLAYBOOK.md", False),
+            ("writer-bare", BARE_ID, "sess-B", "Bash", L, L, "echo x > PLAYBOOK.md", True),
+            ("writer-exact", LONGER_ID, "sess-A", "Bash", L, L, "echo x > PLAYBOOK.md", True),
+            ("writer-exact", LONGER_ID, "sess-AB", "Bash", L, L, "echo x > PLAYBOOK.md", False),
         ]
         fails, seen_kinds = [], {}
         for label, btext, session, tool, project, cwd, payload, should in CASES:

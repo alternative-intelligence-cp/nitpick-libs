@@ -45,7 +45,10 @@ Skipped in `tick` mode.
 1. Mark the session, for the compaction hook and for the board:
    `mkdir -p .internal && echo "${CLAUDE_SESSION_ID}" > .internal/orchestrator.session`.
    Put the same id on the board's `Workbench writer:` line (W-16) — one
-   commit, `board: writer <id>`. **If the line names another session:**
+   commit, `board: writer <id>`. **The id is the line's FIRST backticked token, and only that
+   token is the lock** — the guard reads nothing else, so the prose after it may
+   mention `none` or other sessions' ids freely (until 2026-09-26 the guard read
+   the whole line, and seven prose mentions of `none` unlocked it for every session). **If the line names another session:**
    `ListAgents` lists this machine's peer sessions by name and an idle/busy
    state — not by id. **Since 2026-09-05 those names follow a convention the
    author set: `<project>_s<N>`**, where the project segment names the work
@@ -307,4 +310,4 @@ and why an ecosystem-wide audit runs after every third close (W-22).
 `WORKSTREAMS.md` durable · `BOARD.md` live, yours · `RECORD.md` past, yours ·
 `meta/audits/` yours · `.internal/toolchain/` yours and untracked ·
 `.internal/orchestrator.session` your marker; at a clean stop remove it and
-set the board's writer line to `none`.
+set the writer line's first token to `none`.
