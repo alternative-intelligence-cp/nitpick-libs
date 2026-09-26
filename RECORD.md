@@ -7274,3 +7274,10 @@ Measured afterwards: it rewrote `.git/FETCH_HEAD` (still `6fb85d3`), moved no re
 the working tree nor any branch. **The rule exists because long verification runs live in that tree; a fetch cannot disturb a
 working-tree run, but the rule does not ask this seat to judge that case by case.** The check it was part of needed only the local
 object store.
+
+**~23:3x — O-N24 is DEF-106**, to be fixed as 1.6.0 step 4b (notice 63, announced first as F11), `NITPICK-TYPE-086`: a proper sub-place
+rooted at a `fixed` binding refuses every write form; the bare binding's assignment stays `ASSIGN-002`. The compiler seat confirmed the
+stray fetch touched nothing it reads. **The landing order:** 3g 59, 3h 60, step 3's runs 61, step 4 62, 4b 63. **The re-pin stays the
+one carrying 3h** — nothing of ours waits on 4b. **`nitpick-fuzz`'s `main` fast-forwarded to the session's branch (`1bcd82d`, M0–M4)**
+after review — only `PROGRESS.md` lost lines (its placeholders); the plan, the rules and the known list untouched; nothing large; no home
+path; `check_refs` clean — so a fresh session, in the cloud or here, starts from the checkpoint.

@@ -271,7 +271,11 @@ file existed — the check works.
   `TYPE-071`. **Our exposure: none** — 231 tracked `.npk` files, 63 `fixed` bindings,
   0 sub-place writes (a lexical sweep that finds a planted write and ignores `==`;
   it does not follow a `fixed` binding written from another module). **Sent to
-  `nitpick-compiler_s15` 2026-09-25 ~23:15.**
+  `nitpick-compiler_s15` 2026-09-25 ~23:15.** **CONFIRMED as the compiler's DEF-106**, to be fixed as 1.6.0
+  step 4b (notice 63, announced in advance as F11): `refuse_write_path` gains "a proper
+  sub-place rooted at a `fixed` binding, or reaching through a `fixed` field, refuses" —
+  `NITPICK-TYPE-086` (TYPE_FIXED_WRITE); the bare binding's assignment stays `ASSIGN-002`
+  (D-240, one mistake one report); module-level and local `fixed` alike.
 
 - **O-N23 — AN IMPORTED `fixed` BINDING'S DECLARED TYPE RESOLVES IN THE IMPORTER'S
   SCOPE, NOT ITS HOME SCOPE — SO A SAME-NAMED STRUCT IN THE IMPORTER SILENTLY
