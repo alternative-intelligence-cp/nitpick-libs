@@ -7400,3 +7400,10 @@ must share the program's runtime; derive every number an instrument prints from 
 source makes 26 was the use-after-free; a test of an owned answer uses the source again before it reads the answer; the durable form of
 "quote a command's whole output" is a comparator extracted from the plan, not care. **Both streams now idle until the re-pin** — regex
 READY-TO-CLOSE, `nitpick-time` at the cycle's last subcycles — while the compiler's chain lands 59–66.
+
+**~00:4x — O-N27 registered: the borrow tracker taints a call's result by SIGNATURE.** Found by `nitpick-regex`'s triage on 2026-09-06
+under a local number that collided with this registry's O-N17 and was never registered; measured independently by `nitpick-time`'s 0.1.4b
+planner and worker; **reproduced here at `c3bdae2`** — a `f(Box->) -> string` that returns a brand-new string, called with `@b` from the
+frame owning `b`, is refused `BORROW-001`, bound first or not; the parameter shape and the inline build compile and run. Sound and
+coarse: a false reject, the mirror of O-N25's (DEF-107's) false accept, both from a view rule keyed on shape rather than provenance.
+**Sent as a design input to S-106**, DEF-107 first if only one can be had. Regex's local entry is struck at its re-pin subcycle.

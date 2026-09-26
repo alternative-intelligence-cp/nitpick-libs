@@ -255,6 +255,25 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N27 — THE BORROW TRACKER TAINTS A CALL'S RESULT BY SIGNATURE, SO AN OWNED
+  STRING BUILT BY `f(Container->)` CANNOT BE RETURNED FROM THE FRAME THAT OWNS THE
+  CONTAINER — sound, and too coarse.** Found by `nitpick-regex`'s cycle-0.0 triage
+  (2026-09-06, at `3d15ac9`, filed under a local number that collided with this
+  registry's O-N17 and was never registered), measured again independently by
+  `nitpick-time`'s 0.1.4b planner and worker at `c3bdae2`, and **reproduced here at
+  `c3bdae2`:** `func:make = string(Box->:b) { pass string_concat("small", "!"); }`
+  — which cannot alias `b` — called as `pass raw make(@b);`, or bound first and
+  passed, from the frame owning `b` is refused `NITPICK-BORROW-001` (*"a borrow
+  cannot travel up"*); with `b` a PARAMETER of the returning frame, or the string
+  built inline, it compiles and runs 0. **A false REJECT, the mirror of O-N25's
+  false accept:** both come from D-249's view rule keying on a call's shape rather
+  than a value's provenance. **Sent to `nitpick-compiler_s15` 2026-09-26 ~00:4x as
+  a design input to S-106** (DEF-107's decision), with the ordering: DEF-107 first
+  if only one can be had. **Exposure:** refused code, not unsafe code — it costs
+  `nitpick-time`'s cycle-0.4 formatter wrapper and `nitpick-regex`'s cycle-0.6
+  replacement text a constructor shape; nothing today waits on it. **Regex's local
+  entry is to be struck in favour of this one** at its re-pin subcycle.
+
 - **O-N26 — A FUNCTION THAT FALLS OFF ITS END RETURNS A ZERO VALUE INSTEAD OF BEING
   REFUSED — AND A FALLIBLE ONE RETURNS A SILENT SUCCESS CARRYING ZERO.** Seen by the
   author in `nitpick-fuzz`'s cloud session's reasoning on 2026-09-26 (the session had
