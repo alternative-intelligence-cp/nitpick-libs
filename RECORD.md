@@ -7536,3 +7536,15 @@ post-re-pin checklist, with the adoption's three corrections to it judged too. Q
 ladder against the rows at `c970483` (notice 66's, authenticated at the re-pin), with a control; `c970483` an ancestor; 6 `src/` files, none in
 `runtime/` or `bootstrap/`. **A lapse recorded:** filing 66 into the re-pin, this seat wrote no "BASELINE NOTICE 67" block; the check used 66's
 authenticated rows. The baseline for 68 is recorded. **Notices counted to 67.** Our pin stays `c970483`.
+
+### The author's answers, ~06:0x — question 11 (b); the relayed S-107 and S-108 approved; the fuzzer's M8 started in the cloud
+
+**The author, back after a short sleep:** *"I have started the cloud agent on M8 and will report back when that is done. I also tried to go
+back through and read all the questions you had asked from the time we last talked and also your recommendations and as far as I can tell
+your recommendations for all the questions you asked was fine. Please proceed with them."* **So: question 11 → (b)** — regex's cycle-0.0
+close proceeds when the sixth audit accepts, O-N28 (DEF-116) pinned by probe 18 and stated, the probe moving to a refusal at the re-pin that
+carries landing 69; **question 10's (a) is confirmed** — the close waited for the loan fix, which `c970483` delivered. **S-107 and S-108**,
+the compiler seat's questions this seat relayed with the compiler seat's recommendations (S-107: refine the conservative `holds` marking —
+our O-N27 — with the per-function summaries; S-108: a prelude `Copy` marker and a `never fails` `list_get`), are covered by the same words;
+**relayed to `nitpick-compiler_s16` verbatim, with the offer that the author confirm directly if its protocol requires his own hand.**
+**The fuzzer's M8 (the re-hunt) is running in the cloud** — it will find the compiler's `main` at `2eea6f4` or later.
