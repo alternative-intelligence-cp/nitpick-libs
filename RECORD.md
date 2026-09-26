@@ -7425,3 +7425,8 @@ the ladder against the baseline for 59. **The author ratified DEF-107's fix (D-3
 lifetime)**; its code comes with 1.6.1 step 0's advance notice, O-N27 beside it as a design input. **Notice 64 will forewarn that 1.6.1
 step 1 changes every emission's text** (the `target datalayout` line) with a snapshot refresh. **So the re-pin is taken ONCE, at the chain's
 end (`c970483`), and before 1.6.1 step 1** — one adoption for DEF-95 to DEF-108.
+
+**notice 59, ~01:2x — `5bdae98`, 1.6.0 step 3g: DEF-102, DEF-103, DEF-104**, the first notice from `nitpick-compiler_s16`. **Authenticated by
+the ladder against the baseline recorded for 59** (the rows at `6fb85d3`), by script with a control; `6fb85d3` an ancestor; `src/` changed
+only the checker's and the parser's files; the four new tests present. The baseline for 60 is recorded. **Notices counted to 59.** The view
+freeze's code is announced: `NITPICK-BORROW-015`, at 1.6.1 step 0.

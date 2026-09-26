@@ -900,6 +900,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `5bdae98` LANDED — **1.6.0 STEP 3g: DEF-102 (our O-N21), DEF-103, DEF-104 (our O-N22) — A LOAN IS READ-ONLY WHEN IT OWNS, `NITPICK-TYPE-085`; A KEYWORD AS A DECLARED NAME IS `PARSE-001`; A LENT `T` IN A GENERIC BODY ASKS D-264's PREDICATE; `T[0]` STATED SUPPORTED.** Notice 59, received 2026-09-26 ~01:2x EDT, **the first from `nitpick-compiler_s16`**. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+Two refusals added, as F10 announced; no language change (D-004's loan and D-266's view, one rule). The manifest re-recorded. It also covers
+the fuzzer's F-001 (a `for` binding's write) and F-002 (a generic `move` of a lent `T`), measured there at 3g's tree.
+
+**✅ VERIFIED HERE BY THE LADDER, against the baseline recorded for 59 (the rows at `6fb85d3`) — the new seat's first notice, so the check
+hazard 10 asks for:** by script to 64 hex, with a control that fails on a one-digit-off digest; the three unchanged rows equal it; each
+moved row's quoted previous value equals it, and each delta recomputes — `npkc.ll` +14 883 B, `npkc.o` +664 B, `npkc` −216 B. In the
+compiler tree, read-only: `5bdae98` exists, `6fb85d3` is its ancestor, `src/` changed only `frontend/parse_decl.npk`, `frontend/type_codes.npk`, `frontend/type_expr.npk`, `frontend/type_members.npk`, nothing under `runtime/` or
+`bootstrap/`, and the four tests (`loan_write`, `lent_generic`, `loan_clone`, `zero_len_array`) are present. Harness: programs 336 ·
+verified 125 · floor 388 / 90 · parity **1741** · ok 52.
+
+**THE BASELINE NOTICE 60 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `5bdae98`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    4b39b05adda15985f4232c8c29bf877725321ce9134fc3075c4dc9a4fe424b92  28,147,216 B
+npkc.o     15749423b7ace12dbc641163d4e717a884271b5acce1997cf8b84d4f309d5ee5  11,330,704 B
+npkc       544276243e0bd5d4589884729a9177c20842603e0d181e0e143b8d56025272c2  9,739,680 B
+```
+
+**Next:** 60 (3h, DEF-105) landing now; 61–66 tonight; then 1.6.1 step 0's advance notice for D-325's view freeze, `NITPICK-BORROW-015`,
+with its measurement over our three repositories.
+
 ### ✅ `6fb85d3` LANDED — **1.6.0 STEP 3f: DEF-99 — OUR `fixed`-MOVE FINDING (O-N20), FIXED AS A REFUSAL, `NITPICK-TYPE-084`.** Notice 58, received 2026-09-25 ~20:4x EDT, from `nitpick-compiler_s15`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 A `move(...)`, or the implicit move at `pass`, out of a `fixed` binding or any part of one now refuses when the value owns. **Our case1
