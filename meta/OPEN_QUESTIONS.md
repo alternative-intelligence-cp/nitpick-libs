@@ -428,7 +428,8 @@ file existed — the check works.
   `nitpick-time`'s cycle-0.4 formatter wrapper and `nitpick-regex`'s cycle-0.6
   replacement text a constructor shape; nothing today waits on it. **Regex's local
   entry is to be struck in favour of this one** at its re-pin subcycle. **Ratified by the author as D-326 (relayed at notice 70, 2026-09-26),
-  landing at 1.6.1b (notice 72) — a relaxation; this entry is discharged at the re-pin that carries it.**
+  landing at 1.6.1b (notice 72) — a relaxation; this entry is discharged at the re-pin that carries it.** **Landed 2026-09-26 as `6056eb9`,
+  notice 72, verified here 15:20.**
 
 - ~~**O-N26 — A FUNCTION THAT FALLS OFF ITS END RETURNS A ZERO VALUE INSTEAD OF BEING
   REFUSED — AND A FALLIBLE ONE RETURNS A SILENT SUCCESS CARRYING ZERO.**~~ — **DISCHARGED — refused `NITPICK-FLOW-001` at the pin `c970483`** (DEF-108, 1.6.0 step 5c, D-323); reproduced by the orchestrator 2026-09-26 06:21 at both pins: an empty `int64` body returns 0 at `c3bdae2` (exit 10, both legs), and a fallible function whose other path falls off returns a SUCCESS (exit 12, both legs) — both refused `FLOW-001` at `c970483`; the control, the same function failing explicitly on that path, compiles and takes the error path (0/0) at both pins. Kept with O-N24's cases. Seen by the
