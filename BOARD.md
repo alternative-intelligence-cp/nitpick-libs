@@ -900,6 +900,26 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c1a4a05` LANDED — **1.6.0 STEP 3h: DEF-105 (our O-N23) — AN IMPORTED `fixed` BINDING'S TYPE RESOLVES IN ITS HOME SCOPE (D-137). A LOUD ERROR BECOMES ACCEPTANCE, A SILENT MISREAD THE RIGHT READ.** Notice 60, received 2026-09-26 ~01:3x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.** **THE FUZZER'S M8 MAY START: 3g and 3h are on the compiler's `main`.**
+
+**✅ VERIFIED HERE BY THE LADDER, against notice 59's baseline, by script with a control:** the three unchanged rows equal it; each moved
+row's previous value equals it, and each delta recomputes — `npkc.ll` +745 B, `npkc.o` +128 B, `npkc` +80 B. Read-only: `5bdae98` is an
+ancestor, `src/` changed only `frontend/type_expr.npk`, `frontend/type_members.npk`, nothing under `runtime/` or `bootstrap/`, and the three `import_scope_*` tests are present.
+Harness: programs 338 · verified 125 · floor 388 / 90 · parity **1746** · ok 52.
+
+**THE BASELINE NOTICE 61 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `c1a4a05`:**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    1a3b6f0899dc9d609b76f17be6e0b3ef02c7f9496c48bccf653f1d555525e17b  28,147,961 B
+npkc.o     57ae2bbd64ceef0a3c27db1e6ebf87eee3e7028ca05252d3c540a397ca532901  11,330,832 B
+npkc       cf0eee17f81ff2461466fbbfeec65a51351b2ba66162639f5409d303ff07b280  9,739,760 B
+```
+
+**Next:** 61 (`0da2be7`) and 62 (`996784e`) already on `main`; 63–66 follow.
+
 ### ✅ `5bdae98` LANDED — **1.6.0 STEP 3g: DEF-102 (our O-N21), DEF-103, DEF-104 (our O-N22) — A LOAN IS READ-ONLY WHEN IT OWNS, `NITPICK-TYPE-085`; A KEYWORD AS A DECLARED NAME IS `PARSE-001`; A LENT `T` IN A GENERIC BODY ASKS D-264's PREDICATE; `T[0]` STATED SUPPORTED.** Notice 59, received 2026-09-26 ~01:2x EDT, **the first from `nitpick-compiler_s16`**. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 Two refusals added, as F10 announced; no language change (D-004's loan and D-266's view, one rule). The manifest re-recorded. It also covers

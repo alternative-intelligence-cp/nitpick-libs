@@ -7430,3 +7430,7 @@ end (`c970483`), and before 1.6.1 step 1** — one adoption for DEF-95 to DEF-10
 the ladder against the baseline recorded for 59** (the rows at `6fb85d3`), by script with a control; `6fb85d3` an ancestor; `src/` changed
 only the checker's and the parser's files; the four new tests present. The baseline for 60 is recorded. **Notices counted to 59.** The view
 freeze's code is announced: `NITPICK-BORROW-015`, at 1.6.1 step 0.
+
+**notice 60, ~01:3x — `c1a4a05`, 1.6.0 step 3h: DEF-105 fixed** (our O-N23). Authenticated by the ladder against 59's baseline, with a
+control; `5bdae98` an ancestor; only checker files in `src/`; the three `import_scope` tests present. The baseline for 61 is recorded.
+**Notices counted to 60. 3g and 3h are on the compiler's `main`, so the fuzzer's M8 can start** — the author is told.
