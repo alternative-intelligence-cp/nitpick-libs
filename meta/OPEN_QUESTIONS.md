@@ -282,7 +282,7 @@ file existed — the check works.
 - **O-N30 — `nitpick-fuzz` M9'S EIGHT FINDINGS, F-003 … F-010: TWO MEMORY FAULTS IN SAFE CODE,
   THREE LEAKS, A RULE NOT ENFORCED AND TWO OVER-RESTRICTIONS.** Found by the fuzzer's widened
   grid and its probes (2026-09-26; `nitpick-fuzz`'s `findings/`, merged at `4eb7558`).
-  **Reproduced by the orchestrator 2026-09-26 ~08:3x:** 36 programs by the fuzzer's own recipe,
+  **Reproduced by the orchestrator 2026-09-26 08:28** (the output file's time; first written as ~08:3x, typed)**:** 36 programs by the fuzzer's own recipe,
   at `c3bdae2` every line identical to the cloud's committed `VERDICTS.txt`, and at `9f6f370`
   (notice 70's `npkc`, identified by digest) every line identical to the cloud's HUNT2 `9126350`
   — so notices 69 and 70 moved none. **Sent to `nitpick-compiler_s17` 2026-09-26 08:31.**
