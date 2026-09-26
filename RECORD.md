@@ -7452,3 +7452,17 @@ change, so the text change is the NEXT re-pin's. **Notices counted to 64.**
 **notice 65, ~02:2x — `77314e9`, 1.6.0 step 5b: two documents from our 0.1.4b planning** (D-292's dated note; DEF-107 registered). All six
 rows unchanged, equal to the baseline for 65, by script with a control; zero files under `src/`, `runtime/`, `bootstrap/`. The baseline for
 66 is the same rows. **Notices counted to 65.**
+
+### THE RE-PIN IS DONE — `c970483`, the end of the 1.6.0 chain, carrying every compiler defect raised yesterday but the view freeze — 2026-09-26 03:0x
+
+**notice 66, ~02:5x — `c970483`, 1.6.0 step 5c: DEF-108 (`FLOW-001`)** — authenticated by the ladder against the baseline for 66 (with a
+control); `77314e9` an ancestor; only the analysis files in `src/`; the test present. **Notices counted to 66; the chain 59–66 is on
+`main` in parent order.**
+
+**pin c970483, tree clean.** §3's guards: `build/npkc` 8 819 s after `HEAD`'s commit and 212 s old; `../nitpick` clean on `main` at
+`c970483`. The copies `cmp`-identical to `build/`, and equal to notice 66's rows by script to 64 hex and exact size, a one-digit-off control
+failing (hazard 11). LLVM 20.1.2. **Commissioned both directions:** the canary at exit 0, 55 492 B / 14 `define`s — its IR identical to
+`c3bdae2`'s — running to 0; the malformed file refused `PARSE-001`, no IR. `tools/canary.md` gains the row. **Carried:** DEF-95 to DEF-106 and
+DEF-108. **Not carried:** DEF-107 (the view freeze, `BORROW-015`, 1.6.1 step 0 after F13) and 1.6.1 step 1's emission-text change — the next
+re-pin's. **Owed now, in each library, as an adoption subcycle planned first:** the seven carried checks, `FLOW-001`'s own measurement,
+and the CI pin bump — regex's folded into its cycle-0.0 close (the fifth audit's post-re-pin checklist), then `nitpick-time`'s.

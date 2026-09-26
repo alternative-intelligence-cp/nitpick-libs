@@ -60,6 +60,7 @@ denominator is unstated is how this workbench keeps getting caught.
 | `c3bdae2` (1.5 close) | the workbench root — the source above, **unchanged** | **REFUSED** — `NITPICK-REACH-002` ×2 | — |
 | `c3bdae2` (1.5 close) | the workbench root — the **AMENDED** source | **55 414** | **14** |
 | `c3bdae2` (1.5 close) | the workbench root — `main` moved to D-089's signature, ahead of DEF-96 | **55 492** | **14** |
+| `c970483` (1.6.0 close + 5c) | the workbench root — the same source; **its IR identical to `c3bdae2`'s, diffed** | **55 492** | **14** |
 
 **The 78-byte gap between rows one and two is a DIFFERENT PROGRAM, not a
 compiler change** — the source of row one no longer exists, so this canary is a
