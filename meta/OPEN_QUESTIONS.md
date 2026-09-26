@@ -255,6 +255,30 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N31 — `nitpick-fuzz` M10'S SEVEN FINDINGS, F-011 … F-017: FOUR SILENT WRONG ANSWERS IN
+  LOOPS, TWO INTERNAL-ERROR REFUSALS AND SEVEN REFERENCE SENTENCES THE COMPILER CONTRADICTS.** Found by
+  the fuzzer's M10 (2026-09-26; its `findings/`, merged at `3873745`). **Reproduced by the orchestrator
+  2026-09-26 ~09:1x:** 46 programs by the fuzzer's recipe — at `c3bdae2` every line identical to the
+  cloud's committed `VERDICTS.txt`; at `9f6f370` identical to its `VERDICTS-9f6f370.txt` and to its HUNT2
+  lines; **at our pin `c970483` every verdict the same as at `9f6f370`** — so all seven are live at the
+  pin. **Sent to `nitpick-compiler_18` 2026-09-26 09:01.**
+  - **F-011** — a `for` binding outlives its loop in the emitter: a later use of an outer local of the
+    same name reads the loop's slot (3, not 100), and past it for an array, -O0 and -O2 disagreeing.
+  - **F-012** — a `for` over a range runs zero times at its type's edges: a signed inclusive range
+    ending at the maximum; an unsigned range crossing the sign bit (`uint8` 100..200).
+  - **F-013** — `loop` and `till` widen an unsigned bound by its sign: `loop(100u8, 200u8, 1u8)` runs
+    156 times counting down; a `uint32` one traps.
+  - **F-014** — `till(-3, 1)` runs three times counting down, where the reference says zero.
+  - **F-015**, **F-016** — `<=>`, and a `pick` range pattern with a negative bound, refused with the
+    compiler's own "defect in the compiler" error.
+  - **F-017** — seven reference sentences the compiler contradicts (`s.length`, `s[i]`, §28's `select`).
+  **Impact (W-27): blocks nothing in flight. Our exposure, swept 09:01 over the six work repositories'
+  tracked `.npk`: none.** Seventeen `for` loops in all, sixteen over ranges — no unsigned range, none
+  ending at its type's maximum (five end at `NTIME_YEAR_MAX`, 9 999, or `NTIME_DAY_MAX`, 2 932 896, and
+  print counts their harness checks); no `for` binding sharing an earlier local's name; no `loop` or
+  `till` at all. **But these are everyday loop forms** — F-012 is a byte loop over `128u8..255u8` —
+  so any library's next loop over a type's edge must be checked against this entry until it is struck.
+
 - **O-N30 — `nitpick-fuzz` M9'S EIGHT FINDINGS, F-003 … F-010: TWO MEMORY FAULTS IN SAFE CODE,
   THREE LEAKS, A RULE NOT ENFORCED AND TWO OVER-RESTRICTIONS.** Found by the fuzzer's widened
   grid and its probes (2026-09-26; `nitpick-fuzz`'s `findings/`, merged at `4eb7558`).
