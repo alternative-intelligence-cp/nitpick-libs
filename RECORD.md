@@ -7466,3 +7466,7 @@ failing (hazard 11). LLVM 20.1.2. **Commissioned both directions:** the canary a
 DEF-108. **Not carried:** DEF-107 (the view freeze, `BORROW-015`, 1.6.1 step 0 after F13) and 1.6.1 step 1's emission-text change — the next
 re-pin's. **Owed now, in each library, as an adoption subcycle planned first:** the seven carried checks, `FLOW-001`'s own measurement,
 and the CI pin bump — regex's folded into its cycle-0.0 close (the fifth audit's post-re-pin checklist), then `nitpick-time`'s.
+
+**dispatched 03:05:** `s1-nregex-0.0.4e-0305` (`npk:planner`, **model named**) — regex's adoption to `c970483`, carrying the fifth audit's
+post-re-pin checklist, the carried checks, `FLOW-001`'s measurement, the CI pin bump and the registry tidying. `nitpick-time`'s adoption
+planner follows when the one planner slot frees (P-12).
