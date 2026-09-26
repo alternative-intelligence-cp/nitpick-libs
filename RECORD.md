@@ -7335,3 +7335,11 @@ the view then reads rewritten or freed memory — reproduced there in six lines 
 freeze a view's root for the view's lexical lifetime. **Our exposure: 4 view-maker sites in 23 `src/` files; only `bytes_take`, which PD-39
 is fixing in the running 0.1.4b worker.** **Tenth defect from the library side today** — this one raised as a question and found by
 reading the decisions against a library bug. The decision is the author's, in the compiler seat.
+
+**2026-09-26 ~00:2x — O-N26, found by the author reading the fuzzer's reasoning.** The cloud session had seen that an empty-bodied
+function returns a zero value and logged it as an observation — not memory-unsafe, so outside its brief — and adjusted its minimiser to
+stop deleting `pass`/`exit` statements; **the author judged it serious and reported it to the compiler seat himself.** Measured here at
+`c3bdae2`, both legs: an empty body returns 0, a MISSING PATH returns 0, `string` returns empty, `bool` false — and **a fallible
+function falling off its end returns a SUCCESS carrying 0**, so a forgotten error path is indistinguishable from a result. Sent to the
+compiler seat with a definite-return rule as the request; registered as O-N26. *The fuzzer's brief defines a defect as memory-unsafe,
+so a wrong-answer class like this falls outside it by design — the author's read caught what the brief excluded.*

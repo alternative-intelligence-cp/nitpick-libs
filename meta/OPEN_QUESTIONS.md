@@ -255,6 +255,22 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N26 — A FUNCTION THAT FALLS OFF ITS END RETURNS A ZERO VALUE INSTEAD OF BEING
+  REFUSED — AND A FALLIBLE ONE RETURNS A SILENT SUCCESS CARRYING ZERO.** Seen by the
+  author in `nitpick-fuzz`'s cloud session's reasoning on 2026-09-26 (the session had
+  logged it as an observation, since it is not memory-unsafe) and **reported by him
+  directly to the compiler seat**; **measured by the orchestrator at `c3bdae2`, both
+  legs:** `func:f = int64() never fails { };` compiles and returns 0 (the IR ends
+  `ret … zeroinitializer`); a MISSING PATH — `if (x > 0i64) { pass 7i64; }` and
+  nothing after — returns 0 on the other path; `string` returns empty, `bool` false;
+  **a fallible function (implicit `Result<int64>`) falling off its end returns
+  `is_error == false` with value 0 — a forgotten error path becomes a success**; and
+  `main` falling off its end exits 0. No reference mentions an implicit zero return.
+  **Requested:** a definite-return rule — every path of a function with a non-`NIL`
+  result ends in `pass`, `exit` or a trap. **Exposure unmeasured** — "every path
+  returns" is not a lexical property; the check, at the pin that carries it, is the
+  sweep. Sent with these measurements 2026-09-26 ~00:2x.
+
 - **O-N25 — A VIEW'S ROOT CAN BE WRITTEN WHILE THE VIEW IS LIVE, SO THE VIEW
   READS REWRITTEN OR FREED MEMORY — the language gives views an escape rule and no
   freeze.** Raised by this seat 2026-09-25 as a QUESTION, from `nitpick-time`'s
