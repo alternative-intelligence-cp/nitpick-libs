@@ -302,8 +302,9 @@ file existed — the check works.
   `TYPE_REFERENCE` §9.2 with two tests.
 
   Reproduction: `nitpick-regex/meta/roadmap/0.0/0.0.4d.md` §1.4 and §6.1 (at
-  `fdc190f`); its committed form lands with the 0.0.4d worker as
-  `tests/probe/probe17_lent_field_drop.npk`, with four library units.
+  `fdc190f`); **its committed form is `tests/probe/probe17_lent_field_drop.npk`
+  and four units under `tests/unit/`, at `8a1c4da` (0.0.4d, verified PASS)** — each
+  faults at `c3bdae2` by design and becomes a `TYPE-085` refusal at the pin carrying 3g.
 
 - **O-N20 — A MOVE OUT OF `fixed` STORAGE HOLDING AN OWNING VALUE COMPILES,
   AND THE PROGRAM FAULTS: THE MOVE STORES ITS VACANCY INTO AN LLVM `constant`

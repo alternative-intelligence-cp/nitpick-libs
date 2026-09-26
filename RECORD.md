@@ -7100,3 +7100,21 @@ method call and `for … in` rooted at a lent owning parameter — because the c
 seat's first sweep, which measured only two of those faces: 227 files, and the only hits are regex's five deliberate loan pins. The
 code is passed to regex's 0.0.4d worker as an optional amendment. **The re-pin to take is the one that carries 3g**; the checks carried
 to it are six. Question 10's recommendation now costs only that re-pin.
+
+### `nitpick-regex` 0.0.4d DONE and VERIFIED PASS — `Vec` is move-only by construction; the fifth audit dispatched — 2026-09-25 20:35
+
+**report `s1-nregex-0.0.4d-1955` — DONE**, 35 min, 431 k tokens, 113 tool uses: `8a1c4da` (the copies refused, the loan pinned
+against a compiler defect, `Bytes.buf` hidden, A′ for P-1) and `40074b6` (the record); **CI green on GitHub for both**; harness
+210/210 (194/194 at step 0). **verify `s1-nregex-0.0.4d-verify-2032` (`sonnet`) — PASS:** tree clean, the subject, `check_refs`
+clean (71 md, 219 of 219), `check_record` clean, the harness re-run 210/210 at `c3bdae2`; the staged tally 13 A / 5 D / 31 M
+against the plan's 28 M is the plan file plus the two tools the O-N21 amendment edited, as the record says. **for-the-author,
+accepted here:** the tally — every number the plan measures held exactly. **DEF-102's citations deferred to the re-pin:** the update
+reached the worker after `8a1c4da` was pushed and green, so, as directed, no finished step was reopened; the record and the cycle
+README name DEF-102 (`TYPE-085`, step 3g) as unlanded, and the re-pin that moves probe 17 and the four units to refusals adds the
+citations and strikes the local O-N21 entry. The registry's O-N21 entry now points at `8a1c4da`.
+**findings-for-playbook**, written into `PLAYBOOK.md` in this commit (§12 is now eight ways, §6's ugrep note widened): an
+append-style idempotent script re-applies when the tree disagrees — amend the script before it runs, never the written file after; a
+restored rehearsal cannot count the plan file in its tally; ugrep's completion order holds for `grep -h` lines as well as counts.
+**dispatched 20:35:** the fifth W-22 audit, `s1-nregex-0.0-audit5-2035` (`npk:auditor`), scoped `4420c45..40074b6` — the fourth
+triage's fixes and 0.0.4d — with the accepting conditions for the post-re-pin tree to be stated, so the check after the re-pin can be
+narrow. **Regex's close waits for the pin carrying 3g** (question 10, recommended (a), not yet answered by the author).

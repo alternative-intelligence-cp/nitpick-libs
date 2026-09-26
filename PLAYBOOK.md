@@ -971,8 +971,9 @@ across the tree: `grep -rl --include='*.npk' .` from the root → **0**;
   **`/*/`** — every top-level directory ignored, which is precisely how the
   workbench avoids embedding a library as a gitlink. **The rule that makes the
   repository correct is the rule that makes its sweeps blind.**
-  **And given several files it prints per-file counts in COMPLETION order**, not
-  argument order, so compare such counts as a set (measured 2026-09-25).
+  **And given several files it prints in COMPLETION order**, not argument order —
+  per-file counts and `grep -h` lines alike — so compare such output as a set, and
+  read per file whenever the file matters (measured twice, 2026-09-25).
 - **`git grep` from the root cannot see a library either**, for an unrelated
   reason: each library is a *separate checkout*, so none of its files are in
   this repository's index.
@@ -1578,8 +1579,8 @@ gating that change.**
 
 ---
 
-**SIX WAYS A REHEARSED PLAN'S TEXT GOES STALE — FROM ONE DAY'S TWO SUBCYCLES, `nitpick-time` 0.1.3 AND 0.1.3b
-(2026-09-25), EACH FOUND AFTER REHEARSAL, SEVERAL AFTER THREE.**
+**EIGHT WAYS A REHEARSED PLAN'S TEXT GOES STALE OR MISCOUNTS — FROM ONE DAY'S THREE SUBCYCLES, `nitpick-time` 0.1.3 AND
+0.1.3b AND `nitpick-regex` 0.0.4d (2026-09-25), EACH FOUND AFTER REHEARSAL, SEVERAL AFTER THREE.**
 
 - **A tag-writing script must be idempotent.** A re-run wrote six tags twice, 47 where 41 belong; each script now
   skips an edit already applied, and says so.
@@ -1595,3 +1596,11 @@ gating that change.**
   it has since been fixed"*, above a new open defect). A hunk that adds a row owes a reading of the table's notes.
 - **A sweep's recorded counts must come from the command the record prints.** Two of 0.1.3b's sweep sets had excluded
   a file the printed command does not; only re-running the printed commands on the committed tree found it.
+- **An idempotent edit script whose edits APPEND does not stop when the tree disagrees — it RE-APPLIES.** Its old text
+  survives inside its new, so a guard that skips "already applied" edits sees the old text and applies again:
+  `nitpick-regex`'s `d4d_docs.py`, run over a tree where one of its lines had been amended by hand, exited 0 and appended
+  a second decision block. **When a dispatch amends scripted text, amend the script before it runs — never the written
+  file after.**
+- **A rehearsal that restores its tree cannot count the plan file in its predicted `git status` tally**, yet the worker
+  always edits the plan in the same commit (its title, its record). Predict *"N plus the plan file"*, or every worker's
+  tally is one short.
