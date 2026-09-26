@@ -262,16 +262,21 @@ file existed — the check works.
   cloud's committed `VERDICTS.txt`; at `9f6f370` identical to its `VERDICTS-9f6f370.txt` and to its HUNT2
   lines; **at our pin `c970483` every verdict the same as at `9f6f370`** — so all seven are live at the
   pin. **Sent to `nitpick-compiler_18` 2026-09-26 09:01.**
-  - **F-011** — a `for` binding outlives its loop in the emitter: a later use of an outer local of the
+  **Registered there as DEF-127 … DEF-133 (2026-09-26 ~09:1x, by `_18`'s message), all in 1.6.1d:** step 1
+  DEF-127 with the memory faults; step 2 the loop counts DEF-128, DEF-129, DEF-130 (DEF-128 needs the
+  author's S-110 — a range value keeps its spelling, `{ T, T, bool }`, no `+1`); step 4 DEF-131 (S-111:
+  `<=>` on floats refused), DEF-132, DEF-133 (S-112: a certain constant division by zero or MIN/−1
+  refused, `TYPE-004`).
+  - **F-011** (DEF-127) — a `for` binding outlives its loop in the emitter: a later use of an outer local of the
     same name reads the loop's slot (3, not 100), and past it for an array, -O0 and -O2 disagreeing.
-  - **F-012** — a `for` over a range runs zero times at its type's edges: a signed inclusive range
+  - **F-012** (DEF-128) — a `for` over a range runs zero times at its type's edges: a signed inclusive range
     ending at the maximum; an unsigned range crossing the sign bit (`uint8` 100..200).
-  - **F-013** — `loop` and `till` widen an unsigned bound by its sign: `loop(100u8, 200u8, 1u8)` runs
+  - **F-013** (DEF-129) — `loop` and `till` widen an unsigned bound by its sign: `loop(100u8, 200u8, 1u8)` runs
     156 times counting down; a `uint32` one traps.
-  - **F-014** — `till(-3, 1)` runs three times counting down, where the reference says zero.
-  - **F-015**, **F-016** — `<=>`, and a `pick` range pattern with a negative bound, refused with the
+  - **F-014** (DEF-130) — `till(-3, 1)` runs three times counting down, where the reference says zero.
+  - **F-015** (DEF-131), **F-016** (DEF-132) — `<=>`, and a `pick` range pattern with a negative bound, refused with the
     compiler's own "defect in the compiler" error.
-  - **F-017** — seven reference sentences the compiler contradicts (`s.length`, `s[i]`, §28's `select`).
+  - **F-017** (DEF-133) — seven reference sentences the compiler contradicts (`s.length`, `s[i]`, §28's `select`).
   **Impact (W-27): blocks nothing in flight. Our exposure, swept 09:01 over the six work repositories'
   tracked `.npk`: none.** Seventeen `for` loops in all, sixteen over ranges — no unsigned range, none
   ending at its type's maximum (five end at `NTIME_YEAR_MAX`, 9 999, or `NTIME_DAY_MAX`, 2 932 896, and
@@ -290,7 +295,12 @@ file existed — the check works.
   OPEN_DECISIONS §4 riding with landing 73's commit, **and fixed in a subcycle 1.6.1d that lands
   after 73 and before 1.6.1 step 2**: step 1 the memory faults and the unenforced rule (DEF-118,
   DEF-119, DEF-123), step 2 the leaks (DEF-120, DEF-121, DEF-122), step 3 the over-restrictions
-  and the diagnostic (DEF-124, DEF-125, DEF-126), each reproduced from the fuzzer's programs first.
+  and the diagnostic (DEF-124, DEF-125, DEF-126), each reproduced from the fuzzer's programs first. **Re-planned
+  2026-09-26 by `nitpick-compiler_18`, with O-N31's findings, into four steps by severity:** step 1 the
+  memory faults (DEF-118, DEF-119, DEF-123, DEF-127); step 2 the loop counts (DEF-128 … DEF-130); step 3
+  the leaks (DEF-120, DEF-121, DEF-122 — the last under the author's S-109: `to_cstring`'s result gains
+  an owner, `cstring` string-shaped and move-only); step 4 the over-restrictions, refusals and documents
+  (DEF-124, DEF-125, DEF-126, DEF-131 … DEF-133).
   - **F-003** (DEF-118) — a consuming `pick`'s binding read after its move (exit 70) or moved twice (95):
     use-after-free and double free. Present at our pin `c970483`.
   - **F-004** (DEF-119) — a view's root freed by a callee handed `@x` or `$$i x` that moves the value out
