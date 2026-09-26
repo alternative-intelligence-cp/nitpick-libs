@@ -255,6 +255,24 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N24 — A WRITE INTO A `fixed` BINDING'S SUB-PLACE — AN ELEMENT, A FIELD —
+  COMPILES AND STORES INTO THE LLVM `constant` GLOBAL.** Found by `nitpick-fuzz`'s
+  grid, 2026-09-25 (cells `c0039`, `c0040`, `c0185`, … at `c3bdae2` and at `6fb85d3`),
+  and **reproduced and widened by the orchestrator before it was sent, both legs.**
+  The whole binding's assignment is refused (`ASSIGN-002`), its address
+  (`TYPE-071`), and a move out (`TYPE-084`, DEF-99) — a sub-place write is not:
+  `fixed string[2]:FA`, `FA[i] = …` → `npkc` 0, **95** on both legs (the overwrite
+  drop frees a literal body never allocated); `FB.s = …` on a `fixed Box` → **95**;
+  and **for any type**, `fixed int64[2]:FI`, `FI[i] = 5i64` → **107** at -O0 (the
+  SIGSEGV writing the constant) and **exit 3 under `opt -O2`** (the store deleted as
+  UB: the legs disagree); `FP.b = 5i64` on a `fixed` struct → 107 / 0. Control:
+  `FI = […]` is refused `ASSIGN-002`. **Requested:** refuse every write path into a
+  place rooted at a `fixed` binding — the write-side twin of `TYPE-084` and
+  `TYPE-071`. **Our exposure: none** — 231 tracked `.npk` files, 63 `fixed` bindings,
+  0 sub-place writes (a lexical sweep that finds a planted write and ignores `==`;
+  it does not follow a `fixed` binding written from another module). **Sent to
+  `nitpick-compiler_s15` 2026-09-25 ~23:15.**
+
 - **O-N23 — AN IMPORTED `fixed` BINDING'S DECLARED TYPE RESOLVES IN THE IMPORTER'S
   SCOPE, NOT ITS HOME SCOPE — SO A SAME-NAMED STRUCT IN THE IMPORTER SILENTLY
   CHANGES THE TABLE'S LAYOUT, AND A WIDER ONE READS PAST ITS END.** Raised by

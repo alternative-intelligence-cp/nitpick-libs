@@ -7246,3 +7246,31 @@ describe a separate cloud credit, so the credit's own terms govern it.
 **~22:55 — the cloud run started.** The author launched it from his terminal (`claude --cloud`, in `nitpick-fuzz/` at `94ae240`), and it is
 visible in both the browser and the desktop app. It stops itself at M4; he checks the cost there. Its session id is kept locally in
 `.internal/cloud_sessions.md` — this board and record are public — and no cost figure will be written here.
+
+### `nitpick-fuzz` reaches its calibration checkpoint — the recall gate passes and the first 100 hunt cells find a new defect (O-N24); and a lapse of this seat's — 2026-09-25 23:2x
+
+**The run, M0–M4 in ~27 minutes of wall time:** both compilers built (67 s, 69 s) and commissioned both directions — **the baseline's
+emission `npkc.ll` matched GitHub's CI to the byte (28 111 929 B, `4029fc70…`), a second measurement of D-265 across machines**; the
+recall suite 19/19 against `KNOWN_DEFECTS.md`; a grid of 956 cells (8 types × 14 places × 10 operations × 2 observers, 1 284
+combinations skipped with their reasons); **the recall gate passed — every known shape flagged at `c3bdae2`, no miss, so the fuzzer is
+validated against the bugs we already know**; one generator bug found and fixed in a shakedown before any result counted. At the hunt
+compiler (`6fb85d3`, origin's main at the time) the DEF-99 cells moved to `TYPE-084`, as the fix says, and nothing else moved.
+**The first 100 hunt cells found a defect not on the known list — O-N24**, writes into `fixed` sub-places. **Reproduced and widened here
+before sending:** owning element and field writes exit 95 on both legs; for a plain `int64` element or field the write SIGSEGVs at -O0
+(107) and is silently deleted under `opt -O2` (the legs disagree); the whole-binding assignment is refused `ASSIGN-002`, as control.
+**Exposure swept: 231 files, 63 `fixed` bindings, zero sub-place writes**, the sweep controlled by a planted write. Registered as O-N24,
+sent to `nitpick-compiler_s15` ~23:15. **Ninth defect from the library side today, and the first from the fuzzer.**
+
+**⚠ The "cloud" run executed on THIS machine.** Its own environment record (hostname, 48 cores, 157 GB, the local disk) and the local
+`nitpick-fuzz` checkout — moved to the session's branch, with 12 GB of LLVM and compiler builds under its gitignored `.work/` — say so.
+Traced read-only: the launch was bridged to a local session of the author's desktop app, which received the kickoff as a message and ran
+with its default model — **the author's user-level default is Fable, which is why part of the run used Fable**; his `claun` launcher
+passes Opus explicitly, which is why his other sessions are Opus. Reported to the author, with where the default is set; any change to
+his settings is his to make. **No cost figure is recorded here** — the board and this record are public.
+
+**A LAPSE OF THIS SEAT'S, admitted to the compiler seat the same minute:** at 23:12:59, inside a read-only check, this seat ran
+`git fetch` in the compiler's tree — against its own standing rule that the compiler tree is read-only (no fetch, no build, no write).
+Measured afterwards: it rewrote `.git/FETCH_HEAD` (still `6fb85d3`), moved no remote-tracking ref, and touched neither the index nor
+the working tree nor any branch. **The rule exists because long verification runs live in that tree; a fetch cannot disturb a
+working-tree run, but the rule does not ask this seat to judge that case by case.** The check it was part of needed only the local
+object store.
