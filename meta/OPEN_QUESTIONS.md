@@ -258,7 +258,7 @@ file existed — the check works.
 - **O-N31 — `nitpick-fuzz` M10'S SEVEN FINDINGS, F-011 … F-017: FOUR SILENT WRONG ANSWERS IN
   LOOPS, TWO INTERNAL-ERROR REFUSALS AND SEVEN REFERENCE SENTENCES THE COMPILER CONTRADICTS.** Found by
   the fuzzer's M10 (2026-09-26; its `findings/`, merged at `3873745`). **Reproduced by the orchestrator
-  2026-09-26 ~09:1x:** 46 programs by the fuzzer's recipe — at `c3bdae2` every line identical to the
+  2026-09-26 08:59** (the output file's time; first written here as ~09:1x, typed, which was wrong)**:** 46 programs by the fuzzer's recipe — at `c3bdae2` every line identical to the
   cloud's committed `VERDICTS.txt`; at `9f6f370` identical to its `VERDICTS-9f6f370.txt` and to its HUNT2
   lines; **at our pin `c970483` every verdict the same as at `9f6f370`** — so all seven are live at the
   pin. **Sent to `nitpick-compiler_18` 2026-09-26 09:01.**
