@@ -255,6 +255,18 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N32 — A `pick` ARM NAMING A VARIANT ITS ENUM LACKS IS ACCEPTED BY THE FRONTEND AND REFUSED
+  BY THE EMITTER, `NITPICK-EMIT-002`** — the emitter's own *"a defect in the compiler rather than in this
+  program"*. Found by `nitpick-regex`'s 0.1.0 planning (step 2's controls; its plan's §6), 2026-09-26.
+  **Reproduced by the orchestrator 11:17** at `c970483`, `c3bdae2` and `9f6f370` alike: `enum:K = { A; B; };`
+  with arms `(K.A)`, `(K.B)` and `(K.C)` exits 1 at `EMIT-002` writing no IR; the covered control compiles
+  and runs 0 on both legs; the uncovered control is `PICK-001`. **Requested:** refuse the arm where it is
+  read, naming the enum and the missing variant, as a resolution error. **Impact (W-27): blocks nothing** —
+  loud, not silent; what it costs is a test that asserts the code, which would pin the defect (the plan
+  asserts it nowhere). The class of DEF-131 and DEF-132. With it, an observation for the reference:
+  `NITPICK-RESOLVE-012`'s message for `mod:error;` reads *"declares `mod:;` first"* — the keyword vanishes
+  from the text. **Sent to the compiler seat 11:17.**
+
 - **O-N31 — `nitpick-fuzz` M10'S SEVEN FINDINGS, F-011 … F-017: FOUR SILENT WRONG ANSWERS IN
   LOOPS, TWO INTERNAL-ERROR REFUSALS AND SEVEN REFERENCE SENTENCES THE COMPILER CONTRADICTS.** Found by
   the fuzzer's M10 (2026-09-26; its `findings/`, merged at `3873745`). **Reproduced by the orchestrator
