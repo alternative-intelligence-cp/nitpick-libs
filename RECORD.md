@@ -7293,3 +7293,37 @@ places the repository selector below the input box, describes neither); the desk
 Before any work the session reported **4 cores** (`nproc`), and the author sees the cloud credit being drawn — so this run, unlike the
 first, uses the credit it was meant to. It starts from `nitpick-fuzz`'s `main` at the M4 checkpoint and pushes its own branch; the
 first, local session stays paused and is not to be resumed.
+
+### `nitpick-time`'s 0.1.4b plan — the managed-memory gate — and a library defect found at planning; the worker dispatched — 2026-09-25 23:55
+
+**report `s2-ntime-0.1.4b-2217` — DONE (planning)**, 96 min, 828 k tokens: `b695788`, meta only (the plan, the cycle README, ROADMAP);
+`check_refs` clean; `[no-report]` expected; rehearsed twice in the REAL checkout at `648590f`, GREEN 91 → 91, restored; **verified here and
+pushed.** For the first time the harness asserts managed memory — a `// heap: FIELD OP N` marker holding the runtime's own
+`NPK_HEAP_STATS` line on both legs, over six files (the README row's "four pairs" were two twin pairs and two single tests), each ceiling at
+the geometric mean of the correct and the mutant peak, each remedy with a floor on `count` as well (an emptied remedy passes a ceiling
+alone — measured); the `ulimit -v` pair mechanised at 64 MiB with a control built by the same toolchain; 13 mutant rows, every bound red
+on its mutant.
+
+**A LIBRARY defect found at planning, reproduced here at `c3bdae2`:** `nitpick-time`'s `bytes_take` returned `string_from_bytes(b.body.ptr,
+b.len)` — a VIEW of the sink, typed as an owned `string`, beside a comment claiming it copies — since 0.0.4. Reuse the sink and the
+caller's text is rewritten (exit 13); grow it and the text reads freed memory (exit 12); both legs; with `string_concat("", …)` in a
+scratch copy of the module both run 0. **Swept across all six repositories:** `string_from_bytes` appears in two `src/` files —
+`nitpick-regex`'s twin already copies — so only `nitpick-time` is exposed; public through `src/lib.npk`; one test, which reads the answer
+too early to see it. **PD-39 fixes it in 0.1.4b** (two lines). **for-the-author, accepted by default:** PD-39; PD-37 (TM-131's `/bin/true`
+control superseded in part — a Nitpick static binary takes `HeapOom` below ~10.5 MiB where `/bin/true` runs from 2.75 MiB, so the old
+control no longer controls). **Cycle 0.4 is warned** that F-10's wrapper `pass raw bytes_take(@sink)` is refused `BORROW-001` at `c3bdae2`
+even with a copying take — **the second, independent measurement of `nitpick-regex`'s colliding local O-N17** (the tracker taints a return
+by signature), which the re-pin re-measures before it is registered or closed.
+
+**Asked of the compiler seat, non-blocking:** (1) D-292 says `NPK_HEAP_STATS` counts the failsafe region's bytes; `npk_fs_alloc` (40 lines
+at `c3bdae2`) references no counter — read here; (2) whether "no mutation of a view's root while the view is live" is meant to be
+enforced — the tracker taints `bytes_take`'s return for ESCAPE but let the sink be cleared and regrown under it; a defect if it is meant
+to be enforced, a stated rule if not.
+
+**findings-for-playbook** (owed): a low address-space cap's control must share the program's runtime; derive every number an instrument
+prints from the source before bounding it (the count of 25 where the source makes 26 found `bytes_take`); a view typed as an owned value
+is a use-after-free no test reading the answer at once can see; whole `[[sweep:]]` tags in a plan's hunks turn its own commit red; prose
+describing `check_refs`' supersede trap re-triggers it; a TM number in a script's printed output is a citation once quoted.
+
+**dispatched 23:55:** `s2-ntime-0.1.4b-2355` (`npk:worker`, **model named explicitly** — the author's standing rule since the evening's
+Fable default).
