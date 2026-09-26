@@ -7417,3 +7417,11 @@ rehearsed plan goes stale, and gains BL-9's pair — a second defence through th
 reader defect measures independence against that defect only. **The language's new rules (loans read-only, no writes into `fixed`
 parts, every path leaves, views frozen if S-106 is ratified) wait for the re-pin**, so the playbook does not state an unlanded rule as
 current.
+
+**~01:0x — the compiler seat rotated: `nitpick-compiler_s15` → `_s16`.** `_s15`'s last message named its successor and the eight re-based
+landings with their shas (3g `5bdae98`, 3h `c1a4a05`, step 3 `0da2be7`, step 4 `996784e`, 4b `f87d2df`, step 5 `4e467bc`, 5b `77314e9`, 5c
+`c970483`), all committed with clean in-process checks, their harnesses ending ~03:30–04:00; `_s16` sends notices 59–66, each checked by
+the ladder against the baseline for 59. **The author ratified DEF-107's fix (D-325: a view's root is frozen for the view's lexical
+lifetime)**; its code comes with 1.6.1 step 0's advance notice, O-N27 beside it as a design input. **Notice 64 will forewarn that 1.6.1
+step 1 changes every emission's text** (the `target datalayout` line) with a snapshot refresh. **So the re-pin is taken ONCE, at the chain's
+end (`c970483`), and before 1.6.1 step 1** — one adoption for DEF-95 to DEF-108.
