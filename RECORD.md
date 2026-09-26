@@ -7158,3 +7158,31 @@ switched both gates to `type_owns_for_move`, and restarted 3g's harness on the a
 lent `T` refuses `TYPE-047` and `@x` of one refuses `TYPE-085`. **Relaying it while 3g was still in its harness is what let one re-pin
 close the generic face with the rest.** Notice 59 now ~00:40. The codes are passed to regex's triage worker. Aside: `gid`, like `pid`,
 `tid`, `fd` and `uid`, is a keyword; no module or binding of ours uses any of them (swept).
+
+### `nitpick-time`'s 0.1.4 plan — an exhaustive cross-oracle — and an eighth compiler defect today (O-N23); the worker dispatched — 2026-09-25 21:33
+
+**report `s2-ntime-0.1.4-1955` — DONE (planning)**, 96 min, 833 k tokens, 192 tool uses: `936a1b9`, meta only, 6 files (the plan,
+the cycle README, ROADMAP, CURRENCY, the research README, a new digest on Python's `datetime`); `check_refs` clean (76 md, 219 of 219);
+`[no-report]` expected; rehearsed twice in the REAL checkout, GREEN 90 → 91, restored exactly; **verified here and pushed.** **PD-30:**
+C-18 and V-6 restated — the cross-oracle is EXHAUSTIVE over Python's range (3 652 059 dates, one digest per year; 1.0 MB, ~1 s) rather
+than "a few hundred thousand" sampled rows (measured: 280 928 explicit rows = 33.7 MB of source, 44 s / 717 MB for one `npkc`).
+**PD-34:** `check_tables_regenerate` stays pending to 0.5.3, its reason restated. Both accepted by default. PD-31 to PD-33 are design
+records. **0.1.4 is independent of 0.1.3c** (no `Vec`, `Bytes` or by-value container), so the order is 0.1.4 → 0.1.3c; P-1's A′
+replacement stays owed to 0.1.3c. Python 3.12.3; the corpus needs no network. **Owed to 0.1.5:** O-N23's reproduction committed to
+`tests/probe/defect/`; the `tools/` line in README and CLAUDE.md; the sweep stage's headroom (21.7–22.0 s of 30 s).
+
+**compiler-defect — O-N23**, an imported `fixed` binding's declared type resolves in the IMPORTER's scope (contradicting D-137). **Reproduced
+here at `c3bdae2`, both legs:** alone, `TYPE-001` at the declaring module's line; beside a same-named importer struct, exit 10 — the wrong
+field read, and with a wider struct a 24-byte stride over 16-byte rows, row 1 partly past the table's end (read in the IR); controls — the
+row type imported by name, a function signature — behave. Identical at all six kept pins. Exposure zero today; **it holds cycle 0.5's zone
+tables.** Sent to `nitpick-compiler_s15` ~21:4x. **Eight defects from the library side today: DEF-95 to DEF-99, DEF-102, DEF-104 (O-N22),
+and O-N23 pending — plus two documentation defects (DEF-100, DEF-101) and DEF-103.**
+
+**findings-for-playbook** (owed to the next pass): a control's result is its NAMED LINE, not its exit status — a control that matched
+nothing went red by crashing, which looks like a caught corruption; a tool that echoes its path argument prints a home directory when
+handed `$W/…`, failing the leak scan of the record that pastes it — give such tools relative paths; a sample aligned with a period of the
+domain aliases with it — 400 Gregorian years are exactly 20 871 weeks, so a weekly sample meets every 400-year leap day or none (measured:
+a weekly sample passes a leap rule that drops them); an imported `fixed` table's row type should be imported by name beside it — a belt
+that turns O-N23's silent form loud, not the guarantee.
+
+**dispatched 21:33:** `s2-ntime-0.1.4-2133` (`npk:worker`), with O-N23 as the id its plan's §11 anticipates.

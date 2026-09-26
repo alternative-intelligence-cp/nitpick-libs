@@ -255,6 +255,34 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N23 — AN IMPORTED `fixed` BINDING'S DECLARED TYPE RESOLVES IN THE IMPORTER'S
+  SCOPE, NOT ITS HOME SCOPE — SO A SAME-NAMED STRUCT IN THE IMPORTER SILENTLY
+  CHANGES THE TABLE'S LAYOUT, AND A WIDER ONE READS PAST ITS END.** Raised by
+  `nitpick-time`'s 0.1.4 planner (`0.1.4.md` §3, `importscope.py`), 2026-09-25, at
+  pin `c3bdae2`; **reproduced by the orchestrator before it was sent, both legs.**
+  With `pub struct:Row = { int64:x; int64:y; };` and `pub fixed Row[2]:ROWS` in
+  `rows.npk`: importing `ROWS` alone is refused `TYPE-001` *"there is no type named
+  `Row`"* at the DECLARING module's line (the loud form); importing it beside the
+  importer's own `struct:Row` with the fields swapped compiles and reads the wrong
+  field (**exit 10**, both legs); with a wider importer `Row` the IR indexes
+  `@"npk.rows.ROWS" = constant [2 x %"npk.rows.Row"]` through
+  `getelementptr [2 x %"npk.case3_wider_same_name.Row"]` — a 24-byte stride over
+  16-byte rows, **row 1 partly past the table's 32 bytes** (exit 10); a scalar
+  `fixed Row` behaves the same. **Controls:** importing `Row` by name beside `ROWS`
+  runs 0, and a same-named importer struct is then refused `RESOLVE-001`; a function
+  returning `Row` is unaffected. **Not a regression:** identical at all six kept pins
+  (the planner's transcript). **Contradicts the compiler's D-137** (a declaration's
+  annotations resolve in their home scope). **Requested:** resolve a `fixed`
+  binding's type in its declaring module's scope.
+
+  **Impact (W-27). Exposure zero today** — all five user-typed `fixed` tables in the
+  six repositories are single-module probes. **It HOLDS `nitpick-time`'s cycle-0.5
+  zone tables** (imported tables of user structs) until the compiler fixes it — not a
+  house rule; importing the row type by name turns the silent form into a
+  `RESOLVE-001` refusal, a belt only. **Sent to `nitpick-compiler_s15` 2026-09-25
+  ~21:4x.** Reproduction: `nitpick-time/meta/roadmap/0.1/0.1.4.md` §3 (at `936a1b9`);
+  its commit to `tests/probe/defect/` is owed to cycle 0.1's close (0.1.5).
+
 - **O-N22 — `NITPICK-TYPE-047` IS NOT ASKED OF A LENT `T` INSIDE A GENERIC BODY,
   SO A GENERIC FUNCTION HANDS BACK ITS LENT PARAMETER AS A SECOND OWNER — AND 3g'S
   LOAN RULE ASKS THE SAME GATE.** Raised by `nitpick-regex`'s fifth cycle-0.0 audit
