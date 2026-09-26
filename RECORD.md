@@ -7771,3 +7771,7 @@ entry corrects the record, which stays append-only.
 **M10 is RUNNING in the cloud** (`ListAgents`: `Fuzzing session milestone M10`, cloud, at 08:32), from `main` `88e6355`. **The fuzzer's `main` is not written while it runs**, so its branch stays a fast-forward; **owed at its merge:** the DEF-118 … DEF-126 mapping into `KNOWN_DEFECTS.md`'s deduplication list.
 
 **Peers:** `nitpick-libs_s6` is gone — the author closed it after this seat's release message at 07:15. `nitpick-libs_9`, idle, opened about an hour ago, is the successor-after-next the handoff block named; it needs nothing from this seat and was not woken.
+
+### The compiler seat rotates: `nitpick-compiler_s17` → `nitpick-compiler_18` — 2026-09-26 08:40 (shell time)
+
+Announced by `_s17` from the socket its notices 69 and 70 came from, its context at the author's hand-off line; `_18` (`[119356]`) is the spare the handoff block named. **Owed from `_18`:** notices 71, 72, F16 then 73, over the next three hours, and 1.6.1d's fixes of DEF-118 … DEF-126 before 1.6.1 step 2. Not messaged — it needs nothing from this seat; its notices are authenticated by content. Nothing landed; the pin stays `c970483`.
