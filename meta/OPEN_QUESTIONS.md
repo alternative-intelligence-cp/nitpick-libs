@@ -255,6 +255,36 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N30 — `nitpick-fuzz` M9'S EIGHT FINDINGS, F-003 … F-010: TWO MEMORY FAULTS IN SAFE CODE,
+  THREE LEAKS, A RULE NOT ENFORCED AND TWO OVER-RESTRICTIONS.** Found by the fuzzer's widened
+  grid and its probes (2026-09-26; `nitpick-fuzz`'s `findings/`, merged at `4eb7558`).
+  **Reproduced by the orchestrator 2026-09-26 ~08:3x:** 36 programs by the fuzzer's own recipe,
+  at `c3bdae2` every line identical to the cloud's committed `VERDICTS.txt`, and at `9f6f370`
+  (notice 70's `npkc`, identified by digest) every line identical to the cloud's HUNT2 `9126350`
+  — so notices 69 and 70 moved none. **Sent to `nitpick-compiler_s17` 2026-09-26 08:31.**
+  - **F-003** — a consuming `pick`'s binding read after its move (exit 70) or moved twice (95):
+    use-after-free and double free. Present at our pin `c970483`.
+  - **F-004** — a view's root freed by a callee handed `@x` or `$$i x` that moves the value out
+    (70): a gap in DEF-107's fix, which refuses `$$m x`. At our pin every form faults, since the
+    pin has no view freeze at all (O-N25).
+  - **F-005** — `(<-p) = v` never drops the old value (121 grid cells, every owning type): a leak.
+  - **F-006** — a consuming `pick`'s binding never dropped at the arm's end: a leak.
+  - **F-007** — `to_cstring`'s buffer never freed, `len + 1` bytes a call: a leak.
+  - **F-008** — a write through a `$$i` claim's holder compiles, where the reference names it
+    `BORROW-013`: a rule not enforced.
+  - **F-009** — a `move` parameter re-initialised after a move cannot be read (`MOVE-001`): an
+    over-restriction.
+  - **F-010** — a swap through a lent `dyn`'s method refused `BORROW-002` (DEF-115's rule): an
+    over-restriction, NEW with 1.6.1 step 0 — accepted at our pin, where it runs correctly.
+  **Impact (W-27): blocks nothing in flight.** F-003 and F-004 are unsafe code the compiler
+  accepts; F-005 to F-007 blind a `peak_live` gate where their shapes occur; F-009 and F-010 cost
+  workarounds. **Our exposure, swept 08:31 over the six work repositories' tracked `.npk`: none in
+  any `src/`** — no consuming `pick` (the one textual hit is a comment, `nitpick-time`'s
+  `probe05_payload_enum.npk:24`), no store through a pointer, no `$$i` claim; `to_cstring`
+  appears only in `nitpick-time`'s `tests/` (probe 08's four literal paths and six sweep tests'
+  output lines), where F-007 leaks a few bytes per printed line. Each finding is struck here, with
+  its DEF number, when its fix reaches our pin.
+
 - **O-N29 — A TYPE MISMATCH BETWEEN TWO SAME-NAMED TYPES FROM DIFFERENT MODULES PRINTS BOTH
   AS THE BARE NAME: *"expected `Row`, found `Row`"*.** A diagnostic defect, not a soundness
   one: the refusal is right. Found by `nitpick-fuzz`'s M8 (2026-09-26, its
@@ -270,8 +300,9 @@ file existed — the check works.
   blocks nothing** — the message misleads a reader, not a program. M8 also notes that four of
   the grid's copy cells now stop at `TYPE-007` before reaching `TYPE-046`; the grid's
   by-name import spelling still reaches it, so that coverage gap is the fuzzer's to close.
-  **NOT SENT — held** by the author's working-seat rule: the compiler seat is landing 1.6.1,
-  and this goes with the next message to it that serves its task.
+  ~~**NOT SENT — held** by the author's working-seat rule: the compiler seat is landing 1.6.1,
+  and this goes with the next message to it that serves its task.~~ **SENT 2026-09-26 08:31** to
+  `nitpick-compiler_s17`, riding with the relay of O-N30, a message that serves its task.
 
 - **O-N28 — AN IMPL MAY DECLARE `move` ON A PARAMETER ITS TRAIT LENDS (OR LEND ONE
   THE TRAIT MOVES), AND A CALL THROUGH THE TRAIT FREES TWICE.** Raised by
