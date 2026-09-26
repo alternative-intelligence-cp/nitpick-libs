@@ -7576,3 +7576,36 @@ named) — the close, with N-30 to N-33 dispositioned in its record.
 yesterday under the spelling `nitpick_compiler_s17`, now renamed), its spare `nitpick-compiler_18` (the `claun` convention, no `s`). `_s16`
 sent notices 59–68 and F13/F14, each authenticated. **Owed from `_s17`:** notice 69 (`b564746`, DEF-116/117) and notice 70 (`9f6f370`,
 documents only). `ListAgents` also shows the fuzzer's M8 as a cloud session, running.
+
+### `nitpick-time`'s 0.1.4c plan verified and pushed; its worker dispatched; the playbook's owed pass — 2026-09-26 06:2x
+
+**report `s2-ntime-0.1.4c-0450` — DONE (planning)**, 85 min (04:50 → 06:15), 859 k tokens: `1cfd3f0`, meta only (the plan, the
+cycle README, `ROADMAP.md`), left unpushed because the plan's §3 gives that push to this seat. **Verified here:** meta only, 3 files;
+`check_refs` clean (78 md, 224 of 224); `check_record` gives only the `[no-report]` a PLANNED file has; the workbench untouched, no
+bytecode cache. **Pushed here; HEAD level with origin.** **Measured first, as told:** the unchanged tree is RED 90 of 91 at `c970483`
+(GREEN 91 at `c3bdae2`), and a per-file compile of all 108 tracked `.npk` at both pins moves exactly four files — `fixed_move_out`
+case1–3 refused `TYPE-084`, and **`probe13d`'s `vec_at_unchecked<T>` refused `TYPE-047`: `pass v.items[i]` through a pointer,
+DEF-104's PLACE shape, which no notice named and a sweep of lent parameters could not have found** — the shape this seat's own O-N22
+sweep missed, found because the dispatch said to look for it. Nothing in `src/` moves. A planted instance of each new refusal
+(`FLOW-001` twice, `TYPE-083`, `TYPE-085`, `TYPE-086`, `TYPE-047`) compiles at `c3bdae2` and is refused at `c970483`, and none of those
+codes appears in the tree. PD-40…PD-43 become TM-189…TM-192. **For the author, accepted by default:** PD-42 lifts the hold on Z-4
+and Z-6 (the zone model's question on Z-4's shape, settled on its own recommended terms before the cycle it named) and PD-43 commits
+O-N23's reproduction here instead of at 0.1.5. **A defect found in its own first rehearsal:** the renumbering script rewrote eleven
+date placeholders inside `0.1.4b.md`, a record; it now touches only the decisions file and files carrying this plan's labels.
+**Handed on:** 0.1.3c inherits that `vec_at`'s `#wild_slice` read is not reached by DEF-104's gate and at an owning `T` still moves
+the element out (case5 exits 11) — a `Pod` bound settles it; 0.1.5 should weigh the harness's 15 text-mode reads of source.
+
+**dispatched 06:2x, model named:** `s2-ntime-0.1.4c-0620` (`npk:worker`, `opus`), at `c970483`.
+
+**The playbook's owed pass, done:** §2 gains five rows for rules now in the pin — `TYPE-085` (a lent owning parameter is
+read-only), a bare `T` owning for every ownership question (`TYPE-047`/`TYPE-085` through `type_owns_for_move`, reaching `T`
+PLACES), `TYPE-086` (no write into a part of `fixed`), `FLOW-001` (every path leaves explicitly), and `T[0]` owning when `T` owns —
+and the move-only row's hold on moving out of `fixed` now says `TYPE-084` refuses it. §6 gains the tooling lessons of regex 0.0.4e
+and time 0.1.4c's planning; §9 gains the sweep lesson: a rule's exposure is swept over everything its predicate reads.
+
+**A correction against this seat:** the compiler seat's rotation notice arrived at **06:10**, not "~06:2x" as the entry above and
+the board's roster said; the board is corrected, and this entry corrects the record.
+
+**Found, and owed next:** the workbench registry still lists O-N20 to O-N24 and O-N26 as open although the pin carries all six
+fixes. §7's strike rule was written after regex 0.0.4e's verified report showed two of them fixed. Each is to be struck on a
+reproduction at `c970483` made here.
