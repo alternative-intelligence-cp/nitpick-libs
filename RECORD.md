@@ -7512,3 +7512,8 @@ as 69 after 67 and 68 with an advance notice first: a parameter's `move` is part
 `Copy`-like marker or a `never fails` clone — with regex's `Pod` as the shape that exists today. **The O-N22 exposure correction is
 recorded on the compiler side too**, as a dated note on DEF-104. Landings 67 (the view freeze, DEF-107, DEF-109…115) and 68 (NIKOS's
 pin move, D-324) are under their harnesses.
+
+**~05:1x — F14, the advance notice for landing 69 (DEF-116, DEF-117):** `TYPE-014` reaches a parameter's ownership — an impl's `move` must
+match its trait's in both directions. **Our exposure, measured by the compiler seat over our current 233 files, both checkers back to back:
+exactly one file, `nitpick-regex`'s own probe 18 — the shape it pins — refused at 42:39; no `TYPE-022` anywhere.** S-108 (a prelude `Copy`
+marker and a `never fails` `list_get`) is the author's. 69 lands after 67 and 68.

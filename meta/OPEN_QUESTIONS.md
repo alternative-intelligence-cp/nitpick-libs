@@ -275,7 +275,11 @@ file existed — the check works.
   (69) after 67 and 68, with an advance notice (F14) first: a parameter's `move` is part of the signature, and
   a difference in either direction refuses `TYPE-014`, naming the parameter and the direction. The cascade is
   DEF-117, fixed in the same landing if the fix is the expected one. The design input is S-108 for the author
-  (a prelude `Copy`-like marker, or a `never fails` clone), with regex's `Pod` recorded as today's shape.
+  (a prelude `Copy`-like marker, or a `never fails` clone), with regex's `Pod` recorded as today's shape. **F14 received (the advance notice for
+  69): our exposure, measured by the compiler seat over our current 233 files with both checkers back to back, is
+  exactly ONE file — `nitpick-regex`'s own `probe18_impl_adds_move.npk`, the shape it pinned, refused `TYPE-014` at
+  42:39 — and no `TYPE-022` anywhere.** S-108's recommendation: a prelude `Copy` marker and a `never fails`
+  `list_get` under it (no `never fails` clone for owning types, since an allocation can fail).
 
 - **O-N27 — THE BORROW TRACKER TAINTS A CALL'S RESULT BY SIGNATURE, SO AN OWNED
   STRING BUILT BY `f(Container->)` CANNOT BE RETURNED FROM THE FRAME THAT OWNS THE
