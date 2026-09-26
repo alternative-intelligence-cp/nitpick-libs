@@ -265,7 +265,9 @@ file existed — the check works.
   loud, not silent; what it costs is a test that asserts the code, which would pin the defect (the plan
   asserts it nowhere). The class of DEF-131 and DEF-132. With it, an observation for the reference:
   `NITPICK-RESOLVE-012`'s message for `mod:error;` reads *"declares `mod:;` first"* — the keyword vanishes
-  from the text. **Sent to the compiler seat 11:17.**
+  from the text. **Sent to the compiler seat 11:17.** **Registered there 11:19 by `nitpick-compiler_19`: the arm is DEF-142 and
+  the vanishing keyword DEF-143, both in 1.6.1d step 4** with DEF-131, DEF-132 and DEF-126; DEF-142 lands as the
+  resolution error asked for.
 
 - **O-N31 — `nitpick-fuzz` M10'S SEVEN FINDINGS, F-011 … F-017: FOUR SILENT WRONG ANSWERS IN
   LOOPS, TWO INTERNAL-ERROR REFUSALS AND SEVEN REFERENCE SENTENCES THE COMPILER CONTRADICTS.** Found by
