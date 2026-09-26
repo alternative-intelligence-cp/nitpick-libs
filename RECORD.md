@@ -7609,3 +7609,18 @@ the board's roster said; the board is corrected, and this entry corrects the rec
 **Found, and owed next:** the workbench registry still lists O-N20 to O-N24 and O-N26 as open although the pin carries all six
 fixes. §7's strike rule was written after regex 0.0.4e's verified report showed two of them fixed. Each is to be struck on a
 reproduction at `c970483` made here.
+
+**~06:4x — registry: ~~O-N20~~, ~~O-N21~~, ~~O-N22~~, ~~O-N23~~, ~~O-N24~~, ~~O-N26~~ struck, each on a reproduction made here at both
+pins.** `nitpick-fuzz`'s `gen/run_known.py` ran its `known/` set with the two pinned compilers: at `c3bdae2` every defect case
+faults or reads wrong as `KNOWN_DEFECTS.md` records it (DEF-99 107/95 and 95/95; DEF-102 70/70 and 95/95; DEF-104 95/95 and 70/70;
+DEF-105 10/10, and the loud form `TYPE-001`); at `c970483` DEF-99 is refused `TYPE-084`, DEF-102 `TYPE-085`, DEF-104 `TYPE-047`, and
+DEF-105's cases compile and run 0/0; every control is unchanged across the pins. **DEF-106 and DEF-108 had no `known/` case, so
+this seat wrote them:** an owning element of a `fixed string[2]` written (95/95), a plain element of a `fixed int64[2]` written
+(107 at -O0, and at -O2 the write DROPPED — the read sees the old value, 11), an empty `int64` body (returns 0), and a fallible
+function whose other path falls off (a SUCCESS) — each refused at `c970483` (`TYPE-086`, `FLOW-001`), with a local-array control
+and an explicit-`fail` control running 0/0 at both pins. **Two of this seat's own controls were wrong first:** `fail 1;` is
+refused `TYPE-007` (the slot is an `Error`), and a declared `error:` then needs its own failsafe arm (`REACH-002`) — both fixed
+before the verdicts were read, and the controls' final rows are the ones kept. The four cases, the controls and every result row
+are in the workbench's `.internal/repro-2026-09-26/`, **for `nitpick-fuzz`'s `known/` once its M8 branch is merged** (M8 may
+touch `KNOWN_DEFECTS.md`, so they wait rather than conflict). The board's compiler-dependencies table gains the 2026-09-25
+defects' row: O-N25 and O-N28 wait for the next re-pin, O-N27 is the author's.
