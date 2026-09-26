@@ -371,6 +371,11 @@ file existed — the check works.
   `T` in a generic body either (read, not built). **Requested:** ask
   `type_owns_for_move` in both gates.
 
+  **A further face, `nitpick-fuzz`'s F-002 (2026-09-26), reproduced here at `c3bdae2` on both legs:**
+  `T:y = move(x);` of a lent `T` in a generic body frees the caller's value (70 / 95); the same written
+  for `string` is refused `TYPE-047`. 3g's switch of `refuse_move_of_borrowed` should refuse it;
+  **sent to the compiler seat to measure at `6f6f96b`.**
+
   **Impact (W-27). Our exposure in `src/` is none** — no generic of ours takes a lent
   bare `T` (`vec_push`, `vec_set`, `vec_insert` and `drop_element` take `move T`).
   Regex pins the shape as a unit, PINNED, NOT ENDORSED. **Sent to
@@ -427,6 +432,11 @@ file existed — the check works.
   The two small items land with it: a keyword as a declared function or type
   name is `NITPICK-PARSE-001` (DEF-103), and `T[0]` is stated supported in
   `TYPE_REFERENCE` §9.2 with two tests.
+  **A further face, `nitpick-fuzz`'s F-001 (2026-09-26), reproduced here at `c3bdae2` on both legs:**
+  a write through a `for` binding over an array of owning values — `for (Box:x in arr) { x.s = …; }`,
+  or `@x` handed to a callee that frees or grows — frees what the element still owns (70 on a read,
+  95 on the drop); the same writes on `arr[i]` run correctly. 3g's rule should refuse it (a `for`
+  binding is a `DeclParamDecl`); **sent to the compiler seat to measure at `6f6f96b`.**
 
   Reproduction: `nitpick-regex/meta/roadmap/0.0/0.0.4d.md` §1.4 and §6.1 (at
   `fdc190f`); **its committed form is `tests/probe/probe17_lent_field_drop.npk`

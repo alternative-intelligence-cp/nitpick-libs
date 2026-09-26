@@ -7350,3 +7350,19 @@ zeroinitializer` under a comment claiming sources always return explicitly, whic
 for planning only:** 660 of 678 functions end in a leaving statement; 8 end in a block and need reading; the 10 flagged look like
 multi-line `pass` expressions and macro or raise forms. The built checker at the fixing pin is the measurement, and the adoption
 subcycles take whatever it finds.
+
+### `nitpick-fuzz` M5–M6, in the cloud: the whole grid hunted, two new findings (faces of DEF-102 and DEF-104) — 2026-09-26 ~00:5x
+
+The cloud session (4 vCPUs, verified before it started) rebuilt both compilers — **every build product byte-identical to the local run's,
+the baseline emission `4029fc70…` agreeing on a third machine** — and ran all 956 cells at `6fb85d3`. **Exactly 40 moved from the
+baseline, every one to `TYPE-084`: DEF-99's fix covers its whole shape in the grid and nothing regressed.** 82 anomalies: 62 known
+(DEF-106 ×24, DEF-102 ×24, DEF-105 ×8, DEF-104 ×6), deduplicated by a script (`dedup.py`) rather than investigated; **20 form two new
+findings, each minimised with controls, confirmed on two hunt runs and one baseline run, and reproduced HERE at `c3bdae2` on both legs
+before anything was sent: F-001, a write through a `for` binding over owning elements (70 / 95; the same writes on the element run
+correctly) — DEF-102's for-binding face; F-002, `move(x)` of a lent `T` in a generic body (70 / 95; the `string` twin is refused
+`TYPE-047`) — DEF-104's move face.** Sent to the compiler seat to measure at 3g (`6f6f96b`), which by its source should refuse both.
+`REPORT.md`'s denominators add up; its named gaps — `List`s of owning elements, leaks, freed memory reused before a read (which hides the
+poison) — are M7's candidates. **`nitpick-fuzz`'s `main` fast-forwarded to `400bdce` after review** (no home path, `check_refs` clean).
+**It also saw the implicit zero result and logged it outside its brief** — the author's catch, now DEF-108. Cost details are kept locally,
+off this public record. **Eleven defect reports from the library side in 24 hours, ten confirmed and fixed or scheduled, one (O-N26) now
+being fixed.**
