@@ -255,6 +255,29 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
+  AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
+  Found by M11 (the references checked against the compiler; stopped part-way on the author's word at 3 704 of
+  10 433 reference lines, merged at `3d7d924`): 1 262 claims tested at HUNT2, 144 disagreeing, every one the same
+  at `c3bdae2` and `1b4f0c6`. **Reproduced by the orchestrator 2026-09-26 11:34:** the 26 programs of F-018 … F-024
+  and F-026, at `c3bdae2` identical to the session's lines, at `9f6f370` identical to its HUNT2 and `1b4f0c6`
+  lines, and at our pin `c970483` the same verdicts — all live at the pin; F-025 by hand (the canary under
+  `--extra-picky=no-wildx`: 256 `WILDX-003` from the prelude at both). **Sent to `nitpick-compiler_19` 11:34.**
+  - **F-018** — a macro's free name, alone or as a comparison's operand, reads the call site's local: silent.
+  - **F-019** — a `'\u{…}'` escape typed `char8` and truncated to its low byte: silent.
+  - **F-020** — the scope-exit join relays the last-spawned child's error, not the first: silent.
+  - **F-021** — an expired `timedwait` returns success after the full wait: silent, an error become a success.
+  - **F-022** — a shared arena destroyed while a spawned thread holds it: use after destroy (`WildLeak`).
+  - **F-023** — an un-awaited `async` METHOD call accepted, emitting a call to an undefined symbol.
+  - **F-024** — `npkc` traps (exit 3) on three macro and depth shapes.
+  - **F-025** — `--extra-picky=no-wildx` refuses every program, at the prelude.
+  - **F-026** — `tfp64<Meters>` accepted with its unit ignored (`dim256`'s twin refused).
+  - **F-027** — 16 lower-priority rows; **F-028** — 94 documentation rows (`m11/RESULTS.md`, `REPORT.md` §12).
+  **Impact (W-27): blocks nothing. Our exposure, swept 11:34 over the six work repositories: none in any `src/`**
+  — macros only in `nitpick-posix`'s probe 02 series (each emits a `failsafe`), `async` only in one regex probe
+  (free functions, not F-023's method), no `\u{…}` escape, no `spawn`, `timedwait`, `shared_arena` or `tfp`, and
+  no harness passing `--extra-picky`.
+
 - **O-N32 — A `pick` ARM NAMING A VARIANT ITS ENUM LACKS IS ACCEPTED BY THE FRONTEND AND REFUSED
   BY THE EMITTER, `NITPICK-EMIT-002`** — the emitter's own *"a defect in the compiler rather than in this
   program"*. Found by `nitpick-regex`'s 0.1.0 planning (step 2's controls; its plan's §6), 2026-09-26.
