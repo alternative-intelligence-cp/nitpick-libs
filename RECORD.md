@@ -7654,3 +7654,15 @@ it read-only and name the commit read. A cloud session cannot answer, and the me
 `Row`"* — reproduced here at `c970483` with a four-line importer, and read against a control whose local struct is renamed
 (*"expected `Cell`, found `Row`"*). The refusal is right; the wording misleads. It blocks nothing, and by the author's rule
 against loading a working seat with what does not serve its task, it waits for the next message to the compiler seat.
+
+**~06:4x — two more corrections against this seat, and the handoff planned.** (1) **Notice 68 arrived before 06:01, not "~06:2x"**: the
+commit filing it, `7890d45`, is 06:01:52. With the rotation's 06:10, that is the third arrival time this seat ESTIMATED this morning
+instead of reading the clock; the board is corrected, and the rule for this seat and its successor is to read `date` before writing
+any time. (2) The board had no explicit "BASELINE NOTICE 69" block — only a sentence under 68's entry saying the rows were
+unchanged. The block is written now, with the six rows at `9126350`, so a successor can authenticate 69 without re-deriving it.
+**The fuzzer's order is now a gate on the board:** a milestone starts only after this seat has merged the one before it and has said so
+to the author; a guard in `nitpick-fuzz`'s `CLAUDE.md`, and DEF-106's and DEF-108's cases for `known/`, are owed at M9's merge and wait
+for it so M9's branch stays a fast-forward. The O-N29 reproduction is kept beside the others in `.internal/repro-2026-09-26/`.
+**The author's call: hand this seat off at the next clean point** — to `nitpick-libs_s7` (`[ccf6b7]`), whose successor is
+`nitpick-libs_s8` (`[f95e71]`); the one after that is `nitpick-libs_9` (no `s`, `claun`'s form). The clean point is both running
+workers reported, verified and recorded, with no subagent in flight; the next dispatches are left to the successor.
