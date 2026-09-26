@@ -7152,3 +7152,9 @@ Our `src/` exposure: none. Registered as O-N22.
 **dispatched 21:22:** `s1-nregex-0.0.5-2122` (`npk:worker`, the close subcycle's fifth triage, `AUDIT:` the fifth pass) — BL-9 fixed
 and every N dispositioned at `c3bdae2`; the post-re-pin items wait for the re-pin subcycle. **question 10 unanswered; the close waits for
 the pin carrying 3g**, as recommended and as the audit concurs.
+
+**~21:3x — O-N22 is DEF-104, and it rides with 3g.** The compiler seat confirmed the reading of `2dde296` as exact within minutes,
+switched both gates to `type_owns_for_move`, and restarted 3g's harness on the amended commit: at the fixing pin, a generic pass-out of a
+lent `T` refuses `TYPE-047` and `@x` of one refuses `TYPE-085`. **Relaying it while 3g was still in its harness is what let one re-pin
+close the generic face with the rest.** Notice 59 now ~00:40. The codes are passed to regex's triage worker. Aside: `gid`, like `pid`,
+`tid`, `fd` and `uid`, is a keyword; no module or binding of ours uses any of them (swept).

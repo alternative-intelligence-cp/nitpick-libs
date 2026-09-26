@@ -278,6 +278,10 @@ file existed — the check works.
   bare `T` (`vec_push`, `vec_set`, `vec_insert` and `drop_element` take `move T`).
   Regex pins the shape as a unit, PINNED, NOT ENDORSED. **Sent to
   `nitpick-compiler_s15` 2026-09-25 ~21:2x, while 3g was still in its harness.**
+  **CONFIRMED within minutes as the compiler's DEF-104, riding with 3g** — both gates
+  switched to `type_owns_for_move` and 3g's harness restarted on the amended commit:
+  at the pin carrying it, the generic pass-out refuses `TYPE-047` (its `string` twin's
+  code) and `@x` of a lent `T` refuses `TYPE-085` (`tests/types/rejection/lent_generic.npk`).
   Reproduction: the audit's N-25
   (`meta/audits/nitpick-regex-0.0-2026-09-25-fifth.md`), rebuilt inline here.
 
