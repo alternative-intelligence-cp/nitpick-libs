@@ -7624,3 +7624,33 @@ before the verdicts were read, and the controls' final rows are the ones kept. T
 are in the workbench's `.internal/repro-2026-09-26/`, **for `nitpick-fuzz`'s `known/` once its M8 branch is merged** (M8 may
 touch `KNOWN_DEFECTS.md`, so they wait rather than conflict). The board's compiler-dependencies table gains the 2026-09-25
 defects' row: O-N25 and O-N28 wait for the next re-pin, O-N27 is the author's.
+
+### `nitpick-fuzz` M8 — the re-hunt at the compiler carrying the fixes: 0 anomalies, no new finding; merged; M9 started — 2026-09-26 06:3x
+
+**The cloud session's report, relayed by the author:** HUNT2 is `9126350` (it appeared on the compiler's `main` before anything was
+built; docs and tools only over `2eea6f4`, so the same compiler sources), carrying 3g `5bdae98`, 3h `c1a4a05`, 4b `f87d2df`, 5c
+`c970483` and 1.6.1 step 0 `2eea6f4`, each confirmed an ancestor; the rebuilt baseline byte-identical to the earlier sessions'.
+**Recall 19 of 19 rows on `KNOWN_DEFECTS.md`'s "once fixed" column; F-001's 13 programs refused `TYPE-085` and F-002's 4 refused
+`TYPE-047`; every control as its verdicts file says** (`ctl_gen_move_param` 21). Every generated function already leaves
+explicitly — 0 of 1 000 programs draw `FLOW-001`, and a planted control (one `pass NIL;` removed) is refused at HUNT2 and accepted
+at the baseline; the whole grid re-run at the baseline matches the committed record in 956 of 956 cells. **The grid at HUNT2:
+394 refused, 562 clean, 0 anomalies** (against 114 at `c3bdae2` and 82 at `6fb85d3`) — every cell doing what the generator
+expected, the first compiler where that holds. Against `6fb85d3`, 148 cells moved: 136 the plan's expected moves (DEF-102 48,
+F-001 32, DEF-104 16, F-002 4, DEF-105 8, DEF-106 28), none missing, and 12 that changed their refusal code to `TYPE-007` —
+**bisected by building 3g and 3h: the change lands exactly at 3h**, DEF-105's fix resolving an imported table's row to its own
+`Box` beside the importer's same-named one; with the table's `Box` imported by name the same operations are refused
+`TYPE-046`/`TYPE-084` at every compiler. The inferred verdict of `c0371`/`c0372` is now measured: refused `TYPE-086`.
+
+**Reviewed and merged here:** two commits (`ba0072e`, `ea77960`), 17 files, all under `PROGRESS.md`, `REPORT.md`, `findings/`,
+`gen/` and `results/`; no home path, e-mail or token in the added lines; `check_refs` clean on the branch; `PLAN.md` untouched;
+M8's boxes ticked. **`main` fast-forwarded to `ea77960` at 06:27 and pushed.**
+
+**M9 was already starting when the report arrived** — a cloud session appeared in `ListAgents` before the merge, so it may hold
+`main` as it was, with M8 unticked, which the repository's rule would make it redo. **Told by message (06:3x):** fast-forward to
+`origin/main` first if M8 shows unticked; never redo M8; force nothing; and `nitpick-time`, which M9.1 reads, is public — clone
+it read-only and name the commit read. A cloud session cannot answer, and the message may wait for the author's approval there.
+
+**O-N29 registered, not sent:** the `TYPE-007` message names two different types by the same bare name — *"expected `Row`, found
+`Row`"* — reproduced here at `c970483` with a four-line importer, and read against a control whose local struct is renamed
+(*"expected `Cell`, found `Row`"*). The refusal is right; the wording misleads. It blocks nothing, and by the author's rule
+against loading a working seat with what does not serve its task, it waits for the next message to the compiler seat.

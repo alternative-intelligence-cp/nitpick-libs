@@ -255,6 +255,24 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N29 — A TYPE MISMATCH BETWEEN TWO SAME-NAMED TYPES FROM DIFFERENT MODULES PRINTS BOTH
+  AS THE BARE NAME: *"expected `Row`, found `Row`"*.** A diagnostic defect, not a soundness
+  one: the refusal is right. Found by `nitpick-fuzz`'s M8 (2026-09-26, its
+  `results/9126350/BISECT-3h.md`): twelve import cells whose own `struct:Box` shares its name
+  with an imported table's row type gained `NITPICK-TYPE-007` exactly at 1.6.0 step 3h —
+  DEF-105's fix resolving `TBL[i]` to the table's `Box` — and the message names both `Box`.
+  **Reproduced by the orchestrator 2026-09-26 ~06:3x at the pin `c970483`:** `use
+  "./rows.npk".ROWS;` beside the importer's own `struct:Row = { int64:x; int64:y; };`, then
+  `Row:r = ROWS[1i64];`, is refused `NITPICK-TYPE-007` with *"expected `Row`, found `Row`"*;
+  the control, the same program with the local struct renamed `Cell`, reads *"expected
+  `Cell`, found `Row`"*. **The request:** qualify a type's name by its module whenever the two
+  names in one message are equal (`same_name_copy.Row` against `rows.Row`). **Impact (W-27):
+  blocks nothing** — the message misleads a reader, not a program. M8 also notes that four of
+  the grid's copy cells now stop at `TYPE-007` before reaching `TYPE-046`; the grid's
+  by-name import spelling still reaches it, so that coverage gap is the fuzzer's to close.
+  **NOT SENT — held** by the author's working-seat rule: the compiler seat is landing 1.6.1,
+  and this goes with the next message to it that serves its task.
+
 - **O-N28 — AN IMPL MAY DECLARE `move` ON A PARAMETER ITS TRAIT LENDS (OR LEND ONE
   THE TRAIT MOVES), AND A CALL THROUGH THE TRAIT FREES TWICE.** Raised by
   `nitpick-regex`'s 0.0.4e planning (`0.0.4e.md` §6.1), 2026-09-26, at `c970483`
