@@ -7505,3 +7505,10 @@ rehearsal that commits partway also commits staged `git mv`s — measure tallies
 at once by an opening parenthesis as a link, even in fences and comments (spell a slice-typed parameter list apart — this very
 entry tripped it on the first try); an idempotent engine's hand-amendment check compares whole lines; a gate that asks whether a
 type owns reaches places as well as parameters; `check_record`'s title rule takes `— PLANNED` only without a date.
+
+**~05:0x — O-N28 is DEF-116**, reproduced by the compiler seat (the `move`-adding impl traps at the second free; the reverse leaks), to land
+as 69 after 67 and 68 with an advance notice first: a parameter's `move` is part of a trait signature, a mismatch either way refused
+`TYPE-014`. **The `TYPE-022` cascade is DEF-117**, in the same landing. **The design input is S-108 for the author** — a prelude
+`Copy`-like marker or a `never fails` clone — with regex's `Pod` as the shape that exists today. **The O-N22 exposure correction is
+recorded on the compiler side too**, as a dated note on DEF-104. Landings 67 (the view freeze, DEF-107, DEF-109…115) and 68 (NIKOS's
+pin move, D-324) are under their harnesses.

@@ -270,7 +270,12 @@ file existed — the check works.
   is exposed ecosystem-wide, so every library with an impl is swept once the
   compiler answers. Sent to `nitpick-compiler_s16` 2026-09-26 ~04:5x with two
   companion items (a design input: no infallible generic by-value read; an
-  observation: `TYPE-022` cascading after `TYPE-085`).
+  observation: `TYPE-022` cascading after `TYPE-085`). **CONFIRMED as the compiler's DEF-116** (reproduced there: the
+  `move`-adding impl traps at the second free; the reverse leaks the string), to be fixed as its own landing
+  (69) after 67 and 68, with an advance notice (F14) first: a parameter's `move` is part of the signature, and
+  a difference in either direction refuses `TYPE-014`, naming the parameter and the direction. The cascade is
+  DEF-117, fixed in the same landing if the fix is the expected one. The design input is S-108 for the author
+  (a prelude `Copy`-like marker, or a `never fails` clone), with regex's `Pod` recorded as today's shape.
 
 - **O-N27 — THE BORROW TRACKER TAINTS A CALL'S RESULT BY SIGNATURE, SO AN OWNED
   STRING BUILT BY `f(Container->)` CANNOT BE RETURNED FROM THE FRAME THAT OWNS THE
