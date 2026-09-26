@@ -900,6 +900,8 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `77314e9` LANDED — **1.6.0 STEP 5b: TWO DOCUMENTS FROM OUR 0.1.4b PLANNING — D-292's DATED NOTE (a `peak_live` bound excludes the failsafe region) AND DEF-107 REGISTERED (the view freeze, S-106 — since ratified by the author as D-325).** Notice 65, received 2026-09-26 ~02:2x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`.** Documents only. **✅ VERIFIED HERE:** all six rows quoted unchanged, equal to the baseline for 65 (64's rows), by script with a control; `4e467bc` an ancestor; zero files under `src/`, `runtime/`, `bootstrap/`. **The baseline for 66 is the same rows, at `77314e9`.** Next: **66 (`c970483`, DEF-108, `FLOW-001`) — its harness green — then the re-pin.**
+
 ### ✅ `4e467bc` LANDED — **1.6.0 STEP 5: 1.6.0 IS COMPLETE. DOCUMENTS AND THE PLAN ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED. ⚠ FOREWARNED: 1.6.1 STEP 1 WILL CHANGE EVERY EMISSION'S TEXT.** Notice 64, received 2026-09-26 ~02:1x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
 
 D-322: NIKOS is the analyzer leg's engine; Clam decided out with its scorecard kept; E-8 settled — **the emission will state its own

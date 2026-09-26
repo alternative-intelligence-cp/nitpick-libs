@@ -7448,3 +7448,7 @@ none. The baseline for 64 is recorded. **Notices counted to 63.**
 64 (checked by script with a control); zero files under `src/`, `runtime/`, `bootstrap/`. **Forewarned:** 1.6.1 step 1 changes every
 emission's text (the `target datalayout` line) with a snapshot refresh, a re-pin notice ahead of it — our re-pin at 66 lands before that
 change, so the text change is the NEXT re-pin's. **Notices counted to 64.**
+
+**notice 65, ~02:2x — `77314e9`, 1.6.0 step 5b: two documents from our 0.1.4b planning** (D-292's dated note; DEF-107 registered). All six
+rows unchanged, equal to the baseline for 65, by script with a control; zero files under `src/`, `runtime/`, `bootstrap/`. The baseline for
+66 is the same rows. **Notices counted to 65.**
