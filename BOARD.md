@@ -37,7 +37,7 @@ blocked, what is done. The durable plan is
 >   regex's 0.1.0 planner while time's worker runs. **Every dispatch names its model:** `opus` for planner, worker and auditor, `sonnet`
 >   for a verifier; Fable is the compiler agent's alone.
 >
-> **The compiler seat is `nitpick-compiler_s17`** (`[ad125b]`; its spare `nitpick-compiler_18`). **Owed: notice 69** (`b564746`, DEF-116
+> **The compiler seat is `nitpick-compiler_s17`** (`[ad125b]`; its spare `nitpick-compiler_18`). **Owed: notice 69 — RECEIVED 07:32 and verified by the ladder (its entry)** (`b564746`, DEF-116
 > and DEF-117 — our O-N28) **and notice 70** (`9f6f370`, documents only). Check 69 by the ladder script (`tools/ladder.py`), with a one-digit-off control,
 > against the *"BASELINE NOTICE 69"* block under notice 68's entry; write the next baseline block when you file each. **O-N29 is held for
 > your next message to that seat that serves its task** — one paragraph; its reproduction is in `.internal/repro-2026-09-26/o_n29_type007/`.
@@ -947,6 +947,19 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `b564746` LANDED — **1.6.1 STEP 0c: DEF-116 (OUR O-N28) — A PARAMETER'S OWNERSHIP IS PART OF A TRAIT'S SIGNATURE, `NITPICK-TYPE-014` IN BOTH DIRECTIONS; AND DEF-117 — A REFUSED ARGUMENT NO LONGER CASCADES INTO `TYPE-022` AT A GENERIC CALL (D-240).** Notice 69, received 2026-09-26 07:32 EDT (shell time), from `nitpick-compiler_s17` — **its first; `nitpick-compiler_s16` has stood down.** **PIN STAYS `c970483`.** **✅ VERIFIED HERE:** the six rows by `tools/ladder.py` against the baseline for 69 — MATCH, and the one-digit-off control fails; **three rows moved**, each delta recomputed and each previous value the baseline's: `npkc.ll` +15 159 B (the emission, D-265), `npkc.o` +5 288 B, `npkc` +4 520 B; `npkrt.o` (THE ANCHOR, `162b8975…` / 72 576 B), `builder.o` and `builder` unchanged. `9126350` an ancestor, one commit; 2 files under `src/`, none under `runtime/` or `bootstrap/`. No language change (the trait signature was already required to match; its ownership half is now checked); the compiler's manifest re-recorded; no floor byte; no snapshot refresh. **Also recorded there:** S-108 for the author (a `never fails` by-value read of a generic container) and this workbench's DEF-104 exposure correction. **OUR EXPOSURE:** `nitpick-regex`'s probe 18 (`tests/probe/probe18_impl_adds_move.npk`) is refused `TYPE-014` from this landing — its cycle-0.0 close planned the move to `tests/probe/refused/` at the re-pin that carries this notice; **O-N28 stays open in the registry until that re-pin**, as O-N25 does for notice 67. `nitpick-time`'s 0.1.3c planner is told to port regex's `Pod` with its parameter modes exact, clear of the shape. **Next from `_s17`:** notice 70 (`9f6f370`, documents only), then **advance notice F15 for landing 71 — 1.6.1 step 1, E-8: every emission's text moves and every project's manifest needs two new `[toolchain]` rows** — then 71. **The next re-pin waits for 71**, as planned: it carries 67, 69 and the emission change at once. **O-N29 stays held:** notice 69 asked for no reply, so it rides with our answer to F15.
+
+**THE BASELINE NOTICE 70 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `b564746`** (generated from the notice's rows by script, and self-checked by the ladder):
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    7bab110a1e45cc9dcc5a34fb9c31dec160735c86800253fd940058dde7497eb8  28,872,365 B
+npkc.o     2f23d5874fa53b67ff33023ef0a15862401596a46358a211ca35817cfc1d982c  11,613,808 B
+npkc       99f55df5f71683a907ce125768e0745671ada38a23b851f717f944cc53564ce8  9,977,392 B
+```
+
 ### ✅ `9126350` LANDED — **1.6.1 STEP 0, THE NIKOS HALF (D-324): THE ANALYZER ENGINE'S THREE DEFECTS FIXED IN THE AUTHOR'S NIKOS FORK AND ITS PIN MOVED. TOOLS ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED.** Notice 68, received 2026-09-26 before 06:01 EDT (the filing commit `7890d45` is 06:01:52 — first written here as ~06:2x, which was wrong), from `nitpick-compiler_s16`. **PIN STAYS `c970483`.** **✅ VERIFIED HERE:** all six rows quoted unchanged, equal to the baseline for 68 (the rows at `2eea6f4`), by script with a control; `2eea6f4` an ancestor; zero files under `src/`, `runtime/`, `bootstrap/`. **The baseline for 69 is the same rows, at `9126350`.** **S-107 and S-108:** the relayed approval is recorded on both rows, dated; **their ratification waits for the author's word in the compiler seat**, which its report to him asks for plainly — nothing to re-ask from here.
 
 **THE BASELINE NOTICE 69 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `9126350`, which equal `2eea6f4`'s (notice 68 moved no row):**
@@ -960,7 +973,7 @@ npkc.o     905fcbdd623374e9b01b70e0edbdc287d1015df47d892e6db78f31193a9cb6bb  11,
 npkc       c7212b6be06fe6a4b6ed3602d86e0b58d0f7e2109532099e888a73c519f2aee7  9,972,872 B
 ```
 
-**Owed from `nitpick-compiler_s17`:** notice 69 (`b564746`, DEF-116 and DEF-117 — our O-N28; `TYPE-014` on a trait's `move`; F14 announced it) and notice 70 (`9f6f370`, documents only — the record of S-107's and S-108's relayed approval). **Check 69 against the block above by the ladder script with a one-digit-off control; check 70 against 69's rows.** The script is `tools/ladder.py` (`python3 -B tools/ladder.py BASELINE NOTICE`), committed 2026-09-26 and commissioned on five cases; its docstring carries the baseline-extraction command and the three read-only git checks, and says never to fetch in `../nitpick`. The pin stays `c970483`; 69 is a re-pin candidate with 67 and 1.6.1 step 1's emission-text change.
+*(Notice 69 received and verified 2026-09-26 07:32 — the entry above; 70 still owed.)* **Owed from `nitpick-compiler_s17`:** notice 69 (`b564746`, DEF-116 and DEF-117 — our O-N28; `TYPE-014` on a trait's `move`; F14 announced it) and notice 70 (`9f6f370`, documents only — the record of S-107's and S-108's relayed approval). **Check 69 against the block above by the ladder script with a one-digit-off control; check 70 against 69's rows.** The script is `tools/ladder.py` (`python3 -B tools/ladder.py BASELINE NOTICE`), committed 2026-09-26 and commissioned on five cases; its docstring carries the baseline-extraction command and the three read-only git checks, and says never to fetch in `../nitpick`. The pin stays `c970483`; 69 is a re-pin candidate with 67 and 1.6.1 step 1's emission-text change.
 
 ### ✅ `2eea6f4` LANDED — **1.6.1 STEP 0: DEF-107 FIXED (the view freeze, `NITPICK-BORROW-015`, D-325 — the author's), WITH DEF-109 TO DEF-115; CALLS READ OFF EACH CALLEE'S BODY.** Notice 67, received 2026-09-26 ~05:4x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c970483`** (taken at notice 66 — see the Toolchain header and `.internal/toolchain/c970483/PIN.md`). **ANCHOR STAYS `162b8975…` / 72 576 B.**
 
