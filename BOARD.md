@@ -37,7 +37,7 @@ blocked, what is done. The durable plan is
 >   regex's 0.1.0 planner while time's worker runs. **Every dispatch names its model:** `opus` for planner, worker and auditor, `sonnet`
 >   for a verifier; Fable is the compiler agent's alone.
 >
-> **The compiler seat is `nitpick-compiler_s17`** (`[ad125b]`; its spare `nitpick-compiler_18`). **Owed: notice 69 — RECEIVED 07:32 and verified by the ladder (its entry)** (`b564746`, DEF-116
+> **The compiler seat is `nitpick-compiler_s17`** (`[ad125b]`; its spare `nitpick-compiler_18`). **Owed: notice 70 — RECEIVED 08:26 and verified (its entry); then F15 received, 71 pending.** **Owed: notice 69 — RECEIVED 07:32 and verified by the ladder (its entry)** (`b564746`, DEF-116
 > and DEF-117 — our O-N28) **and notice 70** (`9f6f370`, documents only). Check 69 by the ladder script (`tools/ladder.py`), with a one-digit-off control,
 > against the *"BASELINE NOTICE 69"* block under notice 68's entry; write the next baseline block when you file each. **O-N29 is held for
 > your next message to that seat that serves its task** — one paragraph; its reproduction is in `.internal/repro-2026-09-26/o_n29_type007/`.
@@ -946,6 +946,44 @@ once at the 0dfddac re-pin.
 > `s2-ntime-0.1.0-0235` as this is written, so any program count taken from it
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
+
+### 📋 ADVANCE NOTICE F15 FOR LANDING 71 (1.6.1 STEP 1, E-8, D-322 (5)) — **EVERY EMISSION GAINS A `target datalayout` LINE, AND EVERY LIBRARY MANIFEST NEEDS TWO NEW REQUIRED `[toolchain]` ROWS. NO OBJECT OR BINARY OF OURS MOVES.** Received 2026-09-26 08:26 EDT (shell time) from `nitpick-compiler_s17`. **Not landed: 71's harness is running, about two hours left.** No reply asked.
+
+- **The emission.** Every module begins `target datalayout = "…"`, then `target triple = "x86_64-unknown-linux-gnu"`; the floor and the explorer shim carry both by hand. `opt` and `llc` derive the same layout from the triple, so no object moves — measured by the compiler seat with and without the line, at -O0 and after `opt -O2`. **Our `.ll` texts gain the first line, so nothing that compares an emission's text or size survives the re-pin unchanged — the canary's IR included.**
+- **The manifests — at the re-pin that carries 71, in each of the five (`nitpick-parse`, `nitpick-regex`, `nitpick-sockets`, `nitpick-time`, `nitpick-tui`), beside `llvm = "20.1.2"`, verbatim:**
+
+```
+triple        = "x86_64-unknown-linux-gnu"
+datalayout    = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-i128:128-f80:128-n8:16:32:64-S128"
+```
+
+  `npkg` refuses a manifest without either, BY NAME. They are pins the runners check, not settings a project chooses, and the layout must be the FULL string: `llvm-as` completes a partial one, which then fails the belt.
+- **After 71:** 1.6.1b (D-326, our O-N27 — a relaxation; notice 72), then 1.6.1c (D-327 — the prelude `Copy`; it reserves the name `Copy` in every program under D-239, with ADVANCE notice F16 and its census first; notice 73). **`nitpick-regex`'s `Pod` retires into `Copy` when we adopt** — and `nitpick-time`'s 0.1.3c planner, which ports `Pod`, was told at 08:0x to name nothing `Copy` and to take a numbered decision on the relation.
+- **The next re-pin is decided when 71 lands: at 71, or once after 73**, weighing one adoption round in each library against two. It carries 67 (`BORROW-015`), 69 (`TYPE-014` — regex's probe 18 to `tests/probe/refused/`), 71 (the two manifest rows, the emission's first line) and each CI's pin bump.
+
+**F15's PREDICTED rows for 71 — a cross-check for notice 71's own rows, NOT a baseline** (measured on the landing tree; the snapshot `bootstrap/seed/stage1.ll` is the emission, `ec29f358…`, 28 872 936 B):
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B      unchanged
+builder.o  939fb582558eb60baf0826258c96cd5617575ea0196bb3158beb83ac8d9f2dbe  11,614,000 B  moves (the snapshot)
+builder    cc8c39c09dcb128002af4c5ae3f4d5cf34631e739660a8360eab1db2491a43a9  9,977,544 B   moves (the snapshot)
+npkc.ll    ec29f358c08dfe8075f3a22a6f30d110dd402132f058b484935a8f0bbd46395f  28,872,936 B  moves (the two lines, the constants) -- THE EMISSION
+npkc.o     f98df2cbb6e076e8db0f09debb8140465b78049ba5d9cd4cf23df32115073b24  11,614,000 B  moves (the emitter's own constants)
+npkc       07de906a85d585945eeff976d460ef80cced2b93f5676586168f9395310899f3  9,977,536 B   moves (the emitter's own constants)
+```
+
+### ✅ `9f6f370` LANDED — **1.6.1 STEP 0c's RECORD: S-107's AND S-108's RELAYED APPROVAL. DOCUMENTS ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED. THE D-NUMBERS SINCE GIVEN: S-107 IS D-326 (OUR O-N27), S-108 IS D-327 (A PRELUDE `Copy`).** Notice 70, received 2026-09-26 08:26 EDT (shell time), from `nitpick-compiler_s17`. **PIN STAYS `c970483`.** **✅ VERIFIED HERE:** all six rows unchanged — MATCH against the baseline for 70 by `tools/ladder.py`, the one-digit-off control failing; `b564746` an ancestor, one commit; nothing under `src/`, `runtime/` or `bootstrap/` — three `meta/` documents. The author ratified both in the compiler session (*"the recommendations from earlier you asked about are fine. go with those."*), recorded in landing 71's commit; each is a subcycle landing before 1.6.1 step 2.
+
+**THE BASELINE NOTICE 71 MUST QUOTE AS ITS PREVIOUS VALUES — the rows at `9f6f370`, which equal `b564746`'s (notice 70 moved no row):**
+
+```
+npkrt.o    162b897539285a773a6a1a0329750e148a6c9590b45dda2d017704743b591824  72,576 B
+builder.o  ce3dfc58478578ed1cb83e4bafad80cf0c6856f6c33739ae247fa2f989f20b66  11,313,056 B
+builder    3d0979a4fca0f8af5961c0ad48a0a83966d67e7ea72daaf5d6349370a05889be  9,724,160 B
+npkc.ll    7bab110a1e45cc9dcc5a34fb9c31dec160735c86800253fd940058dde7497eb8  28,872,365 B
+npkc.o     2f23d5874fa53b67ff33023ef0a15862401596a46358a211ca35817cfc1d982c  11,613,808 B
+npkc       99f55df5f71683a907ce125768e0745671ada38a23b851f717f944cc53564ce8  9,977,392 B
+```
 
 ### ✅ `b564746` LANDED — **1.6.1 STEP 0c: DEF-116 (OUR O-N28) — A PARAMETER'S OWNERSHIP IS PART OF A TRAIT'S SIGNATURE, `NITPICK-TYPE-014` IN BOTH DIRECTIONS; AND DEF-117 — A REFUSED ARGUMENT NO LONGER CASCADES INTO `TYPE-022` AT A GENERIC CALL (D-240).** Notice 69, received 2026-09-26 07:32 EDT (shell time), from `nitpick-compiler_s17` — **its first; `nitpick-compiler_s16` has stood down.** **PIN STAYS `c970483`.** **✅ VERIFIED HERE:** the six rows by `tools/ladder.py` against the baseline for 69 — MATCH, and the one-digit-off control fails; **three rows moved**, each delta recomputed and each previous value the baseline's: `npkc.ll` +15 159 B (the emission, D-265), `npkc.o` +5 288 B, `npkc` +4 520 B; `npkrt.o` (THE ANCHOR, `162b8975…` / 72 576 B), `builder.o` and `builder` unchanged. `9126350` an ancestor, one commit; 2 files under `src/`, none under `runtime/` or `bootstrap/`. No language change (the trait signature was already required to match; its ownership half is now checked); the compiler's manifest re-recorded; no floor byte; no snapshot refresh. **Also recorded there:** S-108 for the author (a `never fails` by-value read of a generic container) and this workbench's DEF-104 exposure correction. **OUR EXPOSURE:** `nitpick-regex`'s probe 18 (`tests/probe/probe18_impl_adds_move.npk`) is refused `TYPE-014` from this landing — its cycle-0.0 close planned the move to `tests/probe/refused/` at the re-pin that carries this notice; **O-N28 stays open in the registry until that re-pin**, as O-N25 does for notice 67. `nitpick-time`'s 0.1.3c planner is told to port regex's `Pod` with its parameter modes exact, clear of the shape. **Next from `_s17`:** notice 70 (`9f6f370`, documents only), then **advance notice F15 for landing 71 — 1.6.1 step 1, E-8: every emission's text moves and every project's manifest needs two new `[toolchain]` rows** — then 71. **The next re-pin waits for 71**, as planned: it carries 67, 69 and the emission change at once. **O-N29 stays held:** notice 69 asked for no reply, so it rides with our answer to F15.
 
