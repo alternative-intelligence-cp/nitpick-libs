@@ -7374,3 +7374,15 @@ which step produced it: if the program runs and exits 2, it is a regression in e
 3g itself is being amended — its first harness went red on four of the compiler's own tests that passed a lent `T` out, each a real
 instance of the rule — so the shas quoted for 59 onward will change. *Correction to the entry above:* DEF-107 is not scheduled; it waits
 for the author's S-106.
+
+**~01:2x — the exit 2 was the compiler seat's measurement, not a regression:** its batch loop ran a stale cached binary; one program at a
+time, the `move T` control exits 21 on both legs under 3g's amended tree (`5bdae98`). **F12:** `FLOW-001` finds nothing to refuse in the
+compiler's own 906 files. **The re-based chain, landing in order with notices 59–66:** 3g `5bdae98`, 3h `c1a4a05`, step 3 `0da2be7`, step 4
+`996784e`, 4b `f87d2df`, 5 `4e467bc`, 5b `77314e9`, 5c (DEF-108). **The author's direction: spend the cloud credit on the fuzzer, milestone
+by milestone, until it runs out.** `nitpick-fuzz`'s `CLAUDE.md` now counts SILENT WRONG ANSWERS as defects (his rule, and the reason
+DEF-108 was nearly missed); its `PLAN.md` gains M8 (the re-hunt at the fixed compiler, once 3h lands), M9 (the grid widened: a leak
+observer, a reuse-proof read, `List<string>`, more places and operations), M10 (silent wrong answers, each expectation derived from the
+reference's text) and M11 (every example and normative claim of the references checked) — each a separate cloud session that stops for
+his cost check, this seat merging each branch to `main` before the next. `KNOWN_DEFECTS.md` gains DEF-107, DEF-108 and F-001/F-002 closed
+as faces. **`nitpick-fuzz/.work/` deleted at the author's word** — the first, local run's 12 GB of LLVM and compiler builds, gitignored and
+rebuildable, nothing using it.

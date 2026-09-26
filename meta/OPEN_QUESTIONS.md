@@ -375,8 +375,9 @@ file existed — the check works.
   `T:y = move(x);` of a lent `T` in a generic body frees the caller's value (70 / 95); the same written
   for `string` is refused `TYPE-047`. **Measured at 3g's tree by the compiler seat: refused `TYPE-047` at the
   move — a face of DEF-104, no new number. ⚠ But the finding's CONTROL — the same body with a `move T:x`
-  parameter, called with `move(s)`, 21 at both kept compilers — EXITS 2 there, a code the program cannot
-  produce: asked to trace the step before 3g lands, since that control is the spelling 3g prescribes.**
+  parameter, called with `move(s)`, 21 at both kept compilers — was reported to exit 2 there; TRACED by the
+  compiler seat to its own batch loop's stale cached binary: run one at a time under 3g (`5bdae98`) it exits 21 on
+  both legs. No regression.**
 
   **Impact (W-27). Our exposure in `src/` is none** — no generic of ours takes a lent
   bare `T` (`vec_push`, `vec_set`, `vec_insert` and `drop_element` take `move T`).
