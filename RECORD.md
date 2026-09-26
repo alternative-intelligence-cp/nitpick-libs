@@ -7386,3 +7386,17 @@ reference's text) and M11 (every example and normative claim of the references c
 his cost check, this seat merging each branch to `main` before the next. `KNOWN_DEFECTS.md` gains DEF-107, DEF-108 and F-001/F-002 closed
 as faces. **`nitpick-fuzz/.work/` deleted at the author's word** — the first, local run's 12 GB of LLVM and compiler builds, gitignored and
 rebuildable, nothing using it.
+
+### `nitpick-time` 0.1.4b VERIFIED PASS — the harness asserts managed memory, and `bytes_take` owns its answer — 2026-09-26 00:3x
+
+**report `s2-ntime-0.1.4b-2355` — DONE**, ~30 min, 422 k tokens: `b9a2203` (the managed-memory gate, and `bytes_take` copying) and
+`dba314d` (the record); CI green on both. **verify `s2-ntime-0.1.4b-verify-0024` (`sonnet`) — PASS:** tree clean, the subject,
+`check_refs` clean (77 md, 223 of 223), `check_record` clean, the harness re-run GREEN 91 at `c3bdae2`; **the body of `bytes_take` read
+and confirmed a copy** (`string_concat(view, "")`). TM-186 (PD-37) and TM-188 (PD-39) recorded as drafted, accepted by default.
+**for-the-workbench:** the tracker refuses an owned string returned from a call handed `@local` (`BORROW-001`), with the take a copy and
+the answer bound first — **the third measurement of `nitpick-regex`'s colliding local question** (the tracker taints a return by
+signature); it goes to the re-pin with the others. **findings-for-playbook** (owed to the next pass): a low address-space cap's control
+must share the program's runtime; derive every number an instrument prints from the source before bounding it — a count of 25 where the
+source makes 26 was the use-after-free; a test of an owned answer uses the source again before it reads the answer; the durable form of
+"quote a command's whole output" is a comparator extracted from the plan, not care. **Both streams now idle until the re-pin** — regex
+READY-TO-CLOSE, `nitpick-time` at the cycle's last subcycles — while the compiler's chain lands 59–66.
