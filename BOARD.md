@@ -900,6 +900,19 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `0da2be7` AND `996784e` LANDED — **1.6.0 STEPS 3 AND 4: THE ANALYZER GATE'S RUNS, AND ITS READING. TOOLS AND DOCUMENTS ONLY — NO `src/` BYTE, EVERY LADDER ROW UNCHANGED.** Notices 61 and 62, received 2026-09-26 ~01:4x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.**
+
+Step 3 ran the analyzer gate (316 tasks, three engines, each twice): NIKOS finds seven of eight planted defects and reaches the compiler's
+`main` alone (the executor wall); Clam's memory analyses abort on every input and exceed this machine on the compiler's whole-program form
+(killed at ~129 GiB seven times — the earlyoom kills this board recorded); Alive2's `incorrect` verdicts are inter-procedural facts
+(D-321, E-7 for 1.6.2). Step 4 read each engine's source for its port distance and filled the scorecard — **Clam disqualified, NIKOS wins,
+offered to the author as S-102.** **E-8, the emitter writing its own `target datalayout` line, is the author's** — it is what 1.6.1 step 1
+will change in every emission.
+
+**✅ VERIFIED HERE:** both notices quote all six rows unchanged, and the rows equal the baseline recorded for 61 (the rows at `c1a4a05`) —
+checked by script with a one-digit-off control; `c1a4a05` → `0da2be7` → `996784e`, each the next's ancestor, with **zero files changed
+under `src/`, `runtime/` or `bootstrap/`** in either. **The baseline for 63 is therefore the same rows, at `996784e`.**
+
 ### ✅ `c1a4a05` LANDED — **1.6.0 STEP 3h: DEF-105 (our O-N23) — AN IMPORTED `fixed` BINDING'S TYPE RESOLVES IN ITS HOME SCOPE (D-137). A LOUD ERROR BECOMES ACCEPTANCE, A SILENT MISREAD THE RIGHT READ.** Notice 60, received 2026-09-26 ~01:3x EDT, from `nitpick-compiler_s16`. **PIN STAYS `c3bdae2`. ANCHOR STAYS `162b8975…` / 72 576 B.** **THE FUZZER'S M8 MAY START: 3g and 3h are on the compiler's `main`.**
 
 **✅ VERIFIED HERE BY THE LADDER, against notice 59's baseline, by script with a control:** the three unchanged rows equal it; each moved

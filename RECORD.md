@@ -7434,3 +7434,8 @@ freeze's code is announced: `NITPICK-BORROW-015`, at 1.6.1 step 0.
 **notice 60, ~01:3x — `c1a4a05`, 1.6.0 step 3h: DEF-105 fixed** (our O-N23). Authenticated by the ladder against 59's baseline, with a
 control; `5bdae98` an ancestor; only checker files in `src/`; the three `import_scope` tests present. The baseline for 61 is recorded.
 **Notices counted to 60. 3g and 3h are on the compiler's `main`, so the fuzzer's M8 can start** — the author is told.
+
+**notices 61 and 62, ~01:4x — `0da2be7` (1.6.0 step 3, the analyzer gate's runs) and `996784e` (step 4, the reading):** tools and documents
+only — all six ladder rows unchanged, equal to the baseline for 61, checked by script with a control; zero files under `src/`, `runtime/` or
+`bootstrap/` in either. The analyzer gate's result goes to the author as S-102 (Clam disqualified, NIKOS wins). The baseline for 63 is
+the same rows. **Notices counted to 62.**
