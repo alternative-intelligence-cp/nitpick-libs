@@ -269,7 +269,13 @@ file existed — the check works.
   **Requested:** a definite-return rule — every path of a function with a non-`NIL`
   result ends in `pass`, `exit` or a trap. **Exposure unmeasured** — "every path
   returns" is not a lexical property; the check, at the pin that carries it, is the
-  sweep. Sent with these measurements 2026-09-26 ~00:2x.
+  sweep. Sent with these measurements 2026-09-26 ~00:2x. **CONFIRMED as the compiler's DEF-108, fixed as a refusal,
+  `NITPICK-FLOW-001`** (F12 to follow). **The author stated the rule himself, broader than this
+  entry asked:** a function that does not explicitly leave must not compile — every path ends in
+  `pass`, `fail`, `exit` (in `main`/`failsafe`) or a trap, **`NIL` functions included** (they `pass
+  NIL`). **A lexical estimate of our exposure, not the measurement:** of 678 functions in 231 files,
+  660 end in a leaving statement, 8 end in a block (to be read), and the 10 flagged are multi-line
+  `pass` expressions and macro or raise forms — likely false; the check at the pin decides.
 
 - **O-N25 — A VIEW'S ROOT CAN BE WRITTEN WHILE THE VIEW IS LIVE, SO THE VIEW
   READS REWRITTEN OR FREED MEMORY — the language gives views an escape rule and no

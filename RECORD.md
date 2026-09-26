@@ -7343,3 +7343,10 @@ stop deleting `pass`/`exit` statements; **the author judged it serious and repor
 function falling off its end returns a SUCCESS carrying 0**, so a forgotten error path is indistinguishable from a result. Sent to the
 compiler seat with a definite-return rule as the request; registered as O-N26. *The fuzzer's brief defines a defect as memory-unsafe,
 so a wrong-answer class like this falls outside it by design — the author's read caught what the brief excluded.*
+
+**~00:3x — O-N26 is DEF-108, `NITPICK-FLOW-001`, by the author's own rule:** a function that does not explicitly leave does not compile —
+every path ends in `pass`, `fail`, `exit` or a trap, `NIL` functions included. The emitter had closed a falling-off body with `ret …
+zeroinitializer` under a comment claiming sources always return explicitly, which nothing had checked. **Our exposure, estimated lexically
+for planning only:** 660 of 678 functions end in a leaving statement; 8 end in a block and need reading; the 10 flagged look like
+multi-line `pass` expressions and macro or raise forms. The built checker at the fixing pin is the measurement, and the adoption
+subcycles take whatever it finds.
