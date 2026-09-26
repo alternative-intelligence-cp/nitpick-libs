@@ -262,19 +262,24 @@ file existed — the check works.
   at `c3bdae2` every line identical to the cloud's committed `VERDICTS.txt`, and at `9f6f370`
   (notice 70's `npkc`, identified by digest) every line identical to the cloud's HUNT2 `9126350`
   — so notices 69 and 70 moved none. **Sent to `nitpick-compiler_s17` 2026-09-26 08:31.**
-  - **F-003** — a consuming `pick`'s binding read after its move (exit 70) or moved twice (95):
+  **Registered there 08:32 as DEF-118 … DEF-125** (and O-N29 as DEF-126), in the compiler's
+  OPEN_DECISIONS §4 riding with landing 73's commit, **and fixed in a subcycle 1.6.1d that lands
+  after 73 and before 1.6.1 step 2**: step 1 the memory faults and the unenforced rule (DEF-118,
+  DEF-119, DEF-123), step 2 the leaks (DEF-120, DEF-121, DEF-122), step 3 the over-restrictions
+  and the diagnostic (DEF-124, DEF-125, DEF-126), each reproduced from the fuzzer's programs first.
+  - **F-003** (DEF-118) — a consuming `pick`'s binding read after its move (exit 70) or moved twice (95):
     use-after-free and double free. Present at our pin `c970483`.
-  - **F-004** — a view's root freed by a callee handed `@x` or `$$i x` that moves the value out
+  - **F-004** (DEF-119) — a view's root freed by a callee handed `@x` or `$$i x` that moves the value out
     (70): a gap in DEF-107's fix, which refuses `$$m x`. At our pin every form faults, since the
     pin has no view freeze at all (O-N25).
-  - **F-005** — `(<-p) = v` never drops the old value (121 grid cells, every owning type): a leak.
-  - **F-006** — a consuming `pick`'s binding never dropped at the arm's end: a leak.
-  - **F-007** — `to_cstring`'s buffer never freed, `len + 1` bytes a call: a leak.
-  - **F-008** — a write through a `$$i` claim's holder compiles, where the reference names it
+  - **F-005** (DEF-120) — `(<-p) = v` never drops the old value (121 grid cells, every owning type): a leak.
+  - **F-006** (DEF-121) — a consuming `pick`'s binding never dropped at the arm's end: a leak.
+  - **F-007** (DEF-122) — `to_cstring`'s buffer never freed, `len + 1` bytes a call: a leak.
+  - **F-008** (DEF-123) — a write through a `$$i` claim's holder compiles, where the reference names it
     `BORROW-013`: a rule not enforced.
-  - **F-009** — a `move` parameter re-initialised after a move cannot be read (`MOVE-001`): an
+  - **F-009** (DEF-124) — a `move` parameter re-initialised after a move cannot be read (`MOVE-001`): an
     over-restriction.
-  - **F-010** — a swap through a lent `dyn`'s method refused `BORROW-002` (DEF-115's rule): an
+  - **F-010** (DEF-125) — a swap through a lent `dyn`'s method refused `BORROW-002` (DEF-115's rule): an
     over-restriction, NEW with 1.6.1 step 0 — accepted at our pin, where it runs correctly.
   **Impact (W-27): blocks nothing in flight.** F-003 and F-004 are unsafe code the compiler
   accepts; F-005 to F-007 blind a `peak_live` gate where their shapes occur; F-009 and F-010 cost
@@ -302,7 +307,8 @@ file existed — the check works.
   by-name import spelling still reaches it, so that coverage gap is the fuzzer's to close.
   ~~**NOT SENT — held** by the author's working-seat rule: the compiler seat is landing 1.6.1,
   and this goes with the next message to it that serves its task.~~ **SENT 2026-09-26 08:31** to
-  `nitpick-compiler_s17`, riding with the relay of O-N30, a message that serves its task.
+  `nitpick-compiler_s17`, riding with the relay of O-N30, a message that serves its task. **Registered there as
+  DEF-126 (08:32), to be fixed in 1.6.1d step 3.**
 
 - **O-N28 — AN IMPL MAY DECLARE `move` ON A PARAMETER ITS TRAIT LENDS (OR LEND ONE
   THE TRAIT MOVES), AND A CALL THROUGH THE TRAIT FREES TWICE.** Raised by
