@@ -946,7 +946,9 @@ pins** (probe 17 and four units, being committed by its 0.0.4d worker now), each
 
 **The order now:** 3f (DEF-99) as **58** after its harness (~21:30); 3g (DEF-102, DEF-103, `T[0]`) as **59**, late tonight; step 3's runs
 as **60**. **UPDATE ~21:3x: 3g also carries DEF-104 (our O-N22 — a lent `T` in a generic body, now refused `TYPE-047` on a pass-out and
-`TYPE-085` on `@`); its harness restarted, so 59 lands ~00:40.** **CARRIED TO THE NEXT RE-PIN — NOW SIX CHECKS:** the five above, plus **(6) DEF-102 — regex's probe 17 and its four loan
+`TYPE-085` on `@`); its harness restarted, so 59 lands ~00:40.** **AND ~21:5x: our O-N23 is DEF-105, landing as step 3h — notice 60 — so step 3's runs become 61. The re-pin to take is the one
+that carries 3h: it closes DEF-95 through DEF-105 at once, and CHECK 7 joins the list — an imported `fixed` table beside a same-named
+importer struct reads correctly, and the table imported alone compiles.** **CARRIED TO THE NEXT RE-PIN — NOW SIX CHECKS:** the five above, plus **(6) DEF-102 — regex's probe 17 and its four loan
 units move to `NITPICK-TYPE-085` refusals, which makes its cycle-0.0 close gate true (the board's question 10).** **The re-pin to take
 is the one that carries 3g**, between subcycles: it closes DEF-95 through DEF-103 at once.
 

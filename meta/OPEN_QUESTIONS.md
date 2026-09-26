@@ -280,7 +280,11 @@ file existed — the check works.
   zone tables** (imported tables of user structs) until the compiler fixes it — not a
   house rule; importing the row type by name turns the silent form into a
   `RESOLVE-001` refusal, a belt only. **Sent to `nitpick-compiler_s15` 2026-09-25
-  ~21:4x.** Reproduction: `nitpick-time/meta/roadmap/0.1/0.1.4.md` §3 (at `936a1b9`);
+  ~21:4x.** **CONFIRMED within the hour as the compiler's DEF-105, landing as
+  1.6.0 step 3h (notice 60)** — the checker resolved an imported global's annotation in the
+  USE's scope at two sites, while the symbol table has carried each declaration's home scope
+  since 0.8.1; both sites now resolve at home, the stride follows, and the loud form becomes
+  acceptance. Its test is the zone tables' shape exactly. Reproduction: `nitpick-time/meta/roadmap/0.1/0.1.4.md` §3 (at `936a1b9`);
   its commit to `tests/probe/defect/` is owed to cycle 0.1's close (0.1.5).
 
 - **O-N22 — `NITPICK-TYPE-047` IS NOT ASKED OF A LENT `T` INSIDE A GENERIC BODY,

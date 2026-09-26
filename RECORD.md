@@ -7186,3 +7186,8 @@ a weekly sample passes a leap rule that drops them); an imported `fixed` table's
 that turns O-N23's silent form loud, not the guarantee.
 
 **dispatched 21:33:** `s2-ntime-0.1.4-2133` (`npk:worker`), with O-N23 as the id its plan's §11 anticipates.
+
+**~21:5x — O-N23 is DEF-105**, reproduced there and landing as 1.6.0 step 3h (notice 60; step 3's runs become 61): the checker
+resolved an imported global's annotation in the use's scope at two sites; both now resolve in the declaration's home scope, as D-137
+and the symbol table since 0.8.1 already provide. **The re-pin to take is now the one carrying 3h**, closing DEF-95 to DEF-105; seven
+checks are carried to it. **Every one of the day's library-side defects confirmed within the hour of being sent.**
