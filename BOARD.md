@@ -8615,6 +8615,12 @@ business, not a check's.
 
 ---
 
+## Outside the streams — tools
+
+| # | Repository | Milestones | State | Notes |
+|---|---|---|---|---|
+| T1 | `nitpick-fuzz` | M0 … M6 (`PLAN.md`) | `CLAIMED orchestrator` | **The compiler memory-safety fuzzer, created 2026-09-25 ~22:4x at the author's go** — his free cloud credit, spent on a contained task from this project. An exhaustive grid of owning types × places × operations, compiled at `c3bdae2` (the baseline, where DEF-99, 102, 104 and 105 are present) and at the compiler's newest `main`, run at -O0 and -O2; **a recall gate — the grid must re-find every known defect before the hunt counts**; a calibration checkpoint at M4 where the run stops for the author to check its cost. **Its 19 recall programs were re-measured here at the pin before the first commit, every verdict matching `KNOWN_DEFECTS.md`.** **Ownership:** the orchestrator writes `main` (setup, and merging the cloud session's branch after review); **a cloud session writes only its own branch**; findings are verified here before any reaches the compiler seat. Not a stream: it touches no library and no library waits on it |
+
 ## Legend
 
 | State | Means |
