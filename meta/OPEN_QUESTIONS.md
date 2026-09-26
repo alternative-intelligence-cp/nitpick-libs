@@ -255,6 +255,27 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N25 — A VIEW'S ROOT CAN BE WRITTEN WHILE THE VIEW IS LIVE, SO THE VIEW
+  READS REWRITTEN OR FREED MEMORY — the language gives views an escape rule and no
+  freeze.** Raised by this seat 2026-09-25 as a QUESTION, from `nitpick-time`'s
+  0.1.4b planning: its `bytes_take` returned a view of its sink typed as an owned
+  `string`, and the caller could then clear the sink (the view's text rewritten,
+  exit 13) or grow it (the view reads freed memory, exit 12) — reproduced here at
+  `c3bdae2`, both legs; a copying take runs 0. **Confirmed by the compiler seat as a
+  defect of the RULES, DEF-107, with S-106 for the author:** D-249 makes a
+  view-maker's result a borrow for ESCAPE only; D-286 decides exclusivity among
+  claims and never names a view; D-266 freezes a selector for a lending `pick`
+  alone. Its own reproduction, six lines, no `wild`, no `=>!`: `string:d = …;
+  string:s = string_from_bytes(d.ptr, 5i64); d = …;` — the reassignment's drop
+  frees the old body and `s` reads the poison (exit 12). **Its recommendation, for
+  the author:** freeze a view's root for the view's lexical lifetime — every
+  write-capable access to the root refused in that span. **Until it is decided and
+  lands:** a view's root must not be written while the view is live, and a view
+  meant to outlive a mutation is a copy. **Our exposure:** 4 view-maker sites in 23
+  `src/` files; three are consumed at once or feed a write into another object;
+  the fourth is `bytes_take` itself, fixed by `nitpick-time`'s 0.1.4b (PD-39,
+  copying, as `nitpick-regex`'s twin always did).
+
 - **O-N24 — A WRITE INTO A `fixed` BINDING'S SUB-PLACE — AN ELEMENT, A FIELD —
   COMPILES AND STORES INTO THE LLVM `constant` GLOBAL.** Found by `nitpick-fuzz`'s
   grid, 2026-09-25 (cells `c0039`, `c0040`, `c0185`, … at `c3bdae2` and at `6fb85d3`),

@@ -7327,3 +7327,11 @@ describing `check_refs`' supersede trap re-triggers it; a TM number in a script'
 
 **dispatched 23:55:** `s2-ntime-0.1.4b-2355` (`npk:worker`, **model named explicitly** — the author's standing rule since the evening's
 Fable default).
+
+**~00:1x — the compiler seat answered both.** D-292's sentence is stale (a dated note lands at step 5b, notice 65); our `peak_live` bound
+rightly excludes the failsafe region. **And the view question is a defect of the language's rules — registered here as O-N25, the
+compiler's DEF-107, with S-106 for the author:** a view has an escape rule and no freeze, so its root can be written while it is live and
+the view then reads rewritten or freed memory — reproduced there in six lines with no `wild` and no `=>!` (exit 12). Its recommendation:
+freeze a view's root for the view's lexical lifetime. **Our exposure: 4 view-maker sites in 23 `src/` files; only `bytes_take`, which PD-39
+is fixing in the running 0.1.4b worker.** **Tenth defect from the library side today** — this one raised as a question and found by
+reading the decisions against a library bug. The decision is the author's, in the compiler seat.
