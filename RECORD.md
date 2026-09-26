@@ -7526,3 +7526,8 @@ dry-run a REPORT parse wrote `skills/check/scripts/__pycache__/` into the WORKBE
 the workbench's status empty, no cache directory. **The lesson, for every dispatch:** run a workbench tool as a program, or under
 `python3 -B`, and read `git -C "$WB" status --short` before reporting; an import is a write. `check_record` is now run here under `-B`
 too. verify `s1-nregex-0.0.4e-verify-0522` dispatched.
+
+**~05:3x — regex 0.0.4e VERIFIED PASS** (`s1-nregex-0.0.4e-verify-0522`, `sonnet`): tree clean, the subject, `check_refs` clean (73 md, 232
+of 232), `check_record` clean under `python3 -B`, the harness re-run 218/218 at `c970483`. **The sixth, accepting W-22 audit dispatched**
+(`s1-nregex-0.0-audit6-0530`, `opus` named), narrow by design: `40074b6..37695a7` measured item by item against the fifth audit's 23-item
+post-re-pin checklist, with the adoption's three corrections to it judged too. Question 11 stays the author's.
