@@ -7286,3 +7286,10 @@ path; `check_refs` clean — so a fresh session, in the cloud or here, starts fr
 local's element, and anything under a `fixed` field; measured there on our four shapes and a control, and over 127 files of the
 compiler's tree. **Our exposure re-swept against the full rule** — the first sweep had measured module and local bindings only: 63
 bindings, 0 sub-place writes; 0 `fixed` fields declared anywhere — each sweep controlled by a planted write. Told to the compiler seat.
+
+**~23:5x — the fuzzer's M5 is running in a real cloud session.** The author found the web UI's order: select the environment first, and only
+then do the repository and branch selectors appear, above the prompt box beside the environment selector (the documentation, which
+places the repository selector below the input box, describes neither); the desktop app offers the same once an environment exists.
+Before any work the session reported **4 cores** (`nproc`), and the author sees the cloud credit being drawn — so this run, unlike the
+first, uses the credit it was meant to. It starts from `nitpick-fuzz`'s `main` at the M4 checkpoint and pushes its own branch; the
+first, local session stays paused and is not to be resumed.
