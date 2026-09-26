@@ -255,6 +255,23 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N28 — AN IMPL MAY DECLARE `move` ON A PARAMETER ITS TRAIT LENDS (OR LEND ONE
+  THE TRAIT MOVES), AND A CALL THROUGH THE TRAIT FREES TWICE.** Raised by
+  `nitpick-regex`'s 0.0.4e planning (`0.0.4e.md` §6.1), 2026-09-26, at `c970483`
+  and `c3bdae2`; **reproduced by the orchestrator at `c970483`, both legs:**
+  `trait:Dup = { func:dup = Self(Self:self); }` implemented for `string` with `move
+  string:self` is accepted; `twice::<string>(a)` through the trait, and `a.dup()`
+  directly, both exit **95** (a double free); the impl written as declared, lent,
+  is refused `TYPE-047`. The planner measured the same through the prelude's `Eq`,
+  and the reverse (a trait's `move` implemented lent) compiling to exit 46. **Not a
+  regression.** Mechanism, the planner's reading: `same_signature` compares types,
+  never a parameter's `move`. **Requested:** refuse a mismatch in either direction,
+  `TYPE-014`. **Exposure:** none in `src/`; every trait with a by-value parameter
+  is exposed ecosystem-wide, so every library with an impl is swept once the
+  compiler answers. Sent to `nitpick-compiler_s16` 2026-09-26 ~04:5x with two
+  companion items (a design input: no infallible generic by-value read; an
+  observation: `TYPE-022` cascading after `TYPE-085`).
+
 - **O-N27 — THE BORROW TRACKER TAINTS A CALL'S RESULT BY SIGNATURE, SO AN OWNED
   STRING BUILT BY `f(Container->)` CANNOT BE RETURNED FROM THE FRAME THAT OWNS THE
   CONTAINER — sound, and too coarse.** Found by `nitpick-regex`'s cycle-0.0 triage
@@ -401,7 +418,11 @@ file existed — the check works.
   compiler seat to its own batch loop's stale cached binary: run one at a time under 3g (`5bdae98`) it exits 21 on
   both legs. No regression.**
 
-  **Impact (W-27). Our exposure in `src/` is none** — no generic of ours takes a lent
+  **⚠ CORRECTED 2026-09-26: the exposure statement below was WRONG.** The sweep behind it looked only for lent
+  bare-`T` PARAMETERS; DEF-104's gates also reach `T` PLACES read out of a lent or pointed-to container, and at
+  `c970483` `nitpick-regex`'s `vec_get` (`pass v.items[i]`) and `vec_pop` (`pass v.items[v.count]`) are refused
+  `TYPE-047` — every importer red, 78/223 — which its 0.0.4e re-spells (`vec_get<T: Pod>`, a `move` in `vec_pop`).
+  Told to the compiler seat the same hour. *As first written:*   **Impact (W-27). Our exposure in `src/` is none** — no generic of ours takes a lent
   bare `T` (`vec_push`, `vec_set`, `vec_insert` and `drop_element` take `move T`).
   Regex pins the shape as a unit, PINNED, NOT ENDORSED. **Sent to
   `nitpick-compiler_s15` 2026-09-25 ~21:2x, while 3g was still in its harness.**

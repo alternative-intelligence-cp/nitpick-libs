@@ -7476,3 +7476,32 @@ view's lifetime — D-325, the author's), with DEF-109 to DEF-115 found building
 dangling pointer measured at run time), and calls now read off each callee's own body. **Our exposure: zero, measured by the compiler seat**
 — its checker with the rule, swept over our 231 files, diffed per file and per code against `c970483`'s: no site moved. O-N27 is the
 author's S-107. **67 and 1.6.1 step 1's emission-text change are the next re-pin's; our pin stays `c970483`.**
+
+### Regex's adoption planned — the unchanged tree is RED at the new pin, and the workbench's own exposure sweep was wrong; O-N28; both streams dispatched — 2026-09-26 04:50
+
+**report `s1-nregex-0.0.4e-0305` — DONE (planning)**, 102 min: `cf63b89`, `f32d505`, `7bc3e9c`, `8a9fc04`, meta only, pushed, CI green at the old
+CI pin; `check_refs` clean; `[no-report]` expected; **verified here.** Rehearsed in the REAL checkout: **the unchanged tree at `c970483` is RED,
+78/223 — DEF-104's gates refuse `vec_get` (`pass v.items[i]` on a lent `Vec<T>`) and `vec_pop` (`pass v.items[v.count]` through a pointer),
+`TYPE-047`, and every importer of `vec.npk` fails**; `c3bdae2` 214/214; the finished tree 218/218; all 18 blocks SAME by the comparator.
+**PD-12 → RX-168:** `vec_get<T: Pod>` through a new library `Pod` trait, reversing RX-155's declined marker — forced by the pin; `vec_pop`
+spells `move`. **PD-13:** the loan pins, the `for`-binding unit and the generic pass-out unit become refusals with positive twins. **PD-14:**
+the source reader closes block strings at `"""`, probe 15 runs, self-check case 18 tells the two closes apart. `FLOW-001` needs no fixes.
+
+**⚠ A CORRECTION AGAINST THIS SEAT: the O-N22 exposure statement was wrong.** On 2026-09-25 this seat swept for lent bare-`T` PARAMETERS and
+told the compiler seat "our exposure in `src/` is none"; DEF-104's gates also reach `T` PLACES read out of lent or pointed-to containers, which
+the compiler seat's own sweep had found in its getters. Corrected in the registry and told to the compiler seat the same hour; `nitpick-time`'s
+adoption planner told to sweep for that shape and to measure the unchanged tree first. **A sweep of a rule's reach must cover every place the
+rule's predicate reads, not the shape the defect was found in.**
+
+**compiler-defect — O-N28:** an impl may declare `move` on a parameter its trait lends (or the reverse), and a call through the trait frees
+twice — reproduced here at `c970483`, 95 on both legs, the as-declared control refused `TYPE-047`; not a regression. Sent to
+`nitpick-compiler_s16` with a design input (no infallible generic by-value read — why `Pod` exists) and an observation (`TYPE-022` cascading
+after `TYPE-085`). **Question 11 queued:** does regex's close wait for O-N28's fix? Recommended (b), close with it pinned. **The workbench's
+registry now runs to O-N28.**
+
+**dispatched 04:50, models named:** `s1-nregex-0.0.4e-0450` (`npk:worker`) with O-N28 as the defect id and notice 66's `npkc.ll` row;
+`s2-ntime-0.1.4c-0450` (`npk:planner`), the time adoption, measuring the unchanged tree first. **findings-for-playbook** (owed): a scratch
+rehearsal that commits partway also commits staged `git mv`s — measure tallies in a clean clone; `check_refs` reads a closing square bracket followed
+at once by an opening parenthesis as a link, even in fences and comments (spell a slice-typed parameter list apart — this very
+entry tripped it on the first try); an idempotent engine's hand-amendment check compares whole lines; a gate that asks whether a
+type owns reaches places as well as parameters; `check_record`'s title rule takes `— PLANNED` only without a date.
