@@ -264,7 +264,9 @@ file existed — the check works.
   lines, and at our pin `c970483` the same verdicts — all live at the pin; F-025 by hand (the canary under
   `--extra-picky=no-wildx`: 256 `WILDX-003` from the prelude at both). **Sent to `nitpick-compiler_19` 11:34.** **Registered there 11:47 as DEF-144 … DEF-154, in a NEW
   subcycle 1.6.1e** planned after 1.6.1d step 3: the silent wrong answers and the memory fault first (DEF-144 …
-  DEF-148), then the refusals and traps (DEF-149 … DEF-152), then the two tables (DEF-153, DEF-154).
+  DEF-148), then the refusals and traps (DEF-149 … DEF-152), then the two tables (DEF-153, DEF-154). **1.6.1e step 1 LANDED
+  2026-09-26 as `058505d` (notice 77, verified here 21:03): F-018 … F-022 fixed (DEF-144 … DEF-148); discharged here at
+  the re-pin that carries it.**
   - **F-018** (DEF-144) — a macro's free name, alone or as a comparison's operand, reads the call site's local: silent.
   - **F-019** (DEF-145) — a `'\u{…}'` escape typed `char8` and truncated to its low byte: silent.
   - **F-020** (DEF-146) — the scope-exit join relays the last-spawned child's error, not the first: silent.
