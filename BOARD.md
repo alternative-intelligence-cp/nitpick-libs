@@ -13,49 +13,52 @@ blocked, what is done. The durable plan is
 **Toolchain:** **`c970483`** · `.internal/toolchain/c970483/` · pinned 2026-09-26 03:0x · **the end of the compiler's 1.6.0 chain (notices 59–66), carrying DEF-95 to DEF-106 and DEF-108 — every compiler defect this ecosystem raised on 2026-09-25 but DEF-107, the view freeze, which lands at 1.6.1 step 0.** **Both §3 guards cleared:** `npkc`'s mtime is 8 819 s AFTER `HEAD`'s commit, and it was 212 s old at the copy; `../nitpick` clean at `c970483` on `main`. **Hazard 11 honoured — the COPIES were `cmp`-identical to `build/` and compared to notice 66's full rows by script, to 64 hex and exact size, with a one-digit-off control:** `npkc` 9 751 776 B / `e4d95007…`; `npkrt.o` 72 576 B / `162b8975…`, THE ANCHOR, unchanged since `c3bdae2` (the runtime did not move in 1.6.0). LLVM 20.1.2; `c3bdae2` an ancestor. **COMMISSIONED BOTH DIRECTIONS:** the canary compiles at exit 0, **55 492 B / 14 `define`s — its IR IDENTICAL to `c3bdae2`'s** (diffed), and runs to 0; the malformed file exits 1 at `NITPICK-PARSE-001`, writing none. **Taken ONCE, at the chain's end, and BEFORE 1.6.1 step 1's emission-text change**, which is the next re-pin's. **THE ADOPTION IS OWED IN EACH LIBRARY** — the carried checks, now seven (the DEF-95 `BadStep` arms droppable; no refused `main`; N-21's shapes; probe 15 and the source reader; the `fixed_move_out` verdicts to `TYPE-084`; the loan pins to `TYPE-085`/`TYPE-047`; the imported-table cases) — plus `FLOW-001`'s own measurement and each CI's pin bump. Full provenance in `.internal/toolchain/c970483/PIN.md`. *Previous pin, kept:* `c3bdae2` · `.internal/toolchain/c3bdae2/` · pinned 2026-09-25 07:44 · **the 1.5 close — the author's go, and the first re-pin since the pause.** **Both §3 guards cleared on the first attempt:** `npkc`'s mtime is **525 s AFTER** `HEAD`'s commit, and it was **1 731 s old** at the copy. **Hazard 11 honoured — the COPIES were compared to notice 50's full rows BY SCRIPT, to 64 hex, with a control that fails on a one-digit-off digest:** `npkc` 9 724 160 B / `5fd636b9…`; `npkrt.o` 72 576 B / `162b8975…`, THE ANCHOR — **changed** from the `3d15ac9` pin's 55 576 B. LLVM 20.1.2, `../nitpick` clean, `3d15ac9` an ancestor. **COMMISSIONED BOTH DIRECTIONS — AND THE CANARY HAD TO CHANGE FIRST:** as it stood it is **refused here by `NITPICK-REACH-002` ×2** (`StackExhausted`, `MachineFault`), while the kept `3d15ac9` pin still compiles it to 50 482 B / 14, so the refusal is the pin's. Amended with canary-local exit codes 106/107 it compiles at exit 0: **55 414 B / 14 `define`s — THE DEFINE COUNT IS FLAT ACROSS ALL OF CYCLE 1.5**; a malformed file exits 1 at `NITPICK-PARSE-001` writing none. **P-1/probe13a is refused by REACH, not by `RUNG-001`, and before `prove` is judged — unmasked, `prove` lowers to nothing.** See the entry *"THE RE-PIN IS DONE"*. Full provenance in `.internal/toolchain/c3bdae2/PIN.md`. *Previous pin, kept:* `3d15ac9` · `.internal/toolchain/3d15ac9/` · pinned 2026-09-06 03:40 · **the 1.5.2f close, and the re-pin the board held for since 02:00.** **Both guards cleared before anything was copied:** the binary's mtime is **725 s AFTER** `HEAD`'s commit, which is §3's provenance test, and it was **876 s old**, past the two-minute mid-rebuild floor that has fired twice and been right both times. **Verified here rather than taken on report:** both digests **match** the compiler's six-digest notice (`npkc` 7 351 160 B / `3b7d6aa0…`; `npkrt.o` 55 576 B / `c9ddbcff…`), `sha256sum -c` OK, LLVM 20.1.2, tree clean and level, and `aaffb87` is an ancestor so the pin moves forward. **`npkrt.o` `cmp`-verified byte-identical to the `aaffb87` pin's** rather than assumed (DEF-12). **COMMISSIONED BOTH DIRECTIONS:** `tools/canary.npk` exits 0 emitting **50 482 B / 14 `define`s**; a malformed file exits 1 at `NITPICK-PARSE-001` writing none. **AND THE FLAT PREDICTION HELD** — the same program through both pinned compilers gives `aaffb87` **50 482 B / 14** and `3d15ac9` **50 482 B / 14**, byte- and define-identical, which is what `nitpick-compiler_s0` predicted and forbids any movement. **The canary SOURCE is now committed** (`tools/canary.npk`, `tools/canary.md`) because the previous one lived only in a session scratchpad and is lost — its output survived, its input did not. Full provenance in `.internal/toolchain/3d15ac9/PIN.md`. *Previous pin, kept:* aaffb87 · .internal/toolchain/aaffb87/ · pinned 2026-09-05 22:47 · **tree clean, and the provenance CHECKED rather than inferred** — the 1.5.2d close. `build/npkc` was rebuilt from the pushed main checkout 22:41–22:45, so its mtime (22:45:33) is **500 s after** `HEAD`'s commit (22:37:13), which is §3's provenance test; the same test refused a binary in the morning. Verified here before copying, independently of the landing notice: **7 346 792 B**, sha256 `a3b0dadc…`, `sha256sum -c` OK, LLVM **20.1.2**, `0dfddac` is an ancestor of `aaffb87`. **`npkrt.o` is byte-identical to the 0dfddac pin's** (55 576 B, `c9ddbcff…`) — taken again and `cmp`-verified, not assumed (DEF-12's precedent). **`aaffb87` is docs-only over `0880771`, so the compiler SOURCE is `0880771`'s** — 1.5.2d step 4. **Commissioned before use, both directions:** the canary compiles at exit 0 writing a 50 560 B `.ll`; a malformed file exits 1 at `NITPICK-PARSE-001` writing none. **The mid-rebuild guard fired first and was right** — the binary was 97 s old and §3 said retry, which is the second re-pin running it has caught the orchestrator moving straight off a landing notice. Full provenance and 1.5.2d's five step commits are in `.internal/toolchain/aaffb87/PIN.md`'s `binary` line
 **Workbench writer:** `f4216d22-3cdc-4983-b807-091c9df32eee`, session `nitpick-libs_s7`, taken 2026-09-26 07:06 EDT on the briefed handoff from `nitpick-libs_s6`, which released it at `b854bac` and stays open for questions. **Freedom from values:** the first token read `none` locally and on `origin/main`, both `b854bac`; `.internal/` held no marker; the sweep found **9** trees, every one `dirty=0` and `0/0`; and `s6` answered hazard 3 from `git status` at 07:04:57 — its last write 07:01:58, messages only since. **The uuid:** this session's transcript file and scratchpad path carry the same id; `CLAUDE_SESSION_ID` is empty in a Bash call (hazard 2), so the marker was written from the id, 37 bytes. **The take hazards:** (1)–(5) and the head of (6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01; (6)'s tail and (7)–(11) follow the handoff block below. **To release: the marker first, then this line's first token to `none` — AND PUSH, then re-read the token from `origin/main` (hazard 5).**
 
-> **✅ TAKEN 2026-09-26 07:06 by `nitpick-libs_s7` (`f4216d22…`).** The take instructions below are history; the state, the owed items and the next dispatches stand until they are struck here.
+> **🔁 HANDOFF — `nitpick-libs_s7` → `nitpick-libs_s8`, 2026-09-26 21:35 (shell time), at the author's call, the seat at 85 % context. READ THIS FIRST.**
+> **THE LIBRARIES ARE PAUSED FOR TOKENS — the author, 21:35:** *"we are gonna need to pause at the handoff to wait for more tokens"*; the compiler
+> seat may be switched to Opus to reach its own stop. **Dispatch NOTHING until the author says go.** While paused this seat LISTENS: verify each
+> compiler notice with `tools/ladder.py` against the board's baseline block (its one-digit-off control is built in); check it in `../nitpick`
+> read-only (ancestry, and the `src`, `runtime`, `bootstrap` counts — never fetch there); **sweep our exposure to any BEHAVIOUR change yourself —
+> the compiler seat's sweeps count refusals only**; file it, and write the next baseline block.
 >
-> **🔁 HANDOFF — `nitpick-libs_s6` → `nitpick-libs_s7`, 2026-09-26 07:01 (shell time). READ THIS FIRST.** The lock is released: the writer
-> line's first token is `none`. **Take it by the orchestrate skill's §2:** write your `${CLAUDE_SESSION_ID}` into `.internal/orchestrator.session`
-> and as the writer line's FIRST backticked token (only that token is the lock, from 2026-09-26), one commit `board: writer <id>`, and a
-> `RECORD.md` entry naming this handoff. `nitpick-libs_s6` stays open for your questions; tell it when you are done with it. Your
-> successor is `nitpick-libs_s8`, and the one after it is `nitpick-libs_9` (no `s` — the author's `claun` form).
+> **Take the lock by the orchestrate skill's §2:** your id from your transcript's `.jsonl` and scratchpad path (`CLAUDE_SESSION_ID` is empty in
+> Bash), 37 bytes into `.internal/orchestrator.session`, the writer line's FIRST backticked token, one commit, push, then re-read the token from
+> `origin/main` with hazard (5)'s literal command. `nitpick-libs_s7` stays open for your questions; tell it when you are done. Your successor is
+> `nitpick-libs_9`.
 >
-> **The state, as values.** Pin `c970483` (`.internal/toolchain/c970483/`, its `PIN.md`, six rows under notice 67's entry); `c3bdae2`
-> kept for controls. Width 2.
-> - **s1 `nitpick-regex`: CYCLE 0.0 CLOSED, verified** (`fb37391`, 220/220). **Next: a PLANNER for cycle 0.1's `0.1.0.md`**, which the
->   close wrote for a later session and nobody rehearsed — to make it execution-grade and rehearsed at `c970483`. It must name B-15a's
->   rule 2 (RX-113, whose stated reason O-N13 was discharged at `94874ce`) as a decision before its step 4, and know that probe 18
->   moves to `tests/probe/refused/` with `NITPICK-TYPE-014` at the re-pin carrying notice 69.
-> - **s2 `nitpick-time`: 0.1.4c DONE** (`3408c2b`, GREEN 101), VERIFIED PASS (`s2-ntime-0.1.4c-verify-0655`). **Next: a PLANNER for 0.1.3c** (**DISPATCHED 07:10 as `s2-ntime-0.1.3c-0710`**) — `Vec` move-only by
->   construction, porting regex's 0.0.4d (the marker field) and 0.0.4e (`vec_get<T: Pod>`, `move` in `vec_pop`), with P-1's A′
->   replacement as a numbered decision. It inherits 0.1.4c's finding that `vec_at`'s `#wild_slice` read escapes DEF-104's gate and still
->   moves an owning element out (case5 exits 11), which a `Pod` bound settles; TM-150's `vec_pop` churn pair with `heap:` bounds; and a
->   sweep of the sites citing O-N21, O-N22, O-N24 or O-N26 as a REASON (206 mentions of O-N20…26 over 32 files, much of it 0.1.4c's own
->   record). Then 0.1.5, the cycle's close — **the ecosystem's third close, which triggers the ecosystem-wide audit (W-22).**
-> - **One planner at a time (P-12): time's 0.1.3c planner first** — a port of a design regex has verified, so the shorter plan — then
->   regex's 0.1.0 planner while time's worker runs. **Every dispatch names its model:** `opus` for planner, worker and auditor, `sonnet`
->   for a verifier; Fable is the compiler agent's alone.
+> **The state, as values.** Pin `c970483` (`.internal/toolchain/c970483/`); controls `c3bdae2` and `9f6f370` (a copy of notice 70's `npkc`,
+> matched by digest, labelled NOT THE PIN). **Width 1 — ONE agent at a time, planners included** (the author, 11:39). Nine trees clean and level.
+> - **s1 `nitpick-regex`:** cycle 0.1 open; **0.1.0 DONE and VERIFIED** (`24b2043`, 250/250). **Next, when resumed: the ecosystem audit's EC4 and
+>   EC5 FIXED before its next worker dispatch** (`check_error_budget` passes planted extra identities; the accessor confinement misses spaced
+>   forms), EC11, ED1, ED3, ES4 and EK2 triaged; then 0.1.1, the core grammar — **no plan file, so a planner**, which may take the audit items as
+>   its first subcycle.
+> - **s2 `nitpick-time`:** **cycle 0.1 CLOSED and VERIFIED** (`c8d4e8f`, GREEN 113) — the ecosystem's third close. **Next: cycle 0.2 —
+>   `0.2.0.md` (`Instant`), written at the close and measured but NOT rehearsed; PD-53 … PD-56 accepted; a planner's rehearsal before a worker**,
+>   carrying the audit's EC6 (print `npkc.ll` in CI, D-265) and ED1 (drop "in both libraries").
+> - **T1 `nitpick-fuzz`:** PAUSED until after Wednesday's weekly reset (the author); `main` `41ba27b`, M11 part-done. Resume in the author's
+>   second clone, `REPOS/nitpick-fuzz`, on its own branch, one session in sequence, no sub-agents; this seat reviews and fast-forwards `main`
+>   (the merge chained on the gate) and reproduces every finding before relaying it.
 >
-> **The compiler seat is `nitpick-compiler_20` since 12:14** (`_19` rotated; see its entry). > **The compiler seat becomes `nitpick-compiler_19`** within the hour of 10:39 (`_18` rotating; see its entry). > **The compiler seat is `nitpick-compiler_18`** (`[119356]`) **since 08:40**, by `_s17`'s announced rotation. *As handed over:* The compiler seat is `nitpick-compiler_s17` (`[ad125b]`; its spare `nitpick-compiler_18`). **Owed: notice 70 — RECEIVED 08:26 and verified (its entry); then F15 received, 71 pending.** **Owed: notice 69 — RECEIVED 07:32 and verified by the ladder (its entry)** (`b564746`, DEF-116
-> and DEF-117 — our O-N28) **and notice 70** (`9f6f370`, documents only). Check 69 by the ladder script (`tools/ladder.py`), with a one-digit-off control,
-> against the *"BASELINE NOTICE 69"* block under notice 68's entry; write the next baseline block when you file each. **O-N29 is held for
-> your next message to that seat that serves its task** — one paragraph; its reproduction is in `.internal/repro-2026-09-26/o_n29_type007/`.
-> The next re-pin carries notices 67 and 69 and 1.6.1 step 1's emission-text change, and a re-pin notice precedes it. S-107 and S-108
-> are the author's to ratify in the compiler seat.
+> **The compiler seat is `nitpick-compiler_20`** (the author was moving it to Opus; it may rotate). **Owed:** F20, then **78** (1.6.1d step 3b:
+> `cstring` string-shaped and OWNING under D-328 — F20 names `nitpick-time`'s fifteen `cstring` copies; the audit flags `nitpick-posix`'s G-13 as a
+> candidate), then F22, then **79** (1.6.1d step 4: our F-009, F-010, F-015 … F-017; O-N29 = DEF-126; O-N32 = DEF-142). **The baseline for 78 is
+> on this board, under notice 77's entry** (the rows at `058505d`). **After 79 — 1.6.1d's end — ONE re-pin, the author's decision**, when no claim
+> is in flight and the author has said go: the two `[toolchain]` rows in all SIX manifests (posix's too — EK1), regex's probe 18 to `refused/`,
+> `Pod` → `Copy` in both libraries, the `cstring` census, each CI's pin bump, regex's block-3b control re-run. 1.6.1e's later steps (DEF-149 …
+> DEF-154) touch nothing of ours.
 >
-> **The fuzzer** (`nitpick-fuzz`, `CLAIMED orchestrator`, row T1): **✅ DONE 07:55 — M9 reviewed and merged (`4eb7558`), the owed items at `88e6355`, the author told "merged; start M10".** *As handed over:* M9 runs in the cloud. When the author reports it, review the branch —
-> a leak scan of the added lines; paths only under `PROGRESS.md`, `REPORT.md`, `findings/`, `gen/`, `results/`, `known/`; `check_refs` on
-> a detached worktree in your scratchpad; `PLAN.md` untouched; the milestone's boxes ticked — fast-forward `main` and push. **Then, before
-> telling the author "merged; start M10":** commit the `CLAUDE.md` guard (fast-forward to `origin/main` first; STOP if the previous
-> milestone is unticked), and add DEF-106's and DEF-108's cases from `.internal/repro-2026-09-26/` to `known/` and `KNOWN_DEFECTS.md`.
-> Reproduce any new finding here before relaying it. Cost figures go only in `.internal/cloud_sessions.md`, never on this board.
+> **Owed by this workbench, from the ecosystem audit** (`meta/audits/ecosystem-2026-09-26.md`; the board's audit entry lists all 23 by owner):
+> EC2, EC3 and EC7 DONE (`d1a98ed`, PLAYBOOK); **still owed:** EC8 (a rule for the tool repositories), EC9 (W-18's "between cycles"), EC10 (Q-6's
+> three meanings), ED2 (eleven compiler requests the libraries keep unregistered), ES2 (`LIBRARIES.md`, `README.md`), ES3 (stale registry
+> entries), EK1, and EC1's `LIBRARIES.md` row. **`nitpick-posix` must fix EC1 (the floor has owned SIGPIPE's disposition since `c3bdae2`) and
+> EC12 before its first dispatch.**
 >
-> **Procedures this seat learned the hard way today.** Insert every time with the shell (`date`, `datetime.now()`) — this seat typed
-> five wrong ones. Run workbench tools as `python3 -B`. Cite in workbench prose only ids the workbench's registry defines. Edit the
-> board by script, with exact anchors and asserts, an atomic replace, `set -o pipefail`, the gate before the commit, and HEAD equal to
-> origin after the push. A sweep for a rule's reach covers everything its predicate reads. A cloud session can receive a message, one
-> way, and it may wait for the author's approval there.
+> **Procedures this seat learned today, as rules.** Every time from the shell or a transcript, never typed. **Chain the gate on the commit**
+> (`check_refs … && git add … && git commit …`) — a gate that does not stop the next step is no gate — **and stage a new file before gating it**
+> (an untracked file is not scanned). Never put a triple quote inside a Python triple-quoted string in a heredoc. A sweep for a syntax shape takes
+> its pattern from the grammar (`(<-p) = v` AND `<-(expr) = v`). A set comparison passes vacuously on two empty sets: print both counts and
+> require them non-zero. **File an audit by extracting its final message from the agent's transcript by script**, fenced when it quotes
+> library-local ids, every mechanical change disclosed. A newer compiler for reproductions comes only from `../nitpick/build/`, and only when its
+> digest equals a verified notice's row.
 
 **The take hazards, continued.** *Hazards (1)–(5) and the head of (6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01, which moved the old line 14 there; (6)'s tail and (7)–(11) stayed here, and until 07:06 they rendered inside the handoff block for want of a blank line. (6)'s last sentence is repeated so that its tail reads whole:* **AND A DEPTH-BOUNDED `find` IS STILL A LISTING — JUST AN IMPLICIT ONE.
 Added 2026-09-06 14:10 by `nitpick-libs_s6`, which re-ran a sweep as a discovery after
