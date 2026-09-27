@@ -27,6 +27,9 @@ blocked, what is done. The durable plan is
 > permission to store important non-public information there): the listener tools, the cloud ledger, the reproductions and every pin's text records,
 > verified by `rsync --checksum` at full depth (41 files); the pinned binaries left out as rebuildable against their digests. **Refresh it whenever one of
 > those changes** — META's `NITPICK-LIBS/INTERNAL_BACKUP.md` has the commands — **and commit only `NITPICK-LIBS/` there**: other work areas stage files in META too.
+> **THE USAGE LIMITS ARE READABLE WITHOUT THE AUTHOR (2026-09-27 09:50):** his status line publishes the 5-hour and weekly limits on every refresh —
+> `jq . ~/.claude/usage-latest.json` (`written_at` says how old; at most about a minute while any session is open). **Read the weekly figure before a
+> dispatch at "go"** instead of waiting for him to run `/usage`. It carries no Fable meter and no cloud credits.
 >
 > **🔁 HANDOFF — `nitpick-libs_s7` → `nitpick-libs_s8`, 2026-09-26 21:35 (shell time), at the author's call, the seat at 85 % context. READ THIS FIRST.**
 > **THE LIBRARIES ARE PAUSED FOR TOKENS — the author, 21:35:** *"we are gonna need to pause at the handoff to wait for more tokens"*; the compiler
