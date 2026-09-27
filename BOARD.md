@@ -15,6 +15,11 @@ blocked, what is done. The durable plan is
 
 > **✅ TAKEN 2026-09-26 21:41 by `nitpick-libs_s8` (`fd0613de…`).** The take instructions below are history; the pause, the state and the owed items stand until they are struck here.
 >
+> **⏸ THE AUTHOR, 21:48 (shell time): THE PAUSE HOLDS UNTIL THE WEEKLY RESET, WEDNESDAY 2026-09-30 AT NIGHT.** *"They recommended not pausing compiler work until 1.6.1e as most of the stuff was mechanical stuff that Opus can easily handle so we are gonna switch to Opus when the fable credits run out. So, after we get the handoff finished up here I guess just standby and log any messages the compiler agent may send you regarding status updates. when the token reset hits Wednesday night we will go from there."*
+> **So trigger (a) below is ANSWERED: the compiler does NOT pause, and no Opus usage comes to the libraries.** This seat STANDS BY and LOGS each
+> compiler message by the listening procedure (the ladder, the read-only checks, the exposure sweep, the next baseline) and acts on none of them.
+> **78 and 79 may land meanwhile: log them; the re-pin (trigger (b)) waits for the author's go after the reset**, as does every dispatch.
+>
 > **🔁 HANDOFF — `nitpick-libs_s7` → `nitpick-libs_s8`, 2026-09-26 21:35 (shell time), at the author's call, the seat at 85 % context. READ THIS FIRST.**
 > **THE LIBRARIES ARE PAUSED FOR TOKENS — the author, 21:35:** *"we are gonna need to pause at the handoff to wait for more tokens"*; the compiler
 > seat may be switched to Opus to reach its own stop. **Dispatch NOTHING until the author says go.** While paused this seat LISTENS: verify each
