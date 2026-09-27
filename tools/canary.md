@@ -61,6 +61,7 @@ denominator is unstated is how this workbench keeps getting caught.
 | `c3bdae2` (1.5 close) | the workbench root — the **AMENDED** source | **55 414** | **14** |
 | `c3bdae2` (1.5 close) | the workbench root — `main` moved to D-089's signature, ahead of DEF-96 | **55 492** | **14** |
 | `c970483` (1.6.0 close + 5c) | the workbench root — the same source; **its IR identical to `c3bdae2`'s, diffed** | **55 492** | **14** |
+| `5fbaf4a` (1.6.1d + 1.6.1e steps 1–2 + D-332, the libraries' re-pin of 2026-09-27) | the workbench root — the same source; **+2 defines = ONE new drop/vacant pair (`npk.drop.4`/`npk.vacant.4`) for the now-owning `cstring` (D-328, landing 78), which `main`'s `cstring[]:_~argv` carries**; the other helpers renumbered by new prelude types; 1.6.1 step 1's `target datalayout` line added. The `c970483` pin still reproduces the row above exactly | **56 213** | **16** |
 
 **The 78-byte gap between rows one and two is a DIFFERENT PROGRAM, not a
 compiler change** — the source of row one no longer exists, so this canary is a
