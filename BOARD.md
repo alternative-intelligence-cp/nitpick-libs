@@ -33,6 +33,10 @@ blocked, what is done. The durable plan is
 > **AND A SEAT CAN READ ITS OWN CONTEXT FIGURE (09:58):** `jq -r --arg n <this seat's name> 'select(.session_name==$n) | .context_window.used_percentage'
 > ~/.claude/context/*.json` (one file per session, written by the status line). **Check it at every clean point; past about 80 % steer to a clean point
 > and suggest the handoff yourself; 92–93 % is the upper bound** — the author asked for this so a rotation no longer rests on his remembering.
+> **AND A HOOK NOW SAYS IT FOR YOU — ON TRIAL IN THIS WORKBENCH ONLY (10:09):** `~/.claude/hooks/context_warn.sh`, switched on by the untracked
+> `.claude/settings.local.json`, injects ONE line into the seat when its context first crosses 80 % and again at 90 %, re-armed below 70 % (after a
+> compaction the second climb is the dangerous one). **When it speaks, act on it.** Workers never receive it — MEASURED with a probe subagent: its
+> hook input shares the seat's session id and transcript path, and only `agent_id` / `agent_type` differ, which the hook checks.
 >
 > **🔁 HANDOFF — `nitpick-libs_s7` → `nitpick-libs_s8`, 2026-09-26 21:35 (shell time), at the author's call, the seat at 85 % context. READ THIS FIRST.**
 > **THE LIBRARIES ARE PAUSED FOR TOKENS — the author, 21:35:** *"we are gonna need to pause at the handoff to wait for more tokens"*; the compiler
