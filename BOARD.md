@@ -23,6 +23,10 @@ blocked, what is done. The durable plan is
 > **SINCE THE TAKE (2026-09-27 00:29):** F20 and **78 (`d3a1759`) received from `nitpick-compiler_21`** — the compiler seat since `_20`'s hand-off —
 > and **VERIFIED; the baseline for 79 is under 78's entry.** **F22 filed (03:00): 79 is `44ec7e9`** (not `56ceec6`, which the amend superseded) — **and 79 VERIFIED (03:02): 1.6.1d IS COMPLETE. The re-pin's binary is STAGED at `.internal/toolchain/44ec7e9/` (NOT THE PIN — its `STAGED.md` says how to finish §3); trigger (b) is due at the author's return: tell him 79 landed and the re-pin is ready, then wait.** **F23 and 80 (`9b7204c`, 1.6.1e step 2) VERIFIED (05:34) — our exposure none, measured over tracked AND generated programs; the chain is closed for tonight; the baseline for 81 is under 80's entry. Question 12 (the re-pin target) waits for the author.** **81 (`176053e`, documents only: D-335, S-117) VERIFIED (07:55); the baseline for 82 is under 81's entry; next, D-332's runner rule.**
 > **`nitpick-libs_9` is no longer listed** (`ListAgents`, 00:25) — the author opens this seat's successor when one is needed.
+> **`.internal/` IS BACKED UP to the author's INTERNAL `META` repository** (`NITPICK-LIBS/internal-backup/`, META `9a9a136`, 2026-09-27 09:15 — his standing
+> permission to store important non-public information there): the listener tools, the cloud ledger, the reproductions and every pin's text records,
+> verified by `rsync --checksum` at full depth (41 files); the pinned binaries left out as rebuildable against their digests. **Refresh it whenever one of
+> those changes** — META's `NITPICK-LIBS/INTERNAL_BACKUP.md` has the commands — **and commit only `NITPICK-LIBS/` there**: other work areas stage files in META too.
 >
 > **🔁 HANDOFF — `nitpick-libs_s7` → `nitpick-libs_s8`, 2026-09-26 21:35 (shell time), at the author's call, the seat at 85 % context. READ THIS FIRST.**
 > **THE LIBRARIES ARE PAUSED FOR TOKENS — the author, 21:35:** *"we are gonna need to pause at the handoff to wait for more tokens"*; the compiler
