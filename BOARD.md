@@ -61,6 +61,36 @@ blocked, what is done. The durable plan is
 > require them non-zero. **File an audit by extracting its final message from the agent's transcript by script**, fenced when it quotes
 > library-local ids, every mechanical change disclosed. A newer compiler for reproductions comes only from `../nitpick/build/`, and only when its
 > digest equals a verified notice's row.
+>
+> **FROM `s7`'s ANSWERS AT THE TAKE (21:46, shell time) — held only in its context until now; VERIFIED HERE where the tree can say.**
+> - **Regex at "go" — ONE planner dispatch writing TWO files** (`s7`'s recommendation, adopted): `0.1.0b.md` — the audit's regex items, EC4 and EC5
+>   FIXED, EC11, ED1, ED3, ES4 and EK2 triaged — and `0.1.1.md`, the core grammar; the first worker runs 0.1.0b before any 0.1.1 work. That is how
+>   "come first" and "its first subcycle" above reconcile. *Verified:* regex's `meta/roadmap/0.1/` holds only `0.1.0.md`, `0.1.0_tools/` and `README.md`.
+> - **Notice 78's shape: the anchor `npkrt.o` MOVES and `runtime/`/`bootstrap/` are NON-ZERO** — unlike 77. *Verified:* notice 76's row in the
+>   compiler's tracked `meta/NOTICES.md` reads *"DEF-122 under D-328 is step 3b with a two-floor snapshot refresh"*; expect `builder.o` and `builder`
+>   to move with the snapshot (the notice says exactly). **The behaviour change, from the compiler's tracked plan** (`meta/roadmap/1.6/1.6.1d.md:536`,
+>   `:588`): *"every `cstring` binding becomes move-only (a binding-to-binding copy is TYPE-046…)"* and *"a struct with a `cstring` field becomes
+>   move-only"*; a literal and an `argv`/`environ()` element are borrowed at `cap == 0` (D-328). `s7` had it from F19's message; F19's row in
+>   `NOTICES.md` does not carry it. **"Fifteen `cstring` copies" is the COMPILER seat's count** (notice 77); F20 carries its pattern — re-measure by it.
+>   **`s7`'s S-109 census (09:1x) counted LINES, not copies**, so the two will not match: per repository
+>   `git grep -h -E '\bcstring\b' -- '*.npk' | grep -v -E '^\s*//'` — regex 105 (all argv), time 132 (101 argv + 31 test lines around
+>   `to_cstring`), posix 7 (all argv); argv lines `cstring\[\]:_?~?argv`; beyond argv in any `src/`: 0. **Add posix's G-13**
+>   (`nitpick-apps/nitpick-posix/meta/specs/ARGUMENTS.md:78-81`: `Args` holds slices into `argv`; `args_value` returns a view).
+> - **DEF-159 (registered open, after 1.6.1e: a value stored through a held `@x` after `move(x)` leaks) — our exposure is ZERO, measured here:** over
+>   271 tracked `.npk` in the six work repositories (`ours.py`), `(<-p) = v` has 0 hits and `<-(expr) = v` has 4 STORES (and 8 reads), each
+>   `<-(#ptr_add…) = v` into manual storage — time's probe 03 (two), probe 08, probe 10. Both patterns' controls hit.
+> - **`_20`'s address:** `s7` told it at ~21:36 that this seat takes 78, 79, F20 and F22, no reply asked; the first notice to arrive confirms it. **If the
+>   next notice comes from a NEW compiler seat name, give that seat this address in one line.**
+> - **Triggers owed to the author:** (a) he relays the compiler agent's answer — pause or Opus; if it pauses, the Opus usage may come here, and that is
+>   his "go"; (b) **at 79, tell him 79 has landed and the re-pin is ready, then WAIT** — it runs only at his go, with no claim in flight; (c) the fuzzer
+>   resumes after Wednesday's reset at his word, nothing to ask; (d) nothing else is open. **The workbench's own audit items are HELD with everything
+>   else** (the pause is for tokens, and none blocks anything), unless a notice's filing needs one — EK1's six-manifest note goes with the re-pin.
+> - **Sequencing at "go":** `nitpick-time`'s `0.2.0.md` was written at `c970483`. If its rehearsal starts after 79 lands, decide first whether 0.2.0
+>   runs at `c970483` or after the adoption — the re-pin moves `cstring` (time's copies) and the range representation.
+> - **Usage planning at "go" — today's measured ranges:** planners 85–232 min at 480–860 k tokens (time 0.1.5's took 3 h 53 m); workers 25–74 min
+>   at 390–815 k; verifiers 7–15 min at 50–115 k on `sonnet`; the cycle audit 32 min at 540 k; the ecosystem audit 21 min at 349 k.
+> - **Notice chains** have been one commit per landing, except 77 (two: `_20`'s docs-only plan commit `138ed1d` before `058505d`). Read the log.
+> - **The reproduction driver** is saved at `.internal/listener_tools/repro_findings.py` (gitignored); its README row says how to run and compare.
 
 **The take hazards, continued.** *Hazards (1)–(5) and the head of (6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01, which moved the old line 14 there; (6)'s tail and (7)–(11) stayed here, and until 07:06 they rendered inside the handoff block for want of a blank line. (6)'s last sentence is repeated so that its tail reads whole:* **AND A DEPTH-BOUNDED `find` IS STILL A LISTING — JUST AN IMPLICIT ONE.
 Added 2026-09-06 14:10 by `nitpick-libs_s6`, which re-ran a sweep as a discovery after
