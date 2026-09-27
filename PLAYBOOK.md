@@ -45,12 +45,12 @@ list of the ones that reach a library.
 |---|---|---|
 | `defer` does **not** run on a trap | D-014 | cleanup that matters lives in `failsafe`, which means it must not allocate, lock, or await |
 | a trap is a whole-program event; no task resumes | D-063 | there is no "the worker cleans up" |
-| `failsafe`'s `pick` must **name** every error that can reach it | REACH-002 | **every public `error:` you declare is an arm every consuming program owes.** §3 |
+| `failsafe`'s `pick` must **name** every error that can reach it | REACH-002 | ~~**every public `error:` you declare is an arm every consuming program owes.**~~ **Every identity a REACHABLE `fail` site raises — public OR PRIVATE, qualified by the module that declares it (`m.E`) — is an arm every consuming program owes; a declaration never raised costs nothing.** *(Corrected 2026-09-26, the ecosystem audit's EC3, measured at `c970483`: a private `error:EPriv` raised in a public function charged its importer `m.EPriv`; a public one declared and never raised charged nothing.)* §3 |
 | reachability is **import-scoped** | 1.4.8 | module decomposition decides what a consumer owes |
 | there are **no closures** | D-018 | callbacks are values the runtime interprets, or bare function values with no capture. Pull APIs beat push APIs |
 | plain integer `+ - *` **traps** on overflow | D-210 | widen explicitly and narrow with `=>!` at a point known to fit |
 | `/` and `%` by zero trap; signed `MIN / -1` traps | D-007 | a divisor is checked or proven on the same path |
-| indexing is bounds-checked and traps | D-070 | an out-of-range index is a crash, not corruption — route every index through one accessor pair |
+| ~~indexing is bounds-checked and traps~~ **a slice, fixed-array, SIMD-lane or `List` index is bounds-checked and traps — a bare-POINTER index is not** | D-070 (bounds live in the array type, not the pointer type; pointers are thin, D-038) | an out-of-range slice index is a crash, not corruption; **an out-of-range pointer index reads or writes whatever is there** (`nitpick-regex`'s probe 08b read 7 992 bytes past an allocation, exit 0) — route every index through one accessor pair, and confine the pointer accessors to the module that owns the block. *(Corrected 2026-09-26, the ecosystem audit's EC2: the pin's emitter guards the slice, array, SIMD and `List` branches, not the pointer branch.)* |
 | owning values are **move-only** | TYPE-046 | no binding-to-binding copies of a `string`, `buffer`, `OwnedFd`. ~~**A value stored in an array must have no owning field**~~ **— FALSE at every kept pin, measured 2026-09-25: `string[2]`, an array of a struct holding a `string`, `Vec<string>` and `Bytes[2]` compile and run. TYPE-046 refuses a COPY of an owning place, not where an owner is stored — and a generic by-value accessor (`pass v.items[i]`) MOVES the element out, leaving a counted vacancy** **— AND IN `fixed` STORAGE A MOVE OF AN OWNING PLACE COMPILES AND FAULTS (O-N20, measured at every kept pin, 2026-09-25): `fixed` is emitted as an LLVM `constant` global and the move stores its vacancy into it — SIGSEGV at -O0 (`MachineFault`, 107, at `c3bdae2`), `Unreachable` (95) under `opt -O2`; a moved-out scalar `fixed string` gets no vacancy at all, so a second move is a second owner. An implicit move reaches it too: a plain `pass NAMES[i]` from a function returning `string`. The copy is refused, the move is not — `.clone()` is the read that runs clean.** **Nothing may depend on moving out of `fixed`: work that needs it is HELD until the compiler refuses the move** (W-27; `nitpick-time`'s tzdb version string, its PD-29) **— AND FROM THE PIN `c970483` (2026-09-26) IT DOES: `NITPICK-TYPE-084` refuses `move(...)` and the implicit move at `pass`, of a `fixed` binding or any part of it (1.6.0 step 3f, DEF-99). `.clone()` is the reading** |
 | a by-value parameter of an **owning** type is a loan, and **read-only** | D-004, D-266; `TYPE-085` (1.6.0 step 3g, DEF-102); in the pin from `c970483` | no assignment to it or into it, no `@`/`$$i`/`$$m`, no pointer-receiver call, no stateful operation. **A callee that changes an owning value takes `move T:p`; one that needs the whole of it takes `.clone()`.** A copyable parameter is a copy and keeps every write. The one exemption the rule states is a call through a `dyn` receiver. A `for` binding over owning elements is a loan too (`nitpick-fuzz`'s F-001, refused the same). **Until `c970483` the write compiled and freed the caller's value** (O-N21) |
 | a bare generic `T` **owns**, for every question about ownership | D-264 and its 1.6.0 step 3g note; `TYPE-047`, `TYPE-085` through `type_owns_for_move` (DEF-104); in the pin from `c970483` | a generic body is checked as though `T` were `string`. A lent `T` cannot be passed out or moved (`TYPE-047`) or addressed (`TYPE-085`). **The gate reaches `T` PLACES, not only parameters: `pass v.items[i]` out of a lent or pointed-to `Vec<T>` is a move out of a loan, refused `TYPE-047`** — an unchanged `nitpick-regex` went RED 78/223 on that alone. **There is no infallible generic by-value read.** `nitpick-regex` bounds its accessor by a library `Pod` trait (`vec_get<T: Pod>`, its RX-168) and spells removal `move`; a prelude marker is the author's S-108. **Until `c970483` a generic identity function returned its lent argument as a second owner** (O-N22) |
@@ -334,8 +334,13 @@ So:
 4. **Adding an identity after 1.0 is a MAJOR version** — it is a
    compiler-enforced source break in every consumer. Say so in the release
    policy.
-5. **A harness check enforces it**: the count and names of public `error:`
-   declarations, diffed against the specification's table.
+5. **A harness check enforces it**: ~~the count and names of public `error:`
+   declarations~~ **the identities the tree's reachable `fail` sites raise, keyed
+   by (module, name), private declarations included**, diffed against the
+   specification's table — `nitpick-time`'s TM-203 is the working shape.
+   *(Corrected 2026-09-26, the ecosystem audit's EC3 and EC4: a check keyed by the
+   bare name, or by public declarations alone, or matching one declaration per
+   line, passes a planted extra identity in silence.)*
 6. **A `failsafe`'s `pick` needs `(*)` AND every reachable named arm — the
    wildcard discharges neither obligation for the other.** They are two
    different rules failing two different ways, and the budget above is only
@@ -1360,6 +1365,13 @@ The full table is `../nitpick/CLAUDE.md`. The ones a library reaches for:
 `impl` `Rules` `fixed` `NIL` `comptime` `derive` `macro` `inline` `noinline`
 `decreases` `unbounded` `sealed` `hidden` — **new at the 1.5 re-pin: refused as
 local names at `c3bdae2`** (`NITPICK-PARSE-002` at the declaration)
+
+**A FILE'S BASENAME CANNOT BE A KEYWORD EITHER** *(added 2026-09-26, the ecosystem
+audit's EC7)*: a module declares `mod:<basename>;`, so `error.npk` and `raw.npk`
+are `NITPICK-RESOLVE-012` at the pin — measured: `nitpick-regex`'s planned
+`error.npk` became `pattern_error.npk`, and `nitpick-sockets` plans a `raw.npk`.
+Check a planned module's name against the compiler's keyword list before it
+enters a plan.
 **`stack`** — a MemoryQualifier beside `wild`, `wildx` and `defer`
 (`../nitpick/meta/specs/LEXICAL_REFERENCE.md:52`), confirmed against that file
 rather than reported.
