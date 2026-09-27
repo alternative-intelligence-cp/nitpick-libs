@@ -30,6 +30,9 @@ blocked, what is done. The durable plan is
 > **THE USAGE LIMITS ARE READABLE WITHOUT THE AUTHOR (2026-09-27 09:50):** his status line publishes the 5-hour and weekly limits on every refresh —
 > `jq . ~/.claude/usage-latest.json` (`written_at` says how old; at most about a minute while any session is open). **Read the weekly figure before a
 > dispatch at "go"** instead of waiting for him to run `/usage`. It carries no Fable meter and no cloud credits.
+> **AND A SEAT CAN READ ITS OWN CONTEXT FIGURE (09:58):** `jq -r --arg n <this seat's name> 'select(.session_name==$n) | .context_window.used_percentage'
+> ~/.claude/context/*.json` (one file per session, written by the status line). **Check it at every clean point; past about 80 % steer to a clean point
+> and suggest the handoff yourself; 92–93 % is the upper bound** — the author asked for this so a rotation no longer rests on his remembering.
 >
 > **🔁 HANDOFF — `nitpick-libs_s7` → `nitpick-libs_s8`, 2026-09-26 21:35 (shell time), at the author's call, the seat at 85 % context. READ THIS FIRST.**
 > **THE LIBRARIES ARE PAUSED FOR TOKENS — the author, 21:35:** *"we are gonna need to pause at the handoff to wait for more tokens"*; the compiler
