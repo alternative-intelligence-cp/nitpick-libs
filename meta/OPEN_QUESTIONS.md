@@ -455,9 +455,18 @@ file existed — the check works.
   660 end in a leaving statement, 8 end in a block (to be read), and the 10 flagged are multi-line
   `pass` expressions and macro or raise forms — likely false; the check at the pin decides.
 
-- **O-N25 — A VIEW'S ROOT CAN BE WRITTEN WHILE THE VIEW IS LIVE, SO THE VIEW
+- ~~**O-N25 — A VIEW'S ROOT CAN BE WRITTEN WHILE THE VIEW IS LIVE, SO THE VIEW
   READS REWRITTEN OR FREED MEMORY — the language gives views an escape rule and no
-  freeze.** Raised by this seat 2026-09-25 as a QUESTION, from `nitpick-time`'s
+  freeze.**~~ — **DISCHARGED — refused `NITPICK-BORROW-015` at the pin `5fbaf4a`**
+  (DEF-107, D-325, landing 67, announced as F13). Measured by `nitpick-time`'s 0.2.0a
+  planner (its plan's §1.4, at `e8548f6`): the owner of a `string_bytes` view written
+  while the view lives is refused at 5:5 of a control that compiles at `c970483`.
+  Recorded in `nitpick-time` at `1390b80` (TM-208) and read there by the verifier
+  `s2-ntime-0.2.0a-verify` (PASS, 2026-09-27 21:45); **not re-run by the orchestrator.**
+  It reaches no file of `nitpick-time`'s: `bytes_view`'s answer is a `#wild_slice` over
+  the body's pointer, which the freeze does not track, so time's rule S-18e still
+  governs it — sent to the compiler seat as an observation, not a defect (2026-09-27
+  20:47). *The entry as it stood:* Raised by this seat 2026-09-25 as a QUESTION, from `nitpick-time`'s
   0.1.4b planning: its `bytes_take` returned a view of its sink typed as an owned
   `string`, and the caller could then clear the sink (the view's text rewritten,
   exit 13) or grow it (the view reads freed memory, exit 12) — reproduced here at
