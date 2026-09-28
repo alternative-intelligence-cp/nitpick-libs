@@ -1669,3 +1669,34 @@ the import it guarded, so one reader defect defeated both; take the second answe
 compiler's own IR) and test it alone with the first stubbed out. **And mutation-testing two defences with ONE reader
 defect measures their independence against that defect only** — a reader that reads too many imports left each
 holding, one that blanks too much failed both: mutate the shared dependency, not each defence's own code.
+
+**AND NINE FROM THREE SUBCYCLES OF 2026-09-27 — `nitpick-regex` 0.1.0b and 0.1.1, `nitpick-time` 0.2.0a — landed by the
+orchestrator (W-16); a tenth was already covered above.**
+- **A plan that supersedes a decision in part sweeps every decision that states the old behaviour**, not only the one
+  an audit named. Regex's 0.1.0b marked RX-141 and left RX-133 and two statements in `BUILD.md` saying the opposite.
+- **A comparator proves the run equals the rehearsal, so it cannot see a hunk the rehearsal never wrote.** An omission
+  is invisible to SAME; the only check for one is the executing worker's own sweep for statements of what each step
+  moved. Regex's 0.1.0b worker made sixteen amendments in ten files that way, and time's 0.2.0a plan built the sweep in
+  as block 7b, which caught eleven more during rehearsal.
+- **A patch that writes a rule and the code it governs can disagree with itself, and SAME cannot see that either.**
+  Read each new rule's stated values against the code and the test that pins them: regex's Y-30 said a group head's
+  detail is its last byte, and the code gave the `-` of `(?-1`.
+- **A sentence about what the tests do is a claim over the test set.** Grep the tests when the sentence is written.
+- **A field that carries a value domain and a sentinel needs the sentinel outside the domain.** Regex's `BadGroupName`
+  detail 0 means both "the pattern ended inside the name" and "a NUL in the name"; its worker recommends 0x110000,
+  which no codepoint takes, to be decided with 0.1.4's escape details.
+- **Do not name a future decision number in prose.** `check_refs` reads it as an undefined reference, and a
+  repository's own checks may read fenced blocks too (`nitpick-time`'s `check_specs_current` does). Write "the next
+  decision", and let the step that declares it give the number.
+- **Cite another repository's rule by repository and name, not by a bare id.** A bare id reads as this repository's,
+  to a reader and to its checks: `nitpick-time`'s `check_specs_current` took regex's B-4e and the compiler's S-42 as
+  its own.
+- **A multi-commit plan rehearses `check_refs` at every commit, not only the last, and cites a decision in markdown in
+  the step that declares it.** `check_refs` reads markdown only, so time's TM-212, which amends the CI workflow alone
+  at step 6, was declared and uncited until step 7's `CLAUDE.md` cited it.
+- **CI asserts the emission and prints the binaries.** D-265, measured on a second runner: at `5fbaf4a`, time's CI
+  printed an `npkc` digest different from the workbench's (`f2ded3ec…` against `c8400793…`) while its `npkc.ll` matched
+  the pin's row byte for byte. The emission is what a pin promises; a binary's bytes can differ by machine.
+
+*Declined as already covered:* "paste a sweep's output, not a summary" (regex's 0.1.1) — the comparator item above,
+and *"a sweep's recorded counts must come from the command the record prints."*

@@ -37,8 +37,8 @@ blocked, what is done. The durable plan is
 >   `EMIT-002` removals are outside any checker sweep) and expects F-007's and F-005's heap figures to have moved (78).
 > - **Questions for the author:** ~~**13**~~ **answered 18:57 — all three accepted** (PD-24, PD-25, PD-31); the old 7, 3, 2 remain. **The order (asked with it): time first, a reserve of about 5 points kept — no agent is started that would take the week past about 95 %.**
 >
-> **Owed by this workbench, held for tokens unless a dispatch needs one:** the ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EC1's `LIBRARIES.md` row; two
-> PLAYBOOK findings from regex's 0.1.0b (sweep EVERY decision a partial supersession touches; a rehearsal's SAME cannot see an omission) — this seat's decision pending;
+> **Owed by this workbench, held for tokens unless a dispatch needs one:** the ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EC1's `LIBRARIES.md` row; ~~two
+> PLAYBOOK findings from regex's 0.1.0b~~ **— LANDED 2026-09-27 21:54 by `nitpick-libs_9`: the ten pending findings (regex's 0.1.0b and 0.1.1, time's 0.2.0a) decided, nine into `PLAYBOOK.md` §12 and one declined as already covered;** **the orchestrate skill's §4 owes a line for resuming a dead agent by message** (`RECORD.md` 21:31);
 > **EC3's corrected sentence still stands in eleven sites of four repositories** (tui 3, parse 3, sockets 2, time 3) — each repository's next dispatch dates it;
 > **EK2's Node-24 action bump** — one research request (`actions/checkout`, `actions/cache`) serves regex's and time's CIs, then a commit in each.
 >
