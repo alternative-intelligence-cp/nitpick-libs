@@ -1700,3 +1700,18 @@ orchestrator (W-16); a tenth was already covered above.**
 
 *Declined as already covered:* "paste a sweep's output, not a summary" (regex's 0.1.1) — the comparator item above,
 and *"a sweep's recorded counts must come from the command the record prints."*
+
+**AND FOUR MORE FROM `nitpick-regex` 0.1.1b (2026-09-28), the same family:**
+- **A restatement of a decision outside `DECISIONS.md` goes stale with the code, just as the decision does.** A
+  plan that leaves a decision "of its day" owes the same reading to each copy of it elsewhere: 0.1.1b's §7 left
+  RX-167 so, and struck O-N22's copy of its list still named `drop_element` after RX-189 removed it. The worker's
+  line-by-line reading of the sweep found it; the SAME count could not have.
+- **A question's list of consequences is a hypothesis: measure each one before planning it.** Regex's R3 counted
+  seven refused units where there were twelve files, and foresaw a check retiring into a belt where half of it is a
+  rule that `Copy` does not cover.
+- **An IR comparison offered as evidence of "no code change" names its masks.** This compiler's IR carries a
+  site-line table that a comment line moves, and a generated drop numbering that a removed declaration moves; the
+  pure bound was byte-identical, the steps that added comments were not.
+- **Leave `TMPDIR` at its default when running regex's harness.** Set inside the repository, it reddens the harness's
+  reproducibility check on an unchanged tree. The cause is not established; a session that keeps its scratch inside
+  its write boundary will meet it, and regex's next planner owes the investigation.

@@ -39,7 +39,7 @@ blocked, what is done. The durable plan is
 > - **Questions for the author:** ~~**13**~~ **answered 18:57 — all three accepted** (PD-24, PD-25, PD-31); the old 7, 3, 2 remain. **The order (asked with it): time first, a reserve of about 5 points kept — no agent is started that would take the week past about 95 %.**
 >
 > **Owed by this workbench, held for tokens unless a dispatch needs one:** the ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EC1's `LIBRARIES.md` row; ~~two
-> PLAYBOOK findings from regex's 0.1.0b~~ **— LANDED 2026-09-27 21:54 by `nitpick-libs_9`: the ten pending findings (regex's 0.1.0b and 0.1.1, time's 0.2.0a) decided, nine into `PLAYBOOK.md` §12 and one declined as already covered;** **the orchestrate skill's §4 owes a line for resuming a dead agent by message** (`RECORD.md` 21:31);
+> PLAYBOOK findings from regex's 0.1.0b~~ **— LANDED 2026-09-27 21:54 by `nitpick-libs_9`: the ten pending findings (regex's 0.1.0b and 0.1.1, time's 0.2.0a) decided, nine into `PLAYBOOK.md` §12 and one declined as already covered;** ~~the orchestrate skill's §4 owes a line for resuming a dead agent by message~~ **— written 2026-09-28 09:23; and regex 0.1.1b's four findings landed in §12 too (no PLAYBOOK finding is pending);** **carried to regex's 0.1.2 planner: why a `TMPDIR` inside the repository reddens its harness's reproducibility check;**
 > **EC3's corrected sentence still stands in eleven sites of four repositories** (tui 3, parse 3, sockets 2, time 3) — each repository's next dispatch dates it;
 > **EK2's Node-24 action bump** — one research request (`actions/checkout`, `actions/cache`) serves regex's and time's CIs, then a commit in each.
 >

@@ -163,6 +163,18 @@ Every recovery is a `stale claim` line in `RECORD.md`. After a session
 restart *every* claim is stale, because `ListAgents` shows only this
 session's agents.
 
+**An agent that this session spawned, and that died of an environment
+failure rather than of its work, is RESUMED, not re-dispatched.** A lost API
+connection (a DNS drop, `ENOTFOUND`) is the usual case. Measure the tree first:
+the table's two columns, plus what is pushed and what CI said on it. Then
+`SendMessage` to the agent's id with the measured state, and tell it to
+re-check the tree before it writes and to continue from where it stopped. Its
+whole context carries forward with no re-reading cost. Fall back to the table
+only if the resume fails, or if the agent belonged to a session that is gone.
+Found 2026-09-27 21:31, when `s2-ntime-0.2.0a-2046` lost its connection just
+before its gating harness and the resume finished the subcycle in nine
+minutes. The cause was this machine's USB Wi-Fi adapter (`RECORD.md`).
+
 ## 5. The loop
 
 For each stream in `streams=` that has no live worker and is not stopped,
