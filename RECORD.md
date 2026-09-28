@@ -8083,3 +8083,10 @@ Received from `nitpick-compiler_21` and logged. **The ladder MATCHES the baselin
 - finding (for PLAYBOOK — pending): time's `check_specs_current` reads another repository's rule id (regex's B-4e, the compiler's S-42) as this repository's — name such rules without their ids. **Pending PLAYBOOK findings: eight.**
 - queued, unchanged: EK2's Node-24 action bump.
 - **dispatched 20:46:** `s2-ntime-0.2.0a-2046` (`npk:worker`, `opus` named) — 0.2.0a only, per the plan at `e8548f6`. **Weekly usage 90 % at dispatch; 140 GiB available.**
+
+### `nitpick-time` 0.2.0a — the worker lost its API connection and was resumed — 2026-09-27 21:31 (shell time)
+
+- **stale claim — `s2-ntime-0.2.0a-2046` lost its API connection** (DNS, `ENOTFOUND` — an environment event, not the work). The failure notice arrived before 21:30:46, the shell's time at the first inspection; the agent's last words were *"Now the gating full harness over the staged record tree."* **The tree, measured at 21:30:** all seven step commits, `1390b80` … `23cb2da`, pushed (`origin/main` = `23cb2da` after a fetch); CI run `36364840105` on `23cb2da` success; the record staged and not committed (`0.2.0a.md`, its title DONE, and the cycle README); no harness or `npkc` process running; DNS resolving again.
+- **Resumed at 21:31 rather than re-dispatched:** a message to the same agent resumes it from its own transcript, so its whole context carries forward with no re-reading cost. §4's table would re-dispatch a fresh worker with `TREE: dirty`. The message gave it the measured state, asked it to re-check the tree before writing, run the gating harness over the staged tree, commit the record, push, read CI, and report as normal.
+- **finding (for the orchestrate skill):** §4's recovery table predates resuming an agent by message; a worker that dies of an environment failure with its context intact can be resumed. The table should name that path, and when it is the better one.
+- `nitpick-libs_s8` is closed; `nitpick-libs_11` is up (by `ListAgents` at 20:47, idle) — the spare two generations out, as `s8` said the author would open once this seat held the lock.
