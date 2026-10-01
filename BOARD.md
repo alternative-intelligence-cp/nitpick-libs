@@ -25,8 +25,12 @@ blocked, what is done. The durable plan is
 > with hazard (5)'s literal command. `nitpick-libs_s8` stays open for your questions; tell it when you are done. Your successor is `nitpick-libs_10`.
 >
 > **The state, as values.** Pin **`5fbaf4a`** (`.internal/toolchain/5fbaf4a/`, commissioned both directions; `PIN.md` has the provenance); `c970483` kept; `44ec7e9`
-> staged history only. Nine trees. **The compiler seat is `nitpick-compiler_22`: send it every compiler bug or quirk — it logs them with `IN` numbers until Wednesday's
-> reset and triages after.** Notices 78–82 verified; the baseline for 83 is under 82's entry.
+> staged history only. Nine trees. **The compiler seat is `nitpick-compiler_23` from 2026-09-30 night** (`_22` kept the seat through the reset on Fable, then announced the
+> rotation): send it every report, question, compiler bug or quirk; our IN-2 and IN-3 are in its inbox. Notices 78–82 verified; the baseline for 83 is under 82's entry.
+> **Coming, each after an advance notice, none before Thursday 2026-10-01 afternoon:** F25 / 1.6.1e step 3 (refusals on rare shapes; three implementers' sweeps moved NO
+> library or app site), DEF-164, DEF-165 = **D-337** (one `TYPE-079` per struct literal, naming every sealed field: regex's `pattern_error_literal` and time's `probe15`
+> counts move), DEF-159 (an emission change), then 1.6.1f (wide strings). **⚠ From F25's landing, no impl of a prelude trait (`Writer`, `Reader`, `Iterator` …) may
+> acquire a lock or wait on a channel (`LOCK-002`)** — the traits declare no lock level; nothing of ours does it today; it binds `nitpick-sockets`' and `nitpick-posix`' designs.
 > - **s1 `nitpick-regex`:** 0.1.0b (the adoption of `5fbaf4a`, EC4 and EC5) VERIFIED `43afdfb`; **0.1.1 (the core grammar) VERIFIED `11b28ab` (260/260 at `5fbaf4a`, CI green on every commit).** **Next: regex's open question R3
 >   (the `Vec<T: Copy>` shape, its gate met at `5fbaf4a`) as its own subcycle before 0.1.2 — no plan file yet, so a planner** — then 0.1.2 onwards per the cycle README.
 >   **⏸ BEHIND TIME, BY THE AUTHOR'S ORDER (answered 18:57):** time's cycle-0.2 chain takes the week first; R3's planner starts only if the week stays under about 95 %, else after Wednesday's reset. **▶ 0.1.1b PLANNED at `9851107` and verified (23:28; the planner cost about 1 point, 91 → 92 %): R3's recommendation holds as measured — `Vec<T: Copy>`, the owning units and `vec_free_owning` retired, the element check kept (PD-32 … PD-34, accepted here).** **▶ ITS WORKER DISPATCHED 2026-09-28 08:47: `s1-nregex-0.1.1b-0847` (`npk:worker`, `opus` named), the week at 93 % — the last agent before Wednesday's reset. DONE 09:16 at `679ea43` (238/238, CI green), under a point; VERIFIED PASS 09:22 (`sonnet`). Regex's open question R3 is decided (RX-188). Next: 0.1.2, the explicit stack — no plan file, so a planner, after Wednesday's reset.**
