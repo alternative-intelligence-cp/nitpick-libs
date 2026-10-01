@@ -255,6 +255,21 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N34 — `#unreachable()` IN AN `if (r.is_error)` ARM IS NOT COUNTED AS LEAVING IT, SO A READ OF
+  `r.value` BELOW IS `NITPICK-TAINT-001`: A REFUSAL OF A CORRECT PROGRAM.** Found by `nitpick-time`'s 0.2.2
+  planning (its `0.2.2.md` §1.2, block 0b), 2026-10-01, at `5fbaf4a`. **Reproduced by the orchestrator 15:0x, at
+  `5fbaf4a` and at `c15422e`** (the compiler's own binary, its digest notice 91's `npkc` row):
+  `Result<int64>:r = take(); if (r.is_error) { #unreachable(); } if (r.value != 5i64) { … }` exits 1 at
+  `NITPICK-TAINT-001` 13:10 and writes no IR; the same arm ending `exit 10i32;` compiles, and
+  `take() ?| #unreachable()` compiles. **Why it reads as a defect and not a rule:** the compiler's D-121 says the
+  early-exit shape "needs nothing of its own: an arm that leaves contributes nothing to the merge", and its
+  `BUILTIN_REFERENCE` says `#unreachable()` traps if reached and produces no value, so the arm leaves, as `exit`
+  does. **Impact (W-27): blocks nothing.** Loud, never silent; `?| #unreachable()` is the spelling `nitpick-time`'s
+  0.2.2 uses (its PD-67). The reproduction, three programs with their outputs at both compilers:
+  `.internal/repro-2026-10-01-taint/`. **Held for the compiler seat's next message that serves its task:**
+  `nitpick-compiler_30` lands 92 and then stops, and the compiler's queue resumes when Fable returns, with
+  "whatever the finders registered" (its `HANDOFF_30.md` §4). It goes with the reply to notice 92.
+
 - **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
   AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
   Found by M11 (the references checked against the compiler; stopped part-way on the author's word at 3 704 of
