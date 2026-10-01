@@ -15,9 +15,9 @@ lives in a scratchpad is a measurement that ends with the session.
 ## How to take the reading
 
 ```bash
-$NPKC tools/canary.npk > /tmp/canary.ll ; echo "exit=$?"     # MUST redirect: npkc writes IR to STDOUT
-grep -c '^define' /tmp/canary.ll                              # the number that matters
-stat -c %s /tmp/canary.ll                                     # path-dependent — see below
+$NPKC tools/canary.npk > "$TMPDIR"/canary.ll ; echo "exit=$?"     # MUST redirect: npkc writes IR to STDOUT
+grep -c '^define' "$TMPDIR"/canary.ll                              # the number that matters
+stat -c %s "$TMPDIR"/canary.ll                                     # path-dependent — see below
 ```
 
 **Redirect, always.** `npkc` writes the emission to **stdout**, so an
