@@ -11,7 +11,9 @@ Written by nitpick-libs_s6 on 2026-09-26, whose checks until then ran inline and
 committed by nitpick-libs_s7, which re-ran its commissioning cases (RECORD.md, 2026-09-26). Run as `python3 -B`.
 
 To get a BASELINE file, take exactly ONE fenced block, the one under its header:
-  python3 -B -c "import sys;b=open('BOARD.md').read();k=b.find(sys.argv[1]);f=b.index('\`\`\`',k);e=b.index('\`\`\`',f+3);print(b[f+3:e].strip())" 'THE BASELINE NOTICE 69 MUST QUOTE'
+  python3 -B -c "import sys;b=open('BOARD.md').read();k=b.find(sys.argv[1]);f=b.index('\`\`\`',k);e=b.index('\`\`\`',f+3);print(b[f+3:e].strip())" '**THE BASELINE NOTICE 69 MUST QUOTE**'
+Key on the BOLDED header, `**` included: a prose mention of the header's words above the block is otherwise
+found first, and its next fenced block taken (met at notice 85, when the check refused it: baseline 0 rows).
 The compiler seat's notices give the rows in prose: transcribe them into the NOTICE form by hand, and re-read
 the transcription against the message. Beside the ladder, every notice gets three read-only git checks in the
 compiler's local repository -- never fetch there, it rewrites FETCH_HEAD:
