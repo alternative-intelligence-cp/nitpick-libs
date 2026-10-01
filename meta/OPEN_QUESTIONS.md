@@ -277,6 +277,12 @@ file existed — the check works.
   15:55 block with the probes still to run (`!!!` in the arm, the `pick (r.is_error)` form, the other walkers
   that ask whether an arm leaves). The next Fable commit registers it, and that seat sends the DEF number.
   `nitpick-time` keeps `?| #unreachable()` until then.
+  **REGISTERED AS DEF-225 AND FIXED IN LANDING 93** (`93bcb66` on `30-def225`, under its harness from 17:20;
+  advance notice F35, filed 17:22): a bare `#unreachable();` leaves, so the `if` form compiles, and four more
+  refusals from the same missing row go (`ASSIGN-001`, `ASSIGN-002`, `MOVE-001`, `FLOW-001`). Only the bare
+  statement: under another expression the refusals stand. **DEF-226 registered OPEN beside it:** the
+  `pick (r.is_error)` form is `TAINT-001` with every leaver (`exit` and `!!!` too; it always was) — write the
+  `if` form, `?!` or `?| #unreachable()`. Discharged here at the re-pin that carries 93.
 
 - **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
   AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
