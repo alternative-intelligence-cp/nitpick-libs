@@ -283,6 +283,7 @@ file existed — the check works.
   statement: under another expression the refusals stand. **DEF-226 registered OPEN beside it:** the
   `pick (r.is_error)` form is `TAINT-001` with every leaver (`exit` and `!!!` too; it always was) — write the
   `if` form, `?!` or `?| #unreachable()`. Discharged here at the re-pin that carries 93.
+  **LANDED 2026-10-01 19:52 as `93bcb66`** (notice 93, verified here 19:53: ladder MATCH, refusals removed only).
 
 - **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
   AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
