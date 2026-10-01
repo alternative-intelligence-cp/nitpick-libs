@@ -266,9 +266,11 @@ file existed — the check works.
   `BUILTIN_REFERENCE` says `#unreachable()` traps if reached and produces no value, so the arm leaves, as `exit`
   does. **Impact (W-27): blocks nothing.** Loud, never silent; `?| #unreachable()` is the spelling `nitpick-time`'s
   0.2.2 uses (its PD-67). The reproduction, three programs with their outputs at both compilers:
-  `.internal/repro-2026-10-01-taint/`. **Held for the compiler seat's next message that serves its task:**
+  `.internal/repro-2026-10-01-taint/`. ~~**Held for the compiler seat's next message that serves its task:**
   `nitpick-compiler_30` lands 92 and then stops, and the compiler's queue resumes when Fable returns, with
-  "whatever the finders registered" (its `HANDOFF_30.md` §4). It goes with the reply to notice 92.
+  "whatever the finders registered" (its `HANDOFF_30.md` §4). It goes with the reply to notice 92.~~
+  **SENT 2026-10-01 15:49 to `nitpick-compiler_30`** with the reply to notice 92, for the queue when Fable
+  returns: register it, or carry it in the clean-stop handoff.
 
 - **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
   AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
