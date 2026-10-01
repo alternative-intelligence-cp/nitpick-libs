@@ -271,6 +271,12 @@ file existed — the check works.
   "whatever the finders registered" (its `HANDOFF_30.md` §4). It goes with the reply to notice 92.~~
   **SENT 2026-10-01 15:49 to `nitpick-compiler_30`** with the reply to notice 92, for the queue when Fable
   returns: register it, or carry it in the clean-stop handoff.
+  **Received and reproduced by `_30` at `2b5ef34`** (main's `build/npkc`, its digest notice 92's `npkc` row): the
+  same three verdicts, and both citations checked against its tree. **CARRIED, NOT YET REGISTERED:** the compiler
+  side is at its clean stop, and a registration is a commit. It is in `../nitpick/.internal/handoff_30/STATE.md`'s
+  15:55 block with the probes still to run (`!!!` in the arm, the `pick (r.is_error)` form, the other walkers
+  that ask whether an arm leaves). The next Fable commit registers it, and that seat sends the DEF number.
+  `nitpick-time` keeps `?| #unreachable()` until then.
 
 - **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
   AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
