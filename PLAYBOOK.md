@@ -1368,7 +1368,7 @@ local names at `c3bdae2`** (`NITPICK-PARSE-002` at the declaration)
 
 **A FILE'S BASENAME CANNOT BE A KEYWORD EITHER** *(added 2026-09-26, the ecosystem
 audit's EC7)*: a module declares `mod:<basename>;`, so `error.npk` and `raw.npk`
-are `NITPICK-RESOLVE-012` at the pin — measured: `nitpick-regex`'s planned
+are refused — `NITPICK-RESOLVE-012` at 1:1 at `c970483`, **`NITPICK-PARSE-001` at the name (1:5) at `5fbaf4a`** *(re-measured 2026-10-02, `nitpick-regex` cycle 0.1's audit, S3: "expected a name: a keyword cannot be declared as a function, type or module name")* — measured: `nitpick-regex`'s planned
 `error.npk` became `pattern_error.npk`, and `nitpick-sockets` plans a `raw.npk`.
 Check a planned module's name against the compiler's keyword list before it
 enters a plan.
