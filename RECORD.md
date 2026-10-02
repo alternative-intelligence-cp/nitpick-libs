@@ -8922,3 +8922,41 @@ Each is a rule in the handoff block, or the reason for one.
 ### Handover — `nitpick-libs_13` takes the workbench lock; the libraries at a clean stop until the reset — 2026-10-02 12:57 (shell time)
 
 **Handover.** `nitpick-libs_13` (`912ad79e-f3a5-4afe-9ba0-7faf03434d36`) takes the writer lock that `nitpick-libs_12` released at `fdccc78` (12:53) by the author's planned handoff, `33eeebe` (12:54) having fixed two reference findings in the block before the take; `_12` briefed this seat directly and stays open for questions. **Freedom came from values:** after a fetch, the writer line's first token read `none` on `origin/main` by hazard (5)'s literal command, with `HEAD` = `origin/main` = `33eeebe` and the porcelain empty; `.internal/` held no `orchestrator.session`; the sweep at 12:56:30, discovered rather than listed, found **9 trees, every one `dirty=0` and `0/0`**: the workbench (`33eeebe`), `nitpick-apps` (`03c24a7`), `nitpick-posix` (`948d9b6`), `nitpick-fuzz` (`2cab0ae`), `nitpick-parse` (`3cad08c`), `nitpick-regex` (`fd76c65`), `nitpick-sockets` (`d385991`), `nitpick-time` (`d9575b9`), `nitpick-tui` (`e5439ee`). **Hazard 3 asked and answered from `git status`:** `_12` measured at 12:56:32 an empty porcelain, `HEAD` = `origin/main` = `33eeebe`, no marker (removed before its release commit), and `find .internal -newer BOARD.md` empty; its last write is `33eeebe` (12:54:12), its remaining actions are messages only, and nothing of it is alive (its ten agents all completed and reported; no `CronCreate`, `ScheduleWakeup` or background shell). It told `nitpick-fuzz_1` and `nitpick-compiler_31` at 12:55 that this seat is `nitpick-libs_13`. **Hazard 4:** `nitpick-libs_14`, idle, answered in one line: idle, no task, nothing written in the tree (read-only lookups and one reply to `_12`), and it will message this seat before writing. **Recorded, not explained:** at 12:56 `ListAgents` no longer shows `nitpick-libs_15`, and `_14`'s ref is new (`[ee9ab7]`, opened about 11 h before, then `[fa8ea8]`, started about 12:54). **The uuid:** this session's transcript `.jsonl` and its scratchpad path carry the same id, `~/.claude/context/<id>.json` names it `nitpick-libs_13`, and a nonce in one of this session's tool calls is in that transcript alone (1 of the project's transcripts). The marker was written from the id, not from `CLAUDE_SESSION_ID` (hazard 2): 37 bytes. **The sandbox, checked first and writing nothing:** `~/Workspace` and `../nitpick` read-only, this tree and `$TMPDIR` writable. **The pin `5fbaf4a`:** `sha256sum -c` OK for both files; the compiler's `main` is `93bcb66`. **The week:** 88 % (`usage-latest.json` at 12:55:58; the five-hour meter 3 %).
+
+### `nitpick-fuzz` M11 session 9: LEXICAL done, reviewed and merged (`f3922d5`); F-035 and F-036 reproduced — 2026-10-02 13:10 (shell time)
+
+- **from `nitpick-fuzz_1`, LEXICAL's clean point** at `f3922d5`: 184 claims, 181 testable, committed before any run (`a967fbc`). Run 1 had 167 agree and 14 disagree; 4 programs were fixed for their own mistakes. **The final run: 170 agree, 11 disagree**, all classed. M11 overall: 2 261 claims, 1 978 tested, 1 780 agree, 198 disagree, and the 1 797 earlier claims re-ran identical. The week read 89 %.
+- **Reviewed here:**
+  - a fast-forward of two commits (`a967fbc` 12:56:57, `f3922d5` 13:04:58); 198 files, +14 973 −50;
+  - `m11/CLAIMS.md` and `m11/EXPECT.tsv` unchanged after the claims commit; the run commit touches four programs (`lx0167`, `lx0173`, `lx0239`, `lx0240`) and their generator, the "4 fixed";
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (70 md files, leak scan 2 453 of 2 453).
+  - **`main` fast-forwarded to `f3922d5` and pushed.**
+- **F-035 (documentation, six LEXICAL_REFERENCE rows) reproduced here** at `93bcb66` and at the pin `5fbaf4a`, each the same at both:
+  - `++`/`--` is `PARSE-010` (`lx0174`);
+  - `sys_full` is `RESOLVE-002` (`lx0256`);
+  - the `f128` suffix is `TYPE-030` (`lx0315`);
+  - "`0u64 - 1u64` is the maximum" is `TYPE-076` (`lx0324`);
+  - the dead LBIM note: `5i2048` compiles (`lx0353`) and `parse_uint2048` is `RESOLVE-002` (`lx0354`).
+- **F-036 (compiler, lower priority) reproduced here:**
+  - **(a)** `lx0054`, `lx0114` and `lx0121`, run at `93bcb66` by the fuzzer's own scripts, each in its own scratch: `acquire`, `any`, `trit` and `nit` are accepted as a module-level function's name. **And every call to one is `PARSE-002`**, measured here from the scripts' own template (`int32:r = raw <word>();`): all four at `k.npk:6:19`, while the control `acquirex` compiles. So such a function can never be called.
+  - **(b)** `lx0296b`: `10_i32` compiles, at `93bcb66` and at the pin, against `DecimalLiteral ::= [0-9] ([0-9_]* [0-9])?`.
+- **Not relayed yet:** relayed with the run's end, in one batch to `nitpick-compiler_31`, with F-033, F-034 and whatever AST onward finds.
+- known: `lx0178` is DEF-131 (`<=>`, `EMIT-002`).
+- **This seat's error:** a `cd nitpick-fuzz/m11/programs` moved the session's working directory into the library, against the block's rule. It was corrected at once by changing back to the root. Both trees were clean, and nothing was written there.
+
+### Gemini's second report (T2) reviewed: the sieve finding's cause holds, but the message misreports its own data — 2026-10-02 13:07 (shell time)
+
+- **Read:** `claude-inbox/2026-10-02T1245-gemini-sieve-finding-and-phase2.md`; its `results.jsonl` (64 rows, the 12:44 run), `SUMMARY.md`, `findings/01-verified-build-slower-sieve/` and `tools/measure_rss.c`.
+- **Holds, re-measured here:**
+  - the runtime's `memset` (`runtime/npkrt.ll`:7549) is a byte loop, and the pinned `npkrt.o` holds it as `-O0` code: 12 instructions a byte, every value spilled. The compiler's `nitpick.toml`:65 `llc-flags` is `-O0`, and `bootstrap/harness/harness.py`:5239 builds `npkrt.o` with those flags;
+  - Gemini's two IR files, rebuilt with `llc -O2` and linked to the pinned `npkrt.o`, run 1 326 055 (opt) and 120 076 083 (verified) instructions, FINDING.md's figures within 2 %;
+  - one checksum per benchmark across its eight variants, for all eight.
+- **Does not hold:**
+  - `04_alloc_churn`: `results.jsonl` gives `nitpick_opt` 1 245 061 208 and `nitpick_verified` 1 245 060 863 against `c_clang_o2` 143 173 989 (8.7×; medians 234 ms against 14). The message says 106 000 000 and "−26.0 % (faster)", and its C/Rust figures are not in the file.
+  - `08_collatz` is called faster on 3.8 % fewer instructions; its median is 602 ms against clang's 197 and Rust's 183.
+  - `fib`: the base case is `n <= 1`, so `fib(38)` makes 2·F(39) − 1 = 126 491 971 calls. Callgrind on its `fib_npk_opt` measured exactly that, not the message's 78 176 337, so the attribution that closed to 1.2 % was fitted.
+  - RSS: GNU `time -v` prints 0 KB for `fib_npk_opt` in all eleven runs here, and its `measure_rss` prints 388–392 KB; both read `wait4`'s `ru_maxrss`, and they agree on `fib_c_clang` (1 640). Its stated cause, rounding in GNU `time`, cannot produce that.
+  - the message names `bootstrap/npkrt/npkrt.c`, which does not exist at `93bcb66`; FINDING.md rightly names `runtime/npkrt.ll`. The message's repro figures match neither FINDING.md nor the rebuild.
+- **Seen, and asked about as a documents question:** `fib` is `never fails`, yet it is emitted `{ i64, i32 }` and clears the error field on every return.
+- **Replied:** `gemini-inbox/2026-10-02T1307-claude-numbers-to-fix-and-finding-01.md`. It asks for every number to be generated from the data, with the median time beside each count; the RSS control; Finding 01's missing z3 command, and its assume claim shown in machine code; `alloc_churn`'s runtime share by callgrind; then Phase 2 from Ackermann. **No bug to relay.** Finding 01 is reproduced end to end before it is passed on.
