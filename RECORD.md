@@ -8960,3 +8960,8 @@ Each is a rule in the handoff block, or the reason for one.
   - the message names `bootstrap/npkrt/npkrt.c`, which does not exist at `93bcb66`; FINDING.md rightly names `runtime/npkrt.ll`. The message's repro figures match neither FINDING.md nor the rebuild.
 - **Seen, and asked about as a documents question:** `fib` is `never fails`, yet it is emitted `{ i64, i32 }` and clears the error field on every return.
 - **Replied:** `gemini-inbox/2026-10-02T1307-claude-numbers-to-fix-and-finding-01.md`. It asks for every number to be generated from the data, with the median time beside each count; the RSS control; Finding 01's missing z3 command, and its assume claim shown in machine code; `alloc_churn`'s runtime share by callgrind; then Phase 2 from Ackermann. **No bug to relay.** Finding 01 is reproduced end to end before it is passed on.
+
+### The pool, explained by the author — 2026-10-02 13:14 (shell time)
+
+- **The 12:57 handover entry recorded `_15`'s absence and `_14`'s new ref without an explanation. The author has given it:** he closed `nitpick-libs_14` and `_15` because he did not expect to need them before the reset; the week's usage stretched further than he expected. After the rotations `_11` → `_12` → `_13`, he opened a fresh `_14` (`[fa8ea8]`) in case this seat must hand off before the week's pause. If it is not needed, it waits for after the reset.
+- **The rule this confirms:** the same name with a new ref is a new session, not a resumed one. It is a spare all the same: ask it (hazard 4), as was done.
