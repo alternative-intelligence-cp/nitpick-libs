@@ -8795,3 +8795,28 @@ Each is a rule in the handoff block, or the reason for one.
 - **from `nitpick-fuzz_0`:** at 11:0x its branch fast-forwarded to `41ba27b`, the week 86 %, one discrepancy its own: its line counter read the empty element after a file's last newline, so TYPE and VERIFICATION end at 2122 and 2351, and session 7's 3 704 lines are 3 700. **MEMORY's clean point** at `3ae33e9`: 181 claims, 146 testable (35 untestable with reasons); run 1 at HUNT2 131 agree and 15 disagree; seven programs text-fixed (`me0179` had agreed for the wrong reason); run 2 **137 agree, 9 disagree**, all triaged. M11's totals: 1 669 claims, 1 408 tested, 1 255 agree, 153 disagree, 4 233 of 10 419 lines. `me0461` is DEF-148's shape, refused `BORROW-016` at `93bcb66` (fixed there).
 - **Reviewed here:** `main` (`41ba27b`) an ancestor of `local-m11` (`3ae33e9`), a fast-forward of two commits — the claims committed before their first run (`2f936bc`), then the run, fixes and triage (`3ae33e9`); 171 files, +10 936 −264; `PLAN.md` untouched; no home path and nothing shaped like a credential among the added lines; both commits under the configured identity; `check_refs` clean over the merged tree (58 md files, leak scan 1 892 of 1 892). **`main` fast-forwarded to `3ae33e9` and pushed.**
 - **F-029 reproduced here** at three compilers — HUNT2 (`.work/hunt2`, worktree `9126350d`), the libraries' pin `5fbaf4a`, and `93bcb66` (`.work/main93b`, worktree `93bcb663`): `wild int8->:buffer = alloc(16i64);` compiles (npkc 0), its first use is `NITPICK-PARSE-002` "expected an expression", `int64:buffer` is refused at its declaration, and the same program with `buf` compiles. **Standing at `93bcb66`; not in the compiler's registry there.** **F-030 reproduced here** at `5fbaf4a` and `93bcb66` for its five compile-time rows (`me0133` accepted where MEMORY:133 says refused; `me0135` `TYPE-007`; `me0173` refused at `nodrop`'s place; `me0381` and `me0399` `PARSE-011`), and its arena row by the runtime's own text at `93bcb66` (an arena over "three managed heap blocks", D-183). **Both are relayed to `nitpick-compiler_31` in one batch at the session's end**, with whatever OP and CONTROL find, so the logging seat is woken once.
+
+### Gemini's benchmarks briefed, at the author's request: a measuring instrument for later optimization, and every compiler bug in full — 2026-10-02 11:44 (shell time)
+
+- **the author (11:3x):** his Gemini agent (Google AI Pro) had built Nitpick, run a hello world and written small benchmarks against C and Rust "just for kicks" (`META/NITPICK/tests`, 2026-09-20). He wants them grown into data for optimization once the compiler's roadmap is done, and every bug they meet reported, as an extension of the fuzzer and the libraries' testing. He set up file inboxes for the two agents (`META/NITPICK/messages/{gemini,claude}-inbox/`) and relays the alerts.
+- **What was found, read here:**
+  - Four benchmarks (splitmix64, recursive fib, FNV-1a, allocation churn), each in Nitpick, C and Rust.
+  - The runner times five wall-clock runs and **prints but does not compare the outputs**.
+  - It builds only Nitpick's `opt -O2` leg.
+  - It reads **`REPOS/nitpick/build/` — the compiler session's live build — so no result names a commit**.
+  - **53 binaries under `tests/.build/` are tracked in `META`** (no ignore rule; the author's sync script commits with `git add .`).
+  - The benchmarks predate D-248's module header and D-089's `main`, so they will not compile at `93bcb66`: this seat's own probe met both refusals.
+  - The machine: `perf` blocked (`perf_event_paranoid` 4), governor `powersave`, `valgrind` 3.22 present, clang/opt/llc/ld.lld all LLVM 20.1.2, gcc 13.3, rustc 1.93.1.
+- **The brief, sent 11:42:**
+  - **Rules.** Write only under `META/NITPICK/tests`; `REPOS/` is read-only; change no system setting; build outputs git-ignored; take language facts only from the compiler's own documents at the commit.
+  - **Phase 0:** its own compiler, built from a clone at `93bcb66`, with digests recorded.
+  - **Phase 1:** checksums asserted equal (a mismatch is a bug, never a timing), over eight variants:
+    - Nitpick plain, optimized, and **verified** (`npkg verify`'s `--obligations` then `--elide`: the gap proof-driven optimization can recover);
+    - `clang -O2` (the same LLVM) and `gcc -O2`;
+    - clang with trapping overflow and bounds sanitizers (the like-for-like C);
+    - Rust `opt-level=3`, with and without `overflow-checks`.
+    - Measured: wall-clock (warmed, pinned, interleaved), **cachegrind instruction counts** (the stable signal here), RSS, size, compile time per stage, and **the check sites that survive `opt -O2`** (the direct optimization targets). Results go to JSON lines with a `compare.py` for later commits.
+  - **Phase 2:** eleven benchmark families in priority order, from bounds-checked indexing to compile speed.
+  - **Bugs:** a folder per bug, with the minimal program, both legs, the reference sentence cited, and dedupe against the compiler's DEF registry and the fuzzer's `KNOWN_DEFECTS.md`.
+  - **Report:** to `claude-inbox/` when done or stopped.
+- **The board's T2 row** carries the channel. A Gemini bug is reproduced here before it is relayed, as the fuzzer's are. **For the author:** the 53 tracked binaries in `META`, and whether he wants `perf` or a fixed governor for stabler timing (both system settings, his call).
