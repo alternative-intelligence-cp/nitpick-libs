@@ -12,7 +12,7 @@ neither is taken twice.
 | [`nitpick-parse`](https://github.com/alternative-intelligence-cp/nitpick-parse) | `nparse` | `PA-` | multi-format parsing over one event stream, with format plugins | **planned** — 13 specs, 43 decisions, 15 cycles, 0.0 execution-grade |
 | [`nitpick-regex`](https://github.com/alternative-intelligence-cp/nitpick-regex) | `nregex` | `RX-` | regular expressions, linear time guaranteed | **planned** — 14 specs, 37 decisions, 16 cycles, 0.0 execution-grade |
 | [`nitpick-sockets`](https://github.com/alternative-intelligence-cp/nitpick-sockets) | `nsockets` | `SK-` | the BSD socket surface — AF_UNIX, TCP and UDP over IPv4/IPv6 | **planned** — 14 specs, 35 decisions, 12 cycles, 0.0 execution-grade |
-| [`nitpick-time`](https://github.com/alternative-intelligence-cp/nitpick-time) | `ntime` | `TM-` | dates, times, durations and zones | **planned** — 13 specs, 30 decisions, 10 cycles, 0.0 execution-grade |
+| [`nitpick-time`](https://github.com/alternative-intelligence-cp/nitpick-time) | `ntime` | `TM-` | dates, times, durations and zones | **building** — cycles 0.0, 0.1 and 0.2 closed, the last on 2026-10-02 at the pin `5fbaf4a` (instants and timestamps; 133 units GREEN); cycle 0.3 (the clocks) opened, `0.3.0.md` written. 12 specification documents, decisions to TM-245, 10 cycles. *(Was "planned — 13 specs, 30 decisions, 10 cycles, 0.0 execution-grade" until 2026-10-02: the cycle 0.2 audit's S5.)* |
 
 ## Who consumes each library
 
@@ -116,7 +116,8 @@ wrote the library. Since a non-POSIX consumer may live in `nitpick-apps`, the
 placement is a choice rather than a constraint. **Raised for `nsockets`'s stream
 to decide at its claim (W-7); not changed from here.**
 
-**No library has any code yet.** "Planned" means the specification set, the
+**No library had any code when this registry was written.** *(2026-10-02: `nitpick-time` and
+`nitpick-regex` now do — their rows say how far each has come.)* "Planned" means the specification set, the
 decision log and the cycle map are written and cycle 0.0 is execution-grade.
 Implementation is partitioned into streams by [`WORKSTREAMS.md`](WORKSTREAMS.md);
 the number of streams running at once is a per-session choice, and one is
@@ -171,7 +172,13 @@ Findings from the planning passes that outlived the library that found them.
 Each is now in `PLAYBOOK.md`; they are listed here because they are the
 evidence for why it says what it says.
 
-- **The runtime installs no signal disposition, for anything.** Measured by
+- **The runtime installs no signal disposition, for anything.** *(Corrected 2026-10-02, the
+  ecosystem audit's EC1: true through compiler `3d15ac9` only. From `c3bdae2` the runtime installs
+  signal actions — measured at the pin `5fbaf4a`, two `rt_sigaction` mentions in `runtime/npkrt.ll` —
+  and `SIGPIPE` (DEF-68) gets a returning handler, so a write to a dead peer answers `EPIPE` instead
+  of killing the process. `PLAYBOOK.md` §2's row above the old one says so. `nitpick-posix`'s PX-011
+  and `APPS.md`'s three positions on `SIGPIPE` are EC1's too, re-decided at `nitpick-posix`'s next
+  dispatch.)* Measured by
   `nitpick-sockets` — no `rt_sigaction` in `npkrt.ll` — after `ntui` had
   already shipped a specification claiming the opposite. `SIGPIPE`'s default is
   live and it terminates the process. `ntui`'s T-113 is the correction, and the

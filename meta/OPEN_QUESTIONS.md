@@ -262,6 +262,12 @@ O-Y2   nitpick-sockets   descriptor passing to a non-AF_UNIX peer
   own, read by `check_int128_sites`; defined in full at
   [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md). Cited on `BOARD.md` by 0.2.3a.
 
+- **O-R1 — `nitpick-regex`: a bounded backtracker with lookaround, behind an opt-in.** Declined at 1.0 as
+  RX-009 and open by design; defined in full at
+  [`nitpick-regex/meta/OPEN_QUESTIONS.md`](../nitpick-regex/meta/OPEN_QUESTIONS.md). Cited in `RECORD.md`
+  2026-10-02 08:24 by question 20's answer: at the next subcycle that touches `SAFETY.md`, its record takes in
+  that a captureless lookbehind is known to fit S-6. **NOT blocking.**
+
 ---
 
 ## For the compiler — the registry
