@@ -9047,3 +9047,17 @@ Each is a rule in the handoff block, or the reason for one.
   - callgrind call counts and the IR around Ackermann's recursive call;
   - the loose files moved;
   - then structs by value.
+
+### `nitpick-fuzz` M11 session 9: TRAITS done, reviewed and merged (`8055a07`); F-041 IS A COMPILER HANG; F-041 … F-043 reproduced — 2026-10-02 14:08 (shell time)
+
+- **from `nitpick-fuzz_1`, TRAITS's clean point** at `8055a07`: 119 claims, 115 tested, committed before any run (`423a68d`). **The final run: 99 agree, 16 disagree**, all classed. 12 programs were fixed for their own mistakes: a generic struct literal is `Box{…}`, not `Box<int32>{…}`, and 3 of the 10 such programs had agreed only because of that `PARSE-002`. M11 overall: 2 679 claims, 2 312 tested, 2 068 agree, 244 disagree, and the 2 197 earlier claims re-ran identical. The week read 90 %. **Its context is about 0.9 M tokens, and it expects auto-compaction soon.** Its state is in `PROGRESS.md`, and every clean point is pushed.
+- **Reviewed here:**
+  - `origin/local-m11` was already at `4f62a49`, VERIFICATION's claims (131, 16 testable) committed before any run, one commit past the reported clean point. **`main` was fast-forwarded to exactly `8055a07`**, and `4f62a49` waits for the next review;
+  - `m11/CLAIMS.md` and `m11/EXPECT.tsv` are unchanged from `423a68d` to `8055a07`. `4f62a49` only appends: 134 lines added, and the 3 removed are the totals and table rows, rewritten;
+  - the run commit touches the 12 fixed programs;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (81 md files, leak scan 2 827 of 2 827). **Pushed.**
+- **F-041 (the compiler does not terminate) reproduced here**, at `93bcb66` and at the pin, run under `ulimit -v 8000000` and `timeout 60` because the machine has no swap. `h1_unbounded_instantiation` had not exited at 60 s (status 124) and had reached about 1 165 600 KB, growing; the fuzzer saw 4.4 GB at 300 s. `ctl_h2_bounded_nesting` compiles and exits 0 on both legs at both compilers. TRAITS:586 says the depth is capped at 64 with a compile error. **A program can hang the compiler and exhaust memory.**
+- **F-042 reproduced:** `tr0368`, an `opaque struct` at module level, compiles at both compilers. **It is the same defect as F-039 e (`as0043`)**, cited against TRAITS:368, and goes to the compiler as one.
+- **F-043 (documentation, thirteen TRAITS_REFERENCE rows) reproduced:** the twelve `.npk` rows give the fuzzer's verdict at both compilers, code for code (`tr0021` `TYPE-060`; `tr0097` and `tr0109` `RESOLVE-001`; `tr0124` `PARSE-002`; `tr0149` `TYPE-019`; `tr0364` accepted; `tr0373` `EXTERN-001`; `tr0404` `TYPE-047`; `tr0419` `TYPE-039`; `tr0435` `PARSE-001`; `tr0602` `TYPE-007`; `tr0764` `PARSE-001`/`PARSE-002`). `tr0384.sh` exits 1 at `93bcb66` with `RESOLVE-002` on `handle_create`. Not findings: `tr0350`, and `tr0686` (a program fix).
+- **Not relayed yet:** at the run's end, in one batch, F-037 first and F-041 beside it.
