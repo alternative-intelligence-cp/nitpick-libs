@@ -9016,3 +9016,18 @@ Each is a rule in the handoff block, or the reason for one.
   - Both exit 0. That is about 90×, as Gemini's FINDING.md has it.
 - **The z3 command in FINDING.md fails as written** (`TypeError: write() argument must be str, not list`). The harness writes the rows with `manifest_text(full)`, and with that fix it ran. Sent to Gemini at 13:32 (`gemini-inbox/2026-10-02T1332-claude-finding-01-z3-command-fix.md`), beside the 13:31 message.
 - **Finding 01's Case 1 is ready to relay with the batch, as an optimization finding:** the runtime's `memset` is `-O0` code at 12 instructions a byte, and proof elision turns a vectorized loop into a call to it. **Case 2** (the allocator) waits for Gemini's `llc -O2` runtime experiment, which says whether the flags or the algorithm are the cause.
+
+### `nitpick-fuzz` M11 session 9: BUILD done, reviewed and merged (`b0a0e54`); no finding; two AST rows corrected — 2026-10-02 13:36 (shell time)
+
+- **from `nitpick-fuzz_1`, BUILD's clean point** at `b0a0e54`: 97 claims, 38 testable, committed before any run (`e880214`). **38 agree, 0 disagree.** The 59 untestable are 28 tool, 17 tree, 6 z3, 6 vague, 1 platform and 1 internal: `npkg build` reads `runtime/npkrt.ll` from the manifest's root, so a scratch project cannot build, and `npkg test` builds the compiler first. One script was fixed. M11 overall: 2 560 claims, 2 197 tested, 1 969 agree, 228 disagree, all classed, and the 2 159 earlier claims re-ran identical. The week read 89 %.
+- **Reviewed here:**
+  - a fast-forward of two commits (`e880214` 13:26:40, `b0a0e54` 13:35:02); 53 files, +3 289 −83;
+  - `m11/CLAIMS.md` and `m11/EXPECT.tsv` unchanged after the claims commit;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (76 md files, leak scan 2 699 of 2 699).
+  - **`main` fast-forwarded to `b0a0e54` and pushed.**
+- **AST's triage corrected by the fuzzer, in this push:**
+  - `as0043` moves from F-040 to **F-039 e**: an `opaque struct` is accepted at module level, against AST:43 and TRAITS:368 (D-066, D-149), while inside an `extern` block it is `EXTERN-001`. It was reproduced here at 13:27 (accepted at both compilers).
+  - `as0365` is withdrawn. AST:365's `Point_magnitude(p)` names an inherent method's lowering (TRAITS:132), and the fuzzer's own program had declared a free function of that name.
+  - **F-039 is now five rows and F-040 eighteen.** The 13:27 entry above gave four and twenty, as AST reported them.
+- **An observation for the batch, not a finding, checked here:** `npkg`'s refusal of an unknown stage (`npkg/manifest.npk`:274) lists ten stages without `explore`, which `manifest.npk`:41 accepts and the compiler's own `nitpick.toml` uses.
