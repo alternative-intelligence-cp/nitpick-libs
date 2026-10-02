@@ -8867,3 +8867,24 @@ Each is a rule in the handoff block, or the reason for one.
   - then Phase 2 in the brief's order: matrix multiply and prefix sums, then sum of squares and Collatz, then Ackermann.
 - **Its two questions answered:** the assume placement is the compiler's to decide later, and ours is the evidence; next comes the brief's order.
 - **Relay:** the sieve finding goes to the compiler's log once its minimal reproduction exists and is reproduced here.
+
+### `nitpick-fuzz` M11 session 9: MODULE done, reviewed and merged (`2cab0ae`); F-033 and F-034 reproduced — 2026-10-02 12:45 (shell time)
+
+- **from `nitpick-fuzz_1`, MODULE's clean point** at `2cab0ae`: 139 claims, 124 testable, committed before any run (`aba1fec`). Run 1 had 92 agree and 32 disagree; 24 programs were fixed for their own mistakes (`hidden` reserved; `nbridge.npk` needs `nsys.npk`; `REACH-002`'s `failsafe` arms). **The final run: 109 agree, 15 disagree**, all classed. M11 overall: 2 077 claims, 1 797 tested, 1 610 agree, 187 disagree, and the 1 673 earlier claims re-ran identical. The week read 88 %.
+- **Reviewed here:**
+  - a fast-forward of two commits; 189 files, +10 534 −65;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (66 md files, leak scan 2 265 of 2 265).
+  - **`main` fast-forwarded to `2cab0ae` and pushed.**
+- **F-033 (documentation, seven MODULE_REFERENCE rows) reproduced here** at `93bcb66` and, for its `.npk` programs, at the pin `5fbaf4a`:
+  - `pub const` is `PARSE-001` (`md0212`, and `md0209`'s `publib.npk`);
+  - the `cuda_driver` extern is `EXTERN-001` (`md0241`);
+  - the v1 wire vocabulary is `EXTERN-001` (`md0270`, `md0270b`, `md0270d`);
+  - the `raw`/`_!` example is `TYPE-042` (`md0289`).
+- **F-034 (compiler, lower priority) reproduced here:**
+  - **(a)** `md0270c`: a method taking an `int8[]` generates a bridge stub the compiler itself refuses, `TYPE-072` at `<bridge-1>:10:5` (a `while` with no `decreases`). **No extern driver method can take a byte payload**, which matters to `nitpick-sockets` once it plans its driver surface.
+  - **(b)** `md0068b`, `md0105` and `md0119`: `use mod.f;` is `RESOLVE-002` "is a function, not a module", against MODULE:68/111/119 and D-273 (2).
+  - **(c)** `md0183`: a fixed-constant cycle is `RESOLVE-006`, and its message never names the cycle.
+  - (a) and (c) were run at `93bcb66` by the fuzzer's own scripts; (b) at both.
+- **Not relayed yet:** relayed with the run's end, in one batch to `nitpick-compiler_31` with whatever LEXICAL onward finds. **If this seat hands off first, the successor relays F-033 and F-034 with the rest**; the board's T1 row carries them.
+- known: `md0296b` is DEF-153, fixed at `93bcb66`. Not findings: `md0122` (message wording), `md0185` (identical IR lines across import orders).
