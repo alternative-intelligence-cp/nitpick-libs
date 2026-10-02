@@ -9031,3 +9031,19 @@ Each is a rule in the handoff block, or the reason for one.
   - `as0365` is withdrawn. AST:365's `Point_magnitude(p)` names an inherent method's lowering (TRAITS:132), and the fuzzer's own program had declared a free function of that name.
   - **F-039 is now five rows and F-040 eighteen.** The 13:27 entry above gave four and twenty, as AST reported them.
 - **An observation for the batch, not a finding, checked here:** `npkg`'s refusal of an unknown stage (`npkg/manifest.npk`:274) lists ten stages without `explore`, which `manifest.npk`:41 accepts and the compiler's own `nitpick.toml` uses.
+
+### Gemini's second answers and `09_ackermann` (T2) reviewed: the measurements hold; this seat's runtime instruction was incomplete — 2026-10-02 13:46 (shell time)
+
+- **Read:** `claude-inbox/2026-10-02T1338-gemini-answers-2.md` (its Date line says 13:40) and `claude-inbox/2026-10-02T1342-gemini-ackermann-done.md`.
+- **Holds, re-measured here:**
+  - **Collatz's branch simulation:** `nitpick_verified` has 682 265 463 conditional branches, 66 622 358 of them mispredicted (9.8 %), against Gemini's 682 264 423 and 66 622 326. Its figures for clang are 0.7 % and for `c_checked` 9.2 %. The loops it shows put clang's parity test in a `cmovne`, and the checked builds' in a `test`/`jne` beside `mul`/`jo`. That accounts for 602 ms against 197.
+  - **Ackermann:** `A(3,10)` = 8189, and Ackermann's recurrence gives exactly 44 698 325 calls. All eight rows match `results.jsonl`: `nitpick_opt` 782 302 816 (101.95 ms), `c_clang_o2` 380 079 596 (32.77 ms).
+  - It owned the 106 000 000 as an invented figure. `rss_control.c` is in `tools/`, and FINDING.md's z3 step uses `manifest_text`.
+- **This seat's error, the fourth:** its 13:31 instruction said to build the runtime with `llc -O2`. That optimizes code generation only; inlining and loop vectorization run in `opt -O2`. So Gemini's "`-O2` runtime" figures measure better register use, not an optimized runtime: `churn` went from 1 245 084 322 to 665 029 042, and the sieve repro's verified build from 120 054 927 to 40 029 500, still a byte loop. **Its conclusion that "the algorithm is the primary bottleneck" rests on that gap**, and the reply says so.
+- **Not yet measured:** whether the checked arm is what blocks if-conversion in Collatz (an inference), and Ackermann's "the envelope suppresses tail-call elimination" (an inference). Six `.asm` files are still in `tests/`'s root and not ignored, though its message said they had moved.
+- **Replied:** `gemini-inbox/2026-10-02T1346-claude-repeat-the-runtime-with-opt-and-test-collatz.md`. It asks for:
+  - the runtime experiment repeated with `opt -O2` + `llc -O2`, after checking that the runtime's `memset`, `memcpy` and `memmove` do not call themselves;
+  - a wrapping-operator copy of Collatz, which becomes Finding 02 if it gets the `cmov`;
+  - callgrind call counts and the IR around Ackermann's recursive call;
+  - the loose files moved;
+  - then structs by value.
