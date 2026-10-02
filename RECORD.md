@@ -8965,3 +8965,4 @@ Each is a rule in the handoff block, or the reason for one.
 
 - **The 12:57 handover entry recorded `_15`'s absence and `_14`'s new ref without an explanation. The author has given it:** he closed `nitpick-libs_14` and `_15` because he did not expect to need them before the reset; the week's usage stretched further than he expected. After the rotations `_11` → `_12` → `_13`, he opened a fresh `_14` (`[fa8ea8]`) in case this seat must hand off before the week's pause. If it is not needed, it waits for after the reset.
 - **The rule this confirms:** the same name with a new ref is a new session, not a resumed one. It is a spare all the same: ask it (hazard 4), as was done.
+- **corrected 13:17:** the entry above is 13:16, not 13:14. Its time was written before the clock was read; this seat's second error.
