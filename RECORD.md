@@ -8888,3 +8888,32 @@ Each is a rule in the handoff block, or the reason for one.
   - (a) and (c) were run at `93bcb66` by the fuzzer's own scripts; (b) at both.
 - **Not relayed yet:** relayed with the run's end, in one batch to `nitpick-compiler_31` with whatever LEXICAL onward finds. **If this seat hands off first, the successor relays F-033 and F-034 with the rest**; the board's T1 row carries them.
 - known: `md0296b` is DEF-153, fixed at `93bcb66`. Not findings: `md0122` (message wording), `md0185` (identical IR lines across import orders).
+
+### 🔁 HANDOFF — `nitpick-libs_12` releases the workbench lock for `nitpick-libs_13`, at a clean point, before compaction — 2026-10-02 12:53 (shell time)
+
+**The author's go (12:5x):** *"that sounds fine to me. proceed with handoff when ready"*. This seat suggested rotating at 75 % context: each fuzzer review costs it 2–3 %, and five references and Gemini's next report remain. **Released at a clean point:** nothing of this seat's is in flight, the workbench is clean and level at `0663bbc` before this entry, the marker is removed, and the writer line reads `none` for `nitpick-libs_13`. `nitpick-fuzz_1`'s M11 run continues as a peer, and its next push goes to `_13`. **The board's handoff block says what is next, as values.**
+
+**This tenure, 2026-10-02 00:43 → 12:53, in brief.** Took the lock on `_11`'s briefed handoff.
+- **Agents:** one planner, four workers, four verifiers and one auditor, every report verified before the board moved, every verifier PASS.
+- **`nitpick-time` CYCLE 0.2 CLOSED:** 0.2.4 planned in three subcycles; 0.2.4a (the instruments), 0.2.4b (the library findings, C1's forged ends answered, never trapped) and the close, each verified; the audit's 22 findings and three late ones triaged.
+- **`nitpick-regex`:** 0.1.5 (the refusals, with the author's `\K` amendment) done and verified. Cycle 0.1's audit is filed: ACCEPT once C1 is fixed, **a silent wrong answer in `regex_escape` inside a nested class**.
+- **Both streams held for the reset** at the planner line.
+- **With the author:** questions 20 … 23, all as recommended.
+- **The fuzzer:**
+  - session 8 (MEMORY, OP, CONTROL) merged; F-029 … F-032 reproduced and relayed (O-N35);
+  - session 9 in `nitpick-fuzz_1`: MODULE merged, with F-033 and F-034 reproduced and pending relay.
+- **Gemini (T2):** briefed, its baseline reviewed, its second report waiting.
+- **Housekeeping:**
+  - `LIBRARIES.md`: both active rows, the no-code sentence, and EC1's registry part;
+  - `PLAYBOOK.md`'s keyword-file code dated (the regex audit's S3);
+  - the sandbox widened to `META/NITPICK/messages` at the author's request.
+- **PLAYBOOK:** eighty-two findings pending, none landed (held for tokens).
+- **The week:** 77 % → 88 %.
+
+**This seat's errors, each corrected in the tree:**
+- "14 `#wild_slice` sites" counted occurrences, not sites: 9 in code. The planner corrected it.
+- `nitpick-regex`'s O-R1 was cited bare in the record. `check_refs` caught it, and it was registered.
+- An absolute home path went into the record at 11:57, caught a commit late and written relative.
+- A shell append to the memory directory was refused by the sandbox, then made with the Edit tool.
+
+Each is a rule in the handoff block, or the reason for one.
