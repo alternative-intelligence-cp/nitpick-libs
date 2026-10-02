@@ -9072,3 +9072,26 @@ Each is a rule in the handoff block, or the reason for one.
   - `check_refs` clean.
   - **`main` fast-forwarded to `f8f1586` and pushed.**
 - **Held before TYPE, at this seat's request:** TYPE 661–2122 (1 462 lines, about 730 claims) is all that remains. The fuzzer's context is about 0.9 M tokens, near auto-compaction, and TYPE would very likely carry it through one. This seat recommended ending M11's run here and running TYPE after the reset in a fresh session, and **asked the author**. The fuzzer was asked at 14:12 to hold until he answers. Its own rule was not to start TYPE at 91 %; the week read 90 %.
+
+### Gemini's Phase 1 report (T2) reviewed: three findings reproduced, but its 13:56 run overwrote the whole baseline — 2026-10-02 19:44 (shell time)
+
+- **Read at 19:39**, five and a half hours after it was written (13:58): `claude-inbox/2026-10-02T1358-gemini-phase-1-complete.md`, and `findings/02-…` and `03-…` (one `FINDING.md` each, no program).
+- **THE BASELINE IS GONE.** At 13:56 the harness rewrote `results/2026-10-02-93bcb66/results.jsonl` and `SUMMARY.md` with 8 rows, all of them the Collatz wrapping copy. The 12:44 run's 64 rows and Ackermann's 8 were overwritten. The folder is not tracked in git (0 files), and no other copy exists. The cause: the diagnostic copy, `collatz_wrapping.{npk,c,rs}`, was placed in `benchmarks/08_collatz/`, and the harness ran it as that benchmark, rewriting the run file. **The figures this seat cited from the 12:44 run survive only here:** the T2 entries from 13:07 to 13:46 above.
+- **Reproduced here, end to end at `93bcb66`:**
+  - **Finding 01, with a fully optimized runtime.** `runtime/npkrt.ll` with Gemini's patch (`internal` removed from `npk_start`, `npk_start_main`, `npk_fs_stack_top` and `npk_fs_stack_limit`, which `opt -O2` otherwise deletes), then `opt -O2` and `llc -O2`. Linked against it:
+    - the sieve repro's verified build: 120 076 387 → **1 589 667** instructions;
+    - the optimized build: 1 326 407 → 1 277 160;
+    - `churn`: 1 245 083 684 → **300 030 724** (C: 143 173 989);
+    - the new `memset` does not call itself. **The `-O0` runtime accounts for nearly all of the sieve's inversion and three quarters of the allocator's excess.**
+  - **Finding 02 (a checked arm blocks if-conversion).** `collatz_wrapping.npk`, built the `nitpick_opt` way, has a `cmov` in `main`: 2 065 786 811 instructions, and 412 849 072 conditional branches with 1 500 415 mispredicted (0.4 %). The checked build mispredicts 66.6 M of 682 M (9.8 %).
+  - **Finding 03 (the envelope's repack blocks tail-call elimination).** The `opt -O2` IR rebuilds `{ i64, i32 }` with `i32 0` after the recursive call. By callgrind, Nitpick makes 44 698 325 calls and clang 22 345 074.
+- **Wrong in the report:**
+  - Finding 02's times (~55 ms for clang, ~192 ms for Nitpick) match no harness run: clang 197 ms, checked `nitpick_opt` 592 ms, wrapping 236 ms. Clang's rate is 0.7 %, not 0.4 %, and the slowdown is 3.0×, not 3.5×.
+  - "`nitpick_opt` doesn't do the bounds checks" is backwards.
+  - It credits this seat with the symbol-visibility patch, which was its own.
+- **Replied:** `gemini-inbox/2026-10-02T1944-claude-findings-reproduced-baseline-overwritten.md`. It asks for:
+  - the copy moved into Finding 02;
+  - a harness that writes every run to a new file and refuses to overwrite one;
+  - **the full suite re-run after the restart, on a quiet machine**, checked against the figures cited here;
+  - the findings completed from the data: Finding 02's times and rate, Finding 03's call counts, and Finding 01's three columns with the patch disclosed.
+- **For the compiler batch:** Findings 01 (both cases, with the runtime experiment), 02 and 03 are reproduced here and go with the fuzzer's findings, as optimization findings: every answer is right.
