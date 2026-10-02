@@ -281,6 +281,27 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N35 — `nitpick-fuzz` M11 SESSION 8'S FOUR FINDINGS, F-029 … F-032: A RESERVED WORD ACCEPTED AS A `wild` BINDING'S NAME,
+  AND NINETEEN REFERENCE ROWS THE COMPILER CONTRADICTS.** Found by M11 session 8 — MEMORY, OP and CONTROL checked against the
+  compiler at the author's go on 2026-10-02, for the week's last few percent, merged at `6eb5392`: 411 claims tested at HUNT2
+  `9126350`, 28 disagreeing, every one triaged, each finding also run at the compiler's `main` `93bcb66`. **Reproduced by the
+  orchestrator 2026-10-02:** F-029's four programs at `9126350`, the pin `5fbaf4a` and `93bcb66`; F-030's five compile-time rows,
+  F-031's five and F-032's six at `5fbaf4a` and `93bcb66`, each with the finding's code; F-030's arena row by the runtime's own
+  text at `93bcb66` — **all standing at `93bcb66`**. **Sent to `nitpick-compiler_31` (the logging seat; the compiler side paused
+  until 2026-10-07 20:00) at 12:02.** Lower priority throughout: one compiler fault that is loud, and documentation.
+  - **F-029** (compiler) — `wild int8->:buffer = alloc(16i64);` compiles while `buffer` is a reserved word (LEXICAL:122); its
+    first use is `NITPICK-PARSE-002`, so the block can never be freed; `int64:buffer` is refused at its declaration. DEF-103's
+    shape at a binding; not in the compiler's registry at `93bcb66`.
+  - **F-030** (documentation) — eight MEMORY_REFERENCE rows: `wildx_alloc`'s type; `#wild_ptr<int8->>` (`TYPE-007`);
+    `= nodrop alloc(...)`; the move example; the bare `?` fallback (`PARSE-011`; `?|` since D-175); `#wild_ptr` accepted outside
+    `wild` (MEMORY:133); an un-destroyed arena as a leak (stale since D-183).
+  - **F-031** (documentation) — five OP_REFERENCE rows: `**` (OP:88); the ternary example (OP:374); both pipe examples
+    (OP:377–378, `TYPE-007`); OP:171's bare `?` fallback (`PARSE-011`).
+  - **F-032** (documentation) — six CONTROL_REFERENCE rows: the fallthrough example's `println` (CONTROL:34); the guards example's
+    macro pattern (CONTROL:80); §4.2's IF-002, IF-001 and WHEN-001, never emitted (CONTROL:314, 317, 319); `ok()` as the
+    taint-clearing builtin (CONTROL:347, removed by D-097).
+  - **Known shapes met and not re-filed:** DEF-148, DEF-131 ×2, DEF-130 ×2 and DEF-135, each fixed at `93bcb66`; DEF-133.
+
 - **O-N34 — `#unreachable()` IN AN `if (r.is_error)` ARM IS NOT COUNTED AS LEAVING IT, SO A READ OF
   `r.value` BELOW IS `NITPICK-TAINT-001`: A REFUSAL OF A CORRECT PROGRAM.** Found by `nitpick-time`'s 0.2.2
   planning (its `0.2.2.md` §1.2, block 0b), 2026-10-01, at `5fbaf4a`. **Reproduced by the orchestrator 15:0x, at
