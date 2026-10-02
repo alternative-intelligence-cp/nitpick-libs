@@ -244,6 +244,26 @@ O-Y2   nitpick-sockets   descriptor passing to a non-AF_UNIX peer
   this registry prevents. The gate is now two-for-two on catching it, and both times
   the correct response was an entry here rather than a change to the check.
 
+- **O-Y3 — `nitpick-regex`: what `EmptyClass` names, now that no pattern reaches it in the parser.** Raised by
+  `nitpick-regex` 0.1.3 (its RX-197), 2026-10-01; defined in full at
+  [`nitpick-regex/meta/OPEN_QUESTIONS.md`](../nitpick-regex/meta/OPEN_QUESTIONS.md). Its recommendation is a class
+  that resolves to no codepoint, refused at its `[`, decided at cycle 0.3.4 (class resolution). **NOT blocking.**
+  Cited on `BOARD.md`'s stream-1 line; registered here 2026-10-02, after `check_refs` reported the bare citation.
+
+- **O-A3 — `nitpick-regex`: whether `RegexOptions` may set a flag that changes what a pattern means.** Registered
+  by `nitpick-regex` 0.1.5's plan (`35a8d92`), 2026-10-02, from 0.1.4's worker's finding; defined in full at
+  [`nitpick-regex/meta/OPEN_QUESTIONS.md`](../nitpick-regex/meta/OPEN_QUESTIONS.md). `SYNTAX.md` Y-12 says a
+  pattern's behaviour is a property of its text, while `API.md` A-7 and the 0.10 README make `i`, `m`, `s`, `x`
+  and `u` settable. **Recommendation: keep Y-12 and strike the meaning flags from A-7**, for cycle 0.10's planner
+  before 0.10.2. **NOT blocking.**
+
+- **O-X6 — `nitpick-time`: `SPAN_MODEL.md` N-20 said three `int128` sites where §5's table named one.**
+  **SETTLED 2026-10-01 by `nitpick-time`'s TM-229**: §5's table is the authority, in an `int128` column of its
+  own, read by `check_int128_sites`; defined in full at
+  [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md). Cited on `BOARD.md` by 0.2.3a.
+
+---
+
 ## For the compiler — the registry
 
 `O-N` numbering is **per repository**, and the numbers collide: `O-N2` is the
