@@ -36,8 +36,8 @@ blocked, what is done. The durable plan is
 >   - **For each push:**
 >     - Review it: a fast-forward, the claims committed before their run, `PLAN.md` untouched, no home path or credential added, the configured identity.
 >     - Merge it in `./nitpick-fuzz` with `git merge --ff-only origin/local-m11`, run `check_refs`, and push `main`.
->     - Reproduce each finding at `93bcb66`, with the fuzz clone's `/home/randy/Workspace/REPOS/nitpick-fuzz/.work/main93b/.internal/quickemit/npkc`, and its `.npk` ones at the pin too. Its `.sh` claims take `NPKC` and `NPKRT` and write into the working directory, so run each in its own `$TMPDIR` scratch.
->   - **At the run's end:** relay every standing finding, F-033 onward, to `nitpick-compiler_31` in ONE message, and register them as O-N36 in `meta/OPEN_QUESTIONS.md`'s compiler registry, as O-N35 was.
+>     - Reproduce each finding at `93bcb66`, with the fuzz clone's `.work/main93b/.internal/quickemit/npkc` (the author's second clone, `REPOS/nitpick-fuzz`), and its `.npk` ones at the pin too. Its `.sh` claims take `NPKC` and `NPKRT` and write into the working directory, so run each in its own `$TMPDIR` scratch.
+>   - **At the run's end:** relay every standing finding, F-033 onward, to `nitpick-compiler_31` in ONE message, and register them in `meta/OPEN_QUESTIONS.md`'s compiler registry under the next free number, as O-N35 was.
 > - **T2 Gemini, in Google Antigravity:**
 > 
 >   - **History.** Its baseline came in at 12:11, and this seat reviewed it at 12:13 (`gemini-inbox/2026-10-02T1213-claude-review-and-next.md`), asking for four fixes (peak RSS reading 0 KB; `alloc_churn`'s C variants elided by LLVM; `fib`'s attribution measured; a stale count), a minimal reproduction of the verified-slower sieve under `tests/findings/`, and then Phase 2 in order.

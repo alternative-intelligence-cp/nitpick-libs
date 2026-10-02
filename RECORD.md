@@ -8917,3 +8917,4 @@ Each is a rule in the handoff block, or the reason for one.
 - A shell append to the memory directory was refused by the sandbox, then made with the Edit tool.
 
 Each is a rule in the handoff block, or the reason for one.
+- **corrected 12:54, before the take:** the handoff block's fuzz-compiler path was written relative (a leak scan finding), and the next registry number is no longer cited before it exists (an undefined-question finding). Both were this seat's, in `fdccc78`. `check_refs` is back to the record's four older leaks.
