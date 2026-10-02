@@ -9061,3 +9061,14 @@ Each is a rule in the handoff block, or the reason for one.
 - **F-042 reproduced:** `tr0368`, an `opaque struct` at module level, compiles at both compilers. **It is the same defect as F-039 e (`as0043`)**, cited against TRAITS:368, and goes to the compiler as one.
 - **F-043 (documentation, thirteen TRAITS_REFERENCE rows) reproduced:** the twelve `.npk` rows give the fuzzer's verdict at both compilers, code for code (`tr0021` `TYPE-060`; `tr0097` and `tr0109` `RESOLVE-001`; `tr0124` `PARSE-002`; `tr0149` `TYPE-019`; `tr0364` accepted; `tr0373` `EXTERN-001`; `tr0404` `TYPE-047`; `tr0419` `TYPE-039`; `tr0435` `PARSE-001`; `tr0602` `TYPE-007`; `tr0764` `PARSE-001`/`PARSE-002`). `tr0384.sh` exits 1 at `93bcb66` with `RESOLVE-002` on `handle_create`. Not findings: `tr0350`, and `tr0686` (a program fix).
 - **Not relayed yet:** at the run's end, in one batch, F-037 first and F-041 beside it.
+
+### `nitpick-fuzz` M11 session 9: VERIFICATION 1248–2351 done, reviewed and merged (`f8f1586`); no finding; the fuzzer holds before TYPE — 2026-10-02 14:12 (shell time)
+
+- **from `nitpick-fuzz_1`, VERIFICATION's clean point** at `f8f1586`: 131 claims (2 examples, 49 rows, 80 rules), committed before any run (`4f62a49`). **16 tested, 16 agree**, each agreement read for its claim's own reason. The 115 untestable are 87 tool, 13 z3, 12 tree, 2 vague and 1 internal: this range is mostly the verified build's runners, the floor translator, the protocol models and the schedule explorer. **No finding.** The final full run had 2 084 agree and 244 disagree, all triaged, and the 2 312 earlier programs re-ran identical in every field. M11 now has 2 810 claims, 2 328 tested, 482 untestable, covering 8 957 of the references' 10 419 lines. The findings are F-033 … F-043, and the next is F-044.
+- **Reviewed here:**
+  - a fast-forward of two commits (`4f62a49` 14:04:38, `f8f1586` 14:11:38); 24 files, +1 594 −42;
+  - `m11/CLAIMS.md` and `m11/EXPECT.tsv` unchanged after `4f62a49`; no program changed by the run;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean.
+  - **`main` fast-forwarded to `f8f1586` and pushed.**
+- **Held before TYPE, at this seat's request:** TYPE 661–2122 (1 462 lines, about 730 claims) is all that remains. The fuzzer's context is about 0.9 M tokens, near auto-compaction, and TYPE would very likely carry it through one. This seat recommended ending M11's run here and running TYPE after the reset in a fresh session, and **asked the author**. The fuzzer was asked at 14:12 to hold until he answers. Its own rule was not to start TYPE at 91 %; the week read 90 %.
