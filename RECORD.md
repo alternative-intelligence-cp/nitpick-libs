@@ -8668,3 +8668,22 @@ Received from `nitpick-compiler_21` and logged. **The ladder MATCHES the baselin
 - **this seat's error, corrected by the audit:** the board said "refuse before it adds, as `civil_to_utc` does by PD-67". `civil_to_utc` refuses nothing before it adds; it is total because its operands are narrow. The precedent is S-12 and `CALENDAR.md` C-8c, and the handoff block's rewrite says so. **S3 and S5 are this seat's:** the board's stream-2 line carried three items already landed at 0.2.3a, cleared in that rewrite, and `LIBRARIES.md`'s `nitpick-time` row is stale, joining the owed EC1 row.
 - **three library ids registered** in `meta/OPEN_QUESTIONS.md`'s second registry: O-Y3 and O-A3 (`nitpick-regex`) and O-X6 (`nitpick-time`, settled by its TM-229). `check_refs` had reported each cited bare, O-Y3 since 2026-10-01's handoff block. The workbench now reads only the four append-only leaks.
 - **next for time: 0.2.4, the close.** It has no file, so it needs a planner, with `AUDIT:` naming this report; every finding is triaged.
+
+### 🔁 HANDOFF — `nitpick-libs_11` hands the workbench to `nitpick-libs_12`; the libraries RUNNING at width 2 — 2026-10-02 00:36 (shell time)
+
+**The clean point:** no agent in flight; the sweep at 00:35 found **nine trees, every one `dirty=0` and `0/0`**: the workbench (`9683ac8` before this entry), `nitpick-apps` (`03c24a7`), `nitpick-posix` (`948d9b6`), `nitpick-fuzz` (`41ba27b`), `nitpick-parse` (`3cad08c`), `nitpick-regex` (`35a8d92`), `nitpick-sockets` (`d385991`), `nitpick-time` (`71f51b8`), `nitpick-tui` (`e5439ee`). **Why now, at about 76 % context:** cycle 0.2's audit was filed and nothing else was running. The next items are long: time's close planner, and regex's worker after question 20. **The board's handoff block**, replacing `_10`'s (which history keeps), holds the state as values, the budget and the author's 95 % line, the sandbox and its measured limits, both streams' next items, what is owed, and this tenure's rules.
+
+**This tenure, 2026-10-01 13:07 → 2026-10-02 00:36, in brief.** Took the lock on `_10`'s briefed handoff. **Thirteen agents, every report verified before the board moved, every verifier PASS:**
+- **`nitpick-time`:** 0.2.2 (the conversions and the gate); 0.2.3 planned and split into 0.2.3a (the instruments) and 0.2.3 (the `Duration` interop), both worked and verified; and cycle 0.2's audit, ACCEPT with 22 findings. The stream went from 122 to 131 units.
+- **`nitpick-regex`:** 0.1.4 (escapes and flags) planned, worked and verified, 246 to 254 units, and 0.1.5 planned.
+**Notices:** landing notices 90–93 verified (ladder MATCH each, control failing); advance notices F34 and F35 filed. **O-N34**, found by time's 0.2.2 planner, was reproduced at the pin and at the compiler's head, read against D-121, sent, registered as DEF-225, and landed at 93 — six hours from finding to fix. **With the author:** questions 17 (the GitHub description, applied), 18 (regex 0.1.4) and 19 (the address in a commit) answered; width 2 from 19:02 at his word; his 95 % clean-stop line; question 20 open. **The sandbox:** the trial folder removed and the check made write-free. Measured: `ps` is blind past its call, a `&` job dies with it, and the network allowlist does not hold, the last reported to the author. **Tools:** `tools/floatscan.py`. **The week:** 59 % → 77 %.
+
+**This seat's errors, each corrected in the tree:**
+- Times written ahead of the clock: 13:19 for 13:18, its own correction labelled 13:19, and 15:1x for 15:0x, the last caught before its commit. The author's 16:2x message was first logged as 16:0x.
+- `cd` into `nitpick-time` twice.
+- "`UnknownUnicodeProperty`'s details 1 … 3 are yours", when they are 0.1.3's.
+- A 404 URL in a verifier's NOTES.
+- "as `civil_to_utc` does by PD-67", the wrong precedent: it is S-12 and C-8c.
+- The board's s2 line carrying items already landed (the audit's S3).
+- "230 characters" for a description of 258.
+Each is a rule in the handoff block, or the reason for one.
