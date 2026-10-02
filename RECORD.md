@@ -8967,3 +8967,24 @@ Each is a rule in the handoff block, or the reason for one.
 - **The rule this confirms:** the same name with a new ref is a new session, not a resumed one. It is a spare all the same: ask it (hazard 4), as was done.
 - **corrected 13:17:** the entry above is 13:16, not 13:14. Its time was written before the clock was read; this seat's second error.
 - **corrected 13:16, the time taken from the clock in the same command:** the line above says 13:17, but the clock read 13:16:24 when it was written. That is the same slip again, this seat's third error. From here on, every time this seat writes comes from `date` inside the command that writes it.
+
+### `nitpick-fuzz` M11 session 9: AST done, reviewed and merged (`478eb71`); F-037 IS A MEMORY FAULT; F-037 … F-040 reproduced — 2026-10-02 13:27 (shell time)
+
+- **from `nitpick-fuzz_1`, AST's clean point** at `478eb71`: 202 claims, 181 testable, committed before any run (`c7bdff7`). **The final run: 151 agree, 30 disagree**, all classed; 2 programs were fixed for their own mistakes. M11 overall: 2 463 claims, 2 159 tested, 1 931 agree, 228 disagree, and the 1 978 earlier claims re-ran identical. The week read 89 %.
+- **Reviewed here:**
+  - a fast-forward of two commits (`c7bdff7` 13:11:51, `478eb71` 13:23:35); 214 files, +13 275 −56;
+  - `m11/CLAIMS.md` and `m11/EXPECT.tsv` unchanged after the claims commit; the run commit touches `as0300`, `as0352` and their generator, the "2 fixed";
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (76 md files, leak scan 2 657 of 2 657).
+  - **`main` fast-forwarded to `478eb71` and pushed.**
+- **F-037 (a use after free) reproduced here.** Its five programs were built by the fuzzer's recipe (`npkc`; `llc -O0`; `opt -O2` then `llc -O2`; `ld.lld -static` with the matching `npkrt.o`), in a scratch copy, at `93bcb66` and at the pin. At both compilers and on both legs, `u1`–`u3` exit 10 and `ctl_u4`/`ctl_u5` exit 0. Exit 10 is the program's own test that the value read has `0xAA` as its low byte, the runtime's poison for freed bytes; 7 would be right.
+  - **Exposure, measured:** no `.npk` file of `nitpick-regex` (139, `fd76c65`), `nitpick-time` (149, `d9575b9`) or `nitpick-posix` (8, `948d9b6`), and no Markdown of any library, uses `=> dyn`; none uses a `dyn` type at all. The pattern's control: it matches all three of F-037's cast programs.
+  - **What it blocks:** nothing here today. Any future plan that builds a trait object by the explicit cast would be blocked until it is fixed. The implicit coercion (`ctl_u4`) reads right.
+- **F-038 (a compiler crash) reproduced here:** `c1` (`give`) and `c2` (`fall`) outside a pick arm make `npkc` exit 3 with no message at both compilers, and the control `ctl_c3` compiles and exits 0 on both legs.
+- **F-039 (compiler, lower priority) reproduced here**, at both compilers:
+  - `as0062` `EMIT-002`: the `comptime` value parameter passes the checker;
+  - `as0301` `TYPE-007`: `dbl <| x`. **The reversal was probed here as well:** `as0301` with `raw v32(5i32) <| dbl` compiles, and exits 0 on both legs, so `<|` computes `dbl(5)` = 10 with its function on the right. **That corrects F-031's `op0378` row, relayed in O-N35**, and the batch must say so;
+  - `as0555`: a non-constant `joins` deadline is accepted;
+  - `as0583`: an unknown attribute name is accepted.
+- **F-040 (documentation, twenty AST_REFERENCE rows) reproduced here:** the eighteen `.npk` rows give the fuzzer's verdict at `93bcb66` and at the pin, code for code. The two `.sh` rows exit 1 at `93bcb66`: `as0128`, and `as0137` with `EXTERN-002` (D-149).
+- **Not relayed yet:** relayed at the run's end, in one batch to `nitpick-compiler_31`, with F-033 … F-036 and whatever BUILD onward finds. **F-037 leads the batch.** The author decides whether it goes sooner.
