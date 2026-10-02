@@ -9007,3 +9007,12 @@ Each is a rule in the handoff block, or the reason for one.
   - its evidence and scratch moved out of `tests/`'s root, where they are not ignored;
   - the header convention;
   - then Ackermann.
+
+### Gemini's Finding 01 reproduced end to end at `93bcb66` — 2026-10-02 13:32 (shell time)
+
+- **From source, in a `$TMPDIR` scratch:** the compiler at `93bcb66` (the fuzz clone's `main93b` build), `repro.npk` with its `use` pointed at the compiler's `lib/nio.npk`, and the obligations through the compiler harness's `z3_verdicts`: 48 rows, no failures.
+  - The optimized build runs **1 326 087** instructions, its loop vectorized (five vector stores).
+  - The verified build runs **120 076 067**, its loop replaced by `@llvm.memset` (no vector stores).
+  - Both exit 0. That is about 90×, as Gemini's FINDING.md has it.
+- **The z3 command in FINDING.md fails as written** (`TypeError: write() argument must be str, not list`). The harness writes the rows with `manifest_text(full)`, and with that fix it ran. Sent to Gemini at 13:32 (`gemini-inbox/2026-10-02T1332-claude-finding-01-z3-command-fix.md`), beside the 13:31 message.
+- **Finding 01's Case 1 is ready to relay with the batch, as an optimization finding:** the runtime's `memset` is `-O0` code at 12 instructions a byte, and proof elision turns a vectorized loop into a call to it. **Case 2** (the allocator) waits for Gemini's `llc -O2` runtime experiment, which says whether the flags or the algorithm are the cause.
