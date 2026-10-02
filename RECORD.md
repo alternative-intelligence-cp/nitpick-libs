@@ -8844,3 +8844,26 @@ Each is a rule in the handoff block, or the reason for one.
 - **the author (12:0x), on this seat's offer to finish M11 with the week's remainder:** *"that actually sounds good if we can squeeze it in, or at least as much as we can. i just informed fuzz_0 to handoff to fuzz_1 as it's context was nearing auto compaction"*. **`nitpick-fuzz_0` handed off to `nitpick-fuzz_1`** and told it to wait for the reset, reading a machine restart as imminent. **Asked, the author:** *"I am restarting the machine, but, only after all work is done in all the claude sessions as well as the antigravity one. there is no rush at all. It just needs to happen before the wednesday reset because i have some kernel updates to apply"*. **So `nitpick-fuzz_1` got the go at 12:11:** MODULE, LEXICAL, AST, BUILD and TRAITS, then VERIFICATION from 1248 and TYPE from 661. It stops at a clean point after each reference, starts no new one past 91 % of the week, and lands by 93 %. The week read 87 %.
 - **The board's handoff block is rewritten for today** (it was `nitpick-libs_11`'s of 00:36). It gives the state as values, the lock and what happens to it across the restart, both streams' items held for the reset, the fuzzer, Gemini, the questions (none open), what is owed, and this tenure's rules.
 - **Before the restart, this seat** lands the fuzzer's last push and Gemini's report, brings the block up to date once more, and tells the author the workbench is safe to restart. **This seat's context reads 69 %**, and a handoff to `nitpick-libs_13` before compaction is the move if the wait runs long.
+
+### Gemini's baseline reviewed: sound harness, no bugs, one optimization finding (the verified sieve slower than the optimized one); four fixes and Phase 2 asked for — 2026-10-02 12:14 (shell time)
+
+- **Gemini's report** (`META/NITPICK/messages/claude-inbox/2026-10-02T1211-gemini-benchmarks-baseline.md`, 10 339 B):
+  - Its own compiler at `93bcb66`, with `npkc` `0a8c9bf8…` and `npkrt.o` `c8e5033a…` (the libraries' pinned runtime anchor).
+  - The four old benchmarks brought to the current rules (D-304's `decreases`, `failsafe` arms, imports from its own clone; the C variants' wrapping functions marked `no_sanitize` to match Nitpick's explicit `+%`/`*%`), and `05_sieve` added.
+  - Eight variants each, checksums asserted, 20 pinned interleaved runs, cachegrind, check-site counts, compile-stage times; the verified build (`--obligations`, z3 4.16.0, `--elide`) working for all five. **No compiler bug found.**
+  - Its reading: arithmetic at parity with clang and Rust (splitmix64 within 0.01 %); `fib` 68 % more instructions than C (it names the stack guard and the `Result` envelope, unmeasured); the allocator measured for real where LLVM elides C's; **the sieve's verified build 45 % more instructions than its optimized build.**
+- **Checked here:**
+  - `tests/.gitignore` keeps `.work/` (a 190 MB compiler clone) and `.build/` out of `META`'s git.
+  - The results (`results.jsonl`, 40 lines; `SUMMARY.md`) are committable text.
+  - The check-site table is present: in the sieve, the verified build has 16 trap calls and 7 assumes against the optimized build's 24 and 0.
+- **Found here, sent back as fixes:**
+  - **peak RSS reads 0 KB in nine Nitpick rows** (impossible; a harness fault);
+  - **`04_alloc_churn`'s C variants are elided by LLVM**, so their 2–3 M instructions compare nothing;
+  - `fib`'s attribution is asserted, not measured;
+  - `SUMMARY.md` says "4 benchmarks" for five.
+- **Asked next** (`gemini-inbox/2026-10-02T1213-claude-review-and-next.md`):
+  - the four fixes;
+  - **a minimal reproduction of the verified-slower sieve**, with both inner loops' IR after `opt -O2` (vectorization, assume conditions kept live per iteration, the assume's placement), filed under `tests/findings/` as an optimization finding;
+  - then Phase 2 in the brief's order: matrix multiply and prefix sums, then sum of squares and Collatz, then Ackermann.
+- **Its two questions answered:** the assume placement is the compiler's to decide later, and ours is the evidence; next comes the brief's order.
+- **Relay:** the sieve finding goes to the compiler's log once its minimal reproduction exists and is reproduced here.
