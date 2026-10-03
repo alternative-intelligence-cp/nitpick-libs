@@ -9108,3 +9108,23 @@ Each is a rule in the handoff block, or the reason for one.
   - **`main` fast-forwarded to `3d3cc9b` and pushed.**
 - **F-044 (documentation, eight TYPE_REFERENCE rows so far) reproduced** at `93bcb66` and at the pin, both legs, verdict for verdict: `ty1112` and `ty1107` accepted; `ty0805` exit 10; `ty0715` `TYPE-044`; `ty0921` `PARSE-001`; `ty0673` and `ty0674` exit 11; `ty0936` compiles, but its field read is emitted as one `extractvalue` on the whole loaded struct, with no `getelementptr`, against the reference's IR.
 - **A possible use after scope, ruled out by the fuzzer:** a slice parameter passed back up is accepted, but a view of the frame's own local is `BORROW-001` and a laundered one `BORROW-002`, so no view outlives its storage. It stays a documentation row; the registry's S-107 controls read the same.
+
+### `nitpick-fuzz` M11 session 9: TYPE part B (1177–1592) done, reviewed and merged (`fd78f7b`); F-044 to seventeen rows; F-045 — 2026-10-02 20:28 (shell time)
+
+- **from `nitpick-fuzz_1`, part B's clean point** at `fd78f7b`: 129 claims (123 testable), committed before any run (`2e9f871`). The run had 114 agree and 9 disagree; two of the fuzzer's own scripts were fixed (`ty1507`, `ty1508`: they had not named `lib/ntensor.npk`'s errors). The full final run, 2 700 programs, had 2 438 agree and 262 disagree, and the earlier 2 577 re-ran identical. M11 now has 3 207 claims over 9 889 of 10 419 lines, and the next finding is F-046. **The week read 91 %.** The fuzzer went on to part C, within the author's 95 % line.
+- **Reviewed here:**
+  - a fast-forward of two commits (`2e9f871` 20:18:00, `fd78f7b` 20:27:22); 135 files, +8 385 −53;
+  - this claims commit holds the generated claims, `EXPECT.tsv` and 113 programs, and they are unchanged after it; the run changed only the two scripts;
+  - part A's programs and `type2.py` are untouched;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (84 md files, leak scan 3 208 of 3 208).
+  - **`main` fast-forwarded to `fd78f7b` and pushed.**
+- **F-044's part B rows reproduced** at `93bcb66` and at the pin, both legs:
+  - `ty1387` and `ty1374` are `PARSE-011`, `ty1439` is `TYPE-009`, and `ty1396` is `EXTERN-001`;
+  - `ty1535` is emitted as `define { i32, i32 } @"npk.ty1535.m11e"` where the reference shows `define i32`;
+  - at `93bcb66`, `ty1200.sh` exits 1 on `npkc`'s usage line (`--guard-pages`), and `ty1505.sh`, `ty1507.sh` and `ty1508.sh` exit 1 (10 on both legs).
+- **F-045 (compiler, lower priority, a diagnostic) reproduced** at both compilers:
+  - `d1_coalesce_on_result` is `TYPE-007`, and its message says "`?` is the one that unwraps a `Result`";
+  - `d2_the_advice_followed` is `PARSE-011` (D-175);
+  - the control `ctl_d3_fallback` (`?|`) compiles and exits 0.
+  - The diagnostic advises a spelling the compiler refuses.
