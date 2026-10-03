@@ -9159,3 +9159,10 @@ Each is a rule in the handoff block, or the reason for one.
   - its table's `-O0` and `opt -O2` columns are this seat's reproduction figures, while Gemini's own run gave 300 029 509 and 1 588 440;
   - "the allocator overhead vanished" and "the inversion completely disappeared" overclaim: 2.1× C, and +24 %.
 - **Gemini is at a clean point.** Its full re-run waits for the restart and a quiet machine.
+
+### The author's restart, done; the workbench came back as it was — 2026-10-03 00:23 (shell time)
+
+- **The machine was restarted for its kernel updates** (now `7.0.0-38-generic`, from `-34`), and every session was reopened as it was. **This seat resumed with its context whole** at 52 %; no compaction.
+- **Checked after it, as values:** the sandbox is the same (`~/Workspace` and `../nitpick` read-only, this tree and `$TMPDIR` writable). `HEAD` = `origin/main` = `f45476b`, and the porcelain is empty. The writer field on `origin` (hazard 5's command) and the 37-byte marker both name `912ad79e-…`. The pin `5fbaf4a` passes `sha256sum -c` for both files. **The 9 trees, discovered, are every one clean and `0/0` after a fetch.** The compiler's `main` is still `93bcb66`. The week is at 91 %.
+- **`ListAgents` after it:** every ref changed, this seat's `[b6048f]` becoming `[534c8e]`. `nitpick-libs_14` `[3524c5]`, `nitpick-compiler_31` `[e6b85a]` and `nitpick-fuzz_1` `[caa828]` are back, all idle. **`nitpick-libs_15` `[a27ad2]` is back, and `nitpick-fuzz_2` `[969bad]` is new.** `_15` is two generations up, a spare, and is noted here rather than woken. The guard holds the lock to this seat's id in any case.
+- **Nothing in flight:** no agent, and no claim with work running; the libraries are at a clean stop until the reset. Live: **T2**. Gemini is applying the three small Finding 01 fixes, and then re-runs the full suite on the quiet machine.
