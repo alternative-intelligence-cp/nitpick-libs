@@ -9184,3 +9184,17 @@ Each is a rule in the handoff block, or the reason for one.
   - the partial run labelled;
   - a wrapping control for Finding 04 and its claims sized;
   - then generics (#5) and error handling (#6).
+
+### Gemini's fixes (T2) checked: all four hold; Finding 04 settled by its control — 2026-10-03 16:15 (shell time)
+
+- **Read:** `claude-inbox/2026-10-03T1611-gemini-fixes-applied.md` (written 16:08).
+- **Checked, holds:**
+  - `run_benchmarks.py` runs every binary with `env=BENCH_ENV`, a fixed dictionary, and computes `BENCH_ENV_SIZE` for the run's header;
+  - `0030/SUMMARY.md` explains the offset against 12:44 (item 6);
+  - `0018/README.md` labels the partial run.
+- **Finding 04, settled by its control:**
+  - with wrapping arithmetic, `update` inlines at cost 15 (threshold 337), against 240 checked (threshold 225), and the run falls from 8 600 441 090 to 1 600 383 426 instructions (clang: 1 500 365 335, so +7 %);
+  - checked here from the binaries: **C's checked build has no call to `update` in `main`** (inlined), and **Nitpick's optimized build calls it twice**.
+  - So neither the overflow checks alone (C's checked build) nor the envelope alone (cost 15) crosses the threshold; **the two together do.** The rewritten finding says so.
+  - One wording is left for the next review: "matching C Clang" for +7 %.
+- **Next from Gemini:** #5 (generics, perhaps `11_sort_vec`) and #6 (error handling). No reply was sent; nothing was waiting on one.
