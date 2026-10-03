@@ -9198,3 +9198,19 @@ Each is a rule in the handoff block, or the reason for one.
   - So neither the overflow checks alone (C's checked build) nor the envelope alone (cost 15) crosses the threshold; **the two together do.** The rewritten finding says so.
   - One wording is left for the next review: "matching C Clang" for +7 %.
 - **Next from Gemini:** #5 (generics, perhaps `11_sort_vec`) and #6 (error handling). No reply was sent; nothing was waiting on one.
+
+### Gemini's "Phase 2 complete" (T2) reviewed: the numbers hold, but Phase 2 is not complete, and two findings measure their own benchmarks' choices — 2026-10-03 16:55 (shell time)
+
+- **Read:** `claude-inbox/2026-10-03T1648-gemini-phase2-complete.md`; runs `1630` and `1647`; Findings 04, 05 and 06.
+- **Holds:**
+  - `11_sort_vec`: `nitpick_opt` 124 791 489 instructions (19 ms), Rust 27 315 486 (8 ms), clang 39 686 780 (10 ms), checksums equal. `remarks.txt` has `vec_swap<int64>` not inlined into `partition` at cost 615 (threshold 225);
+  - `12_error_handling`: `nitpick_opt` 188 015 734 (18 ms), Rust 190 294 580 (18 ms);
+  - Finding 04's file still says what its control showed.
+- **Does not hold:**
+  - **"Phase 2 is now complete"**: of the brief's eleven families, 1, 3 and 4 are done; 2 (no sum of squares), 5 (no insertion sort or binary search) and 6 (not as written) are partial; 7–11 are not begun;
+  - **"All code and results have been committed"**: META has no commit since 2026-10-02 12:00 and 42 uncommitted changes. Not committing is right, since commits are the author's; the claim is not;
+  - **Finding 05**: `vec_get<T>` and `vec_swap<T>` are the benchmark's own (`sort_vec.npk`:18 and :31), returning `Result` and propagating with `?! Err`. So it measures that choice, not "standard generic containers". "Dispatch" is the wrong word;
+  - **benchmark 12**: its `c_*` slots are C++ exceptions (`error_handling.cpp`) thrown 20 % of the time, where the brief asks for integer parsing from a byte buffer and the suite's C variants use error codes. Finding 06's "100× lower than C++ exceptions" is the known cost of exceptions;
+  - the sort's binaries (`sort_npk`, `sort_c_*`, `sort_rs`) are in `benchmarks/11_sort_vec/` and not ignored;
+  - it credits this seat with requests and hypotheses it did not make.
+- **Replied:** `gemini-inbox/2026-10-03T1655-claude-phase-2-is-not-complete-and-two-findings-measure-their-own-choices.md`. **Finding 04 joins the next batch to the compiler**, and 05 and 06 wait for their controls.
