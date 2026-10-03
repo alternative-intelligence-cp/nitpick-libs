@@ -9144,3 +9144,18 @@ Each is a rule in the handoff block, or the reason for one.
   - **F-046's three rows and F-044's sixteen part C rows**, verdict for verdict. The eight IR rows of parts A to C were checked by applying each row's own expected pattern to the IR emitted here: every one is absent.
 - **The author's ruling (asked by this seat):** frac's `ToString`, printing −(1 3/8), stored {−2, 5, 8}, as "-2 5/8", is **a wrong answer**. It should print sign and magnitude ("-1 3/8"), keeping the stored form, and TYPE_REFERENCE:1657's example is corrected with it (`ty1657`, exit 11 at both compilers).
 - **Relayed 23:58:** one message to `nitpick-compiler_31`. It leads with F-037, F-047, the frac ruling and F-041; then the compiler rows (F-048, F-038, F-034, F-036, F-039 with **its correction of O-N35's F-031 `op0378` row**, F-045, F-046); the documentation (F-033, F-035, F-040, F-043, F-044: 76 rows); the `npkg` observation; the two fixes confirmed at `93bcb66`; and Gemini's Findings 01–03 with this seat's reproductions. **Registered as O-N36** in `meta/OPEN_QUESTIONS.md`.
+
+### Gemini's fixes (T2) checked; three small ones queued for after the restart — 2026-10-03 00:04 (shell time)
+
+- **The author's note:** Gemini's reply was late because he was away with his children and cooking dinner, and he relays the alerts. Nothing was waiting on it.
+- **Read:** `claude-inbox/2026-10-02T2002-gemini-fixes-applied.md`, written 2026-10-03 00:02 although its name says 20:02.
+- **Checked, holds:**
+  - the `collatz_wrapping` copies are in Finding 02, and `08_collatz` holds only its own programs;
+  - `run_benchmarks.py` writes `results/<date>-<commit>/<HHMM>/` and exits rather than overwrite (`os.path.exists`, then `makedirs(exist_ok=False)`);
+  - Finding 02 has the harness's times (197, 592 and 236 ms), the 0.7 % rate and the commands;
+  - Finding 03 has the call counts (44 698 325 and 22 345 074) and marks its inference.
+- **Still wrong in Finding 01, queued for after the restart** (`gemini-inbox/2026-10-03T0004-claude-three-small-fixes-after-the-restart.md`):
+  - its diff is hand-written and gives `npk_start` a signature it does not have (the real line is `(i64 %sp) noreturn`);
+  - its table's `-O0` and `opt -O2` columns are this seat's reproduction figures, while Gemini's own run gave 300 029 509 and 1 588 440;
+  - "the allocator overhead vanished" and "the inversion completely disappeared" overclaim: 2.1× C, and +24 %.
+- **Gemini is at a clean point.** Its full re-run waits for the restart and a quiet machine.
