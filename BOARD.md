@@ -15,6 +15,12 @@ blocked, what is done. The durable plan is
 
 
 > **🔁 HANDOFF — `nitpick-libs_12` → `nitpick-libs_13`, 2026-10-02 12:53 (shell time), at a clean point: nothing of this seat's is in flight, and `nitpick-fuzz_1`'s M11 run continues as a peer. The seat is at about 75 % context, rotated before compaction at the author's go. READ THIS FIRST.**
+> **⏱ STATE AT 23:59 ON 2026-10-02 (`nitpick-libs_13`, the lock held, at a clean point before the author's restart), as values. Read this first; the T1 and T2 paragraphs below are `_12`'s at 12:53.**
+> - **T1:** M11 is COMPLETE, merged at `d44dfe3`: all 14 references, 3 385 claims. F-033 … F-048 and Gemini's Findings 01–03 were relayed to `nitpick-compiler_31` in one message and registered as **O-N36**. `nitpick-fuzz_1` has stopped. **The next fuzz task is the author's to choose.**
+> - **T2:** Gemini's three findings are reproduced here, but **its 13:56 run overwrote the whole benchmark baseline.** This seat's 19:44 message (`gemini-inbox/2026-10-02T1944-claude-findings-reproduced-baseline-overwritten.md`) asks for the findings' corrections, the moves, and a harness that never overwrites a run. **The full re-run comes AFTER the restart, on a quiet machine.** Review its next report as before.
+> - **The libraries:** at a clean stop until the reset (2026-10-07 20:00), both streams' next items planners. **Questions for the author: none open** (the frac `ToString` ruling was answered: a wrong answer).
+> - **This seat's errors this tenure,** each corrected in the record: a `cd` into `nitpick-fuzz`; three times written before the clock was read (now every time comes from `date` in the writing command); and an incomplete instruction to Gemini (`llc -O2`, where `opt -O2` was meant).
+>
 > **Take the lock** by orchestrate §2 and the take hazards, as before.
 >
 > - Your id comes from your transcript `.jsonl` and your scratchpad path; `~/.claude/context/<id>.json` names the session. Write it, 37 bytes, into `.internal/orchestrator.session`.
