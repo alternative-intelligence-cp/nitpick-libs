@@ -9166,3 +9166,21 @@ Each is a rule in the handoff block, or the reason for one.
 - **Checked after it, as values:** the sandbox is the same (`~/Workspace` and `../nitpick` read-only, this tree and `$TMPDIR` writable). `HEAD` = `origin/main` = `f45476b`, and the porcelain is empty. The writer field on `origin` (hazard 5's command) and the 37-byte marker both name `912ad79e-…`. The pin `5fbaf4a` passes `sha256sum -c` for both files. **The 9 trees, discovered, are every one clean and `0/0` after a fetch.** The compiler's `main` is still `93bcb66`. The week is at 91 %.
 - **`ListAgents` after it:** every ref changed, this seat's `[b6048f]` becoming `[534c8e]`. `nitpick-libs_14` `[3524c5]`, `nitpick-compiler_31` `[e6b85a]` and `nitpick-fuzz_1` `[caa828]` are back, all idle. **`nitpick-libs_15` `[a27ad2]` is back, and `nitpick-fuzz_2` `[969bad]` is new.** `_15` is two generations up, a spare, and is noted here rather than woken. The guard holds the lock to this seat's id in any case.
 - **Nothing in flight:** no agent, and no claim with work running; the libraries are at a clean stop until the reset. Live: **T2**. Gemini is applying the three small Finding 01 fixes, and then re-runs the full suite on the quiet machine.
+
+### Gemini's restored baseline and Phase 2's first benchmark (T2) reviewed; the count shift measured as the environment's size — 2026-10-03 11:38 (shell time)
+
+- **The author dozed off overnight; nothing was waiting on this seat.**
+- **Read:**
+  - `claude-inbox/2026-10-03T0035-gemini-baseline-restored.md` (written 00:31): Finding 01 fixed, and the full suite re-run on the quiet machine;
+  - `claude-inbox/2026-10-03T0055-gemini-phase2-update.md` (written 00:53): `10_particles` and Finding 04.
+- **Checked, holds:**
+  - Finding 01 now carries the real `diff -u` (`npk_start(i64 %sp) noreturn`), its own figures (300 029 509 and 1 588 440), and claims the numbers support;
+  - `results/2026-10-03-93bcb66/0030/` is the full baseline, 72 rows over nine benchmarks; `0018` is a partial run (32 rows, four benchmarks), and `0051` is `10_particles` (8 rows);
+  - the particles rows match Gemini's message: `nitpick_opt` 8 600 441 090 (886 ms), `c_clang_o2` 1 500 365 335 (224 ms), `c_gcc_o2` 2 800 394 610 (306 ms), `c_checked` 3 800 384 335 (331 ms). Forced inline, Nitpick runs 2 800 509 752.
+- **Measured here: the +12 176 … +12 344 shift between the 12:44 run and `0030` is the environment's size.** Gemini blamed "the dynamic linker or libc initialization within valgrind", but Nitpick's binaries are static and have neither. F-037's `ctl_u5`, built at `93bcb66` and run under cachegrind with `env -i`, `TMPDIR` and one padding variable, runs 5 970, 13 970 and 37 970 instructions for 0, 1 000 and 4 000 bytes: **exactly 8 instructions per environment byte**, the runtime's startup reading the whole environment at `-O0` cost. The C and Rust rows moved by only 0–37. So Nitpick counts are reproducible only under a fixed environment.
+- **Finding 04 (`10_particles`): `update` misses inlining at cost 240 against a threshold of 225.** The title blames the envelope, but the measurement doesn't separate it from the overflow checks. Its "caller's error-checking branches" contradicts Finding 03 (a `never fails` callee is not checked), and "vanishes entirely" overstates 2.8 B against clang's 1.5 B.
+- **Replied:** `gemini-inbox/2026-10-03T1138-claude-the-shift-is-the-environment-and-finding-04-needs-a-control.md`. It asks for:
+  - the harness to run under `env -i` with a recorded environment;
+  - the partial run labelled;
+  - a wrapping control for Finding 04 and its claims sized;
+  - then generics (#5) and error handling (#6).
