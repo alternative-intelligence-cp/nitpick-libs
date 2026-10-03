@@ -281,6 +281,39 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N36 — `nitpick-fuzz` M11 SESSION 9'S FINDINGS, F-033 … F-048, AND GEMINI'S OPTIMIZATION FINDINGS 01–03: A USE AFTER FREE,
+  TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** Found by M11 session 9 (MODULE, LEXICAL, AST,
+  BUILD, TRAITS, VERIFICATION 1248–2351 and TYPE 661–2122, at the author's go on 2026-10-02, the week's last few percent), merged
+  at `d44dfe3`. **M11 is complete: all 14 references, 10 419 of 10 419 lines; 3 385 claims, 2 872 tested.** Gemini's findings are in
+  `META/NITPICK/tests/findings/` (its benchmarks at `93bcb66`). **Reproduced by the orchestrator 2026-10-02**, every program at
+  `93bcb66` and the `.npk` ones at the pin `5fbaf4a` too, both legs, a hang under `ulimit -v` and `timeout`; Gemini's end to end from
+  source through z3. **Sent to `nitpick-compiler_31` (the logging seat; the compiler side paused until 2026-10-07 20:00) at 23:57.**
+  **No library is blocked today** — measured: no `.npk` of `nitpick-regex`, `nitpick-time` or `nitpick-posix` uses `=> dyn` or a
+  `fixed` slice view.
+  - **F-037 (memory fault)** — a trait object built by an explicit `x => dyn Trait` cast reads freed memory: the method returns the
+    runtime's `0xAA` poison where 7 is right; the implicit coercion and the direct call read 7; no `wild`, `=>!` or pointer arithmetic.
+  - **F-047 (silent wrong answer)** — a write through a `fixed uint8[]` lands in the caller's bytes, where D-074 says "an immutable
+    byte view is `fixed uint8[]`"; if `fixed` fixes only the binding, D-074's sentence is the defect instead.
+  - **frac `ToString` (silent wrong answer, THE AUTHOR'S RULING 2026-10-02)** — −(1 3/8), stored {−2, 5, 8}, prints "-2 5/8", read by
+    anyone as −2.625; it should print "-1 3/8" (sign and magnitude), the stored floor form kept; TYPE_REFERENCE:1657's example with it
+    (`ty1657`, filed by the fuzzer under F-044 as ambiguous).
+  - **F-041 (the compiler does not terminate)** — an unbounded generic instantiation never reaches TRAITS:586's depth cap of 64: no exit
+    in 60 s at 1.17 GB and growing here, 4.4 GB at 300 s by the fuzzer; the bounded control compiles.
+  - **F-048 (invalid IR)** — a struct with a NIL field is emitted as `type { i32, void }`, which `llc` and `opt` refuse.
+  - **Compiler, lower priority:** F-038 (`npkc` exits 3, no message, on `give`/`fall` outside a pick arm); F-034 (an extern method with
+    a byte-slice parameter gets a bridge stub refused `TYPE-072`, so no driver method can take a byte payload; `use mod.f;`
+    `RESOLVE-002`; a constant cycle never named); F-036 (`acquire`, `any`, `trit`, `nit` accepted as a function's name, every call
+    `PARSE-002`; `10_i32` accepted); F-039 (a `comptime` value parameter `EMIT-002`; **`<|` takes its function on the right — this
+    corrects F-031's `op0378` row in O-N35**; a non-constant `joins` deadline; unknown attributes; `opaque struct` at module level,
+    with F-042); F-045 (`??` on a `Result` advises the retired `?`); F-046 (a frac `.num` assignment `EMIT-002`; a `fixed` parameter
+    reassigned; the backward pipe again).
+  - **Documentation:** F-033 (7 MODULE rows), F-035 (6 LEXICAL), F-040 (18 AST), F-043 (13 TRAITS), F-044 (32 TYPE). An observation:
+    `npkg`'s unknown-stage message omits `explore`. Confirmed fixed at `93bcb66`: F-026's shape (`TYPE-016`) and DEF-131.
+  - **Optimization, Gemini (answers right):** 01 — the runtime is built at `-O0`, so proof elision turning a loop into `@llvm.memset`
+    makes a verified build ~90× slower (120 076 387 against 1 326 407 instructions); with the runtime built by `opt -O2` + `llc -O2`,
+    1 589 667, and the allocator 1 245 083 684 → 300 030 724 (C 143 173 989); 02 — an overflow-checked arm blocks if-conversion
+    (Collatz 9.8 % mispredicted, 602 ms against clang's 197; wrapping 0.4 %, 236 ms); 03 — the envelope's repack after a recursive
+    call blocks tail-call elimination (Ackermann 44 698 325 calls against clang's 22 345 074).
 - **O-N35 — `nitpick-fuzz` M11 SESSION 8'S FOUR FINDINGS, F-029 … F-032: A RESERVED WORD ACCEPTED AS A `wild` BINDING'S NAME,
   AND NINETEEN REFERENCE ROWS THE COMPILER CONTRADICTS.** Found by M11 session 8 — MEMORY, OP and CONTROL checked against the
   compiler at the author's go on 2026-10-02, for the week's last few percent, merged at `6eb5392`: 411 claims tested at HUNT2

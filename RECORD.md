@@ -9128,3 +9128,19 @@ Each is a rule in the handoff block, or the reason for one.
   - `d2_the_advice_followed` is `PARSE-011` (D-175);
   - the control `ctl_d3_fallback` (`?|`) compiles and exits 0.
   - The diagnostic advises a spelling the compiler refuses.
+
+### `nitpick-fuzz` M11 COMPLETE: TYPE part C merged (`d44dfe3`); F-046 … F-048 reproduced; the frac row ruled a wrong answer; F-033 … F-048 and Gemini's 01–03 relayed as O-N36 — 2026-10-02 23:58 (shell time)
+
+- **from `nitpick-fuzz_1`, part C's clean point** at `d44dfe3`: 178 claims (172 testable), committed before any run (`a66247f`). The final run had 149 agree and 23 disagree; four programs were refixed, and two agreeing refusals had agreed for the wrong reason. **With it, M11 is complete: all 14 references, 10 419 of 10 419 lines, 3 385 claims, 2 872 tested, 513 untestable with reasons.** The full final run, 2 872 programs, had 2 587 agree and 285 disagree, all classed. The fuzzer stopped and ticked M11 and 11.1–11.3 in `PROGRESS.md`; this seat agrees. The week read 91 %.
+- **Reviewed here:**
+  - a fast-forward of two commits (`a66247f` 20:37:10, `d44dfe3` 20:52:12); 197 files, +12 289 −80;
+  - the claims commit only appends (172 expectations; the 3 removed lines are `CLAIMS.md`'s totals). Nothing changed after it but the four refixed programs (`ty1607`, `ty1987`, `ty1989`, `ty2007`). No earlier part's program changed; the two in the 159x range are part C's own additions;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (88 md files, leak scan 3 391 of 3 391).
+  - **`main` fast-forwarded to `d44dfe3` and pushed.**
+- **Reproduced here,** at `93bcb66` and at the pin, both legs:
+  - **F-047 (silent wrong answer):** `s1` and `s2` exit 10, the write through the `fixed uint8[]` having landed. The controls: a plain view writes (exit 0); a fixed scalar is `ASSIGN-002`. **D-074 settles the class from the documents:** "an immutable byte view is `fixed uint8[]`". **Exposure, measured:** no `.npk` of regex, time or posix uses a `fixed` slice view, and the pattern matches F-047's two programs;
+  - **F-048:** `n1` and `n2` compile, then `llc` (O0) and `opt` (O2) refuse the emitted IR; the control runs 0;
+  - **F-046's three rows and F-044's sixteen part C rows**, verdict for verdict. The eight IR rows of parts A to C were checked by applying each row's own expected pattern to the IR emitted here: every one is absent.
+- **The author's ruling (asked by this seat):** frac's `ToString`, printing −(1 3/8), stored {−2, 5, 8}, as "-2 5/8", is **a wrong answer**. It should print sign and magnitude ("-1 3/8"), keeping the stored form, and TYPE_REFERENCE:1657's example is corrected with it (`ty1657`, exit 11 at both compilers).
+- **Relayed 23:58:** one message to `nitpick-compiler_31`. It leads with F-037, F-047, the frac ruling and F-041; then the compiler rows (F-048, F-038, F-034, F-036, F-039 with **its correction of O-N35's F-031 `op0378` row**, F-045, F-046); the documentation (F-033, F-035, F-040, F-043, F-044: 76 rows); the `npkg` observation; the two fixes confirmed at `93bcb66`; and Gemini's Findings 01–03 with this seat's reproductions. **Registered as O-N36** in `meta/OPEN_QUESTIONS.md`.
