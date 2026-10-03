@@ -9095,3 +9095,16 @@ Each is a rule in the handoff block, or the reason for one.
   - **the full suite re-run after the restart, on a quiet machine**, checked against the figures cited here;
   - the findings completed from the data: Finding 02's times and rate, Finding 03's call counts, and Finding 01's three columns with the patch disclosed.
 - **For the compiler batch:** Findings 01 (both cases, with the runtime experiment), 02 and 03 are reproduced here and go with the fuzzer's findings, as optimization findings: every answer is right.
+
+### `nitpick-fuzz` M11 session 9: TYPE part A (661–1176) done, reviewed and merged (`3d3cc9b`); F-044 reproduced — 2026-10-02 20:10 (shell time)
+
+- **The author's go (19:3x), answering this seat's 14:12 question:** `nitpick-fuzz_1` had already auto-compacted (to 9 % context). He wants the week's last few percent spent on TYPE. 93 % was a soft line meant to leave room for clean stops, and a point or two over it is acceptable. So the fuzzer was released at 19:4x to run TYPE, landing by 95 %. It was asked to re-read `PROGRESS.md` and `PLAN.md` first, since it had compacted.
+- **from `nitpick-fuzz_1`, TYPE part A's clean point** at `3d3cc9b`. TYPE is cut at section boundaries into A 661–1176, B 1177–1592 and C 1593–2122, so the 95 % line can land inside it. Part A has 268 claims (249 testable) and was committed before any run (`36971df`). **The final run: 240 agree, 9 disagree.** 4 programs were refixed, and `ty1084` is not a finding (the fuzzer's own regex). M11 now has 3 078 claims over 9 473 of 10 419 lines, and the next finding is F-045.
+- **Reviewed here:**
+  - a fast-forward of two commits (`36971df` 19:57:13, `3d3cc9b` 20:08:19); 249 files, +15 763 −52;
+  - **`36971df` committed the generator (`gen/m11_claims/type2.py`) and not its output**, unlike every earlier section. So the claims were checked by regenerating them: `git archive 36971df` into a scratch, the author's `.work` linked read-only for the reference, then `python3 gen/m11.py` (3 078 claims, 0 errors). **Its `EXPECT.tsv` and `CLAIMS.md` equal `3d3cc9b`'s byte for byte, and of the `ty` programs only the four refixed ones differ** (`ty0786`, `ty0803b`, `ty0854`, `ty0855`). The expectations were fixed before the run;
+  - `PLAN.md` untouched; no home path and nothing credential-shaped added; the configured identity;
+  - `check_refs` clean (83 md files, leak scan 3 084 of 3 084).
+  - **`main` fast-forwarded to `3d3cc9b` and pushed.**
+- **F-044 (documentation, eight TYPE_REFERENCE rows so far) reproduced** at `93bcb66` and at the pin, both legs, verdict for verdict: `ty1112` and `ty1107` accepted; `ty0805` exit 10; `ty0715` `TYPE-044`; `ty0921` `PARSE-001`; `ty0673` and `ty0674` exit 11; `ty0936` compiles, but its field read is emitted as one `extractvalue` on the whole loaded struct, with no `getelementptr`, against the reference's IR.
+- **A possible use after scope, ruled out by the fuzzer:** a slice parameter passed back up is accepted, but a view of the frame's own local is `BORROW-001` and a laundered one `BORROW-002`, so no view outlives its storage. It stays a documentation row; the registry's S-107 controls read the same.
