@@ -9320,3 +9320,17 @@ Each is a rule in the handoff block, or the reason for one.
   - **§12:** carry a deferral by a dated pointer at each over-claiming sentence; a sweep in a clone measures that tree; amending a rehearsed patch chain is mechanical.
 - **The PLAYBOOK backlog is clear: all eighty-two findings recorded from 2026-09-30 23:55 to 2026-10-02 are landed, or found already held.** Every duplicate is landed once, and each bullet names its source and the landing date. Later findings: none recorded since.
 - **The cost:** five batches in about an hour; the week stayed at 92 % throughout; this seat went from 64 % to 69 % context.
+
+### A Claude subagent launched on the benchmarks' two unexplained gaps, at the author's go — 2026-10-05 08:44 (shell time)
+
+- **The author's plan:** spend one or two more percent of the week, then hand off and wait for the reset (2026-10-07 20:00), keeping two or three percent for the handoff. He wants the work done by a subagent, so that this seat's context (69 %) keeps room for the handoff. He already counts the benchmark experiment a success.
+- **Launched:** one general-purpose agent, in the background. **Scope:**
+  - `12_error_handling` first: Nitpick's `opt` runs 964 015 269 instructions and its `verified` 204 014 891, against C's 65 120 296 (error codes) and Rust's 65 294 507. The agent profiles it with callgrind, reads the inline remarks, and tests one change at a time: wrapping accumulator arithmetic, `Result` propagation, inlining, bounds checks, and the `-O0` runtime by Finding 01's rebuild;
+  - then `13_strings` (7.7× C's time), if time remains.
+  - **Constraints:**
+    - read-only on `META/NITPICK/tests` and the compiler; writing only in its own `$TMPDIR` scratch; no `cd` into a repository;
+    - caps on memory and time;
+    - counts under a fixed environment;
+    - language facts from the compiler's documents at `93bcb66`;
+    - about 40 minutes; measured kept apart from inferred.
+- **Not a clean stop while it runs.** Its report is reviewed and spot-checked here before anything is relayed.
