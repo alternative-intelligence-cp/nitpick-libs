@@ -9279,3 +9279,21 @@ Each is a rule in the handoff block, or the reason for one.
   - **§11:** a borrowed rule is the tool's only once its source is read; "engines differ" owes the comparison.
   - **§12:** keep decision numbers out of quoted code; read new text against the glossary's "not used" table; a recommendation's reason is a premise to measure; a claimed struck step is checked against the patches.
 - **Pending now: fifty-one** (from `RECORD.md` after the sandbox trial's entry). `check_refs` is clean but for the record's four older leaks.
+
+### PLAYBOOK: findings thirty-two to forty-nine landed; the sentinel item closed by RX-203 — 2026-10-05 08:34 (shell time)
+
+- **Batch three:** eighteen pending findings, recorded from `nitpick-regex` 0.1.3's work (2026-10-01) to `nitpick-regex` 0.1.4's (19:55), numbered thirty-two to forty-nine by the record's running count.
+- **Landed, in `PLAYBOOK.md`:**
+  - **§2:** `if (r.is_error) { #unreachable(); }` taints `r.value` **at the pin `5fbaf4a` only**: fixed at `93bcb66` (DEF-225, O-N34), and holding here until the re-pin. Also: a reference's wording of a diagnostic's cause is not its site (`0xFF`, `LEX-003` at the first byte).
+  - **§6:** never leave the shell inside a library (re-found by this seat on 2026-10-02); inside the sandbox `ps` sees only its own call; a `\u` escape can arrive decoded.
+  - **§7:** a constant's owner is the module that holds its one copy.
+  - **§9:** break every guard to redden a doubly guarded case; take each boundary from both sides; forge inputs through the opt-out; a host language can undo a mutant.
+  - **§12:**
+    - an amendment moves the instruments that count it;
+    - sweep at design time, and run `check_refs` at the plan commit;
+    - grep each removed line's old phrase across the tree;
+    - a resized set is stated relative to a member;
+    - a rule restated in passing is found only by the sweep;
+    - re-measure an early reading against its neighbour.
+  - **The sentinel item** (regex's `BadGroupName` detail 0) is closed with a dated note: RX-203 decided it, `NOT_A_CODEPOINT`, U+110000.
+- **Pending now: thirty-three**, starting at `nitpick-time` 0.2.3's planner's seven (2026-10-01 22:00).

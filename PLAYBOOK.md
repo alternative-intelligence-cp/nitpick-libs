@@ -269,6 +269,14 @@ is zero.
 **`if (a.is_error || b.is_error)` clears neither `Result`'s taint** (`NITPICK-TAINT-001` on the read below it), and `raw` on a
 fallible callee is `NITPICK-TYPE-042`: test each `Result` alone. *(`nitpick-time` 0.2.1's plan, 2026-10-01; landed 2026-10-05.)*
 
+**`if (r.is_error) { #unreachable(); }` leaves `r.value` tainted at the pin `5fbaf4a`** (`NITPICK-TAINT-001`), while
+`r ?| #unreachable()` compiles. The compiler fixed it at `93bcb66` (landing 93, DEF-225, this workbench's O-N34); it holds
+here until the re-pin that carries that landing. *(`nitpick-time` 0.2.2's plan, 2026-10-01; landed 2026-10-05.)*
+
+**A reference's wording of a diagnostic's cause is not its site.** `0xFF` is `NITPICK-LEX-003` at the literal's FIRST byte,
+where `LEXICAL_REFERENCE.md` §6.2 says "at the `x`". Measure a position before a plan, a test or a sentence quotes one.
+*(`nitpick-regex` 0.1.4, 2026-10-01; landed 2026-10-05.)*
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may
@@ -1123,6 +1131,14 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
 
 - **`pkill -f` and `pgrep -f` match their own command line.** A pattern that names the job also names the killer, so
   stop jobs by PID. *(`nitpick-regex` 0.1.3's plan, 2026-10-01; landed 2026-10-05.)*
+- **Never leave the shell inside a library.** The sandbox's write list names `.`, and a `cd` that persists moves both the
+  harness's idea of the session's working directory and what `.` may mean. Name a library by `git -C` or an absolute path;
+  a subshell `( cd … )` is fine. Re-found 2026-10-02, when `nitpick-libs_13`'s `cd` into `nitpick-fuzz` moved the session's
+  directory until it was moved back. *(`nitpick-time` 0.2.2, 2026-10-01; landed 2026-10-05.)*
+- **Inside the sandbox, `ps` sees only its own call, and a `&` job dies with the call.** A leftover-process check rests on
+  the harness's completion notice and the scratch, never on `ps`. *(2026-10-01; landed 2026-10-05.)*
+- **A `\u` escape typed into an agent's tool call can arrive decoded.** Write such codepoints with a program (`chr()`), and
+  grep for them the same way. *(`nitpick-regex` 0.1.4's plan, 2026-10-01; landed 2026-10-05.)*
 
 ## 7. Repository conventions
 
@@ -1257,6 +1273,9 @@ per-repository numbers collide.
 - **Run `check_refs` after every prose edit**, and after every commit that touches `BOARD.md` or `RECORD.md`: an absolute
   path and a registry number cited before it existed each slipped in and were caught a commit late. *(`nitpick-regex`
   0.1.3's plan, 2026-10-01, and two seats since; landed 2026-10-05.)*
+- **The owner of a constant is the module that holds its one copy.** When an owner map permits its owner a literal, giving
+  ownership to a module that only USES the constant permits a second copy. *(`nitpick-time` 0.2.2's plan, 2026-10-01;
+  landed 2026-10-05.)*
 
 ---
 
@@ -1392,6 +1411,17 @@ repositories reads one thing.
   0.1.3's plan, 2026-10-01; landed 2026-10-05.)*
 - **A unit's case numbers stay below its `failsafe`'s exit codes (91 and up)**, so a case's own exit can never be read as a
   trap's. *(The same plan.)*
+- **A case guarded by two independent checks cannot be reddened by a single-edit mutant.** When a decision rests on such a
+  case, show it red by breaking every guard. *(`nitpick-regex` 0.1.3, 2026-10-01; landed 2026-10-05.)*
+- **Take each boundary from both sides.** A sweep of boundary values from one side can be blind to the defect the boundary
+  exists for. Every day's first instant is a whole number of days from the epoch, where truncating and flooring agree, so a
+  truncating conversion passed all 7 304 484 of them. *(`nitpick-time` 0.2.2's plan, 2026-10-01; landed 2026-10-05.)*
+- **A property test built only from values the validating constructors make cannot see an operation that bypasses the
+  constructor.** Forge inputs through the opt-out (C-8c's). A `civil_to_utc` that wrote its own `Timestamp` literal passed the
+  vectors and both sweep members; only forged inputs caught it. *(The same plan.)*
+- **A mutant can be undone by the host language.** Python's `int()` reads `1_000_000` itself, so a mutant that inserts
+  underscores changes nothing a Python check sees. Measure that a mutant goes red before claiming it. *(`nitpick-regex`
+  0.1.4's plan, 2026-10-01; landed 2026-10-05.)*
 
 ---
 
@@ -1734,6 +1764,7 @@ orchestrator (W-16); a tenth was already covered above.**
 - **A field that carries a value domain and a sentinel needs the sentinel outside the domain.** Regex's `BadGroupName`
   detail 0 means both "the pattern ended inside the name" and "a NUL in the name"; its worker recommends 0x110000,
   which no codepoint takes, to be decided with 0.1.4's escape details.
+  *(Decided 2026-10-01 by RX-203: `NOT_A_CODEPOINT`, U+110000. Landed 2026-10-05.)*
 - **Do not name a future decision number in prose.** `check_refs` reads it as an undefined reference, and a
   repository's own checks may read fenced blocks too (`nitpick-time`'s `check_specs_current` does). Write "the next
   decision", and let the step that declares it give the number.
@@ -1797,3 +1828,16 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   landed 2026-10-05.)*
 - **A plan's claim that it strikes a step is checked against the patches**, which are what the worker applies. *(The same
   plan.)*
+- **An amendment to a rehearsed text moves the instruments that count it.** Predict a comparator's DIFF lines from the
+  amendment before its block runs. *(`nitpick-regex` 0.1.3, 2026-10-01; landed 2026-10-05.)*
+- **Run the omission sweep at design time too**, not only once the patches exist, and **run `check_refs` at the plan commit**,
+  which catches a future decision number written last. *(`nitpick-time` 0.2.2's plan, 2026-10-01; landed 2026-10-05.)*
+- **Grep each REMOVED line's old phrase across the tree.** A phrase a plan rewrites in one file can live in a second. 0.2.2's
+  plan, rehearsed three times, left "the exhaustive calendar and zone sweeps" in `BUILD.md` §3, and its executing worker found
+  it. *(2026-10-01; landed 2026-10-05.)*
+- **A resized set is also stated relative to one member** ("the same helper as the other five members'"), so sweep for the
+  set's subject, not only its counts. *(The same subcycle.)*
+- **A rule restated in passing elsewhere is found only by the sweep** (Y-28 restating Y-2). *(`nitpick-regex` 0.1.4's plan,
+  2026-10-01; landed 2026-10-05.)*
+- **A reading settled early is re-measured against its closest neighbour** when the subcycle that owns the construct arrives.
+  *(The same plan.)*
