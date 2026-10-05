@@ -9353,3 +9353,11 @@ Each is a rule in the handoff block, or the reason for one.
   - **exposure**: no library code uses `&{ }`; the one mention, in `nitpick-regex`'s `src/core/bytes.npk`, is a comment saying interpolation is avoided on purpose.
 - **Relayed to `nitpick-compiler_31` at 09:03, registered as O-N38.** The agent's sources, scripts and remarks are kept in `.internal/bench-2026-10-05/` (21 files, 136 KB, untracked); its scratch in `$TMPDIR` would not survive a restart.
 - **The workbench is at a clean stop again:** no agent is live.
+
+### A second Claude subagent launched: binary-trees and compile speed, the author's "one more round" — 2026-10-05 09:09 (shell time)
+
+- **The author's go:** one more round, if there is room. The week read 93 % and this seat 72 % context.
+- **Scope:**
+  - binary-trees (depth 16, or 18 if cheap) in Nitpick, C (`malloc`/`free`) and Rust (`Box`), with an arena variant of the Nitpick program if the natural tree uses one. It measures the allocator's share per allocation and per free against C's, the optimized-runtime control, and `NPK_HEAP_STATS` for leaks;
+  - then compile speed: `npkc`'s median wall time and peak RSS on the libraries' roots, the largest compiler tests, and the compiler's own sources if they compile read-only.
+- **The same constraints as the first:** writing only in its scratch; caps on memory and time (up to 16 GB and 600 s for `npkc` on large sources); counts under `env -i`; language facts from the compiler's documents. **Not a clean stop while it runs.**
