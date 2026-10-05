@@ -9297,3 +9297,15 @@ Each is a rule in the handoff block, or the reason for one.
     - re-measure an early reading against its neighbour.
   - **The sentinel item** (regex's `BadGroupName` detail 0) is closed with a dated note: RX-203 decided it, `NOT_A_CODEPOINT`, U+110000.
 - **Pending now: thirty-three**, starting at `nitpick-time` 0.2.3's planner's seven (2026-10-01 22:00).
+
+### PLAYBOOK: findings fifty to seventy-five landed — 2026-10-05 08:36 (shell time)
+
+- **Batch four:** twenty-six pending findings, from `nitpick-time` 0.2.3's planner (2026-10-01 22:00) to 0.2.4b's worker (2026-10-02), with `nitpick-regex` 0.1.5's planner, numbered fifty to seventy-five by the record's running count.
+- **Landed, in `PLAYBOOK.md`:**
+  - **§2:** `int128` multiplication is inline at the pin.
+  - **§6:** the `grep` correction gains its consequence for Expects (`bash -c` reads GNU, the Bash tool ugrep with ignore files); a heredoc ends early at its own end marker; anchor a fence search at a line start.
+  - **§7:** run `check_record` after the commit.
+  - **§9:** forge past a value-writer's own range check; a control needs a complete `failsafe`; measure a copy with its own harness.
+  - **§12 (fourteen):** a model document's list is a premise; a word-count beside its enumeration; decision-number shapes that trip `check_refs`; mask a citation count; stage `archive.py`'s move; an annotated correction's twins; sweep for what a widened check could not see; emphasis in joined text; `@@DATE@@` index hashes; re-cut only the amended section; date a run once; a whole-file step undoes an edit; an error sentence's claims need research; name every bound with a value.
+  - **Already held:** `where` as a reserved word is in §10's list.
+- **Pending now: seven** (`RECORD.md` after 0.2.4b's entry).

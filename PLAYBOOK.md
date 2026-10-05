@@ -277,6 +277,9 @@ here until the re-pin that carries that landing. *(`nitpick-time` 0.2.2's plan, 
 where `LEXICAL_REFERENCE.md` §6.2 says "at the `x`". Measure a position before a plan, a test or a sentence quotes one.
 *(`nitpick-regex` 0.1.4, 2026-10-01; landed 2026-10-05.)*
 
+**At the pin, `int128` multiplication is inline** (`llvm.smul.with.overflow.i128`, no `__muloti4`), and `npkrt.o` defines only
+`__divti3` and `__modti3`. *(`nitpick-time` 0.2.3's plan, 2026-10-01; landed 2026-10-05.)*
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may
@@ -998,6 +1001,8 @@ across the tree: `grep -rl --include='*.npk' .` from the root → **0**;
   *(Corrected 2026-10-05, measured: in the Bash tool, `grep` is now a shell FUNCTION that runs ugrep, and `/usr/bin/grep`
   is GNU grep 3.11. So the ugrep behaviour above belongs to plain `grep`, and `/usr/bin/grep` is the GNU instrument; name it
   when GNU behaviour is the claim. Found by `nitpick-regex` 0.1.3's planner, 2026-10-01.)*
+  *(And the consequence, found at `nitpick-time` 0.2.3: the Bash tool's `grep` runs `ugrep --ignore-files`, so an Expect taken
+  in a fresh `bash -c` is GNU grep's, while the same command typed into the Bash tool reads with ugrep's ignore-file rules.)*
 - **`git grep` from the root cannot see a library either**, for an unrelated
   reason: each library is a *separate checkout*, so none of its files are in
   this repository's index.
@@ -1139,6 +1144,10 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   the harness's completion notice and the scratch, never on `ps`. *(2026-10-01; landed 2026-10-05.)*
 - **A `\u` escape typed into an agent's tool call can arrive decoded.** Write such codepoints with a program (`chr()`), and
   grep for them the same way. *(`nitpick-regex` 0.1.4's plan, 2026-10-01; landed 2026-10-05.)*
+- **A bash heredoc whose text contains its own end-marker line ends early** and runs the rest as shell. Write long text
+  with a file tool. *(`nitpick-time` 0.2.4's plan, 2026-10-02; landed 2026-10-05.)*
+- **A fence found by `text.index("### 4.2 ")` can match the plan's own block code.** Anchor at a line start.
+  *(`nitpick-time` 0.2.3's plan; landed 2026-10-05.)*
 
 ## 7. Repository conventions
 
@@ -1276,6 +1285,8 @@ per-repository numbers collide.
 - **The owner of a constant is the module that holds its one copy.** When an owner map permits its owner a literal, giving
   ownership to a module that only USES the constant permits a second copy. *(`nitpick-time` 0.2.2's plan, 2026-10-01;
   landed 2026-10-05.)*
+- **`check_record` reads the committed record**, so run it after the commit: a staged record is a dirty tree to it.
+  *(`nitpick-time` 0.2.4's plan, 2026-10-02; landed 2026-10-05.)*
 
 ---
 
@@ -1422,6 +1433,13 @@ repositories reads one thing.
 - **A mutant can be undone by the host language.** Python's `int()` reads `1_000_000` itself, so a mutant that inserts
   underscores changes nothing a Python check sees. Measure that a mutant goes red before claiming it. *(`nitpick-regex`
   0.1.4's plan, 2026-10-01; landed 2026-10-05.)*
+- **A value-writing operation that keeps its own range check passes every constructed input.** A literal-writing
+  `timestamp_add` passed them all; only a `nanos` forged past two seconds caught it. *(`nitpick-time` 0.2.3's plan;
+  landed 2026-10-05.)*
+- **A fact program used as a control needs a complete `failsafe`.** A stub stops at `NITPICK-REACH-001` and hides the
+  result. *(`nitpick-time` 0.2.4's plan; landed 2026-10-05.)*
+- **A check whose exemption is tied to the repository's own tree reports the exempt item over a copy.** Measure a copy
+  with the copy's own harness. *(The same plan.)*
 
 ---
 
@@ -1841,3 +1859,33 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   2026-10-01; landed 2026-10-05.)*
 - **A reading settled early is re-measured against its closest neighbour** when the subcycle that owns the construct arrives.
   *(The same plan.)*
+
+**Landed 2026-10-05 (`nitpick-time` 0.2.3 → 0.2.4b, `nitpick-regex` 0.1.5's plan; 2026-10-01 → 2026-10-02):**
+
+- **A model document's list is a premise, not a fact.** `SPAN_MODEL.md` §5 lacked `bytes_put_int`'s `int128` loop measure,
+  in the tree since 0.1.0b, so a check written to its count would have been red on its first run; and it named
+  `timestamp_to_civil`, which does not exist. Measure the tree before a check is written to a document's count.
+- **A count written as a word beside its own enumeration is arithmetic nobody ran.** `ROADMAP.md`'s "Eleven questions are
+  open" had been stale since 0.2.0a. Derive a set's size from the set, or state the members and no number.
+- **Decision numbers trip `check_refs` in more shapes than prose.** "TM-n … superseded" within 60 characters is read as a
+  citation, and so is `TM-2[0-9]+` inside a code block (as "TM-2", by `check_specs_current`). Name decisions by PD label,
+  and write the pattern `TM-[0-9]+`.
+- **An Expect that prints `check_specs_current`'s citation count depends on the plan's own text and on earlier records.**
+  Mask the count.
+- **A dry run of patches that follow `archive.py move` must stage the move first**, or `git apply --index` refuses.
+- **A correction made by annotating a claim leaves its twins invisible to a search for removed lines.** Sweep the corrected
+  file's siblings for the same claim in other words: the plan's sweep, reading "the three … sites", passed `probe02c`'s
+  "§5's three `int128` sites", and the worker's second sweep found it.
+- **When a check widens, sweep for the sentences that say what it could NOT see**, not only for its rule.
+- **Emphasis splits a phrase in joined text.** A sweep's joined reading strips a line's leading comment marker and nothing
+  else, so `CLAUDE.md`'s "checked **before** the trap" passed a pattern for "checked before the trap". Strip emphasis before
+  matching, or allow it between words.
+- **A plan patch's index hashes for a file with `@@DATE@@` are of the placeholder text.** Re-derive an amended patch's index
+  lines by applying it raw; only context can tell whether a later subcycle's patch applies.
+- **Re-cut only the amended section of a plan patch, and splice it in**, keeping the original's preimage hash. Re-cutting the
+  patch whole over the real tree rewrites sections the amendment never touched.
+- **A patch dated by the day it applies breaks a run that crosses midnight.** Date a run once.
+- **A later step that takes a file whole undoes an earlier step's script edit to it.**
+- **A claim inside an error sentence is a claim about the world, and needs research.** Holding a sentence "to the letter"
+  holds its claims too.
+- **A finding keyed by a value must name every bound with that value** (`NTIME_YEAR_MIN` and `NTIME_YEAR_MAX` share 9999).
