@@ -281,6 +281,14 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N37 — GEMINI'S FINDING 04: OVERFLOW CHECKS AND THE `{ T, i32 }` ENVELOPE TOGETHER DEFEAT INLINING OF A SMALL STRUCT FUNCTION.**
+  An optimization finding: the answer is right. **Reproduced by the orchestrator 2026-10-05** at `93bcb66`. In `10_particles`, `update` (`never fails`,
+  three checked `int64` adds building and returning a 48-byte struct) gets `opt -O2` inline cost 240 against the threshold of 225, so it is not
+  inlined (the remark reproduced). The same function with wrapping adds (`+%`) gets cost 15 and is inlined. C's checked build (sanitizer checks,
+  no envelope) inlines it too: no call in `main`, where Nitpick's build calls it twice. So the checks and the envelope cross the threshold
+  together, and neither does alone. Over 200 M calls Nitpick runs 8 600 441 090 instructions (886 ms) against clang's 1 500 365 335 (224 ms);
+  forced inline, 2 800 509 752; with wrapping adds, 1 600 383 426. **Sent to `nitpick-compiler_31` at 08:25.** No library is blocked.
+  Evidence: `META/NITPICK/tests/findings/04-struct-envelope-inline-threshold/`, `benchmarks/10_particles/`.
 - **O-N36 — `nitpick-fuzz` M11 SESSION 9'S FINDINGS, F-033 … F-048, AND GEMINI'S OPTIMIZATION FINDINGS 01–03: A USE AFTER FREE,
   TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** Found by M11 session 9 (MODULE, LEXICAL, AST,
   BUILD, TRAITS, VERIFICATION 1248–2351 and TYPE 661–2122, at the author's go on 2026-10-02, the week's last few percent), merged

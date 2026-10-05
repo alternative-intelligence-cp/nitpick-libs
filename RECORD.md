@@ -9222,3 +9222,23 @@ Each is a rule in the handoff block, or the reason for one.
 - **Antigravity has updated:** its small Claude allowance now offers Opus 5.5 and Sonnet 5.5, where it offered the 4.6 models. The author, testing it, had the agent re-check its own last round with Opus 5.5, and it found many issues at once. **Its corrected report is awaited.** The 16:55 review's points stand until then, and the earlier response is not re-read.
 - **News the author passed on, for context:** Fable 5.5 is coming to Claude Code, and a major Gemini upgrade ("Aragon", as he heard it) is expected.
 - **The meters at 08:07:** the week is 92 % and resets 2026-10-07 20:00; this seat is at 58 % context; the lock and the workbench are unchanged (`0fe1ec6`).
+
+### T2 paused at the author's word; Gemini's last round reviewed; Finding 04 reproduced and relayed as O-N37 — 2026-10-05 08:25 (shell time)
+
+- **The Antigravity test:** the author had the agent re-check its own round with Opus 5.5, which found many issues at once. Six minutes of it maxed Antigravity's 5-hour Claude window and used half its 7-day window, so the allowance is unusable. 3.8 Flash (high) finished the round. **The author then paused the experiment until the next Gemini model ships.** Its work is low priority, and a later seat may resume it.
+- **Read:** `claude-inbox/2026-10-05T0816-gemini-review-addressed-and-suite-tightened.md` (the 2026-10-03 17:56 message, superseded, was not re-read).
+- **Holds, checked here:**
+  - every build output left in the benchmark folders is now ignored;
+  - the harness has its lock, its load guard, `cpp_clang_o2` separated from the `c_*` slots, and the fixed environment;
+  - runs `0816` and `0818` have checksums equal across all nine variants;
+  - **`16_mandelbrot` is at parity with C** (362 785 967 against 357 418 927 instructions, about 74 ms each);
+  - Finding 05's control (direct trapping indexing): `vec_swap` inlines at cost 135, and the run is 45.8 M instructions against 124.8 M.
+- **Does not hold:**
+  - **Finding 06's "parity" headline**: run `0816` has `nitpick_verified` at 204 014 891 instructions (28.2 ms) and `nitpick_opt` at 964 015 269 (85.8 ms), against C's 65 120 296 (7.3 ms) and Rust's 65 294 507 (7.2 ms). That is 3.1× and 14.8× the instructions. Its times (16, 42 and 130 ms) match no run. **A real result: parsing with a `Result` per number costs Nitpick 3–15×.** It needs a control before it is relayed;
+  - `14_arena_alloc` has no row in any run;
+  - family 10 holds Mandelbrot only, of five;
+  - `08_collatz` (sum of squares) and `11_sort_vec` (insertion sort, binary search) were changed after their baselines and not re-run;
+  - Finding 05's "64 % of the gap" is 63 % of Nitpick's instructions, or 81 % of its gap to Rust.
+- **For later:** `13_strings` runs 7.7× C's time (363 ms against 47).
+- **Finding 04 reproduced here end to end:** `particles.npk` built at `93bcb66`, with `opt -O2 -pass-remarks`. Checked, `update` gets cost 240 against 225 and is not inlined. With its three adds made wrapping (`+%`), it gets cost 15 and is inlined. With the earlier check of the binaries (C's checked build inlines it), it was **relayed to `nitpick-compiler_31` at 08:25, registered as O-N37.**
+- **Left for whoever resumes:** `gemini-inbox/2026-10-05T0825-claude-state-at-the-pause.md`, giving what holds, what does not, and the order to resume in.
