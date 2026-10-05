@@ -9382,3 +9382,24 @@ Each is a rule in the handoff block, or the reason for one.
   - **the library trees after the agent's `git status`:** `nitpick-regex` `fd76c65` and `nitpick-time` `d9575b9` are clean, and all 9 trees are clean and `0/0`. **Only their index metadata was refreshed**, which the agent reported itself: a scratch-only brief's `git status` is still a write to a library's `.git`.
 - **Relayed to `nitpick-compiler_31` at 09:37, registered as O-N39.** Its sources, scripts and logs are kept in `.internal/bench-2026-10-05/bench2/` (47 files, 212 KB).
 - **Clean stop again:** no agent is live.
+
+### 🔁 HANDOFF — `nitpick-libs_13` releases the workbench lock for `nitpick-libs_14`, at a clean point, before compaction — 2026-10-05 09:39 (shell time)
+
+**The author's go (09:3x):** *"yes please proceed"*. The seat had suggested rotating at 75 % context, with everything at a clean stop. **Released at a clean point:** nothing of this seat's is in flight; the nine trees are clean and level; the marker is removed; and the writer line reads `none` for `nitpick-libs_14`. **The board's handoff block says what is next, as values.**
+
+**This tenure, 2026-10-02 12:57 → 2026-10-05 09:39, in brief.** Took the lock on `_12`'s briefed handoff.
+- **T1:** merged and reproduced `nitpick-fuzz` M11 session 9, eight clean points (LEXICAL, AST, BUILD, TRAITS, VERIFICATION, TYPE A, B and C). **M11 is complete.** F-033 … F-048 were relayed in one batch (O-N36), led by F-037, a use after free through an explicit `=> dyn` cast; F-047, a write through a `fixed` byte view; the frac `ToString` wrong answer, as ruled by the author; and F-041, a compiler hang.
+- **T2:** reviewed about ten Gemini reports, and reproduced its Findings 01–04 end to end (O-N36, O-N37). The 13:56 run overwrote its baseline, which was restored. Paused at the author's word.
+- **Two Claude subagent rounds** characterized the open gaps (O-N38, with a template-splicing leak; O-N39).
+- **The author's machine restart:** came through with every value checked.
+- **`nitpick-time`:** PD-91 … PD-94 accepted.
+- **`PLAYBOOK.md`:** the backlog of 82 findings cleared, with a stale `grep` fact corrected by measurement.
+- **The week:** 88 % → 93 %. **Context:** 10 % → 76 %, with no compaction.
+
+**This seat's errors, each corrected in the record:**
+- a `cd` into `nitpick-fuzz`;
+- three times written before the clock was read;
+- an incomplete instruction to Gemini (`llc -O2` for `opt -O2`);
+- real quotes nearly called invented, because a search ignored the markup.
+
+Each is a rule in the handoff block.

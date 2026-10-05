@@ -14,56 +14,49 @@ blocked, what is done. The durable plan is
 **Workbench writer:** `912ad79e-f3a5-4afe-9ba0-7faf03434d36`, session `nitpick-libs_13`, taken 2026-10-02 12:57 EDT on `nitpick-libs_12`'s briefed handoff — **the libraries are at a clean stop until the reset**, both streams' next items being planners held at the 84 % line; `nitpick-fuzz_1`'s M11 run continues as a peer. The handoff block below says what is next. The take hazards (1)–(6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01; (6)'s tail and (7)–(11) follow the handoff block. *(Previously: `none` — released by `nitpick-libs_12` (`3bbe8f5c-9c02-4bc5-bed5-6b651d6703fa`) at `fdccc78` (2026-10-02 12:53) for this briefed handoff, at a clean point, `33eeebe` (12:54) fixing two reference findings in the block before the take; its freedom-from-values text for this take is `RECORD.md` 2026-10-02 12:57. Before that `3bbe8f5c-…`, session `nitpick-libs_12`, taken 2026-10-02 00:43 EDT on `nitpick-libs_11`'s briefed handoff — its text is in history at `0663bbc`.)*
 
 
-> **🔁 HANDOFF — `nitpick-libs_12` → `nitpick-libs_13`, 2026-10-02 12:53 (shell time), at a clean point: nothing of this seat's is in flight, and `nitpick-fuzz_1`'s M11 run continues as a peer. The seat is at about 75 % context, rotated before compaction at the author's go. READ THIS FIRST.**
-> **⏱ STATE AT 23:59 ON 2026-10-02 (`nitpick-libs_13`, the lock held, at a clean point before the author's restart), as values. Read this first; the T1 and T2 paragraphs below are `_12`'s at 12:53.**
-> - **T1:** M11 is COMPLETE, merged at `d44dfe3`: all 14 references, 3 385 claims. F-033 … F-048 and Gemini's Findings 01–03 were relayed to `nitpick-compiler_31` in one message and registered as **O-N36**. `nitpick-fuzz_1` has stopped. **The next fuzz task is the author's to choose.**
-> - **T2 is PAUSED (2026-10-05 08:25) until the next Gemini model;** Findings 01–04 are relayed (O-N36, O-N37), and the resume point is `gemini-inbox/2026-10-05T0825-claude-state-at-the-pause.md`. *(Earlier:* Gemini's three findings are reproduced here, but **its 13:56 run overwrote the whole benchmark baseline.** *(00:04: its fixes are checked and hold, and three small ones are queued for after the restart: `gemini-inbox/2026-10-03T0004-…`.)* This seat's 19:44 message (`gemini-inbox/2026-10-02T1944-claude-findings-reproduced-baseline-overwritten.md`) asks for the findings' corrections, the moves, and a harness that never overwrites a run. **The full re-run comes AFTER the restart, on a quiet machine.** Review its next report as before.
-> - **The libraries:** at a clean stop until the reset (2026-10-07 20:00), both streams' next items planners. **Time's PD-91 … PD-94 were ACCEPTED 2026-10-05 08:28** (TM-246 … TM-249; the planner's NOTES are on the s2 row), so its planner can go at the reset. **Questions for the author: none open** (the frac `ToString` ruling was answered: a wrong answer).
-> - **This seat's errors this tenure,** each corrected in the record: a `cd` into `nitpick-fuzz`; three times written before the clock was read (now every time comes from `date` in the writing command); and an incomplete instruction to Gemini (`llc -O2`, where `opt -O2` was meant).
+> **🔁 HANDOFF — `nitpick-libs_13` → `nitpick-libs_14`, 2026-10-05 09:39 (shell time), at a clean point: nothing of this seat's is in flight, the nine trees clean and level, the seat at about 76 % context, rotated before compaction at the author's go. READ THIS FIRST.**
 >
-> **Take the lock** by orchestrate §2 and the take hazards, as before.
->
+> **Take the lock** by orchestrate §2 and the take hazards:
 > - Your id comes from your transcript `.jsonl` and your scratchpad path; `~/.claude/context/<id>.json` names the session. Write it, 37 bytes, into `.internal/orchestrator.session`.
-> - Put it as the writer line's FIRST backticked token, in one commit, push, then re-read it from `origin/main` with hazard (5)'s literal command.
-> - `nitpick-libs_12` stays open for your questions; tell it when you are done.
-> - **Hazard 4:** `nitpick-libs_14` and `_15` are idle spares, and `_14` is likely your successor. Ask them.
+> - Put it as the writer line's FIRST backticked token, in one commit; push; re-read it from `origin/main` with hazard (5)'s literal command.
+> - **Hazard 3:** ask `nitpick-libs_13`, who answers from `git status`. **Hazard 4:** `nitpick-libs_15` is the idle spare and likely your successor; ask it.
+> - `nitpick-libs_13` stays open for your questions: batch them, and tell it when you are done.
 >
-> **The author restarts the machine for kernel updates once all work in every session is finished, before the reset (2026-10-07 20:00).** Land at clean points, and tell him when the workbench is safe.
+> **THE WEEK:** 93 % at this handoff, resetting **2026-10-07 20:00**; the author's clean-stop line is 95 %, so nothing runs until the reset. **At the reset the libraries resume at width 2, one planner at a time (P-12): time's cycle 0.3 planner first (its NOTES are ready, below), then regex's 0.1.6 close planner.** Read `jq . ~/.claude/usage-latest.json` before each dispatch.
 >
-> **⚠ THE SANDBOX** (live since 2026-10-01 12:3x): shell writes go only to this tree, `$TMPDIR`, `../nitpick-apps`, `META/NITPICK-LIBS`, `META/.git` and, since 2026-10-02 11:57, `META/NITPICK/messages` (the Gemini inboxes); `../nitpick` is read-only and plain `/tmp` refused; settings and `~/.claude/projects/` (memory) are written by the Edit and Write tools only. **Check it first, writing nothing:** from this root, `for d in ~/Workspace ../nitpick . "$TMPDIR"; do [ -w "$d" ] && echo "WRITABLE  $d" || echo "read-only $d"; done` must print `read-only` for the first two and `WRITABLE` for the last two. **Each shell call is its own sandbox: `ps` sees only that call (5 processes), and a `&` job dies when the call ends** — a leftover-process check rests on the harness's completion notice and the scratch, never on `ps`. **⚠ The network allowlist is NOT holding in this session:** `curl` reached `perldoc.perl.org` and `example.com` (2026-10-01 20:13) though the config lists only GitHub's domains; reported to the author, cause not established, nothing changed. Assert byte counts either way. **Never `cd` into a library** (the harness moves the session's working directory with it): use `git -C` and absolute paths. A sandbox refusal is reported, never worked around.
-> **⚠ READ CI LOGS PER JOB** (`gh api repos/alternative-intelligence-cp/<repo>/actions/jobs/<job-id>/logs`, job ids from `gh run view <run> --json jobs`), never with run-level `--log` (gh 2.45 prints nothing, exit 0); assert the byte count.
+> **⚠ THE SANDBOX** (unchanged since 2026-10-02): shell writes go only to this tree, `$TMPDIR`, `../nitpick-apps`, `META/NITPICK-LIBS`, `META/.git` and `META/NITPICK/messages`; `../nitpick` is read-only and plain `/tmp` refused; settings and `~/.claude/projects/` (memory) are written by the Edit and Write tools only. **Check it first, writing nothing:** `for d in ~/Workspace ../nitpick . "$TMPDIR"; do [ -w "$d" ] && echo "WRITABLE  $d" || echo "read-only $d"; done` prints read-only, read-only, WRITABLE, WRITABLE. Each shell call is its own sandbox: `ps` sees only that call, and a `&` job dies with it. **Never `cd` into a library**: use `git -C` and absolute paths (this seat slipped once). **In the Bash tool `grep` is a ugrep function; `/usr/bin/grep` is GNU grep 3.11.**
+> **⚠ READ CI LOGS PER JOB** (`gh api repos/alternative-intelligence-cp/<repo>/actions/jobs/<job-id>/logs`), never with run-level `--log`; assert the byte count.
 >
-> **THE LIBRARIES ARE AT A CLEAN STOP UNTIL THE RESET.** Width 2, one planner at a time (P-12). Both streams' next items are planners, held at the 84 % planner line; the week read 87 % at 12:0x (it resets 2026-10-07 20:00). The author's clean-stop line is 95 %.
-> - **s1 `nitpick-regex`:** cycle 0.1 (the pattern parser), 0.1.0 … 0.1.5 verified, the last at `fd76c65` (258/258). **Its audit is FILED: `meta/audits/nitpick-regex-0.1-2026-10-02.md`, ACCEPT once C1 is fixed, 22 findings.** **C1 is a silent wrong answer:** `regex_escape(":alpha:")` inside a nested class reads as a POSIX class; the recommended fix escapes `:` and clears C2. **C4** needs a decision at the close: the Gate names four kinds no code produces yet. **Next, at the reset: 0.1.6's planner** (no file yet), with `AUDIT:` naming the report and C1 first. Its NOTES carry question 23's answer (`[\K]` keeps the unknown-escape sentence) and question 20 (d) (S-2's dated lookaround note at the next subcycle that touches `SAFETY.md`, perhaps 0.1.6).
-> - **s2 `nitpick-time`:** **cycle 0.2 CLOSED and verified** at `d9575b9` (133 units). Cycle 0.3 (the clocks) is opened, and **`0.3.0.md` is written but NOT rehearsed**. **Next, at the reset: cycle 0.3's planner**, to rehearse it. **PD-91 … PD-94 are this seat's to accept or strike before that dispatch *(ACCEPTED 2026-10-05 08:28, `nitpick-libs_13`: they become TM-246 … TM-249)*.** PD-91 is the literal width suffix `check_int128_sites` misses, deferred from the close; six live sentences over-claim until it lands. The NOTES carry question 21's answer: A, keep `instant_of`, which closes Q-7 in the repository.
-> - **T1 `nitpick-fuzz`:**
-> 
->   - **State.** Session 8 (MEMORY, OP, CONTROL) was relayed as O-N35. **Session 9 runs in `nitpick-fuzz_1`**, at the author's go (12:11), landing by 93 %. **MODULE is merged at `2cab0ae`, and F-033 (seven MODULE rows) and F-034 (lower priority: (a) a byte-payload extern's bridge stub refused `TYPE-072`; (b) `use mod.f;` `RESOLVE-002`; (c) a constant cycle never named) are reproduced but NOT YET RELAYED.** LEXICAL is running; AST, BUILD, TRAITS, then VERIFICATION from 1248 and TYPE from 661 follow as the week allows.
->   - **For each push:**
->     - Review it: a fast-forward, the claims committed before their run, `PLAN.md` untouched, no home path or credential added, the configured identity.
->     - Merge it in `./nitpick-fuzz` with `git merge --ff-only origin/local-m11`, run `check_refs`, and push `main`.
->     - Reproduce each finding at `93bcb66`, with the fuzz clone's `.work/main93b/.internal/quickemit/npkc` (the author's second clone, `REPOS/nitpick-fuzz`), and its `.npk` ones at the pin too. Its `.sh` claims take `NPKC` and `NPKRT` and write into the working directory, so run each in its own `$TMPDIR` scratch.
->   - **At the run's end:** relay every standing finding, F-033 onward, to `nitpick-compiler_31` in ONE message, and register them in `meta/OPEN_QUESTIONS.md`'s compiler registry under the next free number, as O-N35 was.
-> - **T2 Gemini, in Google Antigravity:**
-> 
->   - **History.** Its baseline came in at 12:11, and this seat reviewed it at 12:13 (`gemini-inbox/2026-10-02T1213-claude-review-and-next.md`), asking for four fixes (peak RSS reading 0 KB; `alloc_churn`'s C variants elided by LLVM; `fib`'s attribution measured; a stale count), a minimal reproduction of the verified-slower sieve under `tests/findings/`, and then Phase 2 in order.
->   - **Its second report is in and UNREAD at this handoff:** `META/NITPICK/messages/claude-inbox/2026-10-02T1245-gemini-sieve-finding-and-phase2.md`.
->   - **Review it as the 12:13 review did:** did the fixes land, are the sieve finding's IR and its stated cause sound, and do any bugs reproduce here before anything is relayed? Reply in `gemini-inbox/` by the convention: `YYYY-MM-DDTHHMM-claude-<subject>.md`, the answered file named on the first line.
->   - The shell may write `META/NITPICK/messages` and nothing else in `META/NITPICK`.
-> - **The compiler side** is paused until 2026-10-07 20:00; `nitpick-compiler_31` (Opus) logs what we send. The pin stays `5fbaf4a`, and the compiler's `main` is `93bcb66`. The re-pin waits for DEF-164 and DEF-165; put it to the author then. O-N34 is discharged at the re-pin that carries landing 93.
-> - **Questions for the author: none open.** 20, 21, 22 and 23 were answered as recommended on 2026-10-02.
+> **The state, as values.**
+> - **s2 `nitpick-time`:** cycle 0.2 closed (`d9575b9`, 133 units). **Next at the reset: cycle 0.3's planner, rehearsing `0.3.0.md`.** **PD-91 … PD-94 were ACCEPTED 2026-10-05 08:28** and become TM-246 … TM-249 in PD order (TM-245 is the top). **Its NOTES, ready on the s2 row:** the PDs accepted; question 21's answer A (keep `instant_of`), which closes Q-7; rehearse `0.3.0.md` as written; plus the standing dispatch lines.
+> - **s1 `nitpick-regex`:** cycle 0.1, 0.1.0 … 0.1.5 verified (`fd76c65`, 258/258); its audit filed (`meta/audits/nitpick-regex-0.1-2026-10-02.md`, ACCEPT once C1 is fixed). **Next, after time's planner: 0.1.6's close planner**, `AUDIT:` naming that report, C1 (the silent wrong answer in `regex_escape`) first. Its NOTES carry question 23's answer (`[\K]` keeps the unknown-escape sentence) and question 20 (d) (S-2's dated lookaround note at the next subcycle that touches `SAFETY.md`).
+> - **T1 `nitpick-fuzz`:** **M11 is COMPLETE**: all 14 references, 3 385 claims, merged at `d44dfe3`. F-033 … F-048 are relayed as **O-N36**. The next fuzz task is the author's to choose; `nitpick-fuzz_2` is open, and this seat has not briefed it.
+> - **T2 Gemini:** **PAUSED** until the next Gemini model, at the author's word; resume from `gemini-inbox/2026-10-05T0825-claude-state-at-the-pause.md`. Findings 01–04 are relayed (O-N36, O-N37). **Two Claude subagent rounds then characterized its open gaps:**
+>   - **O-N38:** a `&{ }` splicing LEAK, a compiler defect; error handling's gap is one `decreases` check that blocks inlining; strings' gap is the `-O0` runtime.
+>   - **O-N39:** binary-trees and the allocator's free path; compile speed; two stale reference sentences.
+>   - Their evidence is in `.internal/bench-2026-10-05/` (untracked).
+> - **The compiler side** is paused until the reset; `nitpick-compiler_31` (Opus) logs what we send. The pin is `5fbaf4a`, and the compiler's `main` is `93bcb66`. The re-pin waits for DEF-164 and DEF-165; put it to the author then. O-N34 is discharged at the re-pin that carries landing 93. **Relayed this tenure: O-N36 … O-N39.**
+> - **Questions for the author: none open.** 20–23 were answered; the frac `ToString` was ruled a wrong answer on 2026-10-02.
 >
-> **Owed, held for tokens unless a dispatch needs one:** eighty-two PLAYBOOK findings pending (`RECORD.md`, 2026-09-30 23:55 onward). `APPS.md`'s three positions on `SIGPIPE`, the ecosystem audit's EC1 (its `LIBRARIES.md` part is done), wait for `nitpick-posix`'s next dispatch. The author's calls: the 53 binaries tracked in `META/NITPICK/tests/.build`, and `perf` or the CPU governor if stabler timing is wanted. The rest of the earlier list stands as `5d74a3d`'s block gave it.
+> **Owed, held for tokens:**
+> - **The PLAYBOOK backlog is CLEAR:** all 82 findings were landed on 2026-10-05.
+> - **Still owed:**
+>   - the ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3 and EK1;
+>   - EC3's sentence in eight sites (tui 3, parse 3, sockets 2);
+>   - the shared CI shape's two findings, and EK2's Node-24 bump;
+>   - posix's `probe02g` header, and the `META` mirror of `.internal/`;
+>   - `APPS.md`'s three positions on `SIGPIPE`, with EC1, at `nitpick-posix`'s next dispatch.
+> - **The author's calls:** a `gh` upgrade (2.45.0); the sandbox's network allowlist; `perf` or the governor, for stabler timing.
+> - **⚠ `nitpick-regex/.internal/r3/` holds symlinks into `../nitpick` and this workbench.** Remove the links first, and never `rm -rf` a path ending in `nitpick/`.
 >
 > **Rules this tenure learned, as values.**
->
-> - The shell cannot write `~/.claude/projects` (the memory): use the Edit and Write tools, as the sandbox note says. A shell append was refused at 12:2x.
-> - Run `check_refs` after every commit that touches the record: an absolute path slipped in at 11:57 and was caught a commit late.
-> - A count is of a stated thing, so say which: `#wild_slice` is 9 sites in code but 14 lines naming the builtin.
-> - A deferral is carried by a dated pointer at each over-claiming sentence, not only by naming those sentences in the next plan.
-> - A library question id is cited here only through `meta/OPEN_QUESTIONS.md`'s second registry.
-> - A known finding handed to an auditor can be overturned by the auditor's own wider measurement: the verifier's loud `[:a:]` became the auditor's silent nested-class C1. So brief what is known, never what the auditor must conclude.
-> - The dispatch templates of this tenure are in `nitpick-libs_12`'s subagent transcripts, extracted with `jq` as `RECORD.md`'s 00:4x entry says.
+> - Take every time from `date` inside the command that writes it: this seat wrote three before reading the clock.
+> - A search for a quoted phrase must allow for the source's markup. This seat's first search missed real D-084 quotes because of their backticks.
+> - Gemini's messages are less accurate than its files: check every claim against the files, and re-measure before relaying.
+> - A Nitpick program's startup costs 8 instructions per environment byte: count under `env -i` with a fixed environment.
+> - An instruction to an agent can be the error: "build with `llc -O2`" measured codegen only. State the whole pipeline (`opt -O2`, then `llc -O2`).
+> - Brief a scratch-only agent not to run `git` in a library: its `git status` refreshed two libraries' index metadata.
+> - Give measurement work to subagents, so the seat's context stays small: two rounds cost 224 K and 241 K tokens, about one point of the week together.
 
 **The take hazards, continued.** *Hazards (1)–(5) and the head of (6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01, which moved the old line 14 there; (6)'s tail and (7)–(11) stayed here, and until 07:06 they rendered inside the handoff block for want of a blank line. (6)'s last sentence is repeated so that its tail reads whole:* **AND A DEPTH-BOUNDED `find` IS STILL A LISTING — JUST AN IMPLICIT ONE.
 Added 2026-09-06 14:10 by `nitpick-libs_s6`, which re-ran a sweep as a discovery after
