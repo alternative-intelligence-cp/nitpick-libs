@@ -9361,3 +9361,24 @@ Each is a rule in the handoff block, or the reason for one.
   - binary-trees (depth 16, or 18 if cheap) in Nitpick, C (`malloc`/`free`) and Rust (`Box`), with an arena variant of the Nitpick program if the natural tree uses one. It measures the allocator's share per allocation and per free against C's, the optimized-runtime control, and `NPK_HEAP_STATS` for leaks;
   - then compile speed: `npkc`'s median wall time and peak RSS on the libraries' roots, the largest compiler tests, and the compiler's own sources if they compile read-only.
 - **The same constraints as the first:** writing only in its scratch; caps on memory and time (up to 16 GB and 600 s for `npkc` on large sources); counts under `env -i`; language facts from the compiler's documents. **Not a clean stop while it runs.**
+
+### The second subagent's report: binary-trees and compile speed; two stale sentences checked; relayed as O-N39 — 2026-10-05 09:37 (shell time)
+
+- **report (the second general-purpose subagent, launched 09:09):** done in about 26 minutes, 90 tool uses, 240 615 tokens.
+- **Binary-trees, depth 16 (14 985 902 nodes; output byte-identical across gcc, clang, Rust and both Nitpick variants, with both runtimes):**
+  - **The instruction counts:**
+    - gcc 3 327 909 537 (0.32 s); clang 3 373 627 347; Rust 4 308 296 431 (it allocates its empty leaves through `calloc`);
+    - **Nitpick alloc/dalloc 14 499 678 447 (4.36×, 2.35 s), and 6 207 367 212 with an `opt -O2` runtime (1.87×)**;
+    - **Nitpick's real `arena<Node>`, 2 874 992 117 (0.86×), and 1 983 241 771 with an `-O2` runtime.**
+  - **Where it goes:** the allocator is 94.10 % of the instructions. A free costs 708.5 on the shipped runtime and 250.5 at `-O2`, against glibc's 105.1; an allocation 201.9 and 103.9, against 75.7.
+    - The free path, per free: the `0xAA` byte fill 181 ("an instrument that stays", by design); `npk_chtab_find`'s binary search 227.5; `npk_small_check` 87 plus 41 for the guards; `npk_lg_find` on every free 56; the mutex 19.
+    - The heap counters run without `NPK_HEAP_STATS` (1.75 %), and the mutex is taken in single-threaded programs (3.92 %).
+  - **The `-O0` runtime is 57.19 % of the total.** The shipped `npkrt.o` is byte for byte `llc -O0` of `runtime/npkrt.ll`.
+  - **No leak:** a scratch runtime given a `live_at_exit` field reports 0 in all four builds.
+- **Compile speed (`npkc` at `93bcb66`, the median of 5 runs, with load and memory read before each):** the compiler's own `src/npkc.npk` (89 files, 93 326 lines) takes 18.10 s at 173 620 KB peak, and its output is byte-identical to the shipped `npkc.ll`. `tests/backend/ir_stmt.npk` (68 217 lines) takes 13.61 s; `nitpick-time`'s lib 0.33 s, and with `--obligations` 4.22 s, 12.8× and all CPU.
+- **Checked here before relaying, against the tree:**
+  - **MEMORY_REFERENCE:370–371** says the heap is single-threaded and that the lock "lands with 1.1's executor work". It has landed: `npk_dalloc` and `npk_alloc_impl` each call `npk_mx_lock`/`npk_mx_unlock` on `@npk_heap_mx`;
+  - **TYPE_REFERENCE:1583** gives `%Arena = type { ptr, i64, i64 }`, while the emitted `npk_arena_make` returns `{ ptr, ptr, i64, i64, i64 }`. Gemini's `14_arena_alloc` follows the old text, so it is not the language's arena;
+  - **the library trees after the agent's `git status`:** `nitpick-regex` `fd76c65` and `nitpick-time` `d9575b9` are clean, and all 9 trees are clean and `0/0`. **Only their index metadata was refreshed**, which the agent reported itself: a scratch-only brief's `git status` is still a write to a library's `.git`.
+- **Relayed to `nitpick-compiler_31` at 09:37, registered as O-N39.** Its sources, scripts and logs are kept in `.internal/bench-2026-10-05/bench2/` (47 files, 212 KB).
+- **Clean stop again:** no agent is live.

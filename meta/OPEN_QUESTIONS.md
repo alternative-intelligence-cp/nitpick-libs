@@ -281,6 +281,20 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N39 — TWO STALE MEMORY/TYPE SENTENCES; THE ALLOCATOR'S FREE PATH UNDER STRESS; `npkc`'s COMPILE SPEED.** Found 2026-10-05 by a
+  second Claude subagent (binary-trees in Nitpick, C and Rust; compile speed). **The two documentation rows are checked by the orchestrator
+  against the tree at `93bcb66`**; the measurements are the agent's, with checksums byte-identical across five builds. **Sent to
+  `nitpick-compiler_31` at 09:37.** No defect; no library blocked. Evidence: `.internal/bench-2026-10-05/bench2/` (untracked).
+  - **MEMORY_REFERENCE:370–371** says the heap is single-threaded and "the lock discipline lands with 1.1's executor work"; it has
+    landed: `npk_dalloc` and `npk_alloc_impl` each take `@npk_heap_mx`.
+  - **TYPE_REFERENCE:1583 (§12.2)** gives `%Arena = type { ptr, i64, i64 }`; the compiler emits `npk_arena_make` returning
+    `{ ptr, ptr, i64, i64, i64 }` (BUILTIN_REFERENCE's `arena_make` row is right).
+  - **binary-trees, depth 16:** alloc/dalloc 14 499 678 447 instructions, 4.36× gcc; 6 207 367 212 with an `opt -O2` runtime (the `-O0`
+    runtime is 57 %); the allocator is 94 %; a free costs 708.5 instructions shipped and 250.5 at `-O2`, against glibc's 105.1 (the
+    0xAA byte fill 181, the chunk-table search 227.5, checks 128, `npk_lg_find` 56, the mutex 19); the heap counters and the mutex
+    run in single-threaded programs. The arena version runs 0.86× gcc's instructions. No leak.
+  - **Compile speed:** `npkc` compiles its own 93 326 lines in 18.10 s at 173 620 KB peak, byte-identical to the shipped `npkc.ll`;
+    `--obligations` costs 12.8× a plain compile, all CPU.
 - **O-N38 — `&{ }` TEMPLATE SPLICING LEAKS ITS `to_string` TEMPORARY; A `decreases` CHECK PUSHES A SMALL FUNCTION PAST THE INLINE
   THRESHOLD; THE `-O0` RUNTIME DOMINATES STRING WORK.** Found 2026-10-05 by a Claude subagent characterizing two of Gemini's
   benchmark gaps (`12_error_handling`, `13_strings`). **Reproduced by the orchestrator:** the leak at `93bcb66` and the pin `5fbaf4a`;
