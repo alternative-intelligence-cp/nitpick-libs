@@ -281,6 +281,21 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N38 — `&{ }` TEMPLATE SPLICING LEAKS ITS `to_string` TEMPORARY; A `decreases` CHECK PUSHES A SMALL FUNCTION PAST THE INLINE
+  THRESHOLD; THE `-O0` RUNTIME DOMINATES STRING WORK.** Found 2026-10-05 by a Claude subagent characterizing two of Gemini's
+  benchmark gaps (`12_error_handling`, `13_strings`). **Reproduced by the orchestrator:** the leak at `93bcb66` and the pin `5fbaf4a`;
+  the inlining mechanism at `93bcb66`. Evidence: the workbench's `.internal/bench-2026-10-05/` (untracked). **Sent to
+  `nitpick-compiler_31` at 09:03.** No library is blocked: no library code uses `&{ }` (one comment in `nitpick-regex`'s
+  `src/core/bytes.npk` says it is avoided on purpose).
+  - **The leak (a compiler defect):** `` string:s = `n&{i}`; `` run 1000 times prints `heap: allocated=27890 peak_live=24004
+    count=2000` under `NPK_HEAP_STATS=1`, and exits 0. The explicit `string_concat("n", int_to_string(i))` prints `peak_live=28`.
+    `npk_int_to_string` returns an owning string and `npk_string_concat` frees neither operand: one 24-byte block per evaluation,
+    never reported.
+  - **The `decreases` check:** in `12_error_handling`, `parse_int`'s `decreases s.len - i` survives `-O2` and raises its inline
+    cost from 105 to 305 (threshold 225): 964 019 277 instructions against 204 019 261 with `unbounded`. It is 84.5 % of the gap
+    to C, and it is why the verified build (z3 discharges the check) runs 4.7× fewer. Finding 04's shape, in another construct.
+  - **The runtime:** in `13_strings`, the `-O0` runtime is 86 % of the gap to C (the subagent's measurement); an `opt -O2` runtime
+    takes the benchmark from 1 716 451 370 to 750 369 799 instructions.
 - **O-N37 — GEMINI'S FINDING 04: OVERFLOW CHECKS AND THE `{ T, i32 }` ENVELOPE TOGETHER DEFEAT INLINING OF A SMALL STRUCT FUNCTION.**
   An optimization finding: the answer is right. **Reproduced by the orchestrator 2026-10-05** at `93bcb66`. In `10_particles`, `update` (`never fails`,
   three checked `int64` adds building and returning a 48-byte struct) gets `opt -O2` inline cost 240 against the threshold of 225, so it is not

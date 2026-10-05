@@ -9334,3 +9334,22 @@ Each is a rule in the handoff block, or the reason for one.
     - language facts from the compiler's documents at `93bcb66`;
     - about 40 minutes; measured kept apart from inferred.
 - **Not a clean stop while it runs.** Its report is reviewed and spot-checked here before anything is relayed.
+
+### The subagent's report: a template-splicing leak (a compiler defect), the error-handling gap explained, the strings gap explained; relayed as O-N38 — 2026-10-05 09:03 (shell time)
+
+- **report (the general-purpose subagent, launched 08:44):** done in about 17 minutes, 78 tool uses, 224 021 tokens. It wrote only in its scratch. **The week stayed at 92 %.**
+- **`12_error_handling`, measured by the agent:**
+  - **84.5 % of the gap to C is the one `decreases s.len - i` clause in `parse_int`.** Its trap path survives `-O2` (5 instructions an iteration) and lifts the function's inline cost from 105 to 305 against 225, so it is not inlined. Of that share, 16.0 % is the check executing, 23.1 % is inlining itself, and 45.4 % is folding of the literal inputs that inlining enables, a benchmark artifact. With opaque inputs, Nitpick runs 1.88× C, and 1.19× without the check.
+  - The verified build's 4.7× is the same mechanism.
+  - The rest: `npk_chain_reset` at `fail` sites, 6.7 %; the `-O0` runtime, 2.7 %; a counter loop C vectorizes and Nitpick does not, 6.1 % (Nitpick's IR has no `target-cpu` or `target-features` attributes; their part is not established).
+- **`13_strings`, measured by the agent:**
+  - the `-O0` runtime is 86.0 % of the gap to C and 98.0 % of the gap to Rust. With an `opt -O2` runtime, it is +2.6 % over Rust as written, or +18.9 % in a leak-free equivalent;
+  - the C row makes no heap allocations (clang deleted them), so Rust is the fair comparison;
+  - inferred: about 103 instructions an allocation and about 185 a free (chunk-table validation and the poison loop), against glibc's 45 and 85.
+- **A compiler defect, found by the agent: `&{ }` template splicing leaks its `to_string` temporary.** One 24-byte block per evaluation, never freed and never reported. The benchmark's `peak_live` is 24 004 157 bytes, against 4 157 for the explicit form.
+- **Reproduced here:**
+  - **the leak**: `tleak` prints `peak_live=24004` and `tleak_x` `peak_live=28`, at `93bcb66` and at the pin, both exiting 0;
+  - **the inlining mechanism**: the baseline runs 964 019 277 instructions with "not inlined … cost=305", and the `unbounded` copy 204 019 261 with "inlined … cost=105" (the agent: 964 019 333 and 204 019 349);
+  - **exposure**: no library code uses `&{ }`; the one mention, in `nitpick-regex`'s `src/core/bytes.npk`, is a comment saying interpolation is avoided on purpose.
+- **Relayed to `nitpick-compiler_31` at 09:03, registered as O-N38.** The agent's sources, scripts and remarks are kept in `.internal/bench-2026-10-05/` (21 files, 136 KB, untracked); its scratch in `$TMPDIR` would not survive a restart.
+- **The workbench is at a clean stop again:** no agent is live.
