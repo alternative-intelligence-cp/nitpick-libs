@@ -9264,3 +9264,18 @@ Each is a rule in the handoff block, or the reason for one.
   - **§12's `TMPDIR` bullet is retired with a dated note:** its cause, D-236's manifest root, was found at regex 0.1.2.
   - **Already held:** "future decision numbers in a plan's prose fail `check_refs`" is §12's existing bullet.
 - **Pending now: sixty-six** (from `RECORD.md` 2026-10-01 06:27 onward).
+
+### PLAYBOOK: the next fifteen pending findings landed; a stale `grep` fact corrected by measurement — 2026-10-05 08:33 (shell time)
+
+- **Batch two:** the pending findings recorded from 2026-10-01 06:27 to the sandbox trial's `gh` finding, numbered seventeen to thirty-one by the record's running count. They come from `nitpick-time` 0.2.1's plan and work, `nitpick-regex` 0.1.3's plan (nine), and the trial.
+- **Landed, in `PLAYBOOK.md`:**
+  - **§2:** `if (a.is_error || b.is_error)` clears neither taint, and `raw` on a fallible callee is `TYPE-042`.
+  - **§6:**
+    - **the `grep` bullet (line 978) corrected by a dated note, measured now:** in the Bash tool `grep` is a shell function running ugrep, and `/usr/bin/grep` is GNU grep 3.11. The bullet had said `/usr/bin/grep` was ugrep;
+    - the `gh --log` lesson was already held, so only its general rule was added (a tool that turns "nothing parsed" into an empty success is a silent wrong answer);
+    - `pkill -f` and `pgrep -f` match themselves, so stop jobs by PID.
+  - **§7:** run `check_refs` after every prose edit.
+  - **§9:** a check after a refusing operation never fires on that mutant; an unreachable exit gets a test-side control or a guard label; a mutant outside its case is information; case numbers stay below the `failsafe`'s 91.
+  - **§11:** a borrowed rule is the tool's only once its source is read; "engines differ" owes the comparison.
+  - **§12:** keep decision numbers out of quoted code; read new text against the glossary's "not used" table; a recommendation's reason is a premise to measure; a claimed struck step is checked against the patches.
+- **Pending now: fifty-one** (from `RECORD.md` after the sandbox trial's entry). `check_refs` is clean but for the record's four older leaks.

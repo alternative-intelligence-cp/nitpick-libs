@@ -266,6 +266,9 @@ Reported on 2026-09-25 and confirmed as **DEF-96**: from 1.6.0 step 3c — lande
 so an old-pin control stays byte-identical. The ecosystem's exposure was seven files and
 is zero.
 
+**`if (a.is_error || b.is_error)` clears neither `Result`'s taint** (`NITPICK-TAINT-001` on the read below it), and `raw` on a
+fallible callee is `NITPICK-TYPE-042`: test each `Result` alone. *(`nitpick-time` 0.2.1's plan, 2026-10-01; landed 2026-10-05.)*
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may
@@ -984,6 +987,9 @@ across the tree: `grep -rl --include='*.npk' .` from the root → **0**;
   **And given several files it prints in COMPLETION order**, not argument order —
   per-file counts and `grep -h` lines alike — so compare such output as a set, and
   read per file whenever the file matters (measured twice, 2026-09-25).
+  *(Corrected 2026-10-05, measured: in the Bash tool, `grep` is now a shell FUNCTION that runs ugrep, and `/usr/bin/grep`
+  is GNU grep 3.11. So the ugrep behaviour above belongs to plain `grep`, and `/usr/bin/grep` is the GNU instrument; name it
+  when GNU behaviour is the claim. Found by `nitpick-regex` 0.1.3's planner, 2026-10-01.)*
 - **`git grep` from the root cannot see a library either**, for an unrelated
   reason: each library is a *separate checkout*, so none of its files are in
   this repository's index.
@@ -1084,7 +1090,8 @@ row naming the new decision and then the old one in the passive reads as the new
 *"it supersedes <old>"*. **And a checked tag guards only itself:** `check_denominators` passed a harness whose prose said
 33 beside its tag of 34, because the tag is checked and the untagged number beside it is not. **`gh run view --log` and `--log-failed` can print
 nothing and exit 0 for a run whose log exists** — measured twice on 2026-09-25 — so read a run's log through
-`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log. **A lexical "literal divisor" rule must require the literal
+`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log. **The general rule:** a tool that turns "nothing parsed" into an empty success is a silent wrong answer, and a cache can
+hide it for hours (re-found 2026-10-01 by the sandbox trial; landed 2026-10-05). **A lexical "literal divisor" rule must require the literal
 to stand ALONE:** one that allows an optional `(` and ends at `\b` admits `/ (400i64 + m)` and `/ 256i64 =>! uint8` —
 which is 0 — so nothing that binds tighter than `/` may follow it (the compiler's `OP_REFERENCE` §0). **And a helper's
 docstring is a claim to measure:** `nitpick-time`'s `code_lines` never blanked string bodies, though a retired check's
@@ -1113,6 +1120,9 @@ plan that quotes tool output must mask whole sweep tags there. **And `check_spec
 run — yet its expected lines still belong in a plan's expected output, or a careful executor stops on *"unresolved"*.
 
 **What running a plan's tools taught — `nitpick-regex` 0.0.4e's rehearsals and its sixth W-22 audit, 2026-09-26.** **Importing a workbench script is a write:** `importlib` on `check_record.py` left `skills/check/scripts/__pycache__/` in the WORKBENCH, a W-16 breach from a library worker. Run a workbench tool as a program or under `python3 -B`, and read `git -C "$WB" status --short` before reporting. **`check_record` accepts a title's `— PLANNED` only without a date.** **`check_refs` reads a closing square bracket followed at once by an opening parenthesis as a link** — a slice-returning signature before its parameter list, even in a fence or a comment — so spell the type apart. **An edit engine's hand-amendment check must compare whole lines:** a new line that is a PREFIX of an old one matched, and the engine STOPPED on its own first edit. **A scratch commit made partway through a rehearsal sweeps the blocks' staged `git mv`s into it and falsifies the tally** — measure tallies in a clean clone. **This environment's safety check refuses `rm -rf "$A/x"`**, so every removal in a plan names `${VAR:?}`. **And a move with heavy edits needs a stated rename threshold:** of the nine `git mv`s in `06d5c00`, git's default similarity (`-M50%`) finds 1, and it takes `-M25%` to find all nine. A record that counts renames says which threshold it counted at — or moves in one commit and rewrites in the next, so git follows every move at its default. **And from `nitpick-time` 0.1.4c's planning, the same morning:** a script that tells an old pin from a new one by comparing against ONE pin's name goes wrong at the next pin — `0.1.4.md` §3's `importscope.py` (`pin == "c3bdae2"`) would strip the new arms at `c970483`; compare against an ordered list of pins. **A re-pin's sweep includes the programs no harness stage runs** (`nitpick-time`'s tzdb spike). **A number printed zero-padded in decimal where a tool conventionally prints hex** (the spike's `nm` sizes) reads wrong in base 16 — print the radix. **`nitpick-time`'s `check_specs_current` reads fenced text**, unlike `check_refs`, so a plan quoting a sweep that prints a new TM number cites it: mask new decision numbers in quoted output.
+
+- **`pkill -f` and `pgrep -f` match their own command line.** A pattern that names the job also names the killer, so
+  stop jobs by PID. *(`nitpick-regex` 0.1.3's plan, 2026-10-01; landed 2026-10-05.)*
 
 ## 7. Repository conventions
 
@@ -1244,6 +1254,9 @@ per-repository numbers collide.
   over the empty plan.
 - **Proofread every added patch line.** `=NIL(` passed the compiler, the harness and a masked IR comparison; only reading
   caught it.
+- **Run `check_refs` after every prose edit**, and after every commit that touches `BOARD.md` or `RECORD.md`: an absolute
+  path and a registry number cited before it existed each slipped in and were caught a commit late. *(`nitpick-regex`
+  0.1.3's plan, 2026-10-01, and two seats since; landed 2026-10-05.)*
 
 ---
 
@@ -1370,6 +1383,15 @@ repositories reads one thing.
 - **Scratch can run every leg without symlinks.** Copy what a leg needs; a symlink into a library or this workbench is a
   hazard to remove later (a recursive delete follows it), never a necessity. *(`nitpick-time` 0.2.0's plan, 2026-09-30;
   landed 2026-10-05.)*
+- **A check placed after an operation that refuses its mutant's effect never fires on that mutant.** Measure which exit each
+  mutant reaches, and order the assertions so every line has one. *(`nitpick-time` 0.2.1's plan, 2026-10-01; landed
+  2026-10-05.)*
+- **An exit no library mutant can reach gets a test-side control**, an edit of the test itself, **or is labelled a guard** —
+  never claimed seen red. *(The same plan.)*
+- **A mutant that lands outside its case is information**, not noise: it says what else the change reaches. *(`nitpick-regex`
+  0.1.3's plan, 2026-10-01; landed 2026-10-05.)*
+- **A unit's case numbers stay below its `failsafe`'s exit codes (91 and up)**, so a case's own exit can never be read as a
+  trap's. *(The same plan.)*
 
 ---
 
@@ -1424,6 +1446,10 @@ existed — and their **dependency choices are not precedent**: most of them
 reach C through an FFI that no longer exists, and several carry defects
 recorded in the compiler's own audits. Read them for the domain; write the
 design fresh.
+
+**Landed 2026-10-05 (`nitpick-regex` 0.1.3's plan, 2026-10-01):** **a rule borrowed from another tool is that tool's only
+once its source is read**, not its documentation's summary; and **a specification rule that says engines differ owes the
+comparison**, measured, engine by engine.
 
 ---
 
@@ -1760,3 +1786,14 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   comment markers, and match case-insensitively.
 - **A gate written as a depth is a statement about one machine's stack and one optimiser's frame.** Measure where a recursion
   of the real shape traps before choosing the depth, and state the measurement beside the gate.
+- **Keep decision numbers out of quoted code, too.** A code comment that a plan quotes in a fence carries its future decision
+  number into the plan's markdown, where `check_refs` reads it as cited and undefined. *(`nitpick-time` 0.2.1's plan,
+  2026-10-01; landed 2026-10-05.)*
+- **Read a plan's new text against the glossary's "not used" table before applying it.** An omission sweep reads for stale
+  FACTS and cannot see a WORD that a repository's glossary excludes: 0.2.1's plan, rehearsed three times, called a
+  `Timestamp` "a wall-clock reading" in two probe headers and a decision, words `GLOSSARY.md` lists as deliberately not used.
+  *(2026-10-01 08:38; landed 2026-10-05.)*
+- **A recommendation's stated reason is a premise to measure**, like any other. *(`nitpick-regex` 0.1.3's plan, 2026-10-01;
+  landed 2026-10-05.)*
+- **A plan's claim that it strikes a step is checked against the patches**, which are what the worker applies. *(The same
+  plan.)*
