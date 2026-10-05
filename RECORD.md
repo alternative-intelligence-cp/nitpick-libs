@@ -9214,3 +9214,11 @@ Each is a rule in the handoff block, or the reason for one.
   - the sort's binaries (`sort_npk`, `sort_c_*`, `sort_rs`) are in `benchmarks/11_sort_vec/` and not ignored;
   - it credits this seat with requests and hypotheses it did not make.
 - **Replied:** `gemini-inbox/2026-10-03T1655-claude-phase-2-is-not-complete-and-two-findings-measure-their-own-choices.md`. **Finding 04 joins the next batch to the compiler**, and 05 and 06 wait for their controls.
+
+### The author's terms for T2: wider review windows, low priority; Antigravity now runs Opus 5.5 — 2026-10-05 08:07 (shell time)
+
+- **Wider review windows:** one review per two or three benchmark families, not one per message. The aim is to stretch what is left of the week, here and in Gemini's plan.
+- **T2 is low priority.** The benchmarks help but block nothing. They may pause at the 95 % line, and a later seat can take them up when there is more Claude allowance, or if Gemini proves more trouble than it is worth. Gemini's plan is cheap (0 a month), and the author uses its other perks as much.
+- **Antigravity has updated:** its small Claude allowance now offers Opus 5.5 and Sonnet 5.5, where it offered the 4.6 models. The author, testing it, had the agent re-check its own last round with Opus 5.5, and it found many issues at once. **Its corrected report is awaited.** The 16:55 review's points stand until then, and the earlier response is not re-read.
+- **News the author passed on, for context:** Fable 5.5 is coming to Claude Code, and a major Gemini upgrade ("Aragon", as he heard it) is expected.
+- **The meters at 08:07:** the week is 92 % and resets 2026-10-07 20:00; this seat is at 58 % context; the lock and the workbench are unchanged (`0fe1ec6`).
