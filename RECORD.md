@@ -9253,3 +9253,14 @@ Each is a rule in the handoff block, or the reason for one.
   - **PD-93:** the four clocks as H-1 names them, with every reading checked and none trapped (H-7, S-12). The syscall numbers 228 and 229 and the clock ids 0, 1 and 7 are private, each with its source. **`HostClock` is not new API:** H-1's own signature, `host_clock_res = Duration(HostClock:which)`, names it and no specification declares it. `InstantClock` must not gain a realtime variant, because that is M-3's hazard. H-1, H-4 and S-8 are dated.
   - **PD-94:** `tests/unit/host_clocks.npk`, at `// stress: 40`. Each reading is asserted where a test can see it; "it advances within a million reads" makes H-3's "two calls are two syscalls" observable. Each assertion is red on its mutant, and the four mutants no test can see are named in the header and in a dated H-3 note.
 - **The planner's NOTES at the reset, as values:** PD-91 … PD-94 accepted, to become TM-246 … TM-249 in PD order, after re-reading the top TM number; question 21's answer A, keep `instant_of`, which closes Q-7 in the repository; rehearse `0.3.0.md` as written. Add the standing dispatch lines (SessionStart, earlyoom, the sandbox with its process rule, the CI-log line), which are in `nitpick-libs_12`'s subagent transcripts as this record's 00:4x entry says.
+
+### PLAYBOOK: the first sixteen of the eighty-two pending findings landed — 2026-10-05 08:31 (shell time)
+
+- **The oldest batch:** the pending findings recorded from 2026-09-30 23:55 to 2026-10-01 06:14, sixteen by the record's running count, from `nitpick-time` 0.2.0, 0.2.0b and 0.2.0, and `nitpick-regex` 0.1.2's plan and work. **Several were the same lesson reported twice; each is landed once.**
+- **Landed, in `PLAYBOOK.md`:**
+  - **§7** (four): read a decision log's highest number by number; a before/after helper lists `HEAD`'s tree, not the index; a check that reads plan fences also reads filled `Expect`s; proofread every added patch line (`=NIL(`).
+  - **§9** (three): a payload-free enum's vacant value is its first variant, under the existing vacant-value bullet; a harness step that copies a tree copies its manifest (D-236); scratch can run every leg without symlinks.
+  - **§12** (five): rehearse a later plan over a simulated record commit; a rehearsal proves the commands, not the prose; a stale-claim sweep's positive control is the step's own hunks; sweep a set's statements over joined text; a gate written as a depth needs a measurement.
+  - **§12's `TMPDIR` bullet is retired with a dated note:** its cause, D-236's manifest root, was found at regex 0.1.2.
+  - **Already held:** "future decision numbers in a plan's prose fail `check_refs`" is §12's existing bullet.
+- **Pending now: sixty-six** (from `RECORD.md` 2026-10-01 06:27 onward).

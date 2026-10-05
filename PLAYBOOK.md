@@ -1233,6 +1233,18 @@ was reached. An `O-N` id used outside its repository is the workbench
 registry's id (`meta/OPEN_QUESTIONS.md` §"For the compiler"), because the
 per-repository numbers collide.
 
+**Landed 2026-10-05 from the record (`nitpick-time` 0.2.0's plan, 2026-09-30 23:55):**
+
+- **Read a decision log's highest number by number, not by its last heading.** A log is not always appended in order.
+  The read is `grep -o '^### TM-[0-9]*' meta/DECISIONS.md | sort -t- -k2 -n | tail -1`, and a plan names the command, not
+  the number it saw.
+- **A before/after helper lists `HEAD`'s tree, not the index.** Take its "after" once the change is committed: read before
+  that, it compares the old tree with itself.
+- **A check that reads a plan's fences also reads its filled `Expect`s.** Confirm it once with them committed, not only
+  over the empty plan.
+- **Proofread every added patch line.** `=NIL(` passed the compiler, the harness and a masked IR comparison; only reading
+  caught it.
+
 ---
 
 ## 8. The cycle map
@@ -1338,6 +1350,10 @@ repositories reads one thing.
 - **A positive test whose expected value equals the vacant value tests nothing.** After one insert `sparse[3]` is 0 —
   which `calloc` also wrote. Choose inputs whose correct answer the untouched state cannot produce, and show a copy of the
   test expecting the vacant value FAILS.
+  - **A payload-free enum's vacant value is its FIRST variant (tag 0).** So a read-back field asserted equal to the first
+    variant cannot tell the value from vacant storage. `nitpick-time` 0.2.0's unit checked a second `Vec` read only through
+    `clock == Monotonic`, and a vacant read passed it, measured. Assert a field whose expected value is not zero, or build
+    the value with a later variant. *(2026-10-01 03:13; landed 2026-10-05.)*
 - **Read `Result.value` only after testing `is_error`** (`NITPICK-TAINT-001` refuses it otherwise), so a refusal exits
   with the test's own code rather than an anonymous identity arm, and mutation results stay readable.
 - **A tool's wrapper can launder a kill into a verdict.** The compiler seat's `clam.py` maps a child's SIGTERM or
@@ -1347,6 +1363,13 @@ repositories reads one thing.
 - **A sweep for a rule's exposure must cover every place the rule's predicate reads, not the shape its defect was found in.** The O-N22 sweep checked lent bare-`T` PARAMETERS and reported no exposure. DEF-104's gate also reads `T` PLACES read out of a lent or pointed-to container, and an unchanged `nitpick-regex` went RED 78/223 at the pin that carried it. Read the fix's predicate, then sweep for everything it reads.
 - **Striking a discharged defect's question does not retire the rule it justified.** `nitpick-regex`'s O-N13 was struck at its fifth triage, and seven live sites — a specification rule, a harness message, `CLAUDE.md` — still gave it as the reason for B-15a's rule 2. When a defect is discharged, sweep for the sites that cite it as a REASON, not only its own entry.
 - **One new test file can move a run's total by two**: its suite judges it, and a parse sweep that compiles every `.npk` as a root counts it again — 218 became 220, and *"219"* was written three times before the run said otherwise. Predict a total from the harness's stages, not from the file count.
+- **A harness step that copies a tree copies its manifest.** The compiler records source paths relative to the manifest
+  root, in diagnostics and the site table alike (D-236), so a copy without its manifest emits different paths depending on
+  where it sits, and a reproducibility check reddens on an unchanged tree. Found at `nitpick-regex` 0.1.2 (2026-10-01), the
+  cause of §12's old `TMPDIR` bullet. *(Landed 2026-10-05.)*
+- **Scratch can run every leg without symlinks.** Copy what a leg needs; a symlink into a library or this workbench is a
+  hazard to remove later (a recursive delete follows it), never a necessity. *(`nitpick-time` 0.2.0's plan, 2026-09-30;
+  landed 2026-10-05.)*
 
 ---
 
@@ -1715,3 +1738,25 @@ and *"a sweep's recorded counts must come from the command the record prints."*
 - **Leave `TMPDIR` at its default when running regex's harness.** Set inside the repository, it reddens the harness's
   reproducibility check on an unchanged tree. The cause is not established; a session that keeps its scratch inside
   its write boundary will meet it, and regex's next planner owes the investigation.
+  *(Retired 2026-10-05: the cause was found at `nitpick-regex` 0.1.2, 2026-10-01. The compiler records source paths relative to
+  the manifest root (D-236), and the harness copied a tree without its manifest. The rule is §9's "a harness step that copies a
+  tree copies its manifest"; regex's harness was fixed at 0.1.2, and `TMPDIR` may be set.)*
+
+**Landed 2026-10-05 from the record (`nitpick-time` 0.2.0 and 0.2.0b, `nitpick-regex` 0.1.2; 2026-09-30 → 2026-10-01):**
+
+- **Rehearse a later plan over a simulated record commit of the subcycle before it.** A plan cut while its predecessor is
+  unfinished assumes that predecessor's record. Rehearsing it over a simulated record commit is what proves its patches
+  apply to the tree they will meet.
+- **A rehearsal proves the commands, not the prose.** Read each decision's text against the measurements it cites; a block
+  can pass while the sentence beside it states something it never measured.
+- **A stale-claim sweep's patterns get a positive control: the step's own hunks.** Run the patterns over the PARENT side of
+  each patch, and require every hunk's old text to match, or name the kind of sentence the sweep cannot see. At
+  `nitpick-time` 0.2.0b the rehearsed block (six case-sensitive patterns) found the old text of 19 of the patches' 45 hunks.
+  Eleven sentences the decision had made stale were found only by the planner's reading, and a twelfth only by the worker's
+  case-insensitive second sweep (22 phrasings, 390 lines).
+- **Sweep a set's statements over joined text.** A line-based omission sweep cannot see a count whose words a line break
+  splits or another word separates. `nitpick-time` 0.2.0's rehearsed block passed eight such stale statements, and
+  `nitpick-regex` 0.1.2's block, over joined text, found five matches that `git grep` did not. Join the text, strip the
+  comment markers, and match case-insensitively.
+- **A gate written as a depth is a statement about one machine's stack and one optimiser's frame.** Measure where a recursion
+  of the real shape traps before choosing the depth, and state the measurement beside the gate.
