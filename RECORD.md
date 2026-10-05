@@ -9309,3 +9309,14 @@ Each is a rule in the handoff block, or the reason for one.
   - **§12 (fourteen):** a model document's list is a premise; a word-count beside its enumeration; decision-number shapes that trip `check_refs`; mask a citation count; stage `archive.py`'s move; an annotated correction's twins; sweep for what a widened check could not see; emphasis in joined text; `@@DATE@@` index hashes; re-cut only the amended section; date a run once; a whole-file step undoes an edit; an error sentence's claims need research; name every bound with a value.
   - **Already held:** `where` as a reserved word is in §10's list.
 - **Pending now: seven** (`RECORD.md` after 0.2.4b's entry).
+
+### PLAYBOOK: the last seven pending findings landed — none pending now — 2026-10-05 08:36 (shell time)
+
+- **Batch five:** the seven findings from `nitpick-time` cycle 0.2's close and its verification, and `nitpick-regex` 0.1.5's worker (2026-10-02), numbered seventy-six to eighty-two.
+- **Landed, in `PLAYBOOK.md`:**
+  - **§6:** a scratch tool's absence is a claim to check;
+  - **§7:** push each commit as it is made, since CI runs on a push's head commit only;
+  - **§9:** a check by type name misses a wide literal; PD-91, accepted today, closes it at cycle 0.3.0;
+  - **§12:** carry a deferral by a dated pointer at each over-claiming sentence; a sweep in a clone measures that tree; amending a rehearsed patch chain is mechanical.
+- **The PLAYBOOK backlog is clear: all eighty-two findings recorded from 2026-09-30 23:55 to 2026-10-02 are landed, or found already held.** Every duplicate is landed once, and each bullet names its source and the landing date. Later findings: none recorded since.
+- **The cost:** five batches in about an hour; the week stayed at 92 % throughout; this seat went from 64 % to 69 % context.

@@ -1148,6 +1148,8 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   with a file tool. *(`nitpick-time` 0.2.4's plan, 2026-10-02; landed 2026-10-05.)*
 - **A fence found by `text.index("### 4.2 ")` can match the plan's own block code.** Anchor at a line start.
   *(`nitpick-time` 0.2.3's plan; landed 2026-10-05.)*
+- **A scratch tool's absence is a claim to check where its maker kept it**, not a fact. *(`nitpick-regex` 0.1.5, 2026-10-02;
+  landed 2026-10-05.)*
 
 ## 7. Repository conventions
 
@@ -1287,6 +1289,9 @@ per-repository numbers collide.
   landed 2026-10-05.)*
 - **`check_record` reads the committed record**, so run it after the commit: a staged record is a dirty tree to it.
   *(`nitpick-time` 0.2.4's plan, 2026-10-02; landed 2026-10-05.)*
+- **Push each commit as it is made.** GitHub's push trigger runs on a push's HEAD commit only, so a commit pushed beneath
+  another has no CI run of its own: cycle 0.1's move, `96aac77`, had none. *(`nitpick-time` cycle 0.2's close, 2026-10-02;
+  landed 2026-10-05.)*
 
 ---
 
@@ -1440,6 +1445,10 @@ repositories reads one thing.
   result. *(`nitpick-time` 0.2.4's plan; landed 2026-10-05.)*
 - **A check whose exemption is tied to the repository's own tree reports the exempt item over a copy.** Measure a copy
   with the copy's own harness. *(The same plan.)*
+- **A check that finds a wide intermediate by its type's name misses a wide literal.** `(3i256 * 5i256) =>! int64` narrows a
+  constant to its low 64 bits in silence and passes, while the compiler refuses a narrower operand beside a wide literal
+  (`NITPICK-TYPE-007`); so a computation of literals alone is the whole gap. `nitpick-time`'s PD-91, accepted 2026-10-05,
+  closes it at cycle 0.3.0 by reading a literal's width suffix. *(Cycle 0.2's close, 2026-10-02; landed 2026-10-05.)*
 
 ---
 
@@ -1889,3 +1898,11 @@ and *"a sweep's recorded counts must come from the command the record prints."*
 - **A claim inside an error sentence is a claim about the world, and needs research.** Holding a sentence "to the letter"
   holds its claims too.
 - **A finding keyed by a value must name every bound with that value** (`NTIME_YEAR_MIN` and `NTIME_YEAR_MAX` share 9999).
+- **Carry a deferral by a dated pointer at each sentence that over-claims until its fix lands**, not only by naming those
+  sentences in the next plan: named only there, they stay live where a reader meets them. *(`nitpick-time` cycle 0.2's close
+  and its verification, 2026-10-02; landed 2026-10-05.)*
+- **A sweep measured in a clone before the commit is a measurement of that tree**, not of the one the commit makes. *(The same
+  close.)*
+- **An amendment to a rehearsed patch chain is mechanical and checkable.** Replay it raw; re-cut, requiring byte-identity;
+  amend one step; and cherry-pick the later ones, so that a conflict marks exactly the hunk to re-cut. *(`nitpick-regex`
+  0.1.5, 2026-10-02; landed 2026-10-05.)*
