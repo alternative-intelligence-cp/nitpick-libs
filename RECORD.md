@@ -9582,3 +9582,7 @@ Before committing notice 94, `check_refs` gave **7 findings**, none of them caug
   - `s1-nregex-0.1.6-verify` (`npk:verifier`, `sonnet`) on the three plans;
   - **`s2-ntime-0.3.1-0330`** (`npk:planner`, `opus`) for `nitpick-time` 0.3.1, `check_purity` goes live, P-12's one planner, from no file, with O-X11 to decide and O-X9 handed on.
   The week was at 15 % and the five-hour window at 2 %, after its 02:50 reset; 127 GiB available.
+
+### Advance notice for landing 96 filed — DEF-229 (our F-041); D-349 moves the LLVM pin to 20.1.8; `INSTALL.md` lands — 2026-10-08 03:39 (shell time)
+
+From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self-growing generic call, and an emitter refusal past a nesting of 64 for an indirect cycle. Our `h1`, which never exited, is refused in 0.3 s. No emission moves for a program that compiles on both, and of our 3 978 programs 0 differ and 0 are newly refused. **Our fuzz claim program `tr0586.npk` ("expect: refuse") is refused now, as it claims.** Their sweep reads our trees live, so regex's rehearsal branch showed through as a vanished `parse_fuzz.npk`; noise, not a finding. **Recorded with it:** D-347 (the frac form; landing 97); D-348 (a `fixed` slice is read-only; landing 98); **D-349 (the toolchain pin moves to LLVM 20.1.8, its own landing after 98; our CI pins the same, so the libraries' CI moves at our re-pin)**; and `INSTALL.md` at the compiler's root with six of the VM test's fixes. **The newcomer test's run 2 waits for D-349's landing.** The owed list says so.
