@@ -10359,3 +10359,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep is F43's exactly,** with 0 of our programs different. Three of the changed files, `lexer.npk`, `numeric.npk` and `parse_decl.npk`, are in regex's B-4e re-read for the adoption.
 - **Both of the re-pin's awaited landings, 100 and 101, are in.** By this seat's recommendation to the author, the one re-pin waits for 103 (`fixed T[]` as a type), which may move the libraries' `string_bytes` bindings. 102 and 103 come with advance notices.
 - **The baseline for 102** is written.
+
+### Landing 103's effect on the libraries, measured early by the compiler side — the re-pin waits for 103, with their concurrence — 2026-10-08 19:13 (shell time)
+
+- **From `nitpick-compiler_33`**, measured early: 102's checker against 103's, over every library file that mentions `string_bytes` or `uint8[]`. The authoritative list comes with F45, `src/` and tests apart.
+  - **Every site is one thing:** NITPICK-TYPE-007 at a READER binding `string_bytes`'s view into a plain `uint8[]`. Under D-351, the author's ratification today, the bridge returns the read-only `fixed uint8[]`.
+  - **The fix:** `fixed uint8[]:bs = string_bytes(v);` and `fixed uint8[]:` on the parameters a view flows into. A function that writes through its slice keeps `uint8[]` and takes a copy.
+  - **The counts:**
+    - **regex 36 files:** `src/` 5, with 13 sites (`core/bytes.npk` 1, `hir/dump.npk` 5, `hir/repr.npk` 1, `syntax/parse.npk` 4, `syntax/pattern_error.npk` 2), and tests 31;
+    - **time 16 files:** `src/` 1 (`core/bytes.npk`) and tests 15;
+    - **the fuzz corpus 1 013:** 956 generated cells, 43 findings, 5 known, 9 in m10/m11;
+    - posix, tui, parse and sockets 0.
+  - **Also in 103:** an `impl` of `Writer` declaring `wsrc` as a plain `uint8[]` is TYPE-014; a plain binding of the view is spelled `(fixed uint8[]):view`; and a new PARSE-013 has no site of ours.
+  - **102 (DEF-248)** moves none of our files.
+- **They concur that the re-pin waits for 103.** The handoff's re-pin list carries the counts. **The author's go on that timing is asked.**
+- **One note for the running work:** `s1-nregex-0.2.1-1824` writes new code at the pin, where binding `string_bytes` into a `uint8[]` is still legal. Any new such binding joins the re-pin's list, and the adoption re-reads the tree whole.
