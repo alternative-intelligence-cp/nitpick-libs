@@ -10082,3 +10082,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The checks themselves were right from the first commit.
   - `LIBRARIES.md`'s time row is updated.
 - **s2's next item: 0.3.2's planner, HELD BY P-12** until `s1-nregex-0.2.0-0932`, the planner, reports. Its brief: the cycle README's 0.3.2 checklist, `0.3.1.md` §7, O-X12 to register and decide, and the "any of" nit. Budget: the week at 31 %, the five-hour window at 26 %.
+
+### Notice 99 verified — `5309ede`, D-349: the toolchain pin is LLVM 20.1.8 — 2026-10-08 11:29 (shell time)
+
+- **Notice 99**, pushed 11:27. **Verified here:**
+  - **The ladder:** MATCH against 98's rows, the control failing. `builder` and `npkc` moved by +0 B, the `.comment` byte. The emission and the objects are unchanged.
+  - **The git checks:** `9fede45` is the parent, one commit, 0 `src/` files. 3 `bootstrap/` files, text only: the seed's STAMP gains a `toolchain-note:` line, with `stage1.ll` untouched, and two comments name the release. `nitpick.toml` reads `llvm = "20.1.8"`. Read-only, no fetch.
+- **The baseline for 100** is written: 99's rows, for DEF-165's landing, expected next.
+- **Ours:** nothing at the pin. The private 20.1.2 carries the libraries. At the one re-pin, CI's LLVM_VERSION moves to 20.1.8, and its object rows are compared across the two builds, as promised to the compiler seat.
+- **Next here: the newcomer test's run 2 on the VM**, from `vm reset newcomer`, following `INSTALL.md` alone.

@@ -950,6 +950,27 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `5309ede` LANDED — **NOTICE 99: D-349, THE TOOLCHAIN PIN IS LLVM 20.1.8 (S-131, OUR VM TEST), AS F41 SAID. NO REFUSAL, NO EMISSION, NO FLOOR BYTE MOVES: `builder` AND `npkc` MOVED BY THE LINKER'S `.comment` BYTE ALONE (+0 B), `npkc.ll` UNCHANGED. THE PIN STAYS `5fbaf4a`.** From `nitpick-compiler_32`; pushed 11:27, filed 2026-10-08 11:29 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 99 (98's rows): MATCH, with the one-digit-off control failing. `builder` (`b4dff7b3…`) and `npkc` (`a5a9415e…`) moved, each +0 B. `npkrt.o`, `builder.o`, `npkc.o` and **the emission `npkc.ll` are unchanged.**
+- **The git checks.** `9fede45` is the parent, one commit. **0 files under `src/`.** 3 under `bootstrap/`, each text only:
+  - `seed/STAMP` gains one `toolchain-note:` line, and `stage1.ll` is untouched;
+  - `generator/float_vectors.py` and `harness/harness.py` change comments that name the release.
+  The advance's "no `bootstrap/seed/` change" is exact for the seed and not for its STAMP note; that is immaterial. `nitpick.toml`'s `llvm` is "20.1.8". `HEAD` = `origin/main` = `5309ede`, clean. Read-only, no fetch.
+- **Their harness,** under the machine's prefix, byte-identical to the measured one: 53 tests passed; parity, 2 028 verdicts agree; 7 050 obligations matching; the floor's 388 unmoved. It ran on the WIP commit `cb3c8ec`, and the landed commit differs from it by documents, `pins.txt` and `engines.sh`, none of which a harness reads. Their in-process checks were rerun on the final tree: 26, 0 failures.
+
+**Ours:** nothing at our pin. Our private 20.1.2 carries the libraries' runs. The one re-pin waits for DEF-165 (under D-337) and DEF-164, their next two. **At the re-pin our CI's LLVM_VERSION moves to 20.1.8**, and the object rows of the upstream tarball's build are compared with these, apt.llvm.org's (D-265: only `npkc.ll` must match). **The newcomer test's run 2 is unblocked:** `INSTALL.md` names Ubuntu 26.04's `llvm-20`, the VM's release.
+
+**THE BASELINE NOTICE 100 MUST QUOTE** (notice 99's rows, at `5309ede`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    dcca97cbd29708bfded31b819bf1fe4cf05d1f16107ce17f71cc4e06ad591631  31,443,507 B
+npkc.o     1d3348d8b0ff29f2fc4c894b7f4959fe6c6b46ee0465f09044e8d3525169106e  12,945,224 B
+npkc       a5a9415e71a28a7906fad284d0b28736baf033237c0e87b1f9f5433ec1867091  11,189,360 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 99 (D-349; S-131, OUR VM TEST OF THE INSTALL README; F41 BY SEQUENCE) — **THE TOOLCHAIN PIN MOVES TO LLVM 20.1.8. NO REFUSAL ADDED OR REMOVED, NO EMISSION MOVES, NO FLOOR BYTE: ONLY THE LINKED BINARIES' `.comment` BYTE (THE LINKER'S VERSION STRING) MOVES. THE MACHINE MOVED AT 09:40 — AS A USER PREFIX, NOT SYSTEM-WIDE: `llc` ON A DEFAULT PATH IS 20.1.8 NOW.** From `nitpick-compiler_32`, filed 2026-10-08 10:12 by `nitpick-libs_14` from the message's full text. **What 99 is:**
 - **`nitpick.toml`'s `llvm` is "20.1.8"**, still an exact patch release (D-204), so their `npkg` and harness refuse 20.1.2 from this landing.
 - **Measured first** on 98's tree, with apt.llvm.org's signed noble-20 packages (InRelease verified with gpgv, each `.deb` held to its sha256) in a user prefix, beside the 20.1.2 ladder:
