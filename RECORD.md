@@ -10181,3 +10181,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 13:55: `s1-nregex-0.2.0-verify-work`** (`npk:verifier`, `sonnet`).
   - Budget: the week at 38 %, the five-hour window at 9 % after its reset.
   - `s2-ntime-0.3.2-1146`, the planner, is running.
+
+### `nitpick-regex` 0.2.0 VERIFIED PASS — the arena; 0.2.1's planner held by P-12 — 2026-10-08 14:39 (shell time)
+
+- **verify `s1-nregex-0.2.0-verify-work` — PASS** (`sonnet`, 44 min, 380 k tokens, 106 tool uses) on `7f6a854`.
+  - **CI.** Both runs per job, byte counts asserted.
+  - **The harness.** 283/283 in a fresh clone with the private LLVM first. Each work commit was also run: 260, 260, 260, 261, 272, 283.
+  - **The patches.** The amendments are exactly 17 added lines: the orchestrator's two corrections, plus the worker's three classes. The amended patches replay to every commit's tree hash, and the 47 `index` lines equal the blobs produced.
+  - **The author's words.** 82 of 82 words, bar the one aside, which the dispatch allowed. "either" stands, and "needing them" is gone. Every text describing the old note gained only dated lines.
+  - **The rendering.** Lazy continuations go from 4 to 0, by markdown-it and pandoc. 176 of 180 sections are unchanged.
+  - **The arena, run for real.**
+    - The sizes and the units match at both legs.
+    - The 33 mutants are byte-identical to Expect 6.
+    - 2 106 generated texts over all nine kinds round-trip to identical bytes.
+    - Sweeping a constant budget shows the walk bound is exactly 2n steps. The shared leaf traps at 2n−1, and the +1 mutant lets it through.
+  - **The rest.** RX-222 … RX-225 by value, `DECISIONS.md` +144 −0. 0 forbidden shapes over 1 696 lines, with 20 planted controls. No unpinned landing named. Hygiene is clean.
+  - **Its one limit, fairly stated:** it could not confirm from the files that the author was shown "either". This seat's record says so, and the 05:4x message is in no file. The author was told at 13:55, and the board says so.
+- **0.2.0 is DONE**, cycle 0.2's opening: the arena. `LIBRARIES.md`'s regex row is updated.
+- **s1's next item: 0.2.1's planner, the desugaring, HELD BY P-12** until `s2-ntime-0.3.2-1146` reports. Budget: the week at 39 %, the five-hour window at 12 %.
