@@ -10152,3 +10152,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 12:40: `s1-nregex-0.2.0-1240`** (`npk:worker`, `opus`): three records first, then the arena.
   - Budget: the week at 35 %, the five-hour window at 41 %, 123 GiB available.
   - `s2-ntime-0.3.2-1146`, the planner, is running.
+
+### Advance notice for landing 100 filed — DEF-165 under D-337: a struct literal's several sealed-field writes are one TYPE-079 — 2026-10-08 12:50 (shell time)
+
+- **From `nitpick-compiler_32`.** It is F42 by sequence.
+  - A struct literal writing several `sealed` fields from outside their module is one TYPE-079 at the literal, naming each field.
+  - Refusals are removed by count, none by kind, and no emission moves.
+  - Of the 16 sites that vanish, 7 are ours.
+- **Checked here by grep:** exactly four files of ours expect more than one TYPE-079, the four named. They lose 4→1, 3→1, 2→1 and 2→1 lines, 7 in all.
+- **The re-pin carries it.** The handoff's list names the four headers and their prose. After 100, only DEF-164 remains before the one re-pin.
