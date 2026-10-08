@@ -9626,3 +9626,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 04:40: `s1-nregex-0.1.6a-0440`** (`npk:worker`, `opus`). 0.1.6a, C1 first: seven work commits, then the record.
   - Budget: the week at 17 %, the five-hour window at 10 %, 126 GiB available.
   - `s2-ntime-0.3.1-0330`, the planner, is still running.
+
+### Advance notice for landing 97 filed — D-347, the frac form (our `ty1657`, DEF-231); every emission digest moves (DEF-242) — 2026-10-08 05:05 (shell time)
+
+- **From `nitpick-compiler_32`**, built by `_31`. It is F39 by sequence.
+  - A `frac`'s stored parts are now its readable parts: one form per value, the sign shown once. A computed answer changes for every negative frac with a fraction.
+  - Every emission moves, because each carries the prelude's whole site table, which the frac section grew by six sites and 27 lines (DEF-242).
+  - With the table canonicalised, their sweep finds 17 of our programs differing beyond the table, every one a fuzz frac program, and 0 newly refused.
+- **Checked here by grep:**
+  - No library or application writes `frac`.
+  - The fuzzer has 35 frac programs: the 22 the notice names, and 13 that claim `expect: refuse`.
+  - Nothing of ours pins a prelude line or reads the site table's rows. Regex's IR-scan baselines and time's checks name the site functions only as symbols and edges.
+- **The registry:** O-N36's frac row read "the stored floor form kept" (2026-10-02). It now carries a dated note: superseded in part by D-347, the author's ruling of 2026-10-05, ratified 2026-10-08.
+- **A slip, mine:** one read-only listing of the fuzz corpus ran with the working directory inside `nitpick-fuzz/m11/programs`, which the board forbids (never `cd` into a library). I moved back at once. `git -C nitpick-fuzz status --porcelain` is empty.

@@ -354,7 +354,9 @@ file existed — the check works.
     byte view is `fixed uint8[]`"; if `fixed` fixes only the binding, D-074's sentence is the defect instead.
   - **frac `ToString` (silent wrong answer, THE AUTHOR'S RULING 2026-10-02)** — −(1 3/8), stored {−2, 5, 8}, prints "-2 5/8", read by
     anyone as −2.625; it should print "-1 3/8" (sign and magnitude), the stored floor form kept; TYPE_REFERENCE:1657's example with it
-    (`ty1657`, filed by the fuzzer under F-044 as ambiguous).
+    (`ty1657`, filed by the fuzzer under F-044 as ambiguous). **Superseded in part 2026-10-08 by D-347** (the author's ruling of
+    2026-10-05, ratified 2026-10-08): the stored parts change too — one form per value, whole and num never of opposite signs —
+    so `.whole` and `.num` answer as printed (−1 and −3 for −(1 3/8)). Landing 97, advance notice F39 (`BOARD.md`).
   - **F-041 (the compiler does not terminate)** — an unbounded generic instantiation never reaches TRAITS:586's depth cap of 64: no exit
     in 60 s at 1.17 GB and growing here, 4.4 GB at 300 s by the fuzzer; the bounded control compiles.
   - **F-048 (invalid IR)** — a struct with a NIL field is emitted as `type { i32, void }`, which `llc` and `opt` refuse.
