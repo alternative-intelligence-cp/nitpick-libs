@@ -10131,5 +10131,6 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - §8's row 2 shows `undefined symbol: __morestack` as its first line.
   - Line 98 is one 299-character line.
   - apt's prompt needed a `y`.
-- **The VM is left built,** at `5309ede` under `/home/randy/nitpick`, for the author to inspect, not reset. It holds about 10 GiB while it runs.
+- **The VM is left built,** at `5309ede` under `~/nitpick` on the VM, for the author to inspect, not reset. It holds about 10 GiB while it runs.
 - **The owed item** reads PASSED for the compiler's half. The libraries' half waits for the package manager.
+- **A slip, mine, fixed forward (11:49).** The entry above first wrote the VM's clone as an absolute home path. `check_refs` flagged it as a leak, and my command chain committed anyway, because piping the check through `tail` lost its exit status (1). The path now reads `~/nitpick` on the VM. **From here the chain tests the check's own exit status before staging.**
