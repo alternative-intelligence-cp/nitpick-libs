@@ -10319,3 +10319,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **O-N41 registered** and sent to `nitpick-compiler_33`. `exit` of a fallible call compiles, and `llc` refuses the IR. The same call assigned to an `int32` is TYPE-007. It is a loud failure in the wrong phase, not in our way.
 - **Its plan verifier waits, one of a kind (W-24).** `s1-nregex-0.2.1-verify` is running, and the remedy recorded at 16:36 holds.
 - **Budget:** the week at 49 %, the five-hour window at 1 %. The pace is put to the author: finish what is in flight and the re-pin, then one stream, and no new planner past about 75 %.
+
+### O-N41 registered as DEF-249; landings 102 and 103 announced — the re-pin should wait for 103 — 2026-10-08 18:01 (shell time)
+
+- **From `nitpick-compiler_33`**, the queue's holder since landing 101.
+  - O-N41 was reproduced at its HEAD and registered as **DEF-249**, in DEF-243's family, queued behind landing 103.
+  - **101's notice follows its harness, about 19:40.**
+  - **102 is DEF-248:** a `fixed` parameter's assignment is ASSIGN-002, and no library site moves.
+  - **103 is D-348 step (ii): `fixed T[]` as a type** (D-350, D-351). It is built and measured, and moves "many" files of our fuzz corpus, readers binding `string_bytes` into a plain `uint8[]`. Its advance notice will list every library file.
+- **Checked here by grep:** the libraries' own source binds `string_bytes` into a plain `uint8[]`: regex's `src/syntax/parse.npk:1288` and `src/hir/dump.npk:288` (163 lines across the repository), and time's probes. So 103 may move library source.
+- **This seat's recommendation, to the author:**
+  - **hold the one re-pin until 103 lands,** and re-pin once, carrying 94 … 103 and D-349;
+  - **re-pinning at 101 would very likely force a second adoption per library within a day.**
+  This is the same principle as his answer to question 12 ("avoid the second repin") and his choice of (c) for question 24. It also suits the week's budget.

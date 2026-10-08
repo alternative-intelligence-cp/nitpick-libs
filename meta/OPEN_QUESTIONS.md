@@ -325,6 +325,8 @@ file existed — the check works.
     `exit` takes an `int32`. **The control:** the same call assigned first, `int32:v = may(argv.len); exit v;`, is refused
     `NITPICK-TYPE-007`, as it should be. So `exit`'s operand misses the check an assignment makes: a loud failure, but in the wrong
     phase, as O-N40's first item was. **Sent to `nitpick-compiler_33` 2026-10-08 17:59.** Not measured at the compiler's HEAD here.
+  **REGISTERED 2026-10-08 18:01 by `nitpick-compiler_33` as DEF-249**, reproduced at its HEAD (landing 102's compiler): the `exit` operand misses
+  the fit an assignment makes, in DEF-243's family. It is queued behind D-348 step (ii) (landing 103).
 - **O-N40 — A BUILTIN NAMED AS A FUNCTION VALUE IS ADMITTED BY THE FRONTEND AND REFUSED BY THE EMITTER (`NITPICK-EMIT-002`, "A DEFECT
   IN THE COMPILER" IN ITS OWN WORDS); A ROOT IMPORTED BACK FROM A SIBLING DIRECTORY COLLIDES WITH ITS OWN ERROR (`NITPICK-RESOLVE-010`).**
   Found 2026-10-08 by `nitpick-time` 0.3.1's planner (`s2-ntime-0.3.1-0330`) at pin `5fbaf4a`, while planning `check_call_edges` (O-X9)
