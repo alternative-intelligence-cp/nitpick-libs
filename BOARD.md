@@ -950,6 +950,28 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `8af8ddd` LANDED — **NOTICE 101: DEF-164 (FROM OUR CORPUS — ONE MISTAKE, ONE REPORT AT THE LEXER'S AND THE PARSER'S SEAM), AS F43 SAID. REFUSALS REMOVED BY COUNT, NONE BY KIND; NO EMISSION MOVES FOR A PROGRAM; NO FLOOR BYTE; THE PIN STAYS `5fbaf4a`. BOTH OF THE RE-PIN'S AWAITED LANDINGS ARE IN, AND THE RE-PIN WAITS FOR 103 BY THIS SEAT'S RECOMMENDATION.** Sent by `nitpick-compiler_33`, which ran the landing, built by `_32`; pushed 19:11, filed 2026-10-08 19:12 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 101 (100's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +15 221 B, `npkc.o` +7 128 B, `npkc` +6 240 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `79039e9` is the parent, one commit. 5 files under `src/frontend/`: `lexer.npk`, `numeric.npk`, `parse_decl.npk`, `parser.npk` and `type_trait.npk`. 0 under `runtime/` and `bootstrap/`. `HEAD` = `origin/main` = `8af8ddd`, clean. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself: 54 tests passed; parity, 2 034 verdicts agree; 7 063 obligations matching, with zero verdicts moved; the floor's 388 unmoved.
+
+**What landed:** as F43 says (below). Per code: PARSE-001 156 → 122, PARSE-002 76 → 69, TYPE-014 18 → 16.
+
+**Their sweep matches F43 exactly:** of our 3 988 programs, 0 are different and 0 newly refused. Time's `probe02d` and `probe14` lose their second reports.
+
+**For our re-pin:** `lexer.npk`, `numeric.npk` and `parse_decl.npk` are in regex's BUILD.md B-4e re-read list, so the adoption re-reads them.
+
+**THE BASELINE NOTICE 102 MUST QUOTE** (notice 101's rows, at `8af8ddd`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    645553ac29a8b866fac9fae5d138302c98ec83bb9aa1aa74c47bcea75ee8fd13  31,477,138 B
+npkc.o     f6005aa3ab949a68b9cec817b94a2f9ce234df0a1e9418380e349815ddedb8ab  12,957,848 B
+npkc       eae8e596ab222142425fe099ba80278ed73d5cc3f1d4cf8e53906116767d266c  11,199,992 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 101 (DEF-164, FROM OUR CORPUS; F43 BY SEQUENCE) — **ONE MISTAKE, ONE REPORT AT THE LEXER'S AND THE PARSER'S SEAM, FIVE FACES. REFUSALS REMOVED BY COUNT, NONE BY KIND; NO EMISSION MOVES. THE LAST OF THE TWO THE RE-PIN WAITS FOR. ITS LANDING NOTICE WILL COME FROM `nitpick-compiler_33`, WHICH TAKES THE COMPILER QUEUE.** From `nitpick-compiler_32`, filed 2026-10-08 16:35 by `nitpick-libs_14` from the message's full text. **What 101 changes:**
 - **(a)** A declaration's recovery skips to a sync point, never to an identifier the broken declaration left behind. So an error identity with a payload (our `probe14`'s `pub error:ETimeValue(ValueFault);`) is PARSE-001 once.
 - **(b), (d)** A refused integer literal, whether a bad digit (LEX-003) or outside 64 bits (LEX-004), stays a literal token, so no PARSE-002 "expected an expression" follows it.

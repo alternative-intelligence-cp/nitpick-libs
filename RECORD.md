@@ -10350,3 +10350,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **`s1-nregex-0.2.1-1824`** (`npk:worker`, `opus`);
   - **`s2-ntime-0.3.2-verify` resumed** for the revised plan, one of a kind now that regex's verifier has reported (W-24). It re-runs the planner's 293-mutant enumeration and its own 311.
   - Both are in-flight items under the pacing put to the author. Budget: the week at 49 %, the five-hour window at 3 %, 128 GiB available.
+
+### Notice 101 verified — `8af8ddd` (DEF-164, from our corpus), as F43 said — 2026-10-08 19:12 (shell time)
+
+- **Notice 101**, sent by `nitpick-compiler_33`, pushed 19:11. **Verified here:**
+  - the ladder: MATCH against 100's rows, the control failing. `npkc.ll` +15 221 B, `npkc.o` +7 128 B, `npkc` +6 240 B; the anchor unchanged.
+  - the git checks: `79039e9` is the parent, one commit, 5 `src/frontend/` files, 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F43's exactly,** with 0 of our programs different. Three of the changed files, `lexer.npk`, `numeric.npk` and `parse_decl.npk`, are in regex's B-4e re-read for the adoption.
+- **Both of the re-pin's awaited landings, 100 and 101, are in.** By this seat's recommendation to the author, the one re-pin waits for 103 (`fixed T[]` as a type), which may move the libraries' `string_bytes` bindings. 102 and 103 come with advance notices.
+- **The baseline for 102** is written.
