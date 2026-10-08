@@ -1445,10 +1445,21 @@ repositories reads one thing.
   result. *(`nitpick-time` 0.2.4's plan; landed 2026-10-05.)*
 - **A check whose exemption is tied to the repository's own tree reports the exempt item over a copy.** Measure a copy
   with the copy's own harness. *(The same plan.)*
-- **A check that finds a wide intermediate by its type's name misses a wide literal.** `(3i256 * 5i256) =>! int64` narrows a
-  constant to its low 64 bits in silence and passes, while the compiler refuses a narrower operand beside a wide literal
-  (`NITPICK-TYPE-007`); so a computation of literals alone is the whole gap. `nitpick-time`'s PD-91, accepted 2026-10-05,
-  closes it at cycle 0.3.0 by reading a literal's width suffix. *(Cycle 0.2's close, 2026-10-02; landed 2026-10-05.)*
+- **A check that finds a wide intermediate by its type's name misses a wide literal, and a check that reads spellings
+  misses a wide value that nothing spells.**
+  - `(3i256 * 5i256) =>! int64` narrows a constant to its low 64 bits in silence and passes, while the compiler refuses a
+    narrower operand beside a wide literal (`NITPICK-TYPE-007`). So among spellings, a computation of literals alone was
+    the gap. `nitpick-time`'s PD-91, accepted 2026-10-05, closed it at cycle 0.3.0 by reading a literal's width suffix.
+  - **But a wide value need not be spelled.** A call's result passes a spelling check, and always has:
+    `((raw wide()) * (raw wide())) =>! int64` in an unmarked function compiles, returns 49, and draws no finding. That is
+    `nitpick-time`'s O-X11, dormant, for its 0.3.1 planner to decide.
+  - A rule that every widening is spelled is not a rule that every wide value is. A sentence saying a gap is closed makes a
+    claim about every path a value can take, so search for a counter-example before writing it.
+  *(Cycle 0.2's close, 2026-10-02; landed 2026-10-05. Corrected 2026-10-08: until then this bullet called the literal "the
+  whole gap", and `nitpick-time` 0.3.0's verifier found the call path.)*
+- **An IR reading meant to see what the source does not spell must read `npkc`'s emission before `opt`.** At `5fbaf4a`,
+  `npkc` keeps `llvm.smul.with.overflow.i256` both for a call's product and for a literal product, and `opt -O2` folds
+  both to constants. *(`nitpick-time` 0.3.0's fix, 2026-10-08.)*
 
 ---
 
