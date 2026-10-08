@@ -399,7 +399,7 @@ file existed — the check works.
     anyone as −2.625; it should print "-1 3/8" (sign and magnitude), the stored floor form kept; TYPE_REFERENCE:1657's example with it
     (`ty1657`, filed by the fuzzer under F-044 as ambiguous). **Superseded in part 2026-10-08 by D-347** (the author's ruling of
     2026-10-05, ratified 2026-10-08): the stored parts change too — one form per value, whole and num never of opposite signs —
-    so `.whole` and `.num` answer as printed (−1 and −3 for −(1 3/8)). Landing 97, advance notice F39 (`BOARD.md`).
+    so `.whole` and `.num` answer as printed (−1 and −3 for −(1 3/8)). Landing 97, advance notice F39 (`BOARD.md`); **LANDED as `28194e0`, verified here 2026-10-08.**
   - **F-041 (the compiler does not terminate)** — an unbounded generic instantiation never reaches TRAITS:586's depth cap of 64: no exit
     in 60 s at 1.17 GB and growing here, 4.4 GB at 300 s by the fuzzer; the bounded control compiles.
   - **F-048 (invalid IR)** — a struct with a NIL field is emitted as `type { i32, void }`, which `llc` and `opt` refuse.
@@ -417,7 +417,7 @@ file existed — the check works.
     1 589 667, and the allocator 1 245 083 684 → 300 030 724 (C 143 173 989); 02 — an overflow-checked arm blocks if-conversion
     (Collatz 9.8 % mispredicted, 602 ms against clang's 197; wrapping 0.4 %, 236 ms); 03 — the envelope's repack after a recursive
     call blocks tail-call elimination (Ackermann 44 698 325 calls against clang's 22 345 074).
-  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08).** F-037 is **DEF-227, LANDED in 94**: the explicit `=> dyn` cast's trait object is owned once. It is discharged here at the re-pin that carries 94. The rest: F-041 = DEF-229, **LANDED in 96 (`afa8499`, 2026-10-08)**, verified here and discharged at the re-pin that carries 96; F-047 = DEF-230 with S-129 (the author's); `ty1657`, the frac print, = DEF-231, under the author's ruling (D-347 in preparation); F-048 = DEF-232; F-038 = DEF-233; F-034 = DEF-234; F-036 a = DEF-235 (F-036 b goes on DEF-190); F-039 and F-042 = DEF-236; F-045 = DEF-237; F-046 = DEF-238; F-033, F-035, F-040, F-043 and F-044 = DEF-239; npkg's stage list = DEF-240; Gemini's 01–03 = S-130.
+  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08).** F-037 is **DEF-227, LANDED in 94**: the explicit `=> dyn` cast's trait object is owned once. It is discharged here at the re-pin that carries 94. The rest: F-041 = DEF-229, **LANDED in 96 (`afa8499`, 2026-10-08)**, verified here and discharged at the re-pin that carries 96; F-047 = DEF-230 with S-129 (the author's); `ty1657`, the frac print, = DEF-231, under the author's ruling (D-347, ratified 2026-10-08), **LANDED in 97 (`28194e0`, 2026-10-08)**, verified here and discharged at the re-pin that carries 97; F-048 = DEF-232; F-038 = DEF-233; F-034 = DEF-234; F-036 a = DEF-235 (F-036 b goes on DEF-190); F-039 and F-042 = DEF-236; F-045 = DEF-237; F-046 = DEF-238; F-033, F-035, F-040, F-043 and F-044 = DEF-239; npkg's stage list = DEF-240; Gemini's 01–03 = S-130.
 - **O-N35 — `nitpick-fuzz` M11 SESSION 8'S FOUR FINDINGS, F-029 … F-032: A RESERVED WORD ACCEPTED AS A `wild` BINDING'S NAME,
   AND NINETEEN REFERENCE ROWS THE COMPILER CONTRADICTS.** Found by M11 session 8 — MEMORY, OP and CONTROL checked against the
   compiler at the author's go on 2026-10-02, for the week's last few percent, merged at `6eb5392`: 411 claims tested at HUNT2

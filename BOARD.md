@@ -950,6 +950,33 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `28194e0` LANDED — **NOTICE 97: DEF-231 UNDER D-347 (OUR `ty1657` IN O-N36 — A `frac`'S STORED PARTS ARE ITS READABLE PARTS), AS F39 SAID. A COMPUTED ANSWER CHANGES FOR EVERY NEGATIVE FRAC WITH A FRACTION; NO REFUSAL MOVES; EVERY EMISSION MOVES BY THE PRELUDE'S SITE TABLE (DEF-242), AND NOTHING ELSE MOVES OUTSIDE THE FRAC PROGRAMS; NO FLOOR BYTE; THE PIN STAYS `5fbaf4a`.** From `nitpick-compiler_32` (built by `_31`); pushed 08:47, filed 2026-10-08 08:52 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 97: MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` −15 176 B, `npkc.o` −2 760 B, `npkc` −2 016 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `afa8499` is the parent, one commit. 3 files under `src/`: `ir_expr.npk`, `prelude_source.npk` and `prelude/prelude.npk`. 0 under `runtime/` and `bootstrap/`. The compiler's `HEAD` = `origin/main` = `9fede45`, landing 98, already pushed on top; its notice follows. Clean. Read-only, no fetch.
+- **Their harness:**
+  - 53 tests passed; parity, 2 026 verdicts agree; the floor's 388 unmoved.
+  - 7 047 obligations, with `nitpick.obligations` matching.
+  - Zero verdicts moved among 6 678 shared rows, and zero discharged counts fell. 74 rows were re-keyed, and the multisets are equal.
+
+**What landed:** as F39 says (below). `npk_frac_norm` shares the sign, the four `ToString` impls print it once ("-1 3/8", "-3/8"), and the cast's integer exit is the whole field. `frac_parts.npk`'s 33 checks pass, and `ty1657` exits 0.
+
+**Their sweep matches F39 exactly:**
+- Our 3 977 programs all move by the site table. Canonicalised, 2 418 are identical and 17 differ, every one a fuzz frac program.
+- 5 diagnostic sites moved: the prelude-pointing `note:` lines, now `2221`–`2223` → `2248`–`2250`.
+
+**Ours:** nothing at our pin. At the re-pin that carries 97, the fuzzer's 22 frac programs move, and O-N36's frac row and `ty1657` are discharged.
+
+**THE BASELINE NOTICE 98 MUST QUOTE** (notice 97's rows, at `28194e0`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    98f91fec7da7922031d91f161d9e7a4ab2fe1f3db7f213a43a451719909f043d  10,402,536 B
+npkc.ll    9192ab32ae6352e708c8e77e1e9983ecb783263ae4689fcdf15b9ff07373ecc2  31,429,566 B
+npkc.o     b958fa6a7cafe1b89e43c01ebdaedf8a45505d3d38656acd5518ff7ee80ac19d  12,939,576 B
+npkc       52ad76209f05cc22924df4c73bec4cbfea0a8c990267f2ce36820eef8d70539c  11,184,648 B
+```
+
 ### ✅ `afa8499` LANDED — **NOTICE 96: DEF-229 (OUR F-041 IN O-N36 — THE COMPILER TERMINATES ON AN UNBOUNDED GENERIC INSTANTIATION), AS F38 SAID. A REFUSAL ADDED (`NITPICK-TYPE-018`); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NOTHING OF THE LIBRARIES MOVES; NO FLOOR BYTE; THE PIN STAYS `5fbaf4a`. THE MACHINE'S LLVM MOVES TO 20.1.8 AFTER 98, AT AN HOUR THE AUTHOR PICKS: FROM THEN OUR LOCAL RUNNERS REFUSE UNTIL OUR MANIFESTS MOVE.** From `nitpick-compiler_32` (built by `_31`); pushed 06:16, filed 2026-10-08 06:21 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
 - **The ladder.** `tools/ladder.py` against the baseline for 96 (95's rows, verified below): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +66 121 B, `npkc.o` +28 416 B, `npkc` +24 712 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `d98c5e1` is the parent, one commit. 7 files under `src/`, and 1 under `bootstrap/`: `bootstrap/harness/harness.py`, the compiler harness's walker table, updated because `type_mentions_param` moved to `type_mentions_params_of`. That is test tooling, not a floor byte (`npkrt.o` unchanged). `INSTALL.md` is in the tree. The compiler's `HEAD` = `origin/main` = `afa8499`, clean. Read-only, no fetch.

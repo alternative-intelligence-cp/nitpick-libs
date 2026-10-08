@@ -9944,3 +9944,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - A check holding declared functions to the emission must say which functions it holds. Here it is the non-generic ones.
   - At `5fbaf4a` every `async` body's scope-exit join calls `npk_mono_now` and its siblings, even the prelude's `ByteWriter.flush`, whose body is `pass NIL`. So whether an async function reaches past memory is read in its source, not in its emission's call graph.
 - **The verifier, `s2-ntime-0.3.1-verify-work`, was resumed at 08:44 for the delta.** It asks for prose-only scope bar the one string, an enumeration of the whole prelude for a sixth exception, the three escapes planted at `cdb30bd` and at `8ca7c4b`'s checks, the dated notes, and GREEN -- 134. Budget: the week at 27 %, the five-hour window at 9 %. `s1-nregex-0.1.6-0716`, the close, is still running.
+
+### Notice 97 verified — `28194e0` (DEF-231 under D-347, our `ty1657`), as F39 said — 2026-10-08 08:52 (shell time)
+
+- **Notice 97**, pushed 08:47. **Verified here:**
+  - the ladder: MATCH against 96's rows, the control failing. `npkc.ll` −15 176 B, `npkc.o` −2 760 B, `npkc` −2 016 B; the anchor unchanged;
+  - the git checks: `afa8499` is the parent, one commit, 3 `src/` files (one of them the prelude), 0 under `runtime/` and `bootstrap/`. `HEAD` = `origin/main` = `9fede45`, landing 98, on top. Read-only, no fetch.
+- **Their sweep is F39's exactly.** Every emission moves by the prelude's site table. Canonicalised, 17 of ours differ, every one a fuzz frac program. 0 newly refused.
+- **The baseline for 98** is written under the entry.
+- **The registry:** O-N36's `ty1657` (DEF-231) and its frac row are LANDED in 97, and discharged at the re-pin that carries it.
