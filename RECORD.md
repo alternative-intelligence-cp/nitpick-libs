@@ -9494,3 +9494,13 @@ Kept: the system's own LLVM 21 libraries (`libllvm21`, `libclang-cpp21`, `libcla
 - No forbidden shape and no `#wild_slice` in any added line. The syscall rows 228, 229 and 89 are byte-identical to the kernel's `syscall_64.tbl`, fetched again.
 **Noted, not this plan's:** the cycle README's lines 101–104 ("a pin that carries the compiler's D-341"), written at 0.2's close (`ff69344`).
 - **dispatched 01:08:** `s2-ntime-0.3.0-0108` (`npk:worker`, `opus` named) on `e51ca5f`, with the decided wording: `check_int128_sites`' findings say "a wide type or literal". The week was at 9 % and 129 GiB available. Regex's close planner runs beside it.
+
+### `nitpick-time` 0.3.0 DONE — the clocks — its verifier dispatched — 2026-10-08 01:46 (shell time)
+
+**The report:** `s2-ntime-0.3.0-0108` (`npk:worker`, `opus`; 01:08 to about 01:45; about 489 K tokens, 131 tool uses) — **DONE**:
+- `1856b03`: `check_int128_sites` reads a literal's width suffix as it reads a type's name, so `(3i256 * 5i256) =>! int64` outside §5's sites is a finding; 94 plants, 133 units.
+- `dab9b0b`: the clocks — `host_now_utc`, `host_now_instant`, `host_now_boot` and `host_clock_res` over `HostClock`, with host → span in B-17 and every reading advancing under stress 40; `instant_of` kept (Q-7); 134 units.
+- `9274557`: the record, with the patches amended for "A wide type or literal", the orchestrator's decision at dispatch.
+GREEN -- 134 with 95 plants. Three full runs, one at a time, no earlyoom kill. CI success on all three: `37732174745`, `37732662667`, and `37733638638`, whose log was read per job, 76 647 B. **Checked here:** `check_record` "record clean"; `HEAD` = `origin/main` = `9274557`. **Next:** 0.3.1 has no plan file yet; its brief is the cycle README's 0.3.1 checklist and the record's §7.
+- **findings-for-playbook** (held for the next playbook pass): when a check's subject widens, read each of its messages for the old subject's noun, not only its rule and docstring.
+- **dispatched 01:46:** `s2-ntime-0.3.0-verify-work` (`npk:verifier`, `sonnet` named) on `9274557`. The week was at 12 %, the five-hour window at 46 %, and 128 GiB available.
