@@ -208,6 +208,14 @@ like a fix right up until you count.**
   decides whether a check that reads types rather than spellings is in scope, and when. `PLAYBOOK.md` §9
   carries the lesson.
 
+- **O-X9 — `nitpick-time`: should an IR call-edge scan answer "did this module touch the kernel"?**
+  Raised by `nitpick-time`'s stream-2 planner, 2026-09-25, at compiler `c3bdae2`; defined in full at
+  [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md). The undefined-symbol
+  scan sees a syscall but can never flag one, because `npk_sys6` is the runtime's own and allowlisted, so
+  `check_purity` (S-10b, source-level) is the only thing that answers the question. The recommendation is
+  to build the call-edge scan. **Handed to cycle 0.3.1**, where `check_purity` goes live (0.3.0's
+  rehearsal, 2026-10-07).
+
 - **O-X8 — `nitpick-time`: how does a refusing constructor hand back its
   `ValueFault`?** Raised by `nitpick-time` 0.1.0, 2026-09-06, at pin `aaffb87`;
   defined in full at

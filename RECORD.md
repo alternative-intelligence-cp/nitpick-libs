@@ -9557,3 +9557,28 @@ From `nitpick-compiler_32`, which holds the compiler queue since 00:40 (notices 
 ### The reference check's findings from tonight's edits, fixed forward — 2026-10-08 03:05 (shell time)
 
 Before committing notice 94, `check_refs` gave **7 findings**, none of them caught earlier: this seat had committed several times tonight without running it. (1) **`O-X11` was referenced and never defined.** This seat's PLAYBOOK §9 correction (`cf1f0cd`) and its board and record entries name `nitpick-time`'s O-X11. **Defined now in the workbench registry**, in the form O-X6 and O-X8 already use (the library named, its full definition linked). (2) **Six home-directory paths in RECORD.md**: four from earlier seats' 2026-10-01/02 entries (the sandbox and `gh` paths) and two from this seat's VM entry (the sandbox settings it quoted). **Written as `~/`**, fixed forward per the author's rule (memory `home-path-leak-not-sensitive`). The tree is fixed and history is not rewritten. `check_refs` is clean after both. **From here, every board commit of this seat runs `check_refs` first.**
+
+### `nitpick-regex` cycle 0.1's close planned as three — its verifier dispatched; `nitpick-time` 0.3.1's planner dispatched — 2026-10-08 03:30 (shell time)
+
+**The report:** `s1-nregex-0.1.6-0037` (`npk:planner`, `opus`; 00:37 → 03:28; about 286 K tokens, 410 tool uses) — **DONE**, `45228e3`, pushed. CI `37743241774`, job `113198621884`, read per job (82 152 B): compiler `5fbaf4a` clean, the pin's emission, `rx120` held, 258/258 GREEN.
+- **The plans:**
+  - **`0.1.6a`**, the library's findings, C1 first: `regex_escape` escapes `:`, which clears C2 too. It carries PD-58 … PD-62.
+  - **`0.1.6b`**, the instruments: the Gate amendment, `check_error_kinds_tested`, the literal reader, and a fuzz pass. It carries PD-63 … PD-65.
+  - **`0.1.6`**, the close: the triage, the archive, and cycle 0.2's opening, whose `0.2.0.md` is the worker's to write.
+- They were rehearsed twice in the real checkout, with all 22 blocks SAME on the second pass. The PDs become RX-214 … RX-221, and `check_refs` is clean.
+- **The triage, in the audit's order:** 15 findings fixed in 0.1.6a; 5 fixed or decided in 0.1.6b; D1 deferred to 0.3.2 by name; S3 the workbench's and already done. 0.1.5's verifier's three findings are C2, C6, and S4 with K1. Question 23 is recorded as the worker's reading that the author accepted (PD-61). Question 20 (d) is PD-62.
+- **Fixed in rehearsal:** a wildcard sweep exclusion that matched nothing; "in any regex language", which the glossary bans; the README row's live-date; an RX number cited before its decision existed.
+- **Checked here:** `check_record` gives `[no-report]` for each of the three, as for any PLANNED file; `nitpick-regex` clean, `HEAD` = `origin/main` = `45228e3`. **Noted:** early in its design pass the planner committed once in a scratch clone with `core.hooksPath=/dev/null` (no hooks exist there), and it did not repeat that. The verifier is asked to confirm no trace in the real repository.
+- **For the orchestrator, read here:**
+  - PD-58 escapes `:` (C1).
+  - PD-59 and PD-60 rewrite two refusal sentences: `\b{` followed by a letter, and `NestTooDeep` saying what is open around the refused `(` or `[`. Both say what went wrong, where, and what to write instead.
+  - PD-61 records question 23 truly; PD-62 is S-2's dated note.
+  - **PD-63 amends the cycle Gate, which cannot pass as written:** four kinds are produced only in later cycles, so they may be listed with their cycle, and `check_error_kinds_tested` holds the list both ways.
+  - PD-64 strengthens `check_constants_named`; PD-65 makes the fuzz pass a unit on every run.
+  - **They are accepted at the verifier's PASS**, PD-63 as recommended. PD-59's and PD-60's sentences were shown to the author tonight, and he can revise them before 0.1.6a's steps 2–3.
+- **For the author:** the planner says Rust's `regex::escape` has the hole C1 closes (`:alpha:` spliced into a nested class reads as a POSIX class). Whether to report it upstream is his call. It is not verified here.
+- **findings-for-playbook** (held for the next pass): an exclusion pattern with a wildcard must match the whole path, so a wildcard directory name excludes nothing under it; a sweep must not read plan files whose Expects quote that sweep.
+- **Dispatched 03:30:**
+  - `s1-nregex-0.1.6-verify` (`npk:verifier`, `sonnet`) on the three plans;
+  - **`s2-ntime-0.3.1-0330`** (`npk:planner`, `opus`) for `nitpick-time` 0.3.1, `check_purity` goes live, P-12's one planner, from no file, with O-X11 to decide and O-X9 handed on.
+  The week was at 15 % and the five-hour window at 2 %, after its 02:50 reset; 127 GiB available.
