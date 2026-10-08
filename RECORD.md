@@ -9981,3 +9981,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 08:54: `s1-nregex-0.1.6-verify-work`** (`npk:verifier`, `sonnet`), with the private LLVM first on PATH, the first dispatch to carry it.
   - Budget: the week at 27 %, the five-hour window at 12 %.
   - `s2-ntime-0.3.1-verify-work` is resumed for the delta, still running.
+
+### `nitpick-time` 0.3.1's fix: the delta's VERIFIER FAIL on one clause, conservative — the fix worker resumed; O-X12's wording corrected — 2026-10-08 09:25 (shell time)
+
+- **verify `s2-ntime-0.3.1-verify-work`, resumed for the delta — FAIL** (`sonnet`, 40 min, 628 k tokens, 77 tool uses), on one clause.
+  - **The FAIL.** The new prose says three generic escapes "pass every check", at `checks.py:1397`, `DECISIONS.md:8098`, `SAFETY.md:373` and `TESTING.md:38`. **In a full harness run, two do not.**
+    - A generic `async func` awaiting `text_read_line` gives `RED -- 100 of 134; 35 failure(s)`: `check_failsafe_arms`, and REACH-002 in 34 units naming `DeadlineExceeded` and `IoEof`. Every async shape is red this way.
+    - A generic `list_truncate` over `List<ByteReader>` is red in `check_failsafe_arms`.
+    - The `mono_now` alias and the consuming-parameter die stay silent: GREEN -- 134.
+    - The same split holds at `8ca7c4b`.
+    - The worker's record ran `checks.py`'s checks, not the arm check or the unit suite. **The error is conservative:** the instruments are stronger than the prose says.
+  - **Everything else in the delta passed.**
+    - **The scope.** `74844ac` is AST-identical to `a2a6152` without docstrings. `cdb30bd` differs in exactly one constant, the author's words. Every check's problems are unchanged over 27 trees.
+    - **An independent enumeration** of all 502 prelude functions with the harness's own lexer found exactly the five async exceptions, and no sixth. The worker's counts equal it.
+    - **The generic reading (ii)** is true: `list_truncate<ByteReader>` → `npk_ofd_close`, and nine more instances.
+    - **The universal** is true at every place it stands.
+    - **The dated notes:** `DECISIONS.md` +41 −0.
+    - **The author's words** are printed, and the self-check's needle doesn't include them.
+    - **The rest:** GREEN -- 134 in a fresh clone; CI on both commits read per job; hygiene clean.
+- **This seat's own O-X12 text repeated the over-claim.** It said "Measured: such a function passes every check while it awaits …, lets … die, or aliases …". It is corrected in the registry: silent in a full run for the alias and the consuming-parameter die, RED by the arm bill for the `await` and the `list_truncate` forms. The board's s2 row says so.
+- **The fix worker `s2-ntime-0.3.1-0752` was resumed at 09:25.** It corrects the wording where it stands, re-measures the four escapes with full runs and records them. Prose only: AST-identical to `cdb30bd`. It runs with the private LLVM first on PATH.
+- **finding-for-playbook** (the worker's to write, and this seat's): a claim that something passes every check is measured by a full run, not by the checks module alone.
+- **The cost of 0.3.1's prose, so far.** Two verifier FAILs and two fixes, all on over-claims in sentences, none on a check's behaviour: first a universal of mine, then a list of exceptions of mine, then a fix's own "every check". Each was caught by a verifier that enumerated or ran it whole. Budget: the week at 28 %, the five-hour window at 14 %.
