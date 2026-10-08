@@ -9523,3 +9523,7 @@ GREEN -- 134 with 95 plants. Three full runs, one at a time, no earlyoom kill. C
   - leave history alone (`1856b03`'s message; the plan's §1.2 and PD-91);
   - amend the record's REPORT.
   The week was at 13 % and the five-hour window at 48 %.
+
+### Advance notice for landing 95 filed — DEF-228 (our O-N38's leak) and DEF-241; the compiler queue now `_32` — 2026-10-08 02:27 (shell time)
+
+From `nitpick-compiler_32`, which holds the compiler queue since 00:40 (notices 94 … 98 and "the toolchain-pin landing" come from it). Landing 95 makes a template own what it builds and only that. It ends DEF-228's leak (`tleak` 24 004 → 28 bytes live) and DEF-241's double owner (a lone string item). No refusal moves. Emission moves for 33 `nitpick-time` programs and 8 fuzz programs. **Checked here, read-only:** time has no splice and 4 derived `ToString`/`Debug` modules; fuzz has 12 splice files and 4 derived; regex's two `&{` matches are a comment and a regex string's `&&{iu}`; the other trees have none. That agrees with the notice. Nothing moves at our pin. At the re-pin, re-check time's 33 programs. **A slip, recorded:** this check's first command `cd`'d into `nitpick-regex`, and the shell kept that cwd. It only listed and grepped files and wrote nothing; the seat moved back at once (the handoff block's rule: never `cd` into a library). Regex's 3 dirty entries at `4e5cc40` are its close planner's own work in progress.
