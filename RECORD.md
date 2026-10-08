@@ -10161,3 +10161,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Of the 16 sites that vanish, 7 are ours.
 - **Checked here by grep:** exactly four files of ours expect more than one TYPE-079, the four named. They lose 4→1, 3→1, 2→1 and 2→1 lines, 7 in all.
 - **The re-pin carries it.** The handoff's list names the four headers and their prose. After 100, only DEF-164 remains before the one re-pin.
+
+### `nitpick-regex` 0.2.0 DONE — the arena, and the README in the author's words — its verifier dispatched — 2026-10-08 13:55 (shell time)
+
+- **report `s1-nregex-0.2.0-1240` DONE** (`opus`, about 67 min, 595 k tokens, 151 tool uses). Eight commits on `a649b40`, pushed:
+  - **the three records:** `02bf6d7`, the README's price paragraph in the author's words, now on the front page; `c8c761b`, the four blank lines; `3c42903`, ROADMAP dated;
+  - **the arena:** `ff03317` ClassRange; `2749ad1` the arena; `ef40e9d` the dump, with the walk bounded at a tree's length; `35edbfe` the prose;
+  - **`7f6a854`, the record.**
+  - 260 → 261 → 272 → 283, every block SAME, and the 33 mutants at their exits. CI is green on `35edbfe` and `7f6a854`. **Checked here:** `check_record` clean; `HEAD` = `origin/main` = `7f6a854`; the README's lines 59–63 read the author's paragraph.
+- **The worker amended the rehearsed patches** beyond the orchestrator's two corrections, in added lines only, before each applied:
+  - CONTRIBUTING.md's note pointed at the wrong sentence;
+  - five texts counted one hand-written module in `src/unicode/` where there are two;
+  - three rule pointers said H-2 for H-4a or RX-223.
+  The verifier diffs the tools against `a649b40`'s. Recommended: accept.
+- **"either" in the README's last sentence.** The worker flags that question 25 (a)'s board row quoted only the two middle sentences. But the full paragraph, "A pattern needing either is refused …", was the text shown to the author in this seat's 05:4x message and in the planner's dispatch. His "fine with the recommendations" approved it. It stands. The original had "them", which would now reach back past the lookaround sentence.
+- **findings-for-playbook** (held for the next pass):
+  - A pointer in an added line is checked against the documents as the patches leave them, rule numbers too.
+  - A scratch clone below the checkout reads two `check_refs` findings the checkout does not.
+- **Dispatched 13:55: `s1-nregex-0.2.0-verify-work`** (`npk:verifier`, `sonnet`).
+  - Budget: the week at 38 %, the five-hour window at 9 % after its reset.
+  - `s2-ntime-0.3.2-1146`, the planner, is running.
