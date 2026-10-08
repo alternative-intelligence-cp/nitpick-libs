@@ -9878,3 +9878,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 07:25: `s2-ntime-0.3.1-verify-work`** (`npk:verifier`, `sonnet`).
   - Budget: the week at 24 %, the five-hour window at 36 %.
   - `s1-nregex-0.1.6-0716`, the close, is still running.
+
+### `nitpick-time` 0.3.1's work: VERIFIER FAIL on one clause, an over-claim of mine — re-dispatched — 2026-10-08 07:52 (shell time)
+
+- **verify `s2-ntime-0.3.1-verify-work` — FAIL** (`sonnet`, 26 min, 341 k tokens, 80 tool uses), on one clause only.
+  - **The universal is false at the pin.** The live sentence says `check_purity`'s list holds "every bare-name builtin and public module-level prelude function at the pin that reaches past the program's own memory".
+  - **The counter-examples:** `text_read_line`, `text_write_str` and `text_write_line` are `pub async` prelude functions (`5fbaf4a:src/prelude/prelude.npk` 1454, 1482 and 1506), each reaching `mono_now()`. None is among the 43.
+  - **Impact: none on the boundary.** A synchronous call is TYPE-043. An `async func` in `src/` calling one passes `check_purity` but turns `check_call_edges` RED by its declared-function rule, as for `ByteReader.seek`.
+  - **Where the wording lives:** `CLAUDE.md:23`, `harness/checks.py:1289` and `:1359`, TM-252 (`DECISIONS.md:8066`, `:8091`), `meta/roadmap/0.3/README.md:77`, `SAFETY.md:361`, `TESTING.md:38`.
+- **The attribution is mine.** The worker built decision (1) exactly as I worded it. That wording took PD-97's text and the plan verifier's "no module-level public prelude function … is missing" on trust, and neither enumerated the `pub async` functions. **A universal about a set is checked by enumerating the set, async included.** That is a finding for the playbook, and verifier briefs will say so.
+- **Everything else passed:**
+  - CI, three runs per job;
+  - the amendment lands in `a00e036`, and the patches replay to each commit's tree hash;
+  - the seven plants;
+  - O-X11's counter-example, 0 → 1;
+  - the real tree's three wide functions;
+  - `HostClock`, 0 → 2;
+  - whole-name matching;
+  - the mutants, 13 of 13 and 6 of 7;
+  - block 2c's five checks;
+  - TM-250 … TM-253, with no line lost;
+  - GREEN -- 134 with 112 plants in a fresh clone;
+  - hygiene.
+- **Decision (this seat's), as the verifier's middle option:** scope the universal to what is true, and name the exceptions.
+  - The list holds every bare-name builtin and every SYNCHRONOUS public module-level prelude function at the pin that reaches past the program's own memory.
+  - The four async prelude names that do are named as exceptions: `text_read_line`, `text_write_str`, `text_write_line` and the method `ByteReader.seek`. Each is callable only from an `async func`, which `check_call_edges` refuses.
+  - The live prose is corrected where it stands. TM-252 gets a dated note, no new decision, as `d05ab9c` did for TM-246. Prose and comments only: no check's behaviour changes.
+- **Dispatched 07:52: `s2-ntime-0.3.1-0752`** (`npk:worker`, `opus`), the fix.
+  - Budget: the week at 24 %, the five-hour window at 0 %.
+  - `s1-nregex-0.1.6-0716`, the close, is still running.
