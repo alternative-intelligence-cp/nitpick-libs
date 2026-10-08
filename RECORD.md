@@ -9724,3 +9724,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - It rehearses the ten blocks in a stand-in, and runs PD-95 and PD-96 for real.
   - It spot-checks PD-97's 43 names against the pin, re-runs the mutants and re-derives O-N40's reproductions.
   - Budget: the week at 20 %, the five-hour window at 23 %, 128 GiB available. `s1-nregex-0.1.6a-verify` is still running.
+
+### O-N40 registered by the compiler side — DEF-243 and DEF-244, both OPEN — 2026-10-08 06:05 (shell time)
+
+- **From `nitpick-compiler_32`, which measured both shapes at its HEAD** (landing 98's compiler, `9fede45`) before registering them.
+  - **DEF-243, a builtin as a function value.** Their recommendation is a frontend refusal with its own sentence, rather than lowering. The author decides the sentence's code.
+  - **DEF-244, the sibling import.** Module identity is the path's spelling after a textual `..` collapse, not the file. Their shape with a `main` adds RESOLVE-013, and the mirror case fails the same way.
+  - Both go into their documents at D-349's landing. Neither is scheduled ahead of the wrong-answer rows.
+- **The compiler stack, as they gave it:**
+  - 95 (`d98c5e1`) and 96 (`afa8499`) are in their harnesses' last hour.
+  - 97 (`28194e0`) and 98 (`9fede45`) are final and queued for harness slots.
+  - F39 and F40 went out at 05:04 and 05:49. D-349, the toolchain pin, follows the five in flight.
+  - Landing notices follow each.
+- The registry's O-N40 carries the two DEF numbers and their readings.

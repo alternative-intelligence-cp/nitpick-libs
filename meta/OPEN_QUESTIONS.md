@@ -315,6 +315,18 @@ file existed — the check works.
     root, the pair is refused `NITPICK-RESOLVE-010`, *"two error constants derive the same code (D-179, an FNV collision)"*: one error,
     declared once, loaded twice under two spellings of its path. With `b.npk` as the root, or with the root named from the parent
     directory, it compiles.
+  **REGISTERED 2026-10-08 ~06:00 by `nitpick-compiler_32`, both measured at the compiler side's HEAD (landing 98's compiler, `9fede45`).**
+  - **DEF-243 (OPEN):** a builtin named as a function value. Their reading is ours: the frontend admits a builtin where a function value
+    is expected, and the emitter has no symbol to hand out, since a builtin is an intrinsic of the emitter (D-201's table types its
+    calls). **Their recommendation is the frontend's refusal, with its own sentence** (a builtin's name is not a value, as D-294 made it
+    not a declarable name), rather than lowering, since a builtin has no body to point at. **The author decides the sentence's code.**
+  - **DEF-244 (OPEN):** the sibling import. Module identity is the path's SPELLING after a textual `dir/..` collapse, so
+    `../b/../a/a.npk` collapses to `../a/a.npk`, never to the root's bare `a.npk`, and the root is loaded twice: RESOLVE-010 at its
+    error, and, with a `main` in `a.npk`, RESOLVE-013 (*"`a.npk` is a module of this program"*) at its `main` and `failsafe`. The mirror
+    case, `b.npk` as the root, imported back by `a.npk`, is RESOLVE-013 at `b`'s `main`. The identity the loader owes is a file, not a
+    spelling: D-236's manifest-root-relative path, or the file's real path where no manifest root exists.
+  - Both go into the compiler queue's documents at the next landing that touches them, D-349's (the toolchain pin), with `facts.sh`
+    §1.6 and §1.8 and `0.3.1.md` cited. Neither is scheduled ahead of the wrong-answer rows.
 - **O-N39 — TWO STALE MEMORY/TYPE SENTENCES; THE ALLOCATOR'S FREE PATH UNDER STRESS; `npkc`'s COMPILE SPEED.** Found 2026-10-05 by a
   second Claude subagent (binary-trees in Nitpick, C and Rust; compile speed). **The two documentation rows are checked by the orchestrator
   against the tree at `93bcb66`**; the measurements are the agent's, with checksums byte-identical across five builds. **Sent to
