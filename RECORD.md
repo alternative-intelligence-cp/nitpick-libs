@@ -9737,3 +9737,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - F39 and F40 went out at 05:04 and 05:49. D-349, the toolchain pin, follows the five in flight.
   - Landing notices follow each.
 - The registry's O-N40 carries the two DEF numbers and their readings.
+
+### `nitpick-regex` 0.1.6a VERIFIED PASS — 0.1.6b's worker dispatched — 2026-10-08 06:10 (shell time)
+
+- **verify `s1-nregex-0.1.6a-verify` — PASS** (`sonnet`, 26 min, 355 k tokens, 107 tool uses) on `911e3d7`.
+  - **CI, both runs per job:** `37755867373` (82 674 B) and `37757556700` (83 758 B). Every asserted line is present, with no FAIL line.
+  - **The patches.**
+    - The amended patches 1–7, applied with the plan's `apply.py` to a clone at `45228e3`, give `911e3d7`'s tree, except for the plan file, its three amended patches and the cycle README.
+    - Steps 1–4's trees equal their commits. Steps 5–7's differ only by the record commit's own README, `DECISIONS.md` and `COMPAT.md` hunks.
+    - Each work commit stages exactly its original patch's files.
+  - **C1, run for real.**
+    - 84 patterns (14 names, each as `:name:` and `:^name:`, in three nested shapes) parse to single-codepoint members, with 0 POSIX nodes. At `45228e3` they read as the class.
+    - The control and the mutant `esc-no-colon` each exit 13 at both legs.
+    - The empty text, `\0` followed by `1`, and the length bound are as PD-58 states.
+  - **The two sentences** equal §6's to the character, in the unit and in the live parser.
+  - **The decisions.** RX-214 … RX-218 are in PD order by position and by value. `DECISIONS.md` is 164 insertions and 0 deletions against `45228e3`.
+  - **The README note** is true and sourced: two 2024 PACMPL papers, the finite-automata fact attributed. A second sweep of its own, over 217 files in other phrasings, found no other uncorrected claim.
+  - **The harness:** 258/258 GREEN in a fresh clone.
+  - **Block 8 and hygiene.** Block 8 saves 57 lines, not 56; the 57th is the record commit's own README tick, §7's first class. The shape scan is clean, with a control that fires. No unpinned landing is named. Hygiene is clean, and it ran no fsck, gc or fetch.
+  - **0.1.6b's four patches** apply over `911e3d7`: 13, 5, 5 and 5 files.
+- **Two notes, neither a defect of 0.1.6a:**
+  - The record's "17 added lines" counts non-blank lines; the diff has 19, two of them blank.
+  - Four old decisions, RX-031, RX-032, RX-110 and RX-113, have their first paragraph swallowed into a blockquote in rendered Markdown. They were the same at `45228e3`. This is the worker's playbook finding seen in the tree, and it's cosmetic. It's held for the close as an optional blank-line fix, which changes no decision's text.
+- **0.1.6a is DONE**, the cycle audit's library findings fixed, C1 first.
+- **Dispatched 06:10: `s1-nregex-0.1.6b-0610`** (`npk:worker`, `opus`) on `911e3d7`: the instruments, PD-63 … PD-65 → RX-219 … RX-221.
+  - The note from the plan's verifier goes with it: block 0b reads `c970483` in `$NPK_TREE`.
+  - Budget: the week at 21 %, the five-hour window at 24 %, 126 GiB available. `s2-ntime-0.3.1-verify` is still running.
