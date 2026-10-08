@@ -10374,3 +10374,22 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **102 (DEF-248)** moves none of our files.
 - **They concur that the re-pin waits for 103.** The handoff's re-pin list carries the counts. **The author's go on that timing is asked.**
 - **One note for the running work:** `s1-nregex-0.2.1-1824` writes new code at the pin, where binding `string_bytes` into a `uint8[]` is still legal. Any new such binding joins the re-pin's list, and the adoption re-reads the tree whole.
+
+### `nitpick-time` 0.3.2's revised plan: VERIFIER FAIL on one clause, a filing, text only — the planner resumed — 2026-10-08 19:14 (shell time)
+
+- **verify `s2-ntime-0.3.2-verify`, resumed — FAIL** (`sonnet`, 49 min this round, 760 k tokens in all, 97 tool uses).
+  - **Passed:**
+    - CI, both runs per job; eleven blocks SAME in a stand-in, the patches touching 15, 14 and 28 files.
+    - **3e reproduced twice: 293 mutants, 28 stillborn, 237 red, 28 unseen,** and §1.9 names exactly the 28.
+    - **Its own 311:** all 26 killable now red, the raw-execve five included. One equivalent mutant is unnamed, outside the planner's operators: `if (z.found)` made `if (true)`.
+    - The FIFO case, at −14 by SIGALRM at 5.13 s, with the remount case killing `O_RDWR`. The raw unit shown by `strace`.
+    - The wild casts and `execve` confined to `tests/`.
+    - The branches probed: `eb.len >= 3` false by the raw unit alone, and step 2's true by none, as stated. Two loop zero-trips (219, 262) are unexecuted and unclaimed.
+    - The kernel refuses a 4096-byte link target on ext4, tmpfs and a namespace tmpfs.
+    - PD-101 and TM-256 written as the author's answer, word for word against the board and record.
+    - TM-254 … TM-257 by value, +319 −0; the eight reserved names among the seed's 170 keywords.
+    - 0 forbidden shapes, no unpinned landing, hygiene clean.
+  - **The FAIL.** Gate 9 says the kernel's numbers were "read at a primary source… filed… No research request is owed". `mknod` 133, `alarm` 37, `execve` 59, `MS_RDONLY` 1, `MS_REMOUNT` 32 and `S_IFIFO` 4096 are in neither `linux-syscall-table.md` nor CURRENCY.md's row. The values are correct, checked against `syscall_64.tbl`, `mount.h` and `stat.h`; the filing is the defect.
+  - **Nits:** a stray `PD-102.` line; block 3e is about three minutes, not two.
+- **The planner `s2-ntime-0.3.2-1146` was resumed at 19:14** for the text fix: extend the digest and the CURRENCY row through the patches, reword gate 9, and fix the nits. The verifier follows for the delta.
+- **0.3.2's plan has cost three verification rounds, each finding something real:** first the test-strength claims, then this filing. The code was right in every one. Budget: the week at 52 %, the five-hour window at 15 %.
