@@ -10091,3 +10091,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The baseline for 100** is written: 99's rows, for DEF-165's landing, expected next.
 - **Ours:** nothing at the pin. The private 20.1.2 carries the libraries. At the one re-pin, CI's LLVM_VERSION moves to 20.1.8, and its object rows are compared across the two builds, as promised to the compiler seat.
 - **Next here: the newcomer test's run 2 on the VM**, from `vm reset newcomer`, following `INSTALL.md` alone.
+
+### `nitpick-regex` 0.2.0 planned and rehearsed (`a649b40`) — its verifier dispatched; `nitpick-time` 0.3.2's planner dispatched — 2026-10-08 11:47 (shell time)
+
+- **report `s1-nregex-0.2.0-0932` DONE (plan)** (`opus`, 2 h 15 min, 851 k tokens, 262 tool uses). One commit, `a649b40`, with CI `37802740002` green. Twelve blocks SAME on the second pass in the real checkout, and the throwaway branches were deleted, never pushed. `check_record` gives `[no-report]` only, as checked here.
+  - **The three early records, as directed, with two corrections to my dispatch:**
+    - The README's paragraph is lines 56–64, not 55–63.
+    - **RX-218 names no README, measured**, so it is not dated. The five texts that described the note are dated, and so is CONTRIBUTING.md's item 1, which repeated the retired reason.
+    - The four blank lines render with 0 lazy continuations, and 176 of 180 sections are byte-identical.
+    - ROADMAP 227–228 is dated.
+  - **PD flags, recommended to accept as amended:**
+    - PD-66: the re-export moves into its own step.
+    - PD-67: `arena` joins BUILD.md §7.
+    - **PD-69: the dump's walk bound goes from 2n+1 to 2n−1.** A `decreases` measure m admits m+1 trips. At 2n+1, a leaf with two parents was written twice and the walk never stopped. One unit, `hir_dump_shared` (exit 108), and a 33rd mutant are added, so the run is 283, not 281.
+  - **The env** puts the private LLVM 20.1.2 first on PATH in every block, and says why.
+  - **For the author, optional:** CONTRIBUTING.md item 1's lookaround sentence now carries a dated note. Reword it only if the contributors' page should read as cleanly as the README.
+  - **For the orchestrator:** early on, the planner ran read-only `git rev-parse`, `git log`, `git grep` and `git ls-tree` in the compiler's tree, beyond the dispatch's "git show". Nothing was written. To 0.2.1: a node shared beside an unreachable node still escapes the walk's bound (H-15, §7).
+  - **findings-for-playbook** (held): measure a loop bound at its edge; use a patch placeholder no touched file holds; `check_refs` reads links inside fences.
+- **Dispatched 11:46:**
+  - **`s1-nregex-0.2.0-verify`** (`npk:verifier`, `sonnet`): the twelve blocks in a stand-in with the private LLVM copied in, the author's words word for word, PD-69 reproduced, the decisions, and hygiene.
+  - **`s2-ntime-0.3.2-1146`** (`npk:planner`, `opus`), P-12's one planner now that regex's has reported: the system zone, from no plan file, with O-X12 to register and decide, and the "any of" nit.
+  - Budget: the week at 34 %, the five-hour window at 35 %.
+  - The VM newcomer test's run 2 is running too.
