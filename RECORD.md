@@ -9907,3 +9907,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 07:52: `s2-ntime-0.3.1-0752`** (`npk:worker`, `opus`), the fix.
   - Budget: the week at 24 %, the five-hour window at 0 %.
   - `s1-nregex-0.1.6-0716`, the close, is still running.
+
+### Questions 24 and 25 answered — the private LLVM 20.1.2 made and checked; the two wordings placed — 2026-10-08 08:32 (shell time)
+
+- **question answered (08:2x, the author):** *"good morning. i a fine with the recommendations on those two questions."* Both are taken as recommended.
+- **Question 24, (c): the private LLVM 20.1.2, made and checked here** at `.internal/toolchain/llvm-20.1.2/`, gitignored, with a README.
+  - **How it was made.** `apt-get download` fetched the five packages this machine runs: `llvm-20`, `libllvm20`, `lld-20`, `llvm-20-runtime` and `llvm-20-linker-tools`, at `1:20.1.2-0ubuntu1~24.04.3`. Each one's sha256 equals apt's signed index. They were unpacked with `dpkg-deb -x`, with no sudo: 237 MiB unpacked, 52 MiB of `.deb`s.
+  - **One addition:** the symlink `usr/lib/llvm-20/lib/libLLVM.so.20.1`, which Ubuntu ships in `llvm-20-dev`. Without it, the tools' RUNPATH (`$ORIGIN/../lib`) fell through to the system's library, and `ldd` showed it.
+  - **What was checked.**
+    - `llc`, `opt`, `lld` and `libLLVM.so.20.1` are byte-identical to the system's, and `ldd` now resolves inside the copy.
+    - One program compiled through both toolchains gives identical `opt` output, object and linked binary, both exiting 0.
+    - `nitpick-time`'s `toolchain.check()` reads all three tools as 20.1.2 through it.
+  - **From now on every library dispatch puts its `bin` first on PATH.** The re-pin is ONCE, after D-349, DEF-165 and DEF-164, the compiler queue's next three after 98. Delete the copy after it.
+- **Question 25.**
+  - **(b)** *"the purity and width claims"* was sent to the running `s2-ntime-0.3.1-0752`, as the author's words. It changes one message string, and the fix's AST-identity claim excepts that string.
+  - **(a)** The README paragraph is reworded in his words as its own commit after the regex close. The close was dispatched (07:16) before his answer, and its sweep counts that paragraph's words, so the rewording was not put into it mid-run.
+- **A slip, mine:** the first try at the harness check ran with its working directory inside `nitpick-time/harness`, against the rule never to `cd` into a library. It was a read-only `python3 -B` import, which writes no bytecode, and it failed before reading anything more. The working check ran from `$TMPDIR`, with the harness on `sys.path`. The fix worker was writing in that repository at the time, and nothing of mine wrote there.
