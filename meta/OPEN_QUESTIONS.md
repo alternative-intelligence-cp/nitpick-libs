@@ -351,7 +351,10 @@ file existed — the check works.
   - **F-037 (memory fault)** — a trait object built by an explicit `x => dyn Trait` cast reads freed memory: the method returns the
     runtime's `0xAA` poison where 7 is right; the implicit coercion and the direct call read 7; no `wild`, `=>!` or pointer arithmetic.
   - **F-047 (silent wrong answer)** — a write through a `fixed uint8[]` lands in the caller's bytes, where D-074 says "an immutable
-    byte view is `fixed uint8[]`"; if `fixed` fixes only the binding, D-074's sentence is the defect instead.
+    byte view is `fixed uint8[]`"; if `fixed` fixes only the binding, D-074's sentence is the defect instead. **2026-10-08: the
+    author's D-348 makes D-074 true in two steps.** Step (i) is landing 98 (advance notice F40): a write or an element's address
+    through a `fixed` slice is refused (TYPE-086, TYPE-071), and `s1` and `s2` are refused. **A `fixed` view handed to a plain `T[]`
+    parameter whose callee writes still compiles until step (ii)**, `fixed T[]` as a type, which is planned. The row stays open for it.
   - **frac `ToString` (silent wrong answer, THE AUTHOR'S RULING 2026-10-02)** — −(1 3/8), stored {−2, 5, 8}, prints "-2 5/8", read by
     anyone as −2.625; it should print "-1 3/8" (sign and magnitude), the stored floor form kept; TYPE_REFERENCE:1657's example with it
     (`ty1657`, filed by the fuzzer under F-044 as ambiguous). **Superseded in part 2026-10-08 by D-347** (the author's ruling of

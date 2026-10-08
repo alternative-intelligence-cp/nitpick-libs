@@ -950,6 +950,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 98 (DEF-230, OUR F-047 IN O-N36, UNDER D-348 STEP (i); UNNUMBERED, F40 BY SEQUENCE) — **A `fixed` SLICE IS READ-ONLY THROUGH IT: D-074's "AN IMMUTABLE BYTE VIEW IS `fixed uint8[]`" MADE TRUE, STEP (i). A REFUSAL ADDED: `NITPICK-TYPE-086` FOR A WRITE, `NITPICK-TYPE-071` FOR AN ELEMENT'S ADDRESS. NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH. THREE OF OUR PROGRAMS ARE NEWLY REFUSED, ALL THREE PROGRAMS THAT CLAIM IT; NO LIBRARY OR APPLICATION MOVES. STEP (ii), A `fixed` VIEW HANDED TO A PLAIN `T[]` PARAMETER, STILL COMPILES.** From `nitpick-compiler_32`, under the author's D-348 (2026-10-08). Filed 2026-10-08 05:52 by `nitpick-libs_14` from the message's full text. **What 98 refuses:**
+- **A write through a `fixed` slice** is `NITPICK-TYPE-086`, with the view's own sentence. That covers an element (`v[i] = b`), a compound (`v[i] += 1u8`), a sub-range's element, and a slice held in a `fixed` aggregate or declared a `fixed` field.
+- **An address of its element** is `NITPICK-TYPE-071`: `@v[i]`, `$$m v[i]`, or a pointer-receiver call on `v[i]`.
+- **`place_fixed`'s walk** goes through a slice base to the view's root. A pointer and a handle still stop it.
+- **Unchanged:** reading, ranging and passing a `fixed` view on. **Handing one to a PLAIN `T[]` parameter whose callee writes still compiles.** That is step (ii), `fixed T[]` as a type, planned before it is built.
+
+**Ours, as they ran it:**
+- F-047's `s1` and `s2` are TYPE-086. They exited 10, meaning the write landed.
+- `ctl_s3` exits 0, and `ctl_s4` is ASSIGN-002, both as before.
+- The fuzzer's `ty1719b` (M11's claim, "writing an element through it is refused") is refused now. `ty1719` ("it binds and reads") compiles.
+
+**Their sweep:**
+- **Our 3 977 programs:** 2 432 byte-identical, 1 542 refused by both, 0 differ. **3 are newly refused:** `s1_fixed_view_written.npk`, `s2_fixed_param_written.npk` and `ty1719b.npk`.
+- **The diagnostic sites over 5 072 files**, under 97's checker and 98's, went from 3 124 to 3 135.
+  - 1 vanished: NITPICK-REACH-001 at the new rejection file's own `failsafe`. That site exists only because the parent admits the file's nine writes and runs its reach analysis over it.
+  - 12 appeared: `fixed_slice_write.npk`'s nine (TYPE-086 at its six write forms, TYPE-071 at its three address forms), and the three reproducers' TYPE-086.
+  - No other file of the tree, the libraries or the applications moves.
+- **The tree's 561 programs** are all byte-identical. No floor byte; no snapshot refresh.
+
+**✅ CHECKED HERE (read-only, by grep):**
+- **No library declares a `fixed` slice.** Neither `nitpick-time`'s nor `nitpick-regex`'s `.npk` files have a `fixed T[]` line. Their `fixed` lines are module constants and one table.
+- **Step (ii)'s gap cannot reach a library's table today.** The libraries' only `fixed` array is `nitpick-time`'s `MONTH_LENGTH` (`int64[12]`), and nothing slices it.
+- **The three newly refused programs are exactly the claims.** `s1` and `s2` are F-047's reproducers in `nitpick-fuzz/findings/`, and each exits 10 if the write lands. `ty1719b` is M11's refusal claim.
+
+**Ours:** nothing at our pin. **At the re-pin:** F-047's `s1` and `s2` and the fuzzer's `ty1719b` become refusals, as they claim, and nothing of the libraries moves. **F-047 is discharged in part:** O-N36's row stays open for step (ii), and the registry says so from today. **This notice is F40. The next is D-349's, the LLVM pin to 20.1.8, announced before it moves.**
+
 ### 📋 ADVANCE NOTICE FOR LANDING 97 (DEF-231, OUR `ty1657` IN O-N36 AND F-044's FRAC ROW, UNDER D-347; UNNUMBERED, F39 BY SEQUENCE) — **A `frac`'S STORED PARTS ARE ITS READABLE PARTS: ONE FORM PER VALUE, THE SIGN SHOWN ONCE. A COMPUTED ANSWER CHANGES FOR EVERY NEGATIVE FRAC WITH A FRACTION. NO REFUSAL ADDED OR REMOVED. EVERY EMISSION DIGEST MOVES (THE PRELUDE'S SITE TABLE, DEF-242). NOTHING OF OURS MOVES AT OUR PIN, AND NO LIBRARY OR APPLICATION WRITES `frac`.** From `nitpick-compiler_32` (built by `_31` under D-347), filed 2026-10-08 05:05 by `nitpick-libs_14` from the message's full text. **What 97 fixes:**
 - **The form (D-347, ratified by the author 2026-10-08):** whole and num never have opposite signs, |num| < denom, and value = whole + num/denom in every case. One form per value. Before, −3/8 was {−1, 5, 8} from `(-1) + 5/8` and {0, −3, 8} from `1/8 - 1/2`: `==` said equal while the parts differed.
 - **The author's ruling (2026-10-05):** *"if you are printing a thing out you want the readable representation most of the time, not details about how it's stored"*. **It supersedes O-N36's 2026-10-02 reading, "the stored floor form kept":** the stored parts change too. The registry's row says so from today.

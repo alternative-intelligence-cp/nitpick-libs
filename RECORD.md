@@ -9666,3 +9666,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Whether to report the `regex::escape` hole to Rust upstream is still his call.
 - **A slip, mine:** I ran `git fetch` in `nitpick-regex` to compare its head, which wrote that repository's `FETCH_HEAD`. It wasn't needed: the worker's push had already set `origin/main`. I'll use `git ls-remote` from now on.
 - **Dispatched 05:42: `s1-nregex-0.1.6a-verify`** (`npk:verifier`, `sonnet`). The week at 19 %, the five-hour window at 20 %, 126 GiB available. `s2-ntime-0.3.1-0330`, the planner, is still running.
+
+### Advance notice for landing 98 filed — D-348 step (i), a `fixed` slice is read-only through it (our F-047, DEF-230) — 2026-10-08 05:52 (shell time)
+
+- **From `nitpick-compiler_32`.** It is F40 by sequence.
+  - A write through a `fixed` slice is now `NITPICK-TYPE-086`, and an element's address `NITPICK-TYPE-071`.
+  - No emission moves for a program that compiles on both.
+  - Three of our programs are newly refused, each the program that claims it: F-047's `s1` and `s2`, and the fuzzer's `ty1719b`.
+  - **Handing a `fixed` view to a plain `T[]` parameter whose callee writes still compiles.** That is step (ii), `fixed T[]` as a type, which is planned.
+- **Checked here by grep:**
+  - Neither library declares a `fixed` slice.
+  - The libraries' only `fixed` array, `nitpick-time`'s `MONTH_LENGTH`, is never sliced, so step (ii)'s gap cannot reach it today.
+- **The registry:** O-N36's F-047 row gains a dated note. Step (i) is landing 98, and the row stays open for step (ii).
+- **Next from the compiler side:** D-349's notice, the LLVM pin moving to 20.1.8. Once it lands, the newcomer test's run 2 goes ahead.
