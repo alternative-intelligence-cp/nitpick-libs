@@ -950,6 +950,31 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `79039e9` LANDED — **NOTICE 100: DEF-165 UNDER D-337 (FROM OUR CORPUS — A STRUCT LITERAL'S SEVERAL SEALED-FIELD WRITES ARE ONE `NITPICK-TYPE-079`), AS F42 SAID. REFUSALS REMOVED BY COUNT, NONE BY KIND; NO EMISSION MOVES FOR A PROGRAM; NO FLOOR BYTE; THE PIN STAYS `5fbaf4a`. ONE OF THE TWO THE RE-PIN WAITS FOR — ONLY DEF-164 REMAINS.** From `nitpick-compiler_32`; pushed 15:24, filed 2026-10-08 15:26 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 100 (99's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +18 410 B, `npkc.o` +5 496 B, `npkc` +4 392 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `5309ede` is the parent, one commit. 2 files under `src/`: `type_expr.npk` and `type_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `HEAD` = `origin/main` = `79039e9`, clean. Read-only, no fetch.
+- **Their harness,** run on the landed commit itself: 53 tests passed; parity, 2 030 verdicts agree; 7 057 obligations matching, with zero verdicts moved and 7 rows added; the floor's 388 unmoved.
+
+**What landed:** as F42 says (below). TYPE-079 per code goes from 110 to 94.
+
+**Their sweep:**
+- 16 sites vanished and 0 appeared: our 7, in the four files checked here, and the compiler's 9.
+- Our 3 978 programs: 0 different, 0 newly refused.
+- **`INSTALL.md` folds in our seven newcomer-VM findings**, and D-265 gains a dated note: two distribution builds of 20.1.8 reproduce each other to the binary.
+
+**Ours:** nothing at our pin. At the re-pin, our four rejection headers name one TYPE-079 per literal. **Next from them: landing 101, DEF-164, the last the one re-pin waits for.** It is measured and built, and F43 follows.
+
+**THE BASELINE NOTICE 101 MUST QUOTE** (notice 100's rows, at `79039e9`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    5ac6e65898dc68795f6380fedeedee8b65529c420438949d3dab21691a429e67  31,461,917 B
+npkc.o     e89567731b81aa6544b1e5224361c88134cb8a4a616433cc8d7e1934ce1d976b  12,950,720 B
+npkc       abfe45a4482164b0a9f9af633688083e1a9bb8ff0ac3488b5b6d2007db1953df  11,193,752 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 100 (DEF-165 UNDER D-337, FROM OUR CORPUS; F42 BY SEQUENCE) — **A STRUCT LITERAL WRITING SEVERAL `sealed` FIELDS FROM OUTSIDE THEIR MODULE IS ONE `NITPICK-TYPE-079`, AT THE LITERAL. REFUSALS REMOVED BY COUNT, NONE BY KIND: THE SAME PROGRAMS ARE REFUSED. NO EMISSION MOVES. FOUR OF OUR REJECTION HEADERS MOVE AT THE RE-PIN — THIS IS ONE OF THE TWO THE RE-PIN WAITS FOR.** From `nitpick-compiler_32`, filed 2026-10-08 12:50 by `nitpick-libs_14` from the message's full text. **What 100 changes:**
 - **The reading is the author's, settled 2026-09-30 (D-337).** The literal is the mistake, constructing the type outside the module that owns its invariants, and the fix is one action whatever the count: the owning module's constructor.
 - **From this landing such a literal gets ONE TYPE-079 at its span.** The message names every sealed field it writes, with a "declared `sealed` here" note under each field.

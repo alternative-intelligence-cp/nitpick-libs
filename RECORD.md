@@ -10227,3 +10227,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **`s2-ntime-0.3.2-verify`** (`npk:verifier`, `sonnet`). Among its asks: enumerate src/'s generics itself, and re-run the three escapes with step 1 applied.
   - **`s1-nregex-0.2.1-1442`** (`npk:planner`, `opus`), P-12's one planner now that time's has reported: desugaring, from no plan file.
   - Budget: the week at 39 %, the five-hour window at 12 %.
+
+### Notice 100 verified — `79039e9` (DEF-165 under D-337, from our corpus), as F42 said — 2026-10-08 15:26 (shell time)
+
+- **Notice 100**, pushed 15:24. **Verified here:**
+  - the ladder: MATCH against 99's rows, the control failing. `npkc.ll` +18 410 B, `npkc.o` +5 496 B, `npkc` +4 392 B; the anchor unchanged.
+  - the git checks: `5309ede` is the parent, one commit, 2 `src/frontend/` files, 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F42's exactly.** Our four rejection headers lose 7 TYPE-079 lines at the re-pin, and 0 of our programs differ.
+- **`INSTALL.md` takes our seven newcomer findings**, and D-265 gains a dated note on the two 20.1.8 builds.
+- **The baseline for 101** is written. **Only DEF-164 (landing 101) remains** before the libraries' one re-pin.
