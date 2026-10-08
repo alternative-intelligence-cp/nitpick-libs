@@ -9795,3 +9795,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Question 25:** two optional wordings, the regex README paragraph and time 0.3.1's "purity and width claims". Each is recommended, and neither stops a stream.
 - The batch rule (§9): two rows, both raised while streams run, so it goes to the author in this turn's message rather than as a push.
 - **06:5x, the compiler seat:** my reading is accepted and its own withdrawn. After D-349, its next two landings are DEF-165 (under D-337) and DEF-164, in the author's order: wrong answers first, then those two. So under (c) our one re-pin waits on exactly three landings after 98. For the copy, `apt-get download` of the exact .debs, then `dpkg -x`, needs no sudo. Question 24's row says so.
+
+### `nitpick-time` 0.3.1's plan VERIFIED PASS — PD-95 … PD-98 accepted; its worker dispatched; four times on this tenure's last entries corrected — 2026-10-08 06:40 (shell time)
+
+- **verify `s2-ntime-0.3.1-verify` — PASS** (`sonnet`, 39 min, 380 k tokens, 128 tool uses) at `8ca7c4b`.
+  - **CI.** Both runs read per job, at 76 567 B and 76 734 B. CI's library IR (309 729 B) and objects equal the local runs': the first evidence for the plan's one unrehearsed leg, another machine's `npkc`.
+  - **The rehearsal.** Ten blocks SAME in a stand-in around a fresh clone, each through `blocks.py` in a fresh `bash -c`. The patches apply 14 and 13 files. Four full runs, about 127 GiB available, no earlyoom kill.
+  - **PD-95.** It wrote its own plants. Each of the seven compiles and passes HEAD's `check_purity`, and `check_call_edges` names each one's runtime symbol. `std_out` reaches `npk_sys6` through `std_dup`. A call through a value and a call into `host` are each refused. `vec.npk`'s uninstantiated generics are unread by the emission check, as the plan states.
+  - **PD-96.** 0 → 1 on the counter-example, with §9's sentence word for word. The checks read `npkc`'s emission before `opt`; after `opt -O2`, the multiply intrinsic count goes 2 → 0 and the check reads 0. Over the tree it names exactly `bytes_put_int`, `instant_since` and `timestamp_since`.
+  - **PD-97.** The 43 names equal `TESTING.md`'s row: 35 builtins and 8 prelude names. More than 12 were read in `5fbaf4a`'s runtime and prelude. No bare-name builtin and no module-level public prelude function that reaches past the program's memory is missing. Whole-name matching clears `reopen` and four other names.
+  - **PD-98 and the mutants.** `HostClock` gives 0 → 2. The mutants are 13 of 13, and 6 of 7, with `write_file_dropped` uncaught, as stated.
+  - **The decisions.** TM-249 → TM-253 by value, with no line lost. O-X9 and O-X11 are struck, each citing its decision.
+  - **O-N40.** Its reproductions are confirmed.
+  - **Shapes, currency, hygiene.** Neither patch touches a `.npk`, no unpinned landing is named, and hygiene is clean.
+- **Two docstring nits in `step2.patch` (lines 230–236), given to the worker as the orchestrator's decisions:**
+  1. `check_purity`'s docstring says the list holds "every name the pinned compiler and its prelude offer" that reaches past the program's memory. It holds every bare-name builtin and public module-level prelude function. A prelude METHOD that reaches the kernel, `ByteReader.seek` through `sys(8…)`, is off the list. It is callable only from an `async func`, whose body `check_call_edges` refuses by its declared-function rule. So there is no silent pass, but the sentence over-claims, and PD-97's own text is the accurate one.
+  2. "A local NAMED after one is `NITPICK-RESOLVE-001`" holds only for a function-typed local; `int64:read` compiles.
+- **Pre-existing, not 0.3.1's:** `check_purity` blanks comments but not string literals, so a banned name inside a string is a false finding. It is a loud failure, not a silent pass. Held for a later cycle.
+- **Decision (this seat's): PD-95 … PD-98 accepted** as TM-250 … TM-253, in PD order. §9's sentences stand as written: question 25 (b) is with the author, and his answer becomes a follow-up commit.
+- **Dispatched 06:40: `s2-ntime-0.3.1-0640`** (`npk:worker`, `opus`) on `8ca7c4b`.
+  - Budget: the week at 22 %, the five-hour window at 31 %, 129 GiB available.
+  - `s1-nregex-0.1.6b-0610` is still running.
+- **Times corrected (mine).** Three entries above carry times written ahead of the shell clock:
+  - the notices 95 and 96 entry's "06:38" was committed at 06:21 (`41f4d4b`);
+  - questions 24 and 25's "06:50" was committed at 06:23 (`19c73c9`);
+  - its "06:5x" addendum was committed at 06:23 (`a9d3c0b`).
+  The board's copies are corrected. A few earlier labels sit two to four minutes ahead of their commits; they are left as approximate. **From here, every time is read from `date` before it is written.**
