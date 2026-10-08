@@ -10033,3 +10033,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - at its judgement, ROADMAP 227–228.
   - Budget: the week at 28 %, the five-hour window at 15 %.
   - `s2-ntime-0.3.1-0752`, the fix, is resumed and still running.
+
+### `nitpick-time` 0.3.1's wording fixed (`30bd704`) as full runs measure it — O-X12 corrected again — the verifier resumed for the last delta — 2026-10-08 10:02 (shell time)
+
+- **report `s2-ntime-0.3.1-0752`, resumed: DONE** (722 k tokens in all, 54 tool uses this round). It made one commit, `30bd704`, with CI `37788468674` green. **Checked here:** `check_record` clean; the tree clean; `HEAD` = `origin/main`.
+  - It made nine full runs, one at a time, the last with the private LLVM first on PATH. None was killed.
+  - **The escapes, as full runs show them.** In a generic nobody instantiates:
+    - the `mono_now` alias through a function-typed local, and the die of a `ByteReader` taken by move, are GREEN;
+    - an `await` or a spawn is RED by the arm bill (`DeadlineExceeded`);
+    - a truncated `List` of descriptors is RED in `cal`, where it arms an identity new to its consumers, and GREEN in `src/core/bytes.npk`, whose consumers owe those arms already.
+  - TM-252's note gets a further dated sentence.
+- **O-X12, corrected a second time, mine.** At 09:25 I wrote the truncation as always RED, from the verifier's run in one module. It depends on the module. The registry now quotes the full runs and names both earlier wordings.
+- **findings-for-playbook** (held for the next pass): the worker's four, among them that "passes every check" is measured by a full run, and that the run's module decides an arm-bill verdict.
+- **The verifier, resumed at 10:02** for `30bd704`: prose-only scope, the four escapes re-run in full in both modules, GREEN -- 134 and CI. Budget: the week at 30 %, the five-hour window at 21 %. `s1-nregex-0.2.0-0932`, the planner, is running.

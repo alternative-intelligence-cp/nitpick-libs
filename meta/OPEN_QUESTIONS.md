@@ -204,9 +204,11 @@ like a fix right up until you count.**
   `check_wide_types` never read it, and `check_purity` reads only its spellings. **Measured by a full run (corrected 2026-10-08,
   the fix's delta verification):** such a function stays SILENT in a full run when it aliases `mono_now` through a
   function-typed local, or lets a descriptor-owning value die through a consuming parameter (`move ByteReader:r`). One that
-  awaits an asynchronous function, or truncates a `List` of descriptors, is RED by the arm bill (`check_failsafe_arms`,
-  REACH-002 in the units), though no purity check names it. The first wording here said all three "pass every check"; it
-  came from `checks.py`'s checks alone. **Dormant**: `src/`'s generics are
+  awaits or spawns is RED by the arm bill (`check_failsafe_arms`, REACH-002 in the units: `DeadlineExceeded`), though no purity
+  check names it. A `List` of descriptors truncated in a generic is RED only where it arms an identity new to its module's
+  consumers: RED in `cal`, GREEN in `src/core/bytes.npk`, whose consumers owe those arms already (the fix's full runs, `30bd704`).
+  The first wording here said all three "pass every check", from `checks.py`'s checks alone. The second said the truncation
+  was always RED, from one module's run. **Dormant**: `src/`'s generics are
   `vec.npk`'s nine, all synchronous, and none takes those shapes. It is older than cycle 0.3.1. **Not blocking.** The worker's
   recommended answer is three token checks, each plantable:
   - no `async` in `src/` outside `src/host/`, since `CLAUDE.md` says `ntime` has no `async` function and should not grow one;
