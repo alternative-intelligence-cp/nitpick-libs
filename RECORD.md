@@ -10134,3 +10134,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The VM is left built,** at `5309ede` under `~/nitpick` on the VM, for the author to inspect, not reset. It holds about 10 GiB while it runs.
 - **The owed item** reads PASSED for the compiler's half. The libraries' half waits for the package manager.
 - **A slip, mine, fixed forward (11:49).** The entry above first wrote the VM's clone as an absolute home path. `check_refs` flagged it as a leak, and my command chain committed anyway, because piping the check through `tail` lost its exit status (1). The path now reads `~/nitpick` on the VM. **From here the chain tests the check's own exit status before staging.**
+
+### `nitpick-regex` 0.2.0's plan VERIFIED PASS — PD-66 … PD-69 accepted; its worker dispatched — 2026-10-08 12:40 (shell time)
+
+- **verify `s1-nregex-0.2.0-verify` — PASS** (`sonnet`, 54 min, 374 k tokens, 111 tool uses) on `a649b40`.
+  - **CI.** `37802740002` read per job (85 413 B), including `llvm-config --version == 20.1.2`.
+  - **The rehearsal.** Twelve blocks SAME in a stand-in, with toolchain `5fbaf4a` and the private LLVM 20.1.2 copied in. The patches apply in order, 5, 1, 2, 9, 14, 11 and 5 files, and the units run 260, 260, 260, 261, 272, 283, 283.
+  - **The author's words.** README 56–63 matches his paragraph word for word, 82 of 82, bar the one kept aside, and the old note is gone. RX-218 has 0 mentions of the README. "Price paragraph" stands in 6 places, each dated and none rewritten. CONTRIBUTING.md item 1 is dated.
+  - **The blank lines.** Lazy continuations go from 4 to 0 across 92 Markdown files; 176 of 180 sections are byte-identical.
+  - **PD-69, reproduced.** A `decreases 3 - steps` loop runs 4 steps. At 2n+1 the shared leaf is written twice and never stopped. At 2n−1 the walk exits 108, `hir_dump_shared` exits 108 at both legs, and all 33 mutants are red.
+  - **The decisions.** RX-222 … RX-225 by value and in PD order, `DECISIONS.md` +144 −0.
+  - **The rest.** §1 is re-derived independently. 0 forbidden shapes over 1 696 added lines, with a control. No unpinned landing named. Hygiene is clean, and the rehearsal branches were never pushed.
+  - **Two nits, non-blocking:**
+    - `src/hir/README.md`'s note is dated by cycle, not by day.
+    - `hir_dump_shared.npk`'s header says "two nodes" where §1.7a and the probe say four.
+- **Decision (this seat's): PD-66 … PD-69 accepted as RX-222 … RX-225, as amended.** The two nits go to the worker as the orchestrator's corrections.
+- **Dispatched 12:40: `s1-nregex-0.2.0-1240`** (`npk:worker`, `opus`): three records first, then the arena.
+  - Budget: the week at 35 %, the five-hour window at 41 %, 123 GiB available.
+  - `s2-ntime-0.3.2-1146`, the planner, is running.
