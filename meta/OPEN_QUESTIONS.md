@@ -198,6 +198,18 @@ word for it. **A check
 that reports a false positive invites being weakened, and the weakening looks
 like a fix right up until you count.**
 
+- **O-X12 — `nitpick-time`: a generic function nobody instantiates passes every check.** Raised by `nitpick-time` 0.3.1's fix
+  (`s2-ntime-0.3.1-0752`, `74844ac`), 2026-10-08, at pin `5fbaf4a`; to be registered in the repository by cycle 0.3.2's planner.
+  A generic function in `src/` that the umbrella never instantiates is absent from the emission, so `check_call_edges` and
+  `check_wide_types` never read it, and `check_purity` reads only its spellings. Measured: such a function passes every check
+  while it awaits `text_read_line`, lets a `ByteReader` die, or aliases `mono_now`. **Dormant**: `src/`'s generics are
+  `vec.npk`'s nine, all synchronous, and none takes those shapes. It is older than cycle 0.3.1. **Not blocking.** The worker's
+  recommended answer is three token checks, each plantable:
+  - no `async` in `src/` outside `src/host/`, since `CLAUDE.md` says `ntime` has no `async` function and should not grow one;
+  - no function-typed local in `src/` (D-018: a layout is data, not a callback);
+  - no descriptor-owning prelude type (`ByteReader`, `ByteWriter`, `OwnedFd`, `TextReader`, `TextWriter`, `LineBufWriter`)
+    named in `src/` outside `src/host/` (S-20).
+  Cycle 0.3.2's planner decides.
 - **O-X11 — `nitpick-time`: a wide value that nothing spells, such as a call's result, passes
   `check_int128_sites`.** Raised by `nitpick-time` 0.3.0's verifier, 2026-10-08, at pin `5fbaf4a`;
   registered by that subcycle's fix at `d05ab9c` and defined in full at

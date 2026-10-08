@@ -9923,3 +9923,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **(b)** *"the purity and width claims"* was sent to the running `s2-ntime-0.3.1-0752`, as the author's words. It changes one message string, and the fix's AST-identity claim excepts that string.
   - **(a)** The README paragraph is reworded in his words as its own commit after the regex close. The close was dispatched (07:16) before his answer, and its sweep counts that paragraph's words, so the rewording was not put into it mid-run.
 - **A slip, mine:** the first try at the harness check ran with its working directory inside `nitpick-time/harness`, against the rule never to `cd` into a library. It was a read-only `python3 -B` import, which writes no bytecode, and it failed before reading anything more. The working check ran from `$TMPDIR`, with the harness on `sys.path`. The fix worker was writing in that repository at the time, and nothing of mine wrote there.
+
+### `nitpick-time` 0.3.1's fix DONE (`74844ac`) with the author's words (`cdb30bd`) — my correction was incomplete too; O-X12 registered — the verifier resumed — 2026-10-08 08:44 (shell time)
+
+- **report `s2-ntime-0.3.1-0752` DONE** (`opus`, about 50 min, 608 k tokens, 169 tool uses). Two commits on `a2a6152`, pushed. CI is green on both: `37777079482` and `37778338468`. **Checked here:** `check_record` clean; the tree clean; `HEAD` = `origin/main` = `cdb30bd`.
+  - **`74844ac`:** the over-claim corrected where it stands, and TM-252 and TM-018 dated.
+  - **`cdb30bd`:** the declared-function finding says *"the purity and width claims"*, the author's answer to question 25 (b).
+  - GREEN -- 134 with 112 plants over each tree.
+- **The correction went past my dispatch's words, measured, and the worker recommends accepting all three. This seat accepts them:**
+  - **five asynchronous exceptions, not my four:** `LineBufWriter.flush` reaches the kernel through the private `tw_write_all`;
+  - **a reading for generics:** what a generic reaches through its type argument is that argument's. The other reading makes the synchronous universal false at `list_truncate<ByteReader>`;
+  - **the generic limit**, stated wherever the boundary is said to hold.
+- **Corrections to this record (W-28), mine.**
+  - The FAIL entry (07:52) names "the four async prelude names". There are five.
+  - It says an `async func` in `src/` means "none passes in silence". That holds only for non-generic functions: a generic that nobody instantiates is absent from the emission and passes every check.
+  - The board's s2 row says so from its new prefix. **The lesson is the worker's first playbook finding, and it is mine twice over.** A correction's list of exceptions is a claim like the universal it corrects, so enumerate the domain before naming either. Verifier briefs now ask for the enumeration first.
+- **O-X12 registered** in the workbench registry, to be registered in the repository by cycle 0.3.2's planner. A generic function nobody instantiates passes every check, measured. It is dormant, since `src/`'s generics are `vec.npk`'s nine, all synchronous. It is older than 0.3.1. The worker's recommended answer is three token checks, each plantable: no `async` outside `src/host/`, no function-typed local, and no descriptor-owning prelude type outside `src/host/`.
+- **findings-for-playbook** (held for the next pass):
+  - Enumerate the domain before naming the exceptions, as before naming the universal.
+  - A check holding declared functions to the emission must say which functions it holds. Here it is the non-generic ones.
+  - At `5fbaf4a` every `async` body's scope-exit join calls `npk_mono_now` and its siblings, even the prelude's `ByteWriter.flush`, whose body is `pass NIL`. So whether an async function reaches past memory is read in its source, not in its emission's call graph.
+- **The verifier, `s2-ntime-0.3.1-verify-work`, was resumed at 08:44 for the delta.** It asks for prose-only scope bar the one string, an enumeration of the whole prelude for a sixth exception, the three escapes planted at `cdb30bd` and at `8ca7c4b`'s checks, the dated notes, and GREEN -- 134. Budget: the week at 27 %, the five-hour window at 9 %. `s1-nregex-0.1.6-0716`, the close, is still running.
