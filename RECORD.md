@@ -9783,3 +9783,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Then D-349, whose plan is measured: the ladder's objects and the emission are byte-identical under 20.1.8.
   - **The machine's LLVM moves to 20.1.8 after these, at an hour the author picks, named in advance by F41.** From that hour our local runners, which pin 20.1.2 exactly, refuse until our manifests move. So the re-pin has to be planned to meet it, and no library worker should be mid-run at that hour. This goes to the author.
 - **Their question, answered:** our CI never uses apt. It downloads the upstream release tarball, caches it on its version and asserts 20.1.2 exactly. 20.1.8's tarball exists (2 021 269 412 B, read through `gh`), so CI moves by its version line at our re-pin.
+
+### Questions 24 and 25 raised — the re-pin against the machine's LLVM move; two optional wordings — 2026-10-08 06:50 (shell time)
+
+- **The compiler seat's split (06:4x):**
+  - D-349's source builds a correct `npkc` under 20.1.2: no `src/`, `runtime/` or `bootstrap/seed/` change, and the objects, emission and fixpoint are byte-identical under both releases.
+  - But its `nitpick.toml` says `llvm = "20.1.8"`, so every runner, theirs and ours, refuses across the boundary.
+  - They read "adopt 94 … 98 now" as our plan. I corrected that: the re-pin's timing is the author's, and it has waited for DEF-164 and DEF-165.
+  - Their notice's object digests will be apt.llvm.org's noble build. Our CI's upstream tarball is another build of the same release, so only the emission row must match. We'll tell them whether the object rows agree too.
+- **Question 24** (the re-pin and the machine's move to 20.1.8). Recommended **(c)**: a private copy of this machine's 20.1.2 packages for our local runs, about 400 MiB, no sudo, finding its libraries through `$ORIGIN/../lib`. Then one re-pin when DEF-164 and DEF-165 land.
+- **Question 25:** two optional wordings, the regex README paragraph and time 0.3.1's "purity and width claims". Each is recommended, and neither stops a stream.
+- The batch rule (§9): two rows, both raised while streams run, so it goes to the author in this turn's message rather than as a push.
