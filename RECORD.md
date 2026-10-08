@@ -9863,3 +9863,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Question 25 (a), the README wording, is still with the author, so the close goes ahead on the plan's text.
   - The four old decisions whose first lines a blockquote swallows are held for cycle 0.2, not given to the close, because its blocks read `DECISIONS.md`.
   - Budget: the week at 23 %, the five-hour window at 34 %, 127 GiB available. `s2-ntime-0.3.1-0640` is still running.
+
+### `nitpick-time` 0.3.1 DONE — `check_purity` live, the emission read beside it, `a2a6152` — its verifier dispatched — 2026-10-08 07:25 (shell time)
+
+- **report `s2-ntime-0.3.1-0640` DONE** (`opus`, about 44 min, 551 k tokens, 131 tool uses). Three commits on `8ca7c4b`, pushed.
+  - **`183b7d5`, step 1:** `check_call_edges` (TM-250, O-X9) and `check_wide_types` (TM-251, O-X11). 106 plants, GREEN -- 134.
+  - **`a00e036`, step 2:** `check_purity`'s 43 whole names (TM-252), and `check_host_isolation` reading every name `src/host/` makes public (TM-253). 112 plants, GREEN -- 134. Block 2c is RED on purpose, five checks naming the README's two plants.
+  - **`a2a6152`, the record.** Step 2's patch was amended for the orchestrator's two docstring decisions.
+  - **CI:** `37766791383`, `37768131593` and `37769451444` are all green. **Checked here:** `check_record` clean; the tree clean; `HEAD` = `origin/main` = `a2a6152`; the scratch removed.
+- **findings-for-playbook** (held for the next pass):
+  - At `5fbaf4a`, `npkc` emits an `async func`'s body as `npk.resume.<module>.<name>` over `npk.frame.<module>.<name>`, and defines no `npk.<module>.<name>`. A reading of the emission keyed on `npk.<module>.` sees no such function. So hold every function the source declares to the emission, and the miss becomes a red run, not a smaller denominator.
+  - A builtin's name is refused only for a function-typed local (RESOLVE-001, D-296). `int64:read` and `int64:mono_now` compile and run.
+  - `ByteReader.seek` reaches the kernel and is callable only from an `async func`. A ban list of names reads a method by its name alone: `w.read(` matches the builtin `read`, and `r.seek(` matches nothing.
+- **Dispatched 07:25: `s2-ntime-0.3.1-verify-work`** (`npk:verifier`, `sonnet`).
+  - Budget: the week at 24 %, the five-hour window at 36 %.
+  - `s1-nregex-0.1.6-0716`, the close, is still running.
