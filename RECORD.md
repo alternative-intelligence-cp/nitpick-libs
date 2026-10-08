@@ -9586,3 +9586,43 @@ Before committing notice 94, `check_refs` gave **7 findings**, none of them caug
 ### Advance notice for landing 96 filed — DEF-229 (our F-041); D-349 moves the LLVM pin to 20.1.8; `INSTALL.md` lands — 2026-10-08 03:39 (shell time)
 
 From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self-growing generic call, and an emitter refusal past a nesting of 64 for an indirect cycle. Our `h1`, which never exited, is refused in 0.3 s. No emission moves for a program that compiles on both, and of our 3 978 programs 0 differ and 0 are newly refused. **Our fuzz claim program `tr0586.npk` ("expect: refuse") is refused now, as it claims.** Their sweep reads our trees live, so regex's rehearsal branch showed through as a vanished `parse_fuzz.npk`; noise, not a finding. **Recorded with it:** D-347 (the frac form; landing 97); D-348 (a `fixed` slice is read-only; landing 98); **D-349 (the toolchain pin moves to LLVM 20.1.8, its own landing after 98; our CI pins the same, so the libraries' CI moves at our re-pin)**; and `INSTALL.md` at the compiler's root with six of the VM test's fixes. **The newcomer test's run 2 waits for D-349's landing.** The owed list says so.
+
+### `nitpick-regex` 0.1.6's three plans VERIFIED PASS — PD-58 … PD-65 accepted; 0.1.6a's worker dispatched — 2026-10-08 04:40 (shell time)
+
+- **verify `s1-nregex-0.1.6-verify` — PASS** (`sonnet`, 62 min, 452 k tokens, 144 tool uses) on `45228e3`. It found no defect in any plan or patch.
+  - **CI.** `37743241774` read per job (82 152 B): compiler `5fbaf4a` clean, the pin's emission, `rx120` held, 258/258 GREEN.
+  - **The rehearsal.** 22 of 22 blocks SAME, each run through its plan's own `blocks.py` in a fresh `bash -c`, in a stand-in workbench around a fresh clone.
+    - The patches apply in order: 0.1.6a's touch 5, 6, 4, 7, 3, 5 and 3 files; 0.1.6b's 13, 5, 5 and 5; 0.1.6's step 2 touches 4, and the close moves 123 files.
+    - Fifteen full harness runs: 258/258 until 0.1.6b's step 3, then 260/260. No earlyoom kill.
+    - Its trees equal the planner's rehearsal commits, except for prose written after the rehearsal.
+  - **C1, run for real.**
+    - At `fd76c65`, all 14 `:name:` texts put straight after a nested class's `[` are read as the POSIX class, silently.
+    - After step 1, all 42 shapes parse to single-codepoint members, with 0 POSIX nodes.
+    - The empty text, `\0` followed by `1`, and the length bound are refused as PD-58 states.
+  - **The decisions.**
+    - RX-214 … RX-221 are contiguous after RX-213, in PD order, read by value. `DECISIONS.md` loses no line.
+    - PD-61 records question 23 as the worker's reading, which the author accepted; his words are at `RECORD.md:8770`.
+    - PD-63 was re-derived: of the 38 kinds, 34 are provoked by 17 units and 4 are Y-25 rows.
+  - **The triage.**
+    - 22 rows, in the audit's order.
+    - 0.1.5's verifier's three findings appear as C2, C6, and S4 with K1.
+    - The audit file is byte-identical to the workbench's copy.
+  - **The scans.**
+    - No added line writes a forbidden shape. The scanner's control caught all nine planted shapes.
+    - No unpinned landing is named.
+    - The currency rows are dated and sourced.
+  - **Hygiene.** No `core.hooksPath`, no stray ref or stash, and `.internal/r3/`'s 19 symlinks untouched.
+  - **Excused, as dispatched:** the planner's cycle-level commit subject, and `check_record`'s `[no-report]` for each PLANNED file.
+- **The verifier's two lapses, in its own report.**
+  - It ran `git fsck --lost-found` in the real repository, which wrote `.git/lost-found/` (38 files); it then removed exactly that.
+  - One read-only command ran with its working directory inside the library.
+  - **Confirmed here, read-only:** `git status --porcelain` is empty, `HEAD` is `45228e3`, `.git/lost-found` is absent, and `core.hooksPath` is unset.
+  - From now on, verifier dispatches will name `git fsck --lost-found` and `git gc` as writes.
+- **A gap in a plan, not a defect.** 0.1.6b's block 0b diffs `c970483..5fbaf4a` in `$NPK_TREE`. A compiler tree holding only `5fbaf4a` prints `fatal: bad revision`. The real `../nitpick` has the full history, but the plan does not say it needs it. This goes into 0.1.6b's dispatch.
+- **Decision (this seat's): PD-58 … PD-65 accepted**, as RX-214 … RX-221.
+  - **PD-63, the Gate amendment, is accepted as the planner recommends.**
+  - PD-59's and PD-60's sentences stand as planned. The author was shown them and has asked for no change; he can still revise either before the worker reaches steps 2 and 3.
+- **Still for the author:** whether to report upstream the planner's finding that Rust's `regex::escape` has the hole C1 closes. Not verified here.
+- **Dispatched 04:40: `s1-nregex-0.1.6a-0440`** (`npk:worker`, `opus`). 0.1.6a, C1 first: seven work commits, then the record.
+  - Budget: the week at 17 %, the five-hour window at 10 %, 126 GiB available.
+  - `s2-ntime-0.3.1-0330`, the planner, is still running.
