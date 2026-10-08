@@ -10236,3 +10236,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep is F42's exactly.** Our four rejection headers lose 7 TYPE-079 lines at the re-pin, and 0 of our programs differ.
 - **`INSTALL.md` takes our seven newcomer findings**, and D-265 gains a dated note on the two 20.1.8 builds.
 - **The baseline for 101** is written. **Only DEF-164 (landing 101) remains** before the libraries' one re-pin.
+
+### `nitpick-time` 0.3.2's plan: VERIFIER FAIL — claims about its own tests measured false — the planner resumed — 2026-10-08 15:57 (shell time)
+
+- **verify `s2-ntime-0.3.2-verify` — FAIL** (`sonnet`, 74 min, 479 k tokens, 143 tool uses). The plan runs as written; what fails is what it says about its tests.
+  - **Passed:**
+    - CI per job: `check_specs_current` 1 unresolved at `a47f739`, 0 at `7a93be5`.
+    - Ten blocks SAME in a stand-in. The patches touch 15, 14 and 25 files, and the runs are 135, 136 and 140 with 116 plants. The STOP line fires for a 20.1.8 `llc`.
+    - **The namespace machine is real:** `strace` shows the unit's own `unshare`, map writes and tmpfs mount, the machine's `/etc` unchanged, and the sandbox allows it.
+    - **PD-99 reads 9 of 9 generics**, each instance named by a plant, and a generic with no instance is a finding. **The three escapes are now red in full runs.**
+    - `host_system_zone` never fails and is never UTC. The order holds, and H-14 holds. H-15's facts were measured against the kernel, and the descriptor is closed on every path.
+    - TM-254 … TM-257 by value, `DECISIONS.md` +277 −0, and the "any of" nit dated.
+    - The reversal is consistent everywhere it touches, with no stale statement. 0 forbidden shapes, no unpinned landing, hygiene clean.
+  - **FAIL:**
+    - **(1) Dropped `O_NONBLOCK` is NOT unseeable.** A FIFO at `/etc/timezone` (`mknod`), with the unit's own `alarm(5)`, exits 0 on the real module. On the mutant it is killed by SIGALRM at 5.0 s at both legs, and the harness reports it. Five texts claim no test can see it.
+    - **(2) PD-102's "every case a careless implementation gets wrong is a machine the unit writes"** holds only for the plan's 34 mutants. Of 311 single-site mutants, 278 compile and 223 are red. Of the 55 unseen, 26 are killable: 21 by machines written through the harness's own mechanisms, 5 only under a raw `execve` environment.
+    - **(3) Two branch outcomes are never executed.**
+  - **Minor:**
+    - TM-256 "dates" H-13 where it reverses H-13.1, and PD-101's sentence never says the refusal moved.
+    - `pid`, `tid`, `fd`, `thread`, `cfg` and `arena` are reserved like `uid` and `gid`.
+    - Two declined alternatives have no TM counterpart.
+- **The code is correct in every case the verifier built.** The defect is the plan's claims about its tests' strength, again a universal measured false by enumeration.
+- **The planner `s2-ntime-0.3.2-1146` was resumed at 15:57** with the FAIL.
+  - Its brief: add the FIFO machine and the killable machines, from its own full single-site enumeration; name each remaining unseen mutant with its reason; cover the two branches; make TM-256 and PD-101 say the refusal moved.
+  - Question 26 stays with the author. Budget: the week at 41 %, the five-hour window at 22 %. `s1-nregex-0.2.1-1442`, the planner, is running.
