@@ -10003,3 +10003,33 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The fix worker `s2-ntime-0.3.1-0752` was resumed at 09:25.** It corrects the wording where it stands, re-measures the four escapes with full runs and records them. Prose only: AST-identical to `cdb30bd`. It runs with the private LLVM first on PATH.
 - **finding-for-playbook** (the worker's to write, and this seat's): a claim that something passes every check is measured by a full run, not by the checks module alone.
 - **The cost of 0.3.1's prose, so far.** Two verifier FAILs and two fixes, all on over-claims in sentences, none on a check's behaviour: first a universal of mine, then a list of exceptions of mine, then a fix's own "every check". Each was caught by a verifier that enumerated or ran it whole. Budget: the week at 28 %, the five-hour window at 14 %.
+
+### `nitpick-regex` cycle 0.1 CLOSED — VERIFIED PASS; cycle 0.2's 0.2.0 planner dispatched — 2026-10-08 09:32 (shell time)
+
+- **verify `s1-nregex-0.1.6-verify-work` — PASS** (`sonnet`, 38 min, 313 k tokens, 112 tool uses) on `94b3072`. It ran with the private LLVM first on PATH, reading 20.1.2.
+  - **CI.** Three runs, per job, the byte counts asserted.
+  - **The move.** 123 files: 112 pure renames and 11 with link edits, plus 3 edited outside, all link-depth only. `check_refs` is clean at each commit, and `--follow` traces moved files.
+  - **The close.**
+    - No live old path; the control at `7247f87` found 25.
+    - 22 triage rows in the audit's order, with 9 distinct hashes, all ancestors; seven of the fixes were read against the tree.
+    - The Gate is met. The banner is CLOSED, with 75 of 75 boxes ticked. No `src/`, harness, spec or decision changed.
+  - **`0.2.0.md`, re-derived at the pin.**
+    - `mod:arena;` is PARSE-001 and `struct:Reader` RESOLVE-001.
+    - The sizes (node 40, Hir 112, …) and the arm bills hold.
+    - Its 14 fences compile or exit as stated, and 281/281 GREEN; steps 1 and 2 give 261 and 272.
+    - 16 of its 32 mutants were applied, each red at its stated exit.
+    - It cites no undeclared RX, has no forbidden shape, and names no unpinned landing.
+    - **It has no `# block`/`# expect` fences yet**, as `nitpick-time`'s close-written 0.3.0 had none; its rehearsal adds them.
+  - **The addendum.** Block 4b is SAME, with 0 lines saved; the control saves 28.
+  - **The harness:** 260/260 in a fresh clone. Hygiene is clean.
+  - **Minor:** `hir.npk`'s header names `dump.npk` at step 2, which step 3 adds. §8 says "two runs" of mutants where the record says three.
+- **Cycle 0.1, the pattern parser, is CLOSED.** It is the third close in this repository's history, and the third of the libraries: time 0.0, 0.1, 0.2; regex 0.0, 0.1.
+  - **The close's items, written here.** `LIBRARIES.md`'s regex row: cycles 0.0 and 0.1 closed, cycle 0.2 the HIR next, decisions to RX-221. The re-pin list on the board's handoff line, which now says what the one re-pin carries, B-4e's `numeric.npk` and `num_width.npk` among it.
+  - **The claim advances to cycle 0.2**, whose gate is the close itself.
+- **Dispatched 09:32: `s1-nregex-0.2.0-0932`** (`npk:planner`, `opus`), P-12's one planner. It rehearses `0.2.0.md` in its real position, with PD-66 … PD-69 drafted at the close, to be accepted at its verifier's PASS.
+  - **It folds in, each as its own early commit:**
+    - the README's price paragraph in the author's words (question 25 (a));
+    - the blank line that frees RX-031's, RX-032's, RX-110's and RX-113's first paragraphs;
+    - at its judgement, ROADMAP 227–228.
+  - Budget: the week at 28 %, the five-hour window at 15 %.
+  - `s2-ntime-0.3.1-0752`, the fix, is resumed and still running.
