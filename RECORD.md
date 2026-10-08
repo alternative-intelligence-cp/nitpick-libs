@@ -9504,3 +9504,22 @@ Kept: the system's own LLVM 21 libraries (`libllvm21`, `libclang-cpp21`, `libcla
 GREEN -- 134 with 95 plants. Three full runs, one at a time, no earlyoom kill. CI success on all three: `37732174745`, `37732662667`, and `37733638638`, whose log was read per job, 76 647 B. **Checked here:** `check_record` "record clean"; `HEAD` = `origin/main` = `9274557`. **Next:** 0.3.1 has no plan file yet; its brief is the cycle README's 0.3.1 checklist and the record's §7.
 - **findings-for-playbook** (held for the next playbook pass): when a check's subject widens, read each of its messages for the old subject's noun, not only its rule and docstring.
 - **dispatched 01:46:** `s2-ntime-0.3.0-verify-work` (`npk:verifier`, `sonnet` named) on `9274557`. The week was at 12 %, the five-hour window at 46 %, and 128 GiB available.
+
+### `nitpick-time` 0.3.0's work: VERIFIER FAIL on one clause, an over-claim — re-dispatched — 2026-10-08 02:10 (shell time)
+
+**`s2-ntime-0.3.0-verify-work` (`sonnet`; about 23 min, about 315 K tokens): FAIL**, on (4)'s clause "no live sentence over-claims `check_int128_sites`"; everything else PASS.
+- **What passed:**
+  - CI on all three, read per job (77 166, 77 362 and 76 647 B);
+  - the commits equal the plan's patches from `e51ca5f` but for the amendment's one hunk;
+  - **the clocks:** utc, boot and resolution go through `sys(228, 0 / 7, …)` and `sys(229, id, …)`, and instant through the runtime's `npk_mono_now`, which traps on failure (disassembled). A probe of 100 000 reads at both legs agreed with `date` and Python. `strace` told MONOTONIC from BOOTTIME. **`EINVAL` injected into every call came back as a Result error or a trap, never a zero**;
+  - ten mutants red; Q-7 SETTLED (TM-248); no forbidden shape; the record's REPORT equal to `git log`.
+- **The FAIL:** "so the literal was the whole gap" (`checks.py:2105-2109`) and "so a computation of literals alone is the whole gap" (TM-246, `DECISIONS.md:7746-7750`). **The counter-example:** `func:wide = int256() never fails { pass 7i256; };` marked in §5, and an unmarked `func:g = int64() never fails { pass ((raw wide()) * (raw wide())) =>! int64; };`. At the pin it compiles, `g()` returns 49, and the real check reports 0 findings. A wide product reached through a call is narrowed outside any §5 row unseen.
+- **The orchestrator's reading:** this is a FAIL, not the verifier's alternative reading of "gap" as "spelled widths only". An unqualified "whole gap" in a safety check's own comment and decision is a confident false claim. The hole itself is dormant (no function in `src/` narrows such a call) and older than this subcycle (TM-240's V-1 had it). **So the fix is to say so and track it, not to close it now.**
+- **Re-dispatched 02:10:** `s2-ntime-0.3.0-0210` (`npk:worker`, `opus` named) with the FAIL in its NOTES:
+  - correct `checks.py`'s comment in place;
+  - give TM-246 a dated note, since a decision's text is not rewritten;
+  - sweep for the claim's twins in other words;
+  - register the hole as an open item, with the counter-example, for 0.3.1's planner;
+  - leave history alone (`1856b03`'s message; the plan's §1.2 and PD-91);
+  - amend the record's REPORT.
+  The week was at 13 % and the five-hour window at 48 %.
