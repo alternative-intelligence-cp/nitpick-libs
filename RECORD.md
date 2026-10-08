@@ -9679,3 +9679,37 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The libraries' only `fixed` array, `nitpick-time`'s `MONTH_LENGTH`, is never sliced, so step (ii)'s gap cannot reach it today.
 - **The registry:** O-N36's F-047 row gains a dated note. Step (i) is landing 98, and the row stays open for step (ii).
 - **Next from the compiler side:** D-349's notice, the LLVM pin moving to 20.1.8. Once it lands, the newcomer test's run 2 goes ahead.
+
+### `nitpick-time` 0.3.1 planned (`e82be5c`) — one `check_record` finding, the planner resumed; O-N40 registered — 2026-10-08 05:56 (shell time)
+
+- **report `s2-ntime-0.3.1-0330` DONE (plan)** (`opus`, 141 min, 03:30–05:51, 921 k tokens, 255 tool uses). One commit, `e82be5c`, meta only:
+  - `0.3.1.md`;
+  - `0.3.1_tools/`: two patches, `facts.sh`, `mutants.tsv`, the sweeps and the comparator;
+  - the cycle README's 0.3.1 row, with four new checklist items.
+  It was rehearsed in the real checkout, with ten blocks SAME. CI `37759069465` is green (job `113250764603`, 76 567 B), read per job by the planner. About 19 full harness runs, one at a time, with 124–128 GiB available and no earlyoom kill.
+  - **One subcycle, not lettered, with two work commits.**
+    - Step 1, the two emission checks: 106 plants, 134 units GREEN, and all 13 one-line mutants caught.
+    - Step 2, the two lists and the status pages: 112 plants, 134 units GREEN. Six of seven mutants are caught. `write_file_dropped` is caught by none, and the plan says so: the list names `write_file`, and no plant tests it.
+  - **O-X9 → PD-95: `check_call_edges`.**
+    - It follows every call that each function outside `src/host/` makes, through the prelude, against a reviewed allowlist. It refuses a call into `host`, a call through a value, and inline assembly.
+    - Seven plants in `cal` compile and pass `check_purity`'s six names; it catches all seven. `std_out` reaches `npk_sys6` through the prelude's `std_dup`.
+    - It cannot read generics the umbrella never instantiates (`vec.npk`'s nine), which `check_purity` still reads as written.
+  - **O-X11 → PD-96: `check_wide_types`.**
+    - It reads the emission before `opt`, from the same reader.
+    - On 0.3.0's verifier's counter-example, `check_int128_sites` reports 0 and the new check reports 1. Over the tree it names exactly §5's three marked functions.
+    - The spelling check stays, for TM-246's reason.
+  - **PD-97:** `check_purity`'s list grows from six names to forty-three, each matched as a whole name. Today `reopen` fails as "calls `open`".
+  - **PD-98:** `check_host_isolation` reads every name `src/host/` makes public. Today `HostClock` gets past the `host_` prefix.
+- **check_record:** `[no-report]`, expected for a PLANNED file, and **`[bad-status]`**: the title line carries no status. By §7, a finding is a re-dispatch.
+  - **The planner was resumed at 05:56 for that one line:** append ` — PLANNED`, re-run any block that reads it, push, read CI. It changes nothing else.
+  - The verifier follows its report.
+- **For the orchestrator, read here and accepted at the verifier's PASS:** PD-95 … PD-98 become TM-250 … TM-253, in PD order. Gate 3 stops the worker unless the top decision is TM-249.
+- **For the author, optional:** §9's sentence for a function the emission does not hold says *"the purity claim"*; *"the purity and width claims"* would cover both emission checks. Put to him. His answer goes to the worker as the orchestrator's decision.
+- **Two compiler defects, registered as O-N40** and sent to `nitpick-compiler_32`. Neither touches the tree, and neither is worked around.
+  - A builtin named as a function value is admitted by the frontend and refused by the emitter, `NITPICK-EMIT-002`: *"a defect in the compiler"*, in its own words.
+  - A root imported back from a sibling directory collides with its own error, `NITPICK-RESOLVE-010`.
+- **findings-for-playbook** (held for the next pass):
+  - A self-check row whose control is a real tree file fails first, and alone, the day that file holds what the row plants, so the right check never names it.
+  - The emitter declares the runtime's whole table in every module, so a `declare` proves nothing about use. Read the call edges.
+  - A mutant anchor cannot hold a regex's `\n`, which `swap` reads as a newline.
+  - `git clone --shared` takes the source checkout's current branch. Clone a design chain with `--branch main`.

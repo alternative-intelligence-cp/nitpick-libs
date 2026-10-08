@@ -299,6 +299,22 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N40 — A BUILTIN NAMED AS A FUNCTION VALUE IS ADMITTED BY THE FRONTEND AND REFUSED BY THE EMITTER (`NITPICK-EMIT-002`, "A DEFECT
+  IN THE COMPILER" IN ITS OWN WORDS); A ROOT IMPORTED BACK FROM A SIBLING DIRECTORY COLLIDES WITH ITS OWN ERROR (`NITPICK-RESOLVE-010`).**
+  Found 2026-10-08 by `nitpick-time` 0.3.1's planner (`s2-ntime-0.3.1-0330`) at pin `5fbaf4a`, while planning `check_call_edges` (O-X9)
+  and `check_host_isolation`'s list. **Neither touches the library's tree, and neither is worked around.** The reproductions are
+  `nitpick-time/meta/roadmap/0.3/0.3.1_tools/facts.sh` §1.6 and §1.8 at `e82be5c`, re-derived by the plan's block 0b, and the verdicts
+  are in `0.3.1.md` §1.6 and §1.8. **Sent to `nitpick-compiler_32` 2026-10-08 05:5x.** Not measured at the compiler's HEAD here.
+  - **A builtin as a function value: a loud failure, but in the wrong phase.** `func int64() never fails:f = mono_now;` followed by
+    `raw f()`, and `call_it(mono_now)` (a builtin passed as an argument), each pass the frontend and are refused by the emitter:
+    `NITPICK-EMIT-002`, *"the emitter could not lower this, although the frontend accepted it; a defect in the compiler"*. The same
+    shapes with an ordinary function, `seven`, run, and exit 0 at `-O0` and after `opt -O2`. Either the frontend refuses a builtin as a
+    value, with a sentence that says so, or the emitter lowers it.
+  - **A false error collision: a correct program refused.** Two modules in sibling directories: `a/a.npk` declares `pub error:EA` and
+    imports `../b/b.npk`, and `b` imports `EA` and `f` back from `../a/a.npk`. Compiled from its own directory with `a.npk` as the
+    root, the pair is refused `NITPICK-RESOLVE-010`, *"two error constants derive the same code (D-179, an FNV collision)"*: one error,
+    declared once, loaded twice under two spellings of its path. With `b.npk` as the root, or with the root named from the parent
+    directory, it compiles.
 - **O-N39 — TWO STALE MEMORY/TYPE SENTENCES; THE ALLOCATOR'S FREE PATH UNDER STRESS; `npkc`'s COMPILE SPEED.** Found 2026-10-05 by a
   second Claude subagent (binary-trees in Nitpick, C and Rust; compile speed). **The two documentation rows are checked by the orchestrator
   against the tree at `93bcb66`**; the measurements are the agent's, with checksums byte-identical across five builds. **Sent to
