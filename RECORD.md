@@ -9763,3 +9763,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 06:10: `s1-nregex-0.1.6b-0610`** (`npk:worker`, `opus`) on `911e3d7`: the instruments, PD-63 … PD-65 → RX-219 … RX-221.
   - The note from the plan's verifier goes with it: block 0b reads `c970483` in `$NPK_TREE`.
   - Budget: the week at 21 %, the five-hour window at 24 %, 126 GiB available. `s2-ntime-0.3.1-verify` is still running.
+
+### Notices 95 and 96 verified — `d98c5e1` and `afa8499`, as F37 and F38 said; the machine's LLVM move named — 2026-10-08 06:38 (shell time)
+
+- **Notice 95** (DEF-228 and DEF-241; our O-N38 item 1), pushed 06:14. **Verified here:**
+  - ladder MATCH, the control failing: `npkc.ll` +11 544 B, `npkc.o` +3 328 B, `npkc` +2 800 B; the anchor unchanged;
+  - `05a7b02` is the parent, one commit, 1 `src/` file, 0 under `runtime/` and `bootstrap/`.
+  - Their sweep is F37's exactly: 33 of time's programs and 8 of the fuzzer's differ, 0 newly refused.
+  - Their harness's first run went RED, on a manifest re-record racing it. They read it and restarted on the committed tree.
+- **Notice 96** (DEF-229; our F-041), pushed 06:16. **Verified here:**
+  - ladder MATCH against 95's rows, the control failing: `npkc.ll` +66 121 B, `npkc.o` +28 416 B, `npkc` +24 712 B;
+  - `d98c5e1` is the parent, one commit, 7 `src/` files and 1 `bootstrap/` file. That file is `bootstrap/harness/harness.py`, the compiler harness's walker table for the moved walk: no floor byte.
+  - `HEAD` = `origin/main` = `afa8499`, clean. Read-only, no fetch.
+  - 0 of our programs differ, and `tr0586.npk` is refused as it claims.
+- **The baselines for 96 and 97** are written under the entries and extract back identically.
+- **The registry:** O-N38's item 1 (DEF-228, DEF-241) and O-N36's F-041 (DEF-229) are LANDED. Each is discharged here at the re-pin that carries it.
+- **What follows:**
+  - 97 and 98 are final, with harnesses running since 06:14, about three hours.
+  - Then D-349, whose plan is measured: the ladder's objects and the emission are byte-identical under 20.1.8.
+  - **The machine's LLVM moves to 20.1.8 after these, at an hour the author picks, named in advance by F41.** From that hour our local runners, which pin 20.1.2 exactly, refuse until our manifests move. So the re-pin has to be planned to meet it, and no library worker should be mid-run at that hour. This goes to the author.
+- **Their question, answered:** our CI never uses apt. It downloads the upstream release tarball, caches it on its version and asserts 20.1.2 exactly. 20.1.8's tarball exists (2 021 269 412 B, read through `gh`), so CI moves by its version line at our re-pin.

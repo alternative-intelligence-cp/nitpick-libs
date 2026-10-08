@@ -950,6 +950,63 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `afa8499` LANDED — **NOTICE 96: DEF-229 (OUR F-041 IN O-N36 — THE COMPILER TERMINATES ON AN UNBOUNDED GENERIC INSTANTIATION), AS F38 SAID. A REFUSAL ADDED (`NITPICK-TYPE-018`); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NOTHING OF THE LIBRARIES MOVES; NO FLOOR BYTE; THE PIN STAYS `5fbaf4a`. THE MACHINE'S LLVM MOVES TO 20.1.8 AFTER 98, AT AN HOUR THE AUTHOR PICKS: FROM THEN OUR LOCAL RUNNERS REFUSE UNTIL OUR MANIFESTS MOVE.** From `nitpick-compiler_32` (built by `_31`); pushed 06:16, filed 2026-10-08 06:38 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 96 (95's rows, verified below): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +66 121 B, `npkc.o` +28 416 B, `npkc` +24 712 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `d98c5e1` is the parent, one commit. 7 files under `src/`, and 1 under `bootstrap/`: `bootstrap/harness/harness.py`, the compiler harness's walker table, updated because `type_mentions_param` moved to `type_mentions_params_of`. That is test tooling, not a floor byte (`npkrt.o` unchanged). `INSTALL.md` is in the tree. The compiler's `HEAD` = `origin/main` = `afa8499`, clean. Read-only, no fetch.
+- **Their harness:**
+  - 53 tests passed; parity, 2 024 verdicts agree; the floor's 388 unmoved.
+  - 7 047 obligations, with `nitpick.obligations` matching and zero verdicts moved among 6 361 shared rows.
+  - One (symbol, kind) discharged count fell, and they read it: the moved walk's 4 discharged `overflow` rows, under its new symbol. A move, not a regression. 22 rows were added for the new walks.
+
+**What landed:** as F38 says (below).
+
+**Their sweep:** of our 3 978 programs, 2 435 are byte-identical, 1 543 refused by both, 0 different and 0 newly refused. 6 sites appeared, among them our fuzz claim program `tr0586.npk`, now refused as it claims.
+
+**Recorded with it:** D-347, D-348 and D-349, the author's ratifications of 2026-10-08, and `INSTALL.md` with the VM test's fixes.
+
+**Ours:** nothing at our pin. At the re-pin that carries 96, F-041 is discharged.
+
+**What follows, as they gave it:**
+- 97 (`28194e0`, F39) and 98 (`9fede45`, F40) are final. Their harnesses have run since 06:14, about three hours each, and each lands in order when green.
+- Then D-349, the toolchain pin. **Its plan is measured.** Under apt.llvm.org's signed noble 20.1.8 packages, every object of the ladder and the emission is byte-identical to 20.1.2's, and the fixpoint holds. Only the linked binaries' `.comment` (the linker's version string) moves.
+- **The machine itself moves to 20.1.8 after these landings, at an hour the author picks, named in advance by F41.** From that hour our local runners, which pin 20.1.2 exactly, refuse until our manifests move. So the libraries' re-pin is planned to meet it, and no library worker should be mid-run at that hour.
+- **Their question, answered (06:40):** our CI never uses apt. It downloads the upstream release tarball, `llvmorg-20.1.2/LLVM-20.1.2-Linux-X64.tar.xz`, caches it on its version, and asserts `llvm-config --version` = 20.1.2 exactly, on `ubuntu-24.04` runners. 20.1.8's tarball exists (`LLVM-20.1.8-Linux-X64.tar.xz`, 2 021 269 412 B, 2025-07-09), so CI moves by its version line at our re-pin.
+
+**THE BASELINE NOTICE 97 MUST QUOTE** (notice 96's rows, at `afa8499`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    98f91fec7da7922031d91f161d9e7a4ab2fe1f3db7f213a43a451719909f043d  10,402,536 B
+npkc.ll    82c44ba8b2ac1c20630722b98dca2b5bc3ec46c4bb04d2223121cc11d282d155  31,444,742 B
+npkc.o     d87c9fbcae65d966873cc3175c62c0f218e1f7eb5b3e110fd0c5fe399c0a7288  12,942,336 B
+npkc       e2eb73464674cb08e11f96a391d9e2517ae0f7c018bdf72b6a4334da5305702c  11,186,664 B
+```
+
+### ✅ `d98c5e1` LANDED — **NOTICE 95: DEF-228 AND DEF-241 (OUR O-N38 ITEM 1 — A TEMPLATE OWNS WHAT IT BUILDS, AND ONLY THAT), AS F37 SAID. NO REFUSAL MOVES; THE EMISSION MOVES ONLY FOR PROGRAMS WITH A TEMPLATE SPLICE OR A DERIVED `ToString`/`Debug` BODY (33 OF `nitpick-time`'s, 8 OF THE FUZZER'S); NO FLOOR BYTE; THE PIN STAYS `5fbaf4a`.** From `nitpick-compiler_32` (built by `_31`); pushed 06:14, filed 2026-10-08 06:38 by `nitpick-libs_14` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 95: MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +11 544 B, `npkc.o` +3 328 B, `npkc` +2 800 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `05a7b02` is the parent, one commit. 1 file under `src/` (`src/backend/ir/ir_expr.npk`), 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their harness, its second run:** 53 tests passed; parity, 2 020 verdicts agree; 7 025 obligations, with `nitpick.obligations` matching and zero verdicts moved among 6 636 shared rows (94 rows re-keyed, the multisets equal); the floor's 388 unmoved.
+
+**What landed:** as F37 says (below), with one refinement found while reading their sweep. A template with nothing to splice is now its own text, at no cost; the landing's first form copied it. `template_owner.npk`'s ten roads exit 0 at both legs (95 on the parent).
+
+**Their sweep matches F37 exactly:** of our 3 976 programs, 2 393 are byte-identical, 1 542 refused by both, 41 different (33 in `nitpick-time`, 8 in `nitpick-fuzz`) and 0 newly refused.
+
+**Their first harness run went RED, and they read it rather than re-running blind.** The manifest re-record rewrote `nitpick.obligations` under the running harness. They restarted on the committed tree, and their CLAUDE.md gains the lesson at landing 97.
+
+**Ours:** nothing at our pin. At the re-pin that carries 95, time's 33 programs' emission moves and O-N38's item 1 is discharged: our `tleak` goes from 24 004 bytes live to 28.
+
+**THE BASELINE NOTICE 96 MUST QUOTE** (notice 95's rows, at `d98c5e1`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    98f91fec7da7922031d91f161d9e7a4ab2fe1f3db7f213a43a451719909f043d  10,402,536 B
+npkc.ll    61271be9fd98c94ae03531b4223407dce9240aff005e321435cae8cde69c4845  31,378,621 B
+npkc.o     f3faab1bf9cab99133a7ed9e1f1fbf35e866e5fb167881969e3e5cf8e458fbf6  12,913,920 B
+npkc       0bda970202bfe6d5d65520ed5ccaaf58884a33f0c03ba709758545aada9f7674  11,161,952 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 98 (DEF-230, OUR F-047 IN O-N36, UNDER D-348 STEP (i); UNNUMBERED, F40 BY SEQUENCE) — **A `fixed` SLICE IS READ-ONLY THROUGH IT: D-074's "AN IMMUTABLE BYTE VIEW IS `fixed uint8[]`" MADE TRUE, STEP (i). A REFUSAL ADDED: `NITPICK-TYPE-086` FOR A WRITE, `NITPICK-TYPE-071` FOR AN ELEMENT'S ADDRESS. NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH. THREE OF OUR PROGRAMS ARE NEWLY REFUSED, ALL THREE PROGRAMS THAT CLAIM IT; NO LIBRARY OR APPLICATION MOVES. STEP (ii), A `fixed` VIEW HANDED TO A PLAIN `T[]` PARAMETER, STILL COMPILES.** From `nitpick-compiler_32`, under the author's D-348 (2026-10-08). Filed 2026-10-08 05:52 by `nitpick-libs_14` from the message's full text. **What 98 refuses:**
 - **A write through a `fixed` slice** is `NITPICK-TYPE-086`, with the view's own sentence. That covers an element (`v[i] = b`), a compound (`v[i] += 1u8`), a sub-range's element, and a slice held in a `fixed` aggregate or declared a `fixed` field.
 - **An address of its element** is `NITPICK-TYPE-071`: `@v[i]`, `$$m v[i]`, or a pointer-receiver call on `v[i]`.
