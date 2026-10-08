@@ -9639,3 +9639,30 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Nothing of ours pins a prelude line or reads the site table's rows. Regex's IR-scan baselines and time's checks name the site functions only as symbols and edges.
 - **The registry:** O-N36's frac row read "the stored floor form kept" (2026-10-02). It now carries a dated note: superseded in part by D-347, the author's ruling of 2026-10-05, ratified 2026-10-08.
 - **A slip, mine:** one read-only listing of the fuzz corpus ran with the working directory inside `nitpick-fuzz/m11/programs`, which the board forbids (never `cd` into a library). I moved back at once. `git -C nitpick-fuzz status --porcelain` is empty.
+
+### `nitpick-regex` 0.1.6a DONE — C1 fixed first, `911e3d7` — its verifier dispatched — 2026-10-08 05:42 (shell time)
+
+- **report `s1-nregex-0.1.6a-0440` DONE** (`opus`, 60 min, 629 k tokens, 199 tool uses). Eight commits on `45228e3`, pushed: the seven work commits `108c539` … `987b95c`, one per step, then the record, `911e3d7`.
+  - **C1 fixed (`108c539`, RX-214):** `regex_escape` escapes `:`. The control exits 13 at `-O0` and through `opt -O2`, and so does the mutant `esc-no-colon`.
+  - **The other steps:**
+    - `\b{` before a letter (RX-215);
+    - `NestTooDeep`'s sentence (RX-216);
+    - question 23, recorded as the worker's reading that the author accepted (RX-217);
+    - `SAFETY.md` S-2's lookaround row (RX-218);
+    - the audit's records, then the prose.
+  - **258/258 GREEN** at block 0a, at each of steps 1–7, and on the record's tree. Every block SAME. Nine full local runs, one at a time.
+  - **CI green:** `37755867373` on `987b95c`, and the record's own `37757556700` on `911e3d7` (job `113245736284`, 83 758 B). Both read per job.
+  - **Checked here:** `check_record` clean; the tree clean; `HEAD` = `origin/main` = `911e3d7`.
+- **Step 8's sweep found omissions and amended them as the plan says.** The plan's rule: amend the patch, never the tree by hand, and re-run it in the record commit's work.
+  - S-2's corrected reason (lookaround is not "not regular") was restated where the rule is sold or compared, not beside the rule: the README's price paragraph, `COMPAT.md` §4 and RX-003's reasoning.
+  - Step 5's patch was re-cut, with three hunks; steps 1's and 6's patches were amended too.
+  - The record commit carries the result: `README.md`, `DECISIONS.md` and `COMPAT.md`.
+- **findings-for-playbook** (held for the next pass):
+  - A decision that corrects a REASON is swept for the reason in every wording, not only the rule's. A reason is restated wherever the rule is sold or compared, not beside the rule.
+  - A blockquote note between a decision's heading and its first line swallows that line, by Markdown's lazy continuation, unless a blank line follows the note.
+- **For the author:**
+  - The two sentences, PD-59 and PD-60, are applied as planned. Each is its own commit and reversible.
+  - **New:** `README.md`'s price paragraph, on the project's front page, now carries a dated note. It says the paragraph's "Neither describes a regular language … makes backtracking unavoidable" is not true of lookaround. The worker recommends accepting the note, or rewording the paragraph itself if the front page should read cleanly.
+  - Whether to report the `regex::escape` hole to Rust upstream is still his call.
+- **A slip, mine:** I ran `git fetch` in `nitpick-regex` to compare its head, which wrote that repository's `FETCH_HEAD`. It wasn't needed: the worker's push had already set `origin/main`. I'll use `git ls-remote` from now on.
+- **Dispatched 05:42: `s1-nregex-0.1.6a-verify`** (`npk:verifier`, `sonnet`). The week at 19 %, the five-hour window at 20 %, 126 GiB available. `s2-ntime-0.3.1-0330`, the planner, is still running.
