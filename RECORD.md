@@ -10294,3 +10294,28 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - From here a helper of a kind waits for the other to report, a resumed one included.
   - The next dispatch of a planner or a verifier is checked against every live helper first.
 - No harm measured: memory stayed above 120 GiB, and no earlyoom kill today.
+
+### `nitpick-time` 0.3.2's plan revised (`bc49e41`, `fdbb19a`) — its verifier held by W-24; O-N41 registered — 2026-10-08 17:59 (shell time)
+
+- **report `s2-ntime-0.3.2-1146`, resumed: DONE** (2 h 2 min this round, 720 k tokens, 167 tool uses). Two commits on `7a93be5`; the first draft's commits stand as history.
+  - **The verifier's findings, each addressed:**
+    - **(1)** The FIFO machine, case 58, sits under the unit's own `alarm(5)`. The `O_NONBLOCK`-dropped mutant ends by SIGALRM, −14 at both legs. The five texts that called it unseeable are corrected.
+    - **(2)** Its own enumeration: 293 single-site mutants from fourteen operators (`mutate.py`, block 3e).
+      - 53 exited 0 against the old units, and 25 of those were killable. New machines turn all 25 red: eleven cases, five environment names, the `TZ=:` and `TZ=/path` units, and `system_zone_tz_raw.npk`, which `execve`s itself with environments it lays out.
+      - 28 are named in §1.9: 20 equivalent; 6 that need a 4096-byte link target the kernel refuses; and 2 no exit shows, `O_CLOEXEC` and a one-byte overrun that lands in the allocator's rounding, measured.
+      - PD-102 now states only what is measured.
+    - **(3)** `eb.len >= 3` false now runs. `n >= NTIME_PATH_MAX` true is unreachable, for the kernel reason stated.
+    - **(4)** PD-101 and TM-256 say plainly that the refusal moved, as the author's answer.
+    - **(5)** The eight reserved names join BUILD.md §7.
+    - **(6)** The declined alternatives are recorded.
+  - **The steps' runs:** 135, 136 and 143 units, with 116 plants. Eleven blocks SAME on a throwaway branch, never pushed.
+  - **CI:** `bc49e41` was green with 1 unresolved, the planner's own forward citation repeated. `fdbb19a` was green with 0.
+  - **For the author, recommended:** accept the raw-environment unit, which uses `wild` casts and `execve` in test code only (S-21 binds the library), and the 28 named unseen mutants.
+  - **findings-for-playbook** (held):
+    - generate the cases to check "every case";
+    - a test's own `alarm` turns a hang into a verdict;
+    - `execve` yourself to build an environment the harness can't;
+    - a forward rule citation passes every gate a planner runs, so the plan skill should read `check_specs_current`'s unresolved count. That last one is an npk finding.
+- **O-N41 registered** and sent to `nitpick-compiler_33`. `exit` of a fallible call compiles, and `llc` refuses the IR. The same call assigned to an `int32` is TYPE-007. It is a loud failure in the wrong phase, not in our way.
+- **Its plan verifier waits, one of a kind (W-24).** `s1-nregex-0.2.1-verify` is running, and the remedy recorded at 16:36 holds.
+- **Budget:** the week at 49 %, the five-hour window at 1 %. The pace is put to the author: finish what is in flight and the re-pin, then one stream, and no new planner past about 75 %.

@@ -317,6 +317,14 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N41 — `exit` OF A FALLIBLE CALL COMPILES, AND `llc` REFUSES ITS IR.** Found 2026-10-08 by `nitpick-time` 0.3.2's planner
+  (`s2-ntime-0.3.2-1146`) at pin `5fbaf4a`. **Not in the library's way, and not worked around.** The reproduction is written by
+  `nitpick-time/meta/roadmap/0.3/0.3.2_tools/facts.sh` §1.7 at `fdbb19a`: `sh_exit.npk`, and its control `sh_exitv.npk`.
+  - **The defect:** `func:may = int32(int64:k)` that can `fail EBoom`, then `exit may(argv.len);` in `main`. `npkc` exits 0 and emits
+    IR that `llc` refuses: *"'%t3' defined with type '{ i32, i32 }' but expected 'i32'"*. The frontend admits a fallible result where
+    `exit` takes an `int32`. **The control:** the same call assigned first, `int32:v = may(argv.len); exit v;`, is refused
+    `NITPICK-TYPE-007`, as it should be. So `exit`'s operand misses the check an assignment makes: a loud failure, but in the wrong
+    phase, as O-N40's first item was. **Sent to `nitpick-compiler_33` 2026-10-08 17:59.** Not measured at the compiler's HEAD here.
 - **O-N40 — A BUILTIN NAMED AS A FUNCTION VALUE IS ADMITTED BY THE FRONTEND AND REFUSED BY THE EMITTER (`NITPICK-EMIT-002`, "A DEFECT
   IN THE COMPILER" IN ITS OWN WORDS); A ROOT IMPORTED BACK FROM A SIBLING DIRECTORY COLLIDES WITH ITS OWN ERROR (`NITPICK-RESOLVE-010`).**
   Found 2026-10-08 by `nitpick-time` 0.3.1's planner (`s2-ntime-0.3.1-0330`) at pin `5fbaf4a`, while planning `check_call_edges` (O-X9)
