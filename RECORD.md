@@ -10061,3 +10061,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The board's handoff line says so for successors.
 - **A tool refusal, mine.** My first check of the tool versions ran inside `bash -c`. The built-in removal check couldn't read the script and refused it; it held no removal, and nothing ran. I re-ran it without the wrapper.
 - **Next:** the landing notice, verified against 98's rows. Then the newcomer test's run 2 on the VM, following `INSTALL.md` alone from `vm reset newcomer`.
+
+### `nitpick-time` 0.3.1 VERIFIED PASS — `check_purity` live; 0.3.2's planner held by P-12 — 2026-10-08 10:36 (shell time)
+
+- **verify `s2-ntime-0.3.1-verify-work`, resumed for the last delta — PASS** (`sonnet`, 34 min this round; 725 k tokens in all) on `30bd704`. It ran with the private LLVM first on PATH, every run reading 20.1.2.
+  - **The private LLVM, checked independently.** The `.deb` digests verify, a re-extraction is identical over 146 files, and the one declared symlink resolves inside it.
+  - **Scope.** Prose only. `checks.py` is AST-identical to `cdb30bd`'s, and `DECISIONS.md` gains 17 lines and loses none, TM-252's earlier note verbatim.
+  - **Truth, from full runs:**
+    - the alias GREEN, and the consuming-parameter die GREEN;
+    - an `await` RED (35 failures, `DeadlineExceeded` and `IoEof`);
+    - `list_truncate` RED in `cal` and GREEN in `bytes.npk`.
+    It also ran `vec.npk`, RED by `DecreasesViolated` alone, with NITPICK-REACH-003's identity counts explaining the split. The sweep for universals is clean.
+  - **CI** `37788468674` read per job. GREEN -- 134 with 112 plants in a fresh clone, and hygiene clean.
+  - **Nit, for 0.3.2:** "only where the `DecreasesViolated` and `LimitViolated` it arms are new" should read "any of".
+  - **Two loose phrases in the report, checked here and not material:**
+    - "20.1.2 from apt" for CI. CI's log shows the upstream tarball build: no "Ubuntu" in the version, and LLD carrying the llvm-project commit. What this seat told the compiler seat stands.
+    - "the system's old 20.1.2 is gone". `/usr/lib/llvm-20` still reports 20.1.2; it is `~/.local/bin` that moved.
+- **0.3.1 is DONE.** `check_purity` is live, and the emission is read beside it: `check_call_edges` (O-X9) and `check_wide_types` (O-X11).
+  - It cost two verifier FAILs and two fixes, all of them prose over-claims: three of mine, about the names and their exceptions, and one of the fix's own, "every check".
+  - The checks themselves were right from the first commit.
+  - `LIBRARIES.md`'s time row is updated.
+- **s2's next item: 0.3.2's planner, HELD BY P-12** until `s1-nregex-0.2.0-0932`, the planner, reports. Its brief: the cycle README's 0.3.2 checklist, `0.3.1.md` §7, O-X12 to register and decide, and the "any of" nit. Budget: the week at 31 %, the five-hour window at 26 %.
