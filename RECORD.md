@@ -10113,3 +10113,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **`s2-ntime-0.3.2-1146`** (`npk:planner`, `opus`), P-12's one planner now that regex's has reported: the system zone, from no plan file, with O-X12 to register and decide, and the "any of" nit.
   - Budget: the week at 34 %, the five-hour window at 35 %.
   - The VM newcomer test's run 2 is running too.
+
+### The newcomer test's run 2 PASSED — `INSTALL.md` at `5309ede`, followed alone on Ubuntu Server 26.04.1, gives a working compiler, its six artefacts byte-identical to landing 99's — 2026-10-08 11:48 (shell time)
+
+- **The author's acceptance test, run 2** (a `general-purpose` tester, `sonnet`, 18 min, 205 k tokens). It ran `vm reset newcomer`: the toolchain-clean snapshot, with no LLVM 20 and no `llc`, `opt` or `ld.lld`. Then it followed `INSTALL.md` at `5309ede`, landing 99, verbatim and in order, taking the route the README names for 26.04: the distribution's `llvm-20` and `lld-20`.
+- **Verdict: PASS.**
+  - Every step exited 0, with no failure and nothing worked around.
+  - **Install:** `apt install`, the `~/.local/bin` links, `llc --version` at 20.1.8, and the clone.
+  - **The build,** in §3's six commands: 50.0 s wall, peak 349 MiB in `llc` on `npkc.ll`.
+  - **The rest:** the §4 install; §5's first program printing and exiting 0 at both legs; `npkbuild`; and §6's `npkg build`, ok, in 59.5 s.
+- **Cross-machine, beyond D-265's promise:** all six ladder artefacts are byte-identical to landing 99's rows, `npkrt.o`, `builder.o`, `builder`, `npkc.ll`, `npkc.o` and `npkc`. Ubuntu 26.04's archive build of 20.1.8 reproduces the objects and binaries of apt.llvm.org's noble build, not only the emission. That answers the compiler seat's question. A rebuild with only `llc`, `opt`, `ld.lld` and `mkdir` on PATH gave the same six, so no C compiler or Python is needed.
+- **README findings, for the compiler seat's INSTALL.md:**
+  - **"About 235 MB installed" is wrong for the command given:** 713 MB with recommends. 235 MiB is the five-package set without recommends. The stated reason against `--no-install-recommends` doesn't fit, since `llc` and `opt` come from `llvm-20` and `ld.lld` from `lld-20`.
+  - §2 names no clone folder.
+  - §5's `npkbuild` has no file name, `chmod` or call syntax, and its "three-line" script is six lines.
+  - §6 gives no time for `npkg build`.
+  - §8's row 2 shows `undefined symbol: __morestack` as its first line.
+  - Line 98 is one 299-character line.
+  - apt's prompt needed a `y`.
+- **The VM is left built,** at `5309ede` under `/home/randy/nitpick`, for the author to inspect, not reset. It holds about 10 GiB while it runs.
+- **The owed item** reads PASSED for the compiler's half. The libraries' half waits for the package manager.
