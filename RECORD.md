@@ -9480,3 +9480,17 @@ At the author's go: the first test showed the VM's `baseline` is not toolchain-c
 - purged `llvm-20` and `lld-20`;
 - auto-removed the leftovers, which ran only after a guard stopped once on six packages that were not named LLVM 20. Those were LLVM 20's own dependencies (`libffi-dev`, `libxml2-dev`, `liblzma-dev`, `libncurses-dev`, `zlib1g-dev`, `libpfm4`), so it ran again against exactly that list. A newcomer would not have them, and keeping them could hide a missing step.
 Kept: the system's own LLVM 21 libraries (`libllvm21`, `libclang-cpp21`, `libclang1-21`; desktop and graphics dependencies, no tools) and his `.bashrc` PATH lines (his Claude setup). **Then:** stopped, `vm snapshot newcomer` (01:00:49). **Proven both ways:** `vm reset newcomer` gives no `llc-20`, `ld.lld-20` or `opt-20`; `vm reset baseline` gives all three in `/usr/bin`. `baseline` is unchanged, and the VM is left on it. The README's next newcomer test runs from `vm reset newcomer`.
+
+### `nitpick-time` 0.3.0's plan VERIFIED PASS — after a false FAIL, excused; its worker dispatched — 2026-10-08 01:08 (shell time)
+
+**The false FAIL first (00:3x):** the verifier stopped at its step 2 after two tool calls. It read `e51ca5f`'s subject `cycle 0.3: …` against the form `cycle <SUBCYCLE>: …`. That form is the worker skill's (`worker/SKILL.md:127`) and binds work commits. Plan commits in both libraries have always been cycle-level (`fed7694` and `a44509e` in time; `35a8d92`, `15c82ee`, `a968393`, `aa1e2de`, `9851107` and `0924633` in regex), each verified PASS. **Resumed, not re-dispatched**, with the check excused as "planner commit form". **Finding for the next pass over the `npk` plugin:** the verifier's subject check must exempt a planner's commit, or the plan skill must state the planner's form.
+**PASS (`s2-ntime-0.3.0-verify`, `sonnet`; about 29 min, about 322 K tokens):**
+- `check_refs` clean before and after all four patches, and `check_record` only `[no-report]`.
+- The harness re-run GREEN -- 133 in 208 s, equal to CI line for line apart from version strings.
+- CI `37727855577` read per job (76 675 B): HEAD `5fbaf4a` clean, the pin's emission, 92 plants, GREEN -- 133.
+- **All nine blocks SAME** in a stand-in workbench built under `$TMPDIR` around a fresh clone, with no symlinks: the patches apply 7, 6, 1 and 23 files in order; GREEN -- 133 at 94 plants after step 1; GREEN -- 134 at 95 after step 4.
+- TM-246 … TM-249 in PD order, with 245 the numeric top before. PD-93 records Q-7's answer A. PD-94 counts ten of fourteen mutants red, and every one of the ten was run red.
+- Q-7 is struck at `OPEN_QUESTIONS.md:167`, and Gate 4 reads it before step 2. The six `check_int128_sites` sentences are each dated in step 1's patch.
+- No forbidden shape and no `#wild_slice` in any added line. The syscall rows 228, 229 and 89 are byte-identical to the kernel's `syscall_64.tbl`, fetched again.
+**Noted, not this plan's:** the cycle README's lines 101–104 ("a pin that carries the compiler's D-341"), written at 0.2's close (`ff69344`).
+- **dispatched 01:08:** `s2-ntime-0.3.0-0108` (`npk:worker`, `opus` named) on `e51ca5f`, with the decided wording: `check_int128_sites`' findings say "a wide type or literal". The week was at 9 % and 129 GiB available. Regex's close planner runs beside it.
