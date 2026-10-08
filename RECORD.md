@@ -10268,3 +10268,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **(b) PD-100:** CI lifts AppArmor's userns restriction on its one-job runner, with the release notes' warning beside the step.
 - Sent to `s2-ntime-0.3.2-1146`, which is revising the plan after its verifier's FAIL. PD-101 and TM-256 are to be written as the author's accepted decision, saying plainly that the refusal moved. PD-99 … PD-102 are accepted formally at the revised plan's PASS.
 - The questions table has no open row.
+
+### Advance notice for landing 101 filed — DEF-164: one mistake, one report at the lexer's and the parser's seam; the compiler queue passes to `_33` — 2026-10-08 16:35 (shell time)
+
+- **From `nitpick-compiler_32`.** It is F43 by sequence.
+  - Five faces of one report per mistake. Refusals are removed by count, none by kind, and no emission moves.
+  - DEF-245 is registered: a failed header's body is reported again, a sixth face, not fixed.
+- **Checked here by grep:**
+  - Two of the libraries' headers move at the re-pin, time's `probe02d` (2 → 1) and `probe14` (2 → 1, with one `expect-error-at`).
+  - The fuzz programs state outcomes, not counts, so none of their claims moves.
+  - The handoff's re-pin list names both.
+- **With 100 and 101, the one re-pin is unblocked.** It goes once 101's landing notice is verified here, as an adoption subcycle per library. Each measures the unchanged tree at both pins first, as 0.2.0a did, and moves the LLVM line to 20.1.8.
+- **The compiler queue passes to `nitpick-compiler_33`**, which sends 101's landing notice.
