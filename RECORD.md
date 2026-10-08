@@ -9713,3 +9713,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The emitter declares the runtime's whole table in every module, so a `declare` proves nothing about use. Read the call edges.
   - A mutant anchor cannot hold a regex's `\n`, which `swap` reads as a newline.
   - `git clone --shared` takes the source checkout's current branch. Clone a design chain with `--branch main`.
+
+### `nitpick-time` 0.3.1's title fixed (`8ca7c4b`) — its verifier dispatched — 2026-10-08 05:59 (shell time)
+
+- **report `s2-ntime-0.3.1-0330`, resumed: DONE** (5 min, 11 tool uses). `8ca7c4b` changes line 1 alone, adding ` — PLANNED`.
+  - No block reads the title. The comparator's parser extracts the same ten blocks and Expects, by digest.
+  - `check_refs` is clean, and `check_record` gives `[no-report]` only, as checked here.
+  - CI `37759897430` is green (job `113253485484`, 76 734 B, read per job by the planner).
+- **Dispatched 05:59: `s2-ntime-0.3.1-verify`** (`npk:verifier`, `sonnet`), on the plan at `8ca7c4b`.
+  - It rehearses the ten blocks in a stand-in, and runs PD-95 and PD-96 for real.
+  - It spot-checks PD-97's 43 names against the pin, re-runs the mutants and re-derives O-N40's reproductions.
+  - Budget: the week at 20 %, the five-hour window at 23 %, 128 GiB available. `s1-nregex-0.1.6a-verify` is still running.
