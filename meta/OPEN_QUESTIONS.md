@@ -198,6 +198,16 @@ word for it. **A check
 that reports a false positive invites being weakened, and the weakening looks
 like a fix right up until you count.**
 
+- **O-X11 — `nitpick-time`: a wide value that nothing spells, such as a call's result, passes
+  `check_int128_sites`.** Raised by `nitpick-time` 0.3.0's verifier, 2026-10-08, at pin `5fbaf4a`;
+  registered by that subcycle's fix at `d05ab9c` and defined in full at
+  [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md).
+  `((raw wide()) * (raw wide())) =>! int64` in an unmarked function compiles, returns 49, and draws no
+  finding, because the check reads spellings and the call spells no width. **Dormant**: no function in
+  its `src/` narrows such a call. It is older than cycle 0.3.0. **Not blocking**: cycle 0.3.1's planner
+  decides whether a check that reads types rather than spellings is in scope, and when. `PLAYBOOK.md` §9
+  carries the lesson.
+
 - **O-X8 — `nitpick-time`: how does a refusing constructor hand back its
   `ValueFault`?** Raised by `nitpick-time` 0.1.0, 2026-09-06, at pin `aaffb87`;
   defined in full at
@@ -295,6 +305,7 @@ file existed — the check works.
     run in single-threaded programs. The arena version runs 0.86× gcc's instructions. No leak.
   - **Compile speed:** `npkc` compiles its own 93 326 lines in 18.10 s at 173 620 KB peak, byte-identical to the shipped `npkc.ll`;
     `--obligations` costs 12.8× a plain compile, all CPU.
+  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08) as S-130**, the compiler's performance findings, in `../nitpick`'s `meta/roadmap/OPEN_DECISIONS.md` §4.
 - **O-N38 — `&{ }` TEMPLATE SPLICING LEAKS ITS `to_string` TEMPORARY; A `decreases` CHECK PUSHES A SMALL FUNCTION PAST THE INLINE
   THRESHOLD; THE `-O0` RUNTIME DOMINATES STRING WORK.** Found 2026-10-05 by a Claude subagent characterizing two of Gemini's
   benchmark gaps (`12_error_handling`, `13_strings`). **Reproduced by the orchestrator:** the leak at `93bcb66` and the pin `5fbaf4a`;
@@ -310,6 +321,7 @@ file existed — the check works.
     to C, and it is why the verified build (z3 discharges the check) runs 4.7× fewer. Finding 04's shape, in another construct.
   - **The runtime:** in `13_strings`, the `-O0` runtime is 86 % of the gap to C (the subagent's measurement); an `opt -O2` runtime
     takes the benchmark from 1 716 451 370 to 750 369 799 instructions.
+  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08).** Item 1, the `&{ }` leak, is **DEF-228** (SILENT), fixed by landing 95: announced, built and measured, with `tleak` going from 24 004 to 28 bytes live. **DEF-241** is registered beside it: a template whose only item is a string aliased it, also fixed by landing 95. Items 2–3 are **S-130**.
 - **O-N37 — GEMINI'S FINDING 04: OVERFLOW CHECKS AND THE `{ T, i32 }` ENVELOPE TOGETHER DEFEAT INLINING OF A SMALL STRUCT FUNCTION.**
   An optimization finding: the answer is right. **Reproduced by the orchestrator 2026-10-05** at `93bcb66`. In `10_particles`, `update` (`never fails`,
   three checked `int64` adds building and returning a 48-byte struct) gets `opt -O2` inline cost 240 against the threshold of 225, so it is not
@@ -318,6 +330,7 @@ file existed — the check works.
   together, and neither does alone. Over 200 M calls Nitpick runs 8 600 441 090 instructions (886 ms) against clang's 1 500 365 335 (224 ms);
   forced inline, 2 800 509 752; with wrapping adds, 1 600 383 426. **Sent to `nitpick-compiler_31` at 08:25.** No library is blocked.
   Evidence: `META/NITPICK/tests/findings/04-struct-envelope-inline-threshold/`, `benchmarks/10_particles/`.
+  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08) as S-130.**
 - **O-N36 — `nitpick-fuzz` M11 SESSION 9'S FINDINGS, F-033 … F-048, AND GEMINI'S OPTIMIZATION FINDINGS 01–03: A USE AFTER FREE,
   TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** Found by M11 session 9 (MODULE, LEXICAL, AST,
   BUILD, TRAITS, VERIFICATION 1248–2351 and TYPE 661–2122, at the author's go on 2026-10-02, the week's last few percent), merged
@@ -351,6 +364,7 @@ file existed — the check works.
     1 589 667, and the allocator 1 245 083 684 → 300 030 724 (C 143 173 989); 02 — an overflow-checked arm blocks if-conversion
     (Collatz 9.8 % mispredicted, 602 ms against clang's 197; wrapping 0.4 %, 236 ms); 03 — the envelope's repack after a recursive
     call blocks tail-call elimination (Ackermann 44 698 325 calls against clang's 22 345 074).
+  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08).** F-037 is **DEF-227, LANDED in 94**: the explicit `=> dyn` cast's trait object is owned once. It is discharged here at the re-pin that carries 94. The rest: F-041 = DEF-229 (landing 96); F-047 = DEF-230 with S-129 (the author's); `ty1657`, the frac print, = DEF-231, under the author's ruling (D-347 in preparation); F-048 = DEF-232; F-038 = DEF-233; F-034 = DEF-234; F-036 a = DEF-235 (F-036 b goes on DEF-190); F-039 and F-042 = DEF-236; F-045 = DEF-237; F-046 = DEF-238; F-033, F-035, F-040, F-043 and F-044 = DEF-239; npkg's stage list = DEF-240; Gemini's 01–03 = S-130.
 - **O-N35 — `nitpick-fuzz` M11 SESSION 8'S FOUR FINDINGS, F-029 … F-032: A RESERVED WORD ACCEPTED AS A `wild` BINDING'S NAME,
   AND NINETEEN REFERENCE ROWS THE COMPILER CONTRADICTS.** Found by M11 session 8 — MEMORY, OP and CONTROL checked against the
   compiler at the author's go on 2026-10-02, for the week's last few percent, merged at `6eb5392`: 411 claims tested at HUNT2
@@ -371,6 +385,7 @@ file existed — the check works.
     macro pattern (CONTROL:80); §4.2's IF-002, IF-001 and WHEN-001, never emitted (CONTROL:314, 317, 319); `ok()` as the
     taint-clearing builtin (CONTROL:347, removed by D-097).
   - **Known shapes met and not re-filed:** DEF-148, DEF-131 ×2, DEF-130 ×2 and DEF-135, each fixed at `93bcb66`; DEF-133.
+  **REGISTERED at landing 94 (`05a7b02`, 2026-10-08):** F-029 (with F-036 a) = DEF-235; F-030, F-031 and F-032 = DEF-239.
 
 - **O-N34 — `#unreachable()` IN AN `if (r.is_error)` ARM IS NOT COUNTED AS LEAVING IT, SO A READ OF
   `r.value` BELOW IS `NITPICK-TAINT-001`: A REFUSAL OF A CORRECT PROGRAM.** Found by `nitpick-time`'s 0.2.2
