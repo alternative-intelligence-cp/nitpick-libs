@@ -10260,3 +10260,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The planner `s2-ntime-0.3.2-1146` was resumed at 15:57** with the FAIL.
   - Its brief: add the FIFO machine and the killable machines, from its own full single-site enumeration; name each remaining unseen mutant with its reason; cover the two branches; make TM-256 and PD-101 say the refusal moved.
   - Question 26 stays with the author. Budget: the week at 41 %, the five-hour window at 22 %. `s1-nregex-0.2.1-1442`, the planner, is running.
+
+### Question 26 answered — PD-101's reversal and PD-100's CI step accepted — 2026-10-08 16:05 (shell time)
+
+- **question answered (16:05, the author):** *"i read the recommendations. they look fine."* Both are accepted as recommended.
+  - **(a) PD-101:** HOST.md H-13.1's refusal of a POSIX rule string moves to cycle 0.6's zone lookup. `host_system_zone` reports the string verbatim, `SystemZone` holds the name as text, and `TzDirLink` becomes `EtcTimezone`.
+  - **(b) PD-100:** CI lifts AppArmor's userns restriction on its one-job runner, with the release notes' warning beside the step.
+- Sent to `s2-ntime-0.3.2-1146`, which is revising the plan after its verifier's FAIL. PD-101 and TM-256 are to be written as the author's accepted decision, saying plainly that the refusal moved. PD-99 … PD-102 are accepted formally at the revised plan's PASS.
+- The questions table has no open row.
