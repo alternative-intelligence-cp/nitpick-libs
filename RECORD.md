@@ -10199,3 +10199,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Its one limit, fairly stated:** it could not confirm from the files that the author was shown "either". This seat's record says so, and the 05:4x message is in no file. The author was told at 13:55, and the board says so.
 - **0.2.0 is DONE**, cycle 0.2's opening: the arena. `LIBRARIES.md`'s regex row is updated.
 - **s1's next item: 0.2.1's planner, the desugaring, HELD BY P-12** until `s2-ntime-0.3.2-1146` reports. Budget: the week at 39 %, the five-hour window at 12 %.
+
+### `nitpick-time` 0.3.2 planned — PD-101 reverses H-13's refusal, question 26 to the author; its verifier and regex 0.2.1's planner dispatched — 2026-10-08 14:43 (shell time)
+
+- **report `s2-ntime-0.3.2-1146` DONE (plan)** (`opus`, 2 h 55 min, 209 k tokens, 363 tool uses). Two commits on `30bd704`: `a47f739`, the plan, and `7a93be5`, which rewords four citations of a rule a later step declares, after `check_specs_current` flagged them in CI.
+  - Ten blocks SAME on a third pass; the throwaway branch was deleted, never pushed. CI is green on both. `check_record` gives `[no-report]` only, as checked here.
+  - **PD-99 answers O-X12.** `tests/unit/generic_instances.npk` instantiates every generic function of `src/`, so the emission checks read them, and a generic with no instance is a finding. It declines the three token checks. The descriptor check was weighed and found compatible, then declined with the others: an emission that contains the code closes the hole, where a token list catches only the shapes it names.
+  - **PD-100:** a unit makes its own `/etc` in a user and mount namespace, with an empty tmpfs, by its own syscalls. CI lifts Ubuntu 24.04's AppArmor userns restriction in a step pushed alone.
+  - **PD-101:** `host_system_zone = SystemZone() never fails`. It answers the name and its `ZoneSource`, never UTC, and `host` still owes 11 identities.
+  - **PD-102:** a namespace unit with nineteen machines, and three `$TZ` units.
+  - **The 0.3.1 verifier's "any of" nit** is made as a dated correction in step 1.
+  - **For the author:**
+    - **PD-101 reverses HOST.md H-13's step 1:** a POSIX rule string is reported verbatim, not refused with `ETimeZone`, with the refusal left to cycle 0.6's lookup. `SystemZone` holds `string:name`, and `TzDirLink` is renamed `EtcTimezone`.
+    - PD-100 changes CI's runner policy.
+    - Four step-3 mutants no test can see are named in the unit's header and under H-15 and H-16: the truncation refusal deleted, the length by NUL scan, `O_NONBLOCK` dropped, `O_CLOEXEC` dropped.
+  - **findings-for-playbook** (held):
+    - a test can make the machine state it needs in a user and mount namespace;
+    - Ubuntu 24.04's userns restriction needs a CI step;
+    - an emission that contains the code closes a hole that token lists only narrow;
+    - `uid` and `gid` are reserved at the pin;
+    - a `while … decreases` loop adds `DecreasesViolated` to every importer's bill, where a `for` over a range does not;
+    - `check_specs_current` never fails, so a plan must not write future rule identifiers.
+- **Question 26 raised: PD-101's reversal, and PD-100's CI policy.** Recommended: accept both.
+  - A reversal of a written rule is a checkpoint that earns the author's review. The precedent is PD-49 at regex 0.1.4, question 18.
+  - The plan verifier runs meanwhile, and the worker waits for both the PASS and the answer.
+- **Dispatched 14:42:**
+  - **`s2-ntime-0.3.2-verify`** (`npk:verifier`, `sonnet`). Among its asks: enumerate src/'s generics itself, and re-run the three escapes with step 1 applied.
+  - **`s1-nregex-0.2.1-1442`** (`npk:planner`, `opus`), P-12's one planner now that time's has reported: desugaring, from no plan file.
+  - Budget: the week at 39 %, the five-hour window at 12 %.
