@@ -46,6 +46,7 @@ blocked, what is done. The durable plan is
 >   - the shared CI shape's two findings, and EK2's Node-24 bump;
 >   - posix's `probe02g` header, and the `META` mirror of `.internal/`;
 >   - `APPS.md`'s three positions on `SIGPIPE`, with EC1, at `nitpick-posix`'s next dispatch.
+>   - **install instructions** (the author, 2026-10-07): none exist for getting Nitpick onto a clean machine (download, build, install), nor yet for installing and using a library through the package manager. The compiler's half is the compiler side's to write, relayed when he says; the libraries' is ours once the package manager can carry them. Test each on his VM (`RECORD.md` 2026-10-07 23:19).
 > - **The author's calls:** a `gh` upgrade (2.45.0); the sandbox's network allowlist; `perf` or the governor, for stabler timing.
 > - **⚠ `nitpick-regex/.internal/r3/` holds symlinks into `../nitpick` and this workbench.** Remove the links first, and never `rm -rf` a path ending in `nitpick/`.
 >
