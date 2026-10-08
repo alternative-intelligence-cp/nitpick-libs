@@ -9471,3 +9471,12 @@ The compiler seat drafted the README by 00:2x (`../nitpick/.internal/handoff_31/
 - the disk figures differ from the README's (clone 98 MB, not about 130);
 - five places where the wording made the tester guess.
 All of it went to `nitpick-compiler_31` with the exact command and output. **A caveat on our side:** the VM's `baseline` already has Ubuntu's `llvm-20` and `lld-20`, installed by hand per apt history, so it is not toolchain-clean; the step-3 failure stands regardless. The VM is left as the test left it (logs in `/tmp/nptest`), and `vm reset` clears it.
+
+### The VM's `newcomer` snapshot: toolchain-clean, for the README's reruns — 2026-10-08 01:01 (shell time)
+
+At the author's go: the first test showed the VM's `baseline` is not toolchain-clean. It had his own `apt install llvm-20 --install-recommends` and `apt install lld-20`, made while testing the old docs over the break. So this seat took a second snapshot without them. **Done, with guards:**
+- reset to `baseline`;
+- listed the LLVM packages and Nitpick traces read-only: no clones; `~/Workspace/REPOS` and `META` empty; `~/.local/bin` holds only `claude`;
+- purged `llvm-20` and `lld-20`;
+- auto-removed the leftovers, which ran only after a guard stopped once on six packages that were not named LLVM 20. Those were LLVM 20's own dependencies (`libffi-dev`, `libxml2-dev`, `liblzma-dev`, `libncurses-dev`, `zlib1g-dev`, `libpfm4`), so it ran again against exactly that list. A newcomer would not have them, and keeping them could hide a missing step.
+Kept: the system's own LLVM 21 libraries (`libllvm21`, `libclang-cpp21`, `libclang1-21`; desktop and graphics dependencies, no tools) and his `.bashrc` PATH lines (his Claude setup). **Then:** stopped, `vm snapshot newcomer` (01:00:49). **Proven both ways:** `vm reset newcomer` gives no `llc-20`, `ld.lld-20` or `opt-20`; `vm reset baseline` gives all three in `/usr/bin`. `baseline` is unchanged, and the VM is left on it. The README's next newcomer test runs from `vm reset newcomer`.
