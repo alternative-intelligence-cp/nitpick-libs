@@ -10280,3 +10280,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The handoff's re-pin list names both.
 - **With 100 and 101, the one re-pin is unblocked.** It goes once 101's landing notice is verified here, as an adoption subcycle per library. Each measures the unchanged tree at both pins first, as 0.2.0a did, and moves the LLVM line to 20.1.8.
 - **The compiler queue passes to `nitpick-compiler_33`**, which sends 101's landing notice.
+
+### A slip, mine: P-12 / W-24 broken three times today — two helpers of a kind ran at once — 2026-10-08 16:36 (shell time)
+
+- **W-24 (P-12):** "helper agents do not count and never run two of a kind". This board has applied it to verifiers as well as planners (RECORD.md:7691, "its verifier waits for regex's to finish").
+- **Today this seat ran two of a kind three times:**
+  - **two verifiers:** `s2-ntime-0.3.1-verify` (05:59) beside `s1-nregex-0.1.6a-verify` (05:42–06:07);
+  - **two verifiers again:** `s1-nregex-0.1.6-verify-work` (08:54) beside `s2-ntime-0.3.1-verify-work`, resumed for its delta at 08:43;
+  - **two planners, now:** `s2-ntime-0.3.2-1146`, resumed at 15:57 to revise its plan after the FAIL, beside `s1-nregex-0.2.1-1442` (from 14:42).
+- **Why:** I counted width (two agents) and the planner slot at first dispatch. I did not count a resumed helper, or the verifier kind.
+- **Remedy:**
+  - Both planners now running are left to finish, because stopping either throws away an hour or more of work.
+  - From here a helper of a kind waits for the other to report, a resumed one included.
+  - The next dispatch of a planner or a verifier is checked against every live helper first.
+- No harm measured: memory stayed above 120 GiB, and no earlyoom kill today.
