@@ -9953,3 +9953,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep is F39's exactly.** Every emission moves by the prelude's site table. Canonicalised, 17 of ours differ, every one a fuzz frac program. 0 newly refused.
 - **The baseline for 98** is written under the entry.
 - **The registry:** O-N36's `ty1657` (DEF-231) and its frac row are LANDED in 97, and discharged at the re-pin that carries it.
+
+### Notice 98 verified — `9fede45` (DEF-230, D-348 step (i), our F-047); `nitpick-regex` cycle 0.1's close DONE, its verifier dispatched — 2026-10-08 08:54 (shell time)
+
+- **Notice 98**, pushed 08:49. **Verified here:**
+  - the ladder: MATCH against 97's rows, the control failing. `npkc.ll` +13 941 B, `npkc.o` +5 648 B, `npkc` +4 712 B; the anchor unchanged.
+  - the git checks: `28194e0` is the parent, one commit, 4 `src/frontend/` files, 0 under `runtime/` and `bootstrap/`. `HEAD` = `origin/main` = `9fede45`, clean. Read-only, no fetch.
+  - Their sweep is F40's exactly: 3 of ours newly refused, each the program that claims it, and 0 different.
+  - **The stack 94 … 98 is all landed and verified here.** The baseline for 99 is written. Next is D-349, the toolchain pin, then DEF-165 and DEF-164; our one re-pin follows those.
+  - The registry's F-047 row: step (i) LANDED, the row open for step (ii).
+- **report `s1-nregex-0.1.6-0716` DONE** (`opus`, about 95 min, 763 k tokens, 213 tool uses). Three commits on `cc76871`, pushed:
+  - **`7247f87`, the move:** cycle 0.1's records to `meta/roadmap/done/0.1/`, with the links the move broke.
+  - **`3cde932`, the close:** the 22 findings triaged, the Gate met as amended, and cycle 0.2 opened with `0.2.0.md`.
+  - **`94b3072`, the addendum:** block 4b SAME over `3cde932` with 0 lines saved, and two sentences of `0.2.0.md`'s §8 corrected with a dated note.
+  - Blocks 0a, 1, 2 and 4 SAME, with no record's line differing.
+  - 260/260 at every run. `0.2.0.md`'s own §4 copy reads 281/281 GREEN.
+  - CI green on all three. `check_record` is clean here.
+- **For the orchestrator, from the close** (to be written after the verifier's PASS):
+  - the board's s1 line;
+  - the registry's row in `LIBRARIES.md` (cycles 0.0 and 0.1 closed, cycle 0.2 the HIR next, decisions to RX-221);
+  - the re-pin list: `numeric.npk` and `num_width.npk` are in B-4e's re-read since RX-220.
+  - **PD-66 … PD-69** (the arena) are to accept or strike before 0.2.0 is dispatched. The worker recommends accepting them as drafted, or a planner's rehearsal first. **This seat takes the rehearsal first**, as `nitpick-time`'s close-written 0.3.0 had.
+- **findings-for-playbook** (held for the next pass):
+  - `arena` is a keyword and `Reader` a prelude name at `5fbaf4a`. Check a planned module's or type's name against the keyword file and the prelude before a plan names it.
+  - A writer that skips a redundant field lets a wrong count pass every round trip. Hold the redundant fields equal at the writer.
+  - A structure a specification draws before any code is a hypothesis. HIR.md H-2's three `int32` operands could not hold a Repeat that is a list member.
+- **Dispatched 08:54: `s1-nregex-0.1.6-verify-work`** (`npk:verifier`, `sonnet`), with the private LLVM first on PATH, the first dispatch to carry it.
+  - Budget: the week at 27 %, the five-hour window at 12 %.
+  - `s2-ntime-0.3.1-verify-work` is resumed for the delta, still running.
