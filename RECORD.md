@@ -9842,3 +9842,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched 06:51: `s1-nregex-0.1.6b-verify`** (`npk:verifier`, `sonnet`).
   - Budget: the week at 23 %, the five-hour window at 32 %, 128 GiB available.
   - `s2-ntime-0.3.1-0640` is still running.
+
+### `nitpick-regex` 0.1.6b VERIFIED PASS — the close's worker dispatched — 2026-10-08 07:16 (shell time)
+
+- **verify `s1-nregex-0.1.6b-verify` — PASS** (`sonnet`, 25 min, 317 k tokens, 85 tool uses) on `cc76871`.
+  - **The patches.** The amendment is exactly the three citations. The amended patches replay with `apply.py` to each work commit's tree hash, staging 13, 5, 5 and 5 files.
+  - **Block 5's DIFF reproduces exactly at `34a3ac7`**, its plan position: pattern 7 at 14 for 7, and 161 lines for 154.
+    - Its cause is exact. Blame puts the lines on `911e3d7`, and reverse-applying that commit's two README hunks gives SAME with 154 lines.
+    - At `cc76871` it is three lines wider, from the record commit's own README ticks.
+    - The record classes all 161 saved entries, and none is an omission.
+    - Wording nit: the report's "outside every file this subcycle wrote" should read "line", since step 1 writes the cycle README.
+  - **PD-63:** 38 kinds, 34 provoked and 4 listed, each named in its cycle README. Planting a listed kind its README forgets, or a test that provokes a listed kind, fails the run by name in either direction.
+  - **PD-64:** its own plants fail by code point (`'€'` 8364, `'\u{10FFFF}'` and others). Cosmetic: a non-ASCII literal is named as Latin-1 mojibake in the finding, though its value is right.
+  - **PD-65:** 120 000 patterns (17 252 accepted, 102 748 refused) with spans and offsets in bounds. Its seven mutants exit at their stated codes at both legs.
+  - **The rest.** RX-219 … RX-221 are in order by value, and `DECISIONS.md` gains 101 lines and loses none. Shapes and currency are clean. 260/260 GREEN in a fresh clone, and hygiene is clean.
+  - **Advisory:** `ROADMAP.md` 227–228 still says "every `PatternErrorKind` in §9 provoked by a test". It is covered by the dated RX-219 note three lines below, and it goes to the close as information.
+- **0.1.6b is DONE.** The instruments are live.
+- **Dispatched 07:16: `s1-nregex-0.1.6-0716`** (`npk:worker`, `opus`) on `cc76871`: the close. It triages the audit's 22 findings, archives cycle 0.1 (123 files), and opens cycle 0.2 with `0.2.0.md` (the arena, PD-66 on, unrehearsed).
+  - Its NOTES carry the stop rule restated. A DIFF the plan itself allows, the records' lines (§4), is read and recorded. Any other DIFF, even one the worker can explain, is reported before the push.
+  - Question 25 (a), the README wording, is still with the author, so the close goes ahead on the plan's text.
+  - The four old decisions whose first lines a blockquote swallows are held for cycle 0.2, not given to the close, because its blocks read `DECISIONS.md`.
+  - Budget: the week at 23 %, the five-hour window at 34 %, 127 GiB available. `s2-ntime-0.3.1-0640` is still running.
