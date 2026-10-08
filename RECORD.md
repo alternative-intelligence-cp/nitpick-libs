@@ -10046,3 +10046,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **O-X12, corrected a second time, mine.** At 09:25 I wrote the truncation as always RED, from the verifier's run in one module. It depends on the module. The registry now quotes the full runs and names both earlier wordings.
 - **findings-for-playbook** (held for the next pass): the worker's four, among them that "passes every check" is measured by a full run, and that the run's module decides an arm-bill verdict.
 - **The verifier, resumed at 10:02** for `30bd704`: prose-only scope, the four escapes re-run in full in both modules, GREEN -- 134 and CI. Budget: the week at 30 %, the five-hour window at 21 %. `s1-nregex-0.2.0-0932`, the planner, is running.
+
+### Advance notice for landing 99 filed — D-349, the pin to LLVM 20.1.8; the machine moved at 09:40 as a prefix — 2026-10-08 10:12 (shell time)
+
+- **From `nitpick-compiler_32`.** It is F41 by sequence.
+  - `nitpick.toml`'s `llvm` becomes "20.1.8", and nothing else of the compiler moves. The objects and the emission are byte-identical under 20.1.8; only the linked binaries' `.comment` byte moves.
+  - The engines are rebuilt and re-pinned, with the same verdicts.
+  - `INSTALL.md` names Ubuntu 26.04's `llvm-20` and apt.llvm.org for 24.04.
+  - Our O-N40 is DEF-243 and DEF-244, and our VM test is S-131.
+- **The machine moved at 09:40, as a user prefix.** The system-wide install failed on the 32-bit Mesa drivers' `libllvm20:i386`. The verified packages went into `~/.local/llvm-20.1.8`, and `~/.local/bin` was repointed.
+  - **Checked here:** a default PATH gives 20.1.8, `/usr/lib/llvm-20` still gives 20.1.2, and our private prefix gives 20.1.2.
+  - Every dispatch since 09:32 puts the prefix first: the regex planner, and the time verifier resumed at 10:01.
+  - Runs made between 09:40 and a worker's adoption of the prefix would refuse loudly at the harness's toolchain check, never pass silently.
+  - The board's handoff line says so for successors.
+- **A tool refusal, mine.** My first check of the tool versions ran inside `bash -c`. The built-in removal check couldn't read the script and refused it; it held no removal, and nothing ran. I re-ran it without the wrapper.
+- **Next:** the landing notice, verified against 98's rows. Then the newcomer test's run 2 on the VM, following `INSTALL.md` alone from `vm reset newcomer`.
