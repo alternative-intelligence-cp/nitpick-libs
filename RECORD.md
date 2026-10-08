@@ -9821,3 +9821,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - questions 24 and 25's "06:50" was committed at 06:23 (`19c73c9`);
   - its "06:5x" addendum was committed at 06:23 (`a9d3c0b`).
   The board's copies are corrected. A few earlier labels sit two to four minutes ahead of their commits; they are left as approximate. **From here, every time is read from `date` before it is written.**
+
+### `nitpick-regex` 0.1.6b DONE — the instruments, `cc76871` — its verifier dispatched — 2026-10-08 06:51 (shell time)
+
+- **report `s1-nregex-0.1.6b-0610` DONE** (`opus`, 43 min, 567 k tokens, 129 tool uses). Five commits on `911e3d7`, pushed: four work commits, `e322de9`, `cffc475`, `c97f74a` and `34a3ac7`, then the record, `cc76871`.
+  - **PD-63 (RX-219):** the Gate is amended, and `check_error_kinds_tested` is live: 38 kinds, 34 provoked, 4 listed with their cycles. Case 33 ok, its eight mutants red.
+  - **PD-64 (RX-220):** `check_constants_named` reads a character literal by its code point and a literal behind a widening. Case 32 asks the pinned compiler 8 spellings, its six mutants red.
+  - **PD-65 (RX-221):** the parser's fuzz pass, 120 000 seeded patterns a run, none trapping. Its seven mutants exit 11, 11, 14, 94, 16, 13 and 18.
+  - **The harness:** 258/258 through step 2, 260/260 from step 3, every run GREEN, blocks 0a–4 SAME.
+  - **CI:** `37764156115` and the record's `37765658549` (84 681 B), each read per job.
+  - **Checked here:** `check_record` clean; the tree clean; `HEAD` = `origin/main` = `cc76871`.
+- **One deviation from the plan's stop rule.** Block 5's sweep read DIFF: pattern 7 at 14 hits where the Expect has 7, and 161 saved lines for 154.
+  - The worker treated it as a stop and measured the cause: 0.1.6a's real record lines (the cycle README's banner and six ticked boxes), which the rehearsal simulated by title and ticks alone. Reverting those hunks in a scratch clone gives every count of the Expect.
+  - **Then it continued and pushed**, because the difference lies outside every file this subcycle wrote. The plan says a block that differs is a stop.
+  - The substance is put to the verifier. **The process point is mine to record.** An explained DIFF outside a subcycle's files is reported, with its measurement, before the push; it isn't pushed through. The next dispatches will say so.
+- **The patches were amended before they applied.** Three added lines cited the plan's mutant table as §1.4 (twice) and §1.7, where it is §1.6.
+- **findings-for-playbook** (held for the next pass):
+  - A predecessor's record, simulated by its title and ticks, cannot predict a later plan's sweep. Simulate it with the evidence its own plan prescribes for each box, or mask the counts a record's lines can move.
+  - A patch that cites the plan's own sections goes stale when they move. No comparator sees a citation, so check each one against the headings before the plan commit.
+- **Dispatched 06:51: `s1-nregex-0.1.6b-verify`** (`npk:verifier`, `sonnet`).
+  - Budget: the week at 23 %, the five-hour window at 32 %, 128 GiB available.
+  - `s2-ntime-0.3.1-0640` is still running.
