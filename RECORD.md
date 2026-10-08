@@ -10393,3 +10393,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Nits:** a stray `PD-102.` line; block 3e is about three minutes, not two.
 - **The planner `s2-ntime-0.3.2-1146` was resumed at 19:14** for the text fix: extend the digest and the CURRENCY row through the patches, reword gate 9, and fix the nits. The verifier follows for the delta.
 - **0.3.2's plan has cost three verification rounds, each finding something real:** first the test-strength claims, then this filing. The code was right in every one. Budget: the week at 52 %, the five-hour window at 15 %.
+
+### `nitpick-regex` 0.2.1 DONE — desugaring, `75dd51e` — its verifier dispatched — 2026-10-08 19:34 (shell time)
+
+- **report `s1-nregex-0.2.1-1824` DONE** (`opus`, about 66 min, 610 k tokens, 128 tool uses). Six commits on `1114cc0`: `93e78a1`, `2aa0545`, `3a5ee5e`, `2bb85cc`, `3fd81af`, and the record `75dd51e`.
+  - 283 → 283 → 285 → 292 → 294 with two PEND, every block SAME, and the 4 and 38 mutants at their exits.
+  - CI green on `3fd81af` and `75dd51e`. **Checked here:** `check_record` clean; `HEAD` = `origin/main`.
+- **The orchestrator's correction went past its four named texts.** The same claim stood in thirteen more places in other words, found only by reading every sentence about where the build stops. The worker corrected each the same way, re-cutting the patches from the raw chain with no count moved, and recommends accepting it.
+  - RX-226's context and RX-228's title are left as accepted. Recommended: read them with H-16, or date a note when a later decision next touches them.
+  - **This is the sixth sweep list today found wrong on its first telling. Mine was among them: the four texts.**
+- **PD-70's shape rule** is held only by block 0b §1.4. The worker recommends a self-check case planting a `0.3` label at the next harness-touching subcycle. It is in the hand-on.
+- **findings-for-playbook** (held):
+  - a correction's list of sites is a claim about a set;
+  - a rehearsed patch chain amends cleanly as replacements over the raw chain's trees.
+- **Dispatched 19:34: `s1-nregex-0.2.1-verify-work`** (`npk:verifier`, `sonnet`), the only verifier running.
+  - **0.2.2's planner waits for the author's pacing answer.**
+  - Budget: the week at 53 %, the five-hour window at 19 %.
+  - `s2-ntime-0.3.2-1146` makes its text fix meanwhile.
