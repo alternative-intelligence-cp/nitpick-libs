@@ -10332,3 +10332,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **hold the one re-pin until 103 lands,** and re-pin once, carrying 94 … 103 and D-349;
   - **re-pinning at 101 would very likely force a second adoption per library within a day.**
   This is the same principle as his answer to question 12 ("avoid the second repin") and his choice of (c) for question 24. It also suits the week's budget.
+
+### `nitpick-regex` 0.2.1's plan VERIFIED PASS — PD-70 … PD-73 accepted, its worker dispatched; time 0.3.2's revised plan's verifier resumed — 2026-10-08 18:24 (shell time)
+
+- **verify `s1-nregex-0.2.1-verify` — PASS** (`sonnet`, 60 min, 499 k tokens, 116 tool uses) at `1114cc0`.
+  - **CI and the rehearsal.** CI per job (88 650 B). Nine blocks SAME in a stand-in, the patches touching 10, 5, 8, 11 and 5 files. Runs of 283 → 294 with 2 PEND.
+  - **PD-70.** Each plant was made two ways: case 34 catches what case 11 cannot. A reader that accepts any label shape is held only by block 0b §1.4, which is noted for a later instrument.
+  - **PD-71.** 315 kind-and-flag combinations: 0.2.0's dump wrote all 302 stray ones clean, and step 2's stops all 302. A builder that copies AST flags is trapped in 653 and 644 of 675 builds.
+  - **PD-72, against an independent model of H-16:** 4 396 patterns, 3 036 built and 1 360 stopped, 0 mismatches, both legs.
+    - All 16 AST kinds are covered, flags are erased (the grep control catches 11 of 11), C-3's surrogates are split, the groups are numbered as entered, and there is no unreachable node in 3 036 builds. 0.2.0's hand-on is answered.
+    - Every stop answers the model's node.
+    - **826 stops reach no hook:** a bare Perl class, a bare Unicode class and a negated class, which stop in `leaf`. The pending wording "until `resolve_items` is filled" is loose for them.
+  - **PD-73.** A wrongly filled hook turns either unit red, with exit 10 and "PENDING ON A DIFFERENT FAILURE".
+  - **The rest.** RX-226 … RX-229 by value, +152 −0. The U-9 pointer is on 0.3.2's box. 0 forbidden shapes. Hygiene is clean.
+- **Decision (this seat's): PD-70 … PD-73 accepted** as RX-226 … RX-229. The loose wording goes to the worker as the orchestrator's correction: "until 0.3.4 fills `resolve_items` and widens `leaf`", with a dated pointer on 0.3.4's box.
+- **Dispatched 18:24:**
+  - **`s1-nregex-0.2.1-1824`** (`npk:worker`, `opus`);
+  - **`s2-ntime-0.3.2-verify` resumed** for the revised plan, one of a kind now that regex's verifier has reported (W-24). It re-runs the planner's 293-mutant enumeration and its own 311.
+  - Both are in-flight items under the pacing put to the author. Budget: the week at 49 %, the five-hour window at 3 %, 128 GiB available.
