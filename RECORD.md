@@ -11587,3 +11587,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin** (`7e91730`).
 - **The baseline for 110 is written** and self-checked by extraction (MATCH, the control failing).
 - **Next from them:** 110 (DEF-226, F52), 111 (DEF-233 and DEF-238, F53), 112 (DEF-232, F54). They need no answer.
+
+### The PX-100 correction sent to the compiler seat at the author's word, and acknowledged — 2026-10-09 19:51 (shell time)
+
+- **The author (19:5x):** *"if its something they should know lets notify them."* This seat checked first that the rule still holds at `6b09990`: a macro is invocable only in the module that declares it. It also checked that `nitpick-posix`'s generator is designed and not yet built. Then it sent the note: D-352 removes PX-100's first reason and not its second, so the generated handlers stand.
+- **`nitpick-compiler_35` acknowledged in one line:** S-134 carries it. F51's "works as written" is corrected to "works within one module" in S-134's row, with landing 110's commit. The probes owe their two arms at the re-pin.
+- **The author's thinking on `failsafe` (19:5x), for whoever takes S-134 up:**
+  - every error that can reach `failsafe` must be at least acknowledged, and safety comes first;
+  - it should be as easy as possible for large libraries, as long as the safety purpose is not defeated;
+  - he expects kinks to be worked out over time.
+- **An idea this seat offered him, undecided:** acknowledge a library's errors by a frozen, versioned set name. A change to the set breaks the name, so nothing passes unnoticed, and a large program's `failsafe` stays one line per dependency. A wildcard would defeat the purpose.

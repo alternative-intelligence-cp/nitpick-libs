@@ -1213,7 +1213,7 @@ npkc       24a7748cd706375d2cd1db54b46ef4390c6ed00c5f99829ae0bca7e0ea52af58  11,
   - **Ours, 4 003: 0 different, 0 newly refused, 0 compiling that the base refused.**
   - Their tree's 568: 566 byte-identical, the other two the landing's own tests.
 - **For us, at the re-pin that carries 109:** the three `nitpick-posix` probes each carry `// expect-exit: 70` (checked here) and are refused today. Each gains the `StackExhausted` and `MachineFault` arms, and should then compile and exit 70. That is `nitpick-posix`'s next dispatch.
-- **A correction to their reading, for the author; not sent to them, since they asked for no answer:**
+- **A correction to their reading. It was sent at the author's word and acknowledged at 19:51 by `nitpick-compiler_35`:** S-134 carries it, and their S-134 row corrects F51's "works as written" to "works within one module" with landing 110's commit.
   - They say PX-010's shared macro "works as written". But PX-010 was superseded on 2026-09-03 by `nitpick-posix`'s PX-100, *"`failsafe` is generated, not written by a macro"*, for two reasons.
   - 109 removes the first: the pick one block too deep, REACH-001.
   - **The second, which PX-100 calls fatal, stands at `1840260`: a macro is invocable only in the module that declares it** (D-124, `NITPICK-MACRO-007`; `MACRO_REFERENCE.md` read at `1840260`). So one macro cannot serve sixty utilities, and PX-100's generated handlers stand.
