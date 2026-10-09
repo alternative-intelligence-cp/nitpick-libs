@@ -11597,3 +11597,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - it should be as easy as possible for large libraries, as long as the safety purpose is not defeated;
   - he expects kinks to be worked out over time.
 - **An idea this seat offered him, undecided:** acknowledge a library's errors by a frozen, versioned set name. A change to the set breaks the name, so nothing passes unnoticed, and a large program's `failsafe` stays one line per dependency. A wildcard would defeat the purpose.
+
+### Three library-side ideas for S-134 sent to the compiler seat, at the author's word — 2026-10-09 19:55 (shell time)
+
+- **The author (19:5x):** *"i'm all up for any good ideas we can hand along."* The library work running beside the compiler shows the same thing from the consumer's end, and it exposes the hard decisions where the two ends' interests compete. The compiler side weighs the ideas as it plans.
+- **Sent to `nitpick-compiler_35` for S-134, none asking for action now:**
+  1. **Acknowledge a frozen, versioned error set by name** (`(ntime_v1) { … }`).
+     - The checker holds the name to an exact membership, so a library that adds an identity must publish a new name, and REACH-002 fires as today.
+     - A large program's `failsafe` becomes one line per dependency. The system set could work the same way, so 1.5.8's two arms would have been a one-token change.
+     - The cost: a set can be acknowledged unread.
+     - The trap: a set whose membership can change under one name is a wildcard in disguise, so immutability must be enforced.
+  2. **The generator as toolchain:** `npkg` writes or verifies the `failsafe` from the reachable set (`nitpick-posix`'s PX-100 generalised). The reviewed diff is the acknowledgement.
+  3. **A library-side budget as a stated norm:** `nitpick-time`'s three-identity ceiling (TM-017) and its published arm bill (13 for the umbrella).
+- **A one-line acknowledgement was asked for,** and is recorded when it comes.
