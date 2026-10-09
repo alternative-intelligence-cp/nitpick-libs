@@ -10651,3 +10651,26 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Take hazard (13) added to the board — a release is the token and the marker; read the token before the take — 2026-10-08 22:07 (shell time)
 
 - **From this take (RECORD 21:59):** `205e517` recorded the release while the token and the marker still named `_14`. Hazard (13) on the board now says to run hazard (5)'s command and `ls .internal/orchestrator.session` before writing, expecting `none` and no file.
+
+### `nitpick-time` 0.3.2's worker BLOCKED at block 0b — a rate stated as a verdict; resumed with the orchestrator's allowance — 2026-10-08 22:15 (shell time)
+
+- **report `s2-ntime-0.3.2-2200` — BLOCKED** (`opus`, 13 min, 375 k tokens, 64 tool uses). **Nothing was written, committed or pushed.**
+  - **Checked here:** `check_record` gives `[no-report]` only, as expected. `nitpick-time` is at `abb5673` = `origin/main` with porcelain 0, its scratch removed, and the title still PLANNED.
+  - **Block 0a read SAME:** LLVM 20.1.2, highest decision 253, O-X12 open, the dry run's three APPLYs at 15, 14 and 29 files, and GREEN 134 with 112 plants (210.4 s).
+  - **Block 0b read DIFF at its line 54 only.** `§1.9 a byte written at offset 4096 of a 4 095-byte buffer, the buffer freed` read 95/0 (-O0/-O2), where the plan's Expect (line 711) says 95/95. The other 53 lines were SAME.
+- **The cause, measured by the worker and checked here against the pinned runtime's source:**
+  - The runtime's guard words are `secret ^ guardaddr ^ K_GUARD`, and the secret comes from getrandom(2) at the first allocation (`git show 5fbaf4a:runtime/npkrt.ll`, lines 4860–4872, read here).
+  - So the plan's program, which writes `97u8`, changes no byte whenever the guard's byte is already 97: one value in 256, by design.
+  - The worker's legs:
+    - 9 of 842 unseen at offset 4096;
+    - 0 of 800 caught when the write puts back the byte already there;
+    - 800 of 800 caught when it writes that byte plus one.
+  - Not a compiler defect, not a defect of the code under work, and nothing in §1.9's claim moves: the guard sits at offset 4096, and mutant 294.2's overrun lands at 4095.
+- **Decision (this seat's), under §7 as a claim mismatch in the dispatch's inputs:**
+  - **Block 0b's line 54 is a rate.** It may read 95/95, 95/0 or 0/95. Every other line of every block keeps its Expect, and any other DIFF is still a stop, reported before a push.
+  - **The worker is RESUMED, not re-dispatched.** It holds the 1 729-line plan and block 0a's run, and the tree has not moved.
+  - It does not change `facts.sh` or the Expect. It names them in its hand-on for the next planner: write the guard's own byte plus one, which measured 800/800, or quote the line as a rate.
+  - If block 3e or 3m differs, it says whether the differing mutant is caught by a guard alone.
+- **Not an author's question.** No code, specification or decision changes. The stop rule was followed, and the allowance is recorded here and in the worker's record.
+- **findings-for-playbook** (held): a block that runs a program with a randomized guard once states a rate as if it were a verdict. Write a byte that differs from the guard's, or quote the rate.
+- **Budget:** the meter 59 %, the five-hour window 40 %. The room is about 10.5 points.
