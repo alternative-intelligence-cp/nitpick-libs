@@ -11405,7 +11405,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **On PASS:** PD-105 and PD-106 are accepted as TM-258 and TM-259, and 0.3.2a waits verified. The worker and its verifier go next week unless the author says otherwise.
   - **On FAIL:** the finding goes to the questions table with a recommendation. A re-plan would be a planner, and the meter is past 75 %, so it waits for next week as well.
 
-### `nitpick-libs_16` released; the author's account thinking at 12:1x, carried by the memory — 2026-10-09 12:24 (shell time)
+### `nitpick-libs_16` released; the author's account thinking at 12:1x, carried by the memory — 2026-10-09 12:19 (shell time)
 
 - **`_16` answered this seat's one question:** no word from the author since 11:15 on what the seat does after the stop, and no choice of the next credits job. His standing word of 10:5x applies: use the credits *"whenever something comes up that we could delegate"*.
 - **One thing that was in neither the board nor the record:** after `_16`'s release, around 12:1x, the author talked through the second account again. It is in the memory `subscription-beats-api-for-randy` (line 38, written 12:17, checked here), and he decided nothing:
@@ -11414,4 +11414,4 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the squeeze may be temporary once the compiler's main work moves to Opus;
   - monthly billing keeps a second Max droppable.
   - `_16` suggested a second Max as a one-month measured experiment, and named the levers on the current plan: earlier seat rotation (98 % of the day's usage ran above 150 k context), planning prep on the credits (planners were 32 % of usage), and his model routing.
-- **`_16` released, by a distinct message (12:2x):** this seat has no further need of it. Everything it held is in the tree, this record or the memory. It holds nothing in flight, and the author closes it on its own "safe to close".
+- **`_16` released, by a distinct message (12:19):** this seat has no further need of it. Everything it held is in the tree, this record or the memory. It holds nothing in flight, and the author closes it on its own "safe to close".
