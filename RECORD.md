@@ -11084,3 +11084,44 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`time-adoption-inventory-2026-10-09`** (Sonnet, 83 turns, 07:36–07:41): a read-only inventory of what `7e91730` moves in `nitpick-time` at `989c772`, in the shape of regex's 0.2.1a §1. It lists every `uint8[]` slot by role, the compiler side's list against the tree, the DEF-165 and DEF-164 headers, the toolchain rows, the emission-reading checks, and every mention of `5fbaf4a` or 20.1.2.
   - **A guide, not the set.** It goes to time's adoption planner as an input to measure against, and is not read in full here.
 - **Where they are:** `.internal/credits/out/` (gitignored). **The credits:** $30.27 of $200 over thirteen runs, so about $170 is left, expiring at the 2026-10-13 renewal.
+
+### `nitpick-regex` 0.2.1a's plan VERIFIED PASS — PD-103 and PD-104 accepted as RX-230 and RX-231; the worker dispatched — 2026-10-09 08:11 (shell time)
+
+- **verify `s1-nregex-0.2.1a-verify` — PASS** (`sonnet`, 07:17–08:09, 52 min, 374 k tokens, 123 tool uses), on `0199a4f`.
+  - **CI**, per job with the byte counts asserted: `113768120906` (89 513 B, `0199a4f`) and `113765790683` (87 931 B, `00802a8`). Each shows compiler `5fbaf4a` clean, LLVM 20.1.2, the pin's emission, rx120 held, 31 live and 4 pending self-check cases, and 294/294 GREEN.
+  - **The rehearsal**, in a stand-in workbench under `$TMPDIR`: a GitHub clone at `0199a4f`, copies of both pins and the private LLVM (`SHA256SUMS` OK), and the compiler as a `--shared --no-checkout` clone. All seven blocks read SAME through `blocks.py`, and the four patches applied with 36, 14, 1 and 4 files. **The stand-in also needed `.internal/toolchain/950bb1d`**, which `rx120.sh` reads for its control and this seat's brief did not list; the verifier found it by reading the tools.
+  - **PD-103, by its own enumeration:**
+    - 133 plain slots in 32 files, plus probe 06b's 7 lines and 2 return types;
+    - 400 TYPE-007 diagnostics from 78 roots, which is the compiler side's count, and 170 distinct places in 39 files, 5 in 4 `src/` files;
+    - after step 1, at `5fbaf4a`, 160 of 160 files give identical codes, sites and exits, and the run is 294/294;
+    - each of the 133 made plain alone: 127 newly refused at `7e91730`, and 6 compile (`walk`, `bad`, `good`, `escapes_bytes`' two, `ill_formed`), as §1.5 says.
+  - **The key check, why the old pin cannot prove it alone:**
+    - its own five planted shapes (three writes through `fixed` slices, two reassigned `fixed` parameters, in functions other than the plan's mutants) are silent at `5fbaf4a`, with all 160 files identical to the step-1 tree;
+    - at `7e91730` they are TYPE-086 at all 3 sites and ASSIGN-002 at both;
+    - standalone, the write program exits 66 in 40 of 40 runs per leg at `5fbaf4a`, so the string really is written;
+    - the step-2 tree's census has 0 TYPE-086 and 0 ASSIGN-002, where its planted trees count 105 and 78, so the count is shown to work;
+    - re-pointing a `fixed` LOCAL is ASSIGN-002 at both pins, so only the parameter is DEF-248's silence.
+  - **DEF-247:** step 1's patch writes no `fixed` before a return type. Step 2 alone adds probe 06b's two.
+  - **PD-104:**
+    - with only the manifest's row moved, 21 self-check cases are NOT red (`selfcheck.py:101` carries its own 20.1.2), and step 2 moves both rows;
+    - D-332 over the 33 files agrees at `7e91730` after step 2 and differs at `5fbaf4a` only for `pattern_error_literal.npk`;
+    - **`cursor_pos_write.npk`'s header passes at both pins**: its change is a note moving its site 22:5 → 23:5 on both compilers;
+    - 294/294 at `7e91730` after steps 2 and 4.
+  - **CI's rows** equal `PIN.md` to all 64 hex. The tarball answers 200 at 2 021 269 412 B, where a 20.1.99 control gives 404. The emission step exits 1 on five kinds of mismatch, and `rx120.sh` holds at both pins.
+  - **The decisions:** RX-230 and RX-231 in PD order after RX-229, and `meta/DECISIONS.md` loses no line. **API.md carries one dated note, at A-16**, which names A-11's `Replacer`'s `hay`, as §2 says. (This seat's 07:17 brief said "notes on A-16 and A-11": there is one note, covering both.) No silent shape, with a planted control, and no landing past 103 cited.
+  - **Hygiene:** clean at `0199a4f`; only `main` on the remote; no tags, stash or extra worktree; `core.hooksPath` unset; the planner's scratch gone.
+  - **Two observations, no change:** block 5's saved lines are each covered by a §5b cell; `sweep.py` skips `*TRANSCRIPT.txt`, so two historical "20.1.2" lines of 2026-09-03 stay, as records.
+- **PD-103 and PD-104 are ACCEPTED** and become RX-230 and RX-231 at the worker's step 1 and step 2.
+- **Dispatched 08:10: `s1-nregex-0.2.1a-0810`** (`npk:worker`, `opus`) on `0199a4f`, with TOOLCHAIN `7e91730`, the old pin's paths and each leg's LLVM.
+  - **Its NOTES carry:**
+    - the order (steps 1 … 4, block 5, step 6), and the full runs to expect;
+    - the decisions;
+    - the verifier's three observations, for the record (`cursor_pos_write.npk`'s header, A-16's one note, rx120's `950bb1d`);
+    - the silent shapes, with DEF-230's and DEF-248's added;
+    - DEF-247's return at step 2 alone;
+    - RA-1 … RA-8 named as 0.2.2's planner's;
+    - the week's lessons;
+    - CI at step 6 as the first run under LLVM 20.1.8;
+    - the standing lines.
+  - **Expect one to two hours.** Regex's last two workers ran about 70 and 75 minutes, and this one runs full harnesses at both pins and CI's first run under 20.1.8.
+- **Budget:** the meter 71 %, the five-hour window 18 %, Fable 63 % (03:16, still the newest), so the room is about 5.5 points, conservatively. 127 GiB available.
