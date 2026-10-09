@@ -10719,3 +10719,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The peers:**
   - `nitpick-compiler_35` (`[ca1853]`) is `_34`'s parked spare.
   - `nitpick-libs_17` (`[2f2cfd]`), idle since about 22:15, is the spare behind this seat's successor `_16`. It needs nothing from this seat and is not messaged, as the rolling pool's rule says. It is noted here.
+
+### Advance notice for landing 104 filed — DEF-249 (our O-N41): an `exit` operand held to `int32` — 2026-10-09 02:36 (shell time)
+
+- **From `nitpick-compiler_34`.** It is F46 by sequence. TYPE-007 now fires at an `exit` operand that is not an `int32` (a `Result<int32>`, an `int64`, a `bool`), where `llc` used to refuse the emitted module. No emission moves; of our 4 003 programs, 0 differ and 0 are newly refused.
+- **Checked here:** `085bc01` (branch `34-def249`, parent `7e91730`, 1 `src/` file) exists, read-only. One `exit` with a call operand in our seven repositories: the fuzzer's `cc0264`, an `int32` expression.
+- **Not in the one re-pin**, which takes 103 by the author's word. O-N41 stays open in the registry until a re-pin carries 104. Its notice follows its harness, about 05:40.

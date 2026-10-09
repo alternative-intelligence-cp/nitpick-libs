@@ -996,6 +996,20 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 104 (DEF-249, OUR O-N41; F46 BY SEQUENCE) — **AN `exit` OPERAND FITS `int32` AS ANY SLOT'S VALUE DOES: `NITPICK-TYPE-007` AT THE OPERAND, WHERE `llc` REFUSED THE EMITTED MODULE. A REFUSAL ADDED, A LOUD FAILURE MOVED FROM `llc` TO THE CHECKER; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES TODAY. OF OUR 4 003 PROGRAMS, 0 DIFFERENT AND 0 NEWLY REFUSED. NOT IN THE ONE RE-PIN, WHICH TAKES 103 BY THE AUTHOR'S WORD.** From `nitpick-compiler_34`, filed 2026-10-09 02:36 by `nitpick-libs_15` from the message's full text.
+
+- **What 104 changes.** `check_exit` typed the operand under the `int32` expectation but never held it to it. `exit may(argv.len);` of a fallible `may` passed the checker, and `llc` refused the module ("'%t3' defined with type '{ i32, i32 }' but expected 'i32'"), while `int32:v = may(argv.len); exit v;` was TYPE-007.
+  - Now the operand is held to `int32` exactly and reported at the operand through the one mismatch reporter: TYPE-007 for a `Result<int32>`, an `int64` ("there is no implicit widening, so write the cast") or a `bool`, in `main` and `failsafe` alike.
+  - An entry point whose signature is already refused (TYPE-083 or TYPE-044) keeps that one report (D-240).
+  - `?!`, `?|` and a `pick` are the spellings that turn a fallible value into the code.
+  - Test: `tests/types/rejection/exit_operand.npk`, four sites and four controls. CONTROL_REFERENCE §4.6 gains the note.
+- **Their measurement:** 5 109 files; 4 sites appeared (the test's), 0 vanished. Of the libraries' 4 003 programs, 0 are different and 0 newly refused.
+- **Checked here:**
+  - `085bc01` is on branch `34-def249`, with parent `7e91730`, and changes 1 `src/` file (read-only, no fetch).
+  - An `exit` whose operand is a call appears once across our seven repositories' tracked `.npk`: the fuzzer's `m11/programs/cc0264.npk`, `exit c.load() - 1i32;`, an `int32` expression.
+- **Its landing notice follows its harness, about 05:40, from `_34`.**
+- **For us:** O-N41 is discharged at the re-pin that carries 104, not at this one. Until then the pin's `llc` failure stands as O-N41 records it.
+
 ### ✅ `7e91730` LANDED — **NOTICE 103: D-348 STEP (ii) UNDER D-350 AND D-351, DEF-246 AND DEF-247 FIXED, AS F45 SAID: `fixed T[]` IS A TYPE, THE READ-ONLY VIEW, AND `string_bytes` RETURNS ONE. REFUSALS ADDED BY TYPE: 1 453 `TYPE-007` SITES IN 1 112 LIBRARY FILES, EVERY ONE A READER BINDING THE VIEW INTO A PLAIN `uint8[]`. EVERY EMISSION'S TEXT MOVES BY ONE TYPE ID AND NO ARTIFACT DOES; NO FLOOR BYTE. THE LANDING THE ONE RE-PIN WAITED FOR: IT GOES ONCE `nitpick-time` 0.3.2'S VERIFIER HAS REPORTED (ORCHESTRATE §2.4: NEVER WHILE A CLAIM IS IN FLIGHT).** Sent by `nitpick-compiler_34`, which landed it, built by `_33`; pushed 02:14, filed 2026-10-09 02:18 by `nitpick-libs_15` from the message's full text. **✅ VERIFIED HERE:**
 - **The ladder.** `tools/ladder.py` against the baseline for 103 (102's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +48 220 B, `npkc.o` +23 320 B, `npkc` +20 360 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `98cfe35` is the parent, one commit. 19 files under `src/`, the frontend's and `src/prelude/prelude.npk`. 0 under `runtime/` and `bootstrap/`. `HEAD` = `origin/main` = `7e91730`, clean. Read-only, no fetch.
