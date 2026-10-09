@@ -10419,3 +10419,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Only step 3's file count and stat line moved, to 29 files. Every other line of every block is SAME.
   - **findings-for-playbook** (held): a currency gate is a claim about a set, checked by enumerating the declared constants.
 - **Its verifier waits, one of a kind (W-24),** until `s1-nregex-0.2.1-verify-work` reports. Then the earlier verifier is resumed for this delta. Budget: the week at 54 %, the five-hour window at 21 %.
+
+### Advance notice for landing 102 filed — DEF-248, a `fixed` parameter's assignment is ASSIGN-002; DEF-246 and DEF-247 registered — 2026-10-08 20:21 (shell time)
+
+- **From `nitpick-compiler_33`.** It is F44 by sequence. A refusal is added. Only the fuzzer's claim program `ty1873` is newly refused, as it expects, and no library file moves.
+- **DEF-246 is registered, closed by 103:** a plain view of `fixed` storage writes it, six faces, two of them a MachineFault in safe code. **Checked here by grep:** none of its shapes is in the libraries. There is no `string_bytes` over a `fixed string`, no `fixed` array ranged, no `Writer` impl and no `fixed` slice.
+- **DEF-247:** `fixed` and `stack` return qualifiers mean nothing. None in our corpus.
