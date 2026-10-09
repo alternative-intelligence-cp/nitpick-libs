@@ -10469,3 +10469,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - a docs lookup on two Claude accounts on one machine.
   `_14` handles both and relays their results before releasing the lock. `_15` takes the lock when `_14` says so.
 - **The diogenes note** (this seat's memory) gains the author's cross-account messaging idea: a SQLite or Redis store, with pub/sub or a watcher as the trigger and a hook as the delivery.
+
+### `nitpick-time` 0.3.2's plan: the filing's delta FAIL — four constants still unfiled; the planner resumed — 2026-10-08 21:00 (shell time)
+
+- **verify `s2-ntime-0.3.2-verify`, resumed — FAIL** (24 min, 27 tool uses).
+  - **Exact:** the six values, verbatim against the sources (22 of 22 lines); the delta, 2 of 29 hunks; the eleven blocks SAME; 3e at 293/28/237/28; hygiene.
+  - **The enumeration I asked for:** 23 distinct kernel constants are declared in `src/` and the units, all correct, and 19 have a digest row. **Four have none:** `CLOCK_REALTIME` 0, `CLOCK_MONOTONIC` 1 and `CLOCK_BOOTTIME` 7 (`src/host/host.npk`, cycle 0.3.0's), and `PATH_MAX` 4096 (probe22). So gate 9's "no research request is owed" is still false.
+  - The facts that are not declared constants (the uid and gid maps protocol, `tmpfs`, the mode literals 420 and 493) are left to the orchestrator's call.
+- **The planner was resumed at 21:00.** It reads `time.h` and `limits.h` at their primary source, files the four rows in step 3's addendum and its CURRENCY row, and rewords gate 9 to be exactly true, naming the non-constant facts as exercised at every run and owed no row.
+- **This is 0.3.2's plan's fourth round, every one on what the plan says about itself:** first its tests' strength, then two filings. The code has been right throughout. **The handoff to `_15` waits for this chain,** because both agents are `_14`'s, and resuming them is far cheaper than fresh ones re-reading a 1 400-line plan.
