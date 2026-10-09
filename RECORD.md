@@ -10449,3 +10449,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **0.2.1 is DONE.** `LIBRARIES.md`'s regex row reads decisions to RX-229.
 - **s1's next item, 0.2.2's planner, is held.** By the author's pacing, width 1 follows the in-flight items, and time's 0.3.2 chain is the one in flight.
 - **`s2-ntime-0.3.2-verify` resumed at 20:34** for the filing delta, `8ed5157`. It is the only verifier. Budget: the week at 55 %, the five-hour window at 23 %.
+
+### The pacing's reason, from the author — the compiler's Fable allotment comes first; the libraries' room is about 12 points — 2026-10-08 20:42 (shell time)
+
+- **The author (20:42):** the compiler agent's Fable usage is at 49 % for the week. Its remaining 51 % weighs about 25.5 points on the all-model meter, so spending Fable fully takes the meter from about 55 % to about 80 %. *"what i didn't want to end up doing is making it where we couldn't actually use the whole fable allotment and so we got less done with the compiler than we could have for the week. I figure that is the hightest priority thing for now."*
+- **What that means here.** The libraries' room is about 14 points before 95 %, with Fable spent. This seat holds them to about 12:
+  - time 0.3.2, in flight: its plan verifier, then the worker and that worker's verifier;
+  - then the one re-pin after landing 103, two adoption subcycles, one stream at a time;
+  - regex 0.2.2 and time 0.3.3 wait for next week, unless the author says Fable is running behind.
+- **The meter seen here** (`usage-latest.json`) carries no per-model line, so Fable's share is the author's to report.
+- **Also from the author:** he is weighing a second subscription, another Claude or OpenAI's, for capacity and a third independent viewpoint for audits, testing and fuzzing. It is not within a day or two.
