@@ -10755,3 +10755,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Next: the one re-pin to `7e91730`.** No claim is in flight now. Then regex's adoption planner.
 - **findings-for-playbook** (held): a number carried from a brief into NOTES is a claim to check against the plan's own text.
 - **Budget:** the meter 65 %, the five-hour window 21 %. The room is about 4.5 points with the author's Fable figure of 20:42.
+
+### pin 7e91730, tree clean — the one re-pin, landing 103; regex's adoption next — 2026-10-09 03:06 (shell time)
+
+- **The pin, by orchestrate §3, with no claim in flight.**
+  - **Provenance:** `../nitpick` clean at `7e91730` on `main`; `build/npkc` 16 880 s newer than HEAD's commit; the mid-rebuild guard cleared.
+  - **The copies:** `cmp`-identical to `build/`, with `SHA256SUMS` written and checked. Each equals notice 103's ladder row to 64 hex and exact size, with a one-digit-off control failing: `npkc` 11 220 912 B `9067e39e…`, `npkrt.o` 72 656 B `c8e5033a…` (the anchor).
+  - **The LLVM:** the machine's 20.1.8 (D-349). §3's "must print 20.1.2" predates D-349, which is an `npk` finding for the skill's text.
+  - **Commissioned both ways:**
+    - the canary compiles at exit 0 with 16 defines and 56 903 B. The kept `5fbaf4a` pin reproduces its recorded 56 213 B / 16, so the +690 B is 103's one type-id shift;
+    - linked with llc 20.1.8 and the pin's `npkrt.o`, it runs to exit 0;
+    - the malformed file exits 1 at PARSE-001, writing no IR.
+  - **`PIN.md`** carries the six rows, the carried landings (83 … 103) and those not carried (104, our O-N41; DEF-243, DEF-244, DEF-245; 1.6.1f).
+- **The board's header names `7e91730`,** keeping `5fbaf4a` under *Before*. Until its adoption, a library's harness is RED at this pin by 103's readers, so each library's next dispatch is its adoption.
+  - The adoption measures the unchanged tree at both pins: `5fbaf4a` with the private LLVM 20.1.2 first on PATH, and `7e91730` with the machine's 20.1.8.
+- **Next: regex's adoption planner,** by `_14`'s Q3 answer (regex sits between subcycles). The room is read before the dispatch. Time's adoption follows if the week's room allows, and otherwise next week.
