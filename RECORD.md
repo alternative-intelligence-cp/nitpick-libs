@@ -11371,3 +11371,36 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The pin:** `7e91730`, its `SHA256SUMS` checked OK. `../nitpick` is at `42ecf29` (landing 106) on `main`, read with `log` and `rev-parse`, no fetch.
 - **The pace stands as the author set it:** width 1, one helper of a kind (W-24). At this take the meter reads 77 %, the five-hour window 21 %, and Fable 68 % (the author's `/usage` of 10:45, still the newest), so the room is 95 − 77 − 16 = **2.0 points**, conservatively. By the band of 10:46 that is time 0.3.2a's plan verifier only, then a stop for the week. 129 GiB available.
 - **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
+
+### `nitpick-time` 0.3.2a's plan verifier dispatched — `_17`'s first dispatch, at width 1, and the week's last by the room — 2026-10-09 12:17 (shell time)
+
+- **Dispatched 12:17: `s2-ntime-0.3.2a-verify`** (`npk:verifier`, `sonnet`) on `f3804c3`, the plan `_16`'s planner filed at 12:04. Its TOOLCHAIN is `7e91730`; the NOTES name the old pin's paths and each leg's LLVM. The brief follows `s1-nregex-0.2.1a-verify`'s, pulled from `_16`'s transcript with `jq`.
+  - **Its eleven questions:**
+    - CI per job: `f3804c3` (job `113905665078`, 81 063 B);
+    - **the amendment:**
+      - `811f967` against `f3804c3` over every path, and the 15 fenced regions;
+      - §8 item 5's account of the prose;
+      - §9's new sentence (one public signature moves, `bytes_extend`'s source), by its own list of `src/`'s public functions;
+    - the seven blocks through `blocks.py` in a stand-in workbench under `$TMPDIR`. Its inputs are found by reading the tools, not from the brief;
+    - **PD-105 by its own enumeration**, since the planner compacted once:
+      - 159 files, 114 compiling at `5fbaf4a` and 91 at `7e91730`;
+      - 85 TYPE-007 reports per root over 31 roots, which are 32 places in 16 files, 5 in `src/`;
+      - 39 + 5 = 44 slots, with the plain slots going 56 → 17 → 12, and each of the 44 undone alone;
+      - the compiler side's "21 files, 35 sites" is named as a per-root count that answers another question;
+    - **the key check:** DEF-230's and DEF-248's shapes planted by hand, refused at `7e91730` and silent at `5fbaf4a`, with the census shown to count; the four view mutants;
+    - DEF-247: the five results at step 2 only;
+    - **PD-106:**
+      - the self-check's cases 2 and 3 alone red with the row moved (no 21-case red);
+      - `TWO_CODES` compiled at both pins;
+      - the five headers, the 45 refusals by `refusals.py`, and D-332;
+      - 143 at `7e91730`, with the heap figures unmoved;
+    - the three emission readings unmoved, and the guard's plus-one verdict, run several times per leg;
+    - CI's rows against `PIN.md`;
+    - the decisions by value (TM-257 the highest today), `bytes_view` left writable, the silent shapes with a planted control, and no landing past 103;
+    - the hygiene.
+- **Before it:** `nitpick-time` clean at `f3804c3` and `0/0`; 127 GiB available; no other agent of this seat's (W-24).
+- **Budget:** the meter 77 %, the five-hour window 21 %, Fable 68 % (10:45, still the newest). So the room is **2.0 points** by the conservative formula: the 1.5–3.5 band, the plan verifier only. Regex's plan verifier cost about a point.
+- **Expect about an hour.** Regex's plan verifier ran 52 minutes, and this plan's blocks run seven full harnesses across the two pins.
+- **After it, a stop for the week:**
+  - **On PASS:** PD-105 and PD-106 are accepted as TM-258 and TM-259, and 0.3.2a waits verified. The worker and its verifier go next week unless the author says otherwise.
+  - **On FAIL:** the finding goes to the questions table with a recommendation. A re-plan would be a planner, and the meter is past 75 %, so it waits for next week as well.
