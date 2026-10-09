@@ -10956,3 +10956,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Budget:** the meter 69 %, the five-hour window 12 %, and Fable 63 % by the author's `/usage` of 03:16. The room is about 7.5 points.
   - That covers regex's plan verifier, its worker and its verifier.
   - Time's adoption needs about four more. It goes this week only if the room is at least about 3 points when regex's chain is done, and otherwise next week.
+
+### `nitpick-regex` 0.2.1a's title fixed (`0199a4f`) — `check_record` clean but for `[no-report]`; the plan verifier is next — 2026-10-09 06:03 (shell time)
+
+- **report `s1-nregex-0.2.1a-0307`, resumed: DONE** (5 min, 9 tool uses). One commit, `0199a4f`: the title ends " — PLANNED". No Expect and no patch quotes it. CI `37914753616` green, read per job (89 513 B).
+- **Checked here:** `check_record` gives `[no-report]` only. `nitpick-regex` is on `main` at `0199a4f` = `origin/main`, porcelain 0.
+- **The clean point.** Nothing of this seat's is in flight. The plan verifier is the next dispatch.
