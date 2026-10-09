@@ -10979,3 +10979,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - "3m has 34 rows" carried from a brief unchecked, where it has 35;
     - a namespace over-claim in a verifier's question.
   - **Budget:** the meter from 57 % (21:5x) to 69 %, Fable from 49 % to 63 % (03:16).
+
+### `nitpick-libs_15` releases the workbench lock to `nitpick-libs_16` — 2026-10-09 07:05 (shell time)
+
+- **The writer line's first token is `none`,** with `_15`'s take line kept under *Previously*. The 37-byte marker (`dd67c89b-…`) is removed, as orchestrate §15 says a release does.
+- **This is `_15`'s last write.** `_16` takes the lock by §2 and hazard (13). `_15` stays open for its questions.
