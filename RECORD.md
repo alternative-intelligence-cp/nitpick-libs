@@ -11476,3 +11476,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **0.3.2a waits verified.** Its worker (`opus`) and work verifier go next week, unless the author says otherwise.
   - Nothing of this seat's is in flight but the credits jobs, which are read-only and billed to the API credits.
   - The private LLVM 20.1.2 stays until time's adoption record.
+
+### Four planning briefs on the API credits — cycle 0.0 of `nitpick-sockets`, `nitpick-tui`, `nitpick-parse` and `nitpick-posix`, each repository's pin-audit and E2 items drafted; the credits at $64.28 — 2026-10-09 13:16 (shell time)
+
+- **Why these:** they are the handoff block's listed credits jobs, run under the author's standing word of 10:5x: *"planning briefs for the next repositories' cycle 0.0 … with their TL, PL, SL and XL items drafted as fixes; drafts of E2-6, E2-8, E2-10, E2-13 and E2-14"*.
+  - The four repositories were planned execution-grade on 2026-09-03 against an older pin, and have no code.
+  - `nitpick-sockets` ran first, since stream 3 starts when the author widens the loop.
+- **The runs** (Sonnet, read-only, `.internal/credits/run.sh`, 12:21–13:15). Each brief has the same six items:
+  1. cycle 0.0 as planned;
+  2. what no longer holds at `7e91730`;
+  3. the pin audit's items, re-checked with exact text fixes;
+  4. the other owed items: the E2 items naming the repository, EC3's sentence, E2-15's empty heading, EC1 with `APPS.md`'s SIGPIPE positions, and the currency pins TOML v1.1.0 and POSIX.1-2024;
+  5. the gaps against regex's and time's first cycles;
+  6. the open points.
+
+  | Job | Cost | Turns | Size |
+  |---|---|---|---|
+  | `plan-brief-sockets-0.0-2026-10-09` | $7.42 | 169 | 52 kB |
+  | `plan-brief-tui-0.0-2026-10-09` | $7.76 | 180 | 56 kB |
+  | `plan-brief-parse-0.0-2026-10-09` | $5.81 | 156 | 61 kB |
+  | `plan-brief-posix-0.0-2026-10-09` | $5.03 | 152 | 47 kB |
+- **Their limits, each stated in its own brief:**
+  - The tools were read-only, so nothing was compiled, run or put through `check_refs`. Every "refused" in them is a document's statement.
+  - **The compiler was read in its working tree at `42ecf29` (landing 106), ahead of our pin `7e91730`.** A planner re-reads each quote at its own pin.
+  - Each names the specifications and records it did not read in full.
+  - tui's warns that its sweep lists are likely short, by PLAYBOOK's rule.
+- **They are guides and were not reviewed here in full.** Checked here: each ends complete, under its expected heading, with its limits stated. They sit in `.internal/credits/out/` (gitignored). Each repository's next planner is named its brief in the dispatch, and measures it against the tree.
+- **The handoff block's E2 drafts are covered.** These four briefs draft the four repositories' parts; the regex 0.2.2 and time 0.3.3 briefs drafted regex's and time's. E2-13's and E2-14's workbench parts stay on the owed list.
+- **The cost was about twice this seat's estimate** of about $3 a brief. Comparing a whole planned repository against two libraries' first cycles, and re-checking every compiler statement in it, is what drives that.
+- **The credits:** $64.28 by the ledger over 19 runs, so about $136 is left. The workbench plans to spend them by the 12th.

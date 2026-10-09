@@ -62,11 +62,11 @@ blocked, what is done. The durable plan is
 > - **Questions for the author: none open.**
 >
 > **THE API CREDITS** (read `.internal/credits/README.md` first):
-> - **The money:** $38.25 spent by `LEDGER.md`, so about $162 is left; the console's balance lags the ledger by a few runs. **The author wants it used** (*"lets keep that in mind whenever something comes up that we could delegate to that to use those credits"*).
+> - **The money:** *(13:15, `_17`: $64.28 by the ledger over 19 runs, so about $136 is left, after four cycle-0.0 planning briefs, $26.03, `RECORD.md` 13:19.)* $38.25 spent by `LEDGER.md`, so about $162 is left; the console's balance lags the ledger by a few runs. **The author wants it used** (*"lets keep that in mind whenever something comes up that we could delegate to that to use those credits"*).
 > - **The expiry is uncertain:** the new batch arrives 2026-10-13; the author assumed the old one ends the 12th, and the console's billing page told him the 15th. **Plan to the 12th**, and treat later as slack.
 > - **Done with it today:** every workbench finding of the early ecosystem audit is applied (E2-1 … E2-5, E2-7, E2-9, E2-11, E2-12, E2-15); time's adoption inventory was produced and handed to its planner; `nitpick-fuzz`'s documents-against-code audit is filed (`meta/audits/nitpick-fuzz-docs-d44dfe3-2026-10-09.md`, FZ-1 … FZ-10).
 > - **Waiting in `.internal/credits/out/` for next week's planners, as guides, not reviewed in full:** `plan-brief-regex-0.2.2-2026-10-09.md` (with RA-1 … RA-8's fixes drafted) and `plan-brief-time-0.3.3-2026-10-09.md` (with TA-1 … TA-7's, written before 0.3.2a's re-spelling). Name each in its planner's dispatch.
-> - **More to run, read-only, costing no week:** planning briefs for the next repositories' cycle 0.0 (tui, parse, sockets, posix) with their TL, PL, SL and XL items drafted as fixes; drafts of E2-6, E2-8, E2-10, E2-13 and E2-14. Reviewing an output costs the seat's context, so prefer outputs a later agent uses as a guide.
+> - **More to run, read-only, costing no week:** *(the four cycle-0.0 briefs below are DONE, 13:15, `_17`: `plan-brief-<sockets|tui|parse|posix>-0.0-2026-10-09.md` in `.internal/credits/out/`, with each repository's pin-audit and E2 items drafted; name each in its planner's dispatch. Their compiler quotes are from the working tree at `42ecf29`, ahead of our pin.)* planning briefs for the next repositories' cycle 0.0 (tui, parse, sockets, posix) with their TL, PL, SL and XL items drafted as fixes; drafts of E2-6, E2-8, E2-10, E2-13 and E2-14. Reviewing an output costs the seat's context, so prefer outputs a later agent uses as a guide.
 >
 > **Owed, consolidated:**
 > - **Each repository's next dispatch carries its own items:**
