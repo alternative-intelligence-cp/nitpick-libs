@@ -10565,3 +10565,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The libraries' room is read before each dispatch as 95 − the meter − 0.5 × (100 − Fable %), with the author's Fable figure when it is newer than `usage-latest.json`'s `model_limits` line (`_14`'s method).
   - At this take: the meter 58 %, the five-hour window 35 %, the author's Fable 49 % (20:42), so about 11.5 points.
 - **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
+
+### `nitpick-time` 0.3.2's worker dispatched — `_15`'s first dispatch, at width 1 — 2026-10-08 22:00 (shell time)
+
+- **Dispatched 22:00: `s2-ntime-0.3.2-2200`** (`npk:worker`, `opus`) on `abb5673`, the plan `_14` filed as VERIFIED PASS at 21:55 with PD-99 … PD-102 accepted as TM-254 … TM-257.
+  - **Its NOTES carry `_14`'s list:**
+    - step 2 pushed alone, its CI job with the userns step read green before step 3 (gate 5);
+    - GREEN 135, 136 and 143 units with 116 plants;
+    - 3e exactly 293/28/237/28, 3m's 34 rows;
+    - every block SAME through `blocks.py`, and any DIFF the plan does not allow reported before the push;
+    - the private LLVM 20.1.2 first on PATH;
+    - the units' `unshare`, `mount`, `execve`, `alarm` and `mknod`, which the sandbox allows;
+    - the standing lines.
+  - **Two additions of this seat's:**
+    - gate 9 stated as a value: all 23 declared kernel constants filed, and a constant the plan does not declare is a DIFF to report, not a row to add;
+    - the lessons line, from the handoff block.
+- **Before it:** `nitpick-time` clean at `abb5673` and `0/0`. 127 GiB available. No other agent of this seat's runs (W-24).
+- **Budget:** the meter 58 %, the five-hour window 35 %. The libraries' room is about 11.5 points, with the author's Fable 49 % (20:42).
