@@ -10725,3 +10725,33 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-compiler_34`.** It is F46 by sequence. TYPE-007 now fires at an `exit` operand that is not an `int32` (a `Result<int32>`, an `int64`, a `bool`), where `llc` used to refuse the emitted module. No emission moves; of our 4 003 programs, 0 differ and 0 are newly refused.
 - **Checked here:** `085bc01` (branch `34-def249`, parent `7e91730`, 1 `src/` file) exists, read-only. One `exit` with a call operand in our seven repositories: the fuzzer's `cc0264`, an `int32` expression.
 - **Not in the one re-pin**, which takes 103 by the author's word. O-N41 stays open in the registry until a re-pin carries 104. Its notice follows its harness, about 05:40.
+
+### `nitpick-time` 0.3.2 VERIFIED PASS — the system zone; s2 idles by the pace; the one re-pin next — 2026-10-09 03:04 (shell time)
+
+- **verify `s2-ntime-0.3.2-verify-work` — PASS** (`sonnet`, 3 h 49 min, 364 k tokens, 121 tool uses) on `989c772`.
+  - **CI**, all four jobs read per job with byte counts asserted: GREEN 135, 136, 143 and 143; compiler `5fbaf4a` clean, LLVM 20.1.2, the pin's emission; 116 plants; no FAIL. Step 2's job runs the userns step (before 1, after 0) ahead of the harness. Each work commit has its own run, so each push carried one commit.
+  - **The patches** replay from `abb5673` with the plan's own tools to each work commit's tree (15, 14 and 29 files; the name-status lists identical). The record commit changes only `0.3.2.md`.
+  - **Blocks 3m and 3e read SAME at `989c772`:** 293 mutants, 28 stillborn, 237 red, 28 unseen, and its own 28 equal §1.9's as a set. Mutant 295.5 was red on all 4 legs, so the guard allowance was not needed.
+  - **PD-99:** 62 `func:` declarations in `src/`, 9 of them generic (all in `src/core/vec.npk`), each instantiated. A planted uninstantiated generic turns the full run RED at `check_call_edges`.
+  - **PD-100 and PD-101, as the author accepted them:**
+    - a POSIX rule string is reported verbatim, never as UTC;
+    - the refusal moved to cycle 0.6's lookup;
+    - `SystemZone` holds the name as text, and `TzDirLink` survives only in comments and dated notes;
+    - under `strace`, the thirty machines unshare and mount their own `/etc` before touching any `/etc` path, and the machine's `/etc` is unchanged.
+  - **Decisions and currency:**
+    - TM-254 … TM-257 contiguous after TM-253, +319 −0;
+    - 23 kernel constants, each with a digest row and a CURRENCY row;
+    - the silent shapes 0, under a planted control, and `wild` only in `tests/`;
+    - no unpinned landing named.
+  - **A fresh clone's harness:** GREEN 143, 4 pending, 116 plants. Hygiene clean; no earlyoom kill.
+- **Two over-claims in this seat's own briefs, both found by the verifier, neither in the work:**
+  - **Block 3m has 35 rows, not 34** (32 red, 3 at 0). The plan, the record and the output all say 35. The 34 came from the handoff's list, and this seat carried it into the worker's and the verifier's NOTES without reading the plan's own number: a claim about a set, carried without enumerating it.
+  - **Only the thirty machines run in a namespace of their own.** The five `$TZ` units and the raw unit need none, since `TZ` is step 1. The verifier's question assumed otherwise; no added text claims it.
+- **Carried to `nitpick-time`'s next dispatch,** its re-pin adoption:
+  - TM-255 (PD-100) never names the author or question 26, though TM-256 does. It needs a dated note crediting the author's answer (2026-10-08 16:05).
+  - `ci.yml`'s "THE FULL INVOCATION" comment now sits above the new userns step rather than above "Run the harness". The adoption moves CI's lines anyway.
+- **0.3.2 is DONE.** `LIBRARIES.md`'s time row now reads decisions to TM-257, 143 units.
+- **s2 idles by the author's pace:** 0.3.3, the double, has no plan file and waits for next week. The claim on `nitpick-time` stays, since cycle 0.3 is open.
+- **Next: the one re-pin to `7e91730`.** No claim is in flight now. Then regex's adoption planner.
+- **findings-for-playbook** (held): a number carried from a brief into NOTES is a claim to check against the plan's own text.
+- **Budget:** the meter 65 %, the five-hour window 21 %. The room is about 4.5 points with the author's Fable figure of 20:42.
