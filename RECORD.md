@@ -10512,3 +10512,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the fuzz corpus 1 013 files.
   The early count grew with regex's 0.2.0 and 0.2.1 code. The emission's text moves by one type id, and no artifact moves.
 - **The one re-pin goes when 103 lands and is verified here,** by the author's word. The handoff's re-pin list now carries F45's counts.
+
+### `nitpick-time` 0.3.2's last filing fix (`abb5673`) — the verifier resumed for its delta — 2026-10-08 21:33 (shell time)
+
+- **report `s2-ntime-0.3.2-1146`, resumed: DONE** (33 min, 49 tool uses). One commit, `abb5673`, with CI `37869943288` green and `check_specs_current` at 0.
+  - A second research request read `time.h` and `limits.h` on master: `CLOCK_*` 0, 1 and 7, and `PATH_MAX` 4096. They are filed in step 3's addendum and its CURRENCY row.
+  - **Gate 9 is exactly true:** all 23 declared constants have a row. It names the undeclared facts too, more than this seat's list, found by enumerating the code.
+  - Only block 3's stat line moved.
+- **The verifier, resumed at 21:33** for the delta, the only verifier running. **When it passes, PD-99 … PD-102 are accepted as TM-254 … TM-257, and 0.3.2's worker is `_15`'s first dispatch.**
