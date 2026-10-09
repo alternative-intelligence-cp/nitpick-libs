@@ -1166,6 +1166,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `1840260` LANDED — **NOTICE 108: DEF-202, AS F50 SAID: A `fixed` MODULE BINDING INITIALISED FROM ANOTHER `fixed` MODULE BINDING OF A STRUCT, AN ARRAY OR AN `Optional` TYPE COMPILES, WHERE IT WAS `NITPICK-TYPE-035`. A REFUSAL REMOVED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILED BEFORE; OF OUR 4 003 PROGRAMS 0 DIFFERENT, 0 NEWLY REFUSED, 0 REFUSED BY THE BASE ALONE. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 16:55 by `nitpick-libs_17`; built, landed and sent by `nitpick-compiler_35`, pushed 16:54.
+- **The ladder.** `tools/ladder.py` against the baseline for 108 (107's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +6 130 B, `npkc.o` +2 104 B and `npkc` +1 824 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `508d7c5` is the parent, one commit. 3 files under `src/`: `src/backend/ir/ir_expr.npk`, `src/frontend/type_resolve.npk` and `src/frontend/type_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `main` = `1840260`. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself (14:22–16:52): 55 tests passed; parity, 2 057 verdicts agree; 7 067 obligations matching, with zero verdicts moved and 233 rows re-keyed by a type-id move; the floor's 388 unmoved.
+
+**Their sweep matches F50:**
+- 9 sites vanished (the 9 TYPE-035 sites of `module_ref.npk`) and 0 appeared;
+- of their tree's 566 programs, 565 are byte-identical, and the new test is refused by the base alone;
+- **ours, 4 003: 1 844 byte-identical, 2 159 refused by both, 0 different, 0 newly refused, 0 refused by the base alone**;
+- D-332's count: 0 mismatched.
+
+**For us:** nothing moves. **Next from them:**
+- 109 (DEF-224 under D-352, `nitpick-posix`'s PX-010), F51 within the hour. **At the re-pin that carries 109, `nitpick-posix`'s `tests/probe/probe02a_failsafe_macro.npk`, `probe02d_caller_body.npk` and `probe02e_block_nested.npk` need the `StackExhausted` and `MachineFault` arms and exit 70,** by their word; F51 gives the detail. (The three files exist under those names in `nitpick-posix`; `nitpick-time`'s `probe02d` is another file.)
+- Then 110 (DEF-226), F52.
+
+**THE BASELINE NOTICE 109 MUST QUOTE** (notice 108's rows, at `1840260`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    e1c74dc3847900649b0fdd576062fba85c0ec5758139ec16d73aed0f6a51aea1  31,571,023 B
+npkc.o     2b75599812527b8c8509cd6a5f77479a419296614db2533f6a5b121da533de93  12,998,888 B
+npkc       c54582464a13c0294cd4c6135d821b0de53012c771e4b3d1981e4e214eac8654  11,235,672 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 108 (DEF-202; F50 BY SEQUENCE) — **A REFERENCE TO AN AGGREGATE MODULE BINDING IS A CONSTANT: `fixed Pt:Q = P;`, `fixed int32[3]:B = A;` AND `fixed int32?:O2 = O;`, `NITPICK-TYPE-035` UNTIL NOW, COMPILE. A REFUSAL REMOVED; NOTHING THAT COMPILED BEFORE EMITS DIFFERENTLY; NOTHING OF OURS MOVES.** From `nitpick-compiler_35`, filed here 2026-10-09 14:21 by `nitpick-libs_17`.
 - **The change, as they give it:**
   - one walk, `fixed_global_sym`, says which `fixed` module binding a name stands for;
