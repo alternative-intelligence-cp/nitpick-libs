@@ -10792,3 +10792,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The room, by `_14`'s method:** 95 − 66 − 0.5 × (100 − 63) = **10.5 points**. This replaces the 4.5 that the 20:42 Fable figure gave.
 - **The rates since 20:40:** all models 1.65 points an hour; Fable 2.1 % an hour (1.05 points); the rest, the libraries among it, 0.6 points. At that rate Fable is spent in about 17.6 h, around 21:00 today.
 - **Decision (this seat's), within the author's pace:** regex's adoption (`s1-nregex-0.2.1a-0307`, its planner running), then time's, one at a time, and nothing else new this week. The room is read before each dispatch. If it falls under about 3 points before time's adoption starts, time's waits for next week.
+
+### The API-credits runner commissioned — a read-only pilot audit of `nitpick-tui` against `7e91730` on the credits; a slip of mine, a `cd` into a library — 2026-10-09 04:01 (shell time)
+
+- **The author's go (03:2x–03:4x):**
+  - The plan's $200 a month of API credits were activated on 2026-10-09. They expire at the end of each billing cycle; his renews on 2026-10-13.
+  - He made a console workspace, **API Credits**, with its own key in `~/.config/nitpick-credits/key` (600).
+  - He asked for small tasks that a subscription agent can pick up if the credits run out.
+- **The terms, read here** (platform.claude.com/docs/en/about-claude/api-credits-for-subscribers; support articles 17154008 and 15036540):
+  - **covered:** the API, Batches, Managed Agents, the Agent SDK, and `claude -p` with an API key;
+  - **not covered:** interactive Claude Code;
+  - when the credits are spent, requests stop and nothing is charged to the plan.
+- **The runner, in `.internal/credits/`** (gitignored): `run.sh`, `README.md`, `jobs/`, `out/` and `LEDGER.md`.
+  - Each run is headless `claude -p` with the key, from a cwd outside the workbench, with `CLAUDE_CONFIG_DIR` and `HOME` set to scratch.
+  - It is **read-only**: Read, Grep and Glob, with web tools only for a `.web` job. Bash, Write, Edit and subagents are refused, so no claim or lock is involved.
+  - **Smoke test:** `haiku`, "OK", $0.0017, which resolved to `claude-haiku-5-5`. The first try hung to its 120 s timeout because `env -i` dropped the sandbox's proxy variables. They are passed through now.
+- **The pilot:** `landings-83-103-nitpick-tui`, on `sonnet` with at most 80 turns. It audits `nitpick-tui`'s plan documents against 83 … 103, since tui is stream 1's next repository after regex. Its report is filed by this seat after reading. Its cost decides the next jobs: the same audit for parse, sockets and posix, then the research-currency refresh (W-25).
+- **A slip, mine.** One read-only sizing command, `git ls-files` with `--no-optional-locks`, ran as `cd nitpick-tui && …`, and the shell stayed there until the next call, against PLAYBOOK §6's "never leave the shell inside a library".
+  - Moved back at once.
+  - `nitpick-tui` is unchanged: porcelain 0, HEAD = origin = `e5439ee`, its index's mtime from yesterday.
+  - No write happened while `.` meant the library.
