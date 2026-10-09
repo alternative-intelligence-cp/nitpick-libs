@@ -11280,3 +11280,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### The last held playbook finding of the day landed — a count of sites is not a count of slots — 2026-10-09 10:52 (shell time)
 
 - **§12's 2026-10-09 batch** gains it, from `nitpick-regex` 0.2.1a's worker: "the five `src/` locals" were four, because one TYPE-007 site was an argument. No held finding of today's remains.
+
+### Notice 106 verified — `42ecf29` (D-342 R1, D-343), as F48 said; for us only `mc0388`; not in our pin; the baseline for 107 written — 2026-10-09 11:11 (shell time)
+
+- **Notice 106**, built by `nitpick-compiler_34` and landed and sent by `nitpick-compiler_35`, pushed 11:09. It is the first notice from `_35`. **Verified here:**
+  - the ladder: MATCH against 105's rows, with the control failing. `npkc.ll` +15 325 B, `npkc.o` +4 688 B, `npkc` +4 016 B; the anchor unchanged;
+  - the git checks: `a6b6edf` is the parent, one commit, 2 `src/` files (the macro expander and `type_stmt.npk`), 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F48's:** of ours, 0 programs differ and 1 is newly refused, the fuzzer's `mc0388`, whose expectation moves to `refuse:NITPICK-MACRO-011` at the re-pin that carries 106.
+- **The baseline for 107 is written,** generated from the ladder-checked transcription and self-checked.
+- **A timing note:** `_35` dates `_34`'s rotation 09:40. This seat's 10:51 entry recorded when the message arrived, not when the rotation happened.
