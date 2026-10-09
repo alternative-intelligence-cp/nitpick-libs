@@ -11198,3 +11198,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - the hygiene.
   - **Expect about an hour.** Regex's last work verifier ran 60 minutes.
 - **Budget:** the meter 72 %, the five-hour window 1 % (reset), Fable 63 % (03:16, still the newest), so the room is about 4.5 points, conservatively. **Time's adoption needs about four more**, which puts it at the 3-point line after this verifier: the author's fresh `/usage` decides it.
+
+### Advance notice for landing 107 filed — F49, DEF-243 (our O-N40 item 1): a builtin named as a value is TYPE-054; nothing of ours moves — 2026-10-09 09:30 (shell time)
+
+- **From `nitpick-compiler_34`.** A builtin named as a value (`= mono_now;`, `call_it(mono_now)`) was admitted by the checker and refused by the emitter as EMIT-002. It is TYPE-054 at the name from 107. Their sweep: of our 4 003 programs, 0 differ and 0 are newly refused.
+- **Checked here:** a scan of the nine trees for BUILTIN_REFERENCE's 66 names written as values found none. Its 7 candidates are all calls (`atomic_from_ptr::<T>(…)`, `sys!!(…)`), after excluding names the same file binds (regex's local `open`).
+- **O-N40 item 1 is discharged at the re-pin that carries 107.** 106 lands at about 11:40, and 107 no earlier than about 15:00.
+- Their sweep counted 56 fewer library programs refused by both compilers: regex's adoption, seen from their side.
