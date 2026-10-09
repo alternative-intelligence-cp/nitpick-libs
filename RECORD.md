@@ -10879,3 +10879,28 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The board's owed list** names both. The workbench's findings are seat writes, and the rest go with each repository's next dispatch. The board's "Last updated" now reads 2026-10-09.
 - **The runner:** `--max-turns` did not bound the ecosystem job (255 against 150), so the README says the organization's $200 cap is the only hard bound.
 - **The credits:** $13.22 of $200 over seven runs.
+
+### Documents against code: `nitpick-time` ($5.29) and `nitpick-regex` ($6.74) audited on the credits — no code defect in either; filed; the credits at $25.24 — 2026-10-09 04:57 (shell time)
+
+- **`nitpick-time` at `989c772`: 7 findings, all documents.**
+  - TA-1: README's status contradicts itself.
+  - TA-2: README's layer table and "clock_gettime for the three clocks", where the monotonic clock goes through `mono_now()`.
+  - TA-3: the conformance README's "empty umbrella", where the umbrella now re-exports 84 names.
+  - TA-4: V-11's "everything that reads a clock" carries `stress: 40`, but `probe03` does not.
+  - TA-5: TIME_MODEL §4's civil types are shown unsealed.
+  - TA-6: a SPAN_MODEL table row.
+  - TA-7: `examples/` is "built and run by the harness", but no suite exists.
+- **`nitpick-regex` at `75dd51e`: 8 findings, all documents.**
+  - RA-1: `tests/README.md` names the struck `accept` stage.
+  - RA-2: a `treecheck.py` docstring describes a note the check doesn't print.
+  - RA-3: regex's own row G1 says the folder has no member-access arm. D-338 added one; there is still no index arm.
+  - RA-4: `nitpick.toml` counts 24 rejection fixtures, and there are 25.
+  - RA-5: README's status line.
+  - RA-6: "thirty ways" against 38 kinds.
+  - RA-7: H-8 and H-4 say in the present tense what 0.2.2 and 0.2.6 own.
+  - RA-8: transcripts cite paths from before the 0.0 archive.
+- **Spot-checked here before filing:**
+  - time TA-4 and TA-7;
+  - regex RA-4 and RA-6, read through `git show main:`, because regex's 0.2.1a planner is rehearsing on a throwaway branch in the real checkout, as its planners do. The auditor saw the tree move, and no finding depends on it.
+- **Filed** as `meta/audits/<repo>-docs-<sha>-2026-10-09.md`. The board's owed list carries both, by id, to each repository's next dispatch.
+- **The credits:** $25.24 of $200 over nine runs.

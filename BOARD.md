@@ -61,6 +61,9 @@ blocked, what is done. The durable plan is
     - E2-9: the registry's settled rows. That is ten O-N rows whose DEFs are FIXED and carried by the pin, and O-X9, O-X11, O-X12 and O-Y2. Strike each with its evidence.
   - **Each repository's next dispatch, by id:** E2-6, E2-8, E2-10, E2-13 and E2-14.
 > - **the pinned external facts, checked 2026-10-09** (`meta/audits/currency-2026-10-09.md`): tzdata 2026c → 2026e (time; its cycle 0.5 pin), TOML v1.0.0 → v1.1.0 (parse; before its 0.6), POSIX.1-2017 → 2024 (posix). Each goes with its repository's next dispatch.
+> - **the documents-against-code audits of time and regex, 2026-10-09** (`meta/audits/nitpick-time-docs-989c772-2026-10-09.md`, `meta/audits/nitpick-regex-docs-75dd51e-2026-10-09.md`, on the credits).
+  - Neither found a code defect. Each finding is a stale or overstated document.
+  - Each repository's next dispatch carries its own by id: time TA-1 … TA-7, regex RA-1 … RA-8.
 > - **the author's second-subscription question:** whether two Claude accounts can run on one machine. A docs lookup ran, and its answer is in RECORD.md.
 >
 > **Lessons this tenure paid for, binding on every dispatch's NOTES:**
