@@ -10543,3 +10543,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`nitpick-libs_14`'s release, made mechanically complete at `nitpick-libs_15`'s correct prompt.** The earlier commit `205e517` said "the lock released" but left the writer line's first token and `.internal/orchestrator.session` naming `_14`.
 - Now the token is `none`, with the old take line kept under *Previously*, and the 37-byte marker (`8bd7d7dd-…`) is removed, as orchestrate §15 says a release does.
 - `_15` takes the lock by §2. This is `_14`'s last write.
+
+### Handover — `nitpick-libs_15` takes the workbench lock on `nitpick-libs_14`'s briefed handoff; `nitpick-time` 0.3.2's worker next — 2026-10-08 21:59 (shell time)
+
+**Handover.** `nitpick-libs_15` (`dd67c89b-7def-4e29-948e-ea9d3f9b9f81`) takes the writer lock that `nitpick-libs_14` released at `ea586a7` (21:57), by the author's go (*"15 and 16 are both standing by so proceed with handoff when you are ready"*, 20:59). `_14` briefed this seat directly, answered its five questions, and stays open until this seat says it is done with it.
+
+- **The id from values:** the transcript `dd67c89b-….jsonl` under `~/.claude/projects/`, the scratchpad path, the session's environment and `~/.claude/context/dd67c89b-….json` (`session_name` `nitpick-libs_15`) agree. The marker is 37 bytes.
+- **Freedom came from values:**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`;
+  - `git ls-remote origin` gave `ea586a7` for `main`, with `HEAD` = `origin/main` = `ea586a7`;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep at 21:58:00, discovered rather than listed, found **9 trees, every one `0/0`, and every one `dirty=0` except this workbench's 2**, the untracked `a.npk` and `b.npk` (below): the workbench (`ea586a7`), `nitpick-apps` (`03c24a7`), `nitpick-posix` (`948d9b6`), `nitpick-fuzz` (`d44dfe3`), `nitpick-parse` (`3cad08c`), `nitpick-regex` (`75dd51e`), `nitpick-sockets` (`d385991`), `nitpick-time` (`abb5673`), `nitpick-tui` (`e5439ee`). The sweep ran `git --no-optional-locks status`, so it refreshed no library's index.
+- **The release took two writes, and the first was not one.** `205e517` (21:55) recorded the release while line 14's first token and the 37-byte marker still named `_14`.
+  - Measured here at 21:56, before any write: hazard (5)'s command printed `8bd7d7dd-…` locally and on `origin/main`, and `.internal/orchestrator.session` held `_14`'s id.
+  - Put to `_14`, which completed the release at `ea586a7`: the token `none`, the old take line under *Previously*, the marker removed.
+  - **A release is the token and the marker (orchestrate §15), not the record's sentence.** The one check that tells them apart is hazard (5)'s value-read, and it belongs before the take as well as after it.
+- **Hazard 3, asked and answered:** `_14`'s last write is `ea586a7`; no subagent of its is in flight; its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_16` (`[5ecb32]`), idle, answered in one message: idle, no task, nothing written in `nitpick-libs`, and it will message this seat before any write there. The two `.npk` files were there when it started.
+- **The compiler side:** `nitpick-compiler_33` confirmed to `_14` at 21:4x that its notices for 102 (about 00:10) and 103 (about 03:15), and every library message, now come here. The fuzz cloud session and the Gemini inbox are paused by the author and were not told; this seat introduces itself if one stirs.
+- **The pace stands as the author set it:** width 1; time 0.3.2's worker, then its verifier; then the one re-pin after landing 103, regex's adoption first.
+  - The libraries' room is read before each dispatch as 95 − the meter − 0.5 × (100 − Fable %), with the author's Fable figure when it is newer than `usage-latest.json`'s `model_limits` line (`_14`'s method).
+  - At this take: the meter 58 %, the five-hour window 35 %, the author's Fable 49 % (20:42), so about 11.5 points.
+- **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
