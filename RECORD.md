@@ -11347,3 +11347,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - a brief that said "notes on A-16 and A-11", where there is one note;
     - a stand-in's input list without `950bb1d`, which the verifier found.
   - **Budget:** the meter from 70 % (07:10) to 77 % (12:04); Fable from 63 % (03:16) to 68 % (10:45).
+
+### `nitpick-libs_16` releases the workbench lock to `nitpick-libs_17` — 2026-10-09 12:08 (shell time)
+
+- **The writer line's first token is `none`,** with `_16`'s take line kept under *Previously*. The 37-byte marker (`702af860-…`) is removed, as orchestrate §15 says a release does.
+- **The handoff block's hazard-4 line is corrected in the same commit.** `nitpick-libs_18` (`[7702a1]`), opened about 11:0x, is the idle spare behind `_17`; the block had said none was open.
+- **This is `_16`'s last write.** `_17` takes the lock by §2 and hazard (13). `_16` stays open for its questions.
