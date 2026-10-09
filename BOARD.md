@@ -51,6 +51,7 @@ blocked, what is done. The durable plan is
 > **Owed:** `_13`'s owed list below stands, except that the install README's compiler half **PASSED** its newcomer test (run 2). Also owed:
 > - **today's findings-for-playbook**, about thirty "held" lines in RECORD.md since 03:30;
 > - **three npk plugin findings:** the verifier's subject check against planner commits; plans should read `check_specs_current`; a sweep list is a claim about a set;
+> - **the four pre-start audits against `7e91730`, filed 2026-10-09** (`meta/audits/<repo>-pin-7e91730-2026-10-09.md`, made on the API credits for $2.60 in all): each repository's next dispatch carries its own by id — tui TL-1 … TL-7, parse PL-1 … PL-6, sockets SL-1 … SL-6, posix XL-1 … XL-6. Posix's XL-1 … XL-3 are the probe verdicts landing 92 (D-340) moved, which includes the owed `probe02g` header.
 > - **the author's second-subscription question:** whether two Claude accounts can run on one machine. A docs lookup ran, and its answer is in RECORD.md.
 >
 > **Lessons this tenure paid for, binding on every dispatch's NOTES:**

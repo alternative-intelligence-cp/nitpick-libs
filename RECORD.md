@@ -10832,3 +10832,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The author (04:2x):** auto-reload is off and the organization's spend cap is $200. He found no per-workspace limit in the console.
 - **The billing:** the console's billing page shows the remaining credits, which had fallen by almost $1 since the pilot. That matches the ledger's $1.03 for tui's audit, so the jobs are billed to the credits and not to the plan.
 - **The console shows no per-job cost,** so `.internal/credits/LEDGER.md` is the per-job record, from the CLI's own `total_cost_usd`. Its README says so.
+
+### The other three pre-start audits on the credits — parse, sockets and posix against `7e91730`, \$1.57 together — spot-checked and filed — 2026-10-09 04:13 (shell time)
+
+- **The runs,** all on `claude-sonnet-5-5`, read-only, one after another from 04:06 to 04:12:
+  - **`nitpick-parse`** — 6 findings (PL-1 … PL-6), 33 turns, $0.41
+  - **`nitpick-sockets`** — 6 findings (SL-1 … SL-6), 51 turns, $0.55
+  - **`nitpick-posix`** — 6 findings (XL-1 … XL-6), 51 turns, $0.61
+- **What they found, in common with tui's:**
+  - every library specifies its read-only byte slots as a plain `uint8[]`. At 103 a `string_bytes` result cannot reach them (TYPE-007), so the parsers, readers, decoders and writer sinks move to `fixed uint8[]`, and a trait's impls follow it exactly (TYPE-014);
+  - every library pins LLVM 20.1.2, where the compiler pins 20.1.8;
+  - every library calls the compiler "cycle 1.5".
+- **Each library's own:**
+  - **parse:** probes 06, 08 and 12 predate the `fixed T[]` type. Its `stack-depth` claim (O-N2) is stale since landing 46.
+  - **sockets:** `Bytes.view()` should be the read-only type, with a separate writable accessor for `read`. A CI note: noble's own `llvm-20` is 20.1.2, so CI needs the LLVM project's packages.
+  - **posix:** landing 92 (D-340) moved its macro probes. 02a is now REACH-001, where it was RESOLVE-002; 02c is MACRO-008, where it was REACH-001; 02g is unmeasured between MACRO-007 and MACRO-008. That is the board's owed "posix's `probe02g` header".
+- **Spot-checked here before filing,** at the cited lines in both trees, each quote as given:
+  - parse: PL-1 and PL-2;
+  - sockets: SL-1 and SL-3;
+  - posix: XL-1, with D-340's own sweep naming `probe02a` and `probe02c`, and XL-4.
+- **Filed** as `meta/audits/<repo>-pin-7e91730-2026-10-09.md`, each with a provenance header. The board's owed list names all four audits; each repository's next dispatch carries its own.
+- **The credits so far:** \$2.60 of \$200, over five runs (the smoke test and four audits). The ledger is `.internal/credits/LEDGER.md`.
