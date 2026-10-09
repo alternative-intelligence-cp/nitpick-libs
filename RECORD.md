@@ -10410,3 +10410,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **0.2.2's planner waits for the author's pacing answer.**
   - Budget: the week at 53 %, the five-hour window at 19 %.
   - `s2-ntime-0.3.2-1146` makes its text fix meanwhile.
+
+### `nitpick-time` 0.3.2's filing fixed (`8ed5157`) — its verifier held by W-24 behind regex's — 2026-10-08 20:02 (shell time)
+
+- **report `s2-ntime-0.3.2-1146`, resumed: DONE** (48 min this round, 42 tool uses). One commit, `8ed5157`, with CI `37862347793` green and `check_specs_current` at 0 unresolved, read before the commit this time.
+  - The six kernel numbers were read by an `npk:researcher` request and re-checked by a direct fetch: `alarm` 37, `execve` 59 (the 64 ABI), `mknod` 133, `MS_RDONLY` 1, `MS_REMOUNT` 32, `S_IFIFO` 0010000. Step 3's patch files them in the digest's second addendum and its CURRENCY row, and gate 9 says what is filed where.
+  - The nits are fixed, and §1.9 records what the enumeration doesn't cover.
+  - Only step 3's file count and stat line moved, to 29 files. Every other line of every block is SAME.
+  - **findings-for-playbook** (held): a currency gate is a claim about a set, checked by enumerating the declared constants.
+- **Its verifier waits, one of a kind (W-24),** until `s1-nregex-0.2.1-verify-work` reports. Then the earlier verifier is resumed for this delta. Budget: the week at 54 %, the five-hour window at 21 %.
