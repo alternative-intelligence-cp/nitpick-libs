@@ -10647,3 +10647,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Already there, so not repeated:** "over a copy, the checkout's checks drop its exemptions" is §9's "a check whose exemption is tied to the repository's own tree".
 - **Still owed, as recorded at the handoff:** the three `npk` findings. One of them, that the plan skill should read `check_specs_current`'s unresolved count, is named in §12's new bullet on rule identifiers.
 - **Cost:** seat writes only, no agent.
+
+### Take hazard (13) added to the board — a release is the token and the marker; read the token before the take — 2026-10-08 22:07 (shell time)
+
+- **From this take (RECORD 21:59):** `205e517` recorded the release while the token and the marker still named `_14`. Hazard (13) on the board now says to run hazard (5)'s command and `ls .internal/orchestrator.session` before writing, expecting `none` and no file.
