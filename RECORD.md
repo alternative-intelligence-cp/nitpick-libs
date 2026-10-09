@@ -11169,3 +11169,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **§12, plans (2), a dated batch:** an adoption re-spells at the old pin first, then moves the pin, with the two shapes the old pin cannot see as its mutants; and a number carried from a brief is a claim to check against the plan's own text.
 - **Struck on the owed list:** "today's held findings-for-playbook". **Still owed:** the `npk` findings (tool changes, not this seat's to write).
 - `check_refs` is clean. **Cost:** seat writes only.
+
+### `nitpick-regex` 0.2.1a DONE — the adoption of `7e91730`, `5f2753e`: the first library at LLVM 20.1.8; RX-230's count amended by the worker; its verifier dispatched — 2026-10-09 09:06 (shell time)
+
+- **report `s1-nregex-0.2.1a-0810` — DONE** (`opus`, 08:10–09:04, 54 min, 523 k tokens, 140 tool uses). Five commits on `0199a4f`, pushed at step 6:
+  - `90b7a3c`, step 1: the read-only view, 294/294 at `5fbaf4a`;
+  - `864ae4c`, step 2: the adoption (LLVM 20.1.8 in both manifests, DEF-165's header, probe 06b's return), 294/294 at `7e91730`;
+  - `ff7e1e6`, step 3: CI pinned;
+  - `c160bb7`, step 4: the prose, 294/294;
+  - `5f2753e`, the record.
+  - **All seven blocks read SAME through `blocks.py`;** the seven view mutants are at their verdicts; there were six full runs, one at a time, and two toolchain refusals.
+  - **CI is green on `c160bb7`** (`37931590622`, job `113823372937`) **and on the record** (`37933740933`, job `113830541028`, 91 625 B): compiler `7e91730` clean, LLVM 20.1.8, the emission 31 527 001 B / `b79f89c5…`, rx120 held, 294/294. **It is the first run of any library under LLVM 20.1.8.**
+  - **Checked here:** `check_record` is clean; `HEAD` = `origin/main` = `ls-remote` = `5f2753e`; the porcelain is 0.
+- **for-the-author, three recommendations, each taken by this seat (none is the author's question):**
+  - **RX-230's text was amended before it applied:** "the four locals", where the planned patch said "the five src/ locals". §1.3's five `src/` sites include one ARGUMENT, `bytes_extend_str`'s, which is re-spelled through `bytes_extend`'s parameter. It was re-cut from the raw chain: step 1's patch differs in that line and the decision index line, step 2's in the index line alone, and steps 3 and 4 are identical. **Accepted if the verifier's own enumeration agrees**, which is its question (3). The plan's PD-103 row keeps "five", as the planner wrote it, and the record notes the correction.
+  - **The plan's blocks run read-only git plumbing in the compiler's tree** (`rev-parse`, `merge-base --is-ancestor`, `cat-file -e`) beyond the dispatch's "show, diff and log". None of them writes. **Taken:** from this verifier on, the standing line names read-only git commands (show, diff, log, rev-parse, merge-base, cat-file) and never a fetch.
+  - **A record commit cannot name its own CI run.** **Taken:** the verifier is told to read HEAD's run from its job log.
+  - The private LLVM 20.1.2 is no longer needed by regex. Its deletion waits for `nitpick-time`'s adoption, as the board says.
+- **findings-for-playbook** (held): a count of sites is not a count of slots. "The five src/ locals" took §1.3's five TYPE-007 sites for five locals. A plan verifier's PASS and four SAME rehearsals passed it, since no block reads a decision's prose against the tree; the worker caught it by enumerating the set the sentence names before its patch applied.
+- **Dispatched 09:06: `s1-nregex-0.2.1a-verify-work`** (`npk:verifier`, `sonnet`) on `5f2753e`, the only agent running (W-24).
+  - **Its seven questions:**
+    - CI per job on both runs;
+    - the amended patches replayed from `0199a4f` to each work commit's tree, at 36, 14, 1 and 4 files;
+    - **the amendment's truth, by its own enumeration of step 1's `src/` slots by role;**
+    - the old-pin leg at `90b7a3c`: 294/294, and every root's codes identical to `0199a4f`'s at `5fbaf4a`;
+    - the new pin at HEAD: 294/294, D-332 over the 33 files, and no TYPE-086 or ASSIGN-002 in the census;
+    - the decisions by value, CI's rows against `PIN.md`, the silent shapes with a planted control, and no landing past 103;
+    - the hygiene.
+  - **Expect about an hour.** Regex's last work verifier ran 60 minutes.
+- **Budget:** the meter 72 %, the five-hour window 1 % (reset), Fable 63 % (03:16, still the newest), so the room is about 4.5 points, conservatively. **Time's adoption needs about four more**, which puts it at the 3-point line after this verifier: the author's fresh `/usage` decides it.
