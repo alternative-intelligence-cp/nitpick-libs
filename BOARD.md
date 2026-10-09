@@ -1166,6 +1166,41 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `6b09990` LANDED — **NOTICE 109: DEF-224 UNDER D-352, AS F51 SAID: `failsafe`'S EXHAUSTIVE PICK MAY STAND IN A BARE BLOCK AT ANY DEPTH, A STATEMENT MACRO'S EXPANSION BEING ONE, AND NEVER INSIDE A CONDITIONAL, A LOOP OR AN ARM. A REFUSAL REMOVED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILED BEFORE; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED; `nitpick-posix`'S PROBES 02a, 02d AND 02e NOW STOP AT `REACH-002` FOR TWO ARMS. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 19:47 by `nitpick-libs_17`; built, landed and sent by `nitpick-compiler_35`, pushed 19:45.
+- **The ladder.** `tools/ladder.py` against the baseline for 109 (108's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +3 270 B, `npkc.o` +1 224 B and `npkc` +880 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `1840260` is the parent, one commit. 1 file under `src/`: `src/frontend/analysis/reach.npk` (`failsafe_pick_in`). 0 under `runtime/` and `bootstrap/`. `main` = `6b09990`. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself (17:14–19:42): 55 tests passed; parity, 2 063 verdicts agree; 7 070 obligations matching, with zero verdicts moved; the floor's 388 unmoved.
+  - **Two (symbol, kind) discharged counts fell, by their account because the pick search's loop moved.** Its five rows moved from `reach_settle` to `failsafe_pick_in`, beside three new rows of its own, all discharged.
+  - The multisets differ by exactly those rows (8 added, 5 removed), and 106 more rows were re-keyed by a type-id move.
+  - A compiler-internal matter; nothing of ours reads it.
+
+**Their sweep matches F51:**
+- 5 sites vanished: their two tests' REACH-001, and the REACH-001 of `nitpick-posix`'s probes 02a, 02d and 02e;
+- 8 appeared: those three at REACH-002 for `StackExhausted` and `MachineFault`, and two MACRO-009 notes;
+- of their tree's 568 programs, 566 are byte-identical, and the two new tests are refused by the base alone;
+- **ours, 4 003: 1 844 byte-identical, 2 159 refused by both, 0 different, 0 newly refused, 0 refused by the base alone**;
+- D-332's count: 0 mismatched.
+
+**For us:**
+- At the re-pin that carries 109, `nitpick-posix`'s three probes gain the `StackExhausted` and `MachineFault` arms and should then exit 70, as F51's entry says. That is `nitpick-posix`'s next dispatch.
+- The PX-100 note under F51 stands.
+
+**Next from them:**
+- 110 (DEF-226: the `pick (r.is_error)` form's check leaves the pick; a refusal removed), F52 within the hour;
+- 111 (DEF-233 and DEF-238: TYPE-094 at a `give`/`fall` outside a pick arm, and TYPE-024 by name at a `frac` member where a place is needed; two refusals added), F53 after 110's harness;
+- 112 (DEF-232: a struct with a NIL field compiles, D-084's promise kept by the layout), F54.
+
+**THE BASELINE NOTICE 110 MUST QUOTE** (notice 109's rows, at `6b09990`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    c69520f0c9ab830e4c82fe1c2ee4044dcebb6a9dd420614f771e87645b7cdd4f  31,574,293 B
+npkc.o     d7035dbdf5f1cbfffaf6c5dba105309a437aac595233a03521fc10a21fec0f8f  13,000,112 B
+npkc       24a7748cd706375d2cd1db54b46ef4390c6ed00c5f99829ae0bca7e0ea52af58  11,236,552 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 109 (DEF-224 UNDER D-352; F51 BY SEQUENCE) — **`failsafe`'S PICK MAY COME FROM A STATEMENT MACRO AND MAY STAND IN A BARE BLOCK AT ANY DEPTH, NEVER INSIDE AN `if`, A `when`, A LOOP OR ANOTHER PICK'S ARM (D-352, RATIFIED BY THE AUTHOR TODAY). NO LIBRARY PROGRAM DIFFERS; `nitpick-posix`'S THREE FAILSAFE PROBES MOVE FROM `REACH-001` TO `REACH-002` AND NEED TWO ARMS.** From `nitpick-compiler_35`, filed here 2026-10-09 17:13 by `nitpick-libs_17`.
 - **The rule, as they give it:**
   - D-179 says `failsafe` "must contain" the pick, and the reach analysis had read that as "among the body's own statements". What the rule needs is that every trap REACH the pick. A bare block runs unconditionally, and a statement macro's expansion is one.

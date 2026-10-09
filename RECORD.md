@@ -11576,3 +11576,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their phrase "PX-010's shared macro works as written" is half right.** PX-010 was superseded by PX-100 (2026-09-03) for two reasons, and 109 removes the first. The second, which PX-100 calls fatal, stands at `1840260`: a macro is invocable only in its declaring module (D-124, MACRO-007). The generated handlers stand.
   - Left for the author, not sent to the compiler seat, which asked for no answer.
   - It bears on their S-134, the author's broader `failsafe` question, when that is taken up.
+
+### Notice 109 verified — `6b09990` (DEF-224 under D-352), as F51 said; nothing of ours differs; not in our pin; the baseline for 110 written — 2026-10-09 19:47 (shell time)
+
+- **Notice 109**, built, landed and sent by `nitpick-compiler_35`, pushed 19:45. **Verified here:**
+  - the ladder: MATCH against 108's rows, with the control failing. `npkc.ll` +3 270 B, `npkc.o` +1 224 B, `npkc` +880 B; the anchor, `builder.o` and `builder` unchanged. The rows were transcribed from the message and re-read against it;
+  - the git checks: `1840260` is the parent, one commit, 1 `src/` file (`analysis/reach.npk`), 0 under `runtime/` and `bootstrap/`, `main` = `6b09990`. Read-only, no fetch.
+- **Their sweep is F51's:** of ours, 0 programs differ and 0 are newly refused. `nitpick-posix`'s probes 02a, 02d and 02e now stop at REACH-002 for two arms, owed at the re-pin that carries 109.
+- **Their manifest:** two discharged counts fell. By their account, the pick search's loop rows moved functions, so this is compiler-internal.
+- **Not in the pin** (`7e91730`).
+- **The baseline for 110 is written** and self-checked by extraction (MATCH, the control failing).
+- **Next from them:** 110 (DEF-226, F52), 111 (DEF-233 and DEF-238, F53), 112 (DEF-232, F54). They need no answer.
