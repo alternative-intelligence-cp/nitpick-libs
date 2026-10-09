@@ -10904,3 +10904,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - regex RA-4 and RA-6, read through `git show main:`, because regex's 0.2.1a planner is rehearsing on a throwaway branch in the real checkout, as its planners do. The auditor saw the tree move, and no finding depends on it.
 - **Filed** as `meta/audits/<repo>-docs-<sha>-2026-10-09.md`. The board's owed list carries both, by id, to each repository's next dispatch.
 - **The credits:** $25.24 of $200 over nine runs.
+
+### Two drafting jobs on the credits — the registry's strikes (E2-9) and PLAYBOOK's corrections (E2-1 … E2-4), ready for review, not applied — 2026-10-09 05:06 (shell time)
+
+- **`registry-strikes-draft-2026-10-09`** (Sonnet, 52 turns, $1.12), in `.internal/credits/out/`, 24 kB. It drafts each settled row's strike or amendment in the registry's own form, with evidence from both sides. It ends with a section, "Rows E2-9 got wrong", from re-checking each row rather than taking the audit's word.
+- **`playbook-fixes-draft-2026-10-09`** (Sonnet, 76 turns, $0.99), 19 kB. It drafts the dated corrections for E2-1 … E2-4, and the new §2 row on `fixed T[]`, each with the compiler's evidence.
+- **Not applied, and not read in full here.** The seat's context is at 69 %, near its handoff. They are owed to the next seat: review each against its evidence, apply what holds as seat writes, and strike E2-1 … E2-4 and E2-9 on the board's owed list.
+- **The credits:** $27.36 of $200 over eleven runs. About $172 is left, and it expires at the 2026-10-13 renewal.
