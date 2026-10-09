@@ -11243,3 +11243,26 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **A cost line:** no full harness the blocks do not need, and one confirmation pass.
 - **Before it:** `nitpick-time` clean at `989c772` and `0/0`; 126 GiB available.
 - **Expect two to three hours.** Regex's adoption planner ran 2 h 49 min.
+
+### The author's `/usage` — the week 74 %, Fable 68 %; the libraries' room 5.0 points; time's adoption goes on, read step by step — 2026-10-09 10:46 (shell time)
+
+- **The author pasted `/usage` (10:4x):** the week (all models) 74 %, Fable 68 %, the five-hour window 7 %, all resetting 2026-10-14 20:00 (the window at 13:50). `usage-latest.json`'s `model_limits` refreshed with it (Fable 68 %, fetched 10:45).
+- **The room**, by `_14`'s method: 95 − 74 − 0.5 × (100 − 68) = **5.0 points**.
+- **The rates since the 03:16 reading (7.5 h):**
+  - all models, 1.07 points an hour;
+  - Fable, 0.67 % an hour (0.33 points), slower than the night's 2.1 %;
+  - the rest, the libraries and both seats among it, 0.73 points.
+  - At the overall rate the week reaches 95 % in about 20 h, near 06:30 on 2026-10-10. Under the author's pace that line is not the libraries' to reach: their share ends at the room, and the compiler's Fable allotment is reserved inside the formula.
+- **What drives it**, the `/usage` breakdown for the last day (local sessions, approximate, independent characteristics rather than a sum):
+  - 98 % of usage at more than 150 k context;
+  - 83 % from sessions active 8 h or more;
+  - 64 % from subagent-heavy sessions;
+  - the `npk` plugin 51 %: `npk:planner` 32 %, `npk:worker` 10 %, `npk:verifier` 9 %.
+  - **Planners are the largest single driver**, which is why the author's no-new-planner line at about 75 % binds.
+- **Decision (this seat's), inside the pace:** time's adoption planner (`s2-ntime-0.3.2a-0939`) runs on. **The room is read again when it reports**, and the step after it is chosen by what remains:
+  - at least about 3.5 points: its plan verifier, then the worker and the work verifier, each re-read;
+  - about 1.5 to 3.5: its plan verifier only, so a verified plan waits for next week as a clean stop;
+  - under about 1.5: the plan waits unverified for next week.
+  - About a point is kept back for the seats and the compiler notices (106 about 11:40, 107 no earlier than about 15:00).
+  - Regex's chain measured the plan verifier at about 1 point, the worker at about 1 and the work verifier under 0.5, with the planner the large one.
+- **The seat's own cost:** this seat's context is 56 % (about 556 k tokens), so each wake after an idle hour re-caches all of it. A handoff to `nitpick-libs_17` at the next clean point lowers that: when the planner reports and nothing of this seat's is in flight. It is suggested to the author, whose call it is.
