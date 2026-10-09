@@ -11353,3 +11353,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The writer line's first token is `none`,** with `_16`'s take line kept under *Previously*. The 37-byte marker (`702af860-…`) is removed, as orchestrate §15 says a release does.
 - **The handoff block's hazard-4 line is corrected in the same commit.** `nitpick-libs_18` (`[7702a1]`), opened about 11:0x, is the idle spare behind `_17`; the block had said none was open.
 - **This is `_16`'s last write.** `_17` takes the lock by §2 and hazard (13). `_16` stays open for its questions.
+
+### Handover — `nitpick-libs_17` takes the workbench lock on `nitpick-libs_16`'s briefed handoff; `nitpick-time` 0.3.2a's plan verifier next, then a stop for the week — 2026-10-09 12:13 (shell time)
+
+**Handover.** `nitpick-libs_17` (`1d6e84ea-515b-4ac5-bc6f-fd5840aedeb2`) takes the writer lock that `nitpick-libs_16` released at `040ce73` (12:08), by the author's go (*"i'm fine with handing off after the planner reports. nitpick-libs_17 is standing by whenever you need it."*, 11:0x). `_16` briefed this seat directly and stays open until this seat says it is done with it.
+
+- **The id from values:** the transcript `1d6e84ea-….jsonl` under `~/.claude/projects/`, the scratchpad path and `~/.claude/context/1d6e84ea-….json` (`session_name` `nitpick-libs_17`) agree. **By content:** a nonce written into this session's transcript (`npk17-take-2a3fbaeff2d62bf0`) is found in that one transcript only. The marker is 37 bytes.
+- **Freedom came from values, read before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`;
+  - `git ls-remote origin` gave `040ce73` for `main`, with `HEAD` = `origin/main` = `040ce73`;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep at 12:11, discovered rather than listed, found **9 trees, every one `dirty=0` and `0/0`**: the workbench (`040ce73`), `nitpick-apps` (`03c24a7`), `nitpick-posix` (`948d9b6`), `nitpick-fuzz` (`d44dfe3`), `nitpick-parse` (`3cad08c`), `nitpick-regex` (`5f2753e`), `nitpick-sockets` (`d385991`), `nitpick-time` (`f3804c3`), `nitpick-tui` (`e5439ee`). It ran `git --no-optional-locks status`, so it refreshed no library's index.
+- **Hazard 3, asked and answered:** `_16` measured by command at 12:10:50: porcelain empty; `HEAD` = `origin/main` = `ls-remote` = `040ce73`; `find .internal -newermt '2026-10-09 12:08:00'` lists only `.internal` itself (12:08:12, the marker's removal); no subagent, background job or scheduled wakeup of its; its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_18` (`[7702a1]`), this seat's successor, answered in one message: a fresh session, idle, no task, nothing written in `nitpick-libs` (its only calls `ListAgents` and a tool load), and it will message this seat before any write there.
+- **The peers at the take (`ListAgents`, 12:09):** `nitpick-libs_16` (`[5ecb32]`) idle, answering questions; `nitpick-libs_18` (`[7702a1]`) idle; `nitpick-compiler_35` (`[ca1853]`) running a shell, the seat holding the queue; `nitpick-compiler_34` (`[5cd495]`) and `_36` (`[095ded]`) idle; the fuzz cloud session (`[169d76]`) idle.
+- **The compiler address, confirmed by a one-line acknowledgement** (the lesson of F48): `nitpick-compiler_35` answered `_16` at 12:1x, relayed here verbatim: *"landing 107's notice and every library message after it go to nitpick-libs_17; 107's baseline is 106's rows at 42ecf29."*
+- **The pin:** `7e91730`, its `SHA256SUMS` checked OK. `../nitpick` is at `42ecf29` (landing 106) on `main`, read with `log` and `rev-parse`, no fetch.
+- **The pace stands as the author set it:** width 1, one helper of a kind (W-24). At this take the meter reads 77 %, the five-hour window 21 %, and Fable 68 % (the author's `/usage` of 10:45, still the newest), so the room is 95 − 77 − 16 = **2.0 points**, conservatively. By the band of 10:46 that is time 0.3.2a's plan verifier only, then a stop for the week. 129 GiB available.
+- **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
