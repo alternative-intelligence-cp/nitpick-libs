@@ -14,6 +14,52 @@ blocked, what is done. The durable plan is
 **Workbench writer:** `8bd7d7dd-316b-4636-849d-d3ae6baf51df`, session `nitpick-libs_14`, taken 2026-10-05 09:46 EDT on `nitpick-libs_13`'s briefed handoff — **the libraries running at width 2 from 2026-10-07 22:52, at the author's wake after the reset**, one planner at a time: time's cycle 0.3 planner first, then regex's 0.1.6 close planner. The handoff block below says what is next. The take hazards (1)–(6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01; (6)'s tail and (7)–(12) follow the handoff block. *(Previously: `none` — released by `nitpick-libs_13` (`912ad79e-f3a5-4afe-9ba0-7faf03434d36`) at `e928468` (2026-10-05 09:40) for this briefed handoff, at a clean point, its handoff block and record at `b5fc639`; its freedom-from-values text for this take is `RECORD.md` 2026-10-05 09:46. Before that `912ad79e-…`, session `nitpick-libs_13`, taken 2026-10-02 12:57 EDT on `nitpick-libs_12`'s briefed handoff — its text is in history at `b5fc639`.)*
 
 
+> **🔁 HANDOFF — `nitpick-libs_14` → `nitpick-libs_15`, 2026-10-08 20:59 (shell time), at the author's go (*"15 and 16 are both standing by so proceed with handoff when you are ready"*), the seat at about 82 % context. READ THIS FIRST; `_13`'s block below is superseded except its owed list.**
+>
+> **Take the lock** by orchestrate §2 and the take hazards:
+> - Your id comes from your transcript `.jsonl` and your scratchpad path. Write it, 37 bytes, into `.internal/orchestrator.session`.
+> - Put it as the writer line's FIRST backticked token, in one commit; push; re-read it from `origin/main` with hazard (5)'s literal command.
+> - **Hazard 3:** ask `nitpick-libs_14`, who answers from `git status`. **Hazard 4:** `nitpick-libs_16` is the idle spare and likely your successor.
+> - `_14` stays open for your questions. Tell it, as a distinct message, when you are done.
+>
+> **THE PACE, by the author's word on 2026-10-08:**
+> - **The compiler's Fable allotment is the week's highest priority.** The libraries hold to about 12 more points from 55 % (20:40): finish time 0.3.2 (its worker, then that worker's verifier), then the ONE re-pin after landing 103.
+> - Regex 0.2.2 and time 0.3.3 wait for next week, unless he says Fable is running behind. Width 1 after the in-flight items.
+> - **W-24: never two helpers of a kind at once,** verifiers included and a resumed one counted. I broke this three times today.
+> - Read `usage-latest.json` before each dispatch. It has no per-model line, so Fable's share is his to report. The week resets 2026-10-14 20:00. It was 55 % at this writing.
+>
+> **THE LLVM.** The machine's default `llc` is 20.1.8 since 09:40 (the compiler's D-349, a user prefix `~/.local/llvm-20.1.8`). The libraries pin 20.1.2 until the re-pin. **Every library dispatch puts `.internal/toolchain/llvm-20.1.2/root/usr/lib/llvm-20/bin` first on PATH** (its README says why), and every current plan's `env.sh` does so.
+>
+> **The state, as values.**
+> - **s2 `nitpick-time`:** 0.3.0 and 0.3.1 VERIFIED PASS (TM-253, 134 units). **0.3.2, the system zone, PLANNED at `8ed5157`** after three verifier rounds.
+>   - Its plan verifier, `s2-ntime-0.3.2-verify`, was resumed at 20:34 for the filing delta. It runs under `_14`, and `_14` relays its verdict to you.
+>   - PD-99 … PD-102 → TM-254 … TM-257, accepted at its PASS. PD-100 and PD-101 are the author's (question 26).
+>   - **NEXT: 0.3.2's worker**, then its verifier.
+> - **s1 `nitpick-regex`:** cycle 0.1 CLOSED. 0.2.0 (the arena) and 0.2.1 (desugaring) VERIFIED PASS (RX-229, 294 units, 2 pending until 0.3.4). **NEXT: 0.2.2's planner, held by the pace.**
+> - **THE RE-PIN: ONCE, after landing 103** (`fixed T[]` as a type, D-350, D-351), by the author's word, with the compiler seat concurring. The compiler line below lists what it carries, 94 … 103 and D-349.
+>   - CI moves by its `LLVM_VERSION` line to 20.1.8; the upstream tarball exists.
+>   - Each library's adoption measures the unchanged tree at both pins first, in 0.2.0a's shape.
+>   - Delete the private 20.1.2 copy after it.
+> - **The compiler side.** `nitpick-compiler_33` holds the queue since landing 101; `_34` is parked.
+>   - Landed and verified here: 94 … 101. The baseline for 102 is 101's rows, under its bold header.
+>   - 102's advance is filed. 103's (F45) will list every library file it moves.
+>   - The ladder procedure is the tool's own docstring. Never fetch in `../nitpick`.
+> - **The registry:** O-N40 (DEF-243, DEF-244), O-N41 (DEF-249) and O-X12 (time's, answered by PD-99) are new today.
+> - **Questions for the author: none open.**
+>
+> **Owed:** `_13`'s owed list below stands, except that the install README's compiler half **PASSED** its newcomer test (run 2). Also owed:
+> - **today's findings-for-playbook**, about thirty "held" lines in RECORD.md since 03:30;
+> - **three npk plugin findings:** the verifier's subject check against planner commits; plans should read `check_specs_current`; a sweep list is a claim about a set;
+> - **the author's second-subscription question:** whether two Claude accounts can run on one machine. A docs lookup ran, and its answer is in RECORD.md.
+>
+> **Lessons this tenure paid for, binding on every dispatch's NOTES:**
+> - a claim about a whole set is checked by enumerating the set;
+> - "passes every check" is measured by a full run;
+> - read `date` before writing any time;
+> - test `check_refs`' exit status before staging, never through a pipe;
+> - never `cd` into a library;
+> - no git command that writes in a library: fetch, `fsck --lost-found`, gc.
+>
 > **🔁 HANDOFF — `nitpick-libs_13` → `nitpick-libs_14`, 2026-10-05 09:39 (shell time), at a clean point: nothing of this seat's is in flight, the nine trees clean and level, the seat at about 76 % context, rotated before compaction at the author's go. READ THIS FIRST.**
 >
 > **Take the lock** by orchestrate §2 and the take hazards:

@@ -10459,3 +10459,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - regex 0.2.2 and time 0.3.3 wait for next week, unless the author says Fable is running behind.
 - **The meter seen here** (`usage-latest.json`) carries no per-model line, so Fable's share is the author's to report.
 - **Also from the author:** he is weighing a second subscription, another Claude or OpenAI's, for capacity and a third independent viewpoint for audits, testing and fuzzing. It is not within a day or two.
+
+### Handoff begun — `nitpick-libs_14` → `nitpick-libs_15`, at the author's go — 2026-10-08 20:59 (shell time)
+
+- **The author (20:59):** *"15 and 16 are both standing by so proceed with handoff when you are ready."* The seat is at about 82 % context.
+- **The handoff block** is at the top of the board, with the pace, the LLVM, the state as values, what is owed and the lessons.
+- **Two subagents are still in flight under `_14`:**
+  - `s2-ntime-0.3.2-verify`, resumed for the filing delta;
+  - a docs lookup on two Claude accounts on one machine.
+  `_14` handles both and relays their results before releasing the lock. `_15` takes the lock when `_14` says so.
+- **The diogenes note** (this seat's memory) gains the author's cross-account messaging idea: a SQLite or Redis store, with pub/sub or a watcher as the trigger and a hook as the delivery.
