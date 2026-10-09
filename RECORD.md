@@ -11029,3 +11029,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **F48 never reached `_15`.** `_34`'s acknowledgement named F48 as sent to `_15`. `_15` checked its transcript, its notifications and its inbox, and found nothing from `_34` after F47. Asked, `_34` found its own record wrong (*"this had not gone out — my record said it had"*) and resent the full text here. It is filed on the board from that text, with the checks listed there: `mc0388`'s header, an enum scan of the nine trees (72 bodies, none mixed), and the four `nitpick-posix` probes that declare a macro.
 - **`_15` released, by a distinct message:** this seat has no further need of it. It holds nothing in flight, and the author closes it on its own "safe to close".
 - **A second slip, mine, the same as 07:1x's:** a command meant to read the four `nitpick-posix` probes began with a leftover `cd` into `nitpick-posix/tests/probe`, and its next clause `cd`'d straight back to the workbench. Nothing ran in between, and `pwd` then read the workbench. The probes were read by absolute path.
+
+### The registry's settled rows struck — E2-9, applied from the credits draft and checked line by line: 10 strikes, 1 strike recording an overturned recommendation, 3 amendments — 2026-10-09 07:25 (shell time)
+
+- **The draft:** `.internal/credits/out/registry-strikes-draft-2026-10-09.md` (Sonnet, $1.12), reviewed against its evidence before any write.
+- **Checked here, by script, read-only:**
+  - every one of the 50 DEF lines it cites in the compiler's `OPEN_DECISIONS.md` at `085bc01` sits at its cited line, FIXED or OPEN as stated: 0 mismatches. Each DEF's step agrees with the strike lines;
+  - every landing commit it cites, by `merge-base --is-ancestor`: the eight for O-N27 … O-N32 are in `5fbaf4a`; O-N33's last two (`9efe218`, `eaf6b08`) and the rest are in `7e91730` only;
+  - the NOTICES rows it cites. Row 103 now reads `7e91730`, so the draft's sixth caveat is stale;
+  - every registry line it edits, read as it quotes them;
+  - the library decisions TM-250, TM-251, TM-254 and RX-201 at their headings. RX-201 is now at line 5030 of regex's `DECISIONS.md`; the draft said 5045, having read the tree during the planner's rehearsal. Its PD-45 and Y-39 hold;
+  - O-N36's finding-to-DEF pairs, against the row's own map line;
+  - DEF-126's qualified message, DEF-142's `RESOLVE-002` and DEF-143's `PARSE-001`;
+  - the two "verified here" times, `RECORD.md` 2026-09-26 15:20 and 2026-10-01 19:53.
+- **Applied in the registry's own strike form, O-N26's and O-N25's (23 lines):**
+  - **struck, 10:** O-N27, O-N28, O-N29, O-N30, O-N31 and O-N32, at `5fbaf4a`; O-N34 at `7e91730`, its sibling DEF-226 named as open; O-X9, O-X11 and O-X12, by `nitpick-time`'s TM-250, TM-251 and TM-254;
+  - **struck, recording an overturned recommendation, 1:** O-Y2, by `nitpick-regex`'s RX-201: under `x`, white space and `#` inside a class are refused, and the row's premise about Rust was false;
+  - **amended PARTLY DISCHARGED, 3:** O-N33 (DEF-154 open), O-N36 (DEF-232 … DEF-240 and S-130 open) and O-N38 (items 2 and 3 are S-130).
+- **Left out of the draft:**
+  - the `tleak` figure on O-N38's line (24 004 → 28 bytes). This seat found the 24 004 in DEF-228's entry, but not the 28;
+  - the draft's optional edits: O-N33's landing list, O-N36's step-(ii) phrase, and O-X9's "Handed to cycle 0.3.1". The old bodies stay as written.
+- **E2-9 is struck on the owed list.** `check_refs` is clean. **Cost:** seat writes only, no agent.

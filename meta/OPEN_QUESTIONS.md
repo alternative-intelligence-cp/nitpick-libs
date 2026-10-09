@@ -198,7 +198,7 @@ word for it. **A check
 that reports a false positive invites being weakened, and the weakening looks
 like a fix right up until you count.**
 
-- **O-X12 — `nitpick-time`: a generic function nobody instantiates passes every check.** Raised by `nitpick-time` 0.3.1's fix
+- ~~**O-X12 — `nitpick-time`: a generic function nobody instantiates passes every check.**~~ — **SETTLED 2026-10-08 by `nitpick-time`'s TM-254 (cycle 0.3.2, PD-99): every generic function `src/` declares is instantiated in `tests/unit/generic_instances.npk`, whose emission `check_call_edges` and `check_wide_types` read beside the umbrella's, and a generic no instance holds is a finding.** This row's recommended answer, three token checks, was not the one taken. The entry as it stood follows, kept. Raised by `nitpick-time` 0.3.1's fix
   (`s2-ntime-0.3.1-0752`, `74844ac`), 2026-10-08, at pin `5fbaf4a`; to be registered in the repository by cycle 0.3.2's planner.
   A generic function in `src/` that the umbrella never instantiates is absent from the emission, so `check_call_edges` and
   `check_wide_types` never read it, and `check_purity` reads only its spellings. **Measured by a full run (corrected 2026-10-08,
@@ -216,8 +216,8 @@ like a fix right up until you count.**
   - no descriptor-owning prelude type (`ByteReader`, `ByteWriter`, `OwnedFd`, `TextReader`, `TextWriter`, `LineBufWriter`)
     named in `src/` outside `src/host/` (S-20).
   Cycle 0.3.2's planner decides.
-- **O-X11 — `nitpick-time`: a wide value that nothing spells, such as a call's result, passes
-  `check_int128_sites`.** Raised by `nitpick-time` 0.3.0's verifier, 2026-10-08, at pin `5fbaf4a`;
+- ~~**O-X11 — `nitpick-time`: a wide value that nothing spells, such as a call's result, passes
+  `check_int128_sites`.**~~ — **SETTLED 2026-10-08 by `nitpick-time`'s TM-251 (cycle 0.3.1, PD-96): `check_wide_types` reads every integer type wider than `i64` in `npkc`'s emission of a function of `src/` and holds it to §5's sites, beside the spelling check.** The entry as it stood follows, kept. Raised by `nitpick-time` 0.3.0's verifier, 2026-10-08, at pin `5fbaf4a`;
   registered by that subcycle's fix at `d05ab9c` and defined in full at
   [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md).
   `((raw wide()) * (raw wide())) =>! int64` in an unmarked function compiles, returns 49, and draws no
@@ -226,7 +226,7 @@ like a fix right up until you count.**
   decides whether a check that reads types rather than spellings is in scope, and when. `PLAYBOOK.md` §9
   carries the lesson.
 
-- **O-X9 — `nitpick-time`: should an IR call-edge scan answer "did this module touch the kernel"?**
+- ~~**O-X9 — `nitpick-time`: should an IR call-edge scan answer "did this module touch the kernel"?**~~ — **SETTLED 2026-10-08 by `nitpick-time`'s TM-250 (cycle 0.3.1, PD-95): yes, beside `check_purity` and never instead of it — `check_call_edges` reads every call a function of `src/` outside `src/host/` makes in `npkc`'s emission of the umbrella.** The entry as it stood follows, kept.
   Raised by `nitpick-time`'s stream-2 planner, 2026-09-25, at compiler `c3bdae2`; defined in full at
   [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md). The undefined-symbol
   scan sees a syscall but can never flag one, because `npk_sys6` is the runtime's own and allowlisted, so
@@ -255,8 +255,8 @@ like a fix right up until you count.**
 
 ---
 
-- **O-Y2 — `nitpick-regex`: does `x` mode ignore whitespace inside character
-  classes?** Raised by `nitpick-regex` cycle 0.1; defined in full at
+- ~~**O-Y2 — `nitpick-regex`: does `x` mode ignore whitespace inside character
+  classes?**~~ — **DECIDED 2026-10-01 by `nitpick-regex`'s RX-201 (cycle 0.1.3, PD-45; `SYNTAX.md` Y-39): under `x`, a white-space byte or a `#` inside a class is REFUSED, so neither reading is guessed.** **This row's recommendation was not taken, and its premise was false:** it said "do not, matching Rust", and RX-201 found that Rust's `regex` 1.13.1 ignores white space "everywhere, including within character classes". The entry as it stood follows, kept. Raised by `nitpick-regex` cycle 0.1; defined in full at
   [`nitpick-regex/meta/OPEN_QUESTIONS.md`](../nitpick-regex/meta/OPEN_QUESTIONS.md).
   Rust does not; Perl does, with `xx`. **Recommendation: do not, matching Rust, and
   refuse `xx` with a message naming the escape.** **NOT blocking the pause** — but it
@@ -371,7 +371,7 @@ file existed — the check works.
     `--obligations` costs 12.8× a plain compile, all CPU.
   **REGISTERED at landing 94 (`05a7b02`, 2026-10-08) as S-130**, the compiler's performance findings, in `../nitpick`'s `meta/roadmap/OPEN_DECISIONS.md` §4.
 - **O-N38 — `&{ }` TEMPLATE SPLICING LEAKS ITS `to_string` TEMPORARY; A `decreases` CHECK PUSHES A SMALL FUNCTION PAST THE INLINE
-  THRESHOLD; THE `-O0` RUNTIME DOMINATES STRING WORK.** Found 2026-10-05 by a Claude subagent characterizing two of Gemini's
+  THRESHOLD; THE `-O0` RUNTIME DOMINATES STRING WORK.** **PARTLY DISCHARGED at the pin `7e91730` (2026-10-09): item 1, the `&{ }` leak, is fixed (DEF-228, with DEF-241, landing 95, `d98c5e1`, 2026-10-08); STILL OPEN: items 2 and 3, the `decreases` inline cost and the `-O0` runtime, which are S-130, not a defect.** Found 2026-10-05 by a Claude subagent characterizing two of Gemini's
   benchmark gaps (`12_error_handling`, `13_strings`). **Reproduced by the orchestrator:** the leak at `93bcb66` and the pin `5fbaf4a`;
   the inlining mechanism at `93bcb66`. Evidence: the workbench's `.internal/bench-2026-10-05/` (untracked). **Sent to
   `nitpick-compiler_31` at 09:03.** No library is blocked: no library code uses `&{ }` (one comment in `nitpick-regex`'s
@@ -396,7 +396,7 @@ file existed — the check works.
   Evidence: `META/NITPICK/tests/findings/04-struct-envelope-inline-threshold/`, `benchmarks/10_particles/`.
   **REGISTERED at landing 94 (`05a7b02`, 2026-10-08) as S-130.**
 - **O-N36 — `nitpick-fuzz` M11 SESSION 9'S FINDINGS, F-033 … F-048, AND GEMINI'S OPTIMIZATION FINDINGS 01–03: A USE AFTER FREE,
-  TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** Found by M11 session 9 (MODULE, LEXICAL, AST,
+  TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** **PARTLY DISCHARGED at the pin `7e91730` (2026-10-09): F-037 (DEF-227), F-041 (DEF-229), F-047 (DEF-230, both steps) and `ty1657` (DEF-231) are fixed; STILL OPEN: F-048 (DEF-232), F-038 (DEF-233), F-034 (DEF-234), F-036 a (DEF-235), F-039 and F-042 (DEF-236), F-045 (DEF-237), F-046 (DEF-238), the documentation rows (DEF-239), `npkg`'s stage list (DEF-240), and Gemini's findings 01–03 (S-130).** Found by M11 session 9 (MODULE, LEXICAL, AST,
   BUILD, TRAITS, VERIFICATION 1248–2351 and TYPE 661–2122, at the author's go on 2026-10-02, the week's last few percent), merged
   at `d44dfe3`. **M11 is complete: all 14 references, 10 419 of 10 419 lines; 3 385 claims, 2 872 tested.** Gemini's findings are in
   `META/NITPICK/tests/findings/` (its benchmarks at `93bcb66`). **Reproduced by the orchestrator 2026-10-02**, every program at
@@ -456,8 +456,8 @@ file existed — the check works.
   - **Known shapes met and not re-filed:** DEF-148, DEF-131 ×2, DEF-130 ×2 and DEF-135, each fixed at `93bcb66`; DEF-133.
   **REGISTERED at landing 94 (`05a7b02`, 2026-10-08):** F-029 (with F-036 a) = DEF-235; F-030, F-031 and F-032 = DEF-239.
 
-- **O-N34 — `#unreachable()` IN AN `if (r.is_error)` ARM IS NOT COUNTED AS LEAVING IT, SO A READ OF
-  `r.value` BELOW IS `NITPICK-TAINT-001`: A REFUSAL OF A CORRECT PROGRAM.** Found by `nitpick-time`'s 0.2.2
+- ~~**O-N34 — `#unreachable()` IN AN `if (r.is_error)` ARM IS NOT COUNTED AS LEAVING IT, SO A READ OF
+  `r.value` BELOW IS `NITPICK-TAINT-001`: A REFUSAL OF A CORRECT PROGRAM.**~~ — **DISCHARGED — a bare `#unreachable();` leaves, so the `if` form compiles, at the pin `7e91730`** (DEF-225, landing 93, `93bcb66`, 2026-10-01; verified here 2026-10-01 19:53). The `pick (r.is_error)` form stays refused: that is the compiler's **DEF-226, OPEN**, a different question the compiler registered beside this one and this row never asked. The entry as it stood follows, kept. Found by `nitpick-time`'s 0.2.2
   planning (its `0.2.2.md` §1.2, block 0b), 2026-10-01, at `5fbaf4a`. **Reproduced by the orchestrator 15:0x, at
   `5fbaf4a` and at `c15422e`** (the compiler's own binary, its digest notice 91's `npkc` row):
   `Result<int64>:r = take(); if (r.is_error) { #unreachable(); } if (r.value != 5i64) { … }` exits 1 at
@@ -487,7 +487,7 @@ file existed — the check works.
   **LANDED 2026-10-01 19:52 as `93bcb66`** (notice 93, verified here 19:53: ladder MATCH, refusals removed only).
 
 - **O-N33 — `nitpick-fuzz` M11'S ELEVEN FINDINGS, F-018 … F-028: FOUR SILENT WRONG ANSWERS, A USE
-  AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.**
+  AFTER DESTROY, INVALID IR, COMPILER TRAPS, A FLAG THAT REFUSES EVERYTHING, A MISSING REFUSAL, AND TWO TABLES.** **PARTLY DISCHARGED at the pin `7e91730` (2026-10-09): F-018 … F-027 (DEF-144 … DEF-153) are fixed, DEF-153's last rows at landings 83 (`9efe218`) and 90 (`eaf6b08`), after `5fbaf4a`; STILL OPEN: F-028, DEF-154, the documentation table of ninety-four rows. Strike this row when DEF-154 lands.**
   Found by M11 (the references checked against the compiler; stopped part-way on the author's word at 3 704 of
   10 433 reference lines, merged at `3d7d924`): 1 262 claims tested at HUNT2, 144 disagreeing, every one the same
   at `c3bdae2` and `1b4f0c6`. **Reproduced by the orchestrator 2026-09-26 11:34:** the 26 programs of F-018 … F-024
@@ -513,8 +513,8 @@ file existed — the check works.
   (free functions, not F-023's method), no `\u{…}` escape, no `spawn`, `timedwait`, `shared_arena` or `tfp`, and
   no harness passing `--extra-picky`.
 
-- **O-N32 — A `pick` ARM NAMING A VARIANT ITS ENUM LACKS IS ACCEPTED BY THE FRONTEND AND REFUSED
-  BY THE EMITTER, `NITPICK-EMIT-002`** — the emitter's own *"a defect in the compiler rather than in this
+- ~~**O-N32 — A `pick` ARM NAMING A VARIANT ITS ENUM LACKS IS ACCEPTED BY THE FRONTEND AND REFUSED
+  BY THE EMITTER, `NITPICK-EMIT-002`**~~ — **DISCHARGED — refused `NITPICK-RESOLVE-002` at the arm, at the pin `5fbaf4a`** (DEF-142, with the vanishing keyword DEF-143 now `NITPICK-PARSE-001`; landing 79, `44ec7e9`, 1.6.1d step 4, 2026-09-26). The entry as it stood follows, kept. — the emitter's own *"a defect in the compiler rather than in this
   program"*. Found by `nitpick-regex`'s 0.1.0 planning (step 2's controls; its plan's §6), 2026-09-26.
   **Reproduced by the orchestrator 11:17** at `c970483`, `c3bdae2` and `9f6f370` alike: `enum:K = { A; B; };`
   with arms `(K.A)`, `(K.B)` and `(K.C)` exits 1 at `EMIT-002` writing no IR; the covered control compiles
@@ -527,8 +527,8 @@ file existed — the check works.
   the vanishing keyword DEF-143, both in 1.6.1d step 4** with DEF-131, DEF-132 and DEF-126; DEF-142 lands as the
   resolution error asked for.
 
-- **O-N31 — `nitpick-fuzz` M10'S SEVEN FINDINGS, F-011 … F-017: FOUR SILENT WRONG ANSWERS IN
-  LOOPS, TWO INTERNAL-ERROR REFUSALS AND SEVEN REFERENCE SENTENCES THE COMPILER CONTRADICTS.** Found by
+- ~~**O-N31 — `nitpick-fuzz` M10'S SEVEN FINDINGS, F-011 … F-017: FOUR SILENT WRONG ANSWERS IN
+  LOOPS, TWO INTERNAL-ERROR REFUSALS AND SEVEN REFERENCE SENTENCES THE COMPILER CONTRADICTS.**~~ — **DISCHARGED — all seven fixed, at the pin `5fbaf4a`** (DEF-127: landing 74, `40deffa`; DEF-128, 129, 130: landing 75, `6dc8d13`, under D-329; DEF-131, 132, 133: landing 79, `44ec7e9`, under D-330 and D-331; all 2026-09-26). The row's warning, that a library's next loop over a type's edge is checked until this row is struck, lapses with it. The entry as it stood follows, kept. Found by
   the fuzzer's M10 (2026-09-26; its `findings/`, merged at `3873745`). **Reproduced by the orchestrator
   2026-09-26 08:59** (the output file's time; first written here as ~09:1x, typed, which was wrong)**:** 46 programs by the fuzzer's recipe — at `c3bdae2` every line identical to the
   cloud's committed `VERDICTS.txt`; at `9f6f370` identical to its `VERDICTS-9f6f370.txt` and to its HUNT2
@@ -556,8 +556,8 @@ file existed — the check works.
   `till` at all. **But these are everyday loop forms** — F-012 is a byte loop over `128u8..255u8` —
   so any library's next loop over a type's edge must be checked against this entry until it is struck.
 
-- **O-N30 — `nitpick-fuzz` M9'S EIGHT FINDINGS, F-003 … F-010: TWO MEMORY FAULTS IN SAFE CODE,
-  THREE LEAKS, A RULE NOT ENFORCED AND TWO OVER-RESTRICTIONS.** Found by the fuzzer's widened
+- ~~**O-N30 — `nitpick-fuzz` M9'S EIGHT FINDINGS, F-003 … F-010: TWO MEMORY FAULTS IN SAFE CODE,
+  THREE LEAKS, A RULE NOT ENFORCED AND TWO OVER-RESTRICTIONS.**~~ — **DISCHARGED — all eight fixed, at the pin `5fbaf4a`** (DEF-118, 119, 123: landing 74, `40deffa`; DEF-120, 121: landing 76, `6f6f12c`; DEF-122: landing 78, `d3a1759`, under D-328; DEF-124, 125: landing 79, `44ec7e9`; all 2026-09-26). The entry as it stood follows, kept. Found by the fuzzer's widened
   grid and its probes (2026-09-26; `nitpick-fuzz`'s `findings/`, merged at `4eb7558`).
   **Reproduced by the orchestrator 2026-09-26 08:28** (the output file's time; first written as ~08:3x, typed)**:** 36 programs by the fuzzer's own recipe,
   at `c3bdae2` every line identical to the cloud's committed `VERDICTS.txt`, and at `9f6f370`
@@ -596,8 +596,8 @@ file existed — the check works.
   output lines), where F-007 leaks a few bytes per printed line. Each finding is struck here, with
   its DEF number, when its fix reaches our pin.
 
-- **O-N29 — A TYPE MISMATCH BETWEEN TWO SAME-NAMED TYPES FROM DIFFERENT MODULES PRINTS BOTH
-  AS THE BARE NAME: *"expected `Row`, found `Row`"*.** A diagnostic defect, not a soundness
+- ~~**O-N29 — A TYPE MISMATCH BETWEEN TWO SAME-NAMED TYPES FROM DIFFERENT MODULES PRINTS BOTH
+  AS THE BARE NAME: *"expected `Row`, found `Row`"*.**~~ — **DISCHARGED — the message qualifies both names by their module, at the pin `5fbaf4a`** (DEF-126, landing 79, `44ec7e9`, 1.6.1d step 4, 2026-09-26: "expected `mismatch_same_name.Row`, found `rows_same_name.Row`"). The entry as it stood follows, kept. A diagnostic defect, not a soundness
   one: the refusal is right. Found by `nitpick-fuzz`'s M8 (2026-09-26, its
   `results/9126350/BISECT-3h.md`): twelve import cells whose own `struct:Box` shares its name
   with an imported table's row type gained `NITPICK-TYPE-007` exactly at 1.6.0 step 3h —
@@ -616,8 +616,8 @@ file existed — the check works.
   `nitpick-compiler_s17`, riding with the relay of O-N30, a message that serves its task. **Registered there as
   DEF-126 (08:32), to be fixed in 1.6.1d step 3.**
 
-- **O-N28 — AN IMPL MAY DECLARE `move` ON A PARAMETER ITS TRAIT LENDS (OR LEND ONE
-  THE TRAIT MOVES), AND A CALL THROUGH THE TRAIT FREES TWICE.** Raised by
+- ~~**O-N28 — AN IMPL MAY DECLARE `move` ON A PARAMETER ITS TRAIT LENDS (OR LEND ONE
+  THE TRAIT MOVES), AND A CALL THROUGH THE TRAIT FREES TWICE.**~~ — **DISCHARGED — refused `NITPICK-TYPE-014` in both directions, at the pin `5fbaf4a`** (DEF-116, landing 69, `b564746`, 1.6.1 step 0c, 2026-09-26; the cascade DEF-117 in the same landing; the design input S-108 settled as D-327, landing 73, `bbb1530`). The entry as it stood follows, kept. Raised by
   `nitpick-regex`'s 0.0.4e planning (`0.0.4e.md` §6.1), 2026-09-26, at `c970483`
   and `c3bdae2`; **reproduced by the orchestrator at `c970483`, both legs:**
   `trait:Dup = { func:dup = Self(Self:self); }` implemented for `string` with `move
@@ -642,9 +642,9 @@ file existed — the check works.
   42:39 — and no `TYPE-022` anywhere.** S-108's recommendation: a prelude `Copy` marker and a `never fails`
   `list_get` under it (no `never fails` clone for owning types, since an allocation can fail).
 
-- **O-N27 — THE BORROW TRACKER TAINTS A CALL'S RESULT BY SIGNATURE, SO AN OWNED
+- ~~**O-N27 — THE BORROW TRACKER TAINTS A CALL'S RESULT BY SIGNATURE, SO AN OWNED
   STRING BUILT BY `f(Container->)` CANNOT BE RETURNED FROM THE FRAME THAT OWNS THE
-  CONTAINER — sound, and too coarse.** Found by `nitpick-regex`'s cycle-0.0 triage
+  CONTAINER — sound, and too coarse.**~~ — **DISCHARGED — D-326 landed as `6056eb9` (landing 72, 1.6.1b), carried by the pin `5fbaf4a`** (S-107 SETTLED as D-326, 2026-09-26; verified here 2026-09-26 15:20). The entry as it stood follows, kept. Found by `nitpick-regex`'s cycle-0.0 triage
   (2026-09-06, at `3d15ac9`, filed under a local number that collided with this
   registry's O-N17 and was never registered), measured again independently by
   `nitpick-time`'s 0.1.4b planner and worker at `c3bdae2`, and **reproduced here at
