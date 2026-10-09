@@ -10984,3 +10984,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **The writer line's first token is `none`,** with `_15`'s take line kept under *Previously*. The 37-byte marker (`dd67c89b-…`) is removed, as orchestrate §15 says a release does.
 - **This is `_15`'s last write.** `_16` takes the lock by §2 and hazard (13). `_15` stays open for its questions.
+
+### Handover — `nitpick-libs_16` takes the workbench lock on `nitpick-libs_15`'s briefed handoff; `nitpick-regex` 0.2.1a's plan verifier next — 2026-10-09 07:14 (shell time)
+
+**Handover.** `nitpick-libs_16` (`702af860-78f2-4dce-8596-f692a6e46d36`) takes the writer lock that `nitpick-libs_15` released at `0d5c028` (07:05), by the author's go (*"yes you are go to proceed"*, 07:05). `_15` briefed this seat directly, answered its three questions, and stays open until this seat says it is done with it.
+
+- **The id from values:** the transcript `702af860-….jsonl` under `~/.claude/projects/`, the scratchpad path and `~/.claude/context/702af860-….json` (`session_name` `nitpick-libs_16`) agree. The marker is 37 bytes.
+- **Freedom came from values, read before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`;
+  - `git ls-remote origin` gave `0d5c028` for `main`, with `HEAD` = `origin/main` = `0d5c028`;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep at 07:11, discovered rather than listed, found **9 trees, every one `dirty=0` and `0/0`**: the workbench (`0d5c028`), `nitpick-apps` (`03c24a7`), `nitpick-posix` (`948d9b6`), `nitpick-fuzz` (`d44dfe3`), `nitpick-parse` (`3cad08c`), `nitpick-regex` (`0199a4f`), `nitpick-sockets` (`d385991`), `nitpick-time` (`989c772`), `nitpick-tui` (`e5439ee`). It ran `git --no-optional-locks status`, so it refreshed no library's index.
+- **Hazard 3, asked and answered:** `_15` measured from `git status` at 07:11: porcelain empty, `HEAD` = `origin/main` = `ls-remote` = `0d5c028`, no marker; no subagent, background job or scheduled wakeup of its; its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_17` (`[2f2cfd]`, session `1d6e84ea-…`), this seat's successor, answered in one message: idle, no task, no tool call, nothing written in `nitpick-libs`, and it will message this seat before any write there.
+- **The peers at the take (`ListAgents`, 07:10):** `nitpick-libs_15` and `_17` idle; `nitpick-compiler_34` (`[5cd495]`), with `_35` and `_36` idle; the fuzz cloud session idle. `nitpick-libs_14` and `nitpick-compiler_32` and `_33`, listed earlier this morning, are gone.
+- **The pin:** `7e91730`, its `SHA256SUMS` checked OK. `../nitpick` is clean at `085bc01` (landing 104) on `main`.
+- **The pace stands as the author set it:** width 1, one helper of a kind (W-24). At this take the meter reads 70 %, the five-hour window 14 %, and Fable 63 % (the author's `/usage` of 03:16, still the newest), so the room is 95 − 70 − 0.5 × 37 = **6.5 points**. That figure is conservative, since Fable has run on since 03:16. Regex 0.2.1a's chain goes first; time's adoption this week only if about 3 points remain after it, with a fresh `/usage` asked of the author if the room is near that line. 126 GiB available.
+- **A slip, mine, at 07:1x:** one read-only listing (`ls`, `wc -l` and `grep -n` over `0.2.1a.md` and its tools) ran as `cd nitpick-regex && …`, and the shell stayed there until the next call — the slip both handoff blocks' lessons name. Moved back at once. `nitpick-regex` is unchanged: porcelain 0, `HEAD` = `0199a4f`, its index's mtime 05:59, before the slip. No git command and no write ran while `.` meant the library.
+- **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
