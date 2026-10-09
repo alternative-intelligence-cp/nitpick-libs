@@ -11544,3 +11544,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   3. regex 0.2.2's planner, named its brief;
   4. the re-pin past `7e91730`, when the author says.
 - **The credits:** about $157 left by the billing page, to be spent by the 12th. The handoff block's listed jobs are done; the next use is the author's to choose.
+
+### If the compiler seat leaves room this week — the author's thought, for that decision — 2026-10-09 14:10 (shell time)
+
+- **The author (14:1x):** as last week, the compiler seat may stop short of its Fable allotment if it lacks room to start something. That could leave the libraries enough to do something useful, and the credits might stretch it. Nothing is decided: it is evaluated then.
+- **The figures for that evaluation:**
+  - **Finishing time's adoption** (0.3.2a's worker, then its work verifier) costs about 1.5 points. Regex's measured chain had the worker at about 1 point and the work verifier under 0.5; time's plan verifier cost about 1 point (77 % → 78 %).
+  - **The credits** cover `claude -p` with an API key, so a read-only review or a brief moves onto them at no cost to the week. A worker writes, and `.internal/credits/run.sh` is read-only by design (no claim, no lock, no repository touched). Running a worker on the credits would need a new runner, with the guard, the hooks and the `npk` plugin it now leaves out. That is a design change for the author to weigh then.
