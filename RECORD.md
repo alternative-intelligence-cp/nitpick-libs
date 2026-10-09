@@ -10812,3 +10812,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Moved back at once.
   - `nitpick-tui` is unchanged: porcelain 0, HEAD = origin = `e5439ee`, its index's mtime from yesterday.
   - No write happened while `.` meant the library.
+
+### The first credits job: `nitpick-tui` audited against `7e91730`, $1.03; filed as `meta/audits/nitpick-tui-pin-7e91730-2026-10-09.md` — 2026-10-09 04:06 (shell time)
+
+- **The run:** `claude-sonnet-5-5`, read-only, 70 of 80 turns, 3 min 17 s, **$1.03** of the credits; 2.4 M cache-read tokens, 114 k cache-write, 26 k output. At this rate the month's $200 is well over a hundred such audits.
+- **The report:** seven findings and four open items.
+  - **TL-1:** tui's reader signatures are plain `uint8[]`, so a `string_bytes` caller is TYPE-007 at 103. It changes a plan, at cycles 0.0.4, 0.2, 0.3 and 0.16.
+  - **TL-2:** probe 14's premise is now false. It blocks cycle 0.0.
+  - **TL-3:** the restore record's byte buffers sit in `fixed` module state, which 98 and 103 make read-only. It touches probe 12 and 0.1.2.
+  - **TL-4:** the LLVM pin is 20.1.2 throughout. It blocks 0.0.1 and 0.0.2 as written.
+  - **TL-5 … TL-7:** wording: a lock level, "cycle 1.5", and "fixed" used as a size adjective.
+  - A NOT AFFECTED list, each landing with its search.
+- **Spot-checked here before filing,** at the cited lines in both trees, each quote as given: TL-1 (INPUT_MODEL.md:106, TYPE_REFERENCE.md:1233–1243, D-351), TL-2 (0.0.0.md:298 and 304), TL-3 (TYPE_REFERENCE.md:2030–2031 and 2075), TL-4 (nitpick.toml:40, TCB.md:53).
+- **Filed** with a provenance header. One code span is spaced for `check_refs`, which reads a closing bracket followed by an opening parenthesis as a link, even inside code. **`nitpick-tui`'s next dispatch carries it by its TL ids.**
+- **Next on the credits:** the same audit for `nitpick-parse`, `nitpick-sockets` and `nitpick-posix`, run one after another and read together. They are pointed at the workbench's copy of the 103 list, which tui's job could not open.
