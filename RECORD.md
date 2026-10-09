@@ -10425,3 +10425,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-compiler_33`.** It is F44 by sequence. A refusal is added. Only the fuzzer's claim program `ty1873` is newly refused, as it expects, and no library file moves.
 - **DEF-246 is registered, closed by 103:** a plain view of `fixed` storage writes it, six faces, two of them a MachineFault in safe code. **Checked here by grep:** none of its shapes is in the libraries. There is no `string_bytes` over a `fixed string`, no `fixed` array ranged, no `Writer` impl and no `fixed` slice.
 - **DEF-247:** `fixed` and `stack` return qualifiers mean nothing. None in our corpus.
+
+### The pacing and the re-pin timing answered by the author — width 1 after the in-flight items; the re-pin waits for 103 — 2026-10-08 20:30 (shell time)
+
+- **question answered (20:30, the author):** *"the recommendations you made for those are fine with me"*. Both were raised in this seat's messages today, at 17:2x and 18:0x, with the burn rate.
+  - **(1) The re-pin waits for landing 103,** `fixed T[]` as a type, and goes once, carrying 94 … 103 and D-349. The compiler seat concurs.
+  - **(2) The pacing:**
+    - finish what is in flight: time 0.3.2's plan verifier, then its worker and that worker's verifier; regex 0.2.1's verifier, running now;
+    - **then width 1, one stream at a time;**
+    - **no new planner past about 75 % of the week.**
+  - It was 54 % at his word. The week resets 2026-10-14 20:00. The burn rate measured today was about 2.4 points an hour across the account, near 5 with two planners and a verifier at once.
+- **The board's header says so.** The in-flight items keep their one-helper-of-a-kind order (W-24). Regex's next item, 0.2.2's planner, starts only when width 1 gives it the slot.
