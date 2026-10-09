@@ -1010,6 +1010,24 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `085bc01` LANDED — **NOTICE 104: DEF-249 (OUR O-N41, `nitpick-time` 0.3.2'S PLANNER), AS F46 SAID: AN `exit` OPERAND IS HELD TO `int32` EXACTLY, TYPE-007 AT THE OPERAND, WHERE `llc` REFUSED THE EMITTED MODULE. A REFUSAL ADDED; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED; NO EMISSION MOVES FOR A PROGRAM; NO FLOOR BYTE. NOT IN OUR PIN, WHICH IS `7e91730` (103) BY THE AUTHOR'S WORD; O-N41 STAYS OPEN UNTIL A RE-PIN CARRIES IT.** Sent by `nitpick-compiler_34`, which built and landed it; pushed 05:15, filed 2026-10-09 05:17 by `nitpick-libs_15` from the message's full text. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 104 (103's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +2 234 B, `npkc.o` +1 032 B, `npkc` +960 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `7e91730` is the parent, one commit. 1 file under `src/`, `src/frontend/type_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `HEAD` = `main` = `085bc01`, clean. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself: 55 tests passed; parity, 2 046 verdicts agree; 7 065 obligations matching, with zero verdicts moved; the floor's 388 unmoved.
+
+**Their sweep matches F46:** 4 sites appeared, all `exit_operand.npk`'s; of our 4 003 programs, 0 are different and 0 newly refused. **Next from them:** 105 (DEF-159), whose advance notice F47 comes within the hour. No refusal moves, and the emission's text changes for programs with an address-taken owning binding.
+
+**THE BASELINE NOTICE 105 MUST QUOTE** (notice 104's rows, at `085bc01`, transcribed from the message and checked by `tools/ladder.py`):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    eacdc2b09bc4317828f2a8ccf5a8d9ec9e6e56a1ac07e4f8448c8bf5d687120c  31,529,235 B
+npkc.o     d02b5c1c52e32eb6502222723e7f29088341238a0d0fb404b7f21ac1cadf95c6  12,982,880 B
+npkc       f7ac8918c27268c948c3fc0774738fbfb8f94376bf6ab193367a0c604d96f42a  11,221,872 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 104 (DEF-249, OUR O-N41; F46 BY SEQUENCE) — **AN `exit` OPERAND FITS `int32` AS ANY SLOT'S VALUE DOES: `NITPICK-TYPE-007` AT THE OPERAND, WHERE `llc` REFUSED THE EMITTED MODULE. A REFUSAL ADDED, A LOUD FAILURE MOVED FROM `llc` TO THE CHECKER; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES TODAY. OF OUR 4 003 PROGRAMS, 0 DIFFERENT AND 0 NEWLY REFUSED. NOT IN THE ONE RE-PIN, WHICH TAKES 103 BY THE AUTHOR'S WORD.** From `nitpick-compiler_34`, filed 2026-10-09 02:36 by `nitpick-libs_15` from the message's full text.
 
 - **What 104 changes.** `check_exit` typed the operand under the `int32` expectation but never held it to it. `exit may(argv.len);` of a fallible `may` passed the checker, and `llc` refused the module ("'%t3' defined with type '{ i32, i32 }' but expected 'i32'"), while `int32:v = may(argv.len); exit v;` was TYPE-007.

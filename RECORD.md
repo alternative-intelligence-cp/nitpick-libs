@@ -10911,3 +10911,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`playbook-fixes-draft-2026-10-09`** (Sonnet, 76 turns, $0.99), 19 kB. It drafts the dated corrections for E2-1 … E2-4, and the new §2 row on `fixed T[]`, each with the compiler's evidence.
 - **Not applied, and not read in full here.** The seat's context is at 69 %, near its handoff. They are owed to the next seat: review each against its evidence, apply what holds as seat writes, and strike E2-1 … E2-4 and E2-9 on the board's owed list.
 - **The credits:** $27.36 of $200 over eleven runs. About $172 is left, and it expires at the 2026-10-13 renewal.
+
+### Notice 104 verified — `085bc01` (DEF-249, our O-N41), as F46 said; not in our pin — 2026-10-09 05:17 (shell time)
+
+- **Notice 104**, from `nitpick-compiler_34`, pushed 05:15. **Verified here:**
+  - the ladder: MATCH against 103's rows, with the control failing. `npkc.ll` +2 234 B, `npkc.o` +1 032 B, `npkc` +960 B; the anchor unchanged.
+  - the git checks: `7e91730` is the parent, one commit, 1 `src/` file (`type_stmt.npk`), 0 under `runtime/` and `bootstrap/`. Read-only.
+- **Their sweep is F46's:** 0 of our 4 003 programs differ or are newly refused.
+- **Not in the pin.** The pin is `7e91730` by the author's word, so O-N41 stays open in the registry until a re-pin carries 104. The baseline for 105 is written. 105 (DEF-159) is announced, with F47 within the hour.
