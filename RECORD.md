@@ -11276,3 +11276,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `nitpick-libs_15` is gone, closed by the author on its release;
   - the one subagent of this seat is the time planner.
 - **The ladder authenticates the content, whoever sends it** (hazard 10). The baseline for 106 is under 105's entry.
+
+### The last held playbook finding of the day landed — a count of sites is not a count of slots — 2026-10-09 10:52 (shell time)
+
+- **§12's 2026-10-09 batch** gains it, from `nitpick-regex` 0.2.1a's worker: "the five `src/` locals" were four, because one TYPE-007 site was an argument. No held finding of today's remains.

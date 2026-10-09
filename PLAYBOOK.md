@@ -2077,3 +2077,7 @@ and *"a sweep's recorded counts must come from the command the record prints."*
 - **A number carried from a brief is a claim to check against the plan's own text.** `nitpick-time` 0.3.2's block 3m has 35
   rows; a handoff's "34" travelled into a worker's and a verifier's NOTES unchecked, and the verifier found it. *(`nitpick-time`
   0.3.2's verifier.)*
+- **A count of sites is not a count of slots.** `nitpick-regex` 0.2.1a's plan said "the five `src/` locals", taking §1.3's
+  five TYPE-007 sites for five locals; one of them is an ARGUMENT, re-spelled through its callee's parameter, and `src/` held
+  four. A plan verifier's PASS and four SAME rehearsals passed it, because no block reads a decision's prose against the tree;
+  the worker caught it by enumerating the set the sentence names before its patch applied. *(`nitpick-regex` 0.2.1a's worker.)*
