@@ -10674,3 +10674,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not an author's question.** No code, specification or decision changes. The stop rule was followed, and the allowance is recorded here and in the worker's record.
 - **findings-for-playbook** (held): a block that runs a program with a randomized guard once states a rate as if it were a verdict. Write a byte that differs from the guard's, or quote the rate.
 - **Budget:** the meter 59 %, the five-hour window 40 %. The room is about 10.5 points.
+
+### `nitpick-time` 0.3.2 DONE — the system zone, `989c772` — its verifier dispatched — 2026-10-08 23:13 (shell time)
+
+- **report `s2-ntime-0.3.2-2200`, resumed — DONE** (`opus`, 22:00–23:11 including the stop at 22:13–22:15, 751 k tokens, 132 tool uses). Four commits on `abb5673`, each pushed alone and its CI read per job:
+  - `8808c5c`, step 1: every generic function of `src/` read in an emission (PD-99), and TM-252's "any of". GREEN 135 with 116 plants; CI `37874210181`.
+  - `0c5d491`, step 2: a unit's own `/etc`, `probe22`, and CI's userns step (PD-100), which printed before 1 and after 0. GREEN 136; CI `37874819639`.
+  - `34e3b89`, step 3: the system zone (PD-101, PD-102). GREEN 143; CI `37876004386`.
+  - `989c772`, the record. GREEN 143 over its staged tree (230.9 s, 116 plants); CI `37877780019`.
+  - **Checked here:**
+    - `check_record` is clean;
+    - `HEAD` = `origin/main` = `989c772`, and `git ls-remote` agrees;
+    - the porcelain is empty, the title reads DONE (2026-10-08), and the scratch is removed;
+    - 38 files changed over `abb5673`, +2 678 −157.
+- **for-the-author, a recommendation and not a question.** Block 3e's mutant 295.5 (step 3's read capped one byte past its buffer) is caught only by the allocator's guard: 95 on 398 of 400 legs. So a 3e run will show it unseen about once in 65 000 runs. The worker recommends the same allowance as block 0b's line 54.
+  - **Taken (this seat's):** the 22:15 allowance covers both, as one cause. The verifier is told so.
+  - The next planner's `facts.sh` change, writing a byte known to differ from the guard's, is in the record's hand-on.
+- **findings-for-playbook** (held, for the next pass):
+  - the guard's rate, extending the 22:15 line with 295.5's figure;
+  - GitHub's `ubuntu-24.04` runner sets `kernel.apparmor_restrict_unprivileged_userns` to 1. A test that mounts inside its own user namespace needs an earlier `sudo sysctl -w` step that sets it to 0.
+- **s2's next item.** 0.3.3, the double, has no plan file. By the author's pace it waits for next week, so after this verifier s2 idles. The one re-pin is next, regex's adoption first, once landing 103 is verified here.
+- **Dispatched 23:13: `s2-ntime-0.3.2-verify-work`** (`npk:verifier`, `sonnet`), the only agent running (W-24).
+- **Budget:** the meter 60 % and the five-hour window 1 %, so the room is about 9.5 points.
