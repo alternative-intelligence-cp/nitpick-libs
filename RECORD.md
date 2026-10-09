@@ -10925,3 +10925,34 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-compiler_34`.** It is F47 by sequence. No refusal moves and no answer; the emission text moves for programs with an address-taken owning binding.
 - **For us:** 24 of 4 003 programs differ in text, flag tests only (29 drops), and 0 are newly refused. Their list names hashed emissions, read-only here.
 - **Not in the pin.** At the re-pin that carries it, time's emission-reading checks re-run in its adoption. The harness ends about 09:00.
+
+### `nitpick-regex` 0.2.1a planned (`00802a8`) — the adoption of `7e91730`; one `check_record` finding, the planner resumed — 2026-10-09 05:58 (shell time)
+
+- **report `s1-nregex-0.2.1a-0307` DONE (plan)** (`opus`, 03:08–05:56, 857 k tokens, 278 tool uses).
+  - Commit `00802a8`. CI `37914024315` green at `5fbaf4a`, job read per job (87 931 B): 294/294, 2 PEND, the emission held.
+  - **Measured on the unchanged tree:**
+    - at `5fbaf4a`, 294/294;
+    - at `7e91730`, stopped at the toolchain check by the manifest's 20.1.2;
+    - with only the manifest's LLVM row moved, 21 of 31 self-check cases fail, because `selfcheck.py` carries its own pinned row;
+    - with both rows moved, 150/304, every failure 103's TYPE-007 or a line that follows from it.
+  - **The places:** 170 sites in 39 files, 5 of them in 4 `src/` files. The compiler side's 400 counts a site once per importing file. Besides those, only `pattern_error_literal.npk` (DEF-165: one TYPE-079 where there were four) and probe 12b (its BORROW-009 behind a TYPE-007) move.
+  - **The steps:**
+    1. Re-spell all 133 `uint8[]` slots in 32 files as `fixed uint8[]` AT THE OLD PIN. Every file keeps its codes and positions, and the run stays 294/294. That proves no answer changed.
+    2. LLVM to 20.1.8 in both manifests, DEF-165's header, and probe 06b's return type. The return type must wait for this step: DEF-247 drops `fixed` there at the old pin. `rx120.sh` moves to `7e91730`. The run is 294/294, and D-332 matches for all 33 rejection files.
+    3. CI's full SHA, the `npkc.ll` row (31 527 001 B) and LLVM 20.1.8, whose tarball was confirmed.
+    4. The prose, and 5. a sweep.
+  - **PD-103:** every slice the tree holds is `fixed uint8[]`, none written through, with a dated note on API.md A-16 and A-11. **PD-104:** the adoption itself, with its reason for not making `selfcheck.py` read its LLVM row from the manifest: that changes how the harness writes its trees, so it is handed on as its own decision. They become RX-230 and RX-231 at the plan verifier's PASS.
+  - **Why the old pin cannot prove it alone:** at `5fbaf4a`, a write through a `fixed` slice (DEF-230) and a reassigned `fixed` parameter (DEF-248) compile silently. Only the new pin's census shows that no slot is written through, and two of the plan's mutants show `7e91730` refusing both.
+- **`check_record` here:** `[no-report]`, as expected for a plan, and **`[bad-status]`**: the title has no " — PLANNED". The planner was resumed at 05:58 to fix only that, with any quoting Expect alongside. The plan verifier follows the fix.
+- **findings-for-playbook** (held):
+  - re-spell at the old pin first, then move the pin;
+  - a self-check that builds scratch trees carries its own toolchain rows;
+  - the compiler side's per-file site counts are not distinct places (400 against 170).
+  - **An `npk` finding:** `check_refs` reads a closing bracket followed by an opening parenthesis as a link, even inside code spans, and once crashed on a long one ("File name too long").
+- **For time's adoption:**
+  - its self-check already reads its LLVM row from its manifest;
+  - the per-file and per-place counts and DEF-247's return-type position apply to it;
+  - keep the private LLVM 20.1.2 until both adoptions have run their old-pin legs.
+- **Budget:** the meter 69 %, the five-hour window 12 %, and Fable 63 % by the author's `/usage` of 03:16. The room is about 7.5 points.
+  - That covers regex's plan verifier, its worker and its verifier.
+  - Time's adoption needs about four more. It goes this week only if the room is at least about 3 points when regex's chain is done, and otherwise next week.
