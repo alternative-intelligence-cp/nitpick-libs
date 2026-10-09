@@ -1166,6 +1166,25 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 109 (DEF-224 UNDER D-352; F51 BY SEQUENCE) — **`failsafe`'S PICK MAY COME FROM A STATEMENT MACRO AND MAY STAND IN A BARE BLOCK AT ANY DEPTH, NEVER INSIDE AN `if`, A `when`, A LOOP OR ANOTHER PICK'S ARM (D-352, RATIFIED BY THE AUTHOR TODAY). NO LIBRARY PROGRAM DIFFERS; `nitpick-posix`'S THREE FAILSAFE PROBES MOVE FROM `REACH-001` TO `REACH-002` AND NEED TWO ARMS.** From `nitpick-compiler_35`, filed here 2026-10-09 17:13 by `nitpick-libs_17`.
+- **The rule, as they give it:**
+  - D-179 says `failsafe` "must contain" the pick, and the reach analysis had read that as "among the body's own statements". What the rule needs is that every trap REACH the pick. A bare block runs unconditionally, and a statement macro's expansion is one.
+  - REACH-002 asks the arm contract of the pick where it stands, and MACRO-009's note points a report into the macro body.
+  - A pick inside a conditional stays REACH-001.
+  - Tests: `failsafe_pick_macro.npk`, `failsafe_pick_block.npk` and `tests/analysis/rejection/failsafe_cond_pick.npk`.
+- **Their sweep (5 117 files):**
+  - 5 sites vanished: their two tests' REACH-001, and the REACH-001 of `nitpick-posix`'s `probe02a_failsafe_macro`, `probe02d_caller_body` and `probe02e_block_nested`.
+  - 8 appeared: those three probes at REACH-002 for `StackExhausted` and `MachineFault`, two each (their arm set predates 1.5.8), and the MACRO-009 note under the two macro forms.
+  - **Ours, 4 003: 0 different, 0 newly refused, 0 compiling that the base refused.**
+  - Their tree's 568: 566 byte-identical, the other two the landing's own tests.
+- **For us, at the re-pin that carries 109:** the three `nitpick-posix` probes each carry `// expect-exit: 70` (checked here) and are refused today. Each gains the `StackExhausted` and `MachineFault` arms, and should then compile and exit 70. That is `nitpick-posix`'s next dispatch.
+- **A correction to their reading, for the author; not sent to them, since they asked for no answer:**
+  - They say PX-010's shared macro "works as written". But PX-010 was superseded on 2026-09-03 by `nitpick-posix`'s PX-100, *"`failsafe` is generated, not written by a macro"*, for two reasons.
+  - 109 removes the first: the pick one block too deep, REACH-001.
+  - **The second, which PX-100 calls fatal, stands at `1840260`: a macro is invocable only in the module that declares it** (D-124, `NITPICK-MACRO-007`; `MACRO_REFERENCE.md` read at `1840260`). So one macro cannot serve sixty utilities, and PX-100's generated handlers stand.
+  - The author's broader question, a `failsafe` that a project importing many libraries can keep, is their S-134, registered and not acted on. PX-100 is `nitpick-posix`'s answer for its own case.
+- **Lands as 109 after its harness;** its notice is checked against the baseline for 109, under 108's entry. Then 110 (DEF-226), F52.
+
 ### ✅ `1840260` LANDED — **NOTICE 108: DEF-202, AS F50 SAID: A `fixed` MODULE BINDING INITIALISED FROM ANOTHER `fixed` MODULE BINDING OF A STRUCT, AN ARRAY OR AN `Optional` TYPE COMPILES, WHERE IT WAS `NITPICK-TYPE-035`. A REFUSAL REMOVED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILED BEFORE; OF OUR 4 003 PROGRAMS 0 DIFFERENT, 0 NEWLY REFUSED, 0 REFUSED BY THE BASE ALONE. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 16:55 by `nitpick-libs_17`; built, landed and sent by `nitpick-compiler_35`, pushed 16:54.
 - **The ladder.** `tools/ladder.py` against the baseline for 108 (107's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +6 130 B, `npkc.o` +2 104 B and `npkc` +1 824 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `508d7c5` is the parent, one commit. 3 files under `src/`: `src/backend/ir/ir_expr.npk`, `src/frontend/type_resolve.npk` and `src/frontend/type_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `main` = `1840260`. Read-only, no fetch.
