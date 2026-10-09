@@ -11050,3 +11050,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the `tleak` figure on O-N38's line (24 004 → 28 bytes). This seat found the 24 004 in DEF-228's entry, but not the 28;
   - the draft's optional edits: O-N33's landing list, O-N36's step-(ii) phrase, and O-X9's "Handed to cycle 0.3.1". The old bodies stay as written.
 - **E2-9 is struck on the owed list.** `check_refs` is clean. **Cost:** seat writes only, no agent.
+
+### PLAYBOOK's stale rows corrected — E2-1 … E2-4, applied from the credits draft with the compiler's evidence checked at `7e91730`; orchestrate §3's and new-repo's toolchain texts with them — 2026-10-09 07:29 (shell time)
+
+- **The draft:** `.internal/credits/out/playbook-fixes-draft-2026-10-09.md` (Sonnet, $0.99), reviewed against its evidence before any write.
+- **Checked here, by script, at `7e91730`, read-only:**
+  - 18 quoted phrases in the compiler's `TCB.md`, `DECISIONS.md`, `TYPE_REFERENCE.md`, `OPEN_DECISIONS.md`, `BUILD_REFERENCE.md` and `MEMORY_REFERENCE.md`, all present. Among them: `SIGPIPE`'s returning handler (DEF-68), the read-only view's rules (D-350, D-351, `PARSE-013`), D-246's landing at 1.5.1b step 4, `DERIVE-006`, D-327's `Copy`, D-314's guarded `List` index, DEF-96 at 1.6.0 step 3c, and LLVM 20.1.2 "until D-349";
+  - D-249's landing at 1.5.1b step 2 and D-250's at step 3b;
+  - `emit_bounds_guard` called at four sites in `ir_expr.npk`;
+  - `src/npkc.npk` present and `src/main.npk` absent;
+  - O-N9, O-N10 and O-N4 struck in the registry at `94874ce`.
+- **Applied, each site asserted before the write:**
+  - **E2-1:** §2's row "the runtime installs no signal disposition" struck, with its note, and the callout gains a closing note. From `c3bdae2` on, `SIGPIPE` has a returning handler;
+  - **E2-2:** a new §2 row after the `fixed` part-write row, `fixed T[]` the read-only view. `string_bytes`' type is corrected in the `f(g(x))` paragraph;
+  - **E2-3, the eight stale sites:**
+    - O-N9's slice views;
+    - the `f(g(x))` leak, settled by D-246;
+    - O-N10's derive;
+    - the `main` rule, live from `c970483`;
+    - O-N4's quadratic declarations;
+    - the bounds guard on FOUR kinds;
+    - the S-108 `Pod` marker, now D-327's `Copy`;
+    - `src/main.npk`, now `src/npkc.npk`.
+    Each is a dated note, and the old text is kept;
+  - **E2-4:** the manifest sentence names the pinned compiler's release (20.1.8 from `7e91730`, D-349) and the `triple` and `datalayout` rows; `skills/orchestrate/SKILL.md` §3's "must print 20.1.2" now names the pinned commit's `[toolchain] llvm`; `skills/new-repo/SKILL.md` names the two rows.
+- **Changed from the draft:** its notes were in the first person and now read as the playbook's own dated notes. One line reference ("as :199-200 says") is written as a fact rather than a position. The draft's aside that `nitpick-regex/nitpick.toml` already pins 20.1.8 read the tree during the planner's rehearsal: at `0199a4f` it pins 20.1.2, and 0.2.1a's step 2 moves it. No text depends on that aside.
+- **Struck on the owed list:** E2-1 … E2-3 and E2-4. The `npk` finding for orchestrate §3's "must print 20.1.2" is discharged with them. `check_refs` is clean. **Cost:** seat writes only, no agent.

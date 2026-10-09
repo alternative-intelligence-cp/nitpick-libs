@@ -125,8 +125,8 @@ blocked, what is done. The durable plan is
 > - **the four pre-start audits against `7e91730`, filed 2026-10-09** (`meta/audits/<repo>-pin-7e91730-2026-10-09.md`, made on the API credits for $2.60 in all): each repository's next dispatch carries its own by id — tui TL-1 … TL-7, parse PL-1 … PL-6, sockets SL-1 … SL-6, posix XL-1 … XL-6. Posix's XL-1 … XL-3 are the probe verdicts landing 92 (D-340) moved, which includes the owed `probe02g` header.
 > - **the early ecosystem audit, 2026-10-09** (`meta/audits/ecosystem-early-2026-10-09.md`, on the credits): E2-1 … E2-15, and its re-check of the 23 of 2026-09-26.
   - **Seat writes:**
-    - E2-1 … E2-3: PLAYBOOK's stale rows, among them no `fixed T[]` row;
-    - E2-4: the 20.1.2 texts in PLAYBOOK, orchestrate §3 and new-repo;
+    - ~~E2-1 … E2-3: PLAYBOOK's stale rows, among them no `fixed T[]` row;~~ **DONE 2026-10-09 07:29 by `_16`** from the credits draft, each site checked (`RECORD.md` 2026-10-09 07:29).
+    - ~~E2-4: the 20.1.2 texts in PLAYBOOK, orchestrate §3 and new-repo;~~ **DONE 2026-10-09 07:29 by `_16`** from the credits draft, each site checked (`RECORD.md` 2026-10-09 07:29).
     - E2-5: WORKSTREAMS and `CLAUDE.md`'s W-26;
     - E2-7, E2-11, E2-12 and E2-15;
     - ~~E2-9: the registry's settled rows. That is ten O-N rows whose DEFs are FIXED and carried by the pin, and O-X9, O-X11, O-X12 and O-Y2. Strike each with its evidence.~~ **DONE 2026-10-09 07:25 by `_16`** from the credits draft, checked line by line: 10 struck, O-Y2 struck recording its overturned recommendation, and O-N33, O-N36 and O-N38 amended PARTLY DISCHARGED, since each still carries open work (`RECORD.md` 2026-10-09 07:25).

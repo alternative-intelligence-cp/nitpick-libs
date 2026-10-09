@@ -54,7 +54,8 @@ and fixtures with the reason for each.
 
 **`nitpick.toml`** — the compiler's schema exactly: `[project]` with `target`,
 `[build]`, `[toolchain]` pinned to the exact patch release with the four flag
-lists, an **empty** `[dependencies]`, and a `[[test]]` table that starts empty
+lists and the `triple` and `datalayout` rows (`BUILD_REFERENCE.md` §1), an
+**empty** `[dependencies]`, and a `[[test]]` table that starts empty
 with a comment saying each cycle adds its own. An entry naming an empty
 directory is a suite that reports green while checking nothing.
 

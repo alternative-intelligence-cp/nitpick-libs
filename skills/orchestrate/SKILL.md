@@ -105,7 +105,7 @@ cmp ../nitpick/build/npkc "$PIN/npkc" && cmp ../nitpick/build/npkrt.o "$PIN/npkr
 ( cd "$PIN" && sha256sum npkc npkrt.o > SHA256SUMS )
 # and the landing notice's SIX ladder rows (npkrt.o, builder.o, builder, npkc.ll, npkc.o, npkc), verbatim, in PIN.md —
 # CI's printed npkc.ll (the D-265 emission) is compared against the npkc.ll row, which the two copied files do not carry
-llvm-config --version                      # must print 20.1.2
+llvm-config --version                      # must print the pinned commit's [toolchain] llvm (20.1.8 from 7e91730, D-349)
 printf 'compiler %s\nllvm %s\npinned %s\ntree %s\n' "$COMMIT" "$(llvm-config --version)" "$(date -Is)" "$TREE" > "$PIN/PIN.md"
 ```
 

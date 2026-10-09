@@ -53,8 +53,9 @@ list of the ones that reach a library.
 | ~~indexing is bounds-checked and traps~~ **a slice, fixed-array, SIMD-lane or `List` index is bounds-checked and traps — a bare-POINTER index is not** | D-070 (bounds live in the array type, not the pointer type; pointers are thin, D-038) | an out-of-range slice index is a crash, not corruption; **an out-of-range pointer index reads or writes whatever is there** (`nitpick-regex`'s probe 08b read 7 992 bytes past an allocation, exit 0) — route every index through one accessor pair, and confine the pointer accessors to the module that owns the block. *(Corrected 2026-09-26, the ecosystem audit's EC2: the pin's emitter guards the slice, array, SIMD and `List` branches, not the pointer branch.)* |
 | owning values are **move-only** | TYPE-046 | no binding-to-binding copies of a `string`, `buffer`, `OwnedFd`. ~~**A value stored in an array must have no owning field**~~ **— FALSE at every kept pin, measured 2026-09-25: `string[2]`, an array of a struct holding a `string`, `Vec<string>` and `Bytes[2]` compile and run. TYPE-046 refuses a COPY of an owning place, not where an owner is stored — and a generic by-value accessor (`pass v.items[i]`) MOVES the element out, leaving a counted vacancy** **— AND IN `fixed` STORAGE A MOVE OF AN OWNING PLACE COMPILES AND FAULTS (O-N20, measured at every kept pin, 2026-09-25): `fixed` is emitted as an LLVM `constant` global and the move stores its vacancy into it — SIGSEGV at -O0 (`MachineFault`, 107, at `c3bdae2`), `Unreachable` (95) under `opt -O2`; a moved-out scalar `fixed string` gets no vacancy at all, so a second move is a second owner. An implicit move reaches it too: a plain `pass NAMES[i]` from a function returning `string`. The copy is refused, the move is not — `.clone()` is the read that runs clean.** **Nothing may depend on moving out of `fixed`: work that needs it is HELD until the compiler refuses the move** (W-27; `nitpick-time`'s tzdb version string, its PD-29) **— AND FROM THE PIN `c970483` (2026-09-26) IT DOES: `NITPICK-TYPE-084` refuses `move(...)` and the implicit move at `pass`, of a `fixed` binding or any part of it (1.6.0 step 3f, DEF-99). `.clone()` is the reading** |
 | a by-value parameter of an **owning** type is a loan, and **read-only** | D-004, D-266; `TYPE-085` (1.6.0 step 3g, DEF-102); in the pin from `c970483` | no assignment to it or into it, no `@`/`$$i`/`$$m`, no pointer-receiver call, no stateful operation. **A callee that changes an owning value takes `move T:p`; one that needs the whole of it takes `.clone()`.** A copyable parameter is a copy and keeps every write. The one exemption the rule states is a call through a `dyn` receiver. A `for` binding over owning elements is a loan too (`nitpick-fuzz`'s F-001, refused the same). **Until `c970483` the write compiled and freed the caller's value** (O-N21) |
-| a bare generic `T` **owns**, for every question about ownership | D-264 and its 1.6.0 step 3g note; `TYPE-047`, `TYPE-085` through `type_owns_for_move` (DEF-104); in the pin from `c970483` | a generic body is checked as though `T` were `string`. A lent `T` cannot be passed out or moved (`TYPE-047`) or addressed (`TYPE-085`). **The gate reaches `T` PLACES, not only parameters: `pass v.items[i]` out of a lent or pointed-to `Vec<T>` is a move out of a loan, refused `TYPE-047`** — an unchanged `nitpick-regex` went RED 78/223 on that alone. **There is no infallible generic by-value read.** `nitpick-regex` bounds its accessor by a library `Pod` trait (`vec_get<T: Pod>`, its RX-168) and spells removal `move`; a prelude marker is the author's S-108. **Until `c970483` a generic identity function returned its lent argument as a second owner** (O-N22) |
+| a bare generic `T` **owns**, for every question about ownership | D-264 and its 1.6.0 step 3g note; `TYPE-047`, `TYPE-085` through `type_owns_for_move` (DEF-104); in the pin from `c970483` | a generic body is checked as though `T` were `string`. A lent `T` cannot be passed out or moved (`TYPE-047`) or addressed (`TYPE-085`). **The gate reaches `T` PLACES, not only parameters: `pass v.items[i]` out of a lent or pointed-to `Vec<T>` is a move out of a loan, refused `TYPE-047`** — an unchanged `nitpick-regex` went RED 78/223 on that alone. **There is no infallible generic by-value read.** `nitpick-regex` bounds its accessor by a library `Pod` trait (`vec_get<T: Pod>`, its RX-168) and spells removal `move`; a prelude marker is the author's S-108. *(Corrected 2026-10-09, E2-3: S-108 is SETTLED as D-327, 1.6.1c, 2026-09-26. The prelude declares the marker `Copy`, derivable for a struct of copyables; under `T: Copy` a plain copy is a copy and `list_get` reads an element `never fails`. `nitpick-regex`'s `Pod` retired into it: `vec_get<T: Copy>`.)* **Until `c970483` a generic identity function returned its lent argument as a second owner** (O-N22) |
 | no **part** of a `fixed` binding is written after its declaration | D-287; `TYPE-086` (1.6.0 step 4b, DEF-106); in the pin from `c970483` | an element, a plain field, a compound assignment, a stateful operation on a part, a `fixed` local's element, anything under a `fixed` field. The whole binding's second assignment and a `fixed` field's own stay `ASSIGN-002`, and the binding has no address (`TYPE-071`). **A table is built once and read; a table that changes is a local or a heap value.** **Until `c970483` a part-write compiled and stored into an LLVM `constant`**: exit 95 where the part owns, and where it is plain, 107 at -O0 and **at -O2 the write silently dropped** (O-N24, found by `nitpick-fuzz`) |
+| a `fixed T[]` is the **read-only view**: a plain slice converts to it and **never back** | D-348 (ii), D-350, D-351; `TYPE-007`, `TYPE-086`, `TYPE-071`; landing 103, in the pin `7e91730` only | a plain `T[]` converts to `fixed T[]` wherever one is expected — an argument, a field, a return, a `List<fixed T[]>` element — and the reverse is `NITPICK-TYPE-007` (a cast either way is `TYPE-032`). **A write through it is `NITPICK-TYPE-086`** (an element, a compound assignment) and the address of its element is `TYPE-071`. **`string_bytes` returns one, always (D-351)**, so a reader's slot must be spelled `fixed uint8[]`: `fixed uint8[]:v = string_bytes(s)`, and a parser that only reads its bytes declares `fixed uint8[]:src`. A plain `uint8[]` parameter refuses it, and a writer through the bridge is refused outright. In a bare type position (`List<fixed uint8[]>`, `func NIL(fixed uint8[])`) `fixed` precedes a slice type and nothing else (`PARSE-013`). An impl's slice parameter is `fixed` exactly where its trait's is (`TYPE-014`). **At `5fbaf4a` and before none of this exists: `string_bytes` yields a plain `uint8[]`, and a library harness is RED at `7e91730` until it re-spells its readers** |
 | every path of every function **leaves explicitly** | D-323; `FLOW-001` (1.6.0 step 5c, DEF-108); in the pin from `c970483` | a body that can reach its closing brace is refused. A `NIL` function passes `NIL`, a fallible function names its failure on every path, and `main` exits. There is no implicit return and no implicit value. **The walk is conservative towards refusal** (CONTROL_REFERENCE's words): an `if` without `else` completes, a `while (true)` with no `break` never does, and every other loop and `when` completes as a whole — so a body ending in such a loop still owes a final `pass`, `fail` or trap. **Until `c970483` the emitter returned a zero, and for a fallible function a SUCCESS carrying zero** (O-N26) — a silent wrong answer, found by `nitpick-fuzz` |
 | a zero-length array `T[0]` is a type, and **owns when `T` owns** | TYPE_REFERENCE §9.2, stated 2026-09-25 at the library side's request, measured at 1.6.0 step 3g | zero bytes wide (`[0 x T]`). **A struct with a `hidden string[0]` field is move-only at no cost in bytes**, while `int64[0]` copies freely — the way a library marks a struct move-only without paying for a field |
 | borrows are second class | D-004 | a view cannot be returned, stored past the call, sent, or held across `await` |
@@ -72,7 +73,7 @@ list of the ones that reach a library.
 | `Default` and `Display` are not derivable | D-123 | a default that carries meaning is a value nobody chose |
 | operator overloading is forbidden | OP_REFERENCE | `a.eq(b)`, not `==`, on anything that is not a scalar |
 | **⚠ AT `c3bdae2` THE RUNTIME DOES INSTALL SIGNAL ACTIONS — the row below held only through `3d15ac9`** | measured: `rt_sigaction` in `runtime/npkrt.ll` — 0 mentions at `aaffb87` and `3d15ac9`, 2 at `c3bdae2`; D-291, D-307, DEF-68 | `SIGUSR1` → the stop handler; `SIGSEGV`, `SIGBUS`, `SIGILL`, `SIGFPE` → `MachineFault`; **`SIGPIPE` gets a returning handler, so a write to a dead peer answers `EPIPE` instead of killing the process** — plan for the error, not the death |
-| **the runtime installs no signal disposition, for anything** | measured: no `rt_sigaction` in `npkrt.ll` | **every signal's default is live.** `SIGPIPE` terminates the process. A write to a pipe or socket whose peer died is lethal unless you passed `MSG_NOSIGNAL` (`send` only) or blocked the signal |
+| ~~**the runtime installs no signal disposition, for anything**~~ | ~~measured: no `rt_sigaction` in `npkrt.ll`~~ | ~~**every signal's default is live.** `SIGPIPE` terminates the process. A write to a pipe or socket whose peer died is lethal unless you passed `MSG_NOSIGNAL` (`send` only) or blocked the signal~~ *(Corrected 2026-10-09, the ecosystem audit's E2-1: true only through `3d15ac9`, and row 74 above is the live one. From `c3bdae2` on, the floor installs `SIGPIPE`'s returning handler at startup, so a write to a dead peer answers `EPIPE`. `SIGTERM`, `SIGINT`, `SIGHUP` and the rest still keep their defaults. The kept pins `3d15ac9` and before still behave as the struck row says.)* |
 
 > **The last row cost this ecosystem a shipped specification error.** `ntui`
 > stated that `SIGPIPE` could be left unblocked *"because the floor already
@@ -83,6 +84,8 @@ list of the ones that reach a library.
 > differs by library: a passive library passes `MSG_NOSIGNAL` and must not
 > alter its host's signal state, while one that already owns the process's
 > signals blocks it.
+> 
+> *(Corrected 2026-10-09, the early ecosystem audit's E2-1: the row this callout calls "the last row" is struck. At `c3bdae2` and after, `ntui`'s premise holds for a program on the floor's runtime, because `SIGPIPE` has a returning handler; it was false at `3d15ac9` and before. The lesson stands: check the disposition at the pin you build on, and do not assume it.)*
 
 **Read `../nitpick/meta/specs/` rather than trusting this table.** It is a
 summary of documents that are themselves the summary, and the compiler is
@@ -182,6 +185,7 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
   **a view is a parameter, never a return value**, and it wants a harness
   check rather than vigilance — any library whose functions take `uint8[]`
   (every parser) is one careless `return` from a silent use-after-free.
+  *(Corrected 2026-10-09, the early ecosystem audit's E2-3: O-N9 is DISCHARGED. DEF-3 / D-249 landed at 1.5.1b step 2, and returning a view of a local, `string_bytes` and `string_from_bytes` included, is `NITPICK-BORROW-001` since `94874ce`. "A view is a parameter, never a return value" is still the language's rule (D-004), and the compiler enforces it now, so the harness check this bullet asked for is not owed for it. At `7e91730`, `string_bytes` yields `fixed uint8[]` (D-351; the §2 row on the read-only view).)*
 - **`f(g(x))` LEAKS when `g`'s result owns memory, and every Nitpick program
   pays it today.** Bisected by the compiler session on 2026-09-03 while
   chasing O-N4: an owning **temporary** that is never bound is never dropped.
@@ -203,13 +207,15 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
   instrument built at 1.5.1b step 0. Neither supersedes the other; quote the
   one you mean.
 
+  *(Corrected 2026-10-09, the early ecosystem audit's E2-3: D-246 is SETTLED and landed at 1.5.1b step 4, 2026-09-04. An owning value no place takes is a TEMPORARY of its statement and is dropped when the statement ends, so `f(g(x))` no longer leaks and the binding workaround is not needed at any pin this workbench keeps. The figures above were measured at older pins and are kept as history, not re-measured. The "needed only at OWNING intermediates" test below describes the pre-D-246 leak set. D-246 lists what a statement TAKES (a declaration, an assignment, a `move` parameter, a literal slot, a `pass`) and never registers a view-maker's result.)*
+
   **The rule is needed only at OWNING intermediates, and the test is exact.**
   A temporary leaks if and only if its type drops — the checker's
   `type_drops`. It **does**: a `string` whose body is on the heap
   (`string_concat`, **`string_slice`, which has been an owned copy since
   D-186**, interpolation, `ToString`); a `buffer`; a struct or enum with an
   owning field or payload; a `dyn`, which owns its cell; an `OwnedFd`. It
-  **does not**: a `uint8[]` from `string_bytes`, a `string` from
+  **does not**: a `uint8[]` from `string_bytes` *(corrected 2026-10-09, E2-2: a `fixed uint8[]` from `7e91730`, D-351; still a plain `uint8[]` at `5fbaf4a` and before)*, a `string` from
   `string_from_bytes`, a range-view `arr[lo...hi]`, a plain pointer, any
   scalar. So `f(string_bytes(s))` leaks nothing and needs no binding, while
   `f(string_concat(a, b))` leaks the whole concatenation. One caution on the
@@ -251,6 +257,7 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
   on the same declaration silently compares tags only** — so
   `Literal(7).cmp(Literal(9))` is `Equal`. Raised as **O-N10**. Until it
   lands, do not derive either on an enum with payloads; write the comparison.
+  *(Corrected 2026-10-09, the early ecosystem audit's E2-3: O-N10 is DISCHARGED. DEF-4 / D-250 landed at 1.5.1b step 3b: `derive(Eq)`, `Ord` and `PartialOrd` on a payload enum compare the tag, then the payload, since `94874ce`. A payload that owns (`string`, `buffer`, `List`, …) is refused at the declaration, `NITPICK-DERIVE-006`, so write the comparison only for that case.)*
 - **`_~argv` marks a parameter DISCARDED, not merely unused.** Reading it is
   `NITPICK-TYPE-007`. A probe or program that wants `argv.len` must spell the
   parameter `cstring[]:argv`. Cheap, and it cost a probe a rewrite.
@@ -265,6 +272,7 @@ Reported on 2026-09-25 and confirmed as **DEF-96**: from 1.6.0 step 3c — lande
 **Moving costs nothing at old pins:** `950bb1d` already accepts the one-parameter form,
 so an old-pin control stays byte-identical. The ecosystem's exposure was seven files and
 is zero.
+*(Corrected 2026-10-09, the early ecosystem audit's E2-3: `NITPICK-TYPE-083` is live at every pin from `c970483` on. `c970483`, `5fbaf4a` and `7e91730` all carry it, and a two-parameter `main` is refused; only `c3bdae2` and earlier accept it. "No pin of ours carries it yet" and "will refuse" are history from 2026-09-25.)*
 
 **`if (a.is_error || b.is_error)` clears neither `Result`'s taint** (`NITPICK-TAINT-001` on the read below it), and `raw` on a
 fallible callee is `NITPICK-TYPE-042`: test each `Result` alone. *(`nitpick-time` 0.2.1's plan, 2026-10-01; landed 2026-10-05.)*
@@ -532,6 +540,7 @@ that can stop the program is a defect.
   only by not generating enormous single declarations yet — never by
   reshaping a library's data to dodge it**, which buys the number back and
   buries a compiler bug in library code that outlives it.
+  *(Corrected 2026-10-09, the early ecosystem audit's E2-3: O-N4 is DISCHARGED, linear on all three axes since `94874ce` (DEF-1, 1.5.1b step 3, where the builders write into a `Sink`). The numbers above are the `950bb1d` measurements, kept as history. "Plan around it" no longer applies; the second half of the sentence, never reshape data to dodge a compiler bug, stands as a rule.)*
 
 **Evidence a claim at the size you can afford.** An emission *form* — what a
 declaration is lowered to — is a property of the lowering and not of the
@@ -593,6 +602,7 @@ none — it goes straight to `getelementptr`. A qualifier is not part of a type
 `items` is `wild T->` and commented "WILD, DELIBERATELY". **So an out-of-range
 index into a `Vec` is a silently wrong value, not a trap**, and a library's
 `Vec` access is checked by that library or not at all.
+*(Corrected 2026-10-09, the early ecosystem audit's E2-3: FOUR kinds. The prelude's `List<T>` is guarded too: `l[i]` is bounds-checked against `count` (D-314), as the §2 index row says. At `7e91730` the four `emit_bounds_guard` calls in `ir_expr.npk` are near lines 10265, 10299, 10320 and 10347, so the positions above are stale. A library's own `Vec` over `wild T->` is still unguarded, and the pointer branch still has no guard.)*
 
 Two things about how this was got wrong, which matter more than the fact:
 **four repositories wrote "array, slice and buffer indexing is bounds-checked
@@ -723,7 +733,7 @@ that merely prints it, because printing is what "green because it never ran"
 looks like.
 
 **`npkc`'s exit codes are an ALPHABET, they are nowhere documented, and rule
-B-6 tells every harness here to assert on them.** Read out of `src/main.npk`
+B-6 tells every harness here to assert on them.** Read out of `src/main.npk` *(corrected 2026-10-09, E2-3: the entry is `src/npkc.npk`, renamed from `src/main.npk` at the compiler's 1.5.1b step 1)*
 and `src/driver/pipeline.npk` at the pin:
 
 | code | means |
@@ -1269,7 +1279,7 @@ meta/      specs, DECISIONS.md, OPEN_QUESTIONS.md, roadmap, research, scratch
 
 **`nitpick.toml`** — the compiler's schema exactly (`BUILD_REFERENCE.md` §1):
 `[project]` with `target = "library"`, `[build]`, `[toolchain]` pinned to
-20.1.2 with the four flag lists, an **empty** `[dependencies]`, and a
+the exact patch release the pinned compiler names (20.1.8 from `7e91730`, D-349; 20.1.2 before) with the four flag lists **and the `triple` and `datalayout` rows** *(corrected 2026-10-09, E2-4: this said 20.1.2 and named neither row)*, an **empty** `[dependencies]`, and a
 `[[test]]` table that starts empty with a comment saying each cycle adds its
 own — because an entry naming an empty directory is a suite that reports green
 while checking nothing.
