@@ -11305,3 +11305,45 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - The findings go to `nitpick-fuzz`'s next task, which is the author's to choose.
 - **The briefs are guides, not reviewed here in full.** Each planner measures against the tree. They sit in `.internal/credits/out/` (gitignored), and each planner's dispatch names its brief.
 - **The credits:** $38.25 by the ledger over its runs since 03:4x, so about $162 is left by the ledger.
+
+### `nitpick-time` 0.3.2a planned (`f3804c3`) — the adoption of `7e91730`; the room 2.0 points, so its plan verifier only, and the worker waits for next week — 2026-10-09 12:05 (shell time)
+
+- **report `s2-ntime-0.3.2a-0939` DONE (plan)** (`opus`, 09:39–12:04, about 2 h 25 min, 334 tool uses; the token figure, 169 k, reflects a compaction mid-run, after which it ignored the SessionStart orchestrator message as its dispatch told it).
+  - Commit `f3804c3` on `989c772`, pushed. CI `37955738283`, job `113905665078`, read per job (81 063 B): GREEN, 143 units and 4 pending at `5fbaf4a`, with the userns lift and no FAIL.
+  - **Measured:**
+    - **44 slots** re-spelled `fixed uint8[]` at the OLD pin, each one, undone alone, TYPE-007 at `7e91730`;
+    - the compiler side's "21 files, 35 sites" (taken before 0.3.2's code) is 85 per root over 31 roots, which is **32 distinct sites in 16 files, 5 in `src/`** (`bytes.npk` 180:38; `host.npk` 221:9, 258:5, 260:5 and 299:5);
+    - **the self-check copies the manifest's `llvm` row**, so regex's 21-case red does not recur. With the row moved, only its cases 2 and 3 are red, because DEF-164 made the wide literal one code, and they take a new two-code fixture (TYPE-009 and TYPE-007);
+    - **five headers move:** probe15, probe20 and probe21 name one TYPE-079 (DEF-165); probe14 one PARSE-001 at 56:21; probe02d LEX-004 alone at 66:18;
+    - DEF-230's and DEF-248's shapes are mutants refused at `7e91730`, and the census finds neither in the tree;
+    - **the emission's text moves** (a type id up by one, six more prelude sites, the derived Debug bodies' temporaries dropped), but **nothing `check_call_edges`, `check_wide_types` or `check_purity` reads changes**;
+    - **the allocator guard's line is now a verdict:** the guard's own byte plus one exits 95 on both legs at both pins.
+  - **PD-105** (the read-only view, 39 slots at step 1) and **PD-106** (the adoption: LLVM 20.1.8, five return types, the self-check's TWO_CODES, five headers, the adoption list) become **TM-258 and TM-259** at the plan verifier's PASS. RECOMMEND accept; neither can be struck alone.
+  - **The plan commit was amended after its confirmation pass** (`811f967` → `f3804c3`). The change is prose outside every block: §8's arithmetic for the minimal re-spelling, and §9's "no public signature changes", since `bytes_extend`'s source changes compatibly. The 15 fenced regions are byte-identical to the confirmed file, `check_refs` is clean, and CI is green. **The plan verifier checks this.**
+  - **For the author, a note and no question:** `bytes_view`'s result stays writable. Making it read-only is handed to cycle 0.4 and to the re-pin that carries the compiler's D-341. `check_no_view_returns` prints a `fixed` result as `fixeduint8[]`, a message only, handed to a later harness subcycle.
+  - **O-N34 (DEF-225) is fixed at this pin.** The registry already struck it this morning (E2-9).
+  - **The private LLVM 20.1.2** is needed only by this adoption's old-pin runs (blocks 0a, 0b and 1), and nothing after its record needs it.
+- **`check_record` here:** `[no-report]` only, as expected for a plan. `nitpick-time` is clean at `f3804c3` = `origin/main`, with only `main`.
+- **The room at 12:04:** the meter 77 % (74 % at 10:46; the planner, this seat and the compiler side moved it 3 points in 78 minutes) and Fable 68 % (10:45), so 95 − 77 − 16 = **about 2.0 points**. By the band recorded at 10:46 that is **its plan verifier only**: a verified plan waits for next week, and the worker and the work verifier go then, unless the author says otherwise. The meter is past 75 %, so no planner either way.
+- **The handoff to `nitpick-libs_17` is now,** at the author's go and this clean point: no agent of this seat is in flight. The plan verifier is `_17`'s first dispatch.
+
+### 🔁 HANDOFF — `nitpick-libs_16` → `nitpick-libs_17`, at the author's go — 2026-10-09 12:07 (shell time)
+
+- **The author (11:0x):** *"i'm fine with handing off after the planner reports. nitpick-libs_17 is standing by whenever you need it."* The seat is at about 65 % context, at a clean point: nothing of this seat's in flight.
+- **The handoff block** is at the top of the board, with the pace, the pin, the state as values, the API credits, the author's account plans, a consolidated owed list and the lessons. `_17` is briefed directly, and `_16` stays open for its questions.
+- **The tenure, in brief** (2026-10-09 07:14 → 12:07):
+  - **The take:** hazard 13's values read before any write; `_15` answered hazard 3 from `git status`, and `_17` answered hazard 4.
+  - **Regex 0.2.1a:** the plan VERIFIED PASS (07:17–08:09); the worker DONE (08:10–09:04), with RX-230's count amended to four; the work VERIFIED PASS (09:06–09:37). **The first library at `7e91730` and LLVM 20.1.8.**
+  - **Time 0.3.2a:** planned at `f3804c3` (09:39–12:04). Its plan verifier is `_17`'s first dispatch, and the worker waits for next week by the room.
+  - **The compiler side:** notices 105 and 106 verified by the ladder; F48 (resent here after it never reached `_15`) and F49 filed; the seat rotated `_34` → `_35`.
+  - **The workbench:**
+    - the early audit's workbench findings all applied (E2-1 … E2-5, E2-7, E2-9, E2-11, E2-12, E2-15): the registry's settled rows struck, PLAYBOOK corrected, W-14 back in §5, and Q-3 answered;
+    - the day's held playbook findings landed.
+  - **The API credits:** five more jobs, $10.89, for $38.25 in all: the E2 draft, time's inventory, the two planning briefs, and `nitpick-fuzz`'s audit (filed).
+  - **The author's `/usage` (10:4x):** the room 5.0 points, and planners 32 % of the day's usage.
+  - **The author's account plans:** support's two answers, the mismatch this seat raised, and his choice of two separate projects. All of it is in the handoff block and the memory.
+  - **Slips, mine, each recorded:**
+    - two `cd`s into libraries, both read-only;
+    - a brief that said "notes on A-16 and A-11", where there is one note;
+    - a stand-in's input list without `950bb1d`, which the verifier found.
+  - **Budget:** the meter from 70 % (07:10) to 77 % (12:04); Fable from 63 % (03:16) to 68 % (10:45).
