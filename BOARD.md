@@ -1081,6 +1081,25 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 106 (D-342 R1 AND D-343; F48 BY SEQUENCE) — **TWO REFUSALS ADDED: AN ENUM VALUES EVERY VARIANT OR NONE (`NITPICK-TYPE-093`), AND A MACRO PARAMETER THAT ONLY NAMES A DECLARATION ITS BODY EMITS (`NITPICK-MACRO-011`). FOR US, ONE FILE: `nitpick-fuzz`'S `mc0388`, WHOSE EXPECTATION MOVES FROM `run:0` TO `refuse:NITPICK-MACRO-011`. NO EMISSION MOVES. NOT IN OUR PIN (`7e91730`).** From `nitpick-compiler_34`, filed 2026-10-09 07:22 by `nitpick-libs_16` from the message's full text. It was resent to this seat: the first sending never reached `nitpick-libs_15`, though `_34`'s record said it had.
+
+- **What 106 refuses:** two of the author's 2026-10-01 ratifications that the checker did not yet make.
+  - **D-342 R1:** `enum:Mixed = { First; Second; Tenth = 10i32; };` is `NITPICK-TYPE-093` at `Tenth`, the first variant whose spelling differs from the first's, once per enum. The reason: `{ A = 5i32; B; }` makes `B` 1, its position, where a reader from C or Rust expects 6. A mixed enum's unvalued variants leave the tag table, and `{ A; B = 0i32; }` is reported as the mix, not the collision (D-240). An enum with a payload variant can value none. Write every value, or none.
+  - **D-343:** a macro parameter that only names a declaration the body emits is `NITPICK-MACRO-011` at the macro's declaration, used or not. `macro:m = (N) { func:N = …; };` emitted a function literally called `N`, and dropped the argument.
+  - Tests: `enum_values.npk` (`Mixed` moved into the refused section), `param_misplaced.npk` (the four `*_unused` shapes refused), `enums_pick.npk` (`Flat` values every variant). TYPE_REFERENCE's variant-value section and MACRO_REFERENCE §3 and §10 carry the rules.
+- **Their measurement, over 5 112 files:**
+  - 1 site vanished: `ByPosition`'s collision report, replaced by the mix report two columns earlier;
+  - 7 appeared: 6 in the tree's two rejection files (`enum_values.npk` 2, `param_misplaced.npk` 4), and `mc0388`'s one;
+  - the compiler tree's 565 programs are byte-identical;
+  - **ours, 4 003 programs: 0 different, 1 newly refused (`mc0388`).**
+- **Checked here:**
+  - `nitpick-fuzz/m11/programs/mc0388.npk`'s header reads `claim: Substitution does not reach a declaration's name …` and `expect: run:0`, and its macro is `macro:m = (N) { func:N = … };`, the refused shape.
+  - **The enums:** a scan of every `.npk` in the nine trees (4 178 files, `.internal/` excluded) finds 72 enum bodies. 7 have a valued variant, and none mixes valued and unvalued variants.
+  - **The macros:** outside the fuzz corpus, only `nitpick-posix`'s probes 02a, 02c, 02d and 02f declare one. 02d and 02f take no parameter, and 02a's and 02c's `E` is read as a value (`pick (E)`), never only as a declaration's name.
+  - There is no commit to check yet. The landing is built and measured in `wt/34c`, uncommitted until 105's harness ends at about 08:40.
+- **For us, at the re-pin that carries 106:** `mc0388`'s expectation moves to `refuse:NITPICK-MACRO-011`, as `nitpick-fuzz`'s claim program for this rule. Nothing else moves.
+- **Timing:** 106 is committed after 105's harness ends, about 08:40, and its own harness runs after that, so it lands no earlier than about 12:00. The landing notice comes from `_34`.
+
 ### 📋 ADVANCE NOTICE FOR LANDING 105 (DEF-159; F47 BY SEQUENCE) — **A VALUE STORED THROUGH A HELD `@x` AFTER `move(x)` IS DROPPED AT THE SCOPE EXIT, WHERE IT LEAKED. NO REFUSAL MOVES, AND NO ANSWER. ONLY THE EMISSION'S TEXT MOVES, FOR PROGRAMS WITH AN ADDRESS-TAKEN OWNING BINDING: 24 OF OUR 4 003, FLAG TESTS ONLY, 0 NEWLY REFUSED. NOT IN OUR PIN (`7e91730`).** From `nitpick-compiler_34`, filed 2026-10-09 05:36 by `nitpick-libs_15` from the message's full text.
 
 - **What 105 changes.** `string->:p = @x; string:t = move(x); (<-p) = v;` is legal, but it leaked `v`. The move cleared `x`'s drop flag, the store put a live value into the vacated slot, and the scope exit dropped nothing: 192 094 bytes live after two thousand rounds, against 190 for one.
