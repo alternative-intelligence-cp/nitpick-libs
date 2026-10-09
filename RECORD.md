@@ -10520,3 +10520,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Gate 9 is exactly true:** all 23 declared constants have a row. It names the undeclared facts too, more than this seat's list, found by enumerating the code.
   - Only block 3's stat line moved.
 - **The verifier, resumed at 21:33** for the delta, the only verifier running. **When it passes, PD-99 … PD-102 are accepted as TM-254 … TM-257, and 0.3.2's worker is `_15`'s first dispatch.**
+
+### `nitpick-time` 0.3.2's plan VERIFIED PASS — PD-99 … PD-102 accepted; the lock released to `nitpick-libs_15` — 2026-10-08 21:55 (shell time)
+
+- **verify `s2-ntime-0.3.2-verify`, resumed — PASS** (22 min this round, 880 k tokens in all, 21 tool uses) on `abb5673`.
+  - The four rows are verbatim against `time.h` and `limits.h`, at the stated commits.
+  - **All 23 declared kernel constants have a row.** Gate 9's sentence on undeclared facts is true. Its one caveat: H-13's own path literals count as the spec's.
+  - Eleven blocks SAME, 3e at 293/28/237/28, CI per job, hygiene clean.
+- **Decision (this seat's): PD-99 … PD-102 accepted as TM-254 … TM-257.** PD-100 and PD-101 are the author's, by question 26.
+- **This seat's last write.** `_14` releases the workbench lock to `nitpick-libs_15`, which takes it by orchestrate §2. No subagent of `_14`'s remains in flight. `_15`'s first dispatch is 0.3.2's worker, with step 2 pushed alone and its CI read before step 3.
+- **The tenure, in brief** (2026-10-05 09:46 → 2026-10-08 21:55):
+  - **Compiler:** landings 94 … 101 verified here, each a ladder MATCH with its control failing. Advance notices 102 and 103 filed.
+  - **The install README** passed the author's newcomer test on a clean VM, with all six artefacts byte-identical across machines and builds.
+  - **regex:** cycle 0.1 closed; 0.2.0 and 0.2.1 done.
+  - **time:** 0.3.0 and 0.3.1 done; 0.3.2 planned.
+  - **Registered:** O-N40, O-N41 and O-X12. The private LLVM 20.1.2 is in place.
+  - **Today's lesson, paid for again and again:** a claim about a set is checked by enumerating the set.
+  - Budget: the week at 57 %.
