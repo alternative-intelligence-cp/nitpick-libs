@@ -11002,3 +11002,22 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The pace stands as the author set it:** width 1, one helper of a kind (W-24). At this take the meter reads 70 %, the five-hour window 14 %, and Fable 63 % (the author's `/usage` of 03:16, still the newest), so the room is 95 − 70 − 0.5 × 37 = **6.5 points**. That figure is conservative, since Fable has run on since 03:16. Regex 0.2.1a's chain goes first; time's adoption this week only if about 3 points remain after it, with a fresh `/usage` asked of the author if the room is near that line. 126 GiB available.
 - **A slip, mine, at 07:1x:** one read-only listing (`ls`, `wc -l` and `grep -n` over `0.2.1a.md` and its tools) ran as `cd nitpick-regex && …`, and the shell stayed there until the next call — the slip both handoff blocks' lessons name. Moved back at once. `nitpick-regex` is unchanged: porcelain 0, `HEAD` = `0199a4f`, its index's mtime 05:59, before the slip. No git command and no write ran while `.` meant the library.
 - **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
+
+### `nitpick-regex` 0.2.1a's plan verifier dispatched — `_16`'s first dispatch, at width 1 — 2026-10-09 07:17 (shell time)
+
+- **Dispatched 07:17: `s1-nregex-0.2.1a-verify`** (`npk:verifier`, `sonnet`) on `0199a4f`, the plan `_15` filed at 06:03. Its TOOLCHAIN is `7e91730`; the NOTES name the old pin's paths and each leg's LLVM.
+  - **Its nine questions:**
+    - CI per job: `0199a4f` (job `113768120906`, 89 513 B) and `00802a8` (`113765790683`, 87 931 B);
+    - the seven blocks through `blocks.py` in a stand-in workbench under `$TMPDIR`: a GitHub clone at `0199a4f`, copies of both pins and the private LLVM, plain copies of the board's three files, and a `--shared --no-checkout` clone of the compiler for `git show` and `git diff`. The plan's blocks find their inputs by the checkout's place, and a verifier writes nothing in the real repository;
+    - PD-103 by its own enumeration: 133 slots in 32 files, and 170 places in 39 files, 5 in 4 `src/` files. The compiler side's per-root 400 is named as a different question's count;
+    - **the key check, why the old pin cannot prove it alone:** the DEF-230 and DEF-248 shapes planted by hand, refused at `7e91730` and silent at `5fbaf4a`, with neither code in the census;
+    - DEF-247's return at step 2 only;
+    - PD-104: both self-check rows (21 of 31 NOT red with one moved), D-332 at both pins over the 33 files, and 294/294 at `7e91730`;
+    - CI's rows against `PIN.md`, and `rx120.sh`;
+    - the decisions by value, with A-16's and A-11's notes; the silent shapes, with a planted control; no landing past 103 cited;
+    - the hygiene.
+  - **`_15`'s points from its answer (07:1x) are all in the NOTES:** TOOLCHAIN `7e91730` with the old pin's absolute paths; the verifier's own enumerations, never the 400; both mutants; DEF-247; the self-check's row; CI against `PIN.md`; A-16 and A-11.
+- **Before it:** `nitpick-regex` clean at `0199a4f` and `0/0`; 126 GiB available; no other agent of this seat's (W-24).
+- **Budget:** the meter 70 %, the five-hour window 14 %, Fable 63 % (03:16), so the room is about 6.5 points.
+- **Expect one to two hours.** Regex's last two plan verifiers ran 54 and 60 minutes, and this plan's blocks run the full harness at both pins.
+- **Decision (this seat's): the regex audit's RA-1 … RA-8 go to 0.2.2's planner, not to this adoption.** They were filed at 04:57, after this plan was written, and the adoption's worker follows its patches: it may tighten a text, never change what it says. 0.2.2's plan is where the next text changes are designed. The board's owed line names RA-1 … RA-8 for regex's next dispatch, and that now means the next planner.
