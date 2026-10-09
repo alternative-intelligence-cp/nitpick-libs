@@ -10478,3 +10478,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The facts that are not declared constants (the uid and gid maps protocol, `tmpfs`, the mode literals 420 and 493) are left to the orchestrator's call.
 - **The planner was resumed at 21:00.** It reads `time.h` and `limits.h` at their primary source, files the four rows in step 3's addendum and its CURRENCY row, and rewords gate 9 to be exactly true, naming the non-constant facts as exercised at every run and owed no row.
 - **This is 0.3.2's plan's fourth round, every one on what the plan says about itself:** first its tests' strength, then two filings. The code has been right throughout. **The handoff to `_15` waits for this chain,** because both agents are `_14`'s, and resuming them is far cheaper than fresh ones re-reading a 1 400-line plan.
+
+### The author's second-subscription question — a docs lookup's answer, sourced and dated — 2026-10-08 21:06 (shell time)
+
+- **A `claude-code-guide` lookup** (238 k tokens, 47 tool uses). The sources are Anthropic's own pages and the `anthropics/claude-code` issues, with dates. A harness flag fired on its mention of `settings.json`; that was informational, and nothing was changed.
+- **Policy.**
+  - No Anthropic document read addresses one person holding two personal Pro or Max plans.
+  - The Consumer Terms (effective 2025-10-08, §2) bar sharing an account with anyone else. The Usage Policy bars multiple accounts used to evade detection or a ban. The text effective 2026-11-12 adds "or create multiple accounts" in that clause.
+  - The Claude Code legal page says the plans' usage limits "assume ordinary, individual usage of Claude Code and the Agent SDK". The lookup also points to the Consumer Terms §3 on "automated or non-human means".
+  - **Recommended: a written answer from Anthropic support before buying.**
+- **Mechanics.**
+  - On Linux the credentials are `~/.claude/.credentials.json`. **`CLAUDE_CONFIG_DIR` is documented for exactly this** ("Useful for running multiple accounts side by side"): each directory has its own settings, history, plugins and login.
+  - No per-machine limit or device ID is documented. `~/.claude.json`'s placement is not stated.
+- **Known problems, all 2026 and open unless noted:**
+  - #88855: re-authenticating one config dir disconnects Remote Control in the other;
+  - #87447: a desktop-launched session billed another account;
+  - #97680: daemon paths ignored `CLAUDE_CONFIG_DIR`, reportedly working from 2.1.281;
+  - #84090: logouts, closed as inactive.
+  Changelog fixes: 2.1.118, 2.1.259, 2.1.288.
+- **Across accounts.**
+  - Local cross-session messaging is restricted to the OS user, with no account condition named. It probably works across accounts; test it with `/list-agents`.
+  - Background supervisors are separate per directory, and Remote Control is per account.
+  - A second directory needs its own `settings.json`: hooks, sandbox and permissions don't carry over.
