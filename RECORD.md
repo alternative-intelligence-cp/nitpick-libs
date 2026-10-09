@@ -10782,3 +10782,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - B-4e's re-read of the compiler files changed since `5fbaf4a`.
 - **Before it:** `nitpick-regex` clean at `75dd51e` and `0/0`; 127 GiB available.
 - **Budget:** the meter 65 % and the five-hour window 21 %; the room is about 4.5 points with the author's Fable of 20:42. A planner fits it. The worker and its verifier are read against the room again before each dispatch.
+
+### The author's `/usage` — the week 66 %, Fable 63 %; the libraries' room 10.5 points, so both adoptions fit — 2026-10-09 03:18 (shell time)
+
+- **The author pasted `/usage` (03:1x):** the week (all models) 66 %, Fable 63 %, the five-hour window 23 %, all resetting 2026-10-14 19:59. Its contributions over the last day, local sessions, approximate:
+  - the `npk` plugin 59 %: `npk:planner` 28 %, `npk:worker` 20 %, `npk:verifier` 11 %;
+  - 97 % of usage at more than 150 k context;
+  - 90 % from sessions active 8 hours or more.
+- **The room, by `_14`'s method:** 95 − 66 − 0.5 × (100 − 63) = **10.5 points**. This replaces the 4.5 that the 20:42 Fable figure gave.
+- **The rates since 20:40:** all models 1.65 points an hour; Fable 2.1 % an hour (1.05 points); the rest, the libraries among it, 0.6 points. At that rate Fable is spent in about 17.6 h, around 21:00 today.
+- **Decision (this seat's), within the author's pace:** regex's adoption (`s1-nregex-0.2.1a-0307`, its planner running), then time's, one at a time, and nothing else new this week. The room is read before each dispatch. If it falls under about 3 points before time's adoption starts, time's waits for next week.
