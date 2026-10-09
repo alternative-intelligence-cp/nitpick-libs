@@ -10962,3 +10962,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **report `s1-nregex-0.2.1a-0307`, resumed: DONE** (5 min, 9 tool uses). One commit, `0199a4f`: the title ends " — PLANNED". No Expect and no patch quotes it. CI `37914753616` green, read per job (89 513 B).
 - **Checked here:** `check_record` gives `[no-report]` only. `nitpick-regex` is on `main` at `0199a4f` = `origin/main`, porcelain 0.
 - **The clean point.** Nothing of this seat's is in flight. The plan verifier is the next dispatch.
+
+### 🔁 HANDOFF — `nitpick-libs_15` → `nitpick-libs_16`, at the author's go — 2026-10-09 07:05 (shell time)
+
+- **The author (07:05):** *"yes you are go to proceed"*. The seat is at about 72 % context, at a clean point: nothing of this seat's in flight.
+- **The handoff block** is at the top of the board, with the pace, the pin, the state as values, the API credits, what is owed, the author's plans and the lessons. `_16` is briefed directly, and `_15` stays open for its questions.
+- **The tenure, in brief** (2026-10-08 21:59 → 2026-10-09 07:05):
+  - **The take:** `_14`'s first release left the token and the marker in place. It was measured here before any write and completed at `ea586a7`, and hazard (13) was added.
+  - **Time 0.3.2:** the worker BLOCKED at block 0b on a rate stated as a verdict (the runtime's guard is keyed by a getrandom secret). The allowance was recorded and the worker resumed. DONE at `989c772`, VERIFIED PASS.
+  - **The compiler side:** notices 102, 103 and 104 verified by the ladder; F46 and F47 filed; the seat rotated from `_33` to `_34`.
+  - **The one re-pin to `7e91730`** (03:05), its copies equal 103's rows and the canary commissioned both ways. **Regex 0.2.1a**, its adoption, planned at `0199a4f`.
+  - **The playbook pass:** 44 distinct held findings, 43 of them new.
+  - **The API credits:** the runner commissioned, nine audits and drafts filed for \$27.36, and the author's capacity plans recorded.
+  - **Slips, mine, each recorded:**
+    - a `cd` into `nitpick-tui` for one read;
+    - "3m has 34 rows" carried from a brief unchecked, where it has 35;
+    - a namespace over-claim in a verifier's question.
+  - **Budget:** the meter from 57 % (21:5x) to 69 %, Fable from 49 % to 63 % (03:16).
