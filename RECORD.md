@@ -11219,3 +11219,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **0.2.1a is DONE.** `LIBRARIES.md`'s regex row reads the adoption and decisions to RX-231. The claim on `nitpick-regex` stays, since cycle 0.2 is open.
 - **s1 idles by the author's pace.** 0.2.2's planner (the repetition product) is next week's, carrying RA-1 … RA-8, 0.2.1a's §7 hand-ons, the two leftovers, and the held finding *a count of sites is not a count of slots*.
 - **The private LLVM 20.1.2** is no longer needed by regex. It stays for `nitpick-time`'s adoption.
+
+### `nitpick-time` 0.3.2a — the adoption of compiler `7e91730` — its planner dispatched, the room meeting the author's two lines — 2026-10-09 09:40 (shell time)
+
+- **The decision (this seat's), by the author's pace of 2026-10-08:** time's adoption goes this week if about 3 points remain after regex's chain, and no new planner starts past about 75 % of the week.
+  - At 09:37 the meter read 72 %, the five-hour window 2 %, and Fable 63 % (the author's `/usage` of 03:16, still the newest; `usage-latest.json`'s `model_limits` has not been refreshed). So the room is 95 − 72 − 18.5 = **4.5 points**, conservatively, since Fable has run on since 03:16. Both lines are met.
+  - At 09:06 this seat had told the author that without a fresh `/usage` the adoption would wait. The work verifier then cost less than estimated (the meter stayed at 72 %), so the room is 4.5, not the 3.5 projected. The author was told the reason, and can say hold.
+  - **The room is read again before each later dispatch.** If it falls short partway, a verified plan waits for next week as a clean stop.
+  - **The cost to expect:** regex's chain (planner, plan verifier, worker, work verifier) ran while the meter went from 65 % to 72 %, 03:07 → 09:37, with two seats and the compiler side also running. Time's will be of that order, more than the "about four points" estimated at 05:58.
+- **Dispatched 09:39: `s2-ntime-0.3.2a-0939`** (`npk:planner`, `opus`) on `989c772`, TOOLCHAIN `7e91730`, the only agent running (W-24).
+  - **The models:** regex's 0.2.1a, verified today and the closer model, and this repository's `done/0.2/0.2.0a.md`. The credits job's inventory (`.internal/credits/out/time-adoption-inventory-2026-10-09.md`) is named as a guide, not the set.
+  - **What it carries, each to be measured:**
+    - the unchanged tree at both pins;
+    - 103's re-spellings, with the compiler side's per-root count named as such, and the six `string_bytes` bindings 0.3.2 added after 103's sweep;
+    - DEF-165's and DEF-164's headers, with D-332 over every `expect-error` file;
+    - CI's three rows, and the invocation comment back above "Run the harness";
+    - **the emission-reading checks against 103's type-id shift;**
+    - TM-255's dated credit to the author;
+    - facts.sh §1.9's guard line, as a byte that differs or as a rate;
+    - the self-check's LLVM row, DEF-247's return position, and every mention of `5fbaf4a` or 20.1.2.
+  - **The order is regex's:** re-spell at the old pin, then move it, with DEF-230's and DEF-248's shapes as mutants.
+  - **Not in it:** TA-1 … TA-7, which go to 0.3.3's planner, and tzdata 2026e, which goes to cycle 0.5.
+  - **A cost line:** no full harness the blocks do not need, and one confirmation pass.
+- **Before it:** `nitpick-time` clean at `989c772` and `0/0`; 126 GiB available.
+- **Expect two to three hours.** Regex's adoption planner ran 2 h 49 min.
