@@ -10595,3 +10595,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `usage-latest.json` carries a `model_limits` block with a Fable row.
   - That row is only as fresh as its `fetched_at`, which a `/usage` run in any session refreshes. At 21:58 it read Fable 38 %, fetched 16:50, against the author's 49 % at 20:42.
   - So the room uses whichever Fable figure is newer.
+
+### `_14`'s session scratch kept under `.internal/handoff-14-scratch/`, verified at full depth — 2026-10-08 22:02 (shell time)
+
+- **At `_14`'s request**, four folders from its session scratchpad are copied with `cp -a`. A session's scratchpad does not survive it, and `_14` no longer writes here.
+  - **`vm-scripts-backup/`** (58 files): the author's VM runner scripts as they stood BEFORE `_14`'s 2026-10-07 edits. The owed runner review diffs against it; the board's owed line says so.
+  - **`install-test2/`** (19 files): the newcomer test's run-2 scripts, `s1_env.sh` … `s11_final.sh`, with the `INSTALL.md` copy at `5309ede`. They can be reused for re-runs and for the libraries' half later.
+  - **`newcomer/`** (3 files): `inspect.sh`, `clean.sh` and `clean2.sh`, which made the VM's `newcomer` snapshot (llvm-20 and lld-20 purged, with an autoremove guard).
+  - **`llvm/`** (4 files): `fetch.sh`, `check.sh`, `extract.sh` and `smoke.sh`, which made and checked the private LLVM 20.1.2. The board's LLVM line points here for its deletion after the re-pin.
+- **Verified at full depth, not by a top-level glance.**
+  - The source and destination listings of every file and directory, with paths, sizes and modes, are identical: 84 files, 27 directories, depth 4.
+  - All 84 sha256 sums match at the destination, and the manifest is kept as the folder's `SHA256SUMS`.
+  - No symlink or special file. No credential-like string, by a case-insensitive scan; the runner's `.cfg` files hold its addresses and user names.
+- **Skipped, as `_14` advised,** because both can be derived again: `n95/` (ladder transcriptions) and `agent_dispatches.txt`. `_14`'s dispatch texts are also in its transcript, `8bd7d7dd-….jsonl`, by `jq` over its `Agent` calls.
