@@ -11266,3 +11266,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - About a point is kept back for the seats and the compiler notices (106 about 11:40, 107 no earlier than about 15:00).
   - Regex's chain measured the plan verifier at about 1 point, the worker at about 1 and the work verifier under 0.5, with the planner the large one.
 - **The seat's own cost:** this seat's context is 56 % (about 556 k tokens), so each wake after an idle hour re-caches all of it. A handoff to `nitpick-libs_17` at the next clean point lowers that: when the planner reports and nothing of this seat's is in flight. It is suggested to the author, whose call it is.
+
+### The compiler seat rotates, `nitpick-compiler_34` → `_35`; `nitpick-libs_15` closed — 2026-10-09 10:51 (shell time)
+
+- **`_34`'s message:** it rotates to `nitpick-compiler_35` now, the author's rotation before auto-compaction. 106's notice (D-342 and D-343, F48; its harness ends about 11:40, and the landing follows), 107's (DEF-243, F49) and the advance notices after them come from `_35`. `_34` states that what it owes is complete: 105's notice (08:16), F48 (07:25) and F49 (09:30). All three are filed here.
+- **`ListAgents` (10:5x):**
+  - `nitpick-compiler_35` (`[ca1853]`, the ref it had while parked) is idle, `_34` (`[5cd495]`) busy and `_36` (`[095ded]`) parked;
+  - `nitpick-libs_17` (`[2f2cfd]`) is idle, this seat's successor;
+  - `nitpick-libs_15` is gone, closed by the author on its release;
+  - the one subagent of this seat is the time planner.
+- **The ladder authenticates the content, whoever sends it** (hazard 10). The baseline for 106 is under 105's entry.
