@@ -10608,3 +10608,42 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - All 84 sha256 sums match at the destination, and the manifest is kept as the folder's `SHA256SUMS`.
   - No symlink or special file. No credential-like string, by a case-insensitive scan; the runner's `.cfg` files hold its addresses and user names.
 - **Skipped, as `_14` advised,** because both can be derived again: `n95/` (ladder transcriptions) and `agent_dispatches.txt`. `_14`'s dispatch texts are also in its transcript, `8bd7d7dd-….jsonl`, by `jq` over its `Agent` calls.
+
+### Today's held playbook findings landed — 44 distinct: 43 new at five sections, 1 already there — 2026-10-08 22:07 (shell time)
+
+- **The held lines:** 47 in 16 of today's entries. Three repeat earlier ones: the 0.3.1 wording fix's four include three of its fix's. So 44 are distinct.
+- **Landed in `PLAYBOOK.md`: 43, each with its source and "landed 2026-10-08".**
+  - **§2, the measured language facts (6):**
+    - the `async` emission's names;
+    - the scope-exit join's calls;
+    - the runtime table, declared in every module;
+    - a builtin's name refused only for a function-typed local;
+    - `ByteReader.seek` callable only from an `async func`, and a ban list that reads methods by name;
+    - `while … decreases` on every importer's bill.
+  - **§6, tooling (8):**
+    - `git apply` from a scratch copy;
+    - `check_denominators` alone;
+    - `clone --shared`'s branch;
+    - `swap` and `\n`;
+    - a wildcard exclusion;
+    - Markdown's lazy continuation;
+    - `check_refs` inside fences;
+    - a scratch clone below the checkout.
+  - **§9, testing conventions (13, in 12 bullets):**
+    - a full run measures "passes every check";
+    - red-first controls;
+    - a widened check's messages;
+    - a self-check row's real-file control;
+    - which functions a check holds;
+    - an emission that contains the code;
+    - a redundant field held at the writer;
+    - a loop bound at its edge;
+    - generated cases;
+    - the namespace machine and its CI step;
+    - a test's own `alarm`;
+    - `execve` for an environment.
+  - **§10, reserved words (2):** `cfg` reserved and `ppid` not, as 0.3.2's plan measured; and `Reader`, a prelude trait.
+  - **§12, plans (14):** a dated batch of 13 bullets.
+- **Already there, so not repeated:** "over a copy, the checkout's checks drop its exemptions" is §9's "a check whose exemption is tied to the repository's own tree".
+- **Still owed, as recorded at the handoff:** the three `npk` findings. One of them, that the plan skill should read `check_specs_current`'s unresolved count, is named in §12's new bullet on rule identifiers.
+- **Cost:** seat writes only, no agent.

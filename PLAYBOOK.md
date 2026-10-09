@@ -280,6 +280,31 @@ where `LEXICAL_REFERENCE.md` §6.2 says "at the `x`". Measure a position before 
 **At the pin, `int128` multiplication is inline** (`llvm.smul.with.overflow.i128`, no `__muloti4`), and `npkrt.o` defines only
 `__divti3` and `__modti3`. *(`nitpick-time` 0.2.3's plan, 2026-10-01; landed 2026-10-05.)*
 
+**At `5fbaf4a` an `async func` has no `npk.<module>.<name>` in the emission.** `npkc` emits its body as
+`npk.resume.<module>.<name>` over a frame type `npk.frame.<module>.<name>`, so a reading of the emission keyed on
+`npk.<module>.` does not see the function at all. Hold every function the source declares to the emission, and a miss
+becomes a red run rather than a smaller denominator. *(`nitpick-time` 0.3.1, 2026-10-08; landed 2026-10-08.)*
+
+**At `5fbaf4a` every `async` body's scope-exit join calls `npk_mono_now`, `npk_join_deadline`, `npk_run_until` and
+`npk_thread_join`**, even the prelude's `ByteWriter.flush`, whose body is `pass NIL`. So whether an async function reaches
+past the program's memory is read in its source, not in its emission's call graph. *(`nitpick-time` 0.3.1's fix,
+2026-10-08; landed 2026-10-08.)*
+
+**The emitter declares the runtime's whole table in every module**, so a `declare` in the emission proves nothing about use.
+Read the call edges. *(`nitpick-time` 0.3.1's plan, 2026-10-08; landed 2026-10-08.)*
+
+**A builtin's name is refused only for a function-typed local** (`NITPICK-RESOLVE-001`, the compiler's D-296).
+`int64:read` and `int64:mono_now` compile and run at `5fbaf4a`, so "a local named after a builtin is refused" over-claims.
+*(`nitpick-time` 0.3.1, 2026-10-08; landed 2026-10-08.)*
+
+**An async prelude method that reaches the kernel is callable only from an `async func`.** At `5fbaf4a`, `ByteReader.seek`
+(through `sys(8i64, …)`) awaited, called bare or drop-spawned in a synchronous function is `NITPICK-TYPE-043` each time.
+And a ban list of names reads a method by its name alone: `w.read(` matches the builtin `read`, and `r.seek(` matches
+nothing. *(`nitpick-time` 0.3.1, 2026-10-08; landed 2026-10-08.)*
+
+**A `while … decreases` loop adds `DecreasesViolated` to every importer's bill, where a `for` over a range does not.**
+*(`nitpick-time` 0.3.2's plan, 2026-10-08; landed 2026-10-08.)*
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may
@@ -1150,6 +1175,20 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   *(`nitpick-time` 0.2.3's plan; landed 2026-10-05.)*
 - **A scratch tool's absence is a claim to check where its maker kept it**, not a fact. *(`nitpick-regex` 0.1.5, 2026-10-02;
   landed 2026-10-05.)*
+- **`git apply` run from a scratch copy inside a checkout resolves its paths against the checkout.** Use `patch -p1 -d <copy>`,
+  or `git -C` on a real clone. *(`nitpick-time` 0.3.0's plan, 2026-10-08; landed 2026-10-08.)*
+- **`check_denominators` on its own measures 34 of 36 denominators**, so its result can be read only inside a full run.
+  *(The same plan.)*
+- **`git clone --shared` takes the source checkout's current branch.** Clone a design chain with `--branch main`.
+  *(`nitpick-time` 0.3.1's plan, 2026-10-08; landed 2026-10-08.)*
+- **A mutant anchor cannot hold a regex's `\n`**, which the mutation tool's `swap` reads as a newline. *(The same plan.)*
+- **An exclusion pattern with a wildcard must match the whole path**, so a wildcard directory name excludes nothing under it.
+  *(`nitpick-regex` cycle 0.1's close plan, 2026-10-08; landed 2026-10-08.)*
+- **A blockquote note between a decision's heading and its first line swallows that line** by Markdown's lazy continuation,
+  unless a blank line follows the note. *(`nitpick-regex` 0.1.6a, 2026-10-08; landed 2026-10-08.)*
+- **`check_refs` reads links inside fences.** *(`nitpick-regex` 0.2.0's plan, 2026-10-08; landed 2026-10-08.)*
+- **A scratch clone below the checkout reads two `check_refs` findings that the checkout does not.** *(`nitpick-regex` 0.2.0,
+  2026-10-08; landed 2026-10-08.)*
 
 ## 7. Repository conventions
 
@@ -1460,6 +1499,35 @@ repositories reads one thing.
 - **An IR reading meant to see what the source does not spell must read `npkc`'s emission before `opt`.** At `5fbaf4a`,
   `npkc` keeps `llvm.smul.with.overflow.i256` both for a call's product and for a literal product, and `opt -O2` folds
   both to constants. *(`nitpick-time` 0.3.0's fix, 2026-10-08.)*
+- **"Passes every check" is measured by a full run, never by the checks module alone.** `nitpick-time` 0.3.1's fix asked
+  `harness/checks.py` about three plants and wrote "pass every check"; in full runs two were RED by the arm bill, one only in
+  some modules: a `list_truncate` of descriptors was RED in `cal` and GREEN in `src/core/bytes.npk`, whose consumers already
+  owed its arms. The run's module decides an arm-bill verdict. *(`nitpick-time` 0.3.1's wording fix, 2026-10-08; landed 2026-10-08.)*
+- **A red-first prediction must cover the controls too.** *(`nitpick-time` 0.3.0's plan, 2026-10-08; landed 2026-10-08.)*
+- **When a check's subject widens, read each of its messages for the old subject's noun**, not only its rule and docstring.
+  *(`nitpick-time` 0.3.0, 2026-10-08; landed 2026-10-08.)*
+- **A self-check row whose control is a real tree file fails first, and alone, the day that file holds what the row plants**,
+  so the right check never names it. *(`nitpick-time` 0.3.1's plan, 2026-10-08; landed 2026-10-08.)*
+- **A check that holds declared functions to the emission must say which ones it holds.** `nitpick-time`'s declared-function
+  rule reads only the non-generic ones, so in a generic function that nobody instantiates no purity reading sees an async
+  call, a drop or a function-typed alias. *(`nitpick-time` 0.3.1's fix, 2026-10-08; landed 2026-10-08.)*
+- **An emission that contains the code closes a hole that token lists only narrow.** `nitpick-time`'s PD-99 instantiates every
+  generic function of `src/` in one unit, so the emission checks read them all, and a generic with no instance is a finding.
+  *(`nitpick-time` 0.3.2's plan, 2026-10-08; landed 2026-10-08.)*
+- **A writer that skips a redundant field lets a wrong count pass every round trip.** Hold the redundant fields equal at the
+  writer. *(`nitpick-regex` cycle 0.1's close, 2026-10-08; landed 2026-10-08.)*
+- **Measure a loop bound at its edge.** *(`nitpick-regex` 0.2.0's plan, 2026-10-08; landed 2026-10-08.)*
+- **To check "every case", generate the cases.** `nitpick-time` 0.3.2's first plan said its units saw every case a careless
+  implementation gets wrong; a single-site enumeration of the section (293 mutants from fourteen operators) found 25 killable
+  mutants they did not see. *(`nitpick-time` 0.3.2's revised plan, 2026-10-08; landed 2026-10-08.)*
+- **A unit can make the machine state it needs**: a user and a mount namespace of its own, with an empty `tmpfs` over `/etc`,
+  by syscalls in its own text. On GitHub's Ubuntu 24.04 runner that needs a CI step lifting AppArmor's userns restriction.
+  *(`nitpick-time` 0.3.2's plan, 2026-10-08; landed 2026-10-08.)*
+- **A test's own `alarm` turns a hang into a verdict.** A FIFO at `/etc/timezone` under the unit's `alarm(5)` ends a mutant
+  that drops `O_NONBLOCK` by `SIGALRM`, where it would have stalled the run. *(`nitpick-time` 0.3.2's revised plan,
+  2026-10-08; landed 2026-10-08.)*
+- **`execve` yourself to build an environment the harness cannot.** A unit that re-executes itself with environments it lays
+  out reaches cases that the harness's own mechanisms do not. *(The same plan.)*
 
 ---
 
@@ -1479,12 +1547,17 @@ The full table is `../nitpick/CLAUDE.md`. The ones a library reaches for:
 `decreases` `unbounded` `sealed` `hidden` — **new at the 1.5 re-pin: refused as
 local names at `c3bdae2`** (`NITPICK-PARSE-002` at the declaration)
 
+**`cfg` is reserved too, and `ppid` is not.** At `5fbaf4a`, `uid`, `gid`, `pid`, `tid`, `fd`, `thread`, `cfg` and `arena` are
+each `NITPICK-PARSE-002` as a local's name, while `ppid` compiles beside them. *(`nitpick-time` 0.3.2's plan, measured
+and verified, 2026-10-08; landed 2026-10-08.)*
+
 **A FILE'S BASENAME CANNOT BE A KEYWORD EITHER** *(added 2026-09-26, the ecosystem
 audit's EC7)*: a module declares `mod:<basename>;`, so `error.npk` and `raw.npk`
 are refused — `NITPICK-RESOLVE-012` at 1:1 at `c970483`, **`NITPICK-PARSE-001` at the name (1:5) at `5fbaf4a`** *(re-measured 2026-10-02, `nitpick-regex` cycle 0.1's audit, S3: "expected a name: a keyword cannot be declared as a function, type or module name")* — measured: `nitpick-regex`'s planned
 `error.npk` became `pattern_error.npk`, and `nitpick-sockets` plans a `raw.npk`.
 Check a planned module's name against the compiler's keyword list before it
-enters a plan.
+enters a plan. **Check a planned type's name against the prelude's as well:** `Reader` is a prelude trait at
+`5fbaf4a`. *(`nitpick-regex` cycle 0.1's close, 2026-10-08; landed 2026-10-08.)*
 **`stack`** — a MemoryQualifier beside `wild`, `wildx` and `defer`
 (`../nitpick/meta/specs/LEXICAL_REFERENCE.md:52`), confirmed against that file
 rather than reported.
@@ -1917,3 +1990,33 @@ and *"a sweep's recorded counts must come from the command the record prints."*
 - **An amendment to a rehearsed patch chain is mechanical and checkable.** Replay it raw; re-cut, requiring byte-identity;
   amend one step; and cherry-pick the later ones, so that a conflict marks exactly the hunk to re-cut. *(`nitpick-regex`
   0.1.5, 2026-10-02; landed 2026-10-05.)*
+
+**Landed 2026-10-08 (`nitpick-time` 0.3.0 → 0.3.2's plans and work, `nitpick-regex` 0.1.6 → 0.2.1; all 2026-10-08):**
+
+- **A fenced block that reads variables it never sets is a template, not a command.** "Every fenced command run verbatim"
+  needs `env.sh` and a `REPO=` prefix first. *(`nitpick-time` 0.3.0's plan.)*
+- **A sweep must not read plan files whose Expects quote that sweep.** *(`nitpick-regex` cycle 0.1's close plan.)*
+- **A decision that corrects a REASON is swept for the reason in every wording**, not only the rule's. A reason is restated
+  wherever the rule is sold or compared, not beside the rule. *(`nitpick-regex` 0.1.6a.)*
+- **A predecessor's record, simulated by its title and ticks, cannot predict a later plan's sweep.** Simulate it with the
+  evidence its own plan prescribes for each box, or mask the counts a record's lines can move. *(`nitpick-regex` 0.1.6b.)*
+- **A patch that cites the plan's own sections goes stale when they move.** No comparator sees a citation, so check each one
+  against the headings before the plan commit. *(The same.)*
+- **Enumerate the domain before naming its exceptions, as before naming the universal.** A dispatch named four asynchronous
+  prelude names off `nitpick-time`'s `check_purity` list; enumerating every function and method of the pinned prelude found a
+  fifth, `LineBufWriter.flush`, through the private `tw_write_all`. *(`nitpick-time` 0.3.1's fix.)*
+- **A structure a specification draws before any code is a hypothesis.** `HIR.md` H-2's three `int32` operands could not hold
+  a Repeat that is a list member. *(`nitpick-regex` cycle 0.1's close.)*
+- **Use a patch placeholder that no touched file holds.** *(`nitpick-regex` 0.2.0's plan.)*
+- **A pointer in an added line is checked against the documents as the patches leave them**, rule numbers too.
+  *(`nitpick-regex` 0.2.0.)*
+- **Rule identifiers are future numbers too.** `check_specs_current` never fails, so a forward rule citation passes every gate
+  a planner runs: write "the next rule", as with decisions above. That the plan skill should read its unresolved count is an
+  `npk` finding, owed to the plugin's keeper. *(`nitpick-time` 0.3.2's plan.)*
+- **A correction's list of sites is a claim about a set.** The orchestrator's four named texts for `nitpick-regex` 0.2.1 had
+  thirteen twins in other words, found only by reading every sentence about where the build stops. *(`nitpick-regex` 0.2.1.)*
+- **A rehearsed patch chain amends cleanly as replacements over the raw chain's trees**, with no count moved; the amendment
+  bullet above gives the procedure. *(The same.)*
+- **A currency gate is a claim about a set**, checked by enumerating the declared constants. `nitpick-time` 0.3.2's gate 9 said
+  every kernel number was filed, and two verifier rounds found ten of its 23 declared constants with no row.
+  *(`nitpick-time` 0.3.2's filing fixes.)*
