@@ -11289,3 +11289,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep is F48's:** of ours, 0 programs differ and 1 is newly refused, the fuzzer's `mc0388`, whose expectation moves to `refuse:NITPICK-MACRO-011` at the re-pin that carries 106.
 - **The baseline for 107 is written,** generated from the ladder-checked transcription and self-checked.
 - **A timing note:** `_35` dates `_34`'s rotation 09:40. This seat's 10:51 entry recorded when the message arrived, not when the rotation happened.
+
+### Three more credits jobs at the author's word — planning briefs for regex 0.2.2 and time 0.3.3, and `nitpick-fuzz`'s documents against code (filed); the credits at $38.25 — 2026-10-09 11:15 (shell time)
+
+- **The author (10:5x), on finding most of the first batch unused:** *"lets keep that in mind whenever something comes up that we could delegate to that to use those credits"*.
+  - **The expiry is uncertain.** The new batch arrives 2026-10-13. He had assumed the old one ends the 12th, and the console's billing page lists the first grant as 2026-10-09 → 2026-10-15. **This workbench plans to the 12th** and treats the 12th–15th as slack, until a full cycle gives data.
+  - The console's balance (about $180) lags `LEDGER.md` by a few runs.
+- **The runs** (Sonnet, read-only, 10:58–11:15):
+  - **`plan-brief-regex-0.2.2-2026-10-09`** ($2.71, 140 turns, 43 kB): for 0.2.2's planner, the repetition product. It covers the scope and acceptance, the rules and decisions that bind it, the code's current shape, the tests, the hand-ons owed, RA-1 … RA-8 re-checked at `5f2753e` with drafted fixes, E2-6 and E2-10, and what makes the two leftovers.
+  - **`plan-brief-time-0.3.3-2026-10-09`** ($2.69, 127 turns, 36 kB): for 0.3.3's planner, the double. It covers the host surface, every clock- or host-dependent behaviour, the tests and the boundary checks, TA-1 … TA-7 re-checked with drafted fixes, and E2-10. It was written at `989c772`, before 0.3.2a's re-spelling, so its line numbers will move.
+  - **`docs-vs-code-nitpick-fuzz-2026-10-09`** ($2.58, 79 turns): **filed as `meta/audits/nitpick-fuzz-docs-d44dfe3-2026-10-09.md`.**
+    - Its verdict: the arithmetic holds across the corpus and its documents; what drifts is status and classification. **Ten findings, all documents, no code defect.**
+    - **FZ-1:** `KNOWN_DEFECTS.md` says DEF-154 is fixed, and it is OPEN. **FZ-2:** `ty1657` was filed as a documentation row, and the compiler fixed it as DEF-231. **FZ-3:** M11 is called both done and unticked. **FZ-8:** no registry status is recorded for F-029 … F-048.
+    - **Spot-checked here:** FZ-1, FZ-3 and FZ-4, each as quoted.
+    - The findings go to `nitpick-fuzz`'s next task, which is the author's to choose.
+- **The briefs are guides, not reviewed here in full.** Each planner measures against the tree. They sit in `.internal/credits/out/` (gitignored), and each planner's dispatch names its brief.
+- **The credits:** $38.25 by the ledger over its runs since 03:4x, so about $162 is left by the ledger.
