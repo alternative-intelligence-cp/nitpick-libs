@@ -10500,3 +10500,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Local cross-session messaging is restricted to the OS user, with no account condition named. It probably works across accounts; test it with `/list-agents`.
   - Background supervisors are separate per directory, and Remote Control is per account.
   - A second directory needs its own `settings.json`: hooks, sandbox and permissions don't carry over.
+
+### Advance notice for landing 103 filed — `fixed T[]` as a type; regex 78 files, time 21 to re-spell at the re-pin — 2026-10-08 21:33 (shell time)
+
+- **From `nitpick-compiler_33`.** It is F45 by sequence, closing DEF-246 and DEF-247.
+  - `fixed T[]` is the read-only view, and `string_bytes` always returns one.
+  - Every reader that binds it into a plain `uint8[]` is TYPE-007, fixed by one re-spelling.
+- **Ours:**
+  - regex 78 files, 400 sites, `src/` 10 files with 28 sites;
+  - time 21 files, 35 sites, `src/` 2 files;
+  - the fuzz corpus 1 013 files.
+  The early count grew with regex's 0.2.0 and 0.2.1 code. The emission's text moves by one type id, and no artifact moves.
+- **The one re-pin goes when 103 lands and is verified here,** by the author's word. The handoff's re-pin list now carries F45's counts.
