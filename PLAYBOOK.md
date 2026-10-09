@@ -1209,6 +1209,15 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
 - **`check_refs` reads links inside fences.** *(`nitpick-regex` 0.2.0's plan, 2026-10-08; landed 2026-10-08.)*
 - **A scratch clone below the checkout reads two `check_refs` findings that the checkout does not.** *(`nitpick-regex` 0.2.0,
   2026-10-08; landed 2026-10-08.)*
+- **GitHub's `ubuntu-24.04` runner restricts unprivileged user namespaces.** A process may create one but holds no
+  capability inside it, so a test that mounts in its own namespace fails there. Lift it in a step before the harness, with
+  `sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0`, printing the value before (1) and after (0): the runner is
+  a fresh VM for one job. *(`nitpick-time` 0.3.2, PD-100, 2026-10-08; landed 2026-10-09.)*
+- **The compiler side's per-file site counts are per ROOT, not distinct places.** Its sweep compiles every `.npk` as a root,
+  so a site in a shared module counts once per file that reaches it: F45's regex section said 78 files and 400 sites, and the
+  tree held 170 distinct places in 39 files (`src/`'s "10 files, 28 sites" was 5 places in 4 files). Both are right; they
+  answer different questions, and a re-spelling touches the places. *(`nitpick-regex` 0.2.1a's plan, 2026-10-09; landed
+  2026-10-09.)*
 
 ## 7. Repository conventions
 
@@ -1548,6 +1557,22 @@ repositories reads one thing.
   2026-10-08; landed 2026-10-08.)*
 - **`execve` yourself to build an environment the harness cannot.** A unit that re-executes itself with environments it lays
   out reaches cases that the harness's own mechanisms do not. *(The same plan.)*
+- **A program run once against the runtime's allocator guard states a RATE, not a verdict.** The guard words are
+  `secret ^ guardaddr ^ K_GUARD`, the secret from `getrandom(2)` at the first allocation, so a write of a fixed byte changes
+  nothing whenever the guard's byte already holds it: one run in 256, by design (measured: 9 of 842 unseen; 800 of 800 caught
+  when the write puts the guard's own byte plus one). Write a byte known to differ from the guard's, or quote the line as a
+  rate. *(`nitpick-time` 0.3.2's worker, 2026-10-08; its mutant 295.5, caught by the guard alone on 398 of 400 legs, is the
+  same rate; landed 2026-10-09.)*
+- **A self-check that builds scratch trees carries its own toolchain rows, and a re-pin moves them too.** `nitpick-regex`'s
+  `harness/selfcheck.py` writes each case tree's manifest with its own `llvm`, `triple` and `datalayout`: with only the tree's
+  `llvm` row moved to 20.1.8, 21 of its 31 live cases went NOT red, each inner run refused at the toolchain check.
+  `nitpick-time`'s self-check reads its rows from the tree's manifest, the better shape. *(`nitpick-regex` 0.2.1a's plan,
+  2026-10-09; landed 2026-10-09.)*
+- **A verifier rehearsing out of the checkout rebuilds the checkout's position.** A plan whose `env.sh` finds its inputs by
+  the checkout's place (the workbench above it, the compiler beside that) runs in a stand-in workbench under `$TMPDIR` only
+  when the stand-in holds every path the tools read: both pins, the private LLVM, the board's documents, a `--shared
+  --no-checkout` clone of the compiler, and `.internal/toolchain/950bb1d`, which `rx120.sh`'s control reads. Find the set by
+  reading the tools, not from a brief. *(`s1-nregex-0.2.1a-verify`, 2026-10-09; landed 2026-10-09.)*
 
 ---
 
@@ -2040,3 +2065,15 @@ and *"a sweep's recorded counts must come from the command the record prints."*
 - **A currency gate is a claim about a set**, checked by enumerating the declared constants. `nitpick-time` 0.3.2's gate 9 said
   every kernel number was filed, and two verifier rounds found ten of its 23 declared constants with no row.
   *(`nitpick-time` 0.3.2's filing fixes.)*
+
+**Landed 2026-10-09 (`nitpick-time` 0.3.2's work and `nitpick-regex` 0.2.1a's plan; 2026-10-08 and 2026-10-09):**
+
+- **An adoption re-spells at the OLD pin first, then moves the pin.** The old compiler then testifies that the re-spelling
+  changed no answer (every file's codes and sites identical, the full run green), and only then does the pin move. The old pin
+  cannot prove the re-spelling TRUE: at `5fbaf4a` a write through a `fixed` slice (DEF-230) and a reassigned `fixed` parameter
+  (DEF-248) compile in silence, so only the new pin's census shows that no slot is written through. Plant both shapes as the
+  adoption's mutants. A re-pointed `fixed` local is refused at both pins; only the parameter was silent. *(`nitpick-regex`
+  0.2.1a's plan and its verifier.)*
+- **A number carried from a brief is a claim to check against the plan's own text.** `nitpick-time` 0.3.2's block 3m has 35
+  rows; a handoff's "34" travelled into a worker's and a verifier's NOTES unchecked, and the verifier found it. *(`nitpick-time`
+  0.3.2's verifier.)*

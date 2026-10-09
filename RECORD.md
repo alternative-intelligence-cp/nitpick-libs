@@ -11160,3 +11160,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin** (`7e91730`). At the re-pin that carries it, time's emission-reading checks re-run in its adoption.
 - **The baseline for 106 is written**, generated from the transcription the ladder checked rather than retyped, and self-checked: the ladder MATCHes the six rows against it as unchanged.
 - **Next:** 106 (F48), committed within the hour, its notice after its harness: no earlier than about 12:00, by F48.
+
+### Today's held playbook findings landed — the six from the handoff list, and one from regex 0.2.1a's plan verifier — 2026-10-09 08:16 (shell time)
+
+- **Landed in `PLAYBOOK.md`, each with its source and "landed 2026-10-09":**
+  - **§6, tooling (2):** GitHub's `ubuntu-24.04` runner restricts unprivileged user namespaces, with the `sysctl` step from `nitpick-time`'s `ci.yml`; and the compiler side's per-file site counts are per root, not distinct places (400 against 170).
+  - **§9, testing conventions (3):** a program run once against the allocator guard states a rate, not a verdict; a self-check that builds scratch trees carries its own toolchain rows, and a re-pin moves them too; and, new from `s1-nregex-0.2.1a-verify`, a verifier rehearsing out of the checkout rebuilds the checkout's position, finding the set (`950bb1d` among it) by reading the tools.
+  - **§12, plans (2), a dated batch:** an adoption re-spells at the old pin first, then moves the pin, with the two shapes the old pin cannot see as its mutants; and a number carried from a brief is a claim to check against the plan's own text.
+- **Struck on the owed list:** "today's held findings-for-playbook". **Still owed:** the `npk` findings (tool changes, not this seat's to write).
+- `check_refs` is clean. **Cost:** seat writes only.

@@ -64,7 +64,7 @@ blocked, what is done. The durable plan is
 > - **More to run:** drafts of the other E2 workbench fixes, and documents-against-code for `nitpick-fuzz`.
 >
 > **Owed:** the owed list below, with each repository's audits by id and the E2 seat writes. Also:
-> - today's held findings-for-playbook:
+> - ~~today's held findings-for-playbook:~~ **LANDED 2026-10-09 08:16 by `_16`, all six, in PLAYBOOK §6, §9 and §12, with a seventh from the plan verifier (`RECORD.md` 2026-10-09 08:16):**
 >   - the guard's rate;
 >   - the userns CI step;
 >   - a number carried from a brief;
