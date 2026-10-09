@@ -101,7 +101,7 @@ fact has one.
 
 **And what they can and cannot enforce.** A skill's `allowed-tools` only
 pre-approves; it never restricts. An agent definition's tool list does
-restrict, which is why the auditor and researcher genuinely cannot write. The
+restrict, which is why the researcher genuinely cannot write: its tools are `WebSearch, WebFetch, Read, Grep, Glob`. The auditor and the verifier list `Bash`, so for them "writes nothing" is a discipline plus the guard where it can see, and the guard cannot see an interpreter heredoc (`PLAYBOOK.md`, "THE WRITE GUARD CANNOT SEE AN INTERPRETER HEREDOC"). *(Corrected 2026-10-09, the early ecosystem audit's E2-11: this said "the auditor and researcher genuinely cannot write".)* The
 orchestrator is the main session, so "the orchestrator writes no code" is a
 discipline. The three write rules are enforced by the guard below.
 

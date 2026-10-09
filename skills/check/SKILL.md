@@ -37,6 +37,11 @@ only, so a scratch file in `meta/scratch/` is not a finding.
 | `defined-uncited` | a decision declared that nothing cites. Either a dead decision, or a specification that states a rule and forgot to attribute it. **The second is far more common and is the real value of this check** |
 | `undefined-question` | an `O-`/`Q-` reference with no definition. Usually a prefix collision — a specification's internal rule prefix must not collide with `O-N`, `O-x` or `Q-` |
 | `leak` | an absolute home path or a credential in a tracked file. These repositories are public |
+| `unmarked-supersede` | a decision that a tracked file declares superseded (`supersedes X`, or `X … superseded`) whose own heading in `meta/DECISIONS.md` carries no `SUPERSEDED` marker, neither on the heading nor in a `>` line within four lines after it. Add the marker; do not rewrite the decision |
+| `tracked-file-missing` | git tracks a file that is not on disk, usually deleted and not yet staged. Not a fault in the repository, but every other check skipped that file, so it is reported. Restore it or stage the deletion |
+| `no-markdown` | no tracked markdown at all in the directory checked: almost always the wrong directory. The script returns at once, so no other check ran |
+
+*(Three rows added 2026-10-09, the early ecosystem audit's E2-15: the table listed six of the script's nine finding kinds.)*
 
 ## The rule this enforces
 
@@ -72,7 +77,7 @@ Exit 0 clean, 1 findings, 2 could not run. The findings:
 
 Both scripts have a negative control beside them, and each runs first in a
 dry run: `scripts/test_check_refs.py` plants one fault per class and requires
-exactly that class back (six classes and one clean case);
+exactly that class back (it prints its own count of fault classes and false-positive controls; `no-markdown` has no planted case. *Corrected 2026-10-09, E2-15: this said "six classes and one clean case"*);
 `scripts/test_check_record.py` does the same for the record check (ten
 classes and one clean case). If you extend a script, extend its control. A
 check that has never failed has not been shown to work — which is how the

@@ -51,10 +51,10 @@ Skipped in `tick` mode.
    the whole line, and seven prose mentions of `none` unlocked it for every session). **If the line names another session:**
    `ListAgents` lists this machine's peer sessions by name and an idle/busy
    state — not by id. **Since 2026-09-05 those names follow a convention the
-   author set: `<project>_s<N>`**, where the project segment names the work
-   area and `N` is the handoff generation — `nitpick-libs_s0` is this
-   workbench, `nitpick-libs_s1` its waiting successor, `nitpick-compiler_s0`
-   the compiler. So a name now tells you which repository a peer works on,
+   author set: `<project>_<N>`** (`_s<N>` until generation 9, when the author dropped the `s`; his `claun` tool allocates each project's next number), where the project segment names the work
+   area and `N` is the handoff generation — `nitpick-libs_<N>` is this
+   workbench's seat (the board's writer line names it), `nitpick-libs_<N+1>` its waiting successor, `nitpick-compiler_<N>`
+   the compiler's, whichever generation `ListAgents` shows. So a name now tells you which repository a peer works on,
    and the bracketed `[ref]` is what disambiguates. A **`nitpick-libs…`**
    peer that is not you means that session may be live:
    stop and ask the author; two writers here is the one failure the whole
@@ -134,7 +134,7 @@ when the check was added: it fires on that real case and stays silent on a
 binary newer than `HEAD`.
 
 **With `tree dirty` OR `tree unknown`, ask before you pin** — over
-`SendMessage`, to `nitpick-compiler_s0` (the compiler session; `ListAgents`
+`SendMessage`, to `nitpick-compiler_<N>` (the compiler session; `ListAgents`
  confirms who is alive) — what `build/`
 was built from and whether there is a stable point to pin at all, and record
 the answer as a **`binary` line in `PIN.md`**. Requiring that line in only one

@@ -11125,3 +11125,28 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - the standing lines.
   - **Expect one to two hours.** Regex's last two workers ran about 70 and 75 minutes, and this one runs full harnesses at both pins and CI's first run under 20.1.8.
 - **Budget:** the meter 71 %, the five-hour window 18 %, Fable 63 % (03:16, still the newest), so the room is about 5.5 points, conservatively. 127 GiB available.
+
+### The rest of the early audit's workbench findings corrected — E2-5, E2-7, E2-11, E2-12 and E2-15, from the credits draft, every site matched and its evidence checked — 2026-10-09 08:13 (shell time)
+
+- **The draft:** `.internal/credits/out/e2-workbench-fixes-draft-2026-10-09.md` (07:42 entry).
+- **Checked here before any write:**
+  - the eleven `RECORD.md` lines it cites, each saying what it claims: the sandbox's answer and application on 2026-10-01, its widening on 2026-10-07, the context hook's trial, and generation 9's naming;
+  - `WORKSTREAMS.md`'s 28 rules, each of W-1 … W-28 exactly once;
+  - the 0.2.x titles (0.2.0 … 0.2.6 DONE, 0.2.7 RUNNING);
+  - the audits directory's file names;
+  - `check_refs.py`'s three uncatalogued finding kinds;
+  - regex's `CLAUDE.md` for the contracts claim (`limit<Rules>`, `requires`, `ensures` and their three `failsafe` variants, and `prove` checking nothing);
+  - the three agents' tool lists, against this session's own roster.
+- **Applied:**
+  - **E2-5:** `WORKSTREAMS.md`'s gating row for 1.5.1 – 1.5.4 struck (cycle 1.5 closed 2026-09-25; the contracts live); §6's probe-02 row struck (W-1 discharged) and its cycle-0.0 row corrected (regex and time are past 0.0); **W-14 moved back into §5 after W-13**, with a pointer left in §6; `CLAUDE.md`'s rule range W-1…W-28;
+  - **E2-7:** `PLAYBOOK.md`'s "That mitigation is not deployed" struck, with the sandbox's history and a list of what the guard and the sandbox still cannot see; **the registry's Q-3 ANSWERED** (2026-10-01, yes, applied the same day), its open parts stated and its text kept;
+  - **E2-11:** `README.md` says the researcher cannot write, and the auditor and the verifier, which list `Bash`, write nothing by discipline plus the guard;
+  - **E2-12:** the roadmap's 0.2 status lines say RUNNING; the audits README names the file forms in use; orchestrate §2's naming paragraph gives `<project>_<N>` generically, with no session named, since one goes stale at each handoff; §3's compiler address is `nitpick-compiler_<N>`;
+  - **E2-15:** the check skill's table gains its three missing finding kinds, and its count sentence defers to the script's own count.
+- **Changed from the draft:**
+  - Q-3's replacement had truncated the question's own text, and here it is kept whole;
+  - the orchestrate text named `nitpick-libs_16` and is written generically;
+  - `CLAUDE.md` takes the number alone, with no dated note in a file every session loads;
+  - the audits README lists every ordinal suffix in use (`-second` … `-sixth`), not one.
+- **Held, an `npk` finding:** `agents/auditor.md`'s description says "Cannot write files." while its tools list `Bash`. That is the same over-claim E2-11 corrected in the README. It is a prompt-loaded definition, so it is left for the author's word or the next `npk` pass.
+- **Struck on the owed list:** E2-5, E2-7, E2-11, E2-12 and E2-15. With E2-1 … E2-4 and E2-9 earlier today, the early audit's workbench findings are done. Its per-repository findings (E2-6, E2-8, E2-10, E2-13, E2-14) go with each repository's next dispatch. `check_refs` is clean. **Cost:** seat writes only.

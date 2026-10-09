@@ -1,6 +1,6 @@
 # Cycle 0.2 — the system made to run
 
-**Plugin `npk` 0.1.0 → 0.2.0. Status: PLANNED.**
+**Plugin `npk` 0.1.0 → 0.2.0. Status: ~~PLANNED~~ RUNNING (since 2026-09-03, author).** *(Corrected 2026-10-09, E2-12: 0.2.0 … 0.2.6 are DONE; only 0.2.7, the dry runs, is running.)*
 
 Cycle 0.1 wrote the documents and the skills in one planning session. They
 were reviewed on 2026-09-03 with one question: *would this run?* The documents

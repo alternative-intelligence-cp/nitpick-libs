@@ -127,8 +127,8 @@ blocked, what is done. The durable plan is
   - **Seat writes:**
     - ~~E2-1 … E2-3: PLAYBOOK's stale rows, among them no `fixed T[]` row;~~ **DONE 2026-10-09 07:29 by `_16`** from the credits draft, each site checked (`RECORD.md` 2026-10-09 07:29).
     - ~~E2-4: the 20.1.2 texts in PLAYBOOK, orchestrate §3 and new-repo;~~ **DONE 2026-10-09 07:29 by `_16`** from the credits draft, each site checked (`RECORD.md` 2026-10-09 07:29).
-    - E2-5: WORKSTREAMS and `CLAUDE.md`'s W-26;
-    - E2-7, E2-11, E2-12 and E2-15;
+    - ~~E2-5: WORKSTREAMS and `CLAUDE.md`'s W-26;~~ **DONE 2026-10-09 08:13 by `_16`** from the credits draft, each site matched and its evidence checked (`RECORD.md` 2026-10-09 08:13).
+    - ~~E2-7, E2-11, E2-12 and E2-15;~~ **DONE 2026-10-09 08:13 by `_16`** from the credits draft, each site matched and its evidence checked (`RECORD.md` 2026-10-09 08:13).
     - ~~E2-9: the registry's settled rows. That is ten O-N rows whose DEFs are FIXED and carried by the pin, and O-X9, O-X11, O-X12 and O-Y2. Strike each with its evidence.~~ **DONE 2026-10-09 07:25 by `_16`** from the credits draft, checked line by line: 10 struck, O-Y2 struck recording its overturned recommendation, and O-N33, O-N36 and O-N38 amended PARTLY DISCHARGED, since each still carries open work (`RECORD.md` 2026-10-09 07:25).
   - **Each repository's next dispatch, by id:** E2-6, E2-8, E2-10, E2-13 and E2-14.
 > - **the pinned external facts, checked 2026-10-09** (`meta/audits/currency-2026-10-09.md`): tzdata 2026c → 2026e (time; its cycle 0.5 pin), TOML v1.0.0 → v1.1.0 (parse; before its 0.6), POSIX.1-2017 → 2024 (posix). Each goes with its repository's next dispatch.

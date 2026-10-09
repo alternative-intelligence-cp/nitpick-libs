@@ -21,8 +21,8 @@ deleted.
   session started in the workbench without `--plugin-dir` offered and ran
   `/npk:check`. One copy, no flag; the alias is now the fallback note.
   [`roadmap/0.2/0.2.6.md`](roadmap/0.2/0.2.6.md) §5's fallback was not needed.
-- **Q-3 — should the sandbox's `filesystem.denyWrite` cover the compiler
-  tree?** The guard classifies command text and cannot see an interpreter
+- ~~**Q-3 — should the sandbox's `filesystem.denyWrite` cover the compiler
+  tree?**~~ — **ANSWERED 2026-10-01, yes, and applied the same day.** The author answered yes, scoped to sessions started in `nitpick-libs` (`RECORD.md`, 2026-10-01, "question 3 answered"); the sandbox was applied at his go at 12:39 with `denyWrite` on `../nitpick` and `allowUnsandboxedCommands: false`, and the lock was checked live: a shell write outside the allowed paths was refused "Read-only file system" (`RECORD.md`, 2026-10-01 12:39). It was widened for the test VM's runner on 2026-10-07 23:14 at the author's request, and the board's sandbox note records the state: shell writes go only to the listed paths, and `../nitpick` is read-only. **What this does not answer:** the guard still cannot see an interpreter heredoc into an unclaimed library or into a workbench file by a session that is not the writer; a session started outside this workbench is not covered; and the settings file is untracked. `PLAYBOOK.md`'s paragraph "THE WRITE GUARD CANNOT SEE AN INTERPRETER HEREDOC" lists these. *(Struck 2026-10-09, the early ecosystem audit's E2-7.)* The question as it stood follows, kept. The guard classifies command text and cannot see an interpreter
   heredoc that writes; the sandbox can. Enabling the sandbox is a larger
   change with its own costs. *Recommendation:* not in cycle 0.2; revisit
   after the first width-3 window, when the evidence says whether the guard's

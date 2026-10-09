@@ -23,7 +23,7 @@ with its own history and remote; this repository tracks the root only.
   write here. The board itself is the lock: take it only when that session is
   gone, and record the takeover in `RECORD.md`.
 
-**Read first.** `README.md` (the map) · `WORKSTREAMS.md` (the rules W-1…W-26)
+**Read first.** `README.md` (the map) · `WORKSTREAMS.md` (the rules W-1…W-28)
 · `PLAYBOOK.md` (what the language imposes). The plan for the system itself
 is `meta/roadmap/`.
 

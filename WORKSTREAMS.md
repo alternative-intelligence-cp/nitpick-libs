@@ -20,7 +20,7 @@ What the compiler *does* gate, exhaustively:
 
 | Compiler capability | What it unblocks | Where it bites |
 |---|---|---|
-| **1.5.1 – 1.5.4** — the verification surface typed, `limit<Rules>`, contracts, `prove` | turning each repository's `VERIFICATION.md` obligations from comments with property tests into real clauses | each library's **hardening** cycle, near its 1.0. Nothing earlier |
+| ~~**1.5.1 – 1.5.4** — the verification surface typed, `limit<Rules>`, contracts, `prove`~~ **cycle 1.5 — CLOSED 2026-09-25 (1.5.8d). `limit<Rules>` live since the `3d15ac9` pin, `requires` and `ensures` since `c3bdae2`; `prove` is accepted and checks nothing in a plain build** | turning each repository's `VERIFICATION.md` obligations from comments with property tests into real clauses | each library's **hardening** cycle, near its 1.0. Nothing earlier *(Corrected 2026-10-09, E2-5: the compiler no longer gates this row. The clauses are live and each one charges every consumer a `failsafe` arm (`LimitViolated`, `RequiresViolated`, `EnsuresViolated`). A `prove` obligation is judged only in a verified build, which no library has run yet, so it stays a comment until one does.)* |
 | **O-N2** — `npkg` builds a library, `[dependencies]` resolves | retiring each Python harness; making cross-repo imports non-relative | **nothing**. Both are worked around by design, and the workaround is the plan |
 | **O-N1** — `clone_exec` takes a signal mask | removing `ntui`'s unblock-around-spawn window | `ntui` 0.1.6 only, and it has a working answer already |
 | **O-N5** — `npkg` builds many artifacts | `nitpick-posix`'s build | nothing; the harness does it |
@@ -168,6 +168,12 @@ first.
 touched anything shared — the playbook, a registry, a workbench document — the
 orchestrator merges and re-checks rather than collecting green branches.
 
+**Rule W-14 — the probes are the cheapest possible risk reduction and they are
+already written.** Every repository's `0.0.0.md` is execution-grade. Running
+them before the compiler frees up converts six unknowns into six facts, and any
+one of them coming back negative is worth knowing before a stream is committed
+to a plan built on it. *(Note 2026-10-09, E2-5: the compiler is built, and `nitpick-regex` and `nitpick-time` have run their probes, so the rule now bears on `nitpick-tui`, `nitpick-parse`, `nitpick-sockets` and `nitpick-posix`.)*
+
 **Rule W-15 — the unit of delegation is the subcycle.** One fresh worker per
 subcycle; the claim covers the repository for the cycle; the handoff between
 subcycles is the execution record. (`meta/roadmap/0.2/README.md` P-1)
@@ -276,12 +282,8 @@ Six things need nothing that does not already exist, and each is roughly a day:
 
 | Work | Why now |
 |---|---|
-| **`nitpick-posix` 0.0.0 probe 02** | W-1. It gates a fourteen-cycle repository's shape and nothing else can be scheduled around it until it is answered |
-| each library's **cycle 0.0 probes** | every one of them exists to find out whether the design is spellable, and a negative answer changes a specification. Five repositories, five afternoons, and they are independent |
+| ~~**`nitpick-posix` 0.0.0 probe 02**~~ | ~~W-1. It gates a fourteen-cycle repository's shape and nothing else can be scheduled around it until it is answered~~ **Answered 2026-09-03, negative** *(Corrected 2026-10-09, E2-5: W-1 is DISCHARGED at line 33 above and O-N6 is closed negative in the table at line 27. Nothing is gated on this probe any more.)* |
+| each library's **cycle 0.0 probes** | every one of them exists to find out whether the design is spellable, and a negative answer changes a specification. ~~Five repositories, five afternoons, and they are independent~~ They are independent *(Corrected 2026-10-09, E2-5: `nitpick-regex` and `nitpick-time` closed cycle 0.0 and are past cycle 0.1. `nitpick-tui`, `nitpick-parse` and `nitpick-sockets` still have theirs, each "0.0 execution-grade", and so does `nitpick-posix` beyond its probe 02: three libraries and the apps repository, not five afternoons.)* |
 | **`nitpick-libs` O-N2 request** | raised with the compiler side. It blocks nothing but it has a long lead time |
 
-**Rule W-14 — the probes are the cheapest possible risk reduction and they are
-already written.** Every repository's `0.0.0.md` is execution-grade. Running
-them before the compiler frees up converts six unknowns into six facts, and any
-one of them coming back negative is worth knowing before a stream is committed
-to a plan built on it.
+*(Rule W-14 now stands in §5, after W-13. Moved 2026-10-09, the early ecosystem audit's E2-5: it was left here when cycle 0.2.0 appended W-15 onward after it.)*

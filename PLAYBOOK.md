@@ -964,10 +964,20 @@ file:
 
 The guard's own docstring states this limit and names the mitigation: *"The
 airtight mechanism for the first is the sandbox's `filesystem.denyWrite`."*
-**That mitigation is not deployed.** `denyWrite` appears nowhere in
-`~/.claude/settings.json` or any project settings; `permissions.defaultMode` is
+~~**That mitigation is not deployed.** `denyWrite` appears nowhere
+in `~/.claude/settings.json` or any project settings; `permissions.defaultMode` is
 `auto` and the only hook wired is the guard itself. So the compensating control
-the limit is documented against does not exist in this installation.
+the limit is documented against does not exist in this installation.~~
+*(Corrected 2026-10-09, E2-7. True on 2026-09-05, when this was measured; the sandbox was deployed on 2026-10-01. A user-level `denyWrite` entry had been added by 2026-09-30, but with the sandbox off it did nothing (`RECORD.md:8372`). On 2026-10-01 12:39 the sandbox was applied at the author's go, in this workbench's untracked project settings: `sandbox.enabled`, `denyWrite` on `../nitpick`, `allowUnsandboxedCommands: false`. The lock was checked live, and a shell write outside the allowed paths was refused "Read-only file system" (`RECORD.md:8454-8458`). The inert user-level block was removed at the same time (`RECORD.md:8457`). On 2026-10-07 23:14 it was widened, at the author's request, by an `allowWrite` list for the test VM's runner (`RECORD.md:9420`). `BOARD.md:158` records the state: shell writes go only to the listed paths, and "`../nitpick` is read-only". The "only hook wired" clause is also stale: a `PostToolUse` context-warning hook has been on trial in this workbench since 2026-09-27 (`RECORD.md:7997`).*
+
+*What the guard still cannot see, and the sandbox does not cover:*
+
+- *The sandbox confines shell commands only; Edit and Write stay under the permission system (`RECORD.md:8372`). For those two tools the guard is the only control, and it refuses them correctly (table above).*
+- *The settings file is for sessions started in this workbench (subagents inherit it). The author scoped it that way because a user-wide `denyWrite` would block the compiler's own sessions (`RECORD.md:8361`). A session started in a library or an apps repository runs under whatever settings that directory has, and none of this workbench's documents show them.*
+- *The sandbox allows writes to the whole workbench tree and to `../nitpick-apps`. An interpreter heredoc into a library that `BOARD.md` does not show claimed (W-7), or into a workbench file by a session that is not the named writer (W-16), is therefore seen by neither the guard nor the sandbox. The sandbox closes the compiler tree and nothing else.*
+- *The VM runner is excluded from the sandbox. It runs unsandboxed, outside `denyWrite`, when called bare.*
+- *The settings file is untracked, and nothing in the tracked tree checks that it is present or that the installed Claude Code still accepts its keys (`RECORD.md:8421`: a rejected value once made a file be skipped). A lapse would leave no refusal, no finding and no record.*
+- *Whether the guard's limit was ever reached is still unknown: nothing in the record measures it either way.*
 
 **What makes it matter rather than merely exist:** a harness may ship a standing
 instruction to prefer `sed`, heredocs and short scripts over the `Write` and
