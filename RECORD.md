@@ -11505,3 +11505,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The handoff block's E2 drafts are covered.** These four briefs draft the four repositories' parts; the regex 0.2.2 and time 0.3.3 briefs drafted regex's and time's. E2-13's and E2-14's workbench parts stay on the owed list.
 - **The cost was about twice this seat's estimate** of about $3 a brief. Comparing a whole planned repository against two libraries' first cycles, and re-checking every compiler statement in it, is what drives that.
 - **The credits:** $64.28 by the ledger over 19 runs, so about $136 is left. The workbench plans to spend them by the 12th.
+
+### The credits ledger reconciled with the billing page: the page is right, and the CLI's cost figure overstates the bill by half its cached reads — about $157 left, not $136 — 2026-10-09 13:57 (shell time)
+
+- **The author's reading (13:5x):** the billing page shows **$156.93** of promotional credit available. He reloaded it twice and it did not change. The ledger's 19 runs sum to $64.28, which would leave $135.72. Nothing was in flight: no `claude -p` process, and every run has its JSON and its ledger line.
+- **What the gap is, measured from the runs' own JSON records:**
+  - **The CLI's `total_cost_usd` uses the documented list rates.** For Sonnet 5.5 these are $2 input, $10 output, $0.20 cached reads and $2.50 5-minute cache writes per million tokens, checked in the `claude-api` skill's model table (cached 2026-10-06); for Haiku 5.5, $0.10 and $0.50. The 19 runs: 212 132 986 cached Sonnet reads, 4 665 823 cache writes (all 5-minute), 1 007 357 output and 13 691 input, which the list rates price at $64.20, plus Haiku's $0.08.
+  - **The bill is that total less half the cached reads' cost.** Half of 212.1 M reads at $0.20 is $21.21, which is the gap to the cent. Recomputed per run with cached reads at half, the cumulative balance is:
+    - **$179.74** after the 07:41 run, against the author's "about $180" at 10:5x;
+    - **$156.94** after the last run, against his $156.93.
+  - **A billing lag fits neither reading well.** It would have to be about six hours at the first and about one at the second. Both readings fit the corrected figures with no lag.
+- **The cause is not known here:** either the credits bill cached reads at $0.10, or the CLI counts each one twice. The practical rule is the same either way: **the billing page is the authority on the balance, and a job costs about two-thirds of its CLI figure.** Over these runs cached reads were 66 % of the CLI's figure (27–78 % per job), so the bill was 67 % of it.
+- **What it changes:**
+  - **about $157 is left, not $136.** The four cycle-0.0 briefs cost about $17.20 billed, not $26.03;
+  - the credits stretch about 50 % further than the ledger said;
+  - `.internal/credits/README.md` gains the rule and the hand correction;
+  - the board's credits note is corrected.
+  - **`LEDGER.md` stays the CLI's raw figures,** since its runner appends rows to the table; the README says how to read them.
+- **A cost-free confirmation:** a later reading, with nothing run in between, should still say $156.93.
