@@ -10537,3 +10537,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Registered:** O-N40, O-N41 and O-X12. The private LLVM 20.1.2 is in place.
   - **Today's lesson, paid for again and again:** a claim about a set is checked by enumerating the set.
   - Budget: the week at 57 %.
+
+### The lock released — the writer line set to `none`, the marker removed — 2026-10-08 21:57 (shell time)
+
+- **`nitpick-libs_14`'s release, made mechanically complete at `nitpick-libs_15`'s correct prompt.** The earlier commit `205e517` said "the lock released" but left the writer line's first token and `.internal/orchestrator.session` naming `_14`.
+- Now the token is `none`, with the old take line kept under *Previously*, and the 37-byte marker (`8bd7d7dd-…`) is removed, as orchestrate §15 says a release does.
+- `_15` takes the lock by §2. This is `_14`'s last write.
