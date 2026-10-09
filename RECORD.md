@@ -10436,3 +10436,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - **no new planner past about 75 % of the week.**
   - It was 54 % at his word. The week resets 2026-10-14 20:00. The burn rate measured today was about 2.4 points an hour across the account, near 5 with two planners and a verifier at once.
 - **The board's header says so.** The in-flight items keep their one-helper-of-a-kind order (W-24). Regex's next item, 0.2.2's planner, starts only when width 1 gives it the slot.
+
+### `nitpick-regex` 0.2.1 VERIFIED PASS — desugaring; s1 held by the pacing; time 0.3.2's verifier resumed for the filing — 2026-10-08 20:34 (shell time)
+
+- **verify `s1-nregex-0.2.1-verify-work` — PASS** (`sonnet`, 60 min, 519 k tokens, 120 tool uses) on `75dd51e`.
+  - **CI.** Both runs per job, byte counts asserted.
+  - **The patches.** The amended patches differ from `1114cc0`'s only in steps 3 to 5: 17 replacement groups, the four named texts and the thirteen twins, with no line count moved. They replay to every commit's tree hash.
+  - **The correction's truth.** The verifier enumerated 199 sentences in 34 files. Every live statement of where the build stops is true. Beyond RX-226's context and RX-228's title, plan, decision and history texts the worker may not rewrite keep the old words, with the record's correction beside them; not a defect.
+  - **The units at both legs.** All 38 step-4 mutants and the 4 step-2 mutants match their Expects. Case 34 catches both plants.
+  - **The model.** 17 301 generated patterns match an independent model of H-16 over three seeds, with 0 mismatches: 10 372 built and 6 929 stopped. Stop sites: `leaf` 2 465, `resolve_items` 3 617, `fold_ranges` 847. Four wrong models were caught. The corpus kills 39 of 42 mutants; the 3 survivors cannot show in a build's output. 18 hand-written limit cases pass.
+  - **The rest.** RX-226 … RX-229 by value, +152 −0. 0 forbidden shapes. No unpinned landing. 294/294 in a fresh clone with two PEND. Hygiene is clean.
+- **0.2.1 is DONE.** `LIBRARIES.md`'s regex row reads decisions to RX-229.
+- **s1's next item, 0.2.2's planner, is held.** By the author's pacing, width 1 follows the in-flight items, and time's 0.3.2 chain is the one in flight.
+- **`s2-ntime-0.3.2-verify` resumed at 20:34** for the filing delta, `8ed5157`. It is the only verifier. Budget: the week at 55 %, the five-hour window at 23 %.
