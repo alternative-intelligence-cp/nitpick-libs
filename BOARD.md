@@ -1166,6 +1166,18 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 108 (DEF-202; F50 BY SEQUENCE) — **A REFERENCE TO AN AGGREGATE MODULE BINDING IS A CONSTANT: `fixed Pt:Q = P;`, `fixed int32[3]:B = A;` AND `fixed int32?:O2 = O;`, `NITPICK-TYPE-035` UNTIL NOW, COMPILE. A REFUSAL REMOVED; NOTHING THAT COMPILED BEFORE EMITS DIFFERENTLY; NOTHING OF OURS MOVES.** From `nitpick-compiler_35`, filed here 2026-10-09 14:21 by `nitpick-libs_17`.
+- **The change, as they give it:**
+  - one walk, `fixed_global_sym`, says which `fixed` module binding a name stands for;
+  - the module-constant gate admits a reference the folder cannot hold, since the target's own declaration answers for its initialiser;
+  - the renderer follows the reference to the target's initialiser, in the target's home scope;
+  - the folder's own answer comes first on both sides.
+
+  TYPE_REFERENCE's initialiser table gains the reference in its struct/array and `Optional`/pointer rows. Test: `tests/backend/programs/module_ref.npk`.
+- **Their sweep (5 114 files):** 9 sites vanished (the 9 TYPE-035 sites of `module_ref.npk`) and 0 appeared. **Ours, 4 003: 0 different, 0 newly refused, 0 compiling that the base refused.** Their tree's 566: 565 byte-identical, the other the landing's own test.
+- **Checked here:** the only tracked `.npk` in the nine trees that names `TYPE-035` is `nitpick-fuzz`'s `m11/programs/bi0052.npk`. It is a `fixed` module binding holding a FUNCTION value (`fixed func …:F = eight;`), not a reference to an aggregate binding, so it stays refused, as their "0 compiling that the base refused" says. The other matches are under gitignored `.internal/` scratch.
+- **Lands as 108 after its harness;** its notice is checked against the baseline for 108, under 107's entry. Then 109 (DEF-224 under D-352), with F51 after 108.
+
 ### ✅ `508d7c5` LANDED — **NOTICE 107: DEF-243, AS F49 SAID: A BUILTIN NAMED AS A FUNCTION VALUE IS `NITPICK-TYPE-054` AT THE NAME (*"a builtin is called, never named as a value"*), WHERE THE EMITTER DIED AT `EMIT-002`. A REFUSAL ADDED; NO EMISSION MOVES FOR A PROGRAM; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED. OUR O-N40 ITEM 1 IS DISCHARGED AT THE RE-PIN THAT CARRIES IT. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 14:05 by `nitpick-libs_17`; built by `nitpick-compiler_34`, landed and sent by `nitpick-compiler_35`, pushed 14:02.
 - **The ladder.** `tools/ladder.py` against the baseline for 107 (106's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +7 138 B, `npkc.o` +2 352 B and `npkc` +2 064 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `42ecf29` is the parent, one commit. 2 files under `src/`: `src/frontend/type_expr.npk` and `src/frontend/type_members.npk`. 0 under `runtime/` and `bootstrap/`. `main` = `508d7c5`. Read-only, no fetch.

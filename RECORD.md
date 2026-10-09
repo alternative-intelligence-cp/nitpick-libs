@@ -11551,3 +11551,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The figures for that evaluation:**
   - **Finishing time's adoption** (0.3.2a's worker, then its work verifier) costs about 1.5 points. Regex's measured chain had the worker at about 1 point and the work verifier under 0.5; time's plan verifier cost about 1 point (77 % → 78 %).
   - **The credits** cover `claude -p` with an API key, so a read-only review or a brief moves onto them at no cost to the week. A worker writes, and `.internal/credits/run.sh` is read-only by design (no claim, no lock, no repository touched). Running a worker on the credits would need a new runner, with the guard, the hooks and the `npk` plugin it now leaves out. That is a design change for the author to weigh then.
+
+### Advance notice for landing 108 filed — F50, DEF-202: a reference to an aggregate module binding is a constant, a refusal removed; nothing of ours moves — 2026-10-09 14:21 (shell time)
+
+- **From `nitpick-compiler_35`.** `fixed Pt:Q = P;`, `fixed int32[3]:B = A;` and `fixed int32?:O2 = O;` were TYPE-035 and now compile. A new walk, `fixed_global_sym`, says which `fixed` module binding a name stands for, and the gate and the renderer follow it to the target's initialiser. Nothing that compiled before emits differently. **Their sweep:** ours, 0 different, 0 newly refused, 0 compiling that the base refused.
+- **Checked here:** across the nine trees, the one tracked `.npk` naming TYPE-035 is the fuzzer's `m11/programs/bi0052.npk`. It holds a function value, which is not DEF-202's shape, so it stays refused.
+- **108 lands after its harness,** and its notice is checked against the baseline for 108. 109 (DEF-224) follows, with F51 after 108. No answer is owed.
