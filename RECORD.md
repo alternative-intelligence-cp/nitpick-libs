@@ -11150,3 +11150,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the audits README lists every ordinal suffix in use (`-second` … `-sixth`), not one.
 - **Held, an `npk` finding:** `agents/auditor.md`'s description says "Cannot write files." while its tools list `Bash`. That is the same over-claim E2-11 corrected in the README. It is a prompt-loaded definition, so it is left for the author's word or the next `npk` pass.
 - **Struck on the owed list:** E2-5, E2-7, E2-11, E2-12 and E2-15. With E2-1 … E2-4 and E2-9 earlier today, the early audit's workbench findings are done. Its per-repository findings (E2-6, E2-8, E2-10, E2-13, E2-14) go with each repository's next dispatch. `check_refs` is clean. **Cost:** seat writes only.
+
+### Notice 105 verified — `a6b6edf` (DEF-159), as F47 said; not in our pin; the baseline for 106 written — 2026-10-09 08:14 (shell time)
+
+- **Notice 105**, from `nitpick-compiler_34`, which built and landed it, pushed 08:11. It is the first notice to this seat. **Verified here:**
+  - the ladder: MATCH against 104's rows, with the control failing. `npkc.ll` +13 195 B, `npkc.o` +6 864 B, `npkc` +5 896 B; the anchor unchanged;
+  - the git checks: `085bc01` is the parent, one commit, 3 `src/` files (the emitter's `ir_expr`, `ir_func` and `ir_stmt`), 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F47's:** of ours, 24 programs differ in text, flag tests only (29 drops), and 0 are newly refused. D-332's count is 0 mismatched.
+- **Not in the pin** (`7e91730`). At the re-pin that carries it, time's emission-reading checks re-run in its adoption.
+- **The baseline for 106 is written**, generated from the transcription the ladder checked rather than retyped, and self-checked: the ladder MATCHes the six rows against it as unchanged.
+- **Next:** 106 (F48), committed within the hour, its notice after its harness: no earlier than about 12:00, by F48.

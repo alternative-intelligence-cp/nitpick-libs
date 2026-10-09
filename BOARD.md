@@ -1081,6 +1081,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `a6b6edf` LANDED — **NOTICE 105: DEF-159, AS F47 SAID: A VALUE STORED THROUGH A HELD `@x` AFTER `move(x)` IS DROPPED AT THE SCOPE EXIT, WHERE IT LEAKED. A LEAK CLOSED; NO REFUSAL MOVES AND NO ANSWER; OF OUR 4 003 PROGRAMS 24 DIFFERENT IN TEXT, FLAG TESTS ONLY, AND 0 NEWLY REFUSED; NO FLOOR BYTE. NOT IN OUR PIN (`7e91730`).** Sent by `nitpick-compiler_34`, which built and landed it; pushed 08:11, filed 2026-10-09 08:14 by `nitpick-libs_16` from the message's full text, the first notice to this seat. **✅ VERIFIED HERE:**
+- **The ladder.** `tools/ladder.py` against the baseline for 105 (104's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +13 195 B, `npkc.o` +6 864 B, `npkc` +5 896 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `085bc01` is the parent, one commit. 3 files under `src/`, all the emitter's: `src/backend/ir/ir_expr.npk`, `ir_func.npk` and `ir_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `main` = `a6b6edf`. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself and ending 08:09: 55 tests passed; parity, 2 053 verdicts agree; 7 067 obligations matching, with zero verdicts moved; two rows added (the new accessors' `bounds` rows, `unencoded`) and 94 re-keyed by a type-id move; the floor's 388 unmoved.
+
+**Their sweep matches F47:**
+- 0 sites appeared or vanished;
+- the compiler tree's 565 programs: 47 differ in text, flag tests only;
+- **ours, 4 003 programs: 1 764 byte-identical, 2 215 refused by both, 24 different in text, flag tests only (29 drops), 0 newly refused**;
+- D-332's count: 0 mismatched.
+
+**For us, at the re-pin that carries 105:** nothing to re-spell. An emission-reading check sees one unconditional `drop` where a flag test stood, in a function holding an address-taken owning binding. Time's `check_call_edges` and `check_purity` re-run in that adoption.
+
+**Next from them:** 106 (D-342 R1 and D-343, F48), committed within the hour; its notice follows its harness.
+
+**THE BASELINE NOTICE 106 MUST QUOTE** (notice 105's rows, at `a6b6edf`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    2a39acf09c6c742667cc40e6629280e9309f9f873d597c9cf737a8169b1ad417  31,542,430 B
+npkc.o     bc1b81a9d180f79ea368e81b65b4643962068df2afa7316f7d194dec028a4903  12,989,744 B
+npkc       81c1911346e99d28ffc43d33272b8b4907bc118f28fc63ff37fb1b20a0dd17f6  11,227,768 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 106 (D-342 R1 AND D-343; F48 BY SEQUENCE) — **TWO REFUSALS ADDED: AN ENUM VALUES EVERY VARIANT OR NONE (`NITPICK-TYPE-093`), AND A MACRO PARAMETER THAT ONLY NAMES A DECLARATION ITS BODY EMITS (`NITPICK-MACRO-011`). FOR US, ONE FILE: `nitpick-fuzz`'S `mc0388`, WHOSE EXPECTATION MOVES FROM `run:0` TO `refuse:NITPICK-MACRO-011`. NO EMISSION MOVES. NOT IN OUR PIN (`7e91730`).** From `nitpick-compiler_34`, filed 2026-10-09 07:22 by `nitpick-libs_16` from the message's full text. It was resent to this seat: the first sending never reached `nitpick-libs_15`, though `_34`'s record said it had.
 
 - **What 106 refuses:** two of the author's 2026-10-01 ratifications that the checker did not yet make.
