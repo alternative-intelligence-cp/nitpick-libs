@@ -1010,6 +1010,21 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 105 (DEF-159; F47 BY SEQUENCE) — **A VALUE STORED THROUGH A HELD `@x` AFTER `move(x)` IS DROPPED AT THE SCOPE EXIT, WHERE IT LEAKED. NO REFUSAL MOVES, AND NO ANSWER. ONLY THE EMISSION'S TEXT MOVES, FOR PROGRAMS WITH AN ADDRESS-TAKEN OWNING BINDING: 24 OF OUR 4 003, FLAG TESTS ONLY, 0 NEWLY REFUSED. NOT IN OUR PIN (`7e91730`).** From `nitpick-compiler_34`, filed 2026-10-09 05:36 by `nitpick-libs_15` from the message's full text.
+
+- **What 105 changes.** `string->:p = @x; string:t = move(x); (<-p) = v;` is legal, but it leaked `v`. The move cleared `x`'s drop flag, the store put a live value into the vacated slot, and the scope exit dropped nothing: 192 094 bytes live after two thousand rounds, against 190 for one.
+  - The emitter now marks every binding whose address the function takes (`@x`, `$$i x` or `$$m x`, or a pointer-receiver call on it), and drops its slot at every scope exit WITHOUT the flag test. A vacant slot's drop is a no-op.
+  - A binding nobody addressed keeps the flag as its fast path.
+  - Tests: `held_addr_store.npk` (six roads), and `tests/cost/held_addr.toml` (the churn held to the once). MEMORY_REFERENCE §1.1c gains a paragraph.
+- **Their measurement, over 5 112 files:**
+  - the sweep moves nothing;
+  - the compiler tree's 565 programs: 47 differ in text, flag tests only;
+  - **ours, 4 003 programs: 24 differ in text, flag tests only (29 drops), 0 newly refused.**
+  - The comparison tool is `meta/roadmap/1.6/tools/dropnorm.py`, which strips the flag tests from both sides.
+- **Checked here:** their list, `../wt/34b/.internal/dropnorm_libs.out` (25 lines, read-only), names hashed emission files, not source paths, so its per-repository split is not read here.
+- **For us, at the re-pin that carries 105:** nothing to re-spell. A library check that reads its own emission sees one `drop` call where a load, a compare and a branch stood, in a function holding an address-taken owning binding. Time's `check_call_edges` and `check_purity` read emissions: they are for that adoption to re-run.
+- Its commit follows on `34-def159`, its harness ending about 09:00. The landing notice comes from `_34`.
+
 ### ✅ `085bc01` LANDED — **NOTICE 104: DEF-249 (OUR O-N41, `nitpick-time` 0.3.2'S PLANNER), AS F46 SAID: AN `exit` OPERAND IS HELD TO `int32` EXACTLY, TYPE-007 AT THE OPERAND, WHERE `llc` REFUSED THE EMITTED MODULE. A REFUSAL ADDED; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED; NO EMISSION MOVES FOR A PROGRAM; NO FLOOR BYTE. NOT IN OUR PIN, WHICH IS `7e91730` (103) BY THE AUTHOR'S WORD; O-N41 STAYS OPEN UNTIL A RE-PIN CARRIES IT.** Sent by `nitpick-compiler_34`, which built and landed it; pushed 05:15, filed 2026-10-09 05:17 by `nitpick-libs_15` from the message's full text. **✅ VERIFIED HERE:**
 - **The ladder.** `tools/ladder.py` against the baseline for 104 (103's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +2 234 B, `npkc.o` +1 032 B, `npkc` +960 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `7e91730` is the parent, one commit. 1 file under `src/`, `src/frontend/type_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `HEAD` = `main` = `085bc01`, clean. Read-only, no fetch.

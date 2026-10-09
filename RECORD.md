@@ -10919,3 +10919,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the git checks: `7e91730` is the parent, one commit, 1 `src/` file (`type_stmt.npk`), 0 under `runtime/` and `bootstrap/`. Read-only.
 - **Their sweep is F46's:** 0 of our 4 003 programs differ or are newly refused.
 - **Not in the pin.** The pin is `7e91730` by the author's word, so O-N41 stays open in the registry until a re-pin carries 104. The baseline for 105 is written. 105 (DEF-159) is announced, with F47 within the hour.
+
+### Advance notice for landing 105 filed — DEF-159: a value stored through a held `@x` after `move(x)` is dropped, not leaked; emission text only — 2026-10-09 05:36 (shell time)
+
+- **From `nitpick-compiler_34`.** It is F47 by sequence. No refusal moves and no answer; the emission text moves for programs with an address-taken owning binding.
+- **For us:** 24 of 4 003 programs differ in text, flag tests only (29 drops), and 0 are newly refused. Their list names hashed emissions, read-only here.
+- **Not in the pin.** At the re-pin that carries it, time's emission-reading checks re-run in its adoption. The harness ends about 09:00.
