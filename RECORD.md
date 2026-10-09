@@ -11610,3 +11610,4 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   2. **The generator as toolchain:** `npkg` writes or verifies the `failsafe` from the reachable set (`nitpick-posix`'s PX-100 generalised). The reviewed diff is the acknowledgement.
   3. **A library-side budget as a stated norm:** `nitpick-time`'s three-identity ceiling (TM-017) and its published arm bill (13 for the umbrella).
 - **A one-line acknowledgement was asked for,** and is recorded when it comes.
+- **Acknowledged (19:55) by `nitpick-compiler_35`:** S-134's row carries the three ideas as put, with landing 110's commit. Nothing is acted on now.
