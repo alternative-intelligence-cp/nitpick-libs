@@ -10582,3 +10582,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - the lessons line, from the handoff block.
 - **Before it:** `nitpick-time` clean at `abb5673` and `0/0`. 127 GiB available. No other agent of this seat's runs (W-24).
 - **Budget:** the meter 58 %, the five-hour window 35 %. The libraries' room is about 11.5 points, with the author's Fable 49 % (20:42).
+
+### Two stray `.npk` files moved under `.internal/`, the author having made none; the handoff block's meter note corrected — 2026-10-08 22:01 (shell time)
+
+- **`a.npk` and `b.npk`** had been untracked at the workbench root since 04:33:38 today.
+  - Both were written in the same instant, 87 and 112 bytes: a two-module import-cycle probe, `a` using `b.g`, `b` using `a.EA` and `a.f`.
+  - **The author confirmed, through `_14` (21:5x), that he made no `.npk` file today.** His files were on the VM or in its interface folder, `.sh` and `.cfg` only.
+  - `_14`'s reading, an inference it does not claim to prove: stray scratch from time 0.3.1's planner (`s2-ntime-0.3.1-0330`, 03:30–05:51), which probed what became O-N40's sibling-directory import cycle.
+  - The 0.3.1 work verifier noticed them and found they do not reproduce that defect, which needs two sibling directories. The real reproduction is `nitpick-time`'s `0.3.1_tools/facts.sh` §1.8 and `0.3.2_tools/facts.sh`. Nothing references the two files.
+  - **Moved, not deleted,** to `.internal/stray-2026-10-08/` (gitignored), with their mtimes kept. The workbench's porcelain is now empty.
+- **The handoff block's "no per-model line" is corrected on the board.**
+  - `usage-latest.json` carries a `model_limits` block with a Fable row.
+  - That row is only as fresh as its `fetched_at`, which a `/usage` run in any session refreshes. At 21:58 it read Fable 38 %, fetched 16:50, against the author's 49 % at 20:42.
+  - So the room uses whichever Fable figure is newer.

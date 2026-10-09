@@ -26,7 +26,7 @@ blocked, what is done. The durable plan is
 > - **The compiler's Fable allotment is the week's highest priority.** The libraries hold to about 12 more points from 55 % (20:40): finish time 0.3.2 (its worker, then that worker's verifier), then the ONE re-pin after landing 103.
 > - Regex 0.2.2 and time 0.3.3 wait for next week, unless he says Fable is running behind. Width 1 after the in-flight items.
 > - **W-24: never two helpers of a kind at once,** verifiers included and a resumed one counted. I broke this three times today.
-> - Read `usage-latest.json` before each dispatch. It has no per-model line, so Fable's share is his to report. The week resets 2026-10-14 20:00. It was 55 % at this writing.
+> - Read `usage-latest.json` before each dispatch. *Corrected 2026-10-08 22:01 by `_15`:* it does carry a per-model line, `model_limits` with a Fable row, but only as fresh as its `fetched_at`, which a `/usage` run in any session refreshes (at 21:58 it read Fable 38 % fetched 16:50, against the author's 49 % at 20:42). So take whichever Fable figure is newer. The libraries' room is 95 − the meter − 0.5 × (100 − Fable %). The week resets 2026-10-14 20:00. It was 55 % at this writing.
 >
 > **THE LLVM.** The machine's default `llc` is 20.1.8 since 09:40 (the compiler's D-349, a user prefix `~/.local/llvm-20.1.8`). The libraries pin 20.1.2 until the re-pin. **Every library dispatch puts `.internal/toolchain/llvm-20.1.2/root/usr/lib/llvm-20/bin` first on PATH** (its README says why), and every current plan's `env.sh` does so.
 >
