@@ -10770,3 +10770,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The board's header names `7e91730`,** keeping `5fbaf4a` under *Before*. Until its adoption, a library's harness is RED at this pin by 103's readers, so each library's next dispatch is its adoption.
   - The adoption measures the unchanged tree at both pins: `5fbaf4a` with the private LLVM 20.1.2 first on PATH, and `7e91730` with the machine's 20.1.8.
 - **Next: regex's adoption planner,** by `_14`'s Q3 answer (regex sits between subcycles). The room is read before the dispatch. Time's adoption follows if the week's room allows, and otherwise next week.
+
+### `nitpick-regex` 0.2.1a — the adoption of compiler `7e91730` — its planner dispatched — 2026-10-09 03:07 (shell time)
+
+- **Dispatched 03:07: `s1-nregex-0.2.1a-0307`** (`npk:planner`, `opus`) on `75dd51e`, regex first by `_14`'s Q3 answer: regex sits between subcycles. It is the only agent running (W-24).
+- **The brief, in 0.2.0a's shape** (`nitpick-time`'s `done/0.2/0.2.0a.md`):
+  - the unchanged tree measured at both pins first: `5fbaf4a` with the private LLVM 20.1.2 first on PATH, and `7e91730` with the machine's 20.1.8;
+  - then 103's re-spellings: 78 files and 400 sites by the list, `src/` 10 files and 28 sites, enumerated at the tree, since the list is a guide;
+  - `pattern_error_literal.npk`'s DEF-165 header (3 TYPE-079 lines fewer);
+  - CI's `NITPICK_COMMIT`, `NPKC_LL_BYTES` (31 527 001) and `LLVM_VERSION` (20.1.8);
+  - B-4e's re-read of the compiler files changed since `5fbaf4a`.
+- **Before it:** `nitpick-regex` clean at `75dd51e` and `0/0`; 127 GiB available.
+- **Budget:** the meter 65 % and the five-hour window 21 %; the room is about 4.5 points with the author's Fable of 20:42. A planner fits it. The worker and its verifier are read against the room again before each dispatch.
