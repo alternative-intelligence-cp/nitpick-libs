@@ -10696,3 +10696,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **s2's next item.** 0.3.3, the double, has no plan file. By the author's pace it waits for next week, so after this verifier s2 idles. The one re-pin is next, regex's adoption first, once landing 103 is verified here.
 - **Dispatched 23:13: `s2-ntime-0.3.2-verify-work`** (`npk:verifier`, `sonnet`), the only agent running (W-24).
 - **Budget:** the meter 60 % and the five-hour window 1 %, so the room is about 9.5 points.
+
+### Notice 102 verified — `98cfe35` (DEF-248: a `fixed` parameter's assignment is ASSIGN-002), as F44 said; the compiler seat is now `_34` — 2026-10-08 23:46 (shell time)
+
+- **Notice 102**, sent by `nitpick-compiler_34`, which landed it (built by `_33`); pushed 23:42. **Verified here:**
+  - the ladder: MATCH against 101's rows, with the control failing. `npkc.ll` +1 643 B, `npkc.o` +680 B, `npkc` +560 B; the anchor, `npkrt.o`, unchanged.
+  - the git checks: `8af8ddd` is the parent, one commit, 1 `src/` file (`src/frontend/analysis/bindings.npk`), 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F44's exactly.** Of our 3 995 programs, 0 differ and 1 is newly refused: the fuzzer's `ty1873`, a claim program that expects the refusal. No library file moves.
+- **The compiler seat rotated:** `_34` names itself `_33`'s successor in the notice. The board's handoff block, written at 20:59, had `_34` parked. The ladder authenticates the content (hazard 10), whoever sends it. 103's notice comes from `_34`, its harness ending about 02:45.
+- **The baseline for 103** is written, generated from the transcription the ladder checked rather than retyped.
