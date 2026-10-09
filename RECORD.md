@@ -10853,3 +10853,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - posix: XL-1, with D-340's own sweep naming `probe02a` and `probe02c`, and XL-4.
 - **Filed** as `meta/audits/<repo>-pin-7e91730-2026-10-09.md`, each with a provenance header. The board's owed list names all four audits; each repository's next dispatch carries its own.
 - **The credits so far:** \$2.60 of \$200, over five runs (the smoke test and four audits). The ledger is `.internal/credits/LEDGER.md`.
+
+### Two more credits jobs — the pinned external facts ($0.72) and an early ecosystem audit ($9.90) — spot-checked and filed; the credits at $13.22 — 2026-10-09 04:34 (shell time)
+
+- **The pinned external facts** (`meta/audits/currency-2026-10-09.md`; Sonnet with Haiku for the fetches; 71 turns):
+  - **Superseded:**
+    - tzdata 2026c, by 2026d (2026-09-11) and 2026e (2026-09-29): time, whose CURRENCY row defers "latest" to cycle 0.5;
+    - TOML v1.0.0, by v1.1.0: parse's FORMATS.md:15;
+    - POSIX.1-2017, by 2024 (Issue 8): posix, where time already cites Issue 8.
+  - **Current:** the syscall numbers and constants, the RFCs, Python's `datetime` statements, UTS #18 and UCD 18.0.0, among others.
+  - **Checked here by fetch:** IANA lists 2026e, released 2026-09-29, and toml.io shows v1.1.0.
+  - The audit asked about W-25's ninety-day rule, which flags nothing: every digest is from 2026-09-03 or later. So the job checked whether each pin is still the latest instead.
+- **The early ecosystem audit** (`meta/audits/ecosystem-early-2026-10-09.md`; Sonnet; 255 turns; $9.90):
+  - **It is early.** W-22 asks for one after every third close, and two have closed since 2026-09-26. It ran after the re-pin at the author's go.
+  - **The 23 of 2026-09-26:** 7 fixed, 6 half-fixed and 10 untouched.
+  - **New, E2-1 … E2-15.** Among them:
+    - PLAYBOOK keeps stale rows and has no `fixed T[]` row (E2-1 … E2-3);
+    - texts still pin 20.1.2, and four manifests lack the triple and datalayout rows (E2-4);
+    - WORKSTREAMS describes the compiler's closed cycle 1.5 (E2-5);
+    - the dogfood consumer's location contradicts its decisions in four repositories (E2-6);
+    - ten O-N registry rows are FIXED compiler-side and carried by the pin, along with four library O-X and O-Y rows settled by decisions (E2-9);
+    - counts no longer match their sets (E2-10);
+    - CURRENCY rows are missing in the four planned repositories (E2-13).
+  - **Spot-checked here:** E2-1, E2-5, E2-9 (O-N34 against DEF-225) and E2-12, each as stated.
+- **The board's owed list** names both. The workbench's findings are seat writes, and the rest go with each repository's next dispatch. The board's "Last updated" now reads 2026-10-09.
+- **The runner:** `--max-turns` did not bound the ecosystem job (255 against 150), so the README says the organization's $200 cap is the only hard bound.
+- **The credits:** $13.22 of $200 over seven runs.
