@@ -1166,6 +1166,34 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `508d7c5` LANDED — **NOTICE 107: DEF-243, AS F49 SAID: A BUILTIN NAMED AS A FUNCTION VALUE IS `NITPICK-TYPE-054` AT THE NAME (*"a builtin is called, never named as a value"*), WHERE THE EMITTER DIED AT `EMIT-002`. A REFUSAL ADDED; NO EMISSION MOVES FOR A PROGRAM; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED. OUR O-N40 ITEM 1 IS DISCHARGED AT THE RE-PIN THAT CARRIES IT. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 14:05 by `nitpick-libs_17`; built by `nitpick-compiler_34`, landed and sent by `nitpick-compiler_35`, pushed 14:02.
+- **The ladder.** `tools/ladder.py` against the baseline for 107 (106's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +7 138 B, `npkc.o` +2 352 B and `npkc` +2 064 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+- **The git checks.** `42ecf29` is the parent, one commit. 2 files under `src/`: `src/frontend/type_expr.npk` and `src/frontend/type_members.npk`. 0 under `runtime/` and `bootstrap/`. `main` = `508d7c5`. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself (11:31–14:00): 55 tests passed; parity, 2 055 verdicts agree; 7 067 obligations matching, with zero verdicts moved and 109 rows re-keyed by a type-id move; the floor's 388 unmoved.
+
+**Their sweep matches F49:**
+- 5 sites appeared, all in the new `builtin_as_value.npk`, and 0 vanished;
+- the compiler tree's 565 programs are byte-identical;
+- **ours, 4 003: 1 844 byte-identical, 2 159 refused by both, 0 different, 0 newly refused** (106's sweep had 1 787 and 2 215; that shift is not explained here, and nothing of ours differs either way);
+- D-332's count: 0 mismatched.
+
+**For us:** nothing moves. The registry's O-N40 item 1 is struck at the re-pin that carries 107. **Next from them:**
+- 108 (DEF-202: a reference to an aggregate module binding is a constant — a refusal removed), its advance notice F50 within minutes;
+- then 109 (DEF-224 under D-352: `failsafe`'s pick found through bare blocks, which they say `nitpick-posix`'s PX-010 statement macro supplies), F51 after 108.
+
+They need no answer. The author has told them this seat logs the notices as the week's work winds down.
+
+**THE BASELINE NOTICE 108 MUST QUOTE** (notice 107's rows, at `508d7c5`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    7f6fe3fe42764866276077ed9e86c50bb50cdb5551e4e8509a9d4c1ac1c1411a  31,564,893 B
+npkc.o     050afaf961b2a2e4aceddacea3c339d5aaadc37f480f624777832c38ca330a28  12,996,784 B
+npkc       5ba49e6fa32a0208b304ece75630094eed8a07a75d849848a6632bd18f7566b8  11,233,848 B
+```
+
 ### ✅ `42ecf29` LANDED — **NOTICE 106: D-342 R1 AND D-343, AS F48 SAID: AN ENUM VALUES EVERY VARIANT OR NONE (`NITPICK-TYPE-093` ONCE, AT THE FIRST VARIANT WHOSE SPELLING DIFFERS), AND A MACRO PARAMETER THE BODY ONLY DECLARES IS `NITPICK-MACRO-011` AT THE DECLARATION. TWO REFUSALS ADDED; NO EMISSION MOVES FOR A PROGRAM; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 1 NEWLY REFUSED, THE FUZZER'S `mc0388`; NO FLOOR BYTE. NOT IN OUR PIN (`7e91730`).** Built by `nitpick-compiler_34`, landed and sent by `nitpick-compiler_35`; pushed 11:09, filed 2026-10-09 11:11 by `nitpick-libs_16` from the message's full text, the first notice from `_35`. **✅ VERIFIED HERE:**
 - **The ladder.** `tools/ladder.py` against the baseline for 106 (105's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +15 325 B, `npkc.o` +4 688 B, `npkc` +4 016 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `a6b6edf` is the parent, one commit. 2 files under `src/`: `src/frontend/macro/expand.npk` and `src/frontend/type_stmt.npk`. 0 under `runtime/` and `bootstrap/`. `main` = `42ecf29`. Read-only, no fetch.
