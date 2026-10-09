@@ -11415,3 +11415,64 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - monthly billing keeps a second Max droppable.
   - `_16` suggested a second Max as a one-month measured experiment, and named the levers on the current plan: earlier seat rotation (98 % of the day's usage ran above 150 k context), planning prep on the credits (planners were 32 % of usage), and his model routing.
 - **`_16` released, by a distinct message (12:19):** this seat has no further need of it. Everything it held is in the tree, this record or the memory. It holds nothing in flight, and the author closes it on its own "safe to close".
+
+### `nitpick-time` 0.3.2a's plan VERIFIED PASS — PD-105 and PD-106 accepted as TM-258 and TM-259; the stop for the week by the room — 2026-10-09 13:08 (shell time)
+
+- **verify `s2-ntime-0.3.2a-verify` — PASS** (`sonnet`, 12:17–13:07, 50 min, 452 k tokens, 138 tool uses), on `f3804c3`.
+  - **CI**, per job, with the bytes asserted: `113905665078` (run `37955738283`, head `f3804c3`, 81 063 B). It shows:
+    - compiler `5fbaf4a` clean and LLVM 20.1.2;
+    - the pin's emission, 30 232 291 B / `5630c2b4…`;
+    - the namespace step's lift;
+    - GREEN -- 143 with 4 pending, and no FAIL line.
+  - **The amendment:** `811f967` and `f3804c3` hold the same 456 paths, and one blob differs, the plan's.
+    - Its 15 fenced regions are byte-identical.
+    - The five prose hunks are what §8 item 5 describes: two rewraps, the two corrected sentences, and the sentence recording them.
+    - **§9's new sentence holds.** Of `src/`'s 168 public declarations (54 `pub func`), exactly one differs after the four patches: `bytes_extend`'s source, now `fixed uint8[]`. Four planted callers (a `bytes_view` answer, a range sub-slice, a `#wild_slice` slice and `string_bytes`) exit 12 on both legs at both pins.
+  - **The rehearsal**, in a stand-in workbench under `$TMPDIR`: a GitHub clone at `f3804c3`, both pins (`SHA256SUMS` OK, `cmp`-identical), the private LLVM, and the compiler as a `--shared --no-checkout` clone.
+    - **All seven blocks read SAME.** The patches applied with 22, 24, 1 and 6 files.
+    - The only workbench files the blocks needed were `BOARD.md` and `WORKSTREAMS.md`, the targets of the two links in the repository's `CLAUDE.md` that `check_refs` resolves. The verifier found them by reading the tools.
+  - **PD-105, by the verifier's own enumeration, agrees with the plan:**
+    - 159 tracked files: 114 compile at `5fbaf4a` and 91 at `7e91730`.
+    - TYPE-007 at `7e91730`: 87 reports over 33 roots, at 34 places in 18 files. Without `probe20c`'s and `probe20d`'s own reports, that is 85 over 31 roots and **32 places in 16 files, 5 in `src/`**. The 31 roots are the compiler side's 21 plus ten.
+    - **44 slots:** 39 at step 1 in 16 files, then 5, with the plain slots 56 → 17 → 12. Each undone alone is TYPE-007 at `7e91730` (44 of 44) and leaves its file unchanged at `5fbaf4a` (44 of 44).
+    - After step 1 at `5fbaf4a`, all 159 files give the same exit, codes and sites, and the run is GREEN -- 143. The only code change in the changed files is the spelling.
+  - **The key check:**
+    - its own planted shapes compile at `5fbaf4a` and are refused at `7e91730`: writes through a `fixed` local in `zone_from_tz` and through a `fixed` parameter in `sum_bytes` are TYPE-086, and a reassigned parameter in `find_byte` is ASSIGN-002;
+    - a re-pointed `fixed` local is ASSIGN-002 at both pins;
+    - the census finds neither code in the step-1, step-2 or step-4 trees, and does find the planted ones, so it counts;
+    - the four view mutants give §1.5's table.
+  - **DEF-247:** step 1 writes no `fixed` result, and step 2 writes exactly the five.
+  - **PD-106:**
+    - with only the manifest's row moved, the self-check's cases 2 and 3 alone fail. There is no 21-case red, because the trees copy the row.
+    - `TWO_CODES` reports TYPE-009 at 5:19 and TYPE-007 at 6:5 at both pins, the two codes cases 2 and 3 are built around.
+    - The wide literal is LEX-004 + PARSE-002 at `5fbaf4a` and LEX-004 alone at `7e91730`. It stays the verdict specimen.
+    - After step 2, the five headers pass at `7e91730` and fail at `5fbaf4a`. All 45 refusals pass `refusals.py` at `7e91730`, and D-332 has 0 mismatches.
+    - GREEN -- 143 at both pins, with the heap lines identical.
+  - **The readings and the guard:**
+    - `check_call_edges` reads 108 functions, 90 outside `src/host/`, 17 runtime symbols and 0 outside the allowlist; `check_wide_types` 3 of 108; `check_purity` 0. All three are the same at both pins, with the digest `6592e288d53015b2` at both.
+    - The emission moves as §1.9 says.
+    - The guard: the byte at 4 095 goes unseen, and the plus-one at 4 096 is caught with exit 95, **300 of 300 per leg per pin (1 200 of 1 200)**.
+  - **CI's rows** equal `PIN.md` and `SHA256SUMS`.
+    - The asset answers 200 at 2 021 269 412 B.
+    - The emission step exits 1 on three kinds of mismatch and 0 on a match.
+    - The invocation's comment sits directly above `Run the harness`, after the namespace step.
+  - **The decisions:**
+    - TM-257 is the highest today; after the patches, TM-258 (PD-105) and TM-259 (PD-106) follow under the batch heading, and `DECISIONS.md` loses no line.
+    - `bytes_view` stays writable (exit 65 at both pins), handed to cycle 0.4 and the D-341 re-pin.
+    - The 74 added `.npk` lines hold none of the silent shapes, and a planted control trips each.
+    - Nothing past landing 103 is cited except as "not in the pin".
+  - **Hygiene:** clean at `f3804c3`, and the remote holds only `HEAD` and `main`. There are no tags, stash, `core.hooksPath`, scratch or lost-found.
+  - **A stray write of the verifier's, which it removed:** importing `check_refs` made a `__pycache__` under the workbench's `skills/check/scripts/`. Checked here: it is absent, and the workbench is clean.
+  - **Its note, a hand-on to the worker:** §0 says `env.sh` finds `check_refs` by the checkout's place, but `env.sh:36` reads `CHECK=$HOME/.claude/skills/npk/skills/check/scripts`, the plugin's path, which reaches this workbench's script. No block is affected. The worker may tighten the sentence with a dated note.
+- **Spot-checked here before the board moved:**
+  - the job log's 81 063 B;
+  - `811f967`..`f3804c3`, one file;
+  - the remote's two refs;
+  - `nitpick-time` clean at `f3804c3`, with no planner scratch;
+  - the workbench clean, with no `__pycache__`;
+  - `env.sh:36`.
+- **PD-105 and PD-106 are ACCEPTED.** They become TM-258 and TM-259 at the worker's step 1 and step 2.
+- **The stop for the week, by the room:** at 13:08 the meter reads 78 %, the five-hour window 24 %, and Fable 68 % (10:45, still the newest). So the room is 95 − 78 − 16 = **1.0 point**, under the 1.5 line; the verifier cost about a point (77 % → 78 %).
+  - **0.3.2a waits verified.** Its worker (`opus`) and work verifier go next week, unless the author says otherwise.
+  - Nothing of this seat's is in flight but the credits jobs, which are read-only and billed to the API credits.
+  - The private LLVM 20.1.2 stays until time's adoption record.
