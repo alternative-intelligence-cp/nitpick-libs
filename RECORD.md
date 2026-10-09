@@ -10826,3 +10826,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Spot-checked here before filing,** at the cited lines in both trees, each quote as given: TL-1 (INPUT_MODEL.md:106, TYPE_REFERENCE.md:1233–1243, D-351), TL-2 (0.0.0.md:298 and 304), TL-3 (TYPE_REFERENCE.md:2030–2031 and 2075), TL-4 (nitpick.toml:40, TCB.md:53).
 - **Filed** with a provenance header. One code span is spaced for `check_refs`, which reads a closing bracket followed by an opening parenthesis as a link, even inside code. **`nitpick-tui`'s next dispatch carries it by its TL ids.**
 - **Next on the credits:** the same audit for `nitpick-parse`, `nitpick-sockets` and `nitpick-posix`, run one after another and read together. They are pointed at the workbench's copy of the 103 list, which tui's job could not open.
+
+### The credits' guard rails confirmed by the author — auto-reload off, the organization capped at $200 — 2026-10-09 04:08 (shell time)
+
+- **The author (04:2x):** auto-reload is off and the organization's spend cap is $200. He found no per-workspace limit in the console.
+- **The billing:** the console's billing page shows the remaining credits, which had fallen by almost $1 since the pilot. That matches the ledger's $1.03 for tui's audit, so the jobs are billed to the credits and not to the plan.
+- **The console shows no per-job cost,** so `.internal/credits/LEDGER.md` is the per-job record, from the CLI's own `total_cost_usd`. Its README says so.
