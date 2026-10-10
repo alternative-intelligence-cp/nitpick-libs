@@ -12110,3 +12110,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`ecosystem-owed-drafts-2026-10-10`** (Sonnet, $2.51): EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EK2. Each is re-checked against the current tree, with its fix drafted, or with options and a recommendation where the author decides.
 - **Both are guides, not checked here in full and not applied.** The board's owed list names them, and the seat that takes each item reads its draft first.
 - **The credits:** about $65.7 left at the bill = CLI rule. The next grant is Tuesday 2026-10-13.
+
+### Diogenes' DX-1, the sandbox-to-sandbox leg, measured in this seat: PASS (`diogenes` `08a0bf5`) — 2026-10-10 15:31 (shell time)
+
+- **Why:** the overview names DX-1 as cycle 0.0's largest uncertainty. If one SQLite file cannot be shared safely across sandboxes, the hub moves into 0.0, at about +2 seat-days.
+- **Setup:** two writers and a referee, each in its own sandboxed Bash call. The three had distinct mount, PID and network namespaces. They worked one WAL file under `$TMPDIR` with `BEGIN IMMEDIATE` compare-and-set, on SQLite 3.45.1 through Python's `sqlite3`.
+- **Result:**
+  - the free-running phase: 8 485 takes, 3 690 won;
+  - the contested phase: about 16 000 attempts over 37 rounds, **with no round won twice**;
+  - the fence equals the sum of all wins (3 727);
+  - 0 errors, and `integrity_check` ok.
+- **Filed:** the probe and its result are in `diogenes/meta/research/done/dx1-probe-2026-10-10/`. `EXPERIMENTS.md` and `OVERVIEW.md` are updated, and the first-hand file has M6.
+- **Still open:** the host-to-sandbox leg, from the author's terminal.
