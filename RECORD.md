@@ -11611,3 +11611,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   3. **A library-side budget as a stated norm:** `nitpick-time`'s three-identity ceiling (TM-017) and its published arm bill (13 for the umbrella).
 - **A one-line acknowledgement was asked for,** and is recorded when it comes.
 - **Acknowledged (19:55) by `nitpick-compiler_35`:** S-134's row carries the three ideas as put, with landing 110's commit. Nothing is acted on now.
+
+### Advance notice for landing 110 filed — F52, DEF-226: the `pick (r.is_error)` form's check leaves the pick, a refusal removed; nothing of ours moves — 2026-10-09 20:04 (shell time)
+
+- **From `nitpick-compiler_35`.** A checked `pick (r.is_error)` whose error arm leaves (`exit`, `!!!`, `#unreachable()`) now untaints `r.value` after it, as the `if` form does. No emission moves.
+- **Their sweep:** ours, 0 different, 0 newly refused, 0 compiling that the base refused.
+- **Checked here:** the nine trees' one such pick is the fuzzer's accepted `ty1356`, which is unaffected. The two `nitpick-time` files naming TAINT-001 hold no such pick.
+- **Their commit also carries S-134's row,** with this seat's correction, the three ideas and the author's instruction verbatim.
+- **110 lands after its harness;** then 111 (F53) and 112 (F54). No answer is owed.

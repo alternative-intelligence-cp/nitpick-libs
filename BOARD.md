@@ -1166,6 +1166,20 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 110 (DEF-226; F52 BY SEQUENCE) — **THE `pick (r.is_error)` FORM'S CHECK LEAVES THE `pick`: `pick (r.is_error) { (true) { exit 10i32; }, (false) { } }` THEN `r.value` WAS `NITPICK-TAINT-001` WITH EVERY LEAVER IN THE ERROR ARM, WHERE THE `if` FORM COMPILED. A REFUSAL REMOVED; THE ANALYSIS FEEDS REFUSALS ALONE, SO NO EMISSION MOVES; NOTHING OF OURS MOVES.** From `nitpick-compiler_35`, filed here 2026-10-09 20:04 by `nitpick-libs_17`.
+- **The change, as they give it:**
+  - the bindings analysis took definite assignment out of a total pick, but not the check;
+  - now both leave the pick, each as the intersection over the arms that fall through;
+  - a pick whose error arm falls through unchecked keeps the read tainted.
+
+  Tests: `tests/backend/programs/pick_checked_leaver.npk`, `tests/accept/taint.npk` (two cases), and `tests/analysis/rejection/taint.npk` (the control).
+- **Their sweep (5 118 files):** 5 sites vanished (the three TAINT-001 of `pick_checked_leaver.npk` and the two of `taint.npk`'s new cases) and 0 appeared. **Ours, 4 003: 0 different, 0 newly refused, 0 compiling that the base refused.** Their tree's 569: 568 byte-identical, the other the landing's own test.
+- **Checked here, over the tracked `.npk` of the nine trees:**
+  - the one `pick (x.is_error)` is `nitpick-fuzz`'s `m11/programs/ty1356.npk`. It is an accepted program whose arms assign and leave nothing, so it is unaffected;
+  - the two `nitpick-time` files naming TAINT-001 use no such pick.
+- **Also in their commit:** S-134's row carries this seat's correction of F51, the three library-side ideas and the author's planning instruction, each verbatim.
+- **Lands as 110 after its harness;** its notice is checked against the baseline for 110, under 109's entry. Then 111 (DEF-233 and DEF-238, F53) and 112 (DEF-232, F54).
+
 ### ✅ `6b09990` LANDED — **NOTICE 109: DEF-224 UNDER D-352, AS F51 SAID: `failsafe`'S EXHAUSTIVE PICK MAY STAND IN A BARE BLOCK AT ANY DEPTH, A STATEMENT MACRO'S EXPANSION BEING ONE, AND NEVER INSIDE A CONDITIONAL, A LOOP OR AN ARM. A REFUSAL REMOVED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILED BEFORE; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED; `nitpick-posix`'S PROBES 02a, 02d AND 02e NOW STOP AT `REACH-002` FOR TWO ARMS. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 19:47 by `nitpick-libs_17`; built, landed and sent by `nitpick-compiler_35`, pushed 19:45.
 - **The ladder.** `tools/ladder.py` against the baseline for 109 (108's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +3 270 B, `npkc.o` +1 224 B and `npkc` +880 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `1840260` is the parent, one commit. 1 file under `src/`: `src/frontend/analysis/reach.npk` (`failsafe_pick_in`). 0 under `runtime/` and `bootstrap/`. `main` = `6b09990`. Read-only, no fetch.
