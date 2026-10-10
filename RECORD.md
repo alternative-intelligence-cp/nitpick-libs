@@ -11858,3 +11858,34 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   9. the post-103 shapes with a planted control, and the read-only view kept;
   10. the hygiene.
 - **Expect about an hour.** Regex's last plan verifier ran 52 minutes.
+
+### `nitpick-regex` 0.2.2's plan VERIFIED PASS — PD-107 … PD-109 accepted as RX-232 … RX-234 — 2026-10-10 10:37 (shell time)
+
+- **verify `s1-nregex-0.2.2-verify` — PASS** (`sonnet`, 09:49–10:36, 48 min, 444 k tokens, 128 tool uses), on `5161973`. No defect.
+  - **CI:** job `114226630687` (92 310 B) shows compiler `7e91730` clean, LLVM 20.1.8, the emission, rx120 held (the `950bb1d` control skipped on CI, as expected), the self-check 31 / 4 / 35, both PEND lines, and 294/294 GREEN.
+  - **The rehearsal**, in a stand-in workbench:
+    - all eight blocks SAME (294 → 298 → 302), with patches of 14, 6, 14 and 6 files;
+    - the stand-in's inputs were found by reading the tools: `7e91730`, `950bb1d` (confirmed by `strace`), `BOARD.md`/`WORKSTREAMS.md` for `check_refs` (a negative control gives exactly two findings), the compiler clone, and the `$HOME` check scripts;
+    - no block reads `5fbaf4a` or an LLVM 20.1.2.
+  - **PD-107, by its own measurement:**
+    - the factor is the maximum, or the minimum without one, and `{0}`, `*`, `+` and `?` count 1;
+    - the refusals are at bytes 10, 7 (`x` mode, the atom ending at 6) and 9;
+    - planted factors up to INT64_MAX refuse without a trap, and exactly 100 000 builds; the multiply-before-guard mutant traps 93;
+    - **its own port of the fuzz, counted over Python's parser tree, agrees with the library on all 20 000 patterns** (12 975 / 7 025) at both legs, and two mutants show the comparator can fail;
+    - Y-25 is struck in `b2cf773` with `hir_build_product.npk`.
+  - **PD-108:** with scratch bounds, 100 000 and 999 999 refuse at byte 10, 10^6 and 999 999 999 at byte 3, and 10^9 builds. The dated notes say exactly that.
+  - **PD-109:**
+    - the unit exits 0 in 30 of 30 and the control exits 92 in 30 of 30 under the 64 MiB cap, at both legs;
+    - three bomb-admitting mutants send the capped unit to 92 in 10 of 10;
+    - the cap reaches the control on every path, by reading, and the control was never run uncapped.
+  - **The 15 mutants** read SAME in block 2m, and it re-ran 6 itself.
+  - **Step 3:** RA-1 … RA-8, E2-6's three sites and E2-10 are fixed as asked. RA-3's reading holds: `fold_expr` has no index arm at `7e91730`. The leftovers' account is true.
+  - **The decisions:** RX-232 … RX-234 follow RX-231 in PD order, `DECISIONS.md` +91 −0.
+  - **The shapes:** none of the post-103 shapes and no `#wild_slice` in 793 added `.npk` lines; every `string_bytes` result is `fixed uint8[]`; nothing past 103 is cited but as not carried.
+  - **Hygiene:** clean.
+  - **Two notes for the worker:**
+    - the plan's own scanner flagged 13 of 14 planted categories, missing an inline `{ A = 1, B }` variant value, which its enum count covers;
+    - `rx120.sh`'s own `python3` writes `harness/__pycache__/irscan*.pyc` even in a `-B` run.
+- **Checked here:** `nitpick-regex` clean at `5161973` = `origin/main`; no `__pycache__` in the workbench.
+- **PD-107, PD-108 and PD-109 are ACCEPTED** as RX-232, RX-233 and RX-234 at the worker's steps.
+- **Budget:** the meter 94 % at 10:36 (93 % before the verifier), so the verifier cost about 1 point. The author's cap of 5–6 points from 92 % leaves about 3–4.
