@@ -1218,6 +1218,12 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   tree held 170 distinct places in 39 files (`src/`'s "10 files, 28 sites" was 5 places in 4 files). Both are right; they
   answer different questions, and a re-spelling touches the places. *(`nitpick-regex` 0.2.1a's plan, 2026-10-09; landed
   2026-10-09.)*
+- **GitHub Actions reads a workflow as YAML 1.2, where a bare run of digits, one `e` and digits is a NUMBER: quote every hex
+  value in a workflow** — a commit, a short commit, a digest. `NITPICK_COMMIT_SHORT: 7e91730` reached `nitpick-time`'s CI as
+  `Infinity` (run 38022131137 printed "built from compiler Infinity"). PyYAML 6, which reads YAML 1.1, gives the string
+  `'7e91730'`, so a plan that parses its workflow with PyYAML cannot see it; judge a scalar by YAML 1.2's core schema.
+  Nothing asserted that row, so that run's verdicts stood; the fix quoted the five hex rows. *(`nitpick-time` 0.3.2a's work,
+  `9929d17`, and its verifier, 2026-10-10; landed 2026-10-10.)*
 
 ## 7. Repository conventions
 

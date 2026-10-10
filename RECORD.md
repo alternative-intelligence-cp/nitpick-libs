@@ -11694,3 +11694,51 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   7. the hygiene, the workbench's `__pycache__` included;
   8. the playbook finding by YAML 1.2's rules.
 - **The room before it:** the meter 91 % (90 % before the worker, so the worker cost about a point), the five-hour window 33 %, and Fable 96 % by the author's word. So the room is 95 − 91 − 2 = **2.0 points**, and the work verifier costs about 0.5. Two full harnesses only.
+
+### `nitpick-time` 0.3.2a VERIFIED PASS — the second library at `7e91730` and LLVM 20.1.8; `9929d17` accepted; the private LLVM 20.1.2 deleted; the seat at rest again — 2026-10-10 00:47 (shell time)
+
+- **verify `s2-ntime-0.3.2a-verify-work` — PASS** (`sonnet`, 00:18–00:46, 28 min, 349 k tokens, 104 tool uses), on `cf2176e`. No defect.
+  - **CI, per job with the bytes asserted:**
+    - `114125191390` (run `38022131137`, 86 363 B), `114126456336` (`38022549483`, 85 392 B) and `114128544224` (`38023237600`, 84 208 B, head `cf2176e`);
+    - each shows compiler `7e91730` clean, LLVM 20.1.8, the emission 31 527 001 B / `b79f89c5…`, the namespace lift, and GREEN -- 143 with 4 pending, 0 FAIL and 0 `##[error]`;
+    - the first prints "built from compiler Infinity" (11 env dumps plus the echo); the other two print "7e91730".
+  - **`9929d17` holds, and is ACCEPTED:**
+    - it changes only `ci.yml`: five rows quoted, every value byte-identical, and a comment block;
+    - the only reader of `NITPICK_COMMIT_SHORT` is the "built from" echo, so run `38022131137`'s verdicts stand;
+    - no unquoted scalar left in the workflow is a float or a bool under YAML 1.2 (`NPKC_LL_BYTES` and `timeout-minutes` are ints, whose text survives); a planted control trips the scan.
+  - **The patches** replay with `apply.py` from `f3804c3` to each work commit's tree (22, 24, 1 and 6 files), and no tool or patch was amended.
+    - The record commit changes the plan file and the cycle README's six boxes, as step 6 prescribes.
+    - It corrected §0's `check_refs` sentence with a dated note.
+  - **PD-105, by its own script:**
+    - step 1 re-spelled 39 slots in 16 files: 9 parameters, 28 locals and 2 fields;
+    - step 2 wrote the five result types;
+    - 12 plain slots remain in six files, none reached by a string's bytes;
+    - `bytes_view` stays `uint8[]`;
+    - each of the 44, undone alone, is TYPE-007 at `7e91730` (44 of 44).
+  - **The old pin:** at `954c00b` under `5fbaf4a` and the private 20.1.2, GREEN -- 143. All 159 roots are identical to `f3804c3`'s (114 compile, 45 refused).
+  - **The new pin at HEAD:**
+    - GREEN -- 143;
+    - its own per-site judge passes all 45 `expect-error` files, and fails exactly the five headers at `5fbaf4a`, so it can fail;
+    - the census holds 0 TYPE-086 and 0 ASSIGN-002, and catches a planted write (10 roots) and a planted reassignment (8);
+    - a `5fbaf4a` leg is refused at the toolchain check, as expected.
+  - **Decisions and currency:**
+    - TM-258 and TM-259 follow TM-257 under the batch heading; `DECISIONS.md` gains 166 lines and loses none;
+    - CI's 13 rows are SAME against the compiler's `rev-parse`, `PIN.md`, `SHA256SUMS` and the manifest;
+    - the 74 added `.npk` lines hold none of the nine silent shapes (control planted);
+    - nothing past landing 103 is cited.
+  - **Hygiene:**
+    - clean at `cf2176e` = `origin/main`, the remote's only branch;
+    - no tags, stash, worktrees, `core.hooksPath` or lost-found;
+    - no scratch, and no `__pycache__` in the workbench.
+    - One note: `check_record.py`'s plain `git status` takes and releases the real repository's `index.lock`. That is an `npk` finding for the tool (read-only checks should pass `--no-optional-locks`); the index file itself is unchanged.
+  - **The playbook finding is confirmed** under YAML 1.2's rules. `nitpick-regex`'s workflow has no such row and no float or bool scalar.
+  - **Two prose slips, not blocking, owed to time's next dispatch:**
+    - `CLAUDE.md` says "forty-four … re-spelled at the OLD pin first", where 39 were;
+    - `harness/README.md` says "at 35 units", where 35 is the failure count over 33 units.
+- **Applied here:**
+  - **0.3.2a is DONE**, and `LIBRARIES.md`'s time row reads the adoption and decisions to TM-259;
+  - **the playbook finding is landed** in §6: GitHub Actions reads YAML 1.2, so quote every hex value in a workflow;
+  - **the private LLVM 20.1.2 is deleted**, as its own README and the handoff said once both adoptions were recorded. Before deleting, `apt-cache madison` showed noble-updates and noble-security still serving `1:20.1.2-0ubuntu1~24.04.3`, so `.internal/handoff-14-scratch/llvm/fetch.sh` can rebuild it if an old pin is ever exercised again.
+- **The `npk` finding** (`check_record.py`'s plain `git status`) joins the tool list, which is not this seat's to write.
+- **Budget:** the meter was 92 % at 00:46 (90 % before the worker, 91 % before the verifier), with Fable at 96 % by the author's word. Time's adoption cost about 2 points in all: the worker about 1 and the verifier about 1, more than the 0.5 estimated from regex's verifier.
+- **The seat is at rest again,** logging the compiler's notices until the reset. Next week: 0.3.3's planner for time (with its brief, written before this re-spelling), regex 0.2.2's planner, and the re-pin past `7e91730` when the author says.
