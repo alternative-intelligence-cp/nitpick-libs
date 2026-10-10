@@ -11985,3 +11985,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Read at the take:** the board's handoff block, orchestrate §2, the take hazards (1)–(13), and this record from 2026-10-09 12:13. §2.2's reading of `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md` and `../nitpick-apps/APPS.md` is left for the wake, since nothing is dispatched before it.
 - **Nothing is scheduled:** no `CronCreate`, no `ScheduleWakeup`. The author wakes the seats by hand.
 - **When woken after the reset:** read the room, then regex 0.2.2's work verifier (`sonnet`, on `7f5b28a`), its brief modelled on `s2-ntime-0.3.2a-verify-work` in `_17`'s transcript `1d6e84ea-….jsonl` with the handoff block's three added checks; at its PASS, the held playbook finding; then time 0.3.3's planner with its brief, then regex 0.2.3's planner, one planner at a time.
+
+### The week's remaining credits and points go to Diogenes planning, at the author's word — 2026-10-10 12:26 (shell time)
+
+- **The author (before 12:26):** *"i'm fine with using the credits up and as such the rest of our points here since all the main stuff is at rest."* He turns them to **Diogenes** (`~/Workspace/REPOS/diogenes`, the agent-coordination hub of the memory `diogenes-idea`): basic plans, ideas and research now, to be fleshed out next week. Its first use is near: the coming Team seat's sessions must coordinate with this account's. Gemini via Antigravity follows, and a GPT auditor later. The libraries stay at rest, and nothing of theirs is dispatched.
+- **Round 1, started 12:26:** eight read-only Sonnet jobs on the credits (`.internal/credits/run.sh`), in parallel. They share a context file, `.internal/credits/context/diogenes-2026-10-10.md`, which quotes his message verbatim. The jobs:
+  - r1: Claude Code's integration surfaces;
+  - r2: Gemini CLI and Antigravity;
+  - r3: Codex CLI and the cross-harness standards;
+  - r4: event and storage backends (his Redis and API-as-hook ideas);
+  - r5: access layers and sandbox reachability;
+  - r6: prior art and human surfaces;
+  - r7: the research cache and shared memory;
+  - r8: requirements from this ecosystem's own practice (no web).
+- **The runner gained `jobs/JOB.dirs`:** extra readable directories, one per line. r8 uses it for the memory, `claude-skills`, the Gemini inboxes and `diogenes`.
+- **Next:** a synthesis drafts goals, requirements, options and a roadmap from the eight digests. This seat reviews it and files the set in `diogenes/meta/`.
+- **Budget:** the credits stood at about $153.7 by the corrected rule at 08:30, and the meter read 95 % at 11:40.
