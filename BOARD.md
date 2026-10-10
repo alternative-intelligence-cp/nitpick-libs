@@ -14,6 +14,89 @@ blocked, what is done. The durable plan is
 **Workbench writer:** `1d6e84ea-515b-4ac5-bc6f-fd5840aedeb2`, session `nitpick-libs_17`, taken 2026-10-09 12:13 EDT on `nitpick-libs_16`'s briefed handoff, at the author's go (*"i'm fine with handing off after the planner reports. nitpick-libs_17 is standing by whenever you need it."*, 11:0x) — **the libraries at width 1 under the author's pace of 2026-10-08** (the compiler's Fable allotment first; the room is 95 − the meter − 0.5 × (100 − Fable %)): at this take the room is about 2.0 points, so `nitpick-time` 0.3.2a's plan verifier only, then a stop for the week; its worker and work verifier wait for next week unless the author says otherwise. **08:10: AT THE AUTHOR'S GO ON THE WEEK'S TAIL** (the meter 92 %, his cap 5–6 points, the compiler paused): regex 0.2.2's planner runs, beside three read-only credits jobs (time 0.3.3's brief refreshed at `cf2176e`; an inventory of a re-pin to `e50eaf4`; the fuzzer's document fixes and registry rows). *Before:* **00:47: TIME'S ADOPTION VERIFIED PASS (`cf2176e`) — THE SEAT AT REST AGAIN**, logging the compiler's notices until the reset; the private LLVM 20.1.2 deleted. *Before:* **23:20: TIME'S ADOPTION RESUMED AT THE AUTHOR'S GO** (Fable at 96 %, the meter 90 %, the room 3.0 points). Its worker runs, its work verifier follows, and then the seat rests again. *Before:* **THE PLAN VERIFIED PASS 13:08, AND THE SEAT IS AT REST (the author, 14:07):** no new work this week. It logs and verifies the compiler's notices (F50, 108, F51 and 109 next) until the reset, 2026-10-14 20:00. `nitpick-libs_18` stands by as the successor, with a spare behind it. **When woken after the reset** (or sooner, if the compiler seat stops early and leaves room, as last week — the author evaluates then): read the room, then time 0.3.2a's worker (`opus`), then its work verifier, about 1.5 points together by regex's measured chain; then regex 0.2.2's planner with its brief; the re-pin past `7e91730` when the author says. The handoff block below says what is next. The take hazards (1)–(6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01; (6)'s tail and (7)–(13) follow the handoff blocks. *(Previously: `none` — released by `nitpick-libs_16` (`702af860-78f2-4dce-8596-f692a6e46d36`) at `040ce73` (2026-10-09 12:08) for this briefed handoff, its handoff block at `a8cb4d0`; its freedom-from-values text for this take is `RECORD.md` 2026-10-09 12:13. Before that `702af860-…`, session `nitpick-libs_16`, taken 2026-10-09 07:14 EDT on `nitpick-libs_15`'s briefed handoff — its full line is in history at `a8cb4d0`.)*
 
 
+> **🔁 HANDOFF — `nitpick-libs_17` → `nitpick-libs_18`, 2026-10-10 11:35 (shell time), at the author's go (*"sounds good. please proceed"*), the seat at about 74 % context, at a clean point: nothing of this seat's in flight. READ THIS FIRST. The handoff blocks below are superseded; this block's owed list consolidates theirs. The take hazards follow them.**
+>
+> **Take the lock** by orchestrate §2 and the take hazards (1)–(13):
+> - Your id comes from your transcript `.jsonl` and your scratchpad path. Cross-check it with `~/.claude/context/<id>.json`'s `session_name`, and by content with a nonce found in your transcript alone; then write it, 37 bytes, into `.internal/orchestrator.session`.
+> - **Before writing (hazard 13):** hazard (5)'s command must print `none` locally and on `origin/main`, and `.internal/orchestrator.session` must not exist.
+> - Put the id as the writer line's FIRST backticked token, in one commit; push; re-read it with hazard (5)'s command.
+> - **Hazard 3:** ask `nitpick-libs_17`, which answers from `git status`. **Hazard 4:** `nitpick-libs_19` (`[83661c]`) is the idle spare and your successor; ask it.
+> - `_17` stays open for your questions. Tell it, as a distinct message, when you are done.
+>
+> **THE PACE.**
+> - **The libraries are at rest until the weekly reset, Wednesday 2026-10-14 20:00.** At 11:32 the meter read 94 %. The author's cap for the tail was 5–6 points from 92 %, and about 3 are unspent. Dispatch nothing more this week unless he says so.
+> - **After the reset:** read the room before each dispatch: 95 − the meter − 0.5 × (100 − Fable %). The Fable reserve applies again once the compiler seat resumes on Fable. Width 1, one helper of a kind (W-24).
+> - **Calibration, measured 2026-10-10 with nothing else running:** a planner cost about 1 point, a worker under 1, and a verifier about 1. The earlier "about 4 points a planner" carried the compiler side's live Fable and seats.
+>
+> **THE PIN:** **`7e91730`** (landing 103).
+> - Both building libraries have adopted it: regex 0.2.1a (`5f2753e`) and time 0.3.2a (`cf2176e`).
+> - **The private LLVM 20.1.2 is deleted.** Ubuntu's noble-updates and noble-security still serve `1:20.1.2-0ubuntu1~24.04.3`, so `.internal/handoff-14-scratch/llvm/fetch.sh` rebuilds it if an old pin is ever exercised.
+> - **The compiler's `main` is `e50eaf4` (landing 111).** Notices 104 … 111 are verified here, none in our pin. The baseline for 112 is under 111's bold header.
+> - **The re-pin past `7e91730` is the author's call.** The credits inventory (`.internal/credits/out/repin-inventory-e50eaf4-2026-10-10.md`, read-only, nothing measured) says:
+>   - regex and time need 0 source files, only pins and prose;
+>   - the fuzzer carries its whole 103 debt;
+>   - posix's probes 02a, 02d and 02e need two arms (109);
+>   - the four planned repositories' manifests still say LLVM 20.1.2.
+>
+> **The state, as values.**
+> - **s1 `nitpick-regex`: 0.2.2 DONE at `7f5b28a`** (the repetition product, RX-232 … RX-234, 302/302 GREEN, CI green on both pushes, `check_record` clean).
+>   - **NEXT: its work verifier (`sonnet`), your first dispatch after the reset.** Model it on `s2-ntime-0.3.2a-verify-work` in this seat's transcript `1d6e84ea-….jsonl` (`jq` over its `Agent` calls). Add these checks:
+>     - **step 3's patch was amended after block 5** with three dated notes, twins of RA-3 and RA-2 found by the worker's second sweep. Blocks 0a and 3, re-run from `5161973`, read 16 files and 68 insertions where their Expects say 14 and 52, the only predicted DIFF. Accept the amendment if the verifier holds it;
+>     - **the record commit's own CI run is its full run:** `38063726122`, job `114247024215`, 92 833 B;
+>     - PD-109's 12 GB control runs only under its cap.
+>   - **At its PASS, land the held playbook finding:** a sweep built from what the steps make false cannot see a twin of what an audit corrects, and the positive control applied to the audit's hunks would. Then 0.2.3's planner (normalisation; no file yet).
+> - **s2 `nitpick-time`: 0.3.2a VERIFIED PASS** (`cf2176e`; TM-258, TM-259; the second library at `7e91730` and LLVM 20.1.8).
+>   - **NEXT: 0.3.3's planner (the double)**, named its refreshed brief, `.internal/credits/out/plan-brief-time-0.3.3-2026-10-10.md` (written at `cf2176e`).
+>   - Owed to it: TA-1 … TA-7; E2-10; and two prose slips, `CLAUDE.md`'s "forty-four … at the OLD pin first" (39 were) and `harness/README.md`'s "at 35 units" (35 is the failure count).
+> - **The compiler side: `nitpick-compiler_37` (`[44cb93]`, Opus) holds the queue, paused until the Fable reset.**
+>   - **Until then it LOGS this workbench's messages WITHOUT replying,** at the author's word. For a delivery confirmation, ask the author.
+>   - `_17` told `_37` at the handoff that the libraries' address is now `_18`.
+>   - Next from them, after the reset: 112 (DEF-232, F54), then 113 (DEF-235, DEF-236 (c)(d)(e), DEF-237, DEF-234 (c); F55).
+>   - Verify each with `tools/ladder.py` against the bold baseline and the three read-only git checks; never fetch in `../nitpick`.
+>   - When a compiler seat resumes on Fable, confirm its address with a one-line acknowledgement.
+> - **The registry:** at the re-pin that carries them, O-N41 (DEF-249, 104), O-N40's item 1 (DEF-243, 107) and O-N36's F-038 and F-046 (DEF-233 and DEF-238, 111) are discharged.
+> - **S-134** (the author's `failsafe` question) carries this seat's PX-100 correction and three library-side ideas, verbatim and acknowledged.
+> - **Questions for the author: none open.**
+>
+> **THE API CREDITS** (read `.internal/credits/README.md` first):
+> - **The billing page is the authority on the balance.** The CLI's `total_cost_usd` overstates the bill by half each job's cached-read cost, measured against two of the author's readings; the README has the hand correction.
+> - **About $153.7 is left by the corrected rule.** The Console lists the first grant's expiry as 2026-10-15; plan to the 12th.
+> - **Waiting in `.internal/credits/out/` as guides,** to be named in each agent's dispatch:
+>   - `plan-brief-time-0.3.3-2026-10-10` (0.3.3's planner);
+>   - `repin-inventory-e50eaf4-2026-10-10` (the re-pin decision);
+>   - `fuzz-docs-fixes-draft-2026-10-10` (FZ-1 … FZ-10 and `KNOWN_DEFECTS.md`'s F-029 … F-048 rows);
+>   - `plan-brief-<sockets|tui|parse|posix>-0.0-2026-10-09` (their cycle 0.0, with the pin-audit and E2 items drafted; their compiler quotes from `42ecf29`).
+> - The next use is the author's to choose; the VM runner's review is one candidate.
+>
+> **THE AUTHOR'S ACCOUNT PLAN:**
+> - **Support's assistant answered on 2026-10-10:** *"Using your personal Max account and a Team seat on different parts of the same project isn't itself a violation"*, and no supplemental subscription is needed.
+> - The plan: his AILP partner holds one Team seat and he adds one premium seat ($125, about +30 % capacity).
+> - Left to do when the funds clear: a second `CLAUDE_CONFIG_DIR` with its own settings, hooks, sandbox, plugin and memory, and a test of `SendMessage` across the two accounts, with a file inbox if it does not reach.
+> - See the memory `subscription-beats-api-for-randy`.
+>
+> **NIKOLA:** no Claude work on Nikola itself until a lawyer and Anthropic have weighed in, since the terms bar using Claude to build a competing product. Nitpick and its ecosystem continue; the author is confident they are fine. See the memory `nikola-work-pending-tos-review`.
+>
+> **Owed, consolidated** (`_16`'s list stands, with these changes):
+> - **The four planned repositories' next dispatch items** are now drafted in their cycle-0.0 briefs. These are tui TL, parse PL, sockets SL and posix XL; E2-8, E2-13 and E2-14; the currency pins; EC3's sentence; `APPS.md`'s SIGPIPE with EC1; and E2-15's headings.
+> - **`nitpick-fuzz`:** FZ-1 … FZ-10 and the registry rows are drafted, and its whole 103 debt is the heavy item. Its next task is the author's to choose.
+> - **`nitpick-posix`:** probes 02a, 02d and 02e need the `StackExhausted` and `MachineFault` arms at the re-pin that carries 109.
+> - **The `npk` findings, tool changes not this seat's to write:** `_16`'s five, plus one new. `check_record.py` runs a plain `git status`, which takes the index lock; read-only checks should pass `--no-optional-locks`.
+> - **Still owed, unchanged:**
+>   - the 2026-09-26 ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EK2;
+>   - the `META` mirror of `.internal/`;
+>   - the install instructions' libraries half;
+>   - the VM runner's review;
+>   - the author's calls: `gh` 2.45.0, the sandbox allowlist, `perf` or the governor.
+> - **⚠ `nitpick-regex/.internal/r3/` holds symlinks into `../nitpick` and this workbench.** Remove the links first, and never `rm -rf` a path ending in `nitpick/`.
+>
+> **Lessons this tenure paid for, binding on every dispatch's NOTES:**
+> - **Take every time from `date` before writing it.** This seat slipped twice (12:24 for 12:19, then 13:19 for 13:16), both corrected in their own commits.
+> - **GitHub Actions reads YAML 1.2: quote every hex value in a workflow** (PLAYBOOK §6, landed 2026-10-10). `7e91730` reached time's CI as `Infinity`.
+> - **The credits ledger overstates the bill. Read the balance from the billing page.**
+> - **Before deleting a rebuildable artifact, check that its source still serves it,** with `apt-cache madison` for a package.
+> - **An idea handed to the compiler side goes into its plan verbatim,** so write it self-contained, with its tradeoff, its trap and what is measured. See the memory `ideas-relay-verbatim-to-planning`.
+> - **A sweep built from what the steps change cannot see the twins of an audit's corrected claim** (the regex 0.2.2 worker's finding, held for its verifier).
+
 > **🔁 HANDOFF — `nitpick-libs_16` → `nitpick-libs_17`, 2026-10-09 12:07 (shell time), at the author's go (*"i'm fine with handing off after the planner reports. nitpick-libs_17 is standing by whenever you need it."*), the seat at about 65 % context, at a clean point: nothing of this seat's in flight. READ THIS FIRST. The handoff blocks below are superseded; this block's owed list consolidates theirs. The take hazards follow them.**
 >
 > **Take the lock** by orchestrate §2 and the take hazards (1)–(13):

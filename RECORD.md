@@ -11937,3 +11937,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **The record commit's tree was not run whole locally,** by the dispatch's cost line. It changes no program the harness builds, and its gate was the tree checks, `check_refs` and its own CI run. The verifier reads that run as its full run.
 - **findings-for-playbook, held for the work verifier's PASS:** *a sweep built from what the steps make false cannot see a twin of what an audit finding corrects.* Block 5's eleven patterns covered every statement steps 1–4 moved, but none covered RA-2's or RA-3's old claim, whose twins stood in three more files. The PLAYBOOK's positive control (every hunk's old text matched by some pattern), applied to step 3's hunks, would have flagged it at planning.
 - **Budget:** the meter still read 94 % at 11:32, so the worker cost under a point. The week ends here for the libraries: the work verifier runs after the reset, with about 3 points of the author's cap unspent.
+
+### 🔁 HANDOFF — `nitpick-libs_17` → `nitpick-libs_18`, at the author's go — 2026-10-10 11:35 (shell time)
+
+- **The author (11:3x):** *"sounds good. please proceed."* The seat is at about 74 % context, at a clean point, with nothing of this seat's in flight. The 9 trees are swept and all `dirty=0` and `0/0` (11:34).
+- **The handoff block** is at the top of the board: the pace and its calibration, the pin, the state as values, the credits, the author's account plan, Nikola, a consolidated owed list and the lessons. `_18` is briefed directly, and `_17` stays open for its questions.
+- **The tenure, in brief** (2026-10-09 12:13 → 2026-10-10 11:3x):
+  - **The take:** hazard 13's values read before any write; the id confirmed by a nonce; `_16` answered hazard 3 and `_18` hazard 4.
+  - **Time 0.3.2a, the adoption of `7e91730`:** plan VERIFIED PASS (12:17–13:07); worker DONE (23:20–00:15), with `9929d17` quoting CI's hex rows after YAML read `7e91730` as `Infinity`; work VERIFIED PASS (00:18–00:46). **The second library at `7e91730` and LLVM 20.1.8.** The private LLVM 20.1.2 deleted.
+  - **Regex 0.2.2, the repetition product, on the week's tail at the author's go:**
+    - planned (08:10–09:45), with PD-108's second `{1000}` kept by the author's ruling;
+    - plan VERIFIED PASS (09:49–10:36);
+    - worker DONE (10:38–11:28); its work verifier is next week's.
+  - **The compiler side:**
+    - notices 107 … 111 and advance notices F50 … F53 were verified and filed;
+    - the seat rotated `_35` → `_36` → `_37`, and is paused until the reset;
+    - S-134 got this seat's PX-100 correction and three library-side ideas.
+  - **The API credits:**
+    - seven jobs, four cycle-0.0 briefs and three prep jobs;
+    - **the ledger reconciled with the billing page:** the CLI overstates the bill by half the cached-read cost.
+  - **The author's account plan:** support's answer clears a Team seat on the same project. Nikola's own work waits on legal review.
+  - **Slips, mine, each recorded and corrected:** two times written before `date` was read.
+  - **Budget:** the meter from 77 % (12:04, 2026-10-09) to 94 % (11:32, 2026-10-10). With the compiler paused, the last 2 points covered a planner, a plan verifier and a worker.
