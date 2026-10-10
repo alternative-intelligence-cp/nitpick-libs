@@ -1181,7 +1181,7 @@ once at the 0dfddac re-pin.
 
 **For us:** at the re-pin that carries 111, the fuzzer's F-038 verdicts move to TYPE-094, and `ty1649` to TYPE-024, as F53's entry says.
 
-**THE COMPILER SEAT IS PAUSED UNTIL THE FABLE RESET, WEDNESDAY 2026-10-14.** `nitpick-compiler_37` (Opus, a listener) logs this workbench's messages and answers them when it resumes. A one-line acknowledgement of its address was asked at 02:21; it is recorded when it comes. Landings 112 (DEF-232) and 113 (DEF-235, DEF-236 (c)(d)(e), DEF-237, DEF-234 (c)) resume then.
+**THE COMPILER SEAT IS PAUSED UNTIL THE FABLE RESET, WEDNESDAY 2026-10-14.** `nitpick-compiler_37` (Opus, a listener) logs this workbench's messages and answers them when it resumes. A one-line acknowledgement of its address was asked at 02:21. **The author confirmed it (08:24):** `_37` received and logged the message, and did not reply because he had told it to log everything. **Until the reset it logs this workbench's messages without replying.** For a delivery confirmation, remind the author, who confirms; do not spend `_37`'s tokens asking. Landings 112 (DEF-232) and 113 (DEF-235, DEF-236 (c)(d)(e), DEF-237, DEF-234 (c)) resume then.
 
 **THE BASELINE NOTICE 112 MUST QUOTE** (notice 111's rows, at `e50eaf4`, generated from the transcription `tools/ladder.py` checked):
 

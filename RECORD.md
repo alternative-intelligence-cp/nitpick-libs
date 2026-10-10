@@ -11781,3 +11781,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Before it:** `nitpick-regex` clean at `5f2753e` = `origin/main`.
   - **Expect two to three hours and about 4 points.** Regex's adoption planner ran 2 h 49 min. Its plan verifier waits for next week.
 - **The meter is read again at its report.** Nothing else is started on the subscription this week.
+
+### `nitpick-compiler_37`'s address confirmed by the author — it logs without replying until the reset — 2026-10-10 08:24 (shell time)
+
+- **The author (08:1x):** `_37` received this seat's message of 02:21 asking for a one-line acknowledgement, and logged it. It did not reply because he had told it to log everything, which it took literally. He expects it to go on logging whether or not it replies.
+- **So until the reset:** messages to `_37` are logged, not answered. Where a delivery confirmation matters, this seat reminds the author, and he confirms. That saves him re-instructing `_37` and spends none of its tokens. The board's notice-111 entry says so.
