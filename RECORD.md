@@ -11959,3 +11959,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **The author's account plan:** support's answer clears a Team seat on the same project. Nikola's own work waits on legal review.
   - **Slips, mine, each recorded and corrected:** two times written before `date` was read.
   - **Budget:** the meter from 77 % (12:04, 2026-10-09) to 94 % (11:32, 2026-10-10). With the compiler paused, the last 2 points covered a planner, a plan verifier and a worker.
+
+### `nitpick-libs_17` releases the workbench lock to `nitpick-libs_18` — 2026-10-10 11:35 (shell time)
+
+- **The writer line's first token is `none`,** with `_17`'s take line kept under *Previously*. The 37-byte marker (`1d6e84ea-…`) is removed, as orchestrate §15 says a release does.
+- **`nitpick-compiler_37` was told the new address** in one message (`_18` from here). It logs without replying until the reset, at the author's word.
+- **This is `_17`'s last write.** `_18` takes the lock by §2 and hazard (13). `_17` stays open for its questions.
