@@ -12122,3 +12122,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 0 errors, and `integrity_check` ok.
 - **Filed:** the probe and its result are in `diogenes/meta/research/done/dx1-probe-2026-10-10/`. `EXPERIMENTS.md` and `OVERVIEW.md` are updated, and the first-hand file has M6.
 - **Still open:** the host-to-sandbox leg, from the author's terminal.
+
+### Diogenes' DX-7 checked: no WAL-reset backport in Ubuntu's SQLite (`diogenes` `47f5002`) — 2026-10-10 15:32 (shell time)
+
+- The installed `libsqlite3-0 3.45.1-1ubuntu2.8` changelog lists security backports up to CVE-2026-39113 (2026-09-03), with no WAL-reset entry. **By DX-7's rule, the hub is the sole writer from cycle 0.1, and 0.0 avoids long concurrent reads.** Recorded in `EXPERIMENTS.md`, and as M7 in the first-hand file.
