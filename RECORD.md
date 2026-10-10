@@ -12042,3 +12042,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - a final answer past the model's output limit spills into a second message, so `out/JOB.md` is now rebuilt from the job's transcript. Checked identical on the synthesis, and it worked on the revision (233 294 characters, where `result` held 106 917).
   - Both are noted in `.internal/credits/README.md`.
 - **The credits:** about $127.9 left by the corrected rule, against $153.7 at 08:30. The billing page is the authority. The meter read 95 % at 12:27.
+
+### The credits read $112.43 on the billing page, where the bill now equals the CLI's figure; the author's go for two more Diogenes jobs, and his monthly plan for the credits — 2026-10-10 13:44 (shell time)
+
+- **The author (17:4x):** the billing page reads **$112.43** after a refresh. Since his reading of 2026-10-09 13:57 ($156.93), the page fell $44.50, which is exactly the ledger's CLI figure for the runs in between: $5.85 plus $38.65. **So the half-cached-read correction does not hold for these runs.** Budget at the CLI's figure. The README and the board's credits line say so.
+- **His go:** *"anything we can get done while you still have a couple points and the credits still exist is a go for launch from me."* Started at once, both read-only on the credits:
+  - `dio-r9-mcp-agent-mail` (Opus): DQ-16, adopt or build, by mapping MCP Agent Mail and Beads against the P0 requirements;
+  - `dio-p1-cycle-0.0-plan` (Fable): the execution-grade plan for Diogenes' cycle 0.0, on the open questions' recommendations, with every assumption listed.
+- **His plan for the credits,** recorded in the memory `use-api-credits-before-expiry`:
+  - the first full monthly grant of $200 arrives about Wednesday;
+  - use what is needed to get Diogenes running;
+  - then spend the bulk on the main work;
+  - **reserve a portion every month for improving Diogenes,** since it benefits every project.

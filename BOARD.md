@@ -60,7 +60,7 @@ blocked, what is done. The durable plan is
 >
 > **THE API CREDITS** (read `.internal/credits/README.md` first):
 > - **The billing page is the authority on the balance.** The CLI's `total_cost_usd` overstates the bill by half each job's cached-read cost, measured against two of the author's readings; the README has the hand correction.
-> - **About $153.7 is left by the corrected rule.** The Console lists the first grant's expiry as 2026-10-15; plan to the 12th.
+> - **SUPERSEDED 13:44 by the page itself: $112.43 available** (the author's reading, 17:4x). Since his 2026-10-09 13:57 reading ($156.93), the bill equals the CLI's figure to the cent ($44.50 both), so the half-cached-read correction no longer holds. Budget at the CLI's figure (`.internal/credits/README.md`). *Before:* **About $153.7 is left by the corrected rule.** The Console lists the first grant's expiry as 2026-10-15; plan to the 12th.
 > - **Waiting in `.internal/credits/out/` as guides,** to be named in each agent's dispatch:
 >   - `plan-brief-time-0.3.3-2026-10-10` (0.3.3's planner);
 >   - `repin-inventory-e50eaf4-2026-10-10` (the re-pin decision);
