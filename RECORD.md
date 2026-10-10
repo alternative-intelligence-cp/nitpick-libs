@@ -11754,3 +11754,30 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin** (`7e91730`).
 - **The baseline for 112 is written** and self-checked by extraction (MATCH, the control failing).
 - **The week's library work is done, and both seats rest until the reset.** The workbench's next acts are next week's: 0.3.3's planner for time, regex 0.2.2's planner, and the re-pin past `7e91730`, which would carry 104 … 111 and more, when the author says.
+
+### The week's tail, at the author's choice: regex 0.2.2's planner and three credits prep jobs — 2026-10-10 08:11 (shell time)
+
+- **The author (08:0x):** everything is at rest at clean points, and nothing need be reserved for the compiler side, which is paused until the reset. About 8 points are left for the week. To stay off the edge, use 5–6 at most: one more task on the list, or the remaining credits (about $157).
+- **Put to him with the numbers, he chose "both":**
+  - the meter read 92 % at 08:08, and this seat's context 63 %;
+  - a planner has cost about 4 points (time 0.3.2a's ran 72 → 77 % over 2.5 h with the compiler side live), so one more lands near 96 %, inside his cap;
+  - the credits cost the week nothing.
+- **Three read-only credits jobs, started 08:0x** (`.internal/credits/run.sh`, Sonnet), each a guide for a later agent, not reviewed here in full:
+  - `plan-brief-time-0.3.3-2026-10-10`: time 0.3.3's brief refreshed at `cf2176e`, after 0.3.2a's re-spelling. It covers TA-1 … TA-7 re-checked, E2-10, 0.3.2a's §7 rule, and the verifier's two prose slips;
+  - `repin-inventory-e50eaf4-2026-10-10`: what moving the pin from `7e91730` to `e50eaf4` (landings 104 … 111) changes in each repository, for the author's re-pin decision and the adoption plans after it;
+  - `fuzz-docs-fixes-draft-2026-10-10`: FZ-1 … FZ-10 drafted, `KNOWN_DEFECTS.md`'s rows for F-029 … F-048 with their DEF numbers and landings, and the expectations a re-pin moves.
+- **Dispatched 08:10: `s1-nregex-0.2.2-0810`** (`npk:planner`, `opus`) on `5f2753e`, TOOLCHAIN `7e91730`, the only agent running (W-24).
+  - **Its NOTES:**
+    - the models, 0.2.0 and 0.2.1;
+    - the credits brief of 2026-10-09, as a guide, not the set;
+    - the boxes' notes: RX-228's walk, RX-184's single bound, RX-219's Y-25 row, and RX-223's missing position for the asserted offset;
+    - the peak-memory test;
+    - RA-1 … RA-8, each taken in or handed on with a reason;
+    - 0.2.1a's hand-ons, the two gitignored leftovers, and E2-6 and E2-10;
+    - PD-107 onward (PD-106 the last);
+    - the shapes `7e91730` accepts that landings 104 … 111 refuse or fix;
+    - the week's lessons, the YAML 1.2 one included;
+    - a cost line: about 5 points of room and one confirmation pass, with a clean stop if it cannot finish.
+  - **Before it:** `nitpick-regex` clean at `5f2753e` = `origin/main`.
+  - **Expect two to three hours and about 4 points.** Regex's adoption planner ran 2 h 49 min. Its plan verifier waits for next week.
+- **The meter is read again at its report.** Nothing else is started on the subscription this week.
