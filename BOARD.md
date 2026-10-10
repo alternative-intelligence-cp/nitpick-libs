@@ -83,10 +83,10 @@ blocked, what is done. The durable plan is
 > - **`nitpick-posix`:** probes 02a, 02d and 02e need the `StackExhausted` and `MachineFault` arms at the re-pin that carries 109.
 > - **The `npk` findings, tool changes not this seat's to write:** `_16`'s five, plus one new. `check_record.py` runs a plain `git status`, which takes the index lock; read-only checks should pass `--no-optional-locks`.
 > - **Still owed, unchanged:**
->   - the 2026-09-26 ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EK2;
+>   - the 2026-09-26 ecosystem audit's EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EK2. *Fixes drafted 2026-10-10 on the credits, each re-checked against the tree, as a guide and not applied:* `.internal/credits/out/ecosystem-owed-drafts-2026-10-10.md`;
 >   - the `META` mirror of `.internal/`;
 >   - the install instructions' libraries half;
->   - the VM runner's review;
+>   - the VM runner's review. *The read-only half was drafted 2026-10-10 on the credits:* `.internal/credits/out/vm-runner-review-draft-2026-10-10.md`. Against the 58-file backup it finds 23 new files, 2 removed and at least 14 changed, among them new VM `snapshot`, `revert`, `snapshot-delete`, `reset` and `resize` scripts. It drafts fixes and VM tests by bare calls. The test half needs a seat: back the folder up first;
 >   - the author's calls: `gh` 2.45.0, the sandbox allowlist, `perf` or the governor.
 > - **⚠ `nitpick-regex/.internal/r3/` holds symlinks into `../nitpick` and this workbench.** Remove the links first, and never `rm -rf` a path ending in `nitpick/`.
 >

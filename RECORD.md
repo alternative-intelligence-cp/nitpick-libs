@@ -12098,3 +12098,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   `PROJECT_INDEX.md` now points to it first.
 - **`plan-brief-regex-0.2.3-2026-10-10`** (Sonnet 5.5, 123 turns, $2.09) is a planning brief for regex 0.2.3, normalisation, written at `7f5b28a` (50 kB). It was written before 0.2.2's work verifier, so the planner re-checks anything that rests on 0.2.2. **It is a guide, not checked here in full.** The board's credits line lists it beside time 0.3.3's brief, and the planner's dispatch names it.
 - **The credits:** about $68.8 left at the bill = CLI rule ($71.39 − $0.51 − $2.09). The next grant is Tuesday 2026-10-13.
+
+### Two owed items' read-only halves drafted on the credits: the VM runner review, and the ecosystem audit's eight items — 2026-10-10 15:29 (shell time)
+
+- **`vm-runner-review-draft-2026-10-10`** (Sonnet, $0.55):
+  - **the diff** against the 58-file backup: 23 new files, 2 removed, at least 14 changed, with `config/` left unread by design;
+  - **new VM scripts:** `snapshot`, `revert`, `snapshot-delete`, `reset` and `resize`;
+  - for each new or changed script, its correctness and safety, with drafted fixes;
+  - the bare-call tests a seat should run, after backing the folder up;
+  - up to five proposed conveniences.
+- **`ecosystem-owed-drafts-2026-10-10`** (Sonnet, $2.51): EC8, EC9, EC10, ED2, ES2, ES3, EK1 and EK2. Each is re-checked against the current tree, with its fix drafted, or with options and a recommendation where the author decides.
+- **Both are guides, not checked here in full and not applied.** The board's owed list names them, and the seat that takes each item reads its draft first.
+- **The credits:** about $65.7 left at the bill = CLI rule. The next grant is Tuesday 2026-10-13.
