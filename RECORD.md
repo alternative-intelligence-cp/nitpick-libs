@@ -12085,3 +12085,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The plan's status** heads its cycle README. It rests on the open questions' recommendations, and the author reviews it next week.
 - **The runner's rebuild carried every long answer.** `result` held 15–105 k of the 139–193 k characters each time.
 - **The credits:** $112.43 by the page at 17:4x. Since then the CLI figures sum to $41.04 (r9, p1, v1, p2, v2, p3, v3), so about **$71.4** is left, at the bill = CLI rule. The next grant is Tuesday 2026-10-13. The meter read 95 % at 19:09Z.
+
+### Diogenes' one-page overview filed (`diogenes` `b0f0347`), and a planning brief for regex 0.2.3 on the credits — 2026-10-10 15:19 (shell time)
+
+- **`dio-o1-overview`** (Opus 5.5, 13 turns, $0.51) wrote `meta/OVERVIEW.md`, about 1 500 words, read here in full before filing:
+  - day zero's steps;
+  - what cycle 0.0 builds, its gate in plain words, and its size (about 36 seat-hours, with a cut line at about 31);
+  - the decisions that block 0.0 or day zero, each with the default the plan assumes;
+  - what to skip;
+  - five honest uncertainties, each with the experiment that settles it.
+
+  `PROJECT_INDEX.md` now points to it first.
+- **`plan-brief-regex-0.2.3-2026-10-10`** (Sonnet 5.5, 123 turns, $2.09) is a planning brief for regex 0.2.3, normalisation, written at `7f5b28a` (50 kB). It was written before 0.2.2's work verifier, so the planner re-checks anything that rests on 0.2.2. **It is a guide, not checked here in full.** The board's credits line lists it beside time 0.3.3's brief, and the planner's dispatch names it.
+- **The credits:** about $68.8 left at the bill = CLI rule ($71.39 − $0.51 − $2.09). The next grant is Tuesday 2026-10-13.

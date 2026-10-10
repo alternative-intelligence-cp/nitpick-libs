@@ -63,6 +63,7 @@ blocked, what is done. The durable plan is
 > - **SUPERSEDED 13:44 by the page itself: $112.43 available** (the author's reading, 17:4x). Since his 2026-10-09 13:57 reading ($156.93), the bill equals the CLI's figure to the cent ($44.50 both), so the half-cached-read correction no longer holds. Budget at the CLI's figure (`.internal/credits/README.md`). *Before:* **About $153.7 is left by the corrected rule.** The Console lists the first grant's expiry as 2026-10-15; plan to the 12th.
 > - **Waiting in `.internal/credits/out/` as guides,** to be named in each agent's dispatch:
 >   - `plan-brief-time-0.3.3-2026-10-10` (0.3.3's planner);
+>   - `plan-brief-regex-0.2.3-2026-10-10` (0.2.3's planner, normalisation; written 2026-10-10 15:18 at `7f5b28a`, BEFORE 0.2.2's work verifier, so re-check anything in it that rests on 0.2.2);
 >   - `repin-inventory-e50eaf4-2026-10-10` (the re-pin decision);
 >   - `fuzz-docs-fixes-draft-2026-10-10` (FZ-1 … FZ-10 and `KNOWN_DEFECTS.md`'s F-029 … F-048 rows);
 >   - `plan-brief-<sockets|tui|parse|posix>-0.0-2026-10-09` (their cycle 0.0, with the pin-audit and E2 items drafted; their compiler quotes from `42ecf29`).
