@@ -11812,3 +11812,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The author (08:4x), to be confirmed later today:** two Max 20x plans no longer look officially allowed for his situation, so a Team account is what is left. The other AILP member, now on an individual Pro plan, would hold one seat. Randy then buys a single premium seat to meet the seat minimum, not a premium and a standard, which makes a Team feasible.
 - **His estimate:** about one more working day a week on Opus and Fable, or two if mostly on Opus. That gives an active week from Wednesday to Sunday or early Monday, with Monday and Tuesday off. After the heavy cycles he may drop back to his Max plus one $25 seat.
 - **Recorded in the memory `subscription-beats-api-for-randy`,** with the open checks: whether a premium seat includes Claude Code, and whether its limits are its own. This supersedes the board's "second Max account" plan in the owed list, which stands until he decides. Nothing changes in the workbench before the account exists.
+
+### `nitpick-regex` 0.2.2 planned (`5161973`) — the repetition product; PD-108 corrects the acceptance's "third `{1000}`" to the second at the current bound, for the author's word; the planner cost about 1 point — 2026-10-10 09:47 (shell time)
+
+- **report `s1-nregex-0.2.2-0810` DONE (plan)** (`opus`, 08:10–09:45, 95 min, 584 k tokens, 185 tool uses). Commit `5161973` on `5f2753e`, pushed. CI `38056725938`, job `114226630687`, read per job (92 310 B, checked here): compiler `7e91730` clean, LLVM 20.1.8, the emission matching, rx120 held, the self-check 31 / 4 / 35, 294/294 GREEN.
+  - **Rehearsed twice in the real position:** blocks 0a, 0b, 1, 2, 2m, 3, 4 and 5 on a throwaway branch, then a confirmation branch with all eight SAME and the sweep's 119 lines byte-identical. Both branches were deleted and never pushed. The units go 294 → 298 (step 1) → 302 (steps 2–4); 15 mutants, each red.
+  - **PD-107, the product:**
+    - `hir_build` carries a `uint64` product down the walk, and a factor is the repetition's maximum, or its minimum when it has none, never under 1;
+    - the build refuses entering the first repetition past the bound, at the quantifier's `{` (RX-223's position, read back from the node's span);
+    - no multiply can trap;
+    - Y-25's row is struck with the provoking unit (RX-219);
+    - a fuzz unit checks 20 000 seeded patterns against an independent bottom-up count.
+  - **PD-108, the acceptance:** at the bound 100 000 (= `NREGEX_PROGRAM_INSTRUCTIONS`), `((a{1000}){1000}){1000}` is refused at its **second** `{1000}`, byte 10, in either counting order. "The third" holds only for a bound of 10^6 or more.
+    - The plan keeps the bound, and dates notes on H-8, the cycle README's row, box and Gate, and ROADMAP's Gate.
+    - **For the author:** striking PD-108 means a 10^6 bound and a re-cut of step 1 and the memory pair.
+  - **PD-109, the memory pair, under the repository's own `mem-cap-mib` cap:**
+    - one unit makes the request emission will make for any accepted HIR, and exits 0;
+    - its control makes the bomb's 12 GB request first and dies `HeapOom` (92);
+    - three mutants that let a bomb through show it can fail;
+    - the control must only ever run under its cap.
+  - **Step 3:** RA-1 … RA-8 all stood at `5f2753e` and all are fixed (RA-3 re-read at `7e91730`), along with E2-6's three sites, E2-10, and one more stale `accept` row the plan's sweep found.
+  - **The two leftovers are explained as the harness's own,** in `harness/README.md`: `rx120.sh` clears its directory only at its start, and the bytecode comes from runs without `-B`.
+  - **Handed on:** cycle 0.6.2 expands only built HIRs (`hir_read`'s HIRs skip the product check), and cycle 0.3.4 decides whether the build's answer becomes `PatternError?`. Landings 104 … 111 are not used, and no compiler defect was found.
+- **Checked here:**
+  - `check_record` gives `[no-report]` only, as expected for a plan;
+  - `nitpick-regex` is clean at `5161973` = `origin/main`, the remote's only branch;
+  - the scratch `p022` and `w022` are gone.
+- **The cost:** the meter went from 92 % (08:08) to 93 % (09:46) for the planner, the three credits jobs' seat side and this seat. **About 1 point, not the 4 estimated.** The earlier planner figures (72 → 77 % for time's 0.3.2a planner) carried the compiler side's live Fable and seats. With nothing else running, a planner costs about a quarter of that.
+- **Next:** the author's word on PD-108, then its plan verifier, this week if the room allows.
