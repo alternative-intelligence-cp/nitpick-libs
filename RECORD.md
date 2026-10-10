@@ -11650,3 +11650,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Before it:** `nitpick-time` clean at `f3804c3` = `origin/main`; 128 GiB available; both pins' `SHA256SUMS` OK; the private LLVM present.
 - **Expect one to two hours.** Regex's worker ran 54 minutes, and this plan's blocks run four full harnesses plus two over a copy.
 - **Next:** its work verifier (`sonnet`), with the room re-read first, and a stop if it falls under about 1 point. Then the private LLVM 20.1.2 is deleted, and the seat rests again.
+
+### The compiler side's plan for the week's tail, the author's word — 2026-10-09 23:23 (shell time)
+
+- **The author (23:2x):** once its in-flight work is done, `nitpick-compiler_36` hands off to `nitpick-compiler_37`. He has already switched `_37` to Opus, to listen for messages from this workbench at little cost to its context. At the reset he reopens that session and switches it back to Fable to continue. He expects the compiler side to announce the handoff.
+- **For this seat:** when the handoff is announced, confirm the new address with a one-line acknowledgement (the lesson of F48), then record it here and on the board. Until then the address is `_36`. Notices keep being verified by content, whoever sends them.
