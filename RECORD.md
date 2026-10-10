@@ -12054,3 +12054,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - use what is needed to get Diogenes running;
   - then spend the bulk on the main work;
   - **reserve a portion every month for improving Diogenes,** since it benefits every project.
+
+### Diogenes' cycle 0.0 planned, and DQ-16 answered: `diogenes` `d200362`; a plan verifier dispatched — 2026-10-10 14:05 (shell time)
+
+- **`dio-p1-cycle-0.0-plan`** (Fable 5.1, 42 turns, $11.34 by the CLI) filed `meta/roadmap/0.0/`:
+  - a cycle README with an assumptions table, built on the open questions' recommendations;
+  - ten subcycles, where 0.0.0.0 runs the experiments first on private instances;
+  - a checklist.
+  - **The runner's rebuild saved it.** `result` held 15 143 of 138 695 characters.
+  - The planner's own notes before its first file, not filed in diogenes:
+    - it stored the credits factor as 1.00, from the README's 17:4x note, with the two-thirds figure kept as superseded;
+    - the brief said 2 to 4 seat-days where the revised ROADMAP says 3 to 5, so it targets 4 and names a cut line.
+- **`dio-r9-mcp-agent-mail`** (Opus 5.5, $1.62) answers DQ-16: **build the small core,** and take Agent Mail's ideas only. Agent Mail has no task path and no file transport, its names are self-asserted, and its store has open corruption issues. Its licence rider names Anthropic and, by the report's reading, cannot be combined with AGPL. The author reads it himself before any trial (X0). DQ-16, `DESIGN.md` §8 and the research index are updated.
+- **Dispatched now: `dio-v1-verify-0.0-plan`** (Opus 5.5), the independent plan verifier, before the plan is ever handed to an executor.
+- **A correction to the 17:4x entry:** the next monthly grant is **Tuesday 2026-10-13**, by the billing page as the author read it ("next credit is oct 13"), not Wednesday.
+- **Budget:** the credits were $112.43 at 17:4x, with about $13 run since, so about $99. The meter read 95 % at 18:05Z.
