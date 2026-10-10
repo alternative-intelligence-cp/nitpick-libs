@@ -12069,3 +12069,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatched now: `dio-v1-verify-0.0-plan`** (Opus 5.5), the independent plan verifier, before the plan is ever handed to an executor.
 - **A correction to the 17:4x entry:** the next monthly grant is **Tuesday 2026-10-13**, by the billing page as the author read it ("next credit is oct 13"), not Wednesday.
 - **Budget:** the credits were $112.43 at 17:4x, with about $13 run since, so about $99. The meter read 95 % at 18:05Z.
+
+### Diogenes' cycle 0.0 plan VERIFIED PASS after two amendments: `diogenes` `90afee0` — 2026-10-10 15:09 (shell time)
+
+- **The verification chain,** each job read-only on the credits, and each report filed in `diogenes/meta/research/done/` with its prompt:
+  - `dio-v1-verify` (Opus, $2.48): PASS WITH FIXES, 29 findings. The four blocking:
+    - a role-capture hole;
+    - a Team probe that could overwrite this account's `~/.claude/usage-latest.json`;
+    - a credits wrapper that could spend in its own test, or report a stale output;
+    - a test whose expected room contradicted its formula (95 − 61 − 16 is 18, not 5).
+  - `dio-p2` (Fable, $11.12) amended the plan.
+  - `dio-v2-reverify` (Opus, $1.73): PASS WITH FIXES. The blocking fixes held, but it found three new defects that would fail a correct implementation, plus two partial fixes (R-1 … R-10).
+  - `dio-p3` (Fable, $11.03) made a targeted second amendment: +100 −63 lines in 10 files.
+  - `dio-v3-reverify` (Opus, $1.72): **PASS.** R-1 … R-10 are fixed and no V-finding regressed. Nine minor findings (R-11 … R-19) go to the executor, to be fixed with dated notes.
+- **The plan's status** heads its cycle README. It rests on the open questions' recommendations, and the author reviews it next week.
+- **The runner's rebuild carried every long answer.** `result` held 15–105 k of the 139–193 k characters each time.
+- **The credits:** $112.43 by the page at 17:4x. Since then the CLI figures sum to $41.04 (r9, p1, v1, p2, v2, p3, v3), so about **$71.4** is left, at the bill = CLI rule. The next grant is Tuesday 2026-10-13. The meter read 95 % at 19:09Z.
