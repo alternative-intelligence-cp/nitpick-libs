@@ -12001,3 +12001,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The runner gained `jobs/JOB.dirs`:** extra readable directories, one per line. r8 uses it for the memory, `claude-skills`, the Gemini inboxes and `diogenes`.
 - **Next:** a synthesis drafts goals, requirements, options and a roadmap from the eight digests. This seat reviews it and files the set in `diogenes/meta/`.
 - **Budget:** the credits stood at about $153.7 by the corrected rule at 08:30, and the meter read 95 % at 11:40.
+
+### The author's capacity plan for after the reset, if the Team seat arrives by then — 2026-10-10 12:58 (shell time)
+
+- **The author (12:5x), verbatim in part:** *"i'm hoping to have the team seat by the time the wednesday reset comes … fable gets it's normal half of the subscription because the smaller team seat would simply not have enough to make real progress. that reserves the other 50% entirely for you in the form of one of your successors down the line."* The Team seat is, by his estimate, about a quarter of a Max's usage. Fable there would leave little, so the seat runs **Opus or smaller, on well-defined delegated tasks, rotated often** to keep context small. Delegation to the Team seat and to the API credits is how this account's non-Fable half is stretched.
+- **For this seat when woken after the reset:**
+  - The room is still read as 95 − the meter − 0.5 × (100 − Fable %) on this account.
+  - Once the Team seat exists, its own room is read before anything is routed to it. By the Diogenes research ([r1b]), the status line's `rate_limits` is documented absent for Team seats, so its meter needs another reading: his `/usage`, or a mod. That is an experiment.
+  - Nothing changes in the workbench before the seat exists.
+- **For Diogenes:** P0 sharpens from messaging to **delegation across accounts**: dispatch, acknowledgement, the report back and its verification, with one task path for every kind of executor (this account's subagents, Team-seat sessions, API-credit jobs, later Gemini and GPT). His words are added to the research context, so the critique and the revision apply them.
