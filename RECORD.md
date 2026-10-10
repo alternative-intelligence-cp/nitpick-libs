@@ -11840,3 +11840,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the scratch `p022` and `w022` are gone.
 - **The cost:** the meter went from 92 % (08:08) to 93 % (09:46) for the planner, the three credits jobs' seat side and this seat. **About 1 point, not the 4 estimated.** The earlier planner figures (72 → 77 % for time's 0.3.2a planner) carried the compiler side's live Fable and seats. With nothing else running, a planner costs about a quarter of that.
 - **Next:** the author's word on PD-108, then its plan verifier, this week if the room allows.
+
+### The author's word on PD-108, and `nitpick-regex` 0.2.2's plan verifier dispatched — 2026-10-10 09:49 (shell time)
+
+- **The author (09:5x), asked with the numbers:**
+  - **keep `NREGEX_REPEAT_PRODUCT` at 100 000.** PD-108 stands, and the acceptance's "third `{1000}`" is corrected to the second;
+  - **run the plan verifier now.** The planner cost about 1 point, the meter reads 93 %, and the verifier is about 1 more, inside his 5–6-point cap.
+- **Dispatched 09:49: `s1-nregex-0.2.2-verify`** (`npk:verifier`, `sonnet`) on `5161973`, the only agent running (W-24). Its ten questions:
+  1. CI per job (92 310 B);
+  2. the eight blocks in a stand-in workbench under `/tmp/claude-1000`, with the inputs found by reading the tools. The private LLVM 20.1.2 is deleted, so a block reading it, or `5fbaf4a`, is a finding;
+  3. PD-107 by its own measurement: the factor rule, the refusal at the quantifier's `{` (the `x`-mode case included), no trapping multiply, the 20 000-pattern fuzz against its own bottom-up count, and Y-25 struck with its provoking unit;
+  4. PD-108's second `{1000}`, by its own computation, and the dated notes;
+  5. PD-109's memory pair, and the cap applied to the 12 GB control on every path;
+  6. the 15 mutants;
+  7. RA-1 … RA-8, E2-6, E2-10, the stale `accept` row, and the leftovers' account;
+  8. RX-232 … RX-234 by value;
+  9. the post-103 shapes with a planted control, and the read-only view kept;
+  10. the hygiene.
+- **Expect about an hour.** Regex's last plan verifier ran 52 minutes.
