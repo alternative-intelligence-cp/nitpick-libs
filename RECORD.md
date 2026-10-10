@@ -11655,3 +11655,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **The author (23:2x):** once its in-flight work is done, `nitpick-compiler_36` hands off to `nitpick-compiler_37`. He has already switched `_37` to Opus, to listen for messages from this workbench at little cost to its context. At the reset he reopens that session and switches it back to Fable to continue. He expects the compiler side to announce the handoff.
 - **For this seat:** when the handoff is announced, confirm the new address with a one-line acknowledgement (the lesson of F48), then record it here and on the board. Until then the address is `_36`. Notices keep being verified by content, whoever sends them.
+
+### Advance notice for landing 111 filed — F53, DEF-233 and DEF-238 (the fuzzer's F-038 and F-046): two refusals by name; ours 0 different; `_37` takes the compiler's queue as a listener — 2026-10-09 23:46 (shell time)
+
+- **From `nitpick-compiler_36`.**
+  - TYPE-094 is reported at a `fall` outside any pick arm, or a `give` outside a pick expression's arm, where `npkc` exited 3 in silence.
+  - TYPE-040 at either inside a `defer` body.
+  - TYPE-024 by name at a `frac` member where a place is needed, which was EMIT-002.
+- **Their sweep:** ours, 0 different and 0 newly refused. Our five probes of the two findings are now refused by name.
+- **Checked here:** the five are the fuzzer's: F-038's two reproductions, which have no header and keep their verdicts in `VERDICTS*.txt`, and `as0202`, `as0203` and `ty1649`, each `expect: refuse`. At the re-pin that carries 111 their verdicts move. `KNOWN_DEFECTS.md` has no row yet for F-038 or F-046 (FZ-8), which is the fuzzer's next task.
+- **The seats:** `_36`'s Fable is nearly spent, so `nitpick-compiler_37` (Opus) lands 111 and logs this workbench's messages until the reset. Its address is confirmed by a one-line acknowledgement when it first speaks.

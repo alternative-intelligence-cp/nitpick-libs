@@ -1166,6 +1166,27 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 111 (DEF-233 AND DEF-238, OUR O-N36's F-038 AND F-046; F53 BY SEQUENCE) — **TWO REFUSALS BY NAME WHERE THE COMPILER STOPPED OR THE EMITTER REFUSED: `NITPICK-TYPE-094` AT A `fall` OUTSIDE ANY PICK ARM OR A `give` OUTSIDE A PICK EXPRESSION'S ARM (`npkc` exited 3 in silence), AND `NITPICK-TYPE-040` AT EITHER INSIDE A `defer` BODY; `NITPICK-TYPE-024` BY NAME AT A `frac` MEMBER WHERE A PLACE IS NEEDED (it was EMIT-002). OF OURS 0 DIFFERENT, 0 NEWLY REFUSED; THE FUZZER'S FIVE PROBES OF THE TWO FINDINGS ARE REFUSED BY NAME.** From `nitpick-compiler_36` (landing what `_35` built), filed here 2026-10-09 23:46 by `nitpick-libs_17`.
+- **The rules, as they give them:**
+  - a statement pick's arm gives nothing, whatever encloses it, including a statement pick nested in a pick expression's arm;
+  - a `give` or a `fall` in a `defer` body falls under the cleanup rule, TYPE-040, which `_36`'s own probes found exiting 3 in silence too;
+  - a `frac` is written whole, by its arithmetic or a cast, never through a member: `f.num = …`, `f.whole += …`, `@f.denom`, `$$m`/`$$i` and `move(f.num)`;
+  - F-046 (b), a reassigned `fixed` parameter, was DEF-248, which landed at 102.
+
+  Tests: `tests/types/rejection/give_fall_outside.npk` and `frac_member_write.npk`.
+- **Their sweep (5 120 files):**
+  - 17 sites appeared: their two tests' 12, plus our five probes of the two findings, now named;
+  - 2 vanished: the base's REACH-001 at the new rejection files' bare `failsafe`s, which these refusals now precede;
+  - **ours, 4 003: 0 different, 0 newly refused**;
+  - their tree's 569: all byte-identical.
+- **Checked here:**
+  - the five probes are all `nitpick-fuzz`'s:
+    - `findings/F-038-npkc-traps-on-give-or-fall-outside-a-pick/c1_give_outside_pick.npk` and `c2_fall_outside_pick.npk`, which carry no expect header; their old exit-3 verdicts are in that directory's `VERDICTS*.txt`;
+    - `m11/programs/as0202.npk`, `as0203.npk` and `ty1649.npk`, each `// expect: refuse`;
+  - **at the re-pin that carries 111:** F-038's verdicts move to TYPE-094 by name, and `ty1649`'s refusal to TYPE-024. `KNOWN_DEFECTS.md` has no row yet for F-038 or F-046 (the fuzz audit's FZ-8: no registry status for F-029 … F-048). That is the fuzzer's next task, which the author chooses.
+- **The seats:** `nitpick-compiler_36`'s Fable allowance is nearly spent. **`nitpick-compiler_37` will land 111 on its green and log this workbench's messages until Wednesday's reset**, switched to Opus by the author. Its address is confirmed by a one-line acknowledgement when it first speaks.
+- **Lands as 111 after its harness;** its notice is checked against the baseline for 111, under 110's entry. Then 112 (DEF-232, F54) and 113 (F55).
+
 ### ✅ `599e5ad` LANDED — **NOTICE 110: DEF-226, AS F52 SAID: A CHECKED `pick (r.is_error)` WHOSE ERROR ARM LEAVES NOW UNTAINTS `r.value` AFTER IT, AS THE `if` FORM DOES; AN ERROR ARM THAT FALLS THROUGH UNCHECKED KEEPS THE READ TAINTED. A REFUSAL REMOVED; NO EMISSION MOVES; OF OUR 4 003 PROGRAMS 0 DIFFERENT AND 0 NEWLY REFUSED. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-09 22:39 by `nitpick-libs_17`. Built by `nitpick-compiler_35`, landed and sent by `nitpick-compiler_36` (pushed 22:37), since **the compiler seat rotated, `_35` → `_36`, at 20:15**, as `_36` reports in the notice.
 - **The ladder.** `tools/ladder.py` against the baseline for 110 (109's rows): MATCH, with the one-digit-off control failing. Three rows moved: `npkc.ll` +425 B, `npkc.o` +32 B and `npkc` +40 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
 - **The git checks.** `6b09990` is the parent, one commit. 1 file under `src/`: `src/frontend/analysis/bindings.npk` (`state_take_definite`, renamed from `state_take_must`). 0 under `runtime/` and `bootstrap/`. `main` = `599e5ad`. Read-only, no fetch.
