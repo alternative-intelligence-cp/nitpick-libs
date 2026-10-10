@@ -11665,3 +11665,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep:** ours, 0 different and 0 newly refused. Our five probes of the two findings are now refused by name.
 - **Checked here:** the five are the fuzzer's: F-038's two reproductions, which have no header and keep their verdicts in `VERDICTS*.txt`, and `as0202`, `as0203` and `ty1649`, each `expect: refuse`. At the re-pin that carries 111 their verdicts move. `KNOWN_DEFECTS.md` has no row yet for F-038 or F-046 (FZ-8), which is the fuzzer's next task.
 - **The seats:** `_36`'s Fable is nearly spent, so `nitpick-compiler_37` (Opus) lands 111 and logs this workbench's messages until the reset. Its address is confirmed by a one-line acknowledgement when it first speaks.
+
+### `nitpick-time` 0.3.2a DONE — the adoption of `7e91730`, `cf2176e`: the second library at LLVM 20.1.8; one commit outside the plan (CI's hex rows quoted); its work verifier dispatched — 2026-10-10 00:18 (shell time)
+
+- **report `s2-ntime-0.3.2a-2320` — DONE** (`opus`, 23:20–00:15, 55 min, 527 k tokens, 137 tool uses). Six commits on `f3804c3`, pushed:
+  - `954c00b`, step 1: the read-only view, GREEN -- 143 at `5fbaf4a` (229.5 s, the private 20.1.2);
+  - `79dc3d3`, step 2: the adoption, GREEN -- 143 at `7e91730` (233.4 s);
+  - `fcf779c`, step 3: CI pinned;
+  - `63b6afb`, step 4: the prose, GREEN -- 143 (236.1 s);
+  - **`9929d17`, outside the plan:** every hex value in CI's env block quoted;
+  - `cf2176e`, the record.
+  - **No harness run was killed:** four full runs, one at a time, and the earlyoom journal shows its hourly report only.
+  - **CI:** `38022131137` on `63b6afb` and `38022549483` on `9929d17`, both GREEN -- 143. **The record's run `38023237600` (job `114128544224`, 84 208 B, read here)** succeeded: compiler `7e91730` clean, LLVM 20.1.8, the emission 31 527 001 B / `b79f89c5…`, "built from compiler 7e91730", the namespace lift, GREEN -- 143. **It is the first `nitpick-time` run under LLVM 20.1.8.**
+  - **Checked here:** `check_record` is clean; `HEAD` = `origin/main` = `cf2176e`; the porcelain is 0; the record job's 84 208 B.
+- **for-the-author, a recommendation this seat takes if the verifier holds it:** accept `9929d17` as part of the subcycle.
+  - CI's first run at `7e91730` printed "built from compiler Infinity": GitHub's YAML read `NITPICK_COMMIT_SHORT: 7e91730` as a float, where PyYAML (YAML 1.1) reads the string, so the plan's own parse of the workflow could not see it.
+  - No assertion reads that row, the worker says.
+  - The fix quotes the five hex rows.
+- **findings-for-playbook** (held until the PASS): *GitHub Actions' YAML reads a bare scalar of digits, one e and digits as a number. Quote every hex value in a workflow: a commit, a short commit, a digest.*
+  - Checked here: the ecosystem's only two workflows are regex's and time's, and neither now holds an unquoted value of that shape.
+- **Dispatched 00:18: `s2-ntime-0.3.2a-verify-work`** (`npk:verifier`, `sonnet`) on `cf2176e`, with eight questions:
+  1. CI per job on all three runs, the "Infinity" line and whether any assertion reads it;
+  2. the four patches replayed from `f3804c3` to each work commit's tree (22, 24, 1 and 6 files);
+  3. PD-105 by its own enumeration;
+  4. the old pin's full run and a census of all 159 roots at `954c00b`;
+  5. the new pin's full run, D-332, the five headers, and the census with planted controls at HEAD;
+  6. the decisions, CI's rows and the silent shapes;
+  7. the hygiene, the workbench's `__pycache__` included;
+  8. the playbook finding by YAML 1.2's rules.
+- **The room before it:** the meter 91 % (90 % before the worker, so the worker cost about a point), the five-hour window 33 %, and Fable 96 % by the author's word. So the room is 95 − 91 − 2 = **2.0 points**, and the work verifier costs about 0.5. Two full harnesses only.
