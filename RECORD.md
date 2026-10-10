@@ -11905,3 +11905,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the standing lines.
 - **Before it:** `nitpick-regex` clean at `5161973` = `origin/main`; 126 GiB available; the meter 94 %.
 - **Expect one to two hours.** Regex's 0.2.1a worker ran 54 minutes, and this plan has six steps, a 15-mutant block and a 20 000-pattern fuzz unit.
+
+### Support's answer on the Team seat: a personal Max and a Team seat on different parts of one project is not a violation — 2026-10-10 11:16 (shell time)
+
+- **The author asked Anthropic's help assistant (Fin)** whether his personal Max account and an organization Team seat, working on different parts of the same project, would be an issue. He said that otherwise a GPT supplement was his only option.
+- **The answer, pasted by him:**
+  - *"Using your personal Max account and a Team seat on different parts of the same project isn't itself a violation — the usage policy is focused on things like creating multiple accounts to evade detection, circumvent guardrails, or get around a ban, not on splitting legitimate work across separate accounts you own."*
+  - The accounts are completely separate (no shared chats, projects or context), so coordinating across them is a workflow matter, not a terms one.
+  - *"You wouldn't need a supplemental subscription elsewhere just to stay compliant here."*
+- **So the Team-seat route is clear on terms,** and the GPT supplement is not needed for compliance. What remains, when the funds and his partner's seat are in place:
+  - a second `CLAUDE_CONFIG_DIR`, with its own `settings.json`, hooks, sandbox, plugin and memory;
+  - a test of whether `SendMessage` reaches across the two accounts, with a file inbox if it does not.
+  - Recorded in the memory `subscription-beats-api-for-randy`.
