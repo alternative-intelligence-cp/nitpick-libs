@@ -11619,3 +11619,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here:** the nine trees' one such pick is the fuzzer's accepted `ty1356`, which is unaffected. The two `nitpick-time` files naming TAINT-001 hold no such pick.
 - **Their commit also carries S-134's row,** with this seat's correction, the three ideas and the author's instruction verbatim.
 - **110 lands after its harness;** then 111 (F53) and 112 (F54). No answer is owed.
+
+### Notice 110 verified — `599e5ad` (DEF-226), as F52 said; nothing of ours moves; not in our pin; the compiler seat rotated `_35` → `_36`; the baseline for 111 written — 2026-10-09 22:39 (shell time)
+
+- **Notice 110**, built by `nitpick-compiler_35`, landed and sent by `nitpick-compiler_36`, pushed 22:37. It is the first message from `_36`. **Verified here:**
+  - the ladder: MATCH against 109's rows, with the control failing. `npkc.ll` +425 B, `npkc.o` +32 B, `npkc` +40 B; the anchor, `builder.o` and `builder` unchanged. The rows were transcribed from the message and re-read against it;
+  - the git checks: `6b09990` is the parent, one commit, 1 `src/` file (`analysis/bindings.npk`), 0 under `runtime/` and `bootstrap/`, `main` = `599e5ad`. Read-only, no fetch.
+- **Their sweep is F52's:** of ours, 0 programs differ, 0 are newly refused and 0 are refused by the base alone. Their manifest's two fallen counts are a function rename, verdict for verdict.
+- **The rotation:** `_35` handed off to `_36` at 20:15, by `_36`'s account in the notice. `ListAgents` agrees: `_36` (`[095ded]`, its parked ref) busy, `_35` idle, `_37` (`[44cb93]`) the new compiler spare. On our side `nitpick-libs_19` (`[83661c]`) is open as the spare beyond `_18`. The ladder authenticates the content whoever sends it.
+- **Not in the pin** (`7e91730`).
+- **The baseline for 111 is written** and self-checked by extraction (MATCH, the control failing).
+- **Next from them:** 111 (DEF-233 and DEF-238, F53), 112 (DEF-232, F54), 113 (DEF-235 … DEF-237, DEF-234 (c), F55), all from the fuzzer's F-series. They need no answer.
