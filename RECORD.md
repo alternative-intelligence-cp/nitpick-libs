@@ -11806,3 +11806,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **`tui`, `parse` and `sockets`** (planned): each manifest's `llvm` row, still 20.1.2, and two README sentences.
   - **Its limits:** no shell, so nothing was measured, and every emission reading is marked "needs measurement". The full `e50eaf4` sha is in no file it could read. The fuzz corpus count was not its own.
 - **What it suggests for the author's re-pin decision:** for the two building libraries a re-pin to `e50eaf4` (or later, once 112 and 113 land) looks light, pins and prose with no source change, where 103's was a re-spelling. The fuzzer's adoption is the heavy one, and is the author's to schedule.
+
+### The author's capacity plan moves to a Team account, tentatively — 2026-10-10 09:35 (shell time)
+
+- **The author (08:4x), to be confirmed later today:** two Max 20x plans no longer look officially allowed for his situation, so a Team account is what is left. The other AILP member, now on an individual Pro plan, would hold one seat. Randy then buys a single premium seat to meet the seat minimum, not a premium and a standard, which makes a Team feasible.
+- **His estimate:** about one more working day a week on Opus and Fable, or two if mostly on Opus. That gives an active week from Wednesday to Sunday or early Monday, with Monday and Tuesday off. After the heavy cycles he may drop back to his Max plus one $25 seat.
+- **Recorded in the memory `subscription-beats-api-for-randy`,** with the open checks: whether a premium seat includes Claude Code, and whether its limits are its own. This supersedes the board's "second Max account" plan in the owed list, which stands until he decides. Nothing changes in the workbench before the account exists.
