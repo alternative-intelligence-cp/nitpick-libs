@@ -11630,3 +11630,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin** (`7e91730`).
 - **The baseline for 111 is written** and self-checked by extraction (MATCH, the control failing).
 - **Next from them:** 111 (DEF-233 and DEF-238, F53), 112 (DEF-232, F54), 113 (DEF-235 … DEF-237, DEF-234 (c), F55), all from the fuzzer's F-series. They need no answer.
+
+### `nitpick-time` 0.3.2a's worker dispatched on the week's tail, at the author's go — Fable at 96 %, the room 3.0 points — 2026-10-09 23:21 (shell time)
+
+- **The author (23:1x):** Fable is at 96 % for the week, and he has told the compiler seat to bring things home. Even if it took the remaining 4 %, that is 2 points of the total. By his figures about seven would be left, so the libraries might squeeze in the thing this seat had named, "that shouldn't take more than a couple points": time's adoption.
+- **The room, read here before any dispatch:** at 23:18 the meter read **90 %** (the five-hour window 29 %). With Fable at 96 %, by his word and newer than the file's 84 % of 20:13, the room is 95 − 90 − 0.5 × 4 = **3.0 points**, not about seven; his figure is consistent with an earlier meter reading of about 86 %. Time's adoption still fits: the worker about 1 point and the work verifier about 0.5, by regex's measured chain. That leaves about 1.5 points of margin, and the compiler's wrap-up comes out of the same margin. **Put to him with those numbers, he chose "go now" (23:1x).**
+- **Dispatched 23:20: `s2-ntime-0.3.2a-2320`** (`npk:worker`, `opus`) on `f3804c3`, TOOLCHAIN `7e91730`, the only agent running (W-24). Its NOTES follow regex's 0.2.1a worker's brief (`_16`'s transcript):
+  - the order, steps 1 … 4, then block 5, then step 6;
+  - the full runs to expect;
+  - the decisions, TM-258 and TM-259;
+  - the verifier's notes: `env.sh:36`, Python with `-B`, §9's one signature, and the guard's verdict;
+  - the two pins and their LLVMs, the private 20.1.2 kept for blocks 0a, 0b and 1;
+  - landings 104 … 110 named as not pinned;
+  - the silent shapes;
+  - TA-1 … TA-7, tzdata 2026e and `bytes_view` out of scope;
+  - the week's lessons;
+  - CI at step 6, the first under LLVM 20.1.8;
+  - the standing lines.
+- **Before it:** `nitpick-time` clean at `f3804c3` = `origin/main`; 128 GiB available; both pins' `SHA256SUMS` OK; the private LLVM present.
+- **Expect one to two hours.** Regex's worker ran 54 minutes, and this plan's blocks run four full harnesses plus two over a copy.
+- **Next:** its work verifier (`sonnet`), with the room re-read first, and a stop if it falls under about 1 point. Then the private LLVM 20.1.2 is deleted, and the seat rests again.
