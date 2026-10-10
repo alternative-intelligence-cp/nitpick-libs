@@ -11786,3 +11786,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **The author (08:1x):** `_37` received this seat's message of 02:21 asking for a one-line acknowledgement, and logged it. It did not reply because he had told it to log everything, which it took literally. He expects it to go on logging whether or not it replies.
 - **So until the reset:** messages to `_37` are logged, not answered. Where a delivery confirmation matters, this seat reminds the author, and he confirms. That saves him re-instructing `_37` and spends none of its tokens. The board's notice-111 entry says so.
+
+### Three credits prep jobs done — time 0.3.3's brief refreshed, a re-pin inventory to `e50eaf4`, the fuzzer's document fixes; about $3.25 billed — 2026-10-10 08:30 (shell time)
+
+- **The runs** (Sonnet, read-only, 08:10–08:29), each a guide for a later agent, checked here only for completeness (heading, limits stated) and one spot-check:
+
+  | Job | CLI cost | Billed, corrected rule | Turns | Size |
+  |---|---|---|---|---|
+  | `plan-brief-time-0.3.3-2026-10-10` | $1.81 | ~$1.07 | 110 | 41 kB |
+  | `repin-inventory-e50eaf4-2026-10-10` | $2.77 | ~$1.37 | 181 | 27 kB |
+  | `fuzz-docs-fixes-draft-2026-10-10` | $1.27 | ~$0.81 | 91 | 25 kB |
+
+  The total is $5.85 by the CLI and about $3.25 billed, so about $153.7 is left by the corrected rule. The billing page is the authority.
+- **The re-pin inventory's headline**, its own estimate with no harness claims (spot-checked: its `npkc.ll` row at `e50eaf4` equals the board's baseline for 112, `ecc8c9f7…`, 31 597 819 B):
+  - **`nitpick-regex`: 0 source files.** CI's 3 rows and a step name, `rx120.sh`, and about 12 prose files.
+  - **`nitpick-time`: 0 source files.** CI's rows, three stale sentences in `checks.py` after 107, and about 12 prose files.
+  - **`nitpick-fuzz`:** `mc0388`'s expectation, F-038's and F-046's verdict records, `KNOWN_DEFECTS.md`'s rows, and **its existing landing-103 debt, which is far the largest item.** The fuzzer has not adopted `7e91730` at all.
+  - **`nitpick-posix`** (planned): the three probes' two arms, perhaps four more files (its inference), and the manifest's `llvm` row, still 20.1.2.
+  - **`tui`, `parse` and `sockets`** (planned): each manifest's `llvm` row, still 20.1.2, and two README sentences.
+  - **Its limits:** no shell, so nothing was measured, and every emission reading is marked "needs measurement". The full `e50eaf4` sha is in no file it could read. The fuzz corpus count was not its own.
+- **What it suggests for the author's re-pin decision:** for the two building libraries a re-pin to `e50eaf4` (or later, once 112 and 113 land) looks light, pins and prose with no source change, where 103's was a re-spelling. The fuzzer's adoption is the heavy one, and is the author's to schedule.
