@@ -12010,3 +12010,35 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Once the Team seat exists, its own room is read before anything is routed to it. By the Diogenes research ([r1b]), the status line's `rate_limits` is documented absent for Team seats, so its meter needs another reading: his `/usage`, or a mod. That is an experiment.
   - Nothing changes in the workbench before the seat exists.
 - **For Diogenes:** P0 sharpens from messaging to **delegation across accounts**: dispatch, acknowledgement, the report back and its verification, with one task path for every kind of executor (this account's subagents, Team-seat sessions, API-credit jobs, later Gemini and GPT). His words are added to the research context, so the critique and the revision apply them.
+
+### Diogenes' first planning set filed and pushed: `diogenes` `77012d9`, from 16 credits runs ($38.65 by the CLI, about $25.8 billed) — 2026-10-10 13:36 (shell time)
+
+- **At the author's word** (*"lets add the path for you and then commit the skeleton"*):
+  - the sandbox's `allowWrite` gained `/home/randy/Workspace/REPOS/diogenes`, in `.claude/settings.local.json`, by the Edit tool;
+  - his skeleton was committed as he left it, at `d1ee423`.
+- **The planning set, `77012d9`, pushed with the skeleton:** 44 files under `meta/`:
+  - goals, constraints, rules, requirements DR-1 … DR-112, design, a roadmap (day zero, then cycles 0.0 … 0.8), open questions DQ-1 … DQ-29, experiments DX-1 … DX-26, ideas and an index;
+  - all research in `meta/research/done/`, with its prompts.
+- **The pipeline,** every job read-only on the credits:
+  - eight Sonnet digests (r1 … r8, $5.47);
+  - three Opus deep dives: r1b Claude Code, r1c mods, r2b Antigravity ($8.69);
+  - a Fable synthesis ($9.83);
+  - an independent Opus critique ($2.15): 22 findings, 5 blocking, among them delegation unmodelled, socket assumptions inside the sandbox, and an experiment that could flush the system Redis;
+  - a Fable revision against the critique ($12.25), with `REVIEW-2026-10-10.md` recording each finding's fate;
+  - two smoke tests ($0.26).
+- **Measured in this seat's sandbox,** filed as M1–M5:
+  - `socket(AF_UNIX)` is refused;
+  - each Bash call has a private network namespace, so a listener in one call is unreachable from another;
+  - SQLite 3.45.1's FTS5 works, and so does `PRAGMA data_version` across connections;
+  - Redis 7.0.15 stream groups (`XACK`) and keyspace notifications work on a private instance.
+  - So a sandboxed agent reaches a local hub through files, or through processes outside the sandbox: MCP, hooks, mods.
+- **Filed by hand after the revision:**
+  - **PostgreSQL 16 is installed** (a correction: the first check looked only on `PATH`). The author's checks show PostgreSQL 16, MySQL and the system Redis all running idle, holding his old test data. Recorded in the memory `workstation-leftover-services`.
+  - r1c's and r2b's findings, in `DESIGN.md` §11.
+  - DR-112: the author never writes SQL. Recorded in the memory `author-never-hand-queries-databases`.
+  - His decision to proceed on support's answer about cross-account work: DQ-5's questions 1 and 2 are answered, and 3 to 5 stay open.
+- **The runner learned two things:**
+  - `jobs/JOB.dirs` adds readable directories;
+  - a final answer past the model's output limit spills into a second message, so `out/JOB.md` is now rebuilt from the job's transcript. Checked identical on the synthesis, and it worked on the revision (233 294 characters, where `result` held 106 917).
+  - Both are noted in `.internal/credits/README.md`.
+- **The credits:** about $127.9 left by the corrected rule, against $153.7 at 08:30. The billing page is the authority. The meter read 95 % at 12:27.
