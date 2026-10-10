@@ -11889,3 +11889,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here:** `nitpick-regex` clean at `5161973` = `origin/main`; no `__pycache__` in the workbench.
 - **PD-107, PD-108 and PD-109 are ACCEPTED** as RX-232, RX-233 and RX-234 at the worker's steps.
 - **Budget:** the meter 94 % at 10:36 (93 % before the verifier), so the verifier cost about 1 point. The author's cap of 5–6 points from 92 % leaves about 3–4.
+
+### `nitpick-regex` 0.2.2's worker dispatched, at the author's go — its work verifier next week — 2026-10-10 10:39 (shell time)
+
+- **The author (10:3x), asked with the numbers:** the worker now (about 1–2 points, to about 95–96 %), and its work verifier after Wednesday's reset, keeping 1–2 points of margin under his cap.
+- **Dispatched 10:38: `s1-nregex-0.2.2-1038`** (`npk:worker`, `opus`) on `5161973`, TOOLCHAIN `7e91730`, the only agent running (W-24). Its NOTES follow regex's 0.2.1a worker's brief, adapted to a single-pin feature subcycle:
+  - the plan's six steps, and the full runs to expect (294 → 298 → 302);
+  - RX-232 … RX-234, read by value;
+  - the author's ruling on PD-108;
+  - PD-109's 12 GB control, only ever under its cap;
+  - the verifier's two notes, for the record;
+  - the post-103 shapes, and the read-only view;
+  - the week's lessons, the YAML one included;
+  - CI at step 6;
+  - the standing lines.
+- **Before it:** `nitpick-regex` clean at `5161973` = `origin/main`; 126 GiB available; the meter 94 %.
+- **Expect one to two hours.** Regex's 0.2.1a worker ran 54 minutes, and this plan has six steps, a 15-mutant block and a 20 000-pattern fuzz unit.
