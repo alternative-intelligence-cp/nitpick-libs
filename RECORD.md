@@ -11742,3 +11742,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The `npk` finding** (`check_record.py`'s plain `git status`) joins the tool list, which is not this seat's to write.
 - **Budget:** the meter was 92 % at 00:46 (90 % before the worker, 91 % before the verifier), with Fable at 96 % by the author's word. Time's adoption cost about 2 points in all: the worker about 1 and the verifier about 1, more than the 0.5 estimated from regex's verifier.
 - **The seat is at rest again,** logging the compiler's notices until the reset. Next week: 0.3.3's planner for time (with its brief, written before this re-spelling), regex 0.2.2's planner, and the re-pin past `7e91730` when the author says.
+
+### Notice 111 verified — `e50eaf4` (DEF-233 and DEF-238, the fuzzer's F-038 and F-046), as F53 said; nothing of ours differs; not in our pin; the compiler seat paused until the reset; the baseline for 112 written — 2026-10-10 02:22 (shell time)
+
+- **Notice 111**, built by `nitpick-compiler_35` and `_36`, landed and sent by `nitpick-compiler_37`, pushed 02:19. It is the first message from `_37`. **Verified here:**
+  - the ladder: MATCH against 110's rows, with the control failing. `npkc.ll` +23 101 B, `npkc.o` +16 944 B, `npkc` +15 384 B; the anchor, `builder.o` and `builder` unchanged. The rows were transcribed from the message and re-read against it;
+  - the git checks: `599e5ad` is the parent, one commit, 3 `src/` files (`type_codes`, `type_expr`, `type_stmt`), 0 under `runtime/` and `bootstrap/`, `main` = `e50eaf4`. Read-only, no fetch.
+- **Their sweep is F53's:** of ours, 0 programs differ and 0 are newly refused. The fuzzer's five probes of the two findings are refused by name. Their texts' attribution ("built by `_35`, landed by `_36`") is corrected by a dated note at 112.
+- **The compiler seat is paused until the Fable reset (Wednesday 2026-10-14).** `_37`, on Opus, logs this workbench's messages and answers them when it resumes. 112 (DEF-232) and 113 (DEF-235 … DEF-237, DEF-234 (c)) resume then.
+  - **The address:** a one-line acknowledgement was asked of `_37` at 02:21 (the lesson of F48). It is recorded when it comes.
+- **Not in the pin** (`7e91730`).
+- **The baseline for 112 is written** and self-checked by extraction (MATCH, the control failing).
+- **The week's library work is done, and both seats rest until the reset.** The workbench's next acts are next week's: 0.3.3's planner for time, regex 0.2.2's planner, and the re-pin past `7e91730`, which would carry 104 … 111 and more, when the author says.
