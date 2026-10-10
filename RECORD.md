@@ -11917,3 +11917,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - a second `CLAUDE_CONFIG_DIR`, with its own `settings.json`, hooks, sandbox, plugin and memory;
   - a test of whether `SendMessage` reaches across the two accounts, with a file inbox if it does not.
   - Recorded in the memory `subscription-beats-api-for-randy`.
+
+### `nitpick-regex` 0.2.2 DONE — the repetition product, `7f5b28a`; one patch amendment for its verifier to hold; the work verifier next week — 2026-10-10 11:32 (shell time)
+
+- **report `s1-nregex-0.2.2-1038` — DONE** (`opus`, 10:39–11:28, about 50 min, 554 k tokens, 168 tool uses). Five commits on `5161973`, pushed:
+  - `7d635b8`, step 1: the product refused at the `{` that takes it past `NREGEX_REPEAT_PRODUCT`, in `uint64`; the README's pattern refused at its second `{1000}`, byte 10; Y-25 struck; 298/298;
+  - `1340b04`, step 2: two units under one 64 MiB cap, standing in for emission's request until cycle 0.6.2;
+  - `d46469d`, step 3: RA-1 … RA-8, E2-6, E2-10, TESTING.md's struck stage, and the leftovers' account;
+  - `f24b055`, step 4: the prose, 302/302 GREEN with two pending outside;
+  - `7f5b28a`, the record.
+  - **The runs:** all eight blocks SAME; the 15 mutants at their exits; five full local runs, one at a time, all green (199–214 s).
+  - **CI:** `38062759540` on `f24b055`, 302/302 GREEN. **The record's `38063726122`, job `114247024215`, 92 833 B (read here):** success, compiler `7e91730` clean, LLVM 20.1.8, the emission, rx120 held, 31 / 4 / 35, 302/302 GREEN.
+  - **Checked here:** `check_record` is clean; `HEAD` = `origin/main` = `7f5b28a`; the porcelain is 0; no scratch, and no `__pycache__` in the workbench.
+- **for-the-author, two recommendations, for the work verifier to hold:**
+  - **step 3's patch was amended after block 5.** Three dated notes are twins of RA-3's claim (`SAFETY.md` §7's `fold_expr` list) and of RA-2's count (`harness/stages.py`'s docstring, `nitpick.toml`'s comment), found by the worker's second sweep by the claims' words.
+    - The chain was re-cut, step 4 is identical over it, and the amended chain applies equal to the work commits, blob for blob.
+    - So blocks 0a and 3, re-run from `5161973`, read step 3 at 16 files and 68 insertions where their Expects say 14 and 52: the only predicted DIFF.
+    - **To be accepted if the verifier holds it.**
+  - **The record commit's tree was not run whole locally,** by the dispatch's cost line. It changes no program the harness builds, and its gate was the tree checks, `check_refs` and its own CI run. The verifier reads that run as its full run.
+- **findings-for-playbook, held for the work verifier's PASS:** *a sweep built from what the steps make false cannot see a twin of what an audit finding corrects.* Block 5's eleven patterns covered every statement steps 1–4 moved, but none covered RA-2's or RA-3's old claim, whose twins stood in three more files. The PLAYBOOK's positive control (every hunk's old text matched by some pattern), applied to step 3's hunks, would have flagged it at planning.
+- **Budget:** the meter still read 94 % at 11:32, so the worker cost under a point. The week ends here for the libraries: the work verifier runs after the reset, with about 3 points of the author's cap unspent.
