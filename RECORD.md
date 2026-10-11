@@ -12126,3 +12126,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Diogenes' DX-7 checked: no WAL-reset backport in Ubuntu's SQLite (`diogenes` `47f5002`) — 2026-10-10 15:32 (shell time)
 
 - The installed `libsqlite3-0 3.45.1-1ubuntu2.8` changelog lists security backports up to CVE-2026-39113 (2026-09-03), with no WAL-reset entry. **By DX-7's rule, the hub is the sole writer from cycle 0.1, and 0.0 avoids long concurrent reads.** Recorded in `EXPERIMENTS.md`, and as M7 in the first-hand file.
+
+### The machine reboots for a video-driver update; this seat stops at a clean point — 2026-10-10 22:13 (shell time)
+
+- **The author (22:1x):** he reboots to load a video-driver update, then prepares the old workstation for tomorrow's sale. That sale, with a 3090, funds the Team account for a month or two. He comes back later to choose how to spend the credits left, about $65, which expire 2026-10-15.
+- **The clean point, measured at 22:13:**
+  - 10 trees swept: this workbench's 9, all `dirty=0` and `0/0` (the workbench at `71e262d`), plus `diogenes` at `47f5002`;
+  - no credits job running;
+  - the lock's token and marker both name `7f0cd65f-…`.
+- **When this seat is resumed** (its name and id survive a restart, but its `ListAgents` ref may change):
+  - sweep first, since an interruption is when a half-finished write hides;
+  - re-read hazard (5)'s token;
+  - then wait for the author's word on the credits.
+  - The libraries stay at rest until the reset, Wednesday 2026-10-14 20:00, and the writer line says what comes then.
+- **If a fresh session takes the seat instead,** it takes the lock by §2 and hazard (13). This session holds nothing in flight.
