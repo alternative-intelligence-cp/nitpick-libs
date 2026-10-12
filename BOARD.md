@@ -83,6 +83,7 @@ blocked, what is done. The durable plan is
 >   - the sandbox's `denyWrite`.
 >   The last two are in this workbench's `.claude/settings.local.json`. The compiler's own project settings are its seat's to mirror.
 > - Files cross between the sides by git or GitHub, or through the author.
+> - **Native `SendMessage` reaches the Team session, and it replies (Diogenes' DX-4, 2026-10-12, both ways, no approval step in bypass mode).** Re-derive its address from `ListAgents` at the moment you use it; on 2026-10-12 it was "Team workspace setup and configuration" `[a4a10f]`, a Claude Desktop session. Use it for conversation and nudges. Tasks, claims and reports go by git on `team/<task>` branches, because messages leave no record.
 > - **`~/.claude/` is shared by both accounts.** Change nothing there, and do not move or rename this workbench's `tools/guard_*.py`, without the author's OK: the Team sessions run them too.
 > - The split of work, the claims and the `team/` branch convention are proposed to the author (`RECORD.md` 2026-10-12). The board stays this seat's (W-8), and the Team side works what is handed over.
 >

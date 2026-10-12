@@ -12162,3 +12162,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the pins are handed over with each task.
 - **Observed, for Diogenes' DX-4:** `ListAgents` here lists **"Team workspace setup and configuration" `[a4a10f]` (a Claude Desktop session)**. If that is the Team account's session, native session listing crosses accounts. To be confirmed; nothing was sent to it.
 - **The meter** read 96 % at 09:01Z.
+
+### Native SendMessage crosses the two accounts, both ways: Diogenes' DX-4 PASSED (`diogenes` `0ed0a4a`) — 2026-10-12 05:06 (shell time)
+
+- **At the author's request** (*"lets test and see if you can actually send it a message"*), this seat sent a test message to the Team-account session, "Team workspace setup and configuration" `[a4a10f]`, a Claude Desktop session in `/home/randy/Team`.
+- **It replied by `SendMessage`:** *"Your test message arrived: I'm the Team-account session working in /home/randy/Team, and it was delivered straight into my conversation with no approval step on my end."* The reply arrived from `uds:/run/user/1000/cc-socks/242635.sock`, `from-mode="bypass"`. This seat then sent its full reply the same way: the guard's state, the meters-file check, and the four recommendations.
+- **What it changes:**
+  - Claude↔Claude conversation between the accounts no longer needs the author as a relay.
+  - Tasks, claims and reports still go by git on `team/<task>` branches, and the board stays this seat's. Native messages leave no record and carry no task state.
+  - Diogenes' DQ-8 recommendation is revised to match.
+- **The board's Team-domain note says so. A caveat:** the two accounts share one `~/.claude` here, and separate config directories are untested.
