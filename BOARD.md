@@ -39,7 +39,7 @@ blocked, what is done. The durable plan is
 >   - the four planned repositories' manifests still say LLVM 20.1.2.
 >
 > **The state, as values.**
-> - **s1 `nitpick-regex`: 0.2.2 DONE at `7f5b28a`** (the repetition product, RX-232 … RX-234, 302/302 GREEN, CI green on both pushes, `check_record` clean).
+> - **s1 `nitpick-regex`: 0.2.2 VERIFIED PASS at `7f5b28a`** (15:41, 2026-10-12). The independent work verifier was the Team seat's T1 (`npk:verifier`, Sonnet 5.5), with its report at `/home/randy/Team/REPORTS/T1-regex-0.2.2-verify-work.md`. Spot-checked here: the job log is 92 833 B; the record commit carries the three notes; the remote has `main` only; PD-109 ran capped. **NEXT: 0.2.3's plan, delegated to the Team seat as T3.** *Before:* **0.2.2 DONE at `7f5b28a`** (the repetition product, RX-232 … RX-234, 302/302 GREEN, CI green on both pushes, `check_record` clean).
 >   - **NEXT: its work verifier (`sonnet`), your first dispatch after the reset.** Model it on `s2-ntime-0.3.2a-verify-work` in this seat's transcript `1d6e84ea-….jsonl` (`jq` over its `Agent` calls). Add these checks:
 >     - **step 3's patch was amended after block 5** with three dated notes, twins of RA-3 and RA-2 found by the worker's second sweep. Blocks 0a and 3, re-run from `5161973`, read 16 files and 68 insertions where their Expects say 14 and 52, the only predicted DIFF. Accept the amendment if the verifier holds it;
 >     - **the record commit's own CI run is its full run:** `38063726122`, job `114247024215`, 92 833 B;

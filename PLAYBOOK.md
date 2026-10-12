@@ -2020,6 +2020,11 @@ and *"a sweep's recorded counts must come from the command the record prints."*
 - **A correction made by annotating a claim leaves its twins invisible to a search for removed lines.** Sweep the corrected
   file's siblings for the same claim in other words: the plan's sweep, reading "the three … sites", passed `probe02c`'s
   "§5's three `int128` sites", and the worker's second sweep found it.
+  *Second instance (`nitpick-regex` 0.2.2, verified 2026-10-12):* RA-2's and RA-3's corrected claims had twins in
+  `harness/stages.py`, `SAFETY.md` §7 and `nitpick.toml`. Block 5's patterns, built from what steps 1–4 changed, could not
+  see them; the worker's second sweep, by the claims' own words, found them, and they were filed as three dated notes.
+  The positive control (every hunk's old text matched by some pattern), applied to step 3's audit hunks, would have
+  flagged them at planning.
 - **When a check widens, sweep for the sentences that say what it could NOT see**, not only for its rule.
 - **Emphasis splits a phrase in joined text.** A sweep's joined reading strips a line's leading comment marker and nothing
   else, so `CLAUDE.md`'s "checked **before** the trap" passed a pattern for "checked before the trap". Strip emphasis before

@@ -12272,3 +12272,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`management_0` was briefed by message** (14:5x), at his request: its role, the teams, where things stand, and the accounts and credits. It was told to **pause until Wednesday, with `nitpick-libs_18` in control until then**, and to reply with one line and go idle.
 - **`_19` is not yet told,** to save usage. It hears of the split at this seat's handoff.
 - **The writer line's wake plan now says this. A memory records it:** `management-split`.
+
+### `nitpick-regex` 0.2.2 VERIFIED PASS: the Team seat's T1, spot-checked here; the held playbook finding filed as a second instance — 2026-10-12 15:41 (shell time)
+
+- **The verification: `T1-nregex-0.2.2-verify-work`** (`npk:verifier`, Sonnet 5.5, on the Team seat, dispatched by Ailp-team_0, 14:30–15:37 EDT, about 446 k tokens). **PASS on `7f5b28a`, no defect.** Its report is `/home/randy/Team/REPORTS/T1-regex-0.2.2-verify-work.md`. It found:
+  - the five standard checks clean;
+  - **302/302 GREEN** in a fresh clone at `7f5b28a` (207.6 s);
+  - **the amendment holds.** Re-run from `5161973`, blocks 0a and 3 give the predicted 16-file DIFF and nothing else, and the three dated notes are true when measured. The amendment is accepted, as the brief said;
+  - the record commit's CI job `114247024215` is its full run;
+  - **PD-109's control was never run uncapped.**
+- **Spot-checked here, independently:**
+  - the job log reads 92 833 B, matching;
+  - `7f5b28a` changes 6 files, the three notes among them (`stages.py` +5, `SAFETY.md` +6, `nitpick.toml` +5);
+  - the remote holds `main` at `7f5b28a` only;
+  - PLAYBOOK line 2020 is the twins rule;
+  - the report says "Nothing was run uncapped".
+- **Applied:**
+  - the board's s1 line reads VERIFIED PASS;
+  - `LIBRARIES.md`'s regex row moves to 0.2.2 and RX-234;
+  - **the held playbook finding is filed as a SECOND INSTANCE of PLAYBOOK's twins rule (line 2020), not as a new rule.** The verifier recommended that, and judged the finding's "covered every statement steps 1–4 moved" overstated, so the instance's text leaves that phrase out.
+- **The record commit's shape is accepted as disclosed.** The three notes landed in the record commit rather than step 3's. The worker disclosed this, and the verifier counted it as an accepted deviation. Next time, a note that amends a step lands in that step's commit.
+- **Notes carried forward:**
+  - RX-232's list of dated documents omits `TESTING.md`'s fuzz note, which PD-107's row names;
+  - the regex harness leaves `harness/__pycache__/` in a fresh clone even under `python3 -B`.
+  - Both are handed to T3 (0.2.3's plan) as hand-ons.
+  - CI's `npkc` and `builder` digests differ from the pin's; `ci.yml:57–66` documents that as expected.
+  - The verifier ran one read-only `git status` in the Team's compiler clone, outside its allowed verbs. It wrote nothing; recorded.
