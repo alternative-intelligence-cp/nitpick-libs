@@ -12247,3 +12247,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - this seat's verify-then-merge step.
   - The model briefs are extracted from `_17`'s transcript with `jq`; checked here at 9 959, 8 004 and 9 734 characters.
 - **The board notes the delegation.** The claims stay this seat's.
+
+### The Team manager is set up and working; messaging crosses config directories by socket address — 2026-10-12 14:24 (shell time)
+
+- **Ailp-team_0's first message,** from `uds:/run/user/1000/cc-socks/400268.sock`, `from-mode="bypass"`:
+  - setup done: `nitpick-regex` at `7f5b28a` and `nitpick-time` at `cf2176e` cloned;
+  - the pin `7e91730` copied, with `sha256sum` 2/2 OK;
+  - `llc` 20.1.8;
+  - the `npk` agents present, after the author restarted the Team sessions with `--plugin-dir`;
+  - **T1 and T2 started.** Its log is `/home/randy/Team/MANAGER-LOG.md`.
+- **A finding for Diogenes' DX-4:** a `claude-team` session, with its own config directory and its own session registry, invisible to `ListAgents` here, reached this seat by the socket address the brief gave. This seat's acknowledgement went back the same way. **So messaging crosses config directories by address, though listing does not.**
