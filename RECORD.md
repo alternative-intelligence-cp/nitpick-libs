@@ -12257,3 +12257,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the `npk` agents present, after the author restarted the Team sessions with `--plugin-dir`;
   - **T1 and T2 started.** Its log is `/home/randy/Team/MANAGER-LOG.md`.
 - **A finding for Diogenes' DX-4:** a `claude-team` session, with its own config directory and its own session registry, invisible to `ListAgents` here, reached this seat by the socket address the brief gave. This seat's acknowledgement went back the same way. **So messaging crosses config directories by address, though listing does not.**
+
+### The author's split: a management seat over all projects, and the libs seat narrowed to libraries, from Wednesday — 2026-10-12 15:39 (shell time)
+
+- **The author:** with so much running at once, "nitpick-libs" no longer names the position that manages it all. So the seats branch two ways:
+  - **`nitpick-libs_19` onward: library work only,** managing the libraries.
+  - **`management_0` → `_1` → `_2`: the overall manager.**
+    - Its home is `/home/randy/Workspace/MANAGEMENT`, and it can work across all of Workspace without asking each time.
+    - It oversees the compiler, libraries, fuzzer and claude-skills teams, and later Diogenes' Gemini and GPT resources.
+    - It decides priorities and where the resources go: each account's usage, the Team seat's usage, and the API credits.
+    - It delegates to each project's manager, with permission to spend that allocation, so it need not micromanage. In his words: *"Just decide what parts get priority and where the resources go and make sure everyone is working together."*
+  - `/home/randy/Team` stays entirely separate.
+- **It starts properly on Wednesday,** given the context and usage left now. He opened `management_0`, `_1` and `_2` with `--plugin-dir` and renamed them, and did not prompt them.
+- **`management_0` was briefed by message** (14:5x), at his request: its role, the teams, where things stand, and the accounts and credits. It was told to **pause until Wednesday, with `nitpick-libs_18` in control until then**, and to reply with one line and go idle.
+- **`_19` is not yet told,** to save usage. It hears of the split at this seat's handoff.
+- **The writer line's wake plan now says this. A memory records it:** `management-split`.
