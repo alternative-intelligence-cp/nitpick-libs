@@ -12206,3 +12206,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   2. **A tripwire:** a Workspace session with context > 0 and no rate limits shows "⚠ no Max limits: Team login? check /status". Team seats get no `rate_limits`, which is documented. There is no false alarm for a fresh session or a Team-directory session.
 - **The Team session was told** of both changes. The board's Team-domain note is updated.
 - **Left to the author, optional now:** if the Team account is ever run from the CLI, start it with `CLAUDE_CONFIG_DIR=~/.claude-team`, so its login cannot replace Max's stored tokens.
+
+### The shared login back on Max; the Team seat's first numbers; the seat at rest until Wednesday — 2026-10-12 05:36 (shell time)
+
+- **The author's "login dance":** he resumed `nitpick-libs_19` and ran `/login` there, confirming his personal Max account. He then ran `/usage` there to refill the cache, which the login had cleared.
+- **Checked here:**
+  - `~/.claude.json`'s login record is `claude_max`;
+  - the cache was fetched at 09:29:10Z and its account equals the login's;
+  - `~/.claude/.credentials.json` was rewritten at 05:27:11;
+  - **the meter file's `account_check` reads "matches this session (same weekly reset)"** at 09:35:54Z (the week 96 %, Fable 97 %).
+- **An explanation of the morning's mixed `/status`:** "Login method: Claude Max account" reflected this session's actual tokens, while its Email and Organization lines showed the Team profile then sitting in the shared metadata. So `/status`'s identity lines can lag a login made elsewhere. The login method and the status line's rate limits are the reliable signals.
+- **The Team seat's first numbers, by the author:** after a morning of Opus (high effort) setup work, its session window read 2 %, its week 0 % and Fable 0 %. A premium seat is a little more than a quarter of a Max. **Run mostly on Opus or lower, it should add a day or two of work a week.**
+- **The seat rests until the weekly reset (Wednesday 2026-10-14 20:00).** When woken:
+  - sweep;
+  - run `/status`, or check the status line for the "⚠ no Max limits" tripwire;
+  - read both accounts' rooms;
+  - then regex 0.2.2's work verifier, as the writer line says.
+  - Delegation to the Team seat goes by `team/<task>` branches, with conversation over `SendMessage`.
+  - The credits: about $65 until 2026-10-15, with the author to choose their use, and the next $200 on Tuesday 2026-10-13.
