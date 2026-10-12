@@ -12343,3 +12343,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The peers before the take (`ListAgents`):** `nitpick-libs_18` (`[53cc81]`) and `_20` (`[a34f9d]`), answering; `nitpick-compiler_36` (`[d9dc02]`) and `_37` (`[e6fdcf]`), idle; `management_0` (`[901d3c]`), idle and paused until Wednesday; the Team's Desktop session (`[a4a10f]`) and the fuzz cloud session (`[169d76]`), idle. The Team's `claude-team` sessions are not listed, since they keep their own registry.
 - **Left undone at this take, to spend almost nothing:** the rest of §2's reads (`WORKSTREAMS.md`, `LIBRARIES.md`, `APPS.md`) and the pin's `sha256sum -c` here. This seat dispatches nothing. The pin `7e91730` was copied and checked on the Team side (2/2 OK, the record at 14:24).
 - **Next:** the first act, one line to Ailp-team_0 introducing this seat as the libs reviewer. Then each chain the Team reports is reviewed by the handoff block's five steps.
+
+### The Team's two heads-ups judged: time 0.3.3's PD-111 is no stop; regex 0.2.3's two §9 items are not "marked for the author" — 2026-10-12 17:55 (shell time)
+
+- **time 0.3.3's plan** (`20ca195` on `team/time-0.3.3-plan`, CI green, from Ailp-team_0's heads-up): PD-111 amends `HOST.md`'s H-9 and H-10.
+  - H-9's setters cannot keep a reading, because nothing a module declares keeps one between two calls (`NITPICK-TYPE-055`, the compiler's D-211).
+  - H-10's swappable `host` object cannot exist, because `npkc` builds one root's whole graph (TM-117).
+  - So the double becomes a value, and the substitution a type generic over `HostReadings`, at build time, as H-9 itself asks. `src/`, H-1 and H-11 stand.
+  - **No objection.** These are documented language rules, not a compiler defect, and no safety rule is under-enforced, so the memory `compiler-defects-block-not-house-rules` does not apply.
+  - Asked of its plan verifier: that PD-111 name its consequence for later cycles, namely that code wanting the double must be generic over `HostReadings`.
+- **regex 0.2.3's plan** (`6b16f0f` on `team/regex-0.2.3-plan`, CI green, PD-120 … PD-122). Its §9 puts two of PD-120's consequences "for the author", while recommending acceptance:
+  - `(?-u)a` and `a` are two HIRs;
+  - an `Empty` piece of a concatenation goes, so `a(?:)b` and `ab` are one tree. An `Empty` alternative stays.
+  - Ailp-team_0 held the worker and asked whether brief §7's stop applies.
+  - **Judged here: not a stop.** §7's "a decision marked for the author" means one that a plan leaves open. These two are settled by PD-120, each with a recommended default. The first has a stated, cheap reversal: a few lines of `normal.npk`, and unit cases 9, 31 and 60 re-cut. The second is H-13's own identities.
+  - The author is away until Wednesday night, and the Team's week resets Wednesday 03:00. The cycle close, 0.2.6, is this seat's and comes after that, so his answer can land before the close.
+  - PD-120 … PD-122 stand accepted at the plan verifier's PASS, as §9 recommends, subject to the chain review here.
+  - Asked of the 0.2.4 and 0.2.5 plans: list any case that leans on PD-120's two-HIR clause, so that the price of striking it stays known.
+- **For the author, Wednesday** (to go on the board's questions table at the chain review): the two PD-120 consequences above. **Recommendation: accept as planned.**
+- **For this seat, after the chain:**
+  - §9 hands EK2's Node-24 bump on to the workbench, as CI's own triage note says. It is not taken up this week.
+  - The Team brief's message line (`.internal/team/brief-2026-10-12.md`, gitignored) now names this seat's address, `383848`.
