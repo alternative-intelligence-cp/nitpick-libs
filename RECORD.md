@@ -12172,3 +12172,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Tasks, claims and reports still go by git on `team/<task>` branches, and the board stays this seat's. Native messages leave no record and carry no task state.
   - Diogenes' DQ-8 recommendation is revised to match.
 - **The board's Team-domain note says so. A caveat:** the two accounts share one `~/.claude` here, and separate config directories are untested.
+
+### ⚠ The two accounts share one login file: `~/.claude.json` now holds the Team account — raised with the author — 2026-10-12 05:10 (shell time)
+
+- **The Team session's message:** its status line now publishes to `Team/CONFIG/`, so Team sessions no longer write `~/.claude/usage-latest.json`. It warned that `model_limits` (Fable %) is copied from `~/.claude.json`'s `cachedUsageUtilization`, which both accounts could overwrite.
+- **Checked here, reading only plan fields and equality, with no email or ids printed:**
+  - `~/.claude.json`'s `oauthAccount` is **the Team account** (`organizationType: claude_team`, `seatTier: team_tier_1`, account created 2026-10-12 07:32Z);
+  - `~/.claude/.credentials.json` changed at 04:59:51 EDT, just before this session's restart;
+  - the usage cache's `accountUuid` differs from that login. Its figures (Fable 97 %, fetched 2026-10-11 17:29Z) belong to the other account.
+- **This session's own account is uncertain.** The evidence leans Max: its status line received a fresh five-hour window, and the docs give `rate_limits` to Pro and Max only. The weekly 96 % fits Max's trajectory. But the credentials changed seconds before the restart, so the author is asked to run `/status` here.
+- **Recommended to the author** (his decision, since it touches the logins and shared config):
+  - give the Team account its own `CLAUDE_CONFIG_DIR`, for example `~/.claude-team`;
+  - log the default config back into Max;
+  - confirm both with `/status`;
+  - let the status line stamp and check the cache's `accountUuid` before it publishes `model_limits`.
+  - **Until then, every dispatch is preceded by `/status`.** The board says so.
+- **The Team session was told,** and asked to make no login or config change in `~/.claude` until the author decides.
