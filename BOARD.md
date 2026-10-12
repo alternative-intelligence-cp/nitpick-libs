@@ -75,6 +75,17 @@ blocked, what is done. The durable plan is
 > - Left to do when the funds clear: a second `CLAUDE_CONFIG_DIR` with its own settings, hooks, sandbox, plugin and memory, and a test of `SendMessage` across the two accounts, with a file inbox if it does not reach.
 > - See the memory `subscription-beats-api-for-randy`.
 >
+> **THE TEAM DOMAIN (2026-10-12 05:03).**
+> - The Team seat (the author's new Team account) works in `/home/randy/Team`, in its own clones (`Team/REPOS/…`).
+> - **Workspace sessions may READ it and never WRITE to it.** Three layers enforce that:
+>   - `tools/guard_domains.py`, a byte-identical copy of the Team side's guard (sha256 `14df1b13…`), wired as a third user-level `PreToolUse` hook in `~/.claude/settings.json`. It passed 13 synthetic cases and a live probe (`touch` refused);
+>   - deny rules for Edit, Write and NotebookEdit on `//home/randy/Team/**`;
+>   - the sandbox's `denyWrite`.
+>   The last two are in this workbench's `.claude/settings.local.json`. The compiler's own project settings are its seat's to mirror.
+> - Files cross between the sides by git or GitHub, or through the author.
+> - **`~/.claude/` is shared by both accounts.** Change nothing there, and do not move or rename this workbench's `tools/guard_*.py`, without the author's OK: the Team sessions run them too.
+> - The split of work, the claims and the `team/` branch convention are proposed to the author (`RECORD.md` 2026-10-12). The board stays this seat's (W-8), and the Team side works what is handed over.
+>
 > **NIKOLA:** no Claude work on Nikola itself until a lawyer and Anthropic have weighed in, since the terms bar using Claude to build a competing product. Nitpick and its ecosystem continue; the author is confident they are fine. See the memory `nikola-work-pending-tos-review`.
 >
 > **Owed, consolidated** (`_16`'s list stands, with these changes):

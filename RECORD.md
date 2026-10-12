@@ -12140,3 +12140,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - then wait for the author's word on the credits.
   - The libraries stay at rest until the reset, Wednesday 2026-10-14 20:00, and the writer line says what comes then.
 - **If a fresh session takes the seat instead,** it takes the lock by §2 and hazard (13). This session holds nothing in flight.
+
+### The Team domain: our copy of its guard wired both ways, live-tested — 2026-10-12 05:03 (shell time)
+
+- **Since the last entry:**
+  - the machine rebooted for the driver update;
+  - this session resumed under its own id, with a new ref `[6afd26]`;
+  - the sweep at 05:01 found 10 trees clean and `0/0`, and the token and marker unchanged.
+  - The author now holds the **Team account.** Its seat works in `/home/randy/Team`, in its own clones. It wrote `Team/CLAUDE.md` and a guard that refuses Team writes into Workspace.
+- **Its request, relayed by the author:** the same protection in the other direction. **Option (b) was taken, at the author's go** (*"whatever we need to do to make it work"*): each side owns its own copy.
+  - `tools/guard_domains.py` is copied byte for byte (sha256 `14df1b13bc34115aba66…`) and reviewed. It judges writes by their target, follows `cd` and `git -C`, and lets reads through. Its stated limits are interpreter heredocs and `$VAR` paths. Further gaps noted here: `cp -t`, `tar -C`, `dd of=`. This seat's shell sandbox covers them anyway.
+  - **13 synthetic cases pass,** both directions and outside both trees. Malformed input stays silent.
+  - **Wired** as a third user-level `PreToolUse` hook in `~/.claude/settings.json`. **Not** as user-level deny rules, which would block the Team side in its own tree. The deny rules for `//home/randy/Team/**` and a sandbox `denyWrite` go in this workbench's `.claude/settings.local.json`.
+  - **Live probe:** `touch /home/randy/Team/.workspace-guard-probe` was refused by the hook, which took effect without a restart. The file does not exist.
+- **Correction to an earlier caution:** `nikos`, which the Team side cloned, is Nitpick's fork of the IKOS analyser (upstream is stuck on LLVM 14), not Nikola. It is fine to work on.
+- **Proposed to the author for the Team side** (his to confirm; the reply text is his to relay):
+  - the Team seat takes handed-over, well-defined tasks on Opus or smaller;
+  - it does not claim on the board;
+  - it works on `team/<task>` branches, never main, and this seat verifies and merges;
+  - `CLAUDE.md`, `WORKSTREAMS.md` and `PLAYBOOK.md` bind, with `~/Workspace` paths mapped to `~/Team`;
+  - the pins are handed over with each task.
+- **Observed, for Diogenes' DX-4:** `ListAgents` here lists **"Team workspace setup and configuration" `[a4a10f]` (a Claude Desktop session)**. If that is the Team account's session, native session listing crosses accounts. To be confirmed; nothing was sent to it.
+- **The meter** read 96 % at 09:01Z.
