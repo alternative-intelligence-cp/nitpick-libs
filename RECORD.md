@@ -12364,3 +12364,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **For this seat, after the chain:**
   - §9 hands EK2's Node-24 bump on to the workbench, as CI's own triage note says. It is not taken up this week.
   - The Team brief's message line (`.internal/team/brief-2026-10-12.md`, gitignored) now names this seat's address, `383848`.
+
+### Two compiler-defect candidates from the Team at `7e91730`, reproduced here and passed to the compiler seat — 2026-10-12 19:21 (shell time)
+
+- **From Ailp-team_0:** found by time 0.3.3's fix planner (T2f) and minimised by its plan verifier (T2v2). The write-up is `/home/randy/Team/REPORTS/defects/2026-10-12-null-store-legs/README.md`. Neither blocks a chain.
+- **Reproduced here independently** on this workbench's pin (`.internal/toolchain/7e91730`, `sha256sum -c` OK, LLVM 20.1.8), in the scratchpad. The two roots as run are kept in `.internal/defects/2026-10-12-null-store-legs/`.
+  1. **A store through `NULL` in safe code compiles** (`int64->:p = NULL; <-p = 5i64;` in `main`):
+     - `npkc` exits 0, with no output;
+     - `-O0` exits 107 (`MachineFault`);
+     - at `-O2`, `opt` treats the store as undefined, and `main` is `entry: unreachable`. `nm` shows `main` and `npk_failsafe` at one address (`0x2029f0`), so `main` falls into the failsafe and exits 99 by its `(*)` arm.
+     - The Team's variants: with a helper between them it exits 0; a module-level `fixed int64->:P = NULL;` gives 107 and 99.
+  2. **A bare module binding escapes `NITPICK-TYPE-055`** (D-211):
+     - `int64:counter;` compiles, and is emitted as `constant i64 zeroinitializer`;
+     - `counter = 5i64; if (counter != 5i64) { exit 11i32; }` exits 107 at `-O0`, and 11 at `-O2`, where `main` folds to `ret i32 11`.
+- **Both are silent wrong answers at `-O2`** (the memory `silent-wrong-answers-are-defects`). **A likely broader face of (1), inferred and not measured:** LLVM treats a store through null as undefined, so once a pointer has been stored through, `-O2` may also drop later null checks on it. So the `MachineFault` that `-O0` gives is not assured at `-O2`.
+- **The libraries' exposure, swept here:**
+  - no `.npk` in `nitpick-parse`, `-regex`, `-sockets`, `-time`, `-tui` or `nitpick-posix` names `NULL`;
+  - no bare value binding stands at module level. The 16 lines a loose pattern matched are all `error:` declarations;
+  - `nitpick-fuzz`'s corpus has 15 `NULL` lines, not swept further.
+- **Passed to `nitpick-compiler_37`** by message. It is paused until Fable's reset, and logs this workbench's messages without replying. Whether either is known, or fixed in landings 104 … 111, is the compiler seat's to judge.
+- **The Team was told:** no chain stops.
