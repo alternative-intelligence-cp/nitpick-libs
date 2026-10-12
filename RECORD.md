@@ -12232,3 +12232,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The next $200 arrives **2026-10-13**.
 - **He also noted that the plan "may have changed a bit now"** that the two accounts' Claude sessions can message each other. **A candidate first job:** re-scope Diogenes' cycle 0.0 in the light of DX-4. Claude-to-Claude messaging is native now. The task lifecycle, the record, each account's room, subagent inboxes, and Gemini and GPT remain Diogenes' to build.
 - **The writer line's "When woken" now says so,** ahead of the libraries' own queue: regex 0.2.2's work verifier first. The seat is at a clean point; nothing is in flight.
+
+### Library work delegated to the Team seat: T1 to T3, by a brief file — 2026-10-12 14:15 (shell time)
+
+- **The author's word:** the Team seat's week resets Wednesday 03:00, and *"why waste it right?"* This account's week is at 96 %. So this seat keeps only the essential parts, the task definition and the verification, and the Team seat's manager runs the work with its own subagents. He named the Team sessions Ailp-team_0, \_1 and \_2. \_0 is the manager, waiting for this seat; the other two are its successors.
+- **They are not in this seat's `ListAgents`.** It shows 7 sessions against 9 sockets in the directory, most likely because they run under a separate session registry. **So the brief is a file the Team can read:** `.internal/team/brief-2026-10-12.md`. It gives:
+  - the roles: manager, worker, verifier, and the handoff between managers;
+  - the ground rules;
+  - the setup: clone `nitpick-regex` and `nitpick-time` into their workbench clone, then copy the pin `7e91730` and check its `SHA256SUMS`;
+  - **T1:** regex 0.2.2's work verification, with the three added checks from the board;
+  - **T2:** time 0.3.3's plan, with its brief and a plan verifier;
+  - **T3:** regex 0.2.3's plan, after T1;
+  - what to return: a branch per plan, report files in `/home/randy/Team/REPORTS/`, and one line to this seat at `uds:/run/user/1000/cc-socks/382974.sock`;
+  - this seat's verify-then-merge step.
+  - The model briefs are extracted from `_17`'s transcript with `jq`; checked here at 9 959, 8 004 and 9 734 characters.
+- **The board notes the delegation.** The claims stay this seat's.
