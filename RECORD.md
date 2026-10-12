@@ -12317,3 +12317,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the Team domain: the guard both ways, messaging across accounts and across config directories, the shared login hardened in the status line;
   - the Team delegation, with T1 VERIFIED PASS;
   - the author's management split.
+
+### `nitpick-libs_18` releases the workbench lock to `nitpick-libs_19` — 2026-10-12 16:36 (shell time)
+
+- **The writer line's first token is `none`.** `_18`'s take line is kept under *Previously*, with its full text at `b425d0c`. The 37-byte marker is removed (orchestrate §15).
+- **This is `_18`'s last write.** `_19` takes the lock by §2 and hazard (13). `_18` stays open for its questions.
