@@ -14,6 +14,54 @@ blocked, what is done. The durable plan is
 **Workbench writer:** `7f0cd65f-5c0e-469e-912c-f878c0343199`, session `nitpick-libs_18`, taken 2026-10-10 11:42 EDT on `nitpick-libs_17`'s briefed handoff, at the author's go (*"sounds good. please proceed"*, 11:3x) — **the libraries at rest until the weekly reset, Wednesday 2026-10-14 20:00:** at this take the meter reads 95 % (11:40), the author's clean-stop line, so nothing more is dispatched this week unless he says so. **THE SPLIT, the author's of 2026-10-12, starting Wednesday:** a new **management** seat (`management_0` → \_1 → \_2, home `/home/randy/Workspace/MANAGEMENT`, reach across all of Workspace) takes the overall management: the compiler, libraries, fuzzer and claude-skills teams, the Team seat, the credits, and later Gemini and GPT. This seat (`nitpick-libs_N`) narrows to library work. `management_0` was briefed by message and told to pause until Wednesday; this seat stays in control until then. At the wake, brief management on the live state and hand it the cross-project duties (the Team seat, the credits, the compiler link). At the next libs handoff, tell `_19` of the split (`RECORD.md` 2026-10-12). **When woken after the reset:** *(the author, 2026-10-12)* first put the first credits batch's remaining ~$65 to work, since it expires 2026-10-15 (read-only jobs; a candidate is re-scoping Diogenes' cycle 0.0 now that native `SendMessage` crosses the accounts, DX-4), with the fresh $200 of 2026-10-13 carrying any unfinished job on; and read the room (95 − the meter − 0.5 × (100 − Fable %), the Fable reserve back once the compiler seat resumes on Fable), then regex 0.2.2's work verifier (`sonnet`, on `7f5b28a`); at its PASS the held playbook finding; then time 0.3.3's planner with its brief, then regex 0.2.3's planner, one planner at a time; the re-pin past `7e91730` when the author says. The handoff block below says what is next. The take hazards (1)–(6) are verbatim at the end of `RECORD.md`'s handoff entry of 2026-09-26 07:01; (6)'s tail and (7)–(13) follow the handoff blocks. *(Previously: `none` — released by `nitpick-libs_17` (`1d6e84ea-515b-4ac5-bc6f-fd5840aedeb2`) at `8464ce7` (2026-10-10 11:35) for this briefed handoff, its handoff block at `ea40015`; its freedom-from-values text for this take is `RECORD.md` 2026-10-10 11:42. Before that `1d6e84ea-…`, session `nitpick-libs_17`, taken 2026-10-09 12:13 EDT on `nitpick-libs_16`'s briefed handoff — its full line is in history at `ea40015`.)*
 
 
+> **🔁 HANDOFF — `nitpick-libs_18` → `nitpick-libs_19`, 2026-10-12 16:36 (shell time), at the author's word (*"when you feel it is time libs_19 is standing by for you to handoff to if needed"*).** The seat is at about 76 % context, and the Max week at 97 %. **READ THIS FIRST.** `_17`'s block below still holds for the libraries' own state, except where this block or the record says otherwise.
+>
+> **Take the lock** by orchestrate §2 and the take hazards (1)–(13), exactly as `_17`'s block describes:
+> - your id, from your transcript and your scratchpad;
+> - a nonce;
+> - the 37-byte marker;
+> - the token, then push, then re-read it.
+>
+> **Hazard 3:** ask `nitpick-libs_18`. **Hazard 4:** ask `nitpick-libs_20` (`[a34f9d]`), the spare.
+>
+> **THE ACCOUNTS, changed today:**
+> - **Max** (this seat): 97 % at 20:34Z. It resets Wednesday 2026-10-14 20:00. **Spend almost nothing:** verify, merge, record, and nothing else.
+> - **Confirm this seat's account first.** Either `/status` gives the login method "Claude Max account", or the status line shows rate limits and no "⚠ no Max limits". The shared `~/.claude.json` metadata can show the other account (`RECORD.md` 2026-10-12). Read `model_limits.account_check` before trusting a Fable %.
+> - **The Team seat** is a separate account, working in `/home/randy/Team`, guarded both ways. Its week resets Wednesday 03:00; about 7 % was used at 16:3x.
+>
+> **THE TEAM SEAT IS DOING OUR LIBRARY WORK until Wednesday.** Its brief is `.internal/team/brief-2026-10-12.md`; §7 there is the queue.
+> - **The manager is Ailp-team_0,** at `uds:/run/user/1000/cc-socks/400268.sock`. It is a `claude-team` session, so it is NOT in your `ListAgents`, but messaging by socket address works both ways. **Your first act after the take: send it one line introducing yourself as the libs reviewer.** Your message gives it your address.
+> - **T1, regex 0.2.2's work verification: VERIFIED PASS** here (`7f5b28a`).
+> - **In flight, each as a chain of plan → plan verifier → work → work verifier:**
+>   - time 0.3.3, on `team/time-0.3.3-plan`;
+>   - regex 0.2.3 → 0.2.4 → 0.2.5, on `team/regex-0.2.3-plan`.
+>
+>   A chain stops before its cycle close, and at anything that needs the author, a re-pin, a verifier failing twice, or a compiler defect.
+> - **For each reported chain:**
+>   1. read its reports in `/home/randy/Team/REPORTS/`;
+>   2. spot-check the key claims against their branch, reading their clone directly, as `_18` did for T1 (`RECORD.md` 2026-10-12, "0.2.2 VERIFIED PASS");
+>   3. fetch the `team/` branch from GitHub and fast-forward our clone's `main` to the verified commit, then push;
+>   4. update the board's stream row, `LIBRARIES.md` and the record;
+>   5. reply to the Team with ACCEPTED, or with the fixes.
+> - **Hand-ons already sent for regex 0.2.3:** RX-232's list of dated documents omits `TESTING.md`'s fuzz note, and `harness/__pycache__/` reappears in a fresh clone under `-B`.
+>
+> **THE SPLIT** (the author's, 2026-10-12, from Wednesday):
+> - `management_0` (`[901d3c]`, home `Workspace/MANAGEMENT`) becomes the overall manager: all teams and all resources. This seat narrows to the libraries.
+> - `management_0` has been briefed, and is PAUSED until Wednesday. This seat stays in control until then.
+> - **At the Wednesday wake:** brief management on the live state, and hand it the cross-project duties: the Team seat, the credits and the compiler link. See the memory `management-split`.
+>
+> **BEFORE THE MAX WEEK RUNS OUT, OR WHEN THE TEAM'S QUEUE IS DONE:** tell the author in one line, by `PushNotification`, that we have done all we can for the week, so that he can close the sessions. Until then he is radio-silent, except for an issue only he can resolve.
+>
+> **Still standing from `_17`'s block:**
+> - the pin, `7e91730`;
+> - the compiler side: `nitpick-compiler_37`, paused until Fable's reset. 112 then 113 come next; verify each with `tools/ladder.py`;
+> - the credits: about $65 of the first batch until 2026-10-15, which the author spends from Wednesday, and the new $200 since 2026-10-13;
+> - questions for the author: none.
+>
+> **What `_18` leaves:**
+> - nothing of its own in flight;
+> - Diogenes' planning set, filed and pushed. Start at `diogenes/meta/OVERVIEW.md`. Re-scoping its cycle 0.0 after DX-4 is management's call from Wednesday.
+
 > **🔁 HANDOFF — `nitpick-libs_17` → `nitpick-libs_18`, 2026-10-10 11:35 (shell time), at the author's go (*"sounds good. please proceed"*), the seat at about 74 % context, at a clean point: nothing of this seat's in flight. READ THIS FIRST. The handoff blocks below are superseded; this block's owed list consolidates theirs. The take hazards follow them.**
 >
 > **Take the lock** by orchestrate §2 and the take hazards (1)–(13):

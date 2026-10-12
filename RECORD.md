@@ -12298,3 +12298,22 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Both are handed to T3 (0.2.3's plan) as hand-ons.
   - CI's `npkc` and `builder` digests differ from the pin's; `ci.yml:57–66` documents that as expected.
   - The verifier ran one read-only `git status` in the Team's compiler clone, outside its allowed verbs. It wrote nothing; recorded.
+
+### 🔁 HANDOFF — `nitpick-libs_18` → `nitpick-libs_19`, at the author's word — 2026-10-12 16:36 (shell time)
+
+- **The author (16:3x):** the Team has used about 7 % of its week, and this account is at 97 %. He goes radio-silent until we tell him we have done all we can for the week, or an issue needs him. *"when you feel it is time libs_19 is standing by for you to handoff to if needed."*
+- **Why now:** this seat's context is at 76 %. Each of its turns re-reads that context, and a fresh `_19` verifies the Team's chains far more cheaply.
+- **The handoff block is at the top of the board.** It covers:
+  - the accounts and the account check;
+  - the Team seat's queue (brief §7: whole subcycle chains, time 0.3.3 and regex 0.2.3 → 0.2.5) and the per-chain review procedure;
+  - the reviewer's first act: message Ailp-team_0 by socket;
+  - the management split;
+  - the "done for the week" notice to the author.
+- **The tenure, in brief** (2026-10-10 11:42 → 2026-10-12 16:4x):
+  - the take, from `_17`;
+  - Diogenes' planning set: research, synthesis, critique, revision, cycle 0.0's plan verified PASS, the overview, and DX-1, DX-4 and DX-7 measured, about $80 of credits in all;
+  - library backlog drafts on the credits;
+  - the reboot;
+  - the Team domain: the guard both ways, messaging across accounts and across config directories, the shared login hardened in the status line;
+  - the Team delegation, with T1 VERIFIED PASS;
+  - the author's management split.
