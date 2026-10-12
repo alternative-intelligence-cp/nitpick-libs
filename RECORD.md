@@ -12224,3 +12224,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - then regex 0.2.2's work verifier, as the writer line says.
   - Delegation to the Team seat goes by `team/<task>` branches, with conversation over `SendMessage`.
   - The credits: about $65 until 2026-10-15, with the author to choose their use, and the next $200 on Tuesday 2026-10-13.
+
+### The plan for Wednesday's wake: spend the first credits batch, then carry on with the fresh one — 2026-10-12 05:40 (shell time)
+
+- **The author:** *"we are gonna start using up that remaining 65 of credits when we resume wednesday and that way we will have the fresh batch to carry on their work with if they aren't quite finished."*
+  - The first batch, about $65 by the CLI's figures with the billing page as the authority, expires **2026-10-15**.
+  - The next $200 arrives **2026-10-13**.
+- **He also noted that the plan "may have changed a bit now"** that the two accounts' Claude sessions can message each other. **A candidate first job:** re-scope Diogenes' cycle 0.0 in the light of DX-4. Claude-to-Claude messaging is native now. The task lifecycle, the record, each account's room, subagent inboxes, and Gemini and GPT remain Diogenes' to build.
+- **The writer line's "When woken" now says so,** ahead of the libraries' own queue: regex 0.2.2's work verifier first. The seat is at a clean point; nothing is in flight.
