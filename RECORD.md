@@ -12188,3 +12188,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - let the status line stamp and check the cache's `accountUuid` before it publishes `model_limits`.
   - **Until then, every dispatch is preceded by `/status`.** The board says so.
 - **The Team session was told,** and asked to make no login or config change in `~/.claude` until the author decides.
+
+### The shared login: this seat confirmed on Max, and the shared status line hardened against the other account — 2026-10-12 05:19 (shell time)
+
+- **The author's `/status` in this session:** "Login method: Claude Max account". This seat is on Max.
+  - He reports both Claude Desktop instances showing their own accounts.
+  - The Max instance lists the Team session.
+  - The Team side does not see this account's cloud session (cloud sessions are per account; local ones are per machine).
+  - **His word:** *"whatever we need to do to set things up the best we can to prevent mistakes and everyone stepping on the other's toes i am fine with. Lets do it."*
+- **Evidence read here:**
+  - the usage cache was fetched 2026-10-11 17:29Z, BEFORE the Team account existed (created 2026-10-12 07:32Z), and its week resets 2026-10-15T00:00Z, the same as this session's, so it is Max's;
+  - `~/.claude.json`'s login record says Team, written after the Team login;
+  - `~/.claude/.credentials.json` was unchanged since 04:59:51, and this session restarted after that on Max, so the CLI's stored tokens are Max's.
+  - **The live collision is the shared metadata and cache, not the CLI's login.**
+- **`~/.claude/statusline.sh` hardened,** after tests in a scratch copy under a fake `HOME` (5 cases, plus a re-run of the tripwire case). The real script is `diff`-identical to the tested copy:
+  1. **`model_limits` is account-checked.** Each account's week resets at its own time, so the cache's weekly reset is compared with the running session's. On a mismatch, `limits` is null and `account_check` reads `MISMATCH …`. **Live at 09:18:46Z:** "matches this session (same weekly reset)", Fable 97 %.
+  2. **A tripwire:** a Workspace session with context > 0 and no rate limits shows "⚠ no Max limits: Team login? check /status". Team seats get no `rate_limits`, which is documented. There is no false alarm for a fresh session or a Team-directory session.
+- **The Team session was told** of both changes. The board's Team-domain note is updated.
+- **Left to the author, optional now:** if the Team account is ever run from the CLI, start it with `CLAUDE_CONFIG_DIR=~/.claude-team`, so its login cannot replace Max's stored tokens.
