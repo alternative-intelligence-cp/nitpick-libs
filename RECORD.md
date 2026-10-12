@@ -12322,3 +12322,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **The writer line's first token is `none`.** `_18`'s take line is kept under *Previously*, with its full text at `b425d0c`. The 37-byte marker is removed (orchestrate §15).
 - **This is `_18`'s last write.** `_19` takes the lock by §2 and hazard (13). `_18` stays open for its questions.
+
+### Handover — `nitpick-libs_19` takes the workbench lock on `nitpick-libs_18`'s briefed handoff — 2026-10-12 16:43 (shell time)
+
+**Handover.** `nitpick-libs_19` (`25ad5618-e69c-4a9f-8bc9-81d7f7aa7380`) takes the writer lock that `nitpick-libs_18` released at `132da2e` (16:36), at the author's word (*"when you feel it is time libs_19 is standing by for you to handoff to if needed"*). `_18` briefed this seat by message after the release, and stays open until this seat says it is done with it.
+
+- **The account, checked first:** `~/.claude/usage-latest.json` was written by `nitpick-libs_19` at 20:39:21Z and read two seconds later. It carries rate limits (five-hour 2 %, week 97 %, resetting 2026-10-15 00:00Z) and `model_limits.account_check` "matches this session (same weekly reset)", Fable 97 %. Team seats get no rate limits, so this seat is on Max. No `/status` was run: a session cannot run it, and the brief's status-line criterion is the one met.
+- **The id from values:** `CLAUDE_CODE_SESSION_ID`, the transcript `25ad5618-….jsonl`, the scratchpad path and `~/.claude/context/25ad5618-….json` (`session_name` `nitpick-libs_19`) agree, and `ListAgents` names this session `nitpick-libs_19` (`[b3bfb4]`). **By content:** a nonce (`nk19-quill-5e2b-ferrous-0412`) is found in that one transcript only. The marker is 37 bytes.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, once before the questions and again inside the take's own command;
+  - `HEAD` = `origin/main` = `ls-remote` = `132da2e`;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed, found **9 trees, every one `dirty=0` and `0/0`**. `diogenes` (`0ed0a4a`), outside the sweep's path, is clean and `0/0` too, which makes `_18`'s count of 10.
+- **Hazard 3, asked and answered:** `_18` measured by command at 16:41:03:
+  - the same 10 trees clean and `0/0`; `HEAD` = `origin/main` = `ls-remote` = `132da2e`; the token `none` on `origin/main`; no `orchestrator.session`;
+  - `find .internal -newer` the release lists only `.internal` itself;
+  - its writes outside the trees are all done: `~/.claude/settings.json`'s domain-guard hook, `~/.claude/statusline.sh`'s account check, this workbench's `.claude/settings.local.json`, the memory, and `.internal/team/brief-2026-10-12.md`;
+  - no subagent, background job or scheduled wakeup; its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_20` (`[a34f9d]`), the spare, answered in one message: idle, no task, nothing written in `nitpick-libs` (its only action was reading the writer line), and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`):** `nitpick-libs_18` (`[53cc81]`) and `_20` (`[a34f9d]`), answering; `nitpick-compiler_36` (`[d9dc02]`) and `_37` (`[e6fdcf]`), idle; `management_0` (`[901d3c]`), idle and paused until Wednesday; the Team's Desktop session (`[a4a10f]`) and the fuzz cloud session (`[169d76]`), idle. The Team's `claude-team` sessions are not listed, since they keep their own registry.
+- **Left undone at this take, to spend almost nothing:** the rest of §2's reads (`WORKSTREAMS.md`, `LIBRARIES.md`, `APPS.md`) and the pin's `sha256sum -c` here. This seat dispatches nothing. The pin `7e91730` was copied and checked on the Team side (2/2 OK, the record at 14:24).
+- **Next:** the first act, one line to Ailp-team_0 introducing this seat as the libs reviewer. Then each chain the Team reports is reviewed by the handoff block's five steps.
