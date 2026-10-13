@@ -12413,3 +12413,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - RX-237's "floors on every kind of noise" misses a seventh kind, a repetition's operand in a needless `(?:…)`. Ailp-team_0 gives this to the 0.2.4 planner to carry or hand on.
   - Known and not carried: CI's `npkc` digest differs from the pin's, and rx120's `950bb1d` leg prints SKIPPED (N3).
 - **Next on the Team seat:** regex 0.2.4, from PD-123. Time 0.3.3's plan PASSED on run 3, with a short fix round for two citations before its worker.
+
+### `nitpick-time` 0.3.3 VERIFIED PASS and merged: the Team seat's second chain, spot-checked here — 2026-10-13 04:20 (shell time)
+
+- **The report** (Ailp-team_0, 04:19): `nitpick-time 0.3.3 CHAIN PASS branch team/time-0.3.3-plan commit fa9fb37…`. Its reports are `/home/randy/Team/REPORTS/T2-time-0.3.3-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3,plan-fix-3,verify-plan-4,work,verify-work}.md`.
+- **The chain:**
+  - the plan, `20ca195`;
+  - its verification ran four times. Run 1 FAILED on the title's missing PLANNED (`a2a685c`). Run 2 FAILED on §1.2's note and the double's reach (`43995da`, `1c6112e`). Run 3 PASSED, and run 4 PASSED, scoped to fix round 3's two citations (`f231132`). The two failures were on different points, so brief §7's stop did not apply;
+  - the work: `0e866f6` (`check_layering` reads the double's imports as `host`'s), `fc7a6cc` (the double), `ac6fae9` (the documents audit), `0bb4902` (the prose) and `fa9fb37` (the record);
+  - the work verifier, `T2vw-ntime-0.3.3-verify-work` (`npk:verifier`, Sonnet 5.5, 03:17–04:16, about 588 k tokens): **PASS on `fa9fb37`**. It found no amendment, each step's tree equal to its commit's, and `src/` unchanged since `cf2176e`. It put 25 hand mutants on the double's reach, re-derived the golden byte-identical with its own `datetime` script, and re-ran 2m SAME.
+- **Spot-checked here, independently:**
+  - the branch fetched from GitHub is `fa9fb37`: ten commits on our `main` (`cf2176e`), which is its ancestor, so a fast-forward; 47 files, +7 025 −76;
+  - no file under `0.3.3_tools/` changed between the last plan commit (`f231132`) and `fa9fb37`, so the worker made no amendment;
+  - `meta/DECISIONS.md` at `fa9fb37` holds TM-260 (line 8719), TM-261 (8751) and TM-262 (8887);
+  - GitHub Actions on the branch succeeded at all six pushes, among them `0bb4902` (run `38359396395`) and `fa9fb37` (`38360696857`);
+  - the harness was not re-run here.
+- **Applied:**
+  - the s2 row was CLAIMED for the merge (`9ef3f24`, 04:19). Then `nitpick-time`'s `main` was fast-forwarded `cf2176e` → `fa9fb37` and pushed, and `ls-remote` reads `fa9fb37`;
+  - the s2 row now reads VERIFIED PASS, MERGED, and the claim is released;
+  - `LIBRARIES.md`'s time row moves to 0.3.3, 146 units and TM-262;
+  - **question 28** goes to the author: `HOST.md`'s H-9 and H-10 amended by TM-261, with the recommendation to accept as amended.
+- **The batch heading's wording** (`DECISIONS.md:8710`, as 0.3.2a's): it says the orchestrator accepted the decisions at the plan's verification. In fact the Team manager accepted them under brief §7, the orchestrator's delegation, and this seat confirmed them at this review. The same holds for regex's RX-235 … RX-237. **The wording stands for now**, since the delegation was this seat's. The closes, 0.3.4 and 0.2.6, may add a dated note if they want the path exact.
+- **Carried to the 0.3.4 close:**
+  - `python3 -B harness/run.py` still leaves `harness/__pycache__/` and `build/`, because `selfcheck.py:296` starts the runner without `-B`. Regex fixed its twin at `4755125`;
+  - the record gives block 5's counts and points to §3b rather than pasting its 567 lines; the verifier found §3b exact;
+  - three readings in `facts.sh` and a hunk in the control paragraph were left as rehearsed, and are cosmetic;
+  - CI took its LLVM and compiler builds from cache, so the compiler was not rebuilt from source; the emission assertion still held.
+- **The compiler seat was told more:** the plan's §1.2 and §9 measured the bare-binding candidate more widely. A struct, `stack`, `wild`, `wildx`, `pub`, an `atomic<int64>` and a `Channel<int64, 1, 4>` each compile without an initialiser, and the NULL store holds for a `fixed` pointer and for a local. The plan notes it is DEF-106's shape. This was sent to `nitpick-compiler_37` at 04:19.
+- **Time stops here, before 0.3.4,** the cycle close, which is this seat's after Wednesday. Regex 0.2.4's plan (`0aa3796`, PD-123 … PD-125) is in plan verification. By Ailp-team_0's account, it settles all six of its author items with a default and a reversal, leaves none open, and no case leans on RX-235's two-HIR clause.
