@@ -12470,3 +12470,28 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the mutant table's one row for `kind_bits`' admission breaks only one arm.
   - Not carried: CI's digests are a known difference, and the stale local `main` (finding 6) is in the Team's clone, so it is theirs.
 - **Next on the Team seat:** regex 0.2.5, literal extraction, after `bfc4693`. The regex chain then stops before 0.2.6.
+
+### `nitpick-regex` 0.2.5 CHAIN STOP at plan verification: the verifier failed twice on F1; one more fix round allowed, on terms — 2026-10-13 16:14 (shell time)
+
+- **The report** (Ailp-team_0): `nitpick-regex 0.2.5 CHAIN STOP (§7: plan verifier failed twice on the same point, F1) branch team/regex-0.2.3-plan commit bc63947 (plan only, nothing executed)`. Its reports are `/home/randy/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2}.md`.
+- **F1, by the Team's account:** RX-241 (as drafted), §1.13 and §4.1 claim that every facet of H-19 has a row of its own, and that every surviving mutant is equivalent.
+  - Run 1 found three facets uncovered. They are now covered.
+  - Run 2's wider sweep, of 1 842 mutants, left **14 survivors that are not equivalent**:
+    - 7 trap (`repr` :523 ×3, :545 ×3, :669);
+    - **2 are wrong in the unsafe direction:** `cp_len(y.a, byte)` → `false`, in `plain_common` and in `plain_put`;
+    - 5 are wrong in the safe direction.
+  - `HIR_LITERAL_INNER` is unpinned.
+  - These are mutants, so the planned code is not shown wrong. What is shown is that the tests are weaker than the texts claim.
+- **F2 is answered:** CI 334/334 green, and all nine blocks SAME.
+- **Judged here: one more fix round, on terms.** This is Ailp-team_0's recommendation, tightened:
+  1. cases that kill the 14, each red against its mutant in its own unit. **The two unsafe-direction survivors must be killed:** an extraction wrong that way would make a prefilter skip real matches, a silent wrong answer. A safe-direction or trapping survivor that truly cannot be killed is written down with its reason;
+  2. a unit pinning `HIR_LITERAL_INNER`;
+  3. RX-241, §1.13 and §4.1 narrowed to the mutation operators actually enumerated, claiming no more than was measured;
+  4. the re-verification re-runs run 2's whole 1 842-mutant sweep, not only the 14, and checks the narrowed texts against it.
+  - **If it fails again, the chain stops for the week.** There is no fourth round; the board carries it to Wednesday.
+- **Why not stop now:**
+  - the fix is concrete and bounded, and the verifier named the cases;
+  - nothing in it needs the author;
+  - the Team's week was at 46 % at 08:52, and this is the last item in its queue.
+- **Not read here:** the verifier's reports themselves. The numbers above are the Team manager's account, to be checked at the chain's review. The branch's tip was fetched here and descends from our `main` (`bfc4693`).
+- **The board's s1 row says so.**
