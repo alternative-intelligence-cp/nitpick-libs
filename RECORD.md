@@ -12384,3 +12384,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `nitpick-fuzz`'s corpus has 15 `NULL` lines, not swept further.
 - **Passed to `nitpick-compiler_37`** by message. It is paused until Fable's reset, and logs this workbench's messages without replying. Whether either is known, or fixed in landings 104 … 111, is the compiler seat's to judge.
 - **The Team was told:** no chain stops.
+
+### `nitpick-regex` 0.2.3 VERIFIED PASS and merged: the Team seat's first whole chain, spot-checked here — 2026-10-13 01:31 (shell time)
+
+- **The report** (Ailp-team_0, 01:27): `nitpick-regex 0.2.3 CHAIN PASS branch team/regex-0.2.3-plan commit db62c07…`. Its reports are `/home/randy/Team/REPORTS/T3-regex-0.2.3-{plan,verify-plan,plan-fix,plan-fix-2,verify-plan-2,work,verify-work}.md`.
+- **The chain:**
+  - the plan, `6b16f0f`;
+  - its first verification FAILED on D1: the freshness stop did not read range counts. It was fixed in code, with a unit and a mutant per count (`e1387a9`, `128ebfd`), and the second verification PASSED;
+  - the work: `2397770` (the normal form), `fa96f62` (the Gate's corpus; RX-232's list), `4755125` (no `harness/__pycache__/` under `-B`), `c1e71d8` (the prose) and `db62c07` (the record);
+  - the work verifier, `T3vw-nregex-0.2.3-verify-work` (`npk:verifier`, Sonnet 5.5, 00:42–01:26, about 510 k tokens): **PASS on `db62c07`**. It found 318/318 GREEN locally and each step's tree equal to its commit's, blob for blob. It ran an independent normaliser over 83 060 HIR texts, and the 33 mutants.
+- **Spot-checked here, independently:**
+  - the branch fetched from GitHub is `db62c07`: eight commits on our `main` (`7f5b28a`), which is its ancestor, so a fast-forward; 49 files, +7 405 −29;
+  - `meta/DECISIONS.md` at `db62c07` holds RX-235 (line 6213), RX-236 (6254) and RX-237 (6309);
+  - GitHub Actions on the branch succeeded at `db62c07` (run `38347148536`), `c1e71d8` (`38346120227`), `128ebfd` and `e1387a9`;
+  - **the worker's disclosed amendment:** `git diff 128ebfd db62c07` on step 2's patch changes the index line and four comment lines only. "an `Empty` alternative dropped" becomes "two pieces swapped", and "dropped what is not concatenation's identity" becomes "dropped a laziness". This is what the verifier found;
+  - both of 0.2.2's hand-ons were taken up (`4755125`, `fa96f62`);
+  - the harness was not re-run here; CI and the verifier ran it.
+- **Applied:**
+  - the s1 row was CLAIMED for the merge (`72002f4`, 01:30). Then `nitpick-regex`'s `main` was fast-forwarded `7f5b28a` → `db62c07` and pushed, and `ls-remote` reads `db62c07`;
+  - the s1 row now reads VERIFIED PASS, MERGED, and the claim is released;
+  - `LIBRARIES.md`'s regex row moves to 0.2.3, 318 units and RX-237;
+  - **question 27** goes to the author: PD-120's (now RX-235's) two consequences, with the recommendation to accept as planned.
+- **Accepted as disclosed:** the worker's four comment lines in step 2's patch. The verifier ruled them a correction the code supports, with no Expect moved.
+- **Carried to the 0.2.6 close:**
+  - N1, §9's "24 lines", re-cuts as 18 or 21;
+  - N2: §1.2's prelude check reads top-level `pub` lines only;
+  - the record pastes 17 of block 5's 53 lines;
+  - RX-237's "floors on every kind of noise" misses a seventh kind, a repetition's operand in a needless `(?:…)`. Ailp-team_0 gives this to the 0.2.4 planner to carry or hand on.
+  - Known and not carried: CI's `npkc` digest differs from the pin's, and rx120's `950bb1d` leg prints SKIPPED (N3).
+- **Next on the Team seat:** regex 0.2.4, from PD-123. Time 0.3.3's plan PASSED on run 3, with a short fix round for two citations before its worker.
