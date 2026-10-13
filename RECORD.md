@@ -12441,3 +12441,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - CI took its LLVM and compiler builds from cache, so the compiler was not rebuilt from source; the emission assertion still held.
 - **The compiler seat was told more:** the plan's §1.2 and §9 measured the bare-binding candidate more widely. A struct, `stack`, `wild`, `wildx`, `pub`, an `atomic<int64>` and a `Channel<int64, 1, 4>` each compile without an initialiser, and the NULL store holds for a `fixed` pointer and for a local. The plan notes it is DEF-106's shape. This was sent to `nitpick-compiler_37` at 04:19.
 - **Time stops here, before 0.3.4,** the cycle close, which is this seat's after Wednesday. Regex 0.2.4's plan (`0aa3796`, PD-123 … PD-125) is in plan verification. By Ailp-team_0's account, it settles all six of its author items with a default and a reversal, leaves none open, and no case leans on RX-235's two-HIR clause.
+
+### `nitpick-regex` 0.2.4 VERIFIED PASS and merged: the Team seat's third chain, spot-checked here — 2026-10-13 08:55 (shell time)
+
+- **The report** (Ailp-team_0, 08:53): `nitpick-regex 0.2.4 CHAIN PASS branch team/regex-0.2.3-plan commit bfc4693…`. Its reports are `/home/randy/Team/REPORTS/T4-regex-0.2.4-{plan,verify-plan,plan-fix,verify-plan-2,work,verify-work}.md`.
+- **The chain:**
+  - the plan, `0aa3796`, PASSED its first verification. It was amended at that PASS, so that every facet of the facts' rule is broken alone by a mutant of its own (`89fbf8f`), and it PASSED again;
+  - the work: `8013521` (the four facts kind by kind, each erring one way only, and their cache), `19b6414` (the Gate's seventh kind of noise counted and floored), `f091a04` (the prose) and `bfc4693` (the record);
+  - the work verifier, `T4vw-nregex-0.2.4-verify-work` (`npk:verifier`, Sonnet 5.5, 08:04–08:51, about 562 k tokens): **PASS on `bfc4693`**, 334/334. It ran an H-17 model and fuzz over 20 973 trees and 187 339 nodes at both legs with 0 mismatches, and caught three deliberately wrong models. RX-240's thirteen counts are equal at `db62c07` and at HEAD, and 2m is SAME.
+- **Spot-checked here, independently:**
+  - the branch fetched from GitHub is `bfc4693`: six commits on our `main` (`db62c07`), which is its ancestor, so a fast-forward; 36 files, +5 293 −31;
+  - **the worker's one amendment:** since the last plan commit (`89fbf8f`), only step 1's patch changed under `0.2.4_tools/` (+16 lines). It adds a dated five-line comment to `tests/unit/hir_dump_stray_bit.npk`'s header, comment lines only;
+  - `meta/DECISIONS.md` at `bfc4693` holds RX-238 (line 6362), RX-239 (6410) and RX-240 (6460);
+  - GitHub Actions on the branch succeeded at all four of 0.2.4's pushes, among them `f091a04` (run `38391381456`) and `bfc4693` (`38392927843`);
+  - the harness was not re-run here.
+- **Applied:**
+  - the s1 row was CLAIMED for the merge (`64c6979`, 08:54). Then `nitpick-regex`'s `main` was fast-forwarded `db62c07` → `bfc4693` and pushed, and `ls-remote` reads `bfc4693`;
+  - the s1 row now reads VERIFIED PASS, MERGED, and the claim is released;
+  - `LIBRARIES.md`'s regex row moves to 0.2.4, 334 units and RX-240;
+  - **question 29** goes to the author: 0.2.4's six items, with the recommendation to accept all six as they stand;
+  - question 27 is annotated with 0.2.4's measurement.
+- **The two-HIR ask, answered:** no case of 0.2.4 leans on RX-235's clause, because no fact reads `HIR_FLAG_BYTE`. Struck, the clause costs nothing in 0.2.4 (measured, §1.9), and what 0.2.3's §9 says there.
+- **0.2.3's carried finding is resolved:** RX-240 counts and floors the seventh kind of noise, so RX-237's *"floors on every kind of noise"* is now true of the Gate.
+- **Carried to the 0.2.6 close, added:**
+  - the record's account of how the compiler's tree was read is inexact (`0.2.4.md:1197–1198`, `:1678`);
+  - an optional dated note on the cycle README's 0.2.1 lines (12, 64, 84);
+  - `apply.py` reads step 1 as STOP on the final tree, which the record discloses;
+  - the mutant table's one row for `kind_bits`' admission breaks only one arm.
+  - Not carried: CI's digests are a known difference, and the stale local `main` (finding 6) is in the Team's clone, so it is theirs.
+- **Next on the Team seat:** regex 0.2.5, literal extraction, after `bfc4693`. The regex chain then stops before 0.2.6.
