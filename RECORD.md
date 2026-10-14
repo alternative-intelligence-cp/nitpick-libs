@@ -12495,3 +12495,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the Team's week was at 46 % at 08:52, and this is the last item in its queue.
 - **Not read here:** the verifier's reports themselves. The numbers above are the Team manager's account, to be checked at the chain's review. The branch's tip was fetched here and descends from our `main` (`bfc4693`).
 - **The board's s1 row says so.**
+
+### `nitpick-regex` 0.2.5 stopped for the week at its third plan verification; the Team seat's queue is done — 2026-10-13 20:11 (shell time)
+
+- **The report** (Ailp-team_0): `nitpick-regex 0.2.5 CHAIN STOP (your ruling: plan verification 3 FAILED) branch team/regex-0.2.3-plan commit cf789d8 (plan only, nothing executed)`. Its reports are `/home/randy/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3}.md`. The branch's tip, fetched here, is `cf789d8`.
+- **Terms (1), (2) and (4) were met**, by the Team's account:
+  - the 14 non-equivalent survivors are killed, the two unsafe-direction ones among them;
+  - `HIR_LITERAL_INNER` is pinned;
+  - the 1 842 mutants were re-run whole (1 555 red, 88 refused, 199 left), with the control reproducing run 2 exactly;
+  - CI is 334/334 green, and all nine blocks read SAME.
+- **One blocking finding, text only, under term (3):** §4.1's bullet *"mutations of other kinds"* (`0.2.5.md` 1223–1226) says that run 2's sweep made them. That sweep removed only the statements `opsweep` removes, and the only call argument it changed was the byte flag. The Team confirmed both in run 2's `gen.py`.
+- **Held as ruled: stopped for the week, with no fourth round.**
+  - The finding is one sentence. But this plan's claims outran its measurements at all three verifications, and that earns a fresh look rather than a fourth pass tonight.
+  - From Wednesday, the Team seat's week is management's to allocate (the memory `management-split`).
+- **At the wake, for this seat:** narrow §4.1's bullet to what the sweep did; a scoped re-verification of that text; then 0.2.5's worker and work verifier.
+- **The Team seat:** idle, with nothing running and its `TMP` clean. Its week is 59 % used, and resets Wednesday 03:00. It was asked to stay idle until it is briefed on Wednesday.
+- **The week's tally on the Team seat:**
+  - regex 0.2.3 and 0.2.4, and time 0.3.3, VERIFIED PASS and merged (RX-235 … RX-240, TM-260 … TM-262);
+  - regex 0.2.5 planned to its third verification, and stopped on one sentence;
+  - two compiler-defect candidates raised and passed on;
+  - questions 27–29 for the author.
+- **The writer line now says the seat is at rest until the reset,** and gives the order for the wake. The author is told, by one push notification, that we have done all we can for the week.
