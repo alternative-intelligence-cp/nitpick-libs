@@ -12516,3 +12516,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - two compiler-defect candidates raised and passed on;
   - questions 27–29 for the author.
 - **The writer line now says the seat is at rest until the reset,** and gives the order for the wake. The author is told, by one push notification, that we have done all we can for the week.
+
+### Questions 27–29 answered by the author: all as recommended — 2026-10-13 20:53 (shell time)
+
+- **The author:** *"i'm fine with those recommendations for questions 27-29."*
+- **question answered (27):** `nitpick-regex` RX-235's two consequences stand. `(?-u)a` and `a` stay two HIRs, and an `Empty` piece of a concatenation goes. The clause is not struck, so 0.2.6's close has nothing to re-cut for it.
+- **question answered (28):** `nitpick-time`'s `HOST.md` H-9 and H-10 stand as amended by TM-261: the double is a value, and the substitution a type. The seam's export waits for cycle 1.0.
+- **question answered (29):** `nitpick-regex` 0.2.4's six items stand as RX-238 … RX-240 settle them.
+- **The rows are struck on the board,** and the writer line's wake list no longer carries them. No library work follows from any of the three.
+- **Also from the author, not a question:** he expects management to allocate most of the Team seat's usage and the credits to the libs seat to delegate. If so, this seat's flow stays much the same, without the side projects, so its context should last longer between handoffs. *"we shall see."*
