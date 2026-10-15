@@ -13360,3 +13360,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
      A full rehearsal only if a patch changes beyond these.
   5. **A third FAIL on this point stops the chain for the author,** through this seat. There is no fix round 3 of the chain's own accord.
 - **The author may overrule this.** Sockets still waits on parse's PASS.
+- **19:41, item 4 made precise with `Ailp-team_4`,** whose message followed the ruling's arrival at 19:38:08. `blocks.py` reads a run's number back to its label through the current `decisions.txt`. So a decline moves a highest-decision line only when that line names the declined PD, and the clause will say which decline moves which line.
+  - **The control is two runs:**
+    - PD-130 alone, which must DIFF on exactly the four rank lines;
+    - PD-134, 137, 139, 142 and 145 together, which must DIFF on exactly the ten.
+  - **Agreed here, after reading the ten lines at `9904483`:** both sets follow from the lines themselves. Every rank line lists PD-130 or a later PD, and holds one of the five or a PD after one. Each highest-decision line names one of the five.
+  - **One caution sent:** a run declines a PD as the clause says the review does, the line deleted and its hunks re-cut. Otherwise the brief says how the stand-in simulates that. A bare deletion could stop at `apply.py` before the comparator runs, which would be a fault in the test, not in the claim.
