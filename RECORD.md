@@ -12760,3 +12760,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **The texts:** the decision log's notes only adding lines, the archive's counts, block 4b's classes, the plants, and §1's facts by its own measurement.
   - **The rest:** CI read per job, and hygiene.
   - **Budget:** the week at 10 %, the five-hour window at 37 %, room 35.
+
+### W-22's ecosystem-wide audit approved by management, to run after time's close; the credits do not expire today — 2026-10-15 10:41 (shell time)
+
+- **`management_0`, 10:3x: go**, on this seat's runner, read-only, at this seat's choice of model and time.
+  - **The timing chosen here: after 0.3.4 lands.** That is W-22's "after the close", and the audit then reads time's closed tree with its `0.4.0.md`.
+  - Its findings still reach time 0.4.0's plan verification, regex 0.2.6 and 0.3, parse's chain review and sockets' brief.
+  - The job is prepared as `.internal/credits/jobs/ecosystem-2026-10-15.md`: Sonnet, the early audit's scope and shape, E3 numbering, and E2-1 … E2-15 re-read.
+- **A correction from management** (the author read the Console at 08:20:50; management's 06:55 and 07:27 messages were wrong):
+  - the old grant had already lapsed when the new one loaded;
+  - today's spending came from the grant issued 2026-10-12, which lapses when the next one loads, about 2026-11-12;
+  - about $131 is left;
+  - at 08:22:53 the author raised the calendar-month spend limit from $200 to $400. The $200 limit is what refused jobs at 08:00.
+  - So nothing about the credits is urgent.
+- **This seat's standing allowance: $30 through 2026-11-11**, for read-only jobs on its runner, this audit included. Each job's cost line goes to management, and past $30 is asked first. Diogenes keeps its reserve of about $60, and cross-project jobs stay on `MANAGEMENT/credits`.
