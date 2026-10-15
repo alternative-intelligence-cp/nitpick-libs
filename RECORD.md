@@ -12907,3 +12907,4 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - nothing was written in Team;
   - `check_refs`: the file's two known `[leak]` lines are unchanged, and there are no other findings.
 - **Still to do:** `cmp` against `~/Team/CONFIG/guard_domains.py` once the Team installs its copy, then one line to management.
+- **11:44:45: `cmp` passes.** The Team installed its copy on the author's word in its own session (Ailp-team_2). `~/Team/CONFIG/guard_domains.py` and `tools/guard_domains.py` are byte-identical at `e33335c3…`, so the two guards are one text again.
