@@ -12863,3 +12863,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **about 10–11 of 12 in all.**
 - **Regex 0.2.6 (~4–5 points) does not fit this week.** It is **first in line for management's release of about 8–10 points on Sunday 2026-10-18**, confirmed then against the meter. Otherwise it waits for next week, and the `stack` rename is carried by the re-pin's regex adoption subcycle.
 - **The Team seat stays on the new libraries.** Its queue (Diogenes, parse, M12 after 113, then sockets) fills its week.
+
+### Question 31 answered: regex 0.2.5's nine items accepted as recommended — 2026-10-15 11:24 (shell time)
+
+- **question answered — 31** (the author, 2026-10-15 11:24:06, relayed by `management_0`): *"i looked at all the recommendations and i'm fine with them"*. All nine of `nitpick-regex` 0.2.5's §9 items are accepted as they stand, as merged at `0e4e8d7` in RX-241 … RX-243. The row leaves the table. Nothing is re-cut, and no reversal is owed.
