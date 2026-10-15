@@ -12683,3 +12683,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - If 0.2.6 slips past 115, the re-pin's adoption subcycle carries it.
 - **The board's s1 row** now also says that 0.2.5 resumed on the Team seat this morning.
 - **The compiler seat rotates to `nitpick-compiler_38`.** Landing 112 is committed (`958890a`), with its harness due to finish about 11:10. Its notice is verified here with `tools/ladder.py` when it lands, and F-048 is struck from O-N36.
+
+### Two compiler-defect candidates from parse's cycle-0.0 probes: a use-after-free in safe code, and a bound `Self->` call that does not link — reproduced here, passed to `nitpick-compiler_38` — 2026-10-15 09:19 (shell time)
+
+- **From Ailp-team_1:** found by the Team seat's parse planner (T6) and reproduced by it at 09:16. The write-up is `~/Team/REPORTS/defects/2026-10-15-parse-probes/README.md`, with five roots beside it, also in `team/parse-0.0-plan` at `07cf21f`.
+- **Reproduced here independently** at the pin `7e91730` (`sha256sum -c` OK, LLVM 20.1.8), at both legs:
+  1. **A view re-seated by a callee outlives a block's string: a use-after-free in safe code.**
+     - `reset(Cursor->:c, fixed uint8[]:src)` stores the view into `*c`, and is called in a block with `c` declared outside it.
+     - `npkc` exits 0, and the run exits **170 at -O0 and at -O2**: 0xAA, the free poison.
+     - The same re-seat as a direct assignment is refused, `NITPICK-BORROW-002`. So DEF-42's holder check covers a direct store, and not a callee's.
+  2. **A synchronous `Self->` trait method called through a generic bound does not link.**
+     - `npkc` exits 0, then `llc` reports the undefined `@…Count->:Src.step`. The IR defines `…Count:Src.step`.
+     - The by-value bound and the concrete call run (5 and 1). It fails loudly.
+- **The libraries' exposure, swept here by signature:**
+  - for (1), the 12 functions taking both a pointer and a view are regex's `src/hir/dump.npk` readers, and their pointees (`ReadState`, `Hir`) hold no view field. This is a first pass, not a proof;
+  - for (2), no `Self->` method is called through a bound. Time's `HostReadings` generics take `H` by value.
+- **The stance:**
+  - (1) is a memory-safety under-enforcement, which the author holds as blocking for any work that would rely on the shape (the memory `compiler-defects-block-not-house-rules`). Parse's plan avoids it by a review rule (PD-132), which is a belt, not a substitute.
+  - Parse 0.0 is plan only, so it is not blocked. Parse needs (2) fixed by its 0.2.2 (PD-131).
+  - The plan was asked to keep both probes as pending cases that flip when the compiler fixes them.
+- **Passed to `nitpick-compiler_38`,** which now holds the compiler seat, with the extent. Management was told of (1), for priority.
