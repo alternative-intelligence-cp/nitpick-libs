@@ -12847,7 +12847,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The libraries' standing ask, RX-235's two-HIR clause:** no case of 0.2.5 leans on it, and striking it costs nothing here (§9, measured at §1.9).
 - **Next for `nitpick-regex`:** 0.2.6, the cycle's close, this seat's. Its planner runs after time 0.3.4 finishes (width 1, P-12), with RA-9 … RA-13 from the documents audit at `bfc4693` and 0.2.5's delta read by the planner. **On the Team seat:** parse's 0.0 plan chain (after its 11:40 reset), then sockets, tui and posix.
 
-### This seat's week fitted to its 12 points: time 0.3.4's close in full, regex 0.2.6 first in line for Sunday's release — 2026-10-15 11:2x (shell time)
+### This seat's week fitted to its 12 points: time 0.3.4's close in full, regex 0.2.6 first in line for Sunday's release — 2026-10-15 11:11 (shell time)
 
 - **`management_0` measured the morning's usage from the transcripts at list price** (07:17 → 11:00, ≈ 10–11 points, matching the meter's rise from 2 % to 13 %):
   - the compiler's Fable, about $64 (5.2–5.6 points), from its own pool;
