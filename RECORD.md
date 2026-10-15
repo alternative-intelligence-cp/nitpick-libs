@@ -13329,3 +13329,34 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the re-pin at 118 with F57's attribute;
   - D-355.
 - **The board's parse row** names the new manager.
+
+### Parse 0.0's plan chain stopped under brief §8, a verifier failing twice on one point; ruled here: resume with fix round 2, the claim corrected rather than the mechanism — 2026-10-15 19:37 (shell time)
+
+- **From `Ailp-team_4`:**
+  - T6v2 (`sonnet`, on `9904483`, 18:21:55–19:31:49) FAILED on one blocking finding. `meta/roadmap/0.0/tools/decisions.txt:10–11` says a declined PD moves every later number "in every patch and in every run's output, and no Expect moves -- by this file alone", yet ten Expect lines move: four rank lines `PD-k=base+r` and six highest-decision lines. Measured by deleting PD-130 in a stand-in, where the plan's comparator reads DIFF.
+  - T6v2 marked it NEW. `Ailp-team_4` read it as T6v's finding 9 again, stopped the chain under §8, and sent it here.
+  - Everything else held: T6v's 19 findings are answered, no PD is open, 45 of 45 blocks are SAME from a fresh clone, 215 of 215 index hashes match, and hygiene is clean.
+  - Reports: `~/Team/REPORTS/T6v2-parse-0.0-verify-plan.md`, with the manager's ruling in its header.
+- **Checked here in the Team's clone, read-only:**
+  - At `01e987c`, `decisions.txt:8–9` read "…every later number then moves down by one, in every patch, by this file alone." T6v's (13)(a) named that false and its finding 9 blocked on it: "The numbers are right only if the review accepts all 17 PDs in order."
+  - At `9904483` the same sentence stands at `:10–11`, extended.
+  - So it is the same point, and the stop was rightly called.
+- **Why it recurred:** fix round 1 took T6v's own suggestion, "print `base+k`". But a rank still encodes the acceptance order, so the clause stayed false.
+  - **The lesson:** a verifier's suggested fix is a suggestion. The fix round re-derives the claim's truth, and the re-verification tests the claim, not the suggestion.
+- **The ruling, sent 19:37:**
+  1. **Correct the claim, not the mechanism:** a plan may make a decline cost work, provided it says so truly.
+     - Take T6v2's wording: the label-writing Expects stand. The four rank lines (0.0.0:415, 0.0.2:291, 0.0.3:166, 0.0.4:168) and the six highest-decision lines (0.0.1:170 and 190, 0.0.2:237, 0.0.3:130, 0.0.4:128, 0.0.5:116) are retaken with the re-cut, and the clause names them.
+     - Masking the comparator is not wanted: more code, and more to verify.
+  2. **Findings 2–7 are folded in.** One of 4–6 that grows past a few lines is carried into the cycle's first work subcycle with a dated note instead. They are non-blocking, and no current pattern is affected.
+  3. **Finding 8 is accepted.** T6f's `CURRENCY.md` departure is forced by the plan's scope rule, and it keeps finding 16's intent: the research blocks the work, not the merge.
+     - Gate item 7 is to point to 0.0.1's `step5.patch`, which holds the three research requests' "would change the plan if" text.
+     - This seat needs those texts before the first work dispatch.
+  4. **The re-verification is scoped to the round:**
+     - the decline experiment again (PD-130 deleted, the comparator to DIFF on exactly the ten named lines, the claim's own positive control);
+     - each finding checked against what it is about;
+     - every block whose patch or Expect changes, re-run;
+     - the standard checks.
+
+     A full rehearsal only if a patch changes beyond these.
+  5. **A third FAIL on this point stops the chain for the author,** through this seat. There is no fix round 3 of the chain's own accord.
+- **The author may overrule this.** Sockets still waits on parse's PASS.
