@@ -12703,3 +12703,22 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Parse 0.0 is plan only, so it is not blocked. Parse needs (2) fixed by its 0.2.2 (PD-131).
   - The plan was asked to keep both probes as pending cases that flip when the compiler fixes them.
 - **Passed to `nitpick-compiler_38`,** which now holds the compiler seat, with the extent. Management was told of (1), for priority.
+
+### Parse's two probe candidates registered: DEF-252 (the use-after-free) and DEF-253 (the bound `Self->` call); the compiler's queue to the re-pin and past it — 2026-10-15 09:22 (shell time)
+
+- **`nitpick-compiler_38`** (the compiler seat since 08:59, after `_37` handed off) reproduced both at 09:21 on landing 113's compiler, and registered them in 113's OPEN_DECISIONS:
+  - **DEF-252:** the view re-seated by a callee outliving the block's string. It is a memory-safety under-enforcement of DEF-42's holder rule through a callee's store. The fix is the escape analysis's: the holder-scope question asked at the CALL, read off the callee's store matrix (D-325's summaries);
+  - **DEF-253:** the `Self->` trait method through a bound that does not link. It is loud, and normal priority.
+- **The queue,** with management's priority note of 09:20:
+  1. 112 (its harness running; it lands about 11:15);
+  2. 113 (its chain re-run; F55 follows, naming regex's `stack` rename, owed before the re-pin);
+  3. 114 (DEF-250);
+  4. 115 (DEF-251), after which this seat re-pins;
+  5. DEF-252, planned and measured first;
+  6. 116 (D-353);
+  7. DEF-253;
+  8. the rest.
+- **What it means here:**
+  - The re-pin after 115 does not carry DEF-252's fix. No library uses the shape, and parse's PD-132 is the belt meanwhile.
+  - Parse's two pending cases flip only at a later re-pin that carries DEF-252 and DEF-253. Ailp-team_1 was given the ids, to cite.
+  - Nothing more is owed to the compiler seat beyond the rename when F55 arrives.
