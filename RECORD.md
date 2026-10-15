@@ -12908,3 +12908,26 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `check_refs`: the file's two known `[leak]` lines are unchanged, and there are no other findings.
 - **Still to do:** `cmp` against `~/Team/CONFIG/guard_domains.py` once the Team installs its copy, then one line to management.
 - **11:44:45: `cmp` passes.** The Team installed its copy on the author's word in its own session (Ailp-team_2). `~/Team/CONFIG/guard_domains.py` and `tools/guard_domains.py` are byte-identical at `e33335c3…`, so the two guards are one text again.
+
+### `nitpick-time` 0.3.4's plan VERIFIED PASS (`5a04b62`); the close's worker dispatched — 2026-10-15 11:53 (shell time)
+
+- **verify `s2-ntime-0.3.4-verify`, resumed for the delta — PASS** (`sonnet`, 11 min, 46 tool uses) at `5a04b62`.
+  - **What it checked:**
+    - the fences byte-identical (23 of them, by `blocks.py`'s pattern, sha256 `aa1468cc…` at both commits), so the earlier SAME verdicts carry and no block was run;
+    - step 1's and step 2's patches applying over `5a04b62`;
+    - D1's three commits, each read in its diff;
+    - N1's mutant ids, by 0.3.3's own `mutate.py list`: 283 both ways, each exactly four lines lower, the code lines identical;
+    - D3's five places and gate 3's reasons;
+    - the quotes exact or unquoted;
+    - the `--log` sentence;
+    - CI per job (86 302 B);
+    - hygiene.
+  - **Two non-blocking inexactnesses in the plan's text:**
+    - §8 item 8's "seven full runs" are six, since the seventh harness run is block 4b's filtered plants run, RED by design. The slip is the verifier's own first report's;
+    - N2's "asked there form by form by 0.3.3's block 0b" is one form short. 0b does not ask the `fixed wild int64->:P = 4096i64;` form (0.3.3's run-3 finding 2, recorded and not acted on, 0.3.3.md:1327–1329), which the third plan verifier and the work's scratch run asked.
+  - **Ruled here:** no third planner round for two words. The worker records both, with their corrections, in the execution record, and the plan's body stands as verified.
+- **Dispatched: the close's worker `s2-ntime-0.3.4-1153`** (`npk:worker`, `opus`), AUDIT the documents audit at `fa9fb37`, on the plan at `5a04b62`.
+  - **What it does:** six commits, each pushed as it is made. The research request goes to the researcher. `0.4.0.md` is measured and not rehearsed, as `0.3.0.md` was (5b.7), its drafts PD-149 on within PD-149 … PD-158.
+  - **Its reading is scoped:** §0's list and each step's own; the credits brief as a map only.
+  - **Expected:** about 3 hours and 3.5–4 points, by the fit management approved.
+  - **Budget:** the week at 16 % (the meter written by `nitpick-libs_21`, the same account), the five-hour window at 5 %, 126 GiB available, room 29.
