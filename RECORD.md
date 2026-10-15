@@ -12893,7 +12893,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### The domain guard's refusal names the Diogenes inbox, the author's go in this session; installed and checked — 2026-10-15 11:44 (shell time)
 
 - **The change** (Diogenes decision 1's guard-message edit): `tools/guard_domains.py:156–157` become four lines, so the refusal reads *"Exchange files through git/GitHub or the other account's inbox under ~/.local/share/diogenes/inbox/ (Diogenes' rule 9), or ask Randy to carry the change across."* No allow or deny logic moves.
-  - The text is Ailp-team_2's: `/home/randy/Team/TMP/guard-edit/guard_domains.py`, 168 lines, sha256 `e33335c3…`.
+  - The text is Ailp-team_2's: `~/Team/TMP/guard-edit/guard_domains.py`, 168 lines, sha256 `e33335c3…`.
   - Its first draft cited `USING.md`, which no Diogenes branch holds yet. It was changed to "Diogenes' rule 9" at this seat's note, which is true in `MIN.md:176` today and will stay true when `docs/USING.md` lands.
 - **Authority:** the author approved the edit at 11:35:22, relayed by `management_0`. **Here, this seat waited for his word in its own session, since a hook is permission machinery: *"you are clear for launch on the change"* (11:4x).** The Team installs its copy on his word in its own session.
 - **Installed here** by copying the scratch file: sha256 `e33335c3…`, equal to the scratch copy; the mode is unchanged.
