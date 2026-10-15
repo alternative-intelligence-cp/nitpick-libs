@@ -1317,6 +1317,41 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `0c0f5a3` LANDED — **NOTICE 113: DEF-235, DEF-236 (c)–(e), DEF-237 AND DEF-234 (c), AS F55 SAID: A KEYWORD DECLARED AS A NAME OF ANY KIND IS `PARSE-001`, A NON-CONSTANT `joins` DEADLINE `TYPE-045`, AN UNKNOWN ATTRIBUTE OR ANY ATTRIBUTE ON A BINDING `DERIVE-007` (NEW), AN `opaque struct` OUTSIDE `extern` `RESOLVE-014` (NEW), `??`'S ADVICE NAMES `?!`/`?|`, AND A CONSTANT CYCLE ONE `RESOLVE-006`. OURS: REGEX'S ONE FIELD NAMED `stack`, AS F55 MEASURED. NOT IN OUR PIN.** 2026-10-15 14:41 (shell time), from `nitpick-compiler_38`, which landed it (built by `_36`); pushed 14:37
+
+- **The ladder.** `tools/ladder.py` against the baseline for 113 (112's rows): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +92 273 B, `npkc.o` +33 264 B and `npkc` +27 832 B.
+  - `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The rows were transcribed from the message and re-read against it.
+- **The git checks.** `958890a` is the parent, one commit (committed 12:00, pushed 14:37). 13 files under `src/`, 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself (`wt/36a`, clean at that commit, exit 0 at 14:34:59):
+  - 55 tests passed;
+  - parity: 2 079 verdicts agree, and `npkc` is byte-identical;
+  - 7 097 obligations matching, with zero verdicts moved and zero discharged counts fallen. 18 rows are added (DEF-237's cycle reporting in `resolve`) and 184 re-keyed by a type-id move;
+  - the floor's 388 are unmoved.
+- **Their sweep is F55's:**
+  - 5 150 files; 90 sites appeared and 19 vanished;
+  - the tree's 570 programs are byte-identical;
+  - of ours and the applications' 4 026: 1 819 byte-identical, 2 139 refused by both, 0 different and 68 newly refused. 60 are regex's unit tests: the one line `src/syntax/parse.npk:223`, `Vec<Frame>:stack;`, a field named with a keyword, `PARSE-001` under DEF-235, reported once per importer (5 source files and 64 test files, 69 sites). The other 8 are the fuzzer's;
+  - 11 `TYPE-079`/`TYPE-080` sites and notes vanish from regex's four rejection tests, the parse refusal's cascade. They come back with the rename;
+  - D-332's count: 0 mismatched.
+- **For us:** the rename is as F55 measured: the field, its 12 uses, and line 1138's comment naming `p.stack`. It is regex 0.2.6's own step, or the re-pin's adoption subcycle. Time has nothing.
+  - The fuzzer's ten are `nitpick-fuzz_2`'s, as F55 told it: F-029's `k1` and `k2`, `me0119`, `me0119b` and `me0183` (a binding named `buffer`), `as0043` and `tr0368`, `as0555`, `as0583`, and `as0572`, whose claim is overturned (D-020).
+- **The registry:** O-N35's F-029 and O-N36's F-036 (a), F-039 (c)–(e) with F-042 (a), F-045 and F-034 (c) are marked LANDED in 113 and verified here. Each is discharged at the re-pin that carries it.
+- **Not in the pin** (`7e91730`). **No floor byte moved, so no re-pin is forced.** The one re-pin is at 118 (question 32).
+- **Next from them:** 114 (DEF-250) and 115 (DEF-251), each with its F-notice first.
+
+**THE BASELINE NOTICE 114 MUST QUOTE** (notice 113's rows, at `0c0f5a3`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    f520d5744b1e99515e36ada7d5bba85acc962a7b5a53ccd2dfae2a8a6aaa70d0  31,701,272 B
+npkc.o     2573a897fe792497b42c0295ab41118fd95f13a805f9c8dcef162ef65d5caf3c  13,054,856 B
+npkc       bd85ba7a09d6b9632195e7f4c4bf2b282920cc065525c99e68db923789711e83  11,283,608 B
+```
+
 ### ✅ `958890a` LANDED — **NOTICE 112: DEF-232, AS F54 SAID: A `NIL` MEMBER IS THE ZERO-SIZED `{}` IN THE EMITTER TOO, SO A STRUCT WITH A `NIL` FIELD AND AN ENUM WITH A `NIL` PAYLOAD COMPILE, WHERE `llc` REFUSED `{ i32, void }`. NO REFUSAL MOVES. OF THE LIBRARIES' AND APPLICATIONS' 4 026 PROGRAMS, 3 ARE DIFFERENT — F-048's TWO PROBES AND THE FUZZER'S `ty1944`, EACH REFUSED BY `llc` BEFORE — AND 0 NEWLY REFUSED. NOT IN OUR PIN (`7e91730`).** Verified here 2026-10-15 10:53 by `nitpick-libs_19`. Built by `nitpick-compiler_35`, landed and sent by **`nitpick-compiler_38`** (pushed 10:48).
 - **The ladder.** `tools/ladder.py` against the baseline for 112 (111's rows): MATCH, with the one-digit-off control failing.
   - Three rows moved: `npkc.ll` +11 180 B, `npkc.o` +4 504 B and `npkc` +3 800 B.

@@ -13192,3 +13192,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The working context came through the relaunch whole.
 - **Retired:** the board's note under the writer line, and the diff before each dispatch (13:23). Its record entry stays as written.
 - **The commit trailer:** from this relaunch the harness gives two lines, the co-author and a `Claude-Session:` link. So this seat's commits, and the `ATTRIBUTION:` line of its dispatches, carry both, verbatim.
+
+### Notice 113 verified: `0c0f5a3` (DEF-235, DEF-236 (c)–(e), DEF-237, DEF-234 (c)), as F55 said; ours the one regex field named `stack`; not in our pin; O-N35 and O-N36 marked; the baseline for 114 written — 2026-10-15 14:42 (shell time)
+
+- **Notice 113**, from `nitpick-compiler_38`, which landed it (built by `_36`); pushed 14:37. **Verified here:**
+  - the ladder: MATCH against 112's rows, with the control failing. `npkc.ll` +92 273 B, `npkc.o` +33 264 B and `npkc` +27 832 B; the anchor, `npkrt.o`, is unchanged, and so are `builder.o` and `builder`;
+  - the git checks: `958890a` is the parent, one commit, 13 `src/` files, 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F55's exactly for us:** regex's 60 unit tests, newly refused at the one line `src/syntax/parse.npk:223`. Its four rejection tests lose 11 `TYPE-079`/`TYPE-080` sites to the cascade. The rename restores all of them. Time has nothing.
+  - The fuzzer's ten programs are `nitpick-fuzz_2`'s, told at F55.
+- **The registry:** O-N35's F-029 and O-N36's F-036 (a), F-039 (c)–(e) with F-042 (a), F-045 and F-034 (c) are marked LANDED in 113, verified here, and discharged at the re-pin that carries it. They are marked, not struck, as for 111 and 112.
+- **Not in the pin** (`7e91730`). No floor byte moved, so no re-pin is forced. The one re-pin is at 118.
+  - The compiler seat's closing line still read "after 115 … or after 116", so it is told of question 32's answer.
+- **The baseline for 114 is written**, generated from the transcription the ladder checked. It was self-checked by extraction (MATCH, with the control failing), and its rows equal the transcription's.
+- **Next from them:** 114 (DEF-250) and 115 (DEF-251), each with its F-notice first.
