@@ -12867,3 +12867,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Question 31 answered: regex 0.2.5's nine items accepted as recommended — 2026-10-15 11:24 (shell time)
 
 - **question answered — 31** (the author, 2026-10-15 11:24:06, relayed by `management_0`): *"i looked at all the recommendations and i'm fine with them"*. All nine of `nitpick-regex` 0.2.5's §9 items are accepted as they stand, as merged at `0e4e8d7` in RX-241 … RX-243. The row leaves the table. Nothing is re-cut, and no reversal is owed.
+
+### The Team seat's manager rotates to Ailp-team_2; the brief's line 37 worded to Diogenes' rule 9 — 2026-10-15 11:32 (shell time)
+
+- **Ailp-team_2** is the Team seat's manager from now, at `uds:/run/user/1000/cc-socks/32253.sock` (its own message). `Ailp-team_1` handed off. Parse 0.0's continuation, PD-138 … PD-148, goes out after the Team's 11:40 reset.
+- **The Team brief's §2 line 37** (gitignored, this seat's file) is worded to Diogenes' `meta/roadmap/0.0/MIN.md` rule 9 at `a10092b`: each account writes `inbox/<other account>/`, **the shared cache in `cache/`**, and its own entries in `roster/`. It had said "its own entries in `cache/`", and Ailp-team_1 found the slip in Diogenes' fix round. The cache is shared, keyed by config dir and pid. A dated note in the line keeps the old wording. Checked against MIN.md:92 and :176.
