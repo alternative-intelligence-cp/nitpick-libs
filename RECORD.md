@@ -12664,3 +12664,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The memory `team-domain-boundary` carries the exception.
 - **Decision 3, a tracked role file:** `meta/ROLES.md` in this workbench, with holders such as `libs-seat = nitpick-libs_19` and a `poster` line naming `management_0` and this seat (the plan's §3). It is written when the Team's Diogenes chain asks; that chain may message this seat directly.
 - *(Corrected 2026-10-15, from `management_0`'s transcript: the morning's batch approval was 07:42:39, the freeze clarification 07:50:47, and the Diogenes approval 08:22:53. Its earlier relays gave estimates, which ran fast. PX-102's "about 07:50" in `nitpick-posix` is that estimate, and it is not rewritten: a settled decision's text stands (D-085, D-202), and the exact time is here.)*
+
+### A manager session for every project: M12 to `nitpick-fuzz_2`, Diogenes' merges to `diogenes_0`; this seat back to the libraries and about 12 points — 2026-10-15 08:43 (shell time)
+
+- **The author opened a manager session for every project,** each with successors: `diogenes_0`, `nitpick-fuzz_2` and `claude-skills-devTeam_51`. This keeps this seat to the libraries, per the split (relayed by `management_0`).
+- **M12's review and merge moves to `nitpick-fuzz_2`.** `nitpick-fuzz` is not claimed here, and this seat's allocation goes back to about 12 points. The Team brief's §8 item 6 says so.
+- **Diogenes' Workspace-side merges go to `diogenes_0`.** Management suggested that decision 3's role line live at `diogenes/meta/ROLES.md`, written by `diogenes_0`. If the Team's fix round adopts that, `nitpick-libs/meta/ROLES.md` is not written.
+- **The fuzzer's findings reach `nitpick-compiler_37` from `nitpick-fuzz_2`,** with this seat copied.
+- **What stays here:** the workbench's open-question registry, O-N36 among them, so F-048 is struck when landing 112 lands. Also the compiler link's technical side for the libraries, and the library streams.
