@@ -13269,3 +13269,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
   The board's parse row says so.
 - **The meter** at 17:39, written by this seat: week 20 %, five-hour window 2 %. Fable is at 19 %, fetched 15:09 with the account check matching. Room = 95 − 20 − 0.5 × 81 = 34.5.
+
+### The rules W-29 … W-31 drafted on the credits and reviewed here; they land at the quiet point before the re-pin — 2026-10-15 17:57 (shell time)
+
+- **The job** `w29-rules-draft-2026-10-15`: `sonnet`, 121 turns, 17:45:46–17:53:20, $1.8092, read-only. It read the Team's `MANAGER-LOG.md` directly, which reading across domains allows.
+  - This seat's allowance of $30 through 2026-11-11 now stands at $9.5847 spent and $20.4153 left.
+  - The cost line goes to management.
+- **The draft and this seat's review** are gitignored files in `.internal/credits/out/`: `w29-rules-draft-2026-10-15.md` and `….review.md`. The board's question-33 row names them.
+  - W-29: the Team seat's `team/` branches, reviewed and fast-forwarded here.
+  - W-30: a tool repository is its own manager's.
+  - W-31: a re-pin is taken with every claim at rest, and each library adopts it in a lettered subcycle.
+  - Each refined rule (W-7, W-17 and W-18) gets a dated note, and its own text stays.
+- **The draft corrected this seat's brief three times, each checked against the sources:**
+  - **The order gate:** library chains move on at CHAIN PASS, not at the merge. 0.2.4's planner was dispatched at 01:28, one minute after 0.2.3's pass and before the merge claim at 01:30. The merge-first gate is the fuzzer's milestone order, as EC8 first found it.
+  - **"Audit":** no source puts a tool repository outside the audits.
+  - **`5fbaf4a`:** only regex was mid-cycle.
+- **Amended here:**
+  - **E2-14's edge stays.** Posix's settled PX-008 makes `awk` a consumer of `nparse` and `nregex`, as the graph draws. Deleting the edge would decide posix's design, not describe practice. So posix's `ROADMAP.md:55` owes the gate, as AUDIT input to posix's cycle-0.0 plan chain (the board's posix row), and the rule book gets a dated note.
+  - **W-30 takes all four of EC8's points.** The fourth is that a tool repository's sessions follow its own `CLAUDE.md`, and the fuzzer builds its compilers in its own `.work/`.
+  - **W-29 cites the Team brief and orchestrate §14,** and §14 gains the exception sentence in the same commit.
+  - **E2-10's count is 27,** by the convention the other counts keep: the 0.x cycles and 1.0. Posix has 15.
+- **At landing,** with every claim at rest:
+  - edit `CLAUDE.md:26`'s range to "W-1…W-31";
+  - tell management and the Team, since the skill is a plugin file;
+  - tell the fuzzer's manager that `nitpick-fuzz/CLAUDE.md:10` is stale under W-30.
