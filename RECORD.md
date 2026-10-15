@@ -12611,7 +12611,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### The author approves the morning's batch: PX-102 filed, the re-pin after 115, the library streams opened on the Team seat, M12 after 113 — 2026-10-15 07:48 (shell time)
 
-- **The author, about 07:50, relayed by `management_0`:** *"from the best i can tell all the recommendations look fine to me. Lets go with those."*
+- **The author, at 07:42:39, relayed by `management_0`:** *"from the best i can tell all the recommendations look fine to me. Lets go with those."*
 - **This seat's allocation:** about 14 Max points this week, at width 1. It covers the closes 0.3.4 and 0.2.6, the Team seat's chain reviews, and M12's review and merge. The room guard is unchanged.
 - **Question 30 → PX-102, filed in `nitpick-posix` (`1e9a8b3`, pushed):** the edition is POSIX.1-2024, Issue 8, and it supersedes PX-002's edition while keeping its intersection rule.
   - It was claimed on the board at 07:45 (`27caf2e`), and released when filed.
@@ -12657,9 +12657,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### Diogenes 0.0-min approved; the Team brief's §2 amended for the shared zone; `meta/ROLES.md` to follow when the Team's chain asks — 2026-10-15 08:28 (shell time)
 
-- **The author approved Diogenes 0.0-min before 08:28** (*"for the decisions, all as recommended"*), relayed by `management_0`. The relay said "about 08:40", which is later than this seat's clock when it recorded the approval, so the relayed time is wrong. The plan is `~/Workspace/MANAGEMENT/credits/out/dio-rescope-revise3-2026-10-15.md`. The Team seat is the `diogenes` writer this cycle.
+- **The author approved Diogenes 0.0-min at 08:22:53** (*"for the decisions, all as recommended"*), relayed by `management_0`, by its transcript. Its first relay said "about 08:40", an estimate later than this seat's clock. The plan is `~/Workspace/MANAGEMENT/credits/out/dio-rescope-revise3-2026-10-15.md`. The Team seat is the `diogenes` writer this cycle.
 - **Decision 1, the domain rule's one exception:** both accounts may write under `~/.local/share/diogenes/`, each only `inbox/<other account>/` and its own entries in `cache/` and `roster/` (Diogenes' `USING.md` rule 9). Workspace stays read-only for the Team, and the Team domain for Workspace.
   - **Done here:** the Team brief's §2 (`.internal/team/brief-2026-10-12.md`, line 37) now says so, in the words decision 1 gives, with rule 9 quoted, because `USING.md` is the Team's to write this cycle.
   - The guard's code needs no change. The author creates the directories and installs the settings fragments (the plan's step 6).
   - The memory `team-domain-boundary` carries the exception.
 - **Decision 3, a tracked role file:** `meta/ROLES.md` in this workbench, with holders such as `libs-seat = nitpick-libs_19` and a `poster` line naming `management_0` and this seat (the plan's §3). It is written when the Team's Diogenes chain asks; that chain may message this seat directly.
+- *(Corrected 2026-10-15, from `management_0`'s transcript: the morning's batch approval was 07:42:39, the freeze clarification 07:50:47, and the Diogenes approval 08:22:53. Its earlier relays gave estimates, which ran fast. PX-102's "about 07:50" in `nitpick-posix` is that estimate, and it is not rewritten: a settled decision's text stands (D-085, D-202), and the exact time is here.)*
