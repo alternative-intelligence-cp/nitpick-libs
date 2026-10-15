@@ -13238,3 +13238,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Parse 0.0's plan verifier, T6v on `01e987c`, still runs in `Ailp-team_2`'s session.
   - The chain's line comes from `Ailp-team_3` on T6v's PASS.
 - **The board's parse row** names the new manager and its address.
+
+### Parse 0.0's plan verification 1 FAILED on the Team seat (9 blocking, 10 not); fix round 1 running; finding 16 ruled here by the plan skill — 2026-10-15 15:14 (shell time)
+
+- **From `Ailp-team_3`, status only:**
+  - T6v FAILED the plan at `01e987c`, with 9 blocking and 10 non-blocking findings (`~/Team/REPORTS/T6v-parse-0.0-verify-plan.md`);
+  - none leaves a decision open, so this is not a stop;
+  - fix round 1 (T6f, `npk:planner`, `opus`) is working on the branch, with a scoped re-verification after it, and the chain's line follows that PASS.
+- **Finding 16, flagged for this seat as "a design point for the author":** PD-137 and `CURRENCY.md` put the three research items as a gate on cycle 0.1, after 0.0 is archived. Yet they say a finding becomes "a cycle-0.0 probe first", and then no cycle 0.0 is left to take it.
+  - **Ruled here, without the author, because the procedure already settles it.** `skills/plan/SKILL.md`'s Currency section reads: *"A security-sensitive library has three mandatory research items before its cycle map … A finding there is a cycle-0.0 probe before it is anything else."*
+  - So PD-137's gate moves to cycle 0.0's first work dispatch, and `CURRENCY.md`'s three rows show unchecked until then. The research blocks the 0.0 work, not this plan's merge.
+  - PD-137 is a draft, so this is a text change, not a supersede.
+  - Sent to `Ailp-team_3`, to fold into T6f or the re-verification's delta. This seat's credits runner is offered for the research if the Team's budget needs it.
+  - The author is told in this seat's reply, and may overrule it.
