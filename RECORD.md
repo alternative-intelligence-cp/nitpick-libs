@@ -12944,3 +12944,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **question 32 raised: the re-pin's point.** The author put it after 115 at 07:42:39, before DEF-252 existed. DEF-252 now lands directly after 115.
   - **Recommendation:** wait for 116 if it lands within about a day of 115, so one adoption round carries the memory-safety fix; otherwise re-pin at 115.
   - **The default if unanswered is 115**, by his word. It goes to `management_0` for the author's next batch.
+
+### Question 32 updated with the compiler's timing: recommend the re-pin after 118 — 2026-10-15 12:03 (shell time)
+
+- **`nitpick-compiler_38`'s timing:**
+  - each landing is one three-hour harness, in sequence;
+  - 113 started 12:02, so 115 is on `main` by about 21:00 and 116 (DEF-252) by about 00:00;
+  - 117 (D-353's refusal) comes by about 03:00, and 118 (DEF-253, with DEF-254: a trait default calling a sibling on `self` never linked) by about 06:00 tomorrow;
+  - all are built. DEF-252's fix is tested at both legs and measured, and an early whole-tree sweep moves no library site.
+- **So question 32's recommendation moves to: re-pin after 118.** No adoption can start before Sunday's release, so the wait costs nothing. One adoption round then carries the use-after-free fix, D-353's refusal, and the two link fixes parse needs.
+- **The default stands at 115**, by the author's word, if unanswered. `management_0` is told.
