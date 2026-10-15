@@ -15,6 +15,7 @@ deleted.
   first real research item (cycle 0.2's dry run can carry it), and let the
   digest drive a decision in that repository — this workbench does not decide
   it. Settled by: a `PX-` decision.
+  *(2026-10-15: the currency check is done. The research digest `meta/audits/posix-editions-2017-2024-2026-10-15.md` compares the two editions for `nitpick-posix`'s scope and recommends POSIX.1-2024, Issue 8. It is on the board as question 30, for the author. The `PX-` decision follows his answer, in `nitpick-posix`'s 0.0.1.)*
 - ~~**Q-2 — is a symlink acceptable for loading the plugin without the flag?**~~
   — **ANSWERED 2026-09-03, yes.** The author ran
   `ln -s ~/Workspace/REPOS/nitpick-libs ~/.claude/skills/npk` and a fresh

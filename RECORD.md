@@ -12588,3 +12588,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The audit:** the cycle's documents audit, made on the API credits and filed today (`meta/audits/nitpick-time-docs-fa9fb37-2026-10-15.md`, TA-8 … TA-11), goes in as `AUDIT:`. A second, subscription-funded audit is not run. Cycle 0.4's planning brief goes in by `NOTES:`, as evidence to check.
 - **The room:** 95 − 2 − 0.5 × (100 − Fable %). Fable is not on the meter today and is taken as 0, so the room is 43, which is at least 20.
 - **The tree:** `nitpick-time` at `fa9fb37`, clean, on the pin `7e91730`.
+
+### Q-1's currency check done: POSIX.1-2017 against POSIX.1-2024, on the credits; the recommendation to the author as question 30 — 2026-10-15 07:29 (shell time)
+
+- **At management's word** (the stream order parse → sockets → tui → posix, with posix after Q-1), the research digest ran as a web job on the expiring grant: `posix-editions-2017-2024-2026-10-15`, on Opus with Haiku behind its fetches, 07:18–07:27, 140 turns, **$2.65**.
+- **Filed** as `meta/audits/posix-editions-2017-2024-2026-10-15.md`, with its provenance header. It was spot-checked against what this seat knows of Issue 8, not by a fetch of its own. It says its fetch tool paraphrased long quotes.
+- **What it found:**
+  - The Open Group serves Issue 8, IEEE Std 1003.1-2024, with no technical corrigendum yet.
+  - In `nitpick-posix`'s scope, Issue 8 removes 12 utilities, adds 7, turns `c99` into `c17`, and changes options or behaviour in about 25 of the working set's 98 utilities.
+  - `nitpick-time` already cites Issue 8 for `TZ`.
+- **The recommendation, put to the author as question 30:** pin POSIX.1-2024, under a new `PX-` decision superseding PX-002's edition clause, with a `CURRENCY.md` row.
+  - Two choices follow it into `nitpick-posix`'s cycles: whether `test` refuses `-a`, `-o` and `()` or keeps them as an extension, and the ERE minimal-repetition question for `nregex`.
+  - Q-1 in `meta/OPEN_QUESTIONS.md` carries a dated note. This workbench does not decide it.
