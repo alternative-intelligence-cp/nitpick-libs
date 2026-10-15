@@ -313,6 +313,17 @@ nothing. *(`nitpick-time` 0.3.1, 2026-10-08; landed 2026-10-08.)*
 **A `while … decreases` loop adds `DecreasesViolated` to every importer's bill, where a `for` over a range does not.**
 *(`nitpick-time` 0.3.2's plan, 2026-10-08; landed 2026-10-08.)*
 
+**At `7e91730` a call whose value is `NIL` takes a keyword, and `drop` takes only a `never fails` callee.** `drop g(…)` on a
+fallible `g` is `NITPICK-TYPE-042` (*"`drop` is licensed only by a `never fails` callee (D-163)"*), and a bare `g(…);` is
+`NITPICK-TYPE-039` (*"a `Result` is discarded here with no keyword"*) whether `g` is fallible or `never fails`. So a
+specification's example written with `drop` fixes its callee's fallibility: write the example after the signature.
+*(`nitpick-time` 0.3.4's close, writing `0.4.0.md`, 2026-10-15; the four forms measured again at the pin the same day, `drop`
+on a `never fails` callee compiling as the control; landed 2026-10-15.)*
+
+**`string_length` is no builtin at `7e91730`** (`NITPICK-RESOLVE-002`, *"cannot find `string_length` in this scope"*). The
+compiler's `BUILTIN_REFERENCE.md` lists it in the planned `nlibc` string surface, whose names resolve only where a marked
+table also lists them. A string's length is `string_bytes(s).len`. *(The same close and measurement; landed 2026-10-15.)*
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may
@@ -1148,7 +1159,7 @@ row naming the new decision and then the old one in the passive reads as the new
 *"it supersedes <old>"*. **And a checked tag guards only itself:** `check_denominators` passed a harness whose prose said
 33 beside its tag of 34, because the tag is checked and the untagged number beside it is not. **`gh run view --log` and `--log-failed` can print
 nothing and exit 0 for a run whose log exists** — measured twice on 2026-09-25 — so read a run's log through
-`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log. **The general rule:** a tool that turns "nothing parsed" into an empty success is a silent wrong answer, and a cache can
+`gh api repos/<owner>/<repo>/actions/jobs/<job>/logs`, and never conclude from an empty print that there is no log. *(2026-10-15: a run-level `gh run view --log` printed 110 805 B for `nitpick-time` 0.3.4's plan verifier, so it can print the log as well as nothing. Either way it proves nothing about a job: read per job.)* **The general rule:** a tool that turns "nothing parsed" into an empty success is a silent wrong answer, and a cache can
 hide it for hours (re-found 2026-10-01 by the sandbox trial; landed 2026-10-05). **A lexical "literal divisor" rule must require the literal
 to stand ALONE:** one that allows an optional `(` and ends at `\b` admits `/ (400i64 + m)` and `/ 256i64 =>! uint8` —
 which is 0 — so nothing that binds tighter than `/` may follow it (the compiler's `OP_REFERENCE` §0). **And a helper's
@@ -1224,6 +1235,10 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   `'7e91730'`, so a plan that parses its workflow with PyYAML cannot see it; judge a scalar by YAML 1.2's core schema.
   Nothing asserted that row, so that run's verdicts stood; the fix quoted the five hex rows. *(`nitpick-time` 0.3.2a's work,
   `9929d17`, and its verifier, 2026-10-10; landed 2026-10-10.)*
+- **`python3 -B` reaches no child process.** A harness that starts its own runner again, as a self-check does, passes `-B`
+  itself, or a `python3 -B` run writes bytecode anyway: `nitpick-time`'s run left ten files under `harness/__pycache__/`
+  until its self-check started the runner under `-B`, and none after. `nitpick-regex` 0.2.3 met the same. *(`nitpick-time`
+  0.3.4's plan and close, `0fec132`, 2026-10-15; landed 2026-10-15.)*
 
 ## 7. Repository conventions
 
@@ -2092,3 +2107,16 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   five TYPE-007 sites for five locals; one of them is an ARGUMENT, re-spelled through its callee's parameter, and `src/` held
   four. A plan verifier's PASS and four SAME rehearsals passed it, because no block reads a decision's prose against the tree;
   the worker caught it by enumerating the set the sentence names before its patch applied. *(`nitpick-regex` 0.2.1a's worker.)*
+
+**Landed 2026-10-15 (`nitpick-time` 0.3.4's plan and close, `nitpick-regex` 0.2.5's work; all 2026-10-15):**
+
+- **A close's tools stage exactly the files they write**, so the plan's `RUNNING` title stays out of every commit but the
+  record's, where a block's `git add -A` would carry it into a work commit. At `nitpick-time` 0.3.4 the title was the one
+  unstaged change after each of five work commits. *(`nitpick-time` 0.3.4's plan and close.)*
+- **A close reads every plan's §7 against the later cycles' READMEs.** A hand-on recorded only in a plan's §7 goes into the
+  archive with the plan and has no live home. `nitpick-time` 0.3.4's planner found three, and the close carried them (H1 …
+  H3). *(`nitpick-time` 0.3.4's plan.)*
+- **Sweep for what a function SETS, not only for what it reads.** A step that makes a reader call a writer owes a sweep of
+  every sentence saying that the reader writes or sets nothing. Since `nitpick-regex` 0.2.5's RX-242, RX-239's *"`hir_read`
+  sets none"* (its `meta/DECISIONS.md:6434`) is false, and no sweep looked for it; 0.2.6 marks it. *(`nitpick-regex` 0.2.5's
+  work.)*

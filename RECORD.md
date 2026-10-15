@@ -13003,3 +13003,43 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Its scope:** the five steps of its definition, one full harness run, and CI per job on the six commits. Then four readings: the archive, `0.4.0.md`'s labels, the plan's two slips in the execution record, and the status pages. No block is run and no patch replayed.
   - **Budget:** the week at 18 % (the meter written by this seat at 13:06), the five-hour window at 11 %, room 27, within management's approved fit.
   - **What the close cost:** the meter moved from 16 % to 18 % between the worker's dispatch and its report, counting every Max seat. So the close cost at most about 3 points, given the meter's rounding, against the 3.5–4 estimated.
+
+### `nitpick-time` 0.3.4 VERIFIED PASS — cycle 0.3 closed, the claim advanced to cycle 0.4 and idle by the allocation; the playbook pass landed; this seat's `npk` plugin found loading from the Team's clone — 2026-10-15 13:19 (shell time)
+
+- **verify `s2-ntime-0.3.4-verify-work` — PASS** (`sonnet`, 9 min, 168 k tokens, 51 tool uses) at `1cc801f`.
+  - **Its five steps:**
+    1. the porcelain was empty, and empty again after the run;
+    2. `HEAD`'s subject begins `cycle 0.3.4:`;
+    3. `check_refs` was clean (103 md files, leak scan 493 of 493);
+    4. `check_record` was clean;
+    5. one harness run, 13:08:16–13:12:20, printed `GREEN -- 146 unit(s), 0 failures; 4 pending, 244.3 s`. That is identical to the report with the seconds masked, and `119 planted violation(s) caught, 119 clean control(s) silent`. No `harness/__pycache__/` exists afterwards.
+  - **Its five readings:**
+    - **CI:** all six jobs read per job. Each checked out its commit's full sha with the job's `head_sha` equal, `compiler HEAD == 7e91730… (clean)`, LLVM 20.1.8, 119 plants and `GREEN -- 146`, and none RED.
+    - **The archive:** `meta/roadmap/0.3/` is gone. `done/0.3/` holds the six records, their six `_tools` directories and the README: 88 paths, the same 88 the old directory held at `6bd75e4`.
+    - **`0.4.0.md`:** measured and not rehearsed (lines 52, 982), its six drafts PD-149 … PD-154.
+    - **The plan's two slips:** both are stated in the execution record's §6 (lines 1381–1391).
+    - **The status pages:** `README.md` and `ROADMAP.md` say CLOSED, with 0.4 next.
+  - **Two of this seat's checks were over-specified, and the verifier read each correctly:**
+    - (c) asked that every PD label lie in PD-149 … PD-154. Line 71's `PD-158` is the allotment's bound, *"PD-149 … PD-158's first six"*, not a draft's label;
+    - (e) asked for CLOSED in `done/0.3/README.md`. An archive README records the close as its DONE row and its ticked boxes, as `done/0.0/` and `done/0.2/` do; only `done/0.1/`'s has the word.
+
+    Neither is a defect.
+- **Cycle 0.3 is CLOSED** (the sixth close in the ecosystem). **The claim advances to cycle 0.4** by orchestrate §5.6, since time is independent and 0.4.0 is planned. Before 0.4.0's dispatch this seat accepts or strikes PD-149 … PD-154 and places its plan verifier.
+  - **s2 idles by the allocation:** no dispatch this week unless management releases points. The claim is at rest, which the re-pin allows (§2.4 forbids only a claim in flight).
+- **⚠ This seat's `npk` plugin loads from the Team's clone.**
+  - **The evidence:** the verifier's preloaded check skill had the base directory `~/Team/REPOS/nitpick-libs/skills/check`, and the worker's had `~/Team/REPOS/nitpick-libs/skills/worker`. Both ran that clone's `check_*.py`, and the worker ran this workbench's too. So this session's plugin directory is the Team's clone. How it was started is not visible from inside the sandbox.
+  - **Checked between 13:16 and 13:18:** that clone is on `main` at `49ac499` (this workbench's previous commit) and clean, read with `--no-optional-locks`. Its `skills/`, `agents/`, `hooks/` and `.claude-plugin/` are identical to the workbench's (`diff -rq`, 0 lines). **So every dispatch today ran this workbench's procedures to the byte, and the PASS stands.**
+  - **The hazard:** this seat's agents follow whatever that clone holds — a branch checked out there, a lag behind `main`, an edit the Team makes. The workbench is the plugin's one home (W-16).
+  - **Recommended to the author:** start the Workspace libs seats with `--plugin-dir ~/Workspace/REPOS/nitpick-libs` at the next restart. Until then, this seat runs one `diff -rq` of the two copies before each dispatch.
+- **The playbook pass, landed in `PLAYBOOK.md`:**
+  - **§2, two measured facts:**
+    - a call whose value is `NIL` takes a keyword, and `drop` takes only a `never fails` callee: TYPE-042 and TYPE-039;
+    - `string_length` is no builtin (RESOLVE-002), and a string's length is `string_bytes(s).len`.
+
+    This seat measured both again at the pin, between 13:12 and 13:18, with six probes. A `never fails` callee under `drop`, and `string_bytes(s).len`, compile as the controls. A bare call is TYPE-039 for a `never fails` callee too.
+  - **§6:** `python3 -B` reaches no child process. A dated note also goes on the `gh` log paragraph: a run-level `--log` printed 110 805 B today, so it proves nothing either way.
+  - **§12, a new batch for 2026-10-15:** a close's tools stage exactly what they write; a close reads every plan's §7 against the later READMEs; and sweep for what a function SETS (regex 0.2.5's RX-242 against RX-239's *"`hir_read` sets none"*, which 0.2.6 marks).
+  - **Struck from the owed list:** the planner's three findings (10:25), regex 0.2.5's (11:24) and the close worker's four.
+- **The board, fixed forward:** the stream-2 table showed `nitpick-parse` as `—`, though its plan chain was claimed at 07:48 in the in-flight table. It now reads `CLAIMED s2`.
+- **Budget:** the week at 18 % and the five-hour window at 11 % (13:18, the meter written by this seat). The close, worker and verifier together, cost at most about 3 points of the week. The reading goes to `management_0` with the close.
+- **Next:** W-22's ecosystem-wide audit on the credits, its job text brought up to date: the close commit `1cc801f`, the re-pin at 118, regex 0.2.5 merged, and 0.4.0's drafts not yet accepted. Then notice 113, due about 15:00.
