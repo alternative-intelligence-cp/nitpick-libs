@@ -12963,3 +12963,43 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **The adoption round** comes out of Sunday's release, after regex 0.2.6 in line. Management sizes both then and finds the quiet point with the Team when this seat says all claims must be at rest.
 - **The board's toolchain line** now says so, with the morning's "after 115" kept as *Before:*. The question leaves the table.
 - **For parse:** its two pending cases cite DEF-252 and DEF-253, and both are in this pin, so they flip at its adoption.
+
+### `nitpick-time` 0.3.4 DONE — cycle 0.3 CLOSED at `7e91730`; its work verifier dispatched — 2026-10-15 13:09 (shell time)
+
+- **report `s2-ntime-0.3.4-1153` — DONE** (`opus`, 11:56–13:05 by its own account, 535 k tokens, 157 tool uses; the research request about 133 k more, on the researcher's own context) at `1cc801f`.
+  - **Six commits, each pushed as it was made:**
+    - `0fec132`: a `python3 -B` run leaves no bytecode;
+    - `6bd75e4`: TA-8 … TA-11, and the 0.3.3 batch's acceptance path dated;
+    - `7004640`: cycle 0.3's records moved to `meta/roadmap/done/0.3/`;
+    - `8392720`: the mentions re-pointed, cycle 0.3 CLOSED on every status page, and cycle 0.4's README given what cycle 0.3 hands it;
+    - `0b4c63e`: cycle 0.4 opens, with `meta/roadmap/0.4/0.4.0.md` (the layout type);
+    - `1cc801f`: the record.
+  - **The harness:** `GREEN -- 146 unit(s), 0 failures; 4 pending, 239.0 s` over `0b4c63e`'s tree, block 6 SAME. Blocks 0a, 1, 2, 3 and 4 were GREEN -- 146 and SAME, and block 4b's plants RED by five checks, SAME.
+  - **CI, per job, on all six commits:** each build success at the pin, LLVM 20.1.8, 119 plants and GREEN -- 146. The record's own push was read after it (86 322 B).
+  - **The triage, each item with its commit:**
+    - FIXED: TA-8 … TA-11, K4 and R5 (`6bd75e4`); K1 (`0fec132`);
+    - LEFT, by the plan's §2 reasons: K2, K3, N2, R2 … R4;
+    - the compiler seat's: K5;
+    - MEASURED but the mutants: N1;
+    - CARRIED (`8392720`): N3, N4, H1 … H3;
+    - N5: MEASURED the checks, CARRIED cycle 0.4's rules, LEFT the records;
+    - Q28: RECORDED.
+  - **Block 4b:** 108 saved lines, 106 pairs, each in §3b's class, none an omission. **Block 5s:** 44 lines, none an omission.
+  - **`0.4.0.md`** is measured and not rehearsed (5b.7). Its drafts are PD-149 … PD-154, the first six of the range PD-149 … PD-158, so PD-155 … PD-158 stay time's.
+    - The drafts are this seat's to accept or strike before 0.4.0 is dispatched.
+    - Its plan verifier is this seat's to place.
+  - **`check_record`:** clean here at 13:06. The tree is clean, and `HEAD` = `origin/main` after a fetch.
+- **findings-for-playbook**, for the playbook pass after the PASS, beside the planner's three (10:25) and regex 0.2.5's (11:24):
+  - a `-B` reaches no child. A harness that starts its own runner again passes `-B` itself, or a `python3 -B` run writes bytecode anyway (this close, and regex 0.2.3). The plan's §7 measured it here at ten files before and none after;
+  - a close's tools that stage exactly what they write keep the plan's RUNNING title out of every commit but the record's. Here that was five work commits, the title the one unstaged change after each;
+  - at `7e91730`, `drop` is licensed only by a `never fails` callee (NITPICK-TYPE-042, D-163), and a bare call of a NIL function is NITPICK-TYPE-039. So a specification's example written with `drop` fixes its callees' fallibility;
+  - `string_length` is no builtin at `7e91730` (NITPICK-RESOLVE-002). It is a row of `BUILTIN_REFERENCE.md`'s planned nlibc surface. A string's length is `string_bytes(s).len`.
+- **for-the-author, a note and no question:** RFC 9557 (April 2024) updates RFC 3339. `Z` now means a time in UTC whose local offset is unknown, and it differs from `+00:00`.
+  - It reaches F-2's `to_rfc3339_offset` and F-13's public `Parsed`, whose `has_offset` cannot tell `Z` from `+00:00`. Neither is written yet.
+  - **The worker's recommendation:** 0.4.1's and 0.4.2's planners settle it by decision, with `meta/research/format-standards.md` in hand. Nothing waits on the author.
+  - It goes to `management_0` for the author's next batch.
+- **compiler-defect:** none. **open-questions-raised:** none.
+- **Dispatched 13:07: the work verifier `s2-ntime-0.3.4-verify-work`** (`npk:verifier`, `sonnet`).
+  - **Its scope:** the five steps of its definition, one full harness run, and CI per job on the six commits. Then four readings: the archive, `0.4.0.md`'s labels, the plan's two slips in the execution record, and the status pages. No block is run and no patch replayed.
+  - **Budget:** the week at 18 % (the meter written by this seat at 13:06), the five-hour window at 11 %, room 27, within management's approved fit.
+  - **What the close cost:** the meter moved from 16 % to 18 % between the worker's dispatch and its report, counting every Max seat. So the close cost at most about 3 points, given the meter's rounding, against the 3.5–4 estimated.
