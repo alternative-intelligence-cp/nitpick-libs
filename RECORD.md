@@ -13293,3 +13293,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - edit `CLAUDE.md:26`'s range to "W-1…W-31";
   - tell management and the Team, since the skill is a plugin file;
   - tell the fuzzer's manager that `nitpick-fuzz/CLAUDE.md:10` is stale under W-30.
+
+### F57, the advance notice for landing 115 (DEF-251's half (i)): a store through `NULL` faults at both legs; every emission moves in text by one attribute; nothing of ours to re-spell — 2026-10-15 17:59 (shell time)
+
+- **From `nitpick-compiler_38`** (built by `_37`): every emitted `define` gains LLVM's `null_pointer_is_valid`.
+  - No refusal moves.
+  - Every emission moves in text, by that attribute alone. `attrnorm.py`, new with 115, strips it for a comparison.
+  - An object moves only where LLVM had folded a `null` assumption: one of their eight samples.
+  - Their sweep: of the libraries' 4 033 programs, 0 differ beyond the attribute and 0 are newly refused.
+- **Ours, measured here by a Python sweep with both controls:** none of the 359 tracked programs binds a plain pointer to `NULL`. The three lines naming `NULL` are comments in time. The one terminator among them is read through a `wild` pointer.
+  - So D-355, the language half (the author's ruling of 2026-10-15: a plain `T->` is never null), finds nothing of ours when it lands later with its own notice.
+- **For the re-pin:** any byte-for-byte comparison of an emission across the pins reads through `attrnorm.py`: the canary's commissioning, each adoption's both-pins measurement, and any CI text assertion. The board's F57 entry lists them. This is this seat's 08:08 expectation, now with the reader named.
+- **From `management_0`, 17:58, for planning only:**
+  - The Team seat's week is paced so that it is not empty before the parse work after the re-pin. Its meter is capped at 48 % by Fri 03:00, 60 % Sat, 70 % Sun, 80 % Mon and 90 % Tue, with the rest to Wed 03:00.
+  - Its order: parse, then M12 to its end, then Diogenes' next step, then sockets 0.0's plan after parse's PASS. So its chains reach this seat for review at a steadier pace.
+  - The credits grant stands at about $109.89, and this seat's $20.42 stands.
+  - This seat's sandbox cannot write `~/.local/share/diogenes/` from Bash, so an inbox write would use the Write tool. Adding that zone is the author's step, through management.

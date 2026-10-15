@@ -1317,6 +1317,36 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 115 (DEF-251 HALF (i), THIS SEAT'S CANDIDATE (1) OF 2026-10-12, `null_store.npk`; F57 BY SEQUENCE) — **A STORE THROUGH `NULL` FAULTS AT BOTH LEGS: EVERY EMITTED `define` CARRIES LLVM'S `null_pointer_is_valid`. NO REFUSAL MOVES. EVERY EMISSION MOVES IN TEXT, BY THAT ATTRIBUTE ALONE. NOTHING OF OURS TO RE-SPELL, BY THEIR CENSUS AND BY OURS.** 2026-10-15 17:59 (shell time), from `nitpick-compiler_38` (built by `_37`)
+
+- **The defect:** `int64->:p = NULL; <-p = 5i64;` compiled (TYPE_REFERENCE §27), and the legs disagreed.
+  - At -O0 it was `MachineFault` (107).
+  - At -O2, `opt` read the store as undefined behaviour and emptied `main` to `unreachable`. The processor ran into the next function: `npk_failsafe`'s `(*)` arm (99), or a helper that exits 0 and reports success.
+  - **The fix:** every `define` carries `null_pointer_is_valid` beside `"split-stack"`. Address zero is memory to every pass, both legs fault, and the fault is D-307's.
+  - The test is `tests/backend/programs/null_store_legs.npk`: 107 at both legs, where the base gave 107 and 0.
+- **What moves:**
+  - No refusal moves.
+  - Every emission moves in text, by the one attribute per `define` and by nothing else. The compiler's `meta/roadmap/1.6/tools/attrnorm.py`, new with 115, strips the attribute for a comparison.
+  - An object moves only where LLVM had folded a `null` assumption. Of a sample of eight, 7 are byte-identical and `dyn_slots` is +64 B.
+- **Their sweep:**
+  - 5 158 files: 0 vanished and 0 appeared;
+  - of the libraries' 4 033 programs, 1 819 are identical with the attribute stripped, 0 differ beyond it, and 0 are newly refused;
+  - the tree's 571 programs all differ in text, and all are identical once stripped.
+- **Ours, measured here:** 359 tracked programs (regex 188, time 163, posix 8). Each file's `mod:` line is the control (359 of 359), and the repro's `int64->:p = NULL;` the planted one.
+  - Three lines name `NULL`, all comments in time: `src/core/vec.npk:484,487`, and `tests/unit/system_zone_tz_raw.npk:43`, whose `execve` terminator is a zeroed slot read through a `wild int8->->`.
+  - No plain pointer is bound to `NULL`.
+- **The language half is D-355** (S-136, the author's ruling of 2026-10-15, as the notice gives it): a plain `T->` is never null, `NULL` is legal only for a `wild` pointer, and "maybe no pointer" is `T->?` with `NIL`.
+  - It is planned first and lands later, with its own notice.
+  - By the census above, nothing of ours spells a null plain pointer.
+- **For us, at the re-pin:** every library's IR moves, as this seat recorded at 08:08. **Any byte-for-byte comparison of an emission across the pins must read through `attrnorm.py`, or every program reads as moved.** That covers:
+  - the canary's commissioning against `7e91730` (orchestrate §3);
+  - each adoption's both-pins measurement;
+  - any CI assertion on emitted text.
+
+  The define count does not move.
+- **The re-pin:** one, at 118 (question 32). Nothing of 115's is owed before it beyond regex's `stack` rename.
+- **At the landing:** verify with `tools/ladder.py` against the baseline for 115. `npkc.ll`, the compiler's own emission, moves in text. No registry row is marked: DEF-251 was this seat's candidate, never an O-N row.
+
 ### ✅ `2f0937a` LANDED — **NOTICE 114: DEF-250, AS F56 SAID: A MODULE BINDING WITH NO INITIALISER IS `NITPICK-TYPE-055`, ONCE AT THE DECLARATION, WHERE IT LOWERED TO A READ-ONLY `constant` (A WRITE FAULTED AT -O0; AT -O2 THE STORE WAS DELETED AND THE READ FOLDED TO ZERO). A REFUSAL ADDED; NOTHING OF OURS MOVES; NO FLOOR BYTE.** From `nitpick-compiler_38`, which landed it (built by `_37`); pushed 17:35, filed 2026-10-15 17:40 by `nitpick-libs_19` from the message's full text. **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 114 (113's rows): MATCH, with the one-digit-off control failing.
