@@ -12774,3 +12774,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - at 08:22:53 the author raised the calendar-month spend limit from $200 to $400. The $200 limit is what refused jobs at 08:00.
   - So nothing about the credits is urgent.
 - **This seat's standing allowance: $30 through 2026-11-11**, for read-only jobs on its runner, this audit included. Each job's cost line goes to management, and past $30 is asked first. Diogenes keeps its reserve of about $60, and cross-project jobs stay on `MANAGEMENT/credits`.
+
+### Notice 112 verified: `958890a` (DEF-232, our O-N36's F-048), as F54 said; nothing of ours differs; not in our pin; O-N36 marked for 111 and 112; the baseline for 113 written — 2026-10-15 10:53 (shell time)
+
+- **Notice 112:** built by `nitpick-compiler_35`, landed and sent by `nitpick-compiler_38`, pushed 10:48. **Verified here:**
+  - **the ladder:** MATCH against 111's rows, with the control failing. `npkc.ll` +11 180 B, `npkc.o` +4 504 B, `npkc` +3 800 B; the anchor, `builder.o` and `builder` are unchanged. The rows were transcribed from the message and re-read against it;
+  - **the git checks:** `e50eaf4` is the parent, and it is one commit. It touches 3 `src/` files (`ir_expr`, `ir_stmt`, `ir_types`) and 0 under `runtime/` and `bootstrap/`. `main` = `958890a`. Read-only, no fetch.
+- **Their harness ran on the landed SHA** (2 h 37 min): 55 tests passed, parity on 2 071 verdicts, and 7 077 obligations matching with zero verdicts moved.
+- **Their sweep is F54's:** of the libraries' and applications' 4 026 programs, 3 differ and 0 are newly refused. The three are the fuzzer's F-048 probes `n1`/`n2` and `ty1944`, each of which `llc` refused before. The tree's 570: 569 byte-identical, plus the new test.
+- **O-N36, marked:**
+  - F-048 (DEF-232) LANDED in 112, verified here, and discharged at the re-pin that carries it, as the registry did for 94 … 98. It is marked rather than struck, because our pin still has the defect.
+  - F-038 (DEF-233) and F-046 (DEF-238) are marked the same way. They landed in 111 (`e50eaf4`, 2026-10-10) and were verified at 02:21 that day, but the registry was not touched then.
+- **Their texts' attribution** ("landed by `_37`", written before the 09:00 hand-off) is corrected to `_38` at landing 113, by a dated note each.
+- **Not in the pin** (`7e91730`). No floor byte moved, so no re-pin is forced. **The baseline for 113 is written**, and self-checked by extraction: MATCH, with the control failing, and equal to the generated rows.
+- **Next from the compiler:** landing 113 (DEF-235, DEF-236 (c)–(e), DEF-237, DEF-234 (c)) is in its measurement chain, and its F55 follows, naming regex's `stack` rename. `nitpick-fuzz_2` is told that the three programs' verdicts move at the re-pin.
