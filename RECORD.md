@@ -13180,3 +13180,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **34, the plugin's own 0.2.7:** marked PAUSED (author), dated 2026-10-15, replacing RUNNING. The subcycle stays his.
     - This was management's recommendation, and it supersedes this seat's default of leaving the file as it was.
     - Done in this commit, on the title line only, with the old status kept in parentheses.
+
+### The relaunch done for the libs seats: this seat's `npk` loads from the workbench, and the pre-dispatch diff of the two copies is retired — 2026-10-15 14:35 (shell time)
+
+- **From `management_0`:** `/proc` shows `nitpick-libs_19`, `_20` and `_21` running with `--plugin-dir ~/Workspace/REPOS/nitpick-libs`.
+  - This seat's new address is `uds:/run/user/1000/cc-socks/3721915.sock`, which management has given to `Ailp-team_2`.
+  - `nitpick-compiler_38` and `management_0` are still on the Team path. The Team keeps its clone on `main` until those two restart.
+- **Confirmed here:**
+  - the session's own `$CLAUDE_CODE_MESSAGING_SOCKET` is the new address;
+  - a load of the check skill printed its base directory as `~/Workspace/REPOS/nitpick-libs/skills/check`, where it had been `~/Team/…` this morning.
+  - The working context came through the relaunch whole.
+- **Retired:** the board's note under the writer line, and the diff before each dispatch (13:23). Its record entry stays as written.
+- **The commit trailer:** from this relaunch the harness gives two lines, the co-author and a `Claude-Session:` link. So this seat's commits, and the `ATTRIBUTION:` line of its dispatches, carry both, verbatim.
