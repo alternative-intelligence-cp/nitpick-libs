@@ -27,7 +27,7 @@ blocked, what is done. The durable plan is
 > **THE ACCOUNTS, changed today:**
 > - **Max** (this seat): 97 % at 20:34Z. It resets Wednesday 2026-10-14 20:00. **Spend almost nothing:** verify, merge, record, and nothing else.
 > - **Confirm this seat's account first.** Either `/status` gives the login method "Claude Max account", or the status line shows rate limits and no "⚠ no Max limits". The shared `~/.claude.json` metadata can show the other account (`RECORD.md` 2026-10-12). Read `model_limits.account_check` before trusting a Fable %.
-> - **The Team seat** is a separate account, working in `/home/randy/Team`, guarded both ways. Its week resets Wednesday 03:00; about 7 % was used at 16:3x.
+> - **The Team seat** is a separate account, working in `~/Team`, guarded both ways. Its week resets Wednesday 03:00; about 7 % was used at 16:3x.
 >
 > **THE TEAM SEAT IS DOING OUR LIBRARY WORK until Wednesday.** Its brief is `.internal/team/brief-2026-10-12.md`; §7 there is the queue.
 > - **The manager is Ailp-team_0,** at `uds:/run/user/1000/cc-socks/400268.sock`. It is a `claude-team` session, so it is NOT in your `ListAgents`, but messaging by socket address works both ways. **Your first act after the take: send it one line introducing yourself as the libs reviewer.** Your message gives it your address.
@@ -38,7 +38,7 @@ blocked, what is done. The durable plan is
 >
 >   A chain stops before its cycle close, and at anything that needs the author, a re-pin, a verifier failing twice, or a compiler defect.
 > - **For each reported chain:**
->   1. read its reports in `/home/randy/Team/REPORTS/`;
+>   1. read its reports in `~/Team/REPORTS/`;
 >   2. spot-check the key claims against their branch, reading their clone directly, as `_18` did for T1 (`RECORD.md` 2026-10-12, "0.2.2 VERIFIED PASS");
 >   3. fetch the `team/` branch from GitHub and fast-forward our clone's `main` to the verified commit, then push;
 >   4. update the board's stream row, `LIBRARIES.md` and the record;
@@ -87,7 +87,7 @@ blocked, what is done. The durable plan is
 >   - the four planned repositories' manifests still say LLVM 20.1.2.
 >
 > **The state, as values.**
-> - **s1 `nitpick-regex`: 0.2.2 VERIFIED PASS at `7f5b28a`** (15:41, 2026-10-12). The independent work verifier was the Team seat's T1 (`npk:verifier`, Sonnet 5.5), with its report at `/home/randy/Team/REPORTS/T1-regex-0.2.2-verify-work.md`. Spot-checked here: the job log is 92 833 B; the record commit carries the three notes; the remote has `main` only; PD-109 ran capped. **NEXT: 0.2.3's plan, delegated to the Team seat as T3.** *Before:* **0.2.2 DONE at `7f5b28a`** (the repetition product, RX-232 … RX-234, 302/302 GREEN, CI green on both pushes, `check_record` clean).
+> - **s1 `nitpick-regex`: 0.2.2 VERIFIED PASS at `7f5b28a`** (15:41, 2026-10-12). The independent work verifier was the Team seat's T1 (`npk:verifier`, Sonnet 5.5), with its report at `~/Team/REPORTS/T1-regex-0.2.2-verify-work.md`. Spot-checked here: the job log is 92 833 B; the record commit carries the three notes; the remote has `main` only; PD-109 ran capped. **NEXT: 0.2.3's plan, delegated to the Team seat as T3.** *Before:* **0.2.2 DONE at `7f5b28a`** (the repetition product, RX-232 … RX-234, 302/302 GREEN, CI green on both pushes, `check_record` clean).
 >   - **NEXT: its work verifier (`sonnet`), your first dispatch after the reset.** Model it on `s2-ntime-0.3.2a-verify-work` in this seat's transcript `1d6e84ea-….jsonl` (`jq` over its `Agent` calls). Add these checks:
 >     - **step 3's patch was amended after block 5** with three dated notes, twins of RA-3 and RA-2 found by the worker's second sweep. Blocks 0a and 3, re-run from `5161973`, read 16 files and 68 insertions where their Expects say 14 and 52, the only predicted DIFF. Accept the amendment if the verifier holds it;
 >     - **the record commit's own CI run is its full run:** `38063726122`, job `114247024215`, 92 833 B;
@@ -124,10 +124,10 @@ blocked, what is done. The durable plan is
 > - See the memory `subscription-beats-api-for-randy`.
 >
 > **THE TEAM DOMAIN (2026-10-12 05:03).**
-> - The Team seat (the author's new Team account) works in `/home/randy/Team`, in its own clones (`Team/REPOS/…`).
+> - The Team seat (the author's new Team account) works in `~/Team`, in its own clones (`Team/REPOS/…`).
 > - **Workspace sessions may READ it and never WRITE to it.** Three layers enforce that:
 >   - `tools/guard_domains.py`, a byte-identical copy of the Team side's guard (sha256 `14df1b13…`), wired as a third user-level `PreToolUse` hook in `~/.claude/settings.json`. It passed 13 synthetic cases and a live probe (`touch` refused);
->   - deny rules for Edit, Write and NotebookEdit on `//home/randy/Team/**`;
+>   - deny rules for Edit, Write and NotebookEdit on `/~/Team/**`;
 >   - the sandbox's `denyWrite`.
 >   The last two are in this workbench's `.claude/settings.local.json`. The compiler's own project settings are its seat's to mirror.
 > - Files cross between the sides by git or GitHub, or through the author.
@@ -135,7 +135,7 @@ blocked, what is done. The durable plan is
 >   - **T1:** regex 0.2.2's work verification;
 >   - **T2:** time 0.3.3's plan, with its plan verifier;
 >   - **T3:** regex 0.2.3's plan, with its plan verifier.
->   The manager is Ailp-team_0, with \_1 and \_2 as successors. It works on `team/<repo>-<item>` branches, and its reports go to `/home/randy/Team/REPORTS/`. **The claims s1 and s2 stay this seat's:** it verifies each report and merges into its own clones. Nothing is dispatched from here for these items while the Team holds them.
+>   The manager is Ailp-team_0, with \_1 and \_2 as successors. It works on `team/<repo>-<item>` branches, and its reports go to `~/Team/REPORTS/`. **The claims s1 and s2 stay this seat's:** it verifies each report and merges into its own clones. Nothing is dispatched from here for these items while the Team holds them.
 > - **Native `SendMessage` reaches the Team session, and it replies (Diogenes' DX-4, 2026-10-12, both ways, no approval step in bypass mode).** Re-derive its address from `ListAgents` at the moment you use it; on 2026-10-12 it was "Team workspace setup and configuration" `[a4a10f]`, a Claude Desktop session. Use it for conversation and nudges. Tasks, claims and reports go by git on `team/<task>` branches, because messages leave no record.
 > - **⚠ THE SHARED LOGIN (found 2026-10-12): `~/.claude.json`'s `oauthAccount` now holds the TEAM account** (`claude_team`, `team_tier_1`), and `~/.claude/.credentials.json` changed at 04:59:51 EDT. A CLI session started with the default config may therefore authenticate as Team. **Before any dispatch, run `/status` and confirm the account is the Max one**, until the author gives the Team account its own `CLAUDE_CONFIG_DIR` and logs the default config back into Max. **`model_limits` is now account-checked** (2026-10-12): the shared status line publishes the per-model figures only when the cache's weekly reset equals the running session's. Otherwise `account_check` reads `MISMATCH`, and `limits` is null. Read `account_check` before trusting a Fable %. **A tripwire:** a Workspace session that has worked but hears no rate limits shows "⚠ no Max limits: Team login? check /status" in its status line. `/status` here confirmed the Max login ("Claude Max account") on 2026-10-12.
 > - **`~/.claude/` is shared by both accounts.** Change nothing there, and do not move or rename this workbench's `tools/guard_*.py`, without the author's OK: the Team sessions run them too.

@@ -12014,7 +12014,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Diogenes' first planning set filed and pushed: `diogenes` `77012d9`, from 16 credits runs ($38.65 by the CLI, about $25.8 billed) — 2026-10-10 13:36 (shell time)
 
 - **At the author's word** (*"lets add the path for you and then commit the skeleton"*):
-  - the sandbox's `allowWrite` gained `/home/randy/Workspace/REPOS/diogenes`, in `.claude/settings.local.json`, by the Edit tool;
+  - the sandbox's `allowWrite` gained `~/Workspace/REPOS/diogenes`, in `.claude/settings.local.json`, by the Edit tool;
   - his skeleton was committed as he left it, at `d1ee423`.
 - **The planning set, `77012d9`, pushed with the skeleton:** 44 files under `meta/`:
   - goals, constraints, rules, requirements DR-1 … DR-112, design, a roadmap (day zero, then cycles 0.0 … 0.8), open questions DQ-1 … DQ-29, experiments DX-1 … DX-26, ideas and an index;
@@ -12147,12 +12147,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the machine rebooted for the driver update;
   - this session resumed under its own id, with a new ref `[6afd26]`;
   - the sweep at 05:01 found 10 trees clean and `0/0`, and the token and marker unchanged.
-  - The author now holds the **Team account.** Its seat works in `/home/randy/Team`, in its own clones. It wrote `Team/CLAUDE.md` and a guard that refuses Team writes into Workspace.
+  - The author now holds the **Team account.** Its seat works in `~/Team`, in its own clones. It wrote `Team/CLAUDE.md` and a guard that refuses Team writes into Workspace.
 - **Its request, relayed by the author:** the same protection in the other direction. **Option (b) was taken, at the author's go** (*"whatever we need to do to make it work"*): each side owns its own copy.
   - `tools/guard_domains.py` is copied byte for byte (sha256 `14df1b13bc34115aba66…`) and reviewed. It judges writes by their target, follows `cd` and `git -C`, and lets reads through. Its stated limits are interpreter heredocs and `$VAR` paths. Further gaps noted here: `cp -t`, `tar -C`, `dd of=`. This seat's shell sandbox covers them anyway.
   - **13 synthetic cases pass,** both directions and outside both trees. Malformed input stays silent.
-  - **Wired** as a third user-level `PreToolUse` hook in `~/.claude/settings.json`. **Not** as user-level deny rules, which would block the Team side in its own tree. The deny rules for `//home/randy/Team/**` and a sandbox `denyWrite` go in this workbench's `.claude/settings.local.json`.
-  - **Live probe:** `touch /home/randy/Team/.workspace-guard-probe` was refused by the hook, which took effect without a restart. The file does not exist.
+  - **Wired** as a third user-level `PreToolUse` hook in `~/.claude/settings.json`. **Not** as user-level deny rules, which would block the Team side in its own tree. The deny rules for `/~/Team/**` and a sandbox `denyWrite` go in this workbench's `.claude/settings.local.json`.
+  - **Live probe:** `touch ~/Team/.workspace-guard-probe` was refused by the hook, which took effect without a restart. The file does not exist.
 - **Correction to an earlier caution:** `nikos`, which the Team side cloned, is Nitpick's fork of the IKOS analyser (upstream is stuck on LLVM 14), not Nikola. It is fine to work on.
 - **Proposed to the author for the Team side** (his to confirm; the reply text is his to relay):
   - the Team seat takes handed-over, well-defined tasks on Opus or smaller;
@@ -12165,8 +12165,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### Native SendMessage crosses the two accounts, both ways: Diogenes' DX-4 PASSED (`diogenes` `0ed0a4a`) — 2026-10-12 05:06 (shell time)
 
-- **At the author's request** (*"lets test and see if you can actually send it a message"*), this seat sent a test message to the Team-account session, "Team workspace setup and configuration" `[a4a10f]`, a Claude Desktop session in `/home/randy/Team`.
-- **It replied by `SendMessage`:** *"Your test message arrived: I'm the Team-account session working in /home/randy/Team, and it was delivered straight into my conversation with no approval step on my end."* The reply arrived from `uds:/run/user/1000/cc-socks/242635.sock`, `from-mode="bypass"`. This seat then sent its full reply the same way: the guard's state, the meters-file check, and the four recommendations.
+- **At the author's request** (*"lets test and see if you can actually send it a message"*), this seat sent a test message to the Team-account session, "Team workspace setup and configuration" `[a4a10f]`, a Claude Desktop session in `~/Team`.
+- **It replied by `SendMessage`:** *"Your test message arrived: I'm the Team-account session working in ~/Team, and it was delivered straight into my conversation with no approval step on my end."* The reply arrived from `uds:/run/user/1000/cc-socks/242635.sock`, `from-mode="bypass"`. This seat then sent its full reply the same way: the guard's state, the meters-file check, and the four recommendations.
 - **What it changes:**
   - Claude↔Claude conversation between the accounts no longer needs the author as a relay.
   - Tasks, claims and reports still go by git on `team/<task>` branches, and the board stays this seat's. Native messages leave no record and carry no task state.
@@ -12243,7 +12243,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **T1:** regex 0.2.2's work verification, with the three added checks from the board;
   - **T2:** time 0.3.3's plan, with its brief and a plan verifier;
   - **T3:** regex 0.2.3's plan, after T1;
-  - what to return: a branch per plan, report files in `/home/randy/Team/REPORTS/`, and one line to this seat at `uds:/run/user/1000/cc-socks/382974.sock`;
+  - what to return: a branch per plan, report files in `~/Team/REPORTS/`, and one line to this seat at `uds:/run/user/1000/cc-socks/382974.sock`;
   - this seat's verify-then-merge step.
   - The model briefs are extracted from `_17`'s transcript with `jq`; checked here at 9 959, 8 004 and 9 734 characters.
 - **The board notes the delegation.** The claims stay this seat's.
@@ -12255,7 +12255,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the pin `7e91730` copied, with `sha256sum` 2/2 OK;
   - `llc` 20.1.8;
   - the `npk` agents present, after the author restarted the Team sessions with `--plugin-dir`;
-  - **T1 and T2 started.** Its log is `/home/randy/Team/MANAGER-LOG.md`.
+  - **T1 and T2 started.** Its log is `~/Team/MANAGER-LOG.md`.
 - **A finding for Diogenes' DX-4:** a `claude-team` session, with its own config directory and its own session registry, invisible to `ListAgents` here, reached this seat by the socket address the brief gave. This seat's acknowledgement went back the same way. **So messaging crosses config directories by address, though listing does not.**
 
 ### The author's split: a management seat over all projects, and the libs seat narrowed to libraries, from Wednesday — 2026-10-12 15:39 (shell time)
@@ -12263,11 +12263,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The author:** with so much running at once, "nitpick-libs" no longer names the position that manages it all. So the seats branch two ways:
   - **`nitpick-libs_19` onward: library work only,** managing the libraries.
   - **`management_0` → `_1` → `_2`: the overall manager.**
-    - Its home is `/home/randy/Workspace/MANAGEMENT`, and it can work across all of Workspace without asking each time.
+    - Its home is `~/Workspace/MANAGEMENT`, and it can work across all of Workspace without asking each time.
     - It oversees the compiler, libraries, fuzzer and claude-skills teams, and later Diogenes' Gemini and GPT resources.
     - It decides priorities and where the resources go: each account's usage, the Team seat's usage, and the API credits.
     - It delegates to each project's manager, with permission to spend that allocation, so it need not micromanage. In his words: *"Just decide what parts get priority and where the resources go and make sure everyone is working together."*
-  - `/home/randy/Team` stays entirely separate.
+  - `~/Team` stays entirely separate.
 - **It starts properly on Wednesday,** given the context and usage left now. He opened `management_0`, `_1` and `_2` with `--plugin-dir` and renamed them, and did not prompt them.
 - **`management_0` was briefed by message** (14:5x), at his request: its role, the teams, where things stand, and the accounts and credits. It was told to **pause until Wednesday, with `nitpick-libs_18` in control until then**, and to reply with one line and go idle.
 - **`_19` is not yet told,** to save usage. It hears of the split at this seat's handoff.
@@ -12275,7 +12275,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### `nitpick-regex` 0.2.2 VERIFIED PASS: the Team seat's T1, spot-checked here; the held playbook finding filed as a second instance — 2026-10-12 15:41 (shell time)
 
-- **The verification: `T1-nregex-0.2.2-verify-work`** (`npk:verifier`, Sonnet 5.5, on the Team seat, dispatched by Ailp-team_0, 14:30–15:37 EDT, about 446 k tokens). **PASS on `7f5b28a`, no defect.** Its report is `/home/randy/Team/REPORTS/T1-regex-0.2.2-verify-work.md`. It found:
+- **The verification: `T1-nregex-0.2.2-verify-work`** (`npk:verifier`, Sonnet 5.5, on the Team seat, dispatched by Ailp-team_0, 14:30–15:37 EDT, about 446 k tokens). **PASS on `7f5b28a`, no defect.** Its report is `~/Team/REPORTS/T1-regex-0.2.2-verify-work.md`. It found:
   - the five standard checks clean;
   - **302/302 GREEN** in a fresh clone at `7f5b28a` (207.6 s);
   - **the amendment holds.** Re-run from `5161973`, blocks 0a and 3 give the predicted 16-file DIFF and nothing else, and the three dated notes are true when measured. The amendment is accepted, as the brief said;
@@ -12367,7 +12367,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### Two compiler-defect candidates from the Team at `7e91730`, reproduced here and passed to the compiler seat — 2026-10-12 19:21 (shell time)
 
-- **From Ailp-team_0:** found by time 0.3.3's fix planner (T2f) and minimised by its plan verifier (T2v2). The write-up is `/home/randy/Team/REPORTS/defects/2026-10-12-null-store-legs/README.md`. Neither blocks a chain.
+- **From Ailp-team_0:** found by time 0.3.3's fix planner (T2f) and minimised by its plan verifier (T2v2). The write-up is `~/Team/REPORTS/defects/2026-10-12-null-store-legs/README.md`. Neither blocks a chain.
 - **Reproduced here independently** on this workbench's pin (`.internal/toolchain/7e91730`, `sha256sum -c` OK, LLVM 20.1.8), in the scratchpad. The two roots as run are kept in `.internal/defects/2026-10-12-null-store-legs/`.
   1. **A store through `NULL` in safe code compiles** (`int64->:p = NULL; <-p = 5i64;` in `main`):
      - `npkc` exits 0, with no output;
@@ -12387,7 +12387,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### `nitpick-regex` 0.2.3 VERIFIED PASS and merged: the Team seat's first whole chain, spot-checked here — 2026-10-13 01:31 (shell time)
 
-- **The report** (Ailp-team_0, 01:27): `nitpick-regex 0.2.3 CHAIN PASS branch team/regex-0.2.3-plan commit db62c07…`. Its reports are `/home/randy/Team/REPORTS/T3-regex-0.2.3-{plan,verify-plan,plan-fix,plan-fix-2,verify-plan-2,work,verify-work}.md`.
+- **The report** (Ailp-team_0, 01:27): `nitpick-regex 0.2.3 CHAIN PASS branch team/regex-0.2.3-plan commit db62c07…`. Its reports are `~/Team/REPORTS/T3-regex-0.2.3-{plan,verify-plan,plan-fix,plan-fix-2,verify-plan-2,work,verify-work}.md`.
 - **The chain:**
   - the plan, `6b16f0f`;
   - its first verification FAILED on D1: the freshness stop did not read range counts. It was fixed in code, with a unit and a mutant per count (`e1387a9`, `128ebfd`), and the second verification PASSED;
@@ -12416,7 +12416,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### `nitpick-time` 0.3.3 VERIFIED PASS and merged: the Team seat's second chain, spot-checked here — 2026-10-13 04:20 (shell time)
 
-- **The report** (Ailp-team_0, 04:19): `nitpick-time 0.3.3 CHAIN PASS branch team/time-0.3.3-plan commit fa9fb37…`. Its reports are `/home/randy/Team/REPORTS/T2-time-0.3.3-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3,plan-fix-3,verify-plan-4,work,verify-work}.md`.
+- **The report** (Ailp-team_0, 04:19): `nitpick-time 0.3.3 CHAIN PASS branch team/time-0.3.3-plan commit fa9fb37…`. Its reports are `~/Team/REPORTS/T2-time-0.3.3-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3,plan-fix-3,verify-plan-4,work,verify-work}.md`.
 - **The chain:**
   - the plan, `20ca195`;
   - its verification ran four times. Run 1 FAILED on the title's missing PLANNED (`a2a685c`). Run 2 FAILED on §1.2's note and the double's reach (`43995da`, `1c6112e`). Run 3 PASSED, and run 4 PASSED, scoped to fix round 3's two citations (`f231132`). The two failures were on different points, so brief §7's stop did not apply;
@@ -12444,7 +12444,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### `nitpick-regex` 0.2.4 VERIFIED PASS and merged: the Team seat's third chain, spot-checked here — 2026-10-13 08:55 (shell time)
 
-- **The report** (Ailp-team_0, 08:53): `nitpick-regex 0.2.4 CHAIN PASS branch team/regex-0.2.3-plan commit bfc4693…`. Its reports are `/home/randy/Team/REPORTS/T4-regex-0.2.4-{plan,verify-plan,plan-fix,verify-plan-2,work,verify-work}.md`.
+- **The report** (Ailp-team_0, 08:53): `nitpick-regex 0.2.4 CHAIN PASS branch team/regex-0.2.3-plan commit bfc4693…`. Its reports are `~/Team/REPORTS/T4-regex-0.2.4-{plan,verify-plan,plan-fix,verify-plan-2,work,verify-work}.md`.
 - **The chain:**
   - the plan, `0aa3796`, PASSED its first verification. It was amended at that PASS, so that every facet of the facts' rule is broken alone by a mutant of its own (`89fbf8f`), and it PASSED again;
   - the work: `8013521` (the four facts kind by kind, each erring one way only, and their cache), `19b6414` (the Gate's seventh kind of noise counted and floored), `f091a04` (the prose) and `bfc4693` (the record);
@@ -12473,7 +12473,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### `nitpick-regex` 0.2.5 CHAIN STOP at plan verification: the verifier failed twice on F1; one more fix round allowed, on terms — 2026-10-13 16:14 (shell time)
 
-- **The report** (Ailp-team_0): `nitpick-regex 0.2.5 CHAIN STOP (§7: plan verifier failed twice on the same point, F1) branch team/regex-0.2.3-plan commit bc63947 (plan only, nothing executed)`. Its reports are `/home/randy/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2}.md`.
+- **The report** (Ailp-team_0): `nitpick-regex 0.2.5 CHAIN STOP (§7: plan verifier failed twice on the same point, F1) branch team/regex-0.2.3-plan commit bc63947 (plan only, nothing executed)`. Its reports are `~/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2}.md`.
 - **F1, by the Team's account:** RX-241 (as drafted), §1.13 and §4.1 claim that every facet of H-19 has a row of its own, and that every surviving mutant is equivalent.
   - Run 1 found three facets uncovered. They are now covered.
   - Run 2's wider sweep, of 1 842 mutants, left **14 survivors that are not equivalent**:
@@ -12498,7 +12498,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### `nitpick-regex` 0.2.5 stopped for the week at its third plan verification; the Team seat's queue is done — 2026-10-13 20:11 (shell time)
 
-- **The report** (Ailp-team_0): `nitpick-regex 0.2.5 CHAIN STOP (your ruling: plan verification 3 FAILED) branch team/regex-0.2.3-plan commit cf789d8 (plan only, nothing executed)`. Its reports are `/home/randy/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3}.md`. The branch's tip, fetched here, is `cf789d8`.
+- **The report** (Ailp-team_0): `nitpick-regex 0.2.5 CHAIN STOP (your ruling: plan verification 3 FAILED) branch team/regex-0.2.3-plan commit cf789d8 (plan only, nothing executed)`. Its reports are `~/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3}.md`. The branch's tip, fetched here, is `cf789d8`.
 - **Terms (1), (2) and (4) were met**, by the Team's account:
   - the 14 non-equivalent survivors are killed, the two unsafe-direction ones among them;
   - `HIR_LITERAL_INNER` is pinned;
@@ -12534,7 +12534,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The sweep found 9 trees, every one dirty=0 and 0/0.
 - **`management_0` asked for the handover:** the author is up, and asked it to start everyone. It reported the default login as Max 20x (the credentials file), with `~/.claude.json`'s metadata still saying Team, and the meter's MISMATCH as last week's stale cache.
 - **Handed over by message, as pointers to files:**
-  - **the Team seat:** `.internal/team/brief-2026-10-12.md` (§7), `/home/randy/Team/REPORTS/`, `MANAGER-LOG.md`, and the state at `RECORD.md` 2026-10-13 20:11.
+  - **the Team seat:** `.internal/team/brief-2026-10-12.md` (§7), `~/Team/REPORTS/`, `MANAGER-LOG.md`, and the state at `RECORD.md` 2026-10-13 20:11.
     - Recommended next for it: regex 0.2.5 resumed (the one sentence, a scoped re-verification, then the worker and the work verifier). Then, if management or the author opens them, the four cycle-0.0 plans from their drafted briefs.
     - Also recommended: library chains still report here for review and merge;
   - **the credits:** `.internal/credits/README.md`, `run.sh` and `LEDGER.md`. Nothing is queued. Candidate library jobs were offered (two pre-close audits, a re-pin inventory, two next-cycle briefs), to write and launch on management's word;
@@ -12563,3 +12563,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - This seat sent Ailp-team_1 the technical terms for 0.2.5's fix: narrow §4.1's bullet to what run 2's sweep did, and a scoped re-verification of the text, with no new sweep if the fix stays text-only.
   - The four cycle-0.0 plans need the author to open those streams. Management puts that to him with the week's plan.
 - **The compiler link:** the technical side stays here: landing notices, `tools/ladder.py` verification, defects and re-pins. Management holds priorities and allocation. It told `nitpick-compiler_37` to resume 112 → 113 on Fable's half, and to send landing notices here.
+
+### The four library credit jobs back: $9.81; the two audits filed; the libraries' answer on S-135; the home-path leaks fixed forward — 2026-10-15 07:15 (shell time)
+
+- **The jobs:** all four succeeded on Sonnet, 07:04–07:13. By the CLI's figures they cost **$9.81**; the billing page is the authority. Management was told in one line.
+  - `docs-vs-code-nitpick-time-0.3-2026-10-15`: 113 turns, $2.40;
+  - `docs-vs-code-nitpick-regex-0.2-2026-10-15`: 119 turns, $2.55;
+  - `plan-brief-time-0.4-2026-10-15`: 139 turns, $2.25;
+  - `plan-brief-regex-0.3-2026-10-15`: 149 turns, $2.60.
+- **The audits, filed** as `meta/audits/nitpick-time-docs-fa9fb37-2026-10-15.md` and `meta/audits/nitpick-regex-docs-bfc4693-2026-10-15.md`, each with its provenance header. Each was spot-checked here before filing, and the libraries' own question ids were written without the `O-` prefix for `check_refs`.
+  - **time, at `fa9fb37`:** no code defect, no wrong document, and TA-1 … TA-7 all fixed. Four new wording findings, **TA-8 … TA-11**, though the verdict says three. They feed 0.3.4's close.
+  - **regex, at `bfc4693`:** no code defect, no decision contradicted, and RA-1 … RA-8 all fixed. Five new findings, **RA-9 … RA-13**, though the verdict says four. They feed 0.2.6's close.
+  - **RA-9 is the substantive one:** whether a HIR is compared by a derive or by its dump text was left a cycle 0.2 decision that no RX number takes, while the cycle README says "No open questions". The close should record it.
+- **The briefs stay in `.internal/credits/out/`,** as planner inputs: time cycle 0.4's for 0.3.4's close, which writes `0.4.0.md`, and regex cycle 0.3's for after 0.2.6.
+- **S-135, the libraries' answer to management** (for the author's decision on generic value parameters):
+  - no planned library needs them. The fixed-capacity structures the plans name (tui's `SmallMap`, event queue and decoder ring; sockets' ancillary buffer) each have one capacity, which a `fixed` constant covers;
+  - "now-or-never" holds only because D-336's frozen corpus records refusals as well as programs. The author's own words on the freeze allow additions that break no program. So a RESERVED refusal class was suggested: a verdict that may move from refused to accepted but never back, keyed to one dedicated diagnostic code;
+  - for S-136, plain `NULL` in `.npk` is 0 in all six libraries and in `nitpick-apps`, and 15 lines in `nitpick-fuzz`'s corpus.
+- **`check_refs` and the leaks:** the new audits add no finding. The 24 home-directory paths in `BOARD.md` and `RECORD.md`, from 2026-10-10 on (`_18`'s and this seat's), are fixed forward to `~/` (the memory `home-path-leak-not-sensitive`; history is not rewritten). Two remain in `tools/guard_domains.py`, whose paths are functional and which must stay byte-identical with the Team seat's copy, so they are left. The checker could exempt that file; this is not taken up here.
