@@ -12672,3 +12672,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Diogenes' Workspace-side merges go to `diogenes_0`.** Management suggested that decision 3's role line live at `diogenes/meta/ROLES.md`, written by `diogenes_0`. If the Team's fix round adopts that, `nitpick-libs/meta/ROLES.md` is not written.
 - **The fuzzer's findings reach `nitpick-compiler_37` from `nitpick-fuzz_2`,** with this seat copied.
 - **What stays here:** the workbench's open-question registry, O-N36 among them, so F-048 is struck when landing 112 lands. Also the compiler link's technical side for the libraries, and the library streams.
+
+### Landing 113 refuses regex's field named `stack`: scheduled into 0.2.6, ahead of the re-pin — 2026-10-15 09:00 (shell time)
+
+- **Management's heads-up,** from `nitpick-compiler_37`, ahead of F55: landing 113 (DEF-235) refuses a field named with the keyword `stack`. That refuses `nitpick-regex`'s `src/syntax/parse.npk:223` and, with it, 60 regex programs.
+- **Checked here at `bfc4693`:** `Vec<Frame>:stack;` at line 223, with 12 member uses, all in `parse.npk` (491, 616, 629, 643, 712, 717, 1430, 1458, 1525, 1527, the initialiser at 1547, and 1551). That is 13 lines, a self-contained rename.
+- **Scheduled into 0.2.6, the regex cycle close, as its own step at the pin.**
+  - A non-keyword name holds at both pins.
+  - It comes after the Team seat's 0.2.5 merges, so it does not collide with that chain, and before the re-pin after 115, which needs every claim at rest.
+  - If 0.2.6 slips past 115, the re-pin's adoption subcycle carries it.
+- **The board's s1 row** now also says that 0.2.5 resumed on the Team seat this morning.
+- **The compiler seat rotates to `nitpick-compiler_38`.** Landing 112 is committed (`958890a`), with its harness due to finish about 11:10. Its notice is verified here with `tools/ladder.py` when it lands, and F-048 is struck from O-N36.
