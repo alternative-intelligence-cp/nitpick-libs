@@ -13167,3 +13167,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - its plan verifier, T6v (`sonnet`), is running on the Team seat, and the chain's line follows its PASS.
   - The report so far is `~/Team/REPORTS/T6b-parse-0.0-plan-cont.md`. It is not read here yet: it is reviewed when the chain reports.
 - **The PD blocks:** time's 0.4.0 holds PD-149 … PD-158 (PD-149 … PD-154 drafted), so the Team seat's next library, sockets, still starts at PD-159.
+
+### Questions 33 and 34 answered: the rules W-29 on, drafted for the quiet point; 0.2.7 PAUSED — 2026-10-15 14:22 (shell time)
+
+- **The author, 2026-10-15 14:21:45, relayed by `management_0`:** *"your recommendations are fine"*. That answers the two batch items of 13:40, entered on the board's questions table as 33 and 34 and struck.
+  - **33, the rules:** this seat drafts W-29 on as descriptions of the approved practice:
+    - the branch-and-review domain;
+    - a tool repository with its own manager;
+    - the mid-cycle adoption subcycle.
+
+    They land at the quiet point before the re-pin, with E2-14's graph edge and E2-10's "26 cycles". **Owed.**
+  - **34, the plugin's own 0.2.7:** marked PAUSED (author), dated 2026-10-15, replacing RUNNING. The subcycle stays his.
+    - This was management's recommendation, and it supersedes this seat's default of leaving the file as it was.
+    - Done in this commit, on the title line only, with the old status kept in parentheses.
