@@ -12608,3 +12608,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Neither tree has moved since 2026-10-09.
   - For sockets, no landing 104 … 111 refuses a shape its cycle 0.0 relies on, though several add shapes the plan must avoid until the re-pin.
 - **One reading to discount:** the parse brief reports `nitpick-parse`'s remote-tracking ref as `2b00815e`, against local `main` at `3cad08c`. Checked here: local `main`, `origin/main` and GitHub are all `3cad08c`, and `0/0`. `2b00815` is the repository's initial commit, so the job, which had no git, read a stale ref file.
+
+### The author approves the morning's batch: PX-102 filed, the re-pin after 115, the library streams opened on the Team seat, M12 after 113 — 2026-10-15 07:48 (shell time)
+
+- **The author, about 07:50, relayed by `management_0`:** *"from the best i can tell all the recommendations look fine to me. Lets go with those."*
+- **This seat's allocation:** about 14 Max points this week, at width 1. It covers the closes 0.3.4 and 0.2.6, the Team seat's chain reviews, and M12's review and merge. The room guard is unchanged.
+- **Question 30 → PX-102, filed in `nitpick-posix` (`1e9a8b3`, pushed):** the edition is POSIX.1-2024, Issue 8, and it supersedes PX-002's edition while keeping its intersection rule.
+  - It was claimed on the board at 07:45 (`27caf2e`), and released when filed.
+  - That repository's `check_refs` asked for two things: a citation, given by a dated note in `meta/roadmap/0.0/0.0.1.md`, and "superseded" markers in the headings of PX-002 and of PX-010. PX-010's was an older finding, fixed in the same commit. Its `check_refs` is now clean.
+  - Its "What it moves" list is 0.0.1's.
+- **The re-pin waits for landing 115,** so that one re-pin carries 104 … 115. The board's toolchain line says so. It needs every claim at rest (§2.4), and management was told this seat will ask it for a quiet point between the Team seat's chains.
+- **The library streams opened on the Team seat,** in the order parse → sockets → tui → posix:
+  - each one's cycle 0.0 is a PLAN chain (planner, plan verifier, fixes), bringing every subcycle file to execution grade at the pin `7e91730`, and executing nothing;
+  - the task specs are the Team brief's new §8 (`.internal/team/brief-2026-10-12.md`, gitignored);
+  - **parse is claimed** for the Team seat, on `team/parse-0.0-plan` from `3cad08c`, with PD-129 … PD-148. The others are claimed as each starts;
+  - Ailp-team_1's five questions (the scope, the pin, the branch, the PD block, the stops) are answered in §8 and by message.
+  - The streams run beside `nitpick-time` and `nitpick-regex` by the author's opening, outside WORKSTREAMS' one-repository-per-stream; parse is s2's, sockets and posix s3's, tui s1's.
+- **M12** is approved on the Team seat after landing 113, with the author's go for LLVM 20.1.8. It reports here like a library chain (branch `local-m12` pushed to GitHub), and `nitpick-fuzz` is claimed for the merge when it is ready.
