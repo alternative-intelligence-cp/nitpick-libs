@@ -13251,3 +13251,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - PD-137 is a draft, so this is a text change, not a supersede.
   - Sent to `Ailp-team_3`, to fold into T6f or the re-verification's delta. This seat's credits runner is offered for the research if the Team's budget needs it.
   - The author is told in this seat's reply, and may overrule it.
+
+### Notice 114 verified: `2f0937a` (DEF-250), as F56 said; nothing of ours; not in our pin; the baseline for 115 written. Finding 16's ruling folded into the Team's fix round — 2026-10-15 17:40 (shell time)
+
+- **Notice 114**, from `nitpick-compiler_38`, which landed it (built by `_37`); pushed 17:35. **Verified here:**
+  - the ladder: MATCH against 113's rows, with the control failing. `npkc.ll`'s digest moved at +0 B, and `npkc.o` and `npkc` by −48 B. The anchor, `npkrt.o`, is unchanged, and so are `builder.o` and `builder`;
+  - the git checks: `0c0f5a3` is the parent, one commit, 1 `src/` file (`src/frontend/type_stmt.npk`), 0 under `runtime/` and `bootstrap/`. Read-only, no fetch.
+- **Their sweep is F56's for us:** of the libraries' and applications' 4 033 programs, 0 are different and 0 newly refused. Our 359 tracked programs are unchanged since F56. No registry row is marked: DEF-250 was this seat's candidate, never an O-N row.
+  - The 4 033 reconcile with 113's 4 026. Its 68 newly refused are now among the refused by both, and the 7 files new since its sweep are all refused by both.
+- **Not in the pin** (`7e91730`). No floor byte moved, so no re-pin is forced. The one re-pin is at 118. The compiler seat's closing line says so too, and names the `stack` rename as our one step owed before it.
+- **The baseline for 115 is written**, generated from the transcription the ladder checked. It was self-checked by extraction (MATCH, with the control failing), and its rows equal the transcription's.
+- **Next from them:** 115, DEF-251's half (i): LLVM's `"null-pointer-is-valid"` attribute on every emitted `define`, so every library's IR moves at the re-pin. Its record runs against `2f0937a` now, and F57 follows once its texts are read.
+- **Finding 16, from `Ailp-team_3` at 15:14:37,** after this seat's 15:14 entry was committed. The ruling is folded into T6f by amendment, checked against `skills/plan/SKILL.md:82–88`:
+  - PD-137's gate moves to cycle 0.0's first work dispatch, and `CURRENCY.md` shows the three rows unchecked until then;
+  - no research runs this round;
+  - who runs it (their planner, `npk:researcher` or this seat's credits runner) is decided before that dispatch, with the offer noted.
+
+  The board's parse row says so.
+- **The meter** at 17:39, written by this seat: week 20 %, five-hour window 2 %. Fable is at 19 %, fetched 15:09 with the account check matching. Room = 95 − 20 − 0.5 × 81 = 34.5.
