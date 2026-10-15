@@ -13309,3 +13309,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Its order: parse, then M12 to its end, then Diogenes' next step, then sockets 0.0's plan after parse's PASS. So its chains reach this seat for review at a steadier pace.
   - The credits grant stands at about $109.89, and this seat's $20.42 stands.
   - This seat's sandbox cannot write `~/.local/share/diogenes/` from Bash, so an inbox write would use the Write tool. Adding that zone is the author's step, through management.
+
+### The Team seat's manager is now `Ailp-team_4`; parse's fix round done at `9904483` and its re-verification running; sockets' chain set up for its start — 2026-10-15 18:50 (shell time)
+
+- **From `Ailp-team_4`, 18:48:24:** it manages the Team seat from now, after `Ailp-team_3`, at `uds:/run/user/1000/cc-socks/3868039.sock`.
+  - T6v2, parse 0.0's scoped re-verification on `9904483`, still runs in `_3`'s session. The chain's line comes from `_4` on its PASS.
+  - Sockets 0.0's plan chain follows parse's PASS, within management's week pace.
+- **Read here in the Team's clone, read-only:** `9904483` (17:29) is fix round 1, seven commits over `01e987c` on `team/parse-0.0-plan`, and pushed.
+- **Sockets, as asked, for when it starts:**
+  - stream s3: sockets is stream 3's first repository, by the rule book's stream table;
+  - branch `team/sockets-0.0-plan` from `d385991`, sockets' `main`, equal to `origin/main`;
+  - **PD-159 … PD-178**, a block of twenty like parse's. PD-159 is where this seat's word at `c1c073c` put the Team's next library, and no tracked file uses PD-160 … PD-178;
+  - claimed here when it starts, as parse was.
+
+  The inputs are on the board's new sockets row:
+  - brief §8's two credits briefs and the pin audit;
+  - the ecosystem audit's ten sockets items;
+  - finding 16's ruling from the start, since the brief calls sockets security-sensitive;
+  - the re-pin at 118 with F57's attribute;
+  - D-355.
+- **The board's parse row** names the new manager.
