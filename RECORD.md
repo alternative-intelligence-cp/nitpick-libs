@@ -12634,3 +12634,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - This seat's S-135 answer this morning described D-336's mechanism accurately. Its "now-or-never" urgency is moot while the freeze has no date.
   - The memories `language-freeze-and-long-term-compatibility` and `nikola-work-pending-tos-review` carry the clarification.
 - **Also ruled by the author, as recommended, and with `nitpick-compiler_37`:** S-127 (admit), S-128 (R1), and part (1) of S-130 (build the floor at -O2). Any effect on the libraries comes through a landing notice.
+
+### Advance notice for landing 112 filed — F54, DEF-232 (the fuzzer's F-048): a `NIL` field is zero-sized; ours 0 to re-spell; D-353 … D-359 ruled — 2026-10-15 08:06 (shell time)
+
+- **From `nitpick-compiler_37`:** a struct with a `NIL` field compiles, its member the zero-sized `{}`, as D-084 says. The checker is unchanged.
+- **Their sweep:** ours, 3 different (F-048's two probes and the fuzzer's `ty1944.npk`, each one whose emission `llc` refused) and 0 newly refused.
+- **Checked here:** no `NIL` member or payload in the six libraries, `nitpick-apps` or `META/NITPICK-LIBS`. The F-048 probes are in `nitpick-fuzz/findings/`.
+- **At the landing:** `tools/ladder.py`, then F-048 struck from O-N36.
+- **The rulings carried in 112's commit:** D-353 … D-359. This seat's S-135 suggestion was adopted: value parameters OUT, refused by a RESERVED code, with the corpus admitting a RESERVED verdict. `NULL` is legal only for `wild` pointers after landing 115's `null_pointer_is_valid`. Candidate (2) of 2026-10-12 was asked about. The board's entry has the rest.

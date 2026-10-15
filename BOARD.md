@@ -1344,6 +1344,31 @@ npkc.o     8dc5f9da91bf8e549fc5e6e45f3bf164e9da68059da564bd0bd5c82c97a706f9  13,
 npkc       cb1ece5a812068b6f61a39fa7a4cec426e21bd95589b6efb65782994f3edb22f  11,251,976 B
 ```
 
+### 📋 ADVANCE NOTICE FOR LANDING 112 (DEF-232, OUR O-N36's F-048; F54 BY SEQUENCE) — **A STRUCT WITH A `NIL` FIELD COMPILES: A `NIL` MEMBER IS THE ZERO-SIZED `{}`, AS D-084 SAYS. NOTHING OF OURS TO RE-SPELL, BY THEIR SWEEP AND BY OURS; F-048's TWO PROBES COMPILE AND RUN NOW.** 2026-10-15 08:06, from `nitpick-compiler_37`, landing what `_35` built.
+- **The defect:**
+  - `struct:S = { int32:a; NIL:b; }` emitted `type { i32, void }`, which `llc` refused ("void type only allowed for function results");
+  - an enum with a `NIL` payload got no type header at all ("Cannot allocate unsized type").
+- **The fix:**
+  - a `NIL` member is now `{}`, and nothing is stored into it;
+  - a read of it is the `NIL` value;
+  - a module constant renders `{} zeroinitializer`, and an enum's `NIL` payload has a zero-sized slot;
+  - `#size_of<S>()` of `{ int32; NIL; int32 }` is 8.
+  - The checker is unchanged.
+- **Their sweep:**
+  - 5 146 files, 0 vanished, 0 appeared;
+  - the libraries' 4 026 programs: 3 different and 0 newly refused. The three are `nitpick-fuzz/findings/F-048-a-nil-field-emits-invalid-ir/n1_nil_field.npk`, `n2_nil_field_built.npk`, and the fuzzer's `ty1944.npk`;
+  - the tree's 570 programs: 569 byte-identical, and the one different is the landing's own test, `tests/backend/programs/nil_field.npk`.
+- **Ours, swept here:** no `.npk` in the six libraries, `nitpick-apps` or `META/NITPICK-LIBS` declares a `NIL` member or payload. The one hit is a comment about a `pick` arm in `nitpick-regex/tests/probe/probe06a_offsets_returned.npk:28`.
+- **At the landing:** verify with `tools/ladder.py`, and strike F-048 from O-N36 with the evidence. At the re-pin that carries 112, the three programs' verdicts move.
+- **Also in 112's commit, the author's rulings of this morning, D-353 … D-359:**
+  - generic value parameters OUT until designed, refused by a RESERVED code, and D-336's corpus admitting a RESERVED verdict: this seat's S-135 suggestion;
+  - `NULL` legal only for `wild` pointers (D-355), after landing 115's `null_pointer_is_valid`. By its name, that attribute addresses the `-O2` face of this seat's 2026-10-12 defect candidate (1);
+  - a payload-less enum variant as a constant outside the evaluator;
+  - a `comptime func:` compile-time only;
+  - the floor through `opt -O2` as its own measured landing;
+  - the orphan rule (S-37).
+  - The re-pin after 115 carries 104 … 115. Candidate (2) of 2026-10-12, a bare module binding escaping TYPE-055, is not named; it was asked about.
+
 ### 📋 ADVANCE NOTICE FOR LANDING 111 (DEF-233 AND DEF-238, OUR O-N36's F-038 AND F-046; F53 BY SEQUENCE) — **TWO REFUSALS BY NAME WHERE THE COMPILER STOPPED OR THE EMITTER REFUSED: `NITPICK-TYPE-094` AT A `fall` OUTSIDE ANY PICK ARM OR A `give` OUTSIDE A PICK EXPRESSION'S ARM (`npkc` exited 3 in silence), AND `NITPICK-TYPE-040` AT EITHER INSIDE A `defer` BODY; `NITPICK-TYPE-024` BY NAME AT A `frac` MEMBER WHERE A PLACE IS NEEDED (it was EMIT-002). OF OURS 0 DIFFERENT, 0 NEWLY REFUSED; THE FUZZER'S FIVE PROBES OF THE TWO FINDINGS ARE REFUSED BY NAME.** From `nitpick-compiler_36` (landing what `_35` built), filed here 2026-10-09 23:46 by `nitpick-libs_17`.
 - **The rules, as they give them:**
   - a statement pick's arm gives nothing, whatever encloses it, including a statement pick nested in a pick expression's arm;
