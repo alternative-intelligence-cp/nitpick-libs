@@ -13043,3 +13043,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The board, fixed forward:** the stream-2 table showed `nitpick-parse` as `—`, though its plan chain was claimed at 07:48 in the in-flight table. It now reads `CLAIMED s2`.
 - **Budget:** the week at 18 % and the five-hour window at 11 % (13:18, the meter written by this seat). The close, worker and verifier together, cost at most about 3 points of the week. The reading goes to `management_0` with the close.
 - **Next:** W-22's ecosystem-wide audit on the credits, its job text brought up to date: the close commit `1cc801f`, the re-pin at 118, regex 0.2.5 merged, and 0.4.0's drafts not yet accepted. Then notice 113, due about 15:00.
+
+### The plugin's source is wider than this seat: every Max session checked loads `npk` from the Team's clone; the diff before each dispatch is standing — 2026-10-15 13:23 (shell time)
+
+- **From `management_0`:** `/proc` shows every Max session it checked launched with `--plugin-dir ~/Team/REPOS/nitpick-libs`. That is `nitpick-libs_19`, `_20` and `_21`, `nitpick-compiler_38` and `management_0` itself.
+  - The plugin's SessionStart hook (`compact|resume`) runs that clone's `tools/reinject_orchestrator.py` inside each of them.
+  - Its diff of `.claude-plugin/`, `skills/`, `agents/`, `hooks/` and that script found all of them identical to the workbench.
+- **What management has in hand:**
+  - it is recommending to the author a relaunch with `--plugin-dir ~/Workspace/REPOS/nitpick-libs`, idle successors first, since they are cheap to restart;
+  - it has asked the Team to keep its clone on `main` and clean until then.
+- **This seat's part, standing until management says the relaunch is done:** the diff before each dispatch. It is re-run here at 13:22:46: 0 lines over the five, and the clone on `main` at `49ac499` and clean. The check:
+
+  ```bash
+  T=~/Team/REPOS/nitpick-libs; W=~/Workspace/REPOS/nitpick-libs
+  for d in .claude-plugin skills agents hooks; do diff -rq --exclude=__pycache__ "$T/$d" "$W/$d"; done
+  cmp "$T/tools/reinject_orchestrator.py" "$W/tools/reinject_orchestrator.py"
+  ```
+- **What the clone does not supply:** a dispatched worker reads `$WB/PLAYBOOK.md` with `WB` = `realpath "$REPO/.."` (worker skill §1). Since the dispatch names the Workspace `REPO`, this morning's playbook pass reaches every agent at once. Only the plugin's own files come from the clone: the skills with their scripts, the agents, the hooks, the reinject script and the manifest.
+- **The board** carries the standing check under its writer line, so that a successor meets it first.
