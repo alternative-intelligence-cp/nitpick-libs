@@ -1,4 +1,4 @@
-<!-- Filed 2026-10-15 by nitpick-libs_19. Made by the API-credits runner (.internal/credits/run.sh, job ecosystem-2026-10-15): headless claude -p on claude-sonnet-5-5, read-only tools, 236 turns, $7.7755 of the plan's monthly API credits, 13:19:57-13:34:21. W-22's audit after the sixth close (nitpick-time's cycle 0.3, at 1cc801f). Its BOARD.md line numbers are those of 13:19; at 13:23 two lines were added after line 14, so a line it cites past 14 is now two further down (its number plus two). The triage is RECORD.md's entry of this date. -->
+<!-- Filed 2026-10-15 by nitpick-libs_19. Made by the API-credits runner (.internal/credits/run.sh, job ecosystem-2026-10-15): headless claude -p on claude-sonnet-5-5, read-only tools, 236 turns, $7.7755 of the plan's monthly API credits, 13:19:57-13:34:21. W-22's audit after the sixth close (nitpick-time's cycle 0.3, at 1cc801f). Its BOARD.md line numbers are those of 13:19; at 13:23 two lines were added after line 14, so a line it cites past 14 is now two further down (its number plus two). The triage is RECORD.md's entry of this date. Two passages that cite repository-local question ids were changed in form only at filing, so that this workbench's check_refs does not read them as its own registry's ids: ED2's local rows are fenced, and E3-16's id of time's own fourth X question is written "time's own question X-4". -->
 
 # Ecosystem audit, 2026-10-15 (W-22, after the sixth close)
 
@@ -99,7 +99,7 @@ Read at the compiler's working tree, which is newer than the pin. The tree carri
 
 **E3-16 · dormant · owner `nitpick-time` · O-X8 has no cycle.**
 - `nitpick-time/meta/OPEN_QUESTIONS.md:836-838`: "What settles it: … `src/fmt`'s parser at cycle 0.4".
-- `meta/roadmap/0.4/README.md:13-18` names only O-X4, and the 0.4.2 checklist (`:81-89`) has no O-X8 item.
+- `meta/roadmap/0.4/README.md:13-18` names only time's own question X-4, and the 0.4.2 checklist (`:81-89`) has no O-X8 item.
 - It is read at `0.4.0.md:89`, and nothing owns its decision.
 
 **E3-17 · stale (live status line) · owner `nitpick-libs`.**
@@ -163,7 +163,12 @@ Read at the compiler's working tree, which is newer than the pin. The tree carri
 - **EC10 STILL OPEN.** Three Q-6s: registry `:49`, `RECORD.md:4552`, `BOARD.md:10965`; plus `PLAYBOOK.md:446` ("The board's Q-6").
 - **EC12 STILL OPEN.** `StackExhausted|MachineFault` has 0 hits in `nitpick-posix`. `BOARD.md` schedules two arms for 02a/02d/02e at the pin that carries 109.
 - **EU1 MOVED.** To PX-102 (`nitpick-posix/meta/DECISIONS.md:269-286`) and the editions digest. The 2017 mentions and the `CURRENCY.md` row are carried to its 0.0.1. Registry Q-1 is unstruck (E3-9).
-- **ED2 STILL OPEN.** The registry has no hit for any of these subjects. Still live at the compiler: `IO_REFERENCE.md:149` (`io_isatty`), `:281-283` (sockets), `types.npk:1733` ("cross a spawn"), `rootlist_add` uncalled in `src/`. Local rows: tui O-N3, O-N4; sockets O-N1, O-N3, O-N4 (`OPEN_QUESTIONS.md:39,58,68`); parse O-N2 … O-N4 (`:61,75,85`); time O-N2, O-N3 (`:245,254`); posix O-N7 (`:72`), which collides with the registry's "O-N7 — never existed" (`:1229`).
+- **ED2 STILL OPEN.** The registry has no hit for any of these subjects. Still live at the compiler: `IO_REFERENCE.md:149` (`io_isatty`), `:281-283` (sockets), `types.npk:1733` ("cross a spawn"), `rootlist_add` uncalled in `src/`. Local rows, each in its repository's own registry:
+
+```
+tui O-N3, O-N4; sockets O-N1, O-N3, O-N4 (`OPEN_QUESTIONS.md:39,58,68`); parse O-N2 … O-N4 (`:61,75,85`); time O-N2, O-N3 (`:245,254`); posix O-N7 (`:72`), which collides with the registry's "O-N7 — never existed" (`:1229`).
+```
+
 - **ES1 STILL OPEN.** See E3-1.
 - **ES2 STILL OPEN.** `README.md:31-43` omits `nitpick-fuzz`, `nitpick-apps`, `nitpick-posix`. `:26` omits `ladder.py`, `floatscan.py`, `run_controls.py`, `canary.*`, `guard_domains.py`, `reinject_orchestrator.py`.
 - **ES3 STILL OPEN.** All three items:

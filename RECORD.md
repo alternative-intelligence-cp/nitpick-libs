@@ -13147,3 +13147,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **E2-11:** `agents/auditor.md`'s description and body now say it writes no files by its procedure (A-1), its `Bash` for read-only commands. Its `tools:` line is unchanged.
 - **Until the Team's clone is at this commit, the pre-dispatch diff fails, by design.** Nothing is dispatched before it passes again.
 - **Struck from the held list:** the plugin's four.
+
+### `check_refs` read 4 at `a45caed`: the filed audit's two repository-local question ids, unchecked at 13:40 because the file was not yet staged; fixed forward — 2026-10-15 13:45 (shell time)
+
+- **What happened:** at 13:40 this seat ran `check_refs` before `git add`, and it showed the two known `[leak]` lines. But `check_refs` enumerates with `git ls-files`, so the new `meta/audits/ecosystem-2026-10-15.md` was not yet in its set. PLAYBOOK §7 has this exact rule: run it a **second time after staging**. That second run was not made. The commit `21933d8` went out with two `undefined-question` findings, a local id of tui's and sockets' and one of time's, seen at `a45caed`'s run, whose chain committed anyway.
+- **The cause:** ED2 and E3-16 cite repository-local question ids, tui's, sockets', time's and parse's own. The workbench's check reads every `O-…` id as its own registry's (`O-N` means this registry alone, as the registry's note on regex's renumbering says).
+- **The fix, in form only and declared in the filing header:** ED2's local rows are fenced, as the 2026-09-26 audit's table is, and E3-16's id is written out in words. `check_refs` is at the 2 known `[leak]` lines, run after staging.
+- **This seat's discipline, restated:** stage, run `check_refs`, read the count against the 2 known, then commit. Never chain the commit to a check whose count is not read.
