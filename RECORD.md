@@ -12722,3 +12722,41 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The re-pin after 115 does not carry DEF-252's fix. No library uses the shape, and parse's PD-132 is the belt meanwhile.
   - Parse's two pending cases flip only at a later re-pin that carries DEF-252 and DEF-253. Ailp-team_1 was given the ids, to cite.
   - Nothing more is owed to the compiler seat beyond the rename when F55 arrives.
+
+### `nitpick-time` 0.3.4, the close, planned (`9bd67bf`); its plan verifier dispatched; W-22's audit owed after it — 2026-10-15 10:25 (shell time)
+
+- **report `s2-ntime-0.3.4-0717` — DONE (planning)** (`opus`, 07:17 → 10:20, 886 k tokens, 311 tool uses): `9bd67bf` on `fa9fb37`, pushed. It is meta only: `0.3.4.md` (1 190 lines), `0.3.4_tools/` (12 files), and the cycle README's 0.3.4 row and nine boxes.
+  - **Six commits are planned, each pushed as it is made:**
+    1. a `python3 -B` run leaves no bytecode;
+    2. TA-8 … TA-11 where each stands, with dated notes for the 0.3.3 batch heading's path and for question 28 under TM-261;
+    3. the move to `done/0.3/`;
+    4. the 30 plain mentions and the close's texts, then block 4b's sweep and the two plants red by name;
+    5. `0.4.0.md` written by the worker, after one research request on the four format standards' currency;
+    6. the gating run and the record.
+  - **Rehearsed four times** in the real checkout, on throwaway branches since deleted. On the confirmation pass nine blocks were SAME. Block 4b was DIFF in one line the planner had not predicted: the control's hunk header for TM-261's notes. That Expect was corrected, and 4b re-run over the step-4 commit was SAME.
+- **Verified here:**
+  - `9bd67bf` is `origin/main` and the tree is clean;
+  - CI `38749569118` succeeded on it;
+  - `check_record` gives `[no-report]` only, as a PLANNED file should.
+- **Found at planning:**
+  1. the bytecode is the self-check child's, ten files, and `build/` is output by design;
+  2. TA-10's "three places" are two;
+  3. TA-11's tick and the batch heading are fixed before the move;
+  4. the compiler's D-341 is still unbuilt at `e50eaf4`;
+  5. cycle 0.4's README disagrees with three documents it names;
+  6. cycle 0.4 has no currency rows, and RFC 9557 (April 2024) updates RFC 3339's `Z`;
+  7. F-4's `FmtPart` has 30 variants, where the credits brief says 31;
+  8. three hand-ons in cycle 0.3's plans had no live home.
+- **The PD labels:** the plan has `0.4.0.md` draft PD-129 on, *"unless the dispatch names another start"*. Parse's 0.0 chain on the Team seat holds PD-129 … PD-148 (the Team brief §8). So the worker's dispatch names **PD-149 … PD-158** for time's 0.4.0, and the Team seat's next library (sockets) starts at PD-159. Ailp-team_1 is told.
+- **W-22's ecosystem-wide audit is owed after this close.** This is the sixth cycle close, and the third since the audit of 2026-09-26. The 2026-10-09 audit was recorded as early, after two. It is put to `management_0`, since the credits are theirs. The recommendation: run it on today's expiring grant, on Sonnet, read-only, at about the early audit's $9.90.
+- **findings-for-playbook**, to become PLAYBOOK edits at the close together with the worker's:
+  - a `-B` reaches no child: a harness that starts its own runner again must pass `-B` itself (time 0.3.4, regex 0.2.3);
+  - a close's tools that stage exactly what they write keep the plan's `RUNNING` title out of every commit but the record's, where a block's `git add -A` would carry it into a work commit;
+  - a close reads every plan's §7 against the later cycles' READMEs, because a hand-on recorded only in a plan ends up in the archive alone (three found here).
+- **For the author, a note only:** RFC 9557 makes `Z` mean "UTC known, local offset unknown", distinct from `+00:00`. For a `Timestamp` this reads as agreeing with F-2. Step 5's digest and 0.4.1's planner read `to_rfc3339_offset` against it.
+- **Dispatched 10:25: `s2-ntime-0.3.4-verify`** (`npk:verifier`, `sonnet`), on the plan at `9bd67bf`.
+  - **The rehearsal:** the ten blocks run in a stand-in workbench under its `$TMPDIR`, through the plan's own `blocks.py`.
+  - **The plan's measurements, taken again:** the bytecode before and after `step1.patch`, and the triage against the audit and the 0.3.3 merge's carried items.
+  - **The texts:** the decision log's notes only adding lines, the archive's counts, block 4b's classes, the plants, and §1's facts by its own measurement.
+  - **The rest:** CI read per job, and hygiene.
+  - **Budget:** the week at 10 %, the five-hour window at 37 %, room 35.
