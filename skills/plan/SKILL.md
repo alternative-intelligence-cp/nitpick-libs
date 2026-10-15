@@ -39,6 +39,9 @@ Two more that follow from it:
   numbered one that says why. `nitpick-tui`'s T-113 is the worked example: it
   corrects a false claim about signal disposition without erasing the claim,
   because the record of *how the error survived* is itself the lesson.
+  *(2026-10-15, the ecosystem audit's E2-1: the claim T-113 corrects was false at the pins through `3d15ac9`. From
+  `c3bdae2` the runtime gives `SIGPIPE` a returning handler, so on the floor's runtime its premise now holds —
+  `PLAYBOOK.md` §2's struck row and its note of 2026-10-09.)*
 - **A question that gets answered is struck through with its decision number,
   never deleted.** The question is part of the record of how the answer was
   reached.
@@ -60,6 +63,11 @@ Two more that follow from it:
 - **Open items with a recommendation each**, or a stated reason they stay open:
   it is a measurement, it is data, it is gated, it waits for a consumer. "Open"
   with no reason is "forgotten".
+- **Its decisions drafted as `PD-n` labels, from the block the dispatch names.** A label is not a number: it
+  becomes the repository's next decision number when the dispatching seat accepts it. The blocks are allocated
+  ecosystem-wide, after the last label used anywhere, so say which block the plan takes in its first commit. Cite an
+  older label with its repository: `nitpick-time` PD-66 is not `nitpick-regex`'s. (`PLAYBOOK.md` §7; the ecosystem
+  audit's E3-2, 2026-10-15.)
 
 ## Currency
 

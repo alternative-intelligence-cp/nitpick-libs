@@ -13136,3 +13136,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
       - E2-10 (`APPS.md`'s counts);
       - E3-8's prefix column.
 - **The cost line** goes to `management_0`.
+
+### The four plugin-file fixes made, at management's word (the relaunch is the author's own schedule); the Team asked to fast-forward its clone — 2026-10-15 13:42 (shell time)
+
+- **From `management_0`:** do not hold the four for the relaunch. Make them, push, then ask `Ailp-team_2` to fast-forward its clone: the hold on that clone allows fast-forward pulls of `main`. The pre-dispatch diff confirms the copies match before anything goes out. Nothing is dispatched on Max before Sunday.
+- **Made in this commit:**
+  - **E3-2's plan-skill half:** `skills/plan/SKILL.md`'s "What a plan must contain" gains its decisions drafted as `PD-n` labels from the block the dispatch names, with old labels cited with their repository;
+  - **E3-3:** `skills/worker/SKILL.md`'s "one commit per subcycle" becomes the plan's commits, one per step and then the record's, each pushed as it is made. The RUNNING title lands in the record's commit;
+  - **E2-1:** a dated note at the T-113 story in the plan, worker and audit skills. The claim was false at the pins through `3d15ac9`, and holds from `c3bdae2` on the floor's runtime, as `PLAYBOOK.md` §2's note of 2026-10-09 says;
+  - **E2-11:** `agents/auditor.md`'s description and body now say it writes no files by its procedure (A-1), its `Bash` for read-only commands. Its `tools:` line is unchanged.
+- **Until the Team's clone is at this commit, the pre-dispatch diff fails, by design.** Nothing is dispatched before it passes again.
+- **Struck from the held list:** the plugin's four.

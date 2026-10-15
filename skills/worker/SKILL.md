@@ -75,12 +75,16 @@ All absolute. For an application, `$REPO/../PLAYBOOK.md` after the first.
 
 Change the subcycle file's title line to end
 `— RUNNING (since <date>, <STREAM>)`. Do not commit that alone: it lands in
-the subcycle's one commit, and if you die before that commit the uncommitted
+the subcycle's last commit, the record's, staying the one unstaged change through any
+work commits before it, and if you die before that commit the uncommitted
 line is exactly what the next worker needs to see.
 
 ## 5. The discipline
 
-- **One commit per subcycle**, under a green full run.
+- **The plan's commits, each under a green full run:** one per step where the plan
+  cuts steps, then the record's; one for the subcycle where it does not. Push each
+  as it is made (`PLAYBOOK.md` §7). *(Was "One commit per subcycle" until
+  2026-10-15: the plans cut a commit per step. The ecosystem audit's E3-3.)*
 - **The specifications are the authority.** Code that disagrees is a defect in
   the code. A specification that is wrong is amended by a numbered decision
   **in the same commit** as the work that revealed it — never by editing the
@@ -97,7 +101,9 @@ line is exactly what the next worker needs to see.
 - **Verify a claim about the language against the compiler's source**, not
   against a summary — including a summary in these documents. That discipline
   caught a false claim about signal disposition that had already shipped in a
-  specification.
+  specification. *(False at the pin it shipped on; from `c3bdae2` the runtime's
+  returning `SIGPIPE` handler makes it hold, so check at the pin you build on —
+  `PLAYBOOK.md` §2, the ecosystem audit's E2-1, 2026-10-15.)*
 - **`--only` iterates; it never concludes.** Nothing is committed on the
   strength of a filtered run.
 - **Long commands.** The shell tool stops at ten minutes and moves most

@@ -35,7 +35,11 @@ true for this to be wrong, and is it?"** Go looking for the contradiction.
 in this ecosystem once stated that the runtime returned `EPIPE` rather than
 raising `SIGPIPE`. It was true of the case being thought about and false in
 general, it shipped, and it was found only when somebody grepped
-`runtime/npkrt.ll` instead of believing the document.
+`runtime/npkrt.ll` instead of believing the document. *(2026-10-15, the
+ecosystem audit's E2-1: false at the pins through `3d15ac9`. From `c3bdae2` the
+runtime installs a returning `SIGPIPE` handler, so the claim now holds on the
+floor's runtime. That is the point: the answer moved with the pin, and only the
+source says which.)*
 
 So: for every claim about the language or its runtime, **find the primary
 source and check it**. `REPOS/nitpick/` is read-only and entirely readable.
