@@ -12657,7 +12657,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### Diogenes 0.0-min approved; the Team brief's §2 amended for the shared zone; `meta/ROLES.md` to follow when the Team's chain asks — 2026-10-15 08:28 (shell time)
 
-- **The author approved Diogenes 0.0-min about 08:40** (*"for the decisions, all as recommended"*), relayed by `management_0`. The plan is `~/Workspace/MANAGEMENT/credits/out/dio-rescope-revise3-2026-10-15.md`. The Team seat is the `diogenes` writer this cycle.
+- **The author approved Diogenes 0.0-min before 08:28** (*"for the decisions, all as recommended"*), relayed by `management_0`. The relay said "about 08:40", which is later than this seat's clock when it recorded the approval, so the relayed time is wrong. The plan is `~/Workspace/MANAGEMENT/credits/out/dio-rescope-revise3-2026-10-15.md`. The Team seat is the `diogenes` writer this cycle.
 - **Decision 1, the domain rule's one exception:** both accounts may write under `~/.local/share/diogenes/`, each only `inbox/<other account>/` and its own entries in `cache/` and `roster/` (Diogenes' `USING.md` rule 9). Workspace stays read-only for the Team, and the Team domain for Workspace.
   - **Done here:** the Team brief's §2 (`.internal/team/brief-2026-10-12.md`, line 37) now says so, in the words decision 1 gives, with rule 9 quoted, because `USING.md` is the Team's to write this cycle.
   - The guard's code needs no change. The author creates the directories and installs the settings fragments (the plan's step 6).
