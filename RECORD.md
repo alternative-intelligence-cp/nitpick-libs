@@ -12788,3 +12788,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their texts' attribution** ("landed by `_37`", written before the 09:00 hand-off) is corrected to `_38` at landing 113, by a dated note each.
 - **Not in the pin** (`7e91730`). No floor byte moved, so no re-pin is forced. **The baseline for 113 is written**, and self-checked by extraction: MATCH, with the control failing, and equal to the generated rows.
 - **Next from the compiler:** landing 113 (DEF-235, DEF-236 (c)–(e), DEF-237, DEF-234 (c)) is in its measurement chain, and its F55 follows, naming regex's `stack` rename. `nitpick-fuzz_2` is told that the three programs' verdicts move at the re-pin.
+
+### `nitpick-time` 0.3.4's plan verification 1: FAIL on three text-only defects outside the fenced blocks; the planner resumed for fix round 1 — 2026-10-15 11:05 (shell time)
+
+- **verify `s2-ntime-0.3.4-verify` — FAIL** (`sonnet`, 35 min, 481 k tokens, 244 tool uses) at `9bd67bf`. Every run was SAME, and the plan's text has three defects.
+- **What held:**
+  - **CI** was read per job (85 484 B, asserted): compiler HEAD `7e91730…` clean, LLVM 20.1.8, the pin's emission, 119 plants, 0 unresolved, GREEN -- 146.
+  - **The rehearsal,** in a stand-in under its `$TMPDIR`: blocks 0a, 0b, 1, 2, 3, 4, 4b, 5 and 6 were SAME; 6b was SAME once a simulated record existed; seven full runs were GREEN -- 146. The four patches apply in order (2, 6, 8 and 2 files).
+  - **Step 1:** 10 bytecode files before the patch and 0 after. The code change is the one `"-B"` argument (the AST is otherwise equal).
+  - **The decision log:** `25 0` by numstat, so nothing settled is touched. There are three notes, and TM-262 is the highest before and after.
+  - **The archive:** 88 renames at the default threshold, with 6 links in and 5 out fixed in the move's commit. `mentions` re-points 30 in 13 files, and DECISIONS.md's 7 are left.
+  - **Block 4b:** all 106 (file, line) pairs are classed. The control's six misses are each named, and both plants are red by name.
+  - **§1's facts,** measured by the verifier itself: F-4 has 30 variants, `src/` has 9 `#wild_slice` sites, and D-341 is unbuilt at `e50eaf4`.
+  - **Text and hygiene:** no code line is added to any `.npk`, RFC 9557 is quoted verbatim (one fetch), and the real checkout is clean.
+  - **Step 5** is executable as written.
+- **The defects:**
+  - **D1:** §2's TA-1 … TA-7 row lacks `fc7a6cc`, which fixed TA-4 (`0.3.3.md:410`). The record copies that column.
+  - **D2:** the audit's NOT CHECKED section has four bullets, and only the third has rows (N1, N2). "Anything that needs a run", "compiler behaviour at the pin" and "earlier text" have no row and no reason, though the audit's verdict asks 0.3.4 to carry its compiler-side items. The cycle README's box at :157 also needs rewording.
+  - **D3:** PD-129 stands at lines 825, 862, 875 and 1172, where the dispatch's start is PD-149 and only line 89 allows another start.
+  - **Nits:** two quotes are not verbatim (lines 56–57 and 837).
+- **A disclosure, for the playbook:** the verifier ran a run-level `gh run view --log` once to test the recipe, and it printed 110 805 B, not nothing as the plans and the playbook say. Per-job reading stays the rule. The text's claim is corrected where it stands.
+- **The planner resumed 11:05** (`s2-ntime-0.3.4-0717`, its context intact) for fix round 1: D1 … D3, the nits and the `--log` sentence; every block whose input moves re-run; one commit on `9bd67bf`, pushed, CI read per job.
+  - **Then:** the verifier resumed for the delta.
+  - **Budget:** the week at 13 %, the five-hour window at 47 % (it resets at 11:30), room 32.
+  - **The rate, flagged to management:** the all-model meter rose 2 % → 13 % from 07:17 to 11:00 across every Max session. This seat's share is about 3 to 4 points.
