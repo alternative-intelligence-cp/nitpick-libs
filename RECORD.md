@@ -12625,3 +12625,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Ailp-team_1's five questions (the scope, the pin, the branch, the PD block, the stops) are answered in §8 and by message.
   - The streams run beside `nitpick-time` and `nitpick-regex` by the author's opening, outside WORKSTREAMS' one-repository-per-stream; parse is s2's, sockets and posix s3's, tui s1's.
 - **M12** is approved on the Team seat after landing 113, with the author's go for LLVM 20.1.8. It reports here like a library chain (branch `local-m12` pushed to GitHub), and `nitpick-fuzz` is claimed for the merge when it is ready.
+
+### The language freeze has no date; nothing in the libraries is rushed by it — 2026-10-15 07:52 (shell time)
+
+- **The author, relayed by `management_0`:** the freeze (D-336) has no fixed date, *"There isn't really any fixed time for that except 'when we are ready'"*. It was meant to spare Nikola from language churn, and to keep programs working over the long term. Nikola is paused until further notice, while he re-plans it after reading the terms of service.
+- **So nothing in the libraries is rushed, refused or deferred because of the freeze.**
+  - Checked here: no live plan, brief, job prompt or board line treats it as imminent. The board's mentions are dated compiler-notice headings, and "the view freeze" is DEF-107's borrow rule.
+  - This seat's S-135 answer this morning described D-336's mechanism accurately. Its "now-or-never" urgency is moot while the freeze has no date.
+  - The memories `language-freeze-and-long-term-compatibility` and `nikola-work-pending-tos-review` carry the clarification.
+- **Also ruled by the author, as recommended, and with `nitpick-compiler_37`:** S-127 (admit), S-128 (R1), and part (1) of S-130 (build the floor at -O2). Any effect on the libraries comes through a landing notice.
