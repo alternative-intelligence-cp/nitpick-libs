@@ -13231,3 +13231,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **findings-for-playbook, landed now** in `PLAYBOOK.md` §6: `grep` at the prompt and `xargs grep` are different programs with different dialects, so give every sweep a positive control in the same pipeline.
 - **The compiler seat applied the re-pin correction:** its texts now say the one re-pin is at 118, and 118's advance notice will name itself as that landing.
 - **Next:** 114's notice after its harness, verified against the baseline for 114.
+
+### The Team seat's manager is now `Ailp-team_3` — 2026-10-15 15:02 (shell time)
+
+- **From `Ailp-team_3`:** it manages the Team seat from now, at `uds:/run/user/1000/cc-socks/32648.sock`.
+  - Parse 0.0's plan verifier, T6v on `01e987c`, still runs in `Ailp-team_2`'s session.
+  - The chain's line comes from `Ailp-team_3` on T6v's PASS.
+- **The board's parse row** names the new manager and its address.
