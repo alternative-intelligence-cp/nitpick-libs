@@ -12545,3 +12545,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `nitpick-libs_20` (`[340479]`) and `_21` (`[efe81b]`) idle, the spares.
 - **The Team brief's message line** now gives this seat's current address, `uds:/run/user/1000/cc-socks/26205.sock`.
 - **This seat's own, at width 1:** the close 0.3.4, then 0.2.6 after 0.2.5 merges, within the allocation management sets.
+
+### `management_0`'s decisions for the week: the credits jobs, this seat's allocation, the Team seat and the compiler link — 2026-10-15 07:04 (shell time)
+
+- **The credits:** management approved four library jobs for today, on this workbench's runner, at this seat's choice of model:
+  - docs-vs-code audits of time cycle 0.3 (at `fa9fb37`) and of regex cycle 0.2 (at `bfc4693`), ahead of their closes;
+  - planning briefs for time cycle 0.4 and regex cycle 0.3.
+  - **They were launched at 07:04, on Sonnet with 200 turns each,** as `docs-vs-code-nitpick-time-0.3-2026-10-15`, `docs-vs-code-nitpick-regex-0.2-2026-10-15`, `plan-brief-time-0.4-2026-10-15` and `plan-brief-regex-0.3-2026-10-15`. The regex brief also reads the Team seat's clone, for 0.2.5's plan. Sonnet, as for last week's audits and briefs, leaves the expiring grant's room to management's own jobs.
+  - **The re-pin inventory is skipped:** the compiler's head is still `e50eaf4` (landing 111), and `out/repin-inventory-e50eaf4-2026-10-10.md` covers it. A fresh one is worth more after 113 lands.
+  - Cross-project jobs run from `MANAGEMENT/credits`; four were running at the decision. Costs go to management in one line when the jobs finish.
+- **This seat's Max allocation this week: about 12 points of the all-model meter.** It covers the closes (0.3.4 now, 0.2.6 after 0.2.5 merges) and the review and merge of the Team's chains, at width 1.
+  - **Before each dispatch:** room = 95 − meter − 0.5 × (100 − Fable %). Under 20, ask management first.
+  - The meter reading goes to management at each close.
+- **The Team seat:** management is briefing Ailp-team_1 to run regex 0.2.5 as recommended, stopping before 0.2.6.
+  - Its address is `uds:/run/user/1000/cc-socks/29651.sock`; its successors are `_2` at `32253.sock` and `_3` at `32648.sock`.
+  - **Library chains report here for review and merge (W-16),** with a copy line to management.
+  - This seat sent Ailp-team_1 the technical terms for 0.2.5's fix: narrow §4.1's bullet to what run 2's sweep did, and a scoped re-verification of the text, with no new sweep if the fix stays text-only.
+  - The four cycle-0.0 plans need the author to open those streams. Management puts that to him with the week's plan.
+- **The compiler link:** the technical side stays here: landing notices, `tools/ladder.py` verification, defects and re-pins. Management holds priorities and allocation. It told `nitpick-compiler_37` to resume 112 → 113 on Fable's half, and to send landing notices here.
