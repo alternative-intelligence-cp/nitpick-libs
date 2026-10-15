@@ -12812,3 +12812,37 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Then:** the verifier resumed for the delta.
   - **Budget:** the week at 13 %, the five-hour window at 47 % (it resets at 11:30), room 32.
   - **The rate, flagged to management:** the all-model meter rose 2 % → 13 % from 07:17 to 11:00 across every Max session. This seat's share is about 3 to 4 points.
+
+### `nitpick-regex` 0.2.5 VERIFIED PASS and merged (`0e4e8d7`), the Team seat's chain; question 31 for the author; 0.2.6's close is next and this seat's — 2026-10-15 11:05 (shell time)
+
+- **The report** (Ailp-team_1, 11:0x): `nitpick-regex 0.2.5 CHAIN PASS branch team/regex-0.2.3-plan commit 0e4e8d7…`. Its reports are `~/Team/REPORTS/T5-regex-0.2.5-{plan,verify-plan,plan-fix,verify-plan-2,plan-fix-2,verify-plan-3,plan-fix-3,verify-plan-4,work,verify-work}.md`. The new four (fix round 3, plan verification 4, the work and its verification) were read here whole or in their verdicts.
+- **The chain:**
+  - Plan verification 4 PASSED at `9e9c7cf`, fix round 3's narrowing of §4.1's bullet, the one finding of run 3. That met this seat's ruling of 2026-10-13: one text-only fix and a scoped re-verification before the worker. PD-126 … PD-128 are RX-241 … RX-243.
+  - **The worker** (Opus 5.5, 65 min, 640 k tokens) made three commits: `b09fb13`, `5f9163c` and `0e4e8d7`. All nine blocks were SAME, the 149 mutants each red at both legs, and the full run 347/347.
+  - **Its amendment:** its second sweep, by subject, found "`hir_read` never sets" the computed facts false since step 1, for a text that carries a literals' section. It amended `step1.patch` with two dated notes in `HIR.md` (7 lines) rather than editing the tree by hand.
+  - **The work verifier** (Sonnet 5.5, 76 min, 737 k tokens) PASSED it. Its checks:
+    - the amendment (A): code, probes at both legs and 37 830 section texts; the moved Expect lines exactly as named;
+    - its own H-19 model against all 55 reference rows, 60 000 seeded cases a leg, and all 80 408 trees of up to five nodes;
+    - 116 of the 119 H-19 rows caught by its own instruments;
+    - the operator sweep's 44 survivors, each rebuilt and byte-identical;
+    - RX-241 … RX-243 contiguous;
+    - the record, line for line.
+- **Spot-checked here** against the fetched branch:
+  - `main` = `origin/main` = `bfc4693`, an ancestor of `0e4e8d7`, so the merge fast-forwards;
+  - eight commits, the five plan commits and the three work commits;
+  - RX-241 … RX-243 contiguous after RX-240, and RX-243 the highest;
+  - the record commit's diff exactly as disclosed (`0.2.5.md`, `step1.patch` +21/−3, the cycle README, `HIR.md` +7/−0);
+  - `gh run list`: every push to the branch green, `0e4e8d7` and `5f9163c` among them;
+  - no new specification document (`HIR.md`, `SAFETY.md` and `TESTING.md` modified).
+- **Merged:** `nitpick-regex` `main` fast-forwarded `bfc4693` → `0e4e8d7` and pushed (claimed at `bb7f119`, released by this commit). `LIBRARIES.md`'s row now reads 347 units, four pending, decisions to RX-243.
+- **The amendment is accepted.** It dates a sentence the step made false, by the patch, and the verifier measured it.
+- **Question 31 is raised:** 0.2.5's nine items for the author (§9), each settled with its reversal. The recommendation is to accept all nine as they stand. Merged as recommended, as 0.2.4's six were (question 29). It goes to the author with the next batch, by way of `management_0`.
+- **For 0.2.6's close**, beside what it carries (the `stack` rename; RA-9 … RA-13; N1 and N2; 0.2.3's and 0.2.4's carry-overs; the RX-235 … 240 batch heading's wording):
+  - (a) RX-239's own text, "and `hir_read` sets none" (`DECISIONS.md` 6434), false since RX-242 for a text with a section: mark its heading;
+  - (b) `opsweep.py`'s docstring, lines 12–15;
+  - (c) §1.8's "63 bare-name builtins", which is 57 plus 6 `#` builtins;
+  - (d) `check_constants_named`'s 64, handed on at `bc63947`.
+  - The verifier's (2) is known since 0.2.3 (CI builds its own compiler and asserts the emission); its (4) and (5) are observations.
+- **findings-for-playbook:** sweep for what a function SETS, not only what it reads. A step that makes a reader call a writer owes a sweep of every sentence that says the reader writes or sets nothing (the worker's). This becomes a playbook edit with time's close.
+- **The libraries' standing ask, RX-235's two-HIR clause:** no case of 0.2.5 leans on it, and striking it costs nothing here (§9, measured at §1.9).
+- **Next for `nitpick-regex`:** 0.2.6, the cycle's close, this seat's. Its planner runs after time 0.3.4 finishes (width 1, P-12), with RA-9 … RA-13 from the documents audit at `bfc4693` and 0.2.5's delta read by the planner. **On the Team seat:** parse's 0.0 plan chain (after its 11:40 reset), then sockets, tui and posix.
