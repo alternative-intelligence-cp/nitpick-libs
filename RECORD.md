@@ -12581,3 +12581,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - "now-or-never" holds only because D-336's frozen corpus records refusals as well as programs. The author's own words on the freeze allow additions that break no program. So a RESERVED refusal class was suggested: a verdict that may move from refused to accepted but never back, keyed to one dedicated diagnostic code;
   - for S-136, plain `NULL` in `.npk` is 0 in all six libraries and in `nitpick-apps`, and 15 lines in `nitpick-fuzz`'s corpus.
 - **`check_refs` and the leaks:** the new audits add no finding. The 24 home-directory paths in `BOARD.md` and `RECORD.md`, from 2026-10-10 on (`_18`'s and this seat's), are fixed forward to `~/` (the memory `home-path-leak-not-sensitive`; history is not rewritten). Two remain in `tools/guard_domains.py`, whose paths are functional and which must stay byte-identical with the Team seat's copy, so they are left. The checker could exempt that file; this is not taken up here.
+
+### Claimed: `nitpick-time` 0.3.4, the close of cycle 0.3 — its planner, `s2-ntime-0.3.4-0717` — 2026-10-15 07:17 (shell time)
+
+- **The pick:** cycle 0.3's first subcycle not done is 0.3.4, the close. Its README row reads "`done/0.3/`, `0.4.0.md` written". No `0.3.4.md` exists, so the planner is dispatched first.
+- **The audit:** the cycle's documents audit, made on the API credits and filed today (`meta/audits/nitpick-time-docs-fa9fb37-2026-10-15.md`, TA-8 … TA-11), goes in as `AUDIT:`. A second, subscription-funded audit is not run. Cycle 0.4's planning brief goes in by `NOTES:`, as evidence to check.
+- **The room:** 95 − 2 − 0.5 × (100 − Fable %). Fable is not on the meter today and is taken as 0, so the room is 43, which is at least 20.
+- **The tree:** `nitpick-time` at `fa9fb37`, clean, on the pin `7e91730`.
