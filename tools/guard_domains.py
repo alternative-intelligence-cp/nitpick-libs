@@ -153,8 +153,10 @@ def main():
             reason = (f"Refused: {what} would write to {path}, inside the "
                       f"{other} domain ({DOMAINS[other]}). This session belongs "
                       f"to the {home_domain} domain and may read {other} but "
-                      f"never write to it. Exchange files through git/GitHub, "
-                      f"or ask Randy to carry the change across.")
+                      f"never write to it. Exchange files through git/GitHub "
+                      f"or the other account's inbox under "
+                      f"~/.local/share/diogenes/inbox/ (Diogenes' rule 9), or "
+                      f"ask Randy to carry the change across.")
             print(json.dumps({"hookSpecificOutput": {
                 "hookEventName": "PreToolUse",
                 "permissionDecision": "deny",

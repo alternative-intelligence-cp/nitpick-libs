@@ -12889,3 +12889,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `check_record` gives `[no-report]` only;
   - `git diff --stat 9bd67bf 5a04b62 -- meta/roadmap/0.3/0.3.4_tools` is empty.
 - **Dispatched 11:42: the verifier `s2-ntime-0.3.4-verify`, resumed** (`sonnet`) for the delta. It reads the diff, the fences' identity, D1 … D3, N1 … N5's reasons, the quotes and CI per job, with no full run unless a fence moved. Budget: the week at 16 %, the five-hour window at 3 % (it reset at 11:30), room 29.
+
+### The domain guard's refusal names the Diogenes inbox, the author's go in this session; installed and checked — 2026-10-15 11:44 (shell time)
+
+- **The change** (Diogenes decision 1's guard-message edit): `tools/guard_domains.py:156–157` become four lines, so the refusal reads *"Exchange files through git/GitHub or the other account's inbox under ~/.local/share/diogenes/inbox/ (Diogenes' rule 9), or ask Randy to carry the change across."* No allow or deny logic moves.
+  - The text is Ailp-team_2's: `/home/randy/Team/TMP/guard-edit/guard_domains.py`, 168 lines, sha256 `e33335c3…`.
+  - Its first draft cited `USING.md`, which no Diogenes branch holds yet. It was changed to "Diogenes' rule 9" at this seat's note, which is true in `MIN.md:176` today and will stay true when `docs/USING.md` lands.
+- **Authority:** the author approved the edit at 11:35:22, relayed by `management_0`. **Here, this seat waited for his word in its own session, since a hook is permission machinery: *"you are clear for launch on the change"* (11:4x).** The Team installs its copy on his word in its own session.
+- **Installed here** by copying the scratch file: sha256 `e33335c3…`, equal to the scratch copy; the mode is unchanged.
+- **Checked:**
+  - `compile()` with `python3 -B`, which writes nothing: OK, and no `tools/__pycache__/`;
+  - four synthetic PreToolUse inputs piped in, with `CLAUDE_PROJECT_DIR` in the workbench:
+    - a Write into `~/Team`: **deny, with the new sentence**;
+    - a Bash `touch` into `~/Team`: **deny**;
+    - a Write inside the Workspace: allowed, no output;
+    - a Write into `~/.local/share/diogenes/inbox/team/`: allowed, no output;
+  - nothing was written in Team;
+  - `check_refs`: the file's two known `[leak]` lines are unchanged, and there are no other findings.
+- **Still to do:** `cmp` against `~/Team/CONFIG/guard_domains.py` once the Team installs its copy, then one line to management.
