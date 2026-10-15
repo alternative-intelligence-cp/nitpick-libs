@@ -12761,7 +12761,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **The rest:** CI read per job, and hygiene.
   - **Budget:** the week at 10 %, the five-hour window at 37 %, room 35.
 
-### W-22's ecosystem-wide audit approved by management, to run after time's close; the credits do not expire today — 2026-10-15 10:41 (shell time)
+### W-22's ecosystem-wide audit approved by management, to run after time's close; the credits do not expire today — 2026-10-15 10:30 (shell time)
 
 - **`management_0`, 10:3x: go**, on this seat's runner, read-only, at this seat's choice of model and time.
   - **The timing chosen here: after 0.3.4 lands.** That is W-22's "after the close", and the audit then reads time's closed tree with its `0.4.0.md`.
