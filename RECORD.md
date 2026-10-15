@@ -12654,3 +12654,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Every emitted `define` carries LLVM's `null_pointer_is_valid`, so the three reproducers exit 107 at both legs.
   - S-136 was ruled option (c), as D-355: `NULL` is legal only for `wild` pointers, and `T->?` with `NIL` spells "maybe no pointer". It is its own later landing, with a plan. The libraries hold no plain `NULL`.
 - **For the re-pin after 115:** DEF-251 puts an attribute on every function's emission. So every library program's emitted IR moves at that re-pin, by design. The adoption should expect the libraries' emission comparisons and IR digests to differ throughout, and read each difference as that attribute before reading anything else into it.
+
+### Diogenes 0.0-min approved; the Team brief's §2 amended for the shared zone; `meta/ROLES.md` to follow when the Team's chain asks — 2026-10-15 08:28 (shell time)
+
+- **The author approved Diogenes 0.0-min about 08:40** (*"for the decisions, all as recommended"*), relayed by `management_0`. The plan is `~/Workspace/MANAGEMENT/credits/out/dio-rescope-revise3-2026-10-15.md`. The Team seat is the `diogenes` writer this cycle.
+- **Decision 1, the domain rule's one exception:** both accounts may write under `~/.local/share/diogenes/`, each only `inbox/<other account>/` and its own entries in `cache/` and `roster/` (Diogenes' `USING.md` rule 9). Workspace stays read-only for the Team, and the Team domain for Workspace.
+  - **Done here:** the Team brief's §2 (`.internal/team/brief-2026-10-12.md`, line 37) now says so, in the words decision 1 gives, with rule 9 quoted, because `USING.md` is the Team's to write this cycle.
+  - The guard's code needs no change. The author creates the directories and installs the settings fragments (the plan's step 6).
+  - The memory `team-domain-boundary` carries the exception.
+- **Decision 3, a tracked role file:** `meta/ROLES.md` in this workbench, with holders such as `libs-seat = nitpick-libs_19` and a `poster` line naming `management_0` and this seat (the plan's §3). It is written when the Team's Diogenes chain asks; that chain may message this seat directly.
