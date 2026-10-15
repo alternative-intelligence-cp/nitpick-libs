@@ -12872,3 +12872,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **Ailp-team_2** is the Team seat's manager from now, at `uds:/run/user/1000/cc-socks/32253.sock` (its own message). `Ailp-team_1` handed off. Parse 0.0's continuation, PD-138 … PD-148, goes out after the Team's 11:40 reset.
 - **The Team brief's §2 line 37** (gitignored, this seat's file) is worded to Diogenes' `meta/roadmap/0.0/MIN.md` rule 9 at `a10092b`: each account writes `inbox/<other account>/`, **the shared cache in `cache/`**, and its own entries in `roster/`. It had said "its own entries in `cache/`", and Ailp-team_1 found the slip in Diogenes' fix round. The cache is shared, keyed by config dir and pid. A dated note in the line keeps the old wording. Checked against MIN.md:92 and :176.
+
+### `nitpick-time` 0.3.4's fix round 1 done (`5a04b62`); its scoped re-verification dispatched — 2026-10-15 11:41 (shell time)
+
+- **report `s2-ntime-0.3.4-0717`, resumed — DONE** (fix round 1, 11:05 → 11:4x, 36 tool uses, about 61 k new tokens): `5a04b62` on `9bd67bf`, pushed.
+  - **The changes:** two files, `0.3.4.md` and the cycle README's 0.3.4 box. `0.3.4_tools/` is unchanged, and the fenced text of both commits is byte-identical (11 blocks, 10 Expects).
+  - **The compare pass:** on a throwaway branch in the checkout, deleted since: 0a, 0b, 1, 2, 3, 4, 4b, 5, 6 and 6b SAME.
+  - **D1:** the hash column reads `fc7a6cc` (TA-4), `ac6fae9` (TA-2, TA-3, TA-5 … TA-7) and `0bb4902` (TA-1), each read in its commit's diff.
+  - **D2:** the audit's four NOT CHECKED items are rows N1 … N5, and the scope paragraph and the README box say four. Among the rows: what needs a run is MEASURED by the full runs; 0.3.3's mutant verdicts are LEFT, their ids reading four lines lower after step 2's comment lines, with no verdict moving; and the compiler at the pin is LEFT, since the pin has not moved and 0.3.3's block 0b asked each form there.
+  - **D3:** PD-149 at the five places, and gate 3 says why. PD-159 for the Team's next library rests on this seat's word of `c1c073c`, as gate 3 says.
+  - **The nits:** the research skill's §7 and F-4's comment are quoted exactly. RFC 9557's two sentences are paraphrased without quotation marks.
+  - **The `--log` sentence:** a run-level `gh run view --log` has printed nothing on one day and the whole log on another, so its output proves nothing either way. Per-job reading, with the byte count asserted, stays the rule.
+- **Verified here:**
+  - `5a04b62` is `origin/main`, and the tree is clean;
+  - CI `38761777805` succeeded;
+  - `check_record` gives `[no-report]` only;
+  - `git diff --stat 9bd67bf 5a04b62 -- meta/roadmap/0.3/0.3.4_tools` is empty.
+- **Dispatched 11:42: the verifier `s2-ntime-0.3.4-verify`, resumed** (`sonnet`) for the delta. It reads the diff, the fences' identity, D1 … D3, N1 … N5's reasons, the quotes and CI per job, with no full run unless a fence moved. Budget: the week at 16 %, the five-hour window at 3 % (it reset at 11:30), room 29.
