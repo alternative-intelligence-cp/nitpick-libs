@@ -13095,12 +13095,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - E3-3: the worker skill says "one commit per subcycle", but practice is a commit per plan step and then the record;
     - E2-1: the T-113 story stands undated in the plan, worker and audit skills;
     - E2-11: the auditor's "cannot write files" stands beside its `Bash`.
-  - **A guard's docstring needs the author's word in this session:** E3-12's first half. `tools/guard_compiler_tree.py:34-35` says the sandbox's `filesystem.denyWrite` is "configured nowhere", against Q-3, which was answered and applied 2026-10-01. Asked of him.
+  - **A guard's docstring needs the author's word in this session:** E3-12's first half. `tools/guard_compiler_tree.py:34-35` says the sandbox's `filesystem.denyWrite` is "configured nowhere", against Q-3, which was answered and applied 2026-10-01. Asked of the author.
   - **The rules, for the author through management:** E3-4, with EC8 and EC9.
     - W-17 says nothing is branched or merged, but the Team seat's chains branch and are merged here.
     - W-18 says a re-pin happens between cycles, but three re-pins were taken mid-cycle.
-    - **Recommendation:** this seat drafts W-29 on, as descriptions of approved practice: the branch-and-review domain, a tool repository with its own manager, and the mid-cycle adoption subcycle. It lands them unless he objects, together with E2-14's graph edge and E2-10's "26 cycles".
-  - **E3-13, the plugin's own cycle 0.2:** `meta/roadmap/0.2/0.2.7.md` has read RUNNING since 2026-09-03 (the author's), every box unticked. Its close is his, so it goes to him through management.
+    - **Recommendation:** this seat drafts W-29 on, as descriptions of approved practice: the branch-and-review domain, a tool repository with its own manager, and the mid-cycle adoption subcycle. It lands them unless the author objects, together with E2-14's graph edge and E2-10's "26 cycles".
+  - **E3-13, the plugin's own cycle 0.2:** `meta/roadmap/0.2/0.2.7.md` has read RUNNING since 2026-09-03 (the author's), every box unticked. Its close is the author's, so it goes to the author through management.
   - **The workbench's remaining counts and maps, for the quiet point before the re-pin:**
     - E2-10's counts;
     - ES2 (README's map);
@@ -13177,7 +13177,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - the mid-cycle adoption subcycle.
 
     They land at the quiet point before the re-pin, with E2-14's graph edge and E2-10's "26 cycles". **Owed.**
-  - **34, the plugin's own 0.2.7:** marked PAUSED (author), dated 2026-10-15, replacing RUNNING. The subcycle stays his.
+  - **34, the plugin's own 0.2.7:** marked PAUSED (author), dated 2026-10-15, replacing RUNNING. The subcycle stays the author's.
     - This was management's recommendation, and it supersedes this seat's default of leaving the file as it was.
     - Done in this commit, on the title line only, with the old status kept in parentheses.
 
@@ -13205,3 +13205,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The compiler seat's closing line still read "after 115 … or after 116", so it is told of question 32's answer.
 - **The baseline for 114 is written**, generated from the transcription the ladder checked. It was self-checked by extraction (MATCH, with the control failing), and its rows equal the transcription's.
 - **Next from them:** 114 (DEF-250) and 115 (DEF-251), each with its F-notice first.
+
+### The guard's docstring dated, at the author's word in this session (E3-12's first half); today's pronouns for the author written as "the author" — 2026-10-15 14:58 (shell time)
+
+- **The author, in this session, 14:58:** *"i apologize for not getting to your question sooner. yes, you may add it."* That answers the question of 13:40: a dated note in `tools/guard_compiler_tree.py`'s docstring. A guard edit needs the author's word in this session, and this is it.
+- **The change, comment only:**
+  - the old sentence stays: the sandbox's `filesystem.denyWrite` *"is configured nowhere (BOARD.md question 3, the author's call)"*;
+  - four lines follow it, dated 2026-10-15 for E3-12. They say it has been configured since 2026-10-01: question 3 answered yes, and the sandbox applied that day in this workbench's project settings, `denyWrite` on `../nitpick` among them (the registry's Q-3; PLAYBOOK.md's note of 2026-10-09).
+  - No line of code moved, and the file is neither moved nor renamed.
+- **Checked:**
+  - it compiles (`compile()`, no bytecode written);
+  - the copy from before the edit and the edited file gave byte-identical output and exit codes on eight synthetic calls. Denied: a shell write into the compiler tree, a direct write there, and a workbench write by a session that is not the writer. Allowed: a read, a `git -C` read, the writer's own write, the interpreter heredoc the docstring names as a known limit, and an edit inside the claimed regex repository;
+  - nothing was written by the probes, and no `__pycache__` appeared.
+- **Struck from the held list:** E3-12, whose second half, the canary's row, landed at 13:40.
+- **Fixed forward in the same commit:** four of today's record lines, and the board's row 34, had used *he*, *his* or *him* for the author, whose pronouns this seat does not assume. Each now says "the author"; no meaning changed.

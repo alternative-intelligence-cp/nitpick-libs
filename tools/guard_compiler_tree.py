@@ -33,6 +33,11 @@ cannot be classified from the command text; a target containing an
 unexpanded variable (`"$REPO"`) cannot be resolved and is not judged. The
 airtight mechanism for the first is the sandbox's `filesystem.denyWrite`,
 which is configured nowhere (BOARD.md question 3, the author's call).
+(2026-10-15, the ecosystem audit's E3-12, at the author's word: configured
+since 2026-10-01. The author answered question 3 yes, and the sandbox was
+applied that day in this workbench's project settings, `denyWrite` on
+`../nitpick` among them: the registry's Q-3, and PLAYBOOK.md's note of
+2026-10-09.)
 
 The heredoc limit is ALSO named in the compiler refusal message itself, not
 only here. Guidance resists a temptation only where somebody is standing when
