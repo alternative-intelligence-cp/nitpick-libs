@@ -13154,3 +13154,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The cause:** ED2 and E3-16 cite repository-local question ids, tui's, sockets', time's and parse's own. The workbench's check reads every `O-…` id as its own registry's (`O-N` means this registry alone, as the registry's note on regex's renumbering says).
 - **The fix, in form only and declared in the filing header:** ED2's local rows are fenced, as the 2026-09-26 audit's table is, and E3-16's id is written out in words. `check_refs` is at the 2 known `[leak]` lines, run after staging.
 - **This seat's discipline, restated:** stage, run `check_refs`, read the count against the 2 known, then commit. Never chain the commit to a check whose count is not read.
+
+### Parse 0.0's plan pass done on the Team seat; its plan verifier running; the plugin's two copies equal again — 2026-10-15 14:15 (shell time)
+
+- **The plugin's copies:** `Ailp-team_2` fast-forwarded `~/Team/REPOS/nitpick-libs` on `main` to `ab2e017` at 13:45. The porcelain is empty.
+  - This seat's own diff at 13:45:59 read 0 lines over `.claude-plugin/`, `skills/`, `agents/` and `hooks/`, and the reinject script is identical. Both clones are at `ab2e017`.
+  - The pre-dispatch check passes again.
+- **Parse 0.0, from `Ailp-team_2`, status only:**
+  - the plan pass is DONE on `team/parse-0.0-plan` at `01e987c`: six files at execution grade at `7e91730`, and 45 blocks SAME on the final pass;
+  - it takes PD-129 … PD-145, leaving 146 … 148 unused, and none is open;
+  - the re-pin at 118 and the ecosystem audit's parse ids are carried, each FIXED on the branch by its table;
+  - its plan verifier, T6v (`sonnet`), is running on the Team seat, and the chain's line follows its PASS.
+  - The report so far is `~/Team/REPORTS/T6b-parse-0.0-plan-cont.md`. It is not read here yet: it is reviewed when the chain reports.
+- **The PD blocks:** time's 0.4.0 holds PD-149 … PD-158 (PD-149 … PD-154 drafted), so the Team seat's next library, sockets, still starts at PD-159.
