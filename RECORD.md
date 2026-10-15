@@ -12954,3 +12954,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - all are built. DEF-252's fix is tested at both legs and measured, and an early whole-tree sweep moves no library site.
 - **So question 32's recommendation moves to: re-pin after 118.** No adoption can start before Sunday's release, so the wait costs nothing. One adoption round then carries the use-after-free fix, D-353's refusal, and the two link fixes parse needs.
 - **The default stands at 115**, by the author's word, if unanswered. `management_0` is told.
+
+### Question 32 answered: the one re-pin at landing 118 — 2026-10-15 12:04 (shell time)
+
+- **question answered — 32** (the author, 2026-10-15 12:04:21, relayed by `management_0`): *"lets go with the recommendation"*.
+  - **The one re-pin is at landing 118,** carrying 104 … 118: DEF-252, the use-after-free fix (116); D-353's RESERVED refusal (117); and DEF-253 and DEF-254, the link fixes (118).
+  - **Management's addition, approved with it:** if 118 has not landed when the adoption round starts, re-pin at the newest landing on `main` at that point, never before 115.
+  - **The adoption round** comes out of Sunday's release, after regex 0.2.6 in line. Management sizes both then and finds the quiet point with the Team when this seat says all claims must be at rest.
+- **The board's toolchain line** now says so, with the morning's "after 115" kept as *Before:*. The question leaves the table.
+- **For parse:** its two pending cases cite DEF-252 and DEF-253, and both are in this pin, so they flip at its adoption.
