@@ -12846,3 +12846,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **findings-for-playbook:** sweep for what a function SETS, not only what it reads. A step that makes a reader call a writer owes a sweep of every sentence that says the reader writes or sets nothing (the worker's). This becomes a playbook edit with time's close.
 - **The libraries' standing ask, RX-235's two-HIR clause:** no case of 0.2.5 leans on it, and striking it costs nothing here (§9, measured at §1.9).
 - **Next for `nitpick-regex`:** 0.2.6, the cycle's close, this seat's. Its planner runs after time 0.3.4 finishes (width 1, P-12), with RA-9 … RA-13 from the documents audit at `bfc4693` and 0.2.5's delta read by the planner. **On the Team seat:** parse's 0.0 plan chain (after its 11:40 reset), then sockets, tui and posix.
+
+### This seat's week fitted to its 12 points: time 0.3.4's close in full, regex 0.2.6 first in line for Sunday's release — 2026-10-15 11:2x (shell time)
+
+- **`management_0` measured the morning's usage from the transcripts at list price** (07:17 → 11:00, ≈ 10–11 points, matching the meter's rise from 2 % to 13 %):
+  - the compiler's Fable, about $64 (5.2–5.6 points), from its own pool;
+  - **this seat with its subagents, about $100 (3.7–4.6 points), most of it cache writes (7.4 M tokens) and cache reads (288 M);**
+  - management itself, $13;
+  - Diogenes, fuzz and skills together, $3.60.
+- **Management's ruling: no throttle; each seat stays inside its allocation.** This seat is at about 4–5 of 12. Management is asked first before any dispatch that would pass 12. Its main lever is scoping each subagent's reading.
+- **The fit, approved by management:**
+  - time 0.3.4's fix round and a scoped re-verification (~0.5);
+  - its close worker on Opus, which writes 0.4.0.md, with its reading scoped (~3.5–4);
+  - the work verifier on Sonnet (~0.5);
+  - this seat's own session: parse's chain review, the audit triage, F55 … F57 and the re-pin after 115 (~1);
+  - **about 10–11 of 12 in all.**
+- **Regex 0.2.6 (~4–5 points) does not fit this week.** It is **first in line for management's release of about 8–10 points on Sunday 2026-10-18**, confirmed then against the meter. Otherwise it waits for next week, and the `stack` rename is carried by the re-pin's regex adoption subcycle.
+- **The Team seat stays on the new libraries.** Its queue (Diogenes, parse, M12 after 113, then sockets) fills its week.
