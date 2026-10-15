@@ -12600,3 +12600,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The recommendation, put to the author as question 30:** pin POSIX.1-2024, under a new `PX-` decision superseding PX-002's edition clause, with a `CURRENCY.md` row.
   - Two choices follow it into `nitpick-posix`'s cycles: whether `test` refuses `-a`, `-o` and `()` or keeps them as an extension, and the ERE minimal-repetition question for `nregex`.
   - Q-1 in `meta/OPEN_QUESTIONS.md` carries a dated note. This workbench does not decide it.
+
+### The parse and sockets cycle-0.0 briefs refreshed against `e50eaf4`, on the expiring grant: $9.28 — 2026-10-15 07:42 (shell time)
+
+- **At management's word** (up to $15 of the grant's remaining ~$28, on the library jobs judged most useful), two Sonnet jobs ran, 07:29–07:4x: `plan-brief-parse-0.0-2026-10-15` (199 of 200 turns, **$5.37**) and `plan-brief-sockets-0.0-2026-10-15` (about **$3.91**, from the day's ledger total). Today's library jobs total **$21.74** over seven runs, by the CLI. Management was told in one line.
+- **They stay in `.internal/credits/out/`** as the planners' inputs, for when the author opens those streams.
+  - Neither tree has moved since 2026-10-09.
+  - For sockets, no landing 104 … 111 refuses a shape its cycle 0.0 relies on, though several add shapes the plan must avoid until the re-pin.
+- **One reading to discount:** the parse brief reports `nitpick-parse`'s remote-tracking ref as `2b00815e`, against local `main` at `3cad08c`. Checked here: local `main`, `origin/main` and GitHub are all `3cad08c`, and `0/0`. `2b00815` is the repository's initial commit, so the job, which had no git, read a stale ref file.
