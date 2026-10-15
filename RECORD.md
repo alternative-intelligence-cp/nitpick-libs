@@ -12525,3 +12525,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **question answered (29):** `nitpick-regex` 0.2.4's six items stand as RX-238 … RX-240 settle them.
 - **The rows are struck on the board,** and the writer line's wake list no longer carries them. No library work follows from any of the three.
 - **Also from the author, not a question:** he expects management to allocate most of the Team seat's usage and the credits to the libs seat to delegate. If so, this seat's flow stays much the same, without the side projects, so its context should last longer between handoffs. *"we shall see."*
+
+### Woken for the new week: the cross-project duties handed to `management_0` — 2026-10-15 06:59 (shell time)
+
+- **The wake:** this session resumed under its own id, now `[350386]`, and the author renamed it `nitpick-libs_19`.
+  - **The account is Max:** `usage-latest.json` was written by this seat at 10:56:42Z, with rate limits. The week is at 1 %, and resets 2026-10-22 00:00Z (Wednesday 20:00).
+  - The token is this seat's, and no row is CLAIMED.
+  - The sweep found 9 trees, every one dirty=0 and 0/0.
+- **`management_0` asked for the handover:** the author is up, and asked it to start everyone. It reported the default login as Max 20x (the credentials file), with `~/.claude.json`'s metadata still saying Team, and the meter's MISMATCH as last week's stale cache.
+- **Handed over by message, as pointers to files:**
+  - **the Team seat:** `.internal/team/brief-2026-10-12.md` (§7), `/home/randy/Team/REPORTS/`, `MANAGER-LOG.md`, and the state at `RECORD.md` 2026-10-13 20:11.
+    - Recommended next for it: regex 0.2.5 resumed (the one sentence, a scoped re-verification, then the worker and the work verifier). Then, if management or the author opens them, the four cycle-0.0 plans from their drafted briefs.
+    - Also recommended: library chains still report here for review and merge;
+  - **the credits:** `.internal/credits/README.md`, `run.sh` and `LEDGER.md`. Nothing is queued. Candidate library jobs were offered (two pre-close audits, a re-pin inventory, two next-cycle briefs), to write and launch on management's word;
+  - **the compiler link:** `nitpick-compiler_37`, with `_38` and `_39` now open. Landings 112 and 113 come next, each verified here with `tools/ladder.py`. The two defect candidates were sent 2026-10-12 and 10-13.
+- **The peers at the wake (`ListAgents`):**
+  - `management_0` (`[86f4fb]`) busy, `_1` and `_2` idle;
+  - `nitpick-compiler_37` (`[7129fa]`) busy, `_38` and `_39` idle;
+  - `nitpick-libs_20` (`[340479]`) and `_21` (`[efe81b]`) idle, the spares.
+- **The Team brief's message line** now gives this seat's current address, `uds:/run/user/1000/cc-socks/26205.sock`.
+- **This seat's own, at width 1:** the close 0.3.4, then 0.2.6 after 0.2.5 merges, within the allocation management sets.
