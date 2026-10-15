@@ -1235,6 +1235,13 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   `'7e91730'`, so a plan that parses its workflow with PyYAML cannot see it; judge a scalar by YAML 1.2's core schema.
   Nothing asserted that row, so that run's verdicts stood; the fix quoted the five hex rows. *(`nitpick-time` 0.3.2a's work,
   `9929d17`, and its verifier, 2026-10-10; landed 2026-10-10.)*
+- **In a Claude Code shell, `grep` is a function, and `xargs grep` is another program.** The Bash tool defines `grep` as a
+  shell function over an embedded ugrep, while `xargs`, `find -exec` and every script run `/usr/bin/grep` (GNU grep 3.11
+  here). Their regex dialects differ. To ugrep, `[A-Za-z_\[\]-]` is one bracket of letters, brackets and a hyphen; to GNU
+  grep it is a bracket that ends at the first `]`, followed by a required `-`. So a pattern checked at the prompt can
+  match nothing under `xargs`, with no error, and a sweep that hides stderr reports a silent zero. Give every sweep a
+  positive control in the same pipeline, such as each file's `mod:` line, or sweep in Python. *(This seat's sweep for
+  F56, 2026-10-15: zero matches of every kind, where the Python sweep's control read 359 of 359; landed 2026-10-15.)*
 - **`python3 -B` reaches no child process.** A harness that starts its own runner again, as a self-check does, passes `-B`
   itself, or a `python3 -B` run writes bytecode anyway: `nitpick-time`'s run left ten files under `harness/__pycache__/`
   until its self-check started the runner under `-B`, and none after. `nitpick-regex` 0.2.3 met the same. *(`nitpick-time`

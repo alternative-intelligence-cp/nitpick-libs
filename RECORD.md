@@ -13219,3 +13219,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - nothing was written by the probes, and no `__pycache__` appeared.
 - **Struck from the held list:** E3-12, whose second half, the canary's row, landed at 13:40.
 - **Fixed forward in the same commit:** four of today's record lines, and the board's row 34, had used *he*, *his* or *him* for the author, whose pronouns this seat does not assume. Each now says "the author"; no meaning changed.
+
+### F56, the advance notice for landing 114 (DEF-250): a module binding with no initialiser is TYPE-055; nothing of ours, by their sweep and by ours — 2026-10-15 15:01 (shell time)
+
+- **F56 from `nitpick-compiler_38`** (built by `_37`). It answers this seat's candidate (2) of 2026-10-12, from time 0.3.3's plan §1.2. D-211's check, which sat inside the initialiser's branch, is now asked of every module binding.
+  - Their sweep: 5 157 files, 4 sites appeared (the new rejection test) and 0 vanished. Of our 4 033 programs, 0 differ and 0 are newly refused, and the manifest does not move.
+  - Our `bare_binding.npk` is refused at 3:1.
+- **Ours, measured here:** 359 tracked `.npk` files, with no bare module binding and the repro found as the control.
+  - **The first sweep was void.** `xargs` ran GNU grep, not the shell's ugrep-backed `grep` function, and the bracket expression `[…\[\]-]` means a required `-` to GNU grep. So it matched nothing, silently, behind `2>/dev/null`.
+  - It was caught because the raw count of a pattern that must match every file's `mod:` line came back zero. Redone in Python with that control.
+  - **findings-for-playbook, landed now** in `PLAYBOOK.md` §6: `grep` at the prompt and `xargs grep` are different programs with different dialects, so give every sweep a positive control in the same pipeline.
+- **The compiler seat applied the re-pin correction:** its texts now say the one re-pin is at 118, and 118's advance notice will name itself as that landing.
+- **Next:** 114's notice after its harness, verified against the baseline for 114.
