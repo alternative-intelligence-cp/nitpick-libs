@@ -7,7 +7,7 @@ deleted.
 
 ## For the author
 
-- **Q-1 — which POSIX edition does `nitpick-posix` target?** Every document in
+- ~~**Q-1 — which POSIX edition does `nitpick-posix` target?**~~ — **SETTLED 2026-10-15 by `nitpick-posix`'s PX-102 (`1e9a8b3`), the author's decision: POSIX.1-2024, Issue 8.** *(Struck 2026-10-15, the ecosystem audit's E3-9.)* Every document in
   that repository names POSIX.1-2017 as "the standard" and none mentions the
   2024 edition (IEEE 1003.1-2024, Issue 8), published two years ago. Found
   incidentally while reviewing the research question, not by a plan review.
@@ -294,7 +294,7 @@ O-Y2   nitpick-sockets   descriptor passing to a non-AF_UNIX peer
   and `u` settable. **Recommendation: keep Y-12 and strike the meaning flags from A-7**, for cycle 0.10's planner
   before 0.10.2. **NOT blocking.**
 
-- **O-X6 — `nitpick-time`: `SPAN_MODEL.md` N-20 said three `int128` sites where §5's table named one.**
+- ~~**O-X6 — `nitpick-time`: `SPAN_MODEL.md` N-20 said three `int128` sites where §5's table named one.**~~ *(Struck 2026-10-15, the ecosystem audit's E3-9: settled since 2026-10-01, and time's own row is struck.)*
   **SETTLED 2026-10-01 by `nitpick-time`'s TM-229**: §5's table is the authority, in an `int128` column of its
   own, read by `check_int128_sites`; defined in full at
   [`nitpick-time/meta/OPEN_QUESTIONS.md`](../nitpick-time/meta/OPEN_QUESTIONS.md). Cited on `BOARD.md` by 0.2.3a.
@@ -397,7 +397,7 @@ file existed — the check works.
   Evidence: `META/NITPICK/tests/findings/04-struct-envelope-inline-threshold/`, `benchmarks/10_particles/`.
   **REGISTERED at landing 94 (`05a7b02`, 2026-10-08) as S-130.**
 - **O-N36 — `nitpick-fuzz` M11 SESSION 9'S FINDINGS, F-033 … F-048, AND GEMINI'S OPTIMIZATION FINDINGS 01–03: A USE AFTER FREE,
-  TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** **PARTLY DISCHARGED at the pin `7e91730` (2026-10-09): F-037 (DEF-227), F-041 (DEF-229), F-047 (DEF-230, both steps) and `ty1657` (DEF-231) are fixed; STILL OPEN: F-048 (DEF-232), F-038 (DEF-233), F-034 (DEF-234), F-036 a (DEF-235), F-039 and F-042 (DEF-236), F-045 (DEF-237), F-046 (DEF-238), the documentation rows (DEF-239), `npkg`'s stage list (DEF-240), and Gemini's findings 01–03 (S-130).** **LANDED SINCE, NOT YET IN OUR PIN (2026-10-15): F-048 (DEF-232) in 112 (`958890a`, 2026-10-15), and F-038 (DEF-233) and F-046 (DEF-238) in 111 (`e50eaf4`, 2026-10-10), each verified here (`tools/ladder.py` MATCH, the control failing; `BOARD.md`'s notices 112 and 111). Each is discharged at the re-pin that carries it, the one after landing 115. The fuzzer's probes of the three move their verdicts there.** Found by M11 session 9 (MODULE, LEXICAL, AST,
+  TWO SILENT WRONG ANSWERS, A COMPILER HANG, INVALID IR, AND NINETY-SIX REFERENCE ROWS.** **PARTLY DISCHARGED at the pin `7e91730` (2026-10-09): F-037 (DEF-227), F-041 (DEF-229), F-047 (DEF-230, both steps) and `ty1657` (DEF-231) are fixed; STILL OPEN: F-048 (DEF-232), F-038 (DEF-233), F-034 (DEF-234), F-036 a (DEF-235), F-039 and F-042 (DEF-236), F-045 (DEF-237), F-046 (DEF-238), the documentation rows (DEF-239), `npkg`'s stage list (DEF-240), and Gemini's findings 01–03 (S-130).** **LANDED SINCE, NOT YET IN OUR PIN (2026-10-15): F-048 (DEF-232) in 112 (`958890a`, 2026-10-15), and F-038 (DEF-233) and F-046 (DEF-238) in 111 (`e50eaf4`, 2026-10-10), each verified here (`tools/ladder.py` MATCH, the control failing; `BOARD.md`'s notices 112 and 111). Each is discharged at the re-pin that carries it, the one after landing 115. *(2026-10-15 12:04, the author's word: the one re-pin is at landing 118, carrying 104 … 118, or at the newest landing on `main` when the adoption round starts, never before 115. The ecosystem audit's E3-17.)* The fuzzer's probes of the three move their verdicts there.** Found by M11 session 9 (MODULE, LEXICAL, AST,
   BUILD, TRAITS, VERIFICATION 1248–2351 and TYPE 661–2122, at the author's go on 2026-10-02, the week's last few percent), merged
   at `d44dfe3`. **M11 is complete: all 14 references, 10 419 of 10 419 lines; 3 385 claims, 2 872 tested.** Gemini's findings are in
   `META/NITPICK/tests/findings/` (its benchmarks at `93bcb66`). **Reproduced by the orchestrator 2026-10-02**, every program at

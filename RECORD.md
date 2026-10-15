@@ -13061,3 +13061,78 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   ```
 - **What the clone does not supply:** a dispatched worker reads `$WB/PLAYBOOK.md` with `WB` = `realpath "$REPO/.."` (worker skill §1). Since the dispatch names the Workspace `REPO`, this morning's playbook pass reaches every agent at once. Only the plugin's own files come from the clone: the skills with their scripts, the agents, the hooks, the reinject script and the manifest.
 - **The board** carries the standing check under its writer line, so that a successor meets it first.
+
+### W-22's ecosystem-wide audit after the sixth close: E3-1 … E3-17 filed and triaged, nine findings fixed here, the rest held by owner; the cost $7.78 — 2026-10-15 13:40 (shell time)
+
+- **The job:** `ecosystem-2026-10-15` on this seat's credits runner (Sonnet, 13:19:57–13:34:21, 236 of 300 turns), **$7.7755**, success.
+  - It is the first spend from this seat's $30 allowance, which runs to 2026-11-11, so $22.22 is left.
+  - **Filed** as `meta/audits/ecosystem-2026-10-15.md`, verbatim under a provenance header. Its BOARD line numbers predate the two lines added at 13:23.
+- **Its verdict:** the workbench's own documents are largely repaired since 2026-10-09. The libraries' pages are the weak part:
+  - tui, parse, sockets and posix still carry the SIGPIPE, index-trap and error-budget claims;
+  - their manifests still name LLVM 20.1.2, with no triple or datalayout row.
+- **The earlier findings:**
+  - of E2-1 … E2-15, 6 are FIXED and 9 STILL OPEN, the workbench half done in most;
+  - of the 16 that 2026-10-09 left open, 1 is FIXED (EK3), 1 MOVED (EU1, to PX-102) and 14 are STILL OPEN.
+- **Spot-checked here, each as stated:**
+  - E3-1, with D-305 read at `7e91730`;
+  - E3-2 (the two PD-66s);
+  - E3-3; E3-4 (W-17, W-18);
+  - E3-7 … E3-12; E3-17;
+  - E2-1 and E2-11.
+- **Fixed here, in this commit:**
+  - **E3-1:** PLAYBOOK §5's "no stack guard", a dated correction by D-305;
+  - **E3-2:** PLAYBOOK §7, a paragraph on `PD-n`. A PD is a draft label allocated ecosystem-wide in blocks, and an old label is cited with its repository;
+  - **E3-7:** LIBRARIES' time row now says cycle 0.3 closed and 0.4 next;
+  - **E3-8:** `PX-` is claimed in LIBRARIES' "Names taken" and in PLAYBOOK §7's prefix table;
+  - **E3-9:** the registry's Q-1 struck with PX-102, and O-X6 struck;
+  - **E3-10:** a dated note on PLAYBOOK's DEF-225 paragraph, citing time's 0.3.2a re-measurement at the pin;
+  - **E3-11:** the board's "Last updated" line, and T1's state (the fuzzer is its own manager's);
+  - **E3-12, the second half:** `tools/canary.md`'s series gains the `7e91730` row (56 903 B / 16);
+  - **E3-17:** O-N36's live line and the board's regex row now say 118.
+- **Held, each with its reason:**
+  - **The plugin's own files, until the relaunch or a pull coordinated with the Team.** Every Max session loads `npk` from the Team's clone, so an edit here makes the copies differ and stops the next dispatch:
+    - E3-2's plan-skill half;
+    - E3-3: the worker skill says "one commit per subcycle", but practice is a commit per plan step and then the record;
+    - E2-1: the T-113 story stands undated in the plan, worker and audit skills;
+    - E2-11: the auditor's "cannot write files" stands beside its `Bash`.
+  - **A guard's docstring needs the author's word in this session:** E3-12's first half. `tools/guard_compiler_tree.py:34-35` says the sandbox's `filesystem.denyWrite` is "configured nowhere", against Q-3, which was answered and applied 2026-10-01. Asked of him.
+  - **The rules, for the author through management:** E3-4, with EC8 and EC9.
+    - W-17 says nothing is branched or merged, but the Team seat's chains branch and are merged here.
+    - W-18 says a re-pin happens between cycles, but three re-pins were taken mid-cycle.
+    - **Recommendation:** this seat drafts W-29 on, as descriptions of approved practice: the branch-and-review domain, a tool repository with its own manager, and the mid-cycle adoption subcycle. It lands them unless he objects, together with E2-14's graph edge and E2-10's "26 cycles".
+  - **E3-13, the plugin's own cycle 0.2:** `meta/roadmap/0.2/0.2.7.md` has read RUNNING since 2026-09-03 (the author's), every box unticked. Its close is his, so it goes to him through management.
+  - **The workbench's remaining counts and maps, for the quiet point before the re-pin:**
+    - E2-10's counts;
+    - ES2 (README's map);
+    - ES3 (three registry rows);
+    - EC10 (three Q-6s);
+    - E3-11's in-flight rows: each is a column-shifted history, to be rewritten to the live state with the history left to git.
+  - **To each repository's next dispatch, by id, with this audit as its `AUDIT:` input:**
+    - **`nitpick-regex` 0.2.6:**
+      - E3-5: README's "exactly one arm";
+      - E3-9: O-N27's and O-N28's headings;
+      - E3-15: two bare hex values in `ci.yml`;
+      - EK2: the floating `@v4`;
+      - E3-3's push sentence in its ROADMAP.
+    - **`nitpick-time` cycle 0.4, at 0.4.0's acceptance:**
+      - E3-14: CURRENCY's tzdata 2026c, against 2026e;
+      - E3-16: O-X8 has no cycle;
+      - EK2;
+      - E3-3's push sentence.
+    - **`nitpick-parse`'s chain, on the Team seat:**
+      - E3-1's parse sites (its pin audit's PL-5);
+      - E3-14 (TOML v1.1.0);
+      - EC1 … EC3, E2-6, E2-15, ED2.
+
+      Told to the Team seat.
+    - **`nitpick-tui`, `nitpick-sockets` and `nitpick-posix` 0.0, on the Team seat in order, beside their pin audits:**
+      - E2-4's manifests;
+      - E2-6, E2-8, E2-13, E2-15;
+      - EC1 … EC3, EC7, EC12, ED2;
+      - E3-6 (posix's macro `failsafe`);
+      - EK1.
+    - **`nitpick-apps`, at its next touch:**
+      - E3-5 (PLAYBOOK's "arms");
+      - E2-10 (`APPS.md`'s counts);
+      - E3-8's prefix column.
+- **The cost line** goes to `management_0`.

@@ -279,7 +279,7 @@ fallible callee is `NITPICK-TYPE-042`: test each `Result` alone. *(`nitpick-time
 
 **`if (r.is_error) { #unreachable(); }` leaves `r.value` tainted at the pin `5fbaf4a`** (`NITPICK-TAINT-001`), while
 `r ?| #unreachable()` compiles. The compiler fixed it at `93bcb66` (landing 93, DEF-225, this workbench's O-N34); it holds
-here until the re-pin that carries that landing. *(`nitpick-time` 0.2.2's plan, 2026-10-01; landed 2026-10-05.)*
+here until the re-pin that carries that landing. *(`nitpick-time` 0.2.2's plan, 2026-10-01; landed 2026-10-05.)* *(2026-10-15, the ecosystem audit's E3-10: the pin `7e91730` carries landing 93, and `nitpick-time`'s 0.3.2a re-measured the statement form there. It compiles and runs on both legs (its `src/span/span.npk`), and O-N34 is struck.)*
 
 **A reference's wording of a diagnostic's cause is not its site.** `0xFF` is `NITPICK-LEX-003` at the literal's FIRST byte,
 where `LEXICAL_REFERENCE.md` §6.2 says "at the `x`". Measure a position before a plan, a test or a sentence quotes one.
@@ -496,7 +496,7 @@ that can stop the program is a defect.
   not have, because both wrap. Route every input-derived multiply through one
   checked helper, and grep for the ones that are not.
 - **No native recursion on attacker-controlled depth.** A recursive-descent
-  parser on `[[[[[…` blows the stack, and the language has no stack guard. Use
+  parser on `[[[[[…` blows the stack, and the language has no stack guard. *(Corrected 2026-10-15, the ecosystem audit's E3-1: false at every pin from `c3bdae2`. The compiler's D-305, settled 2026-09-18, makes a stack overflow "a controlled trap", `StackExhausted`, and every program's `failsafe` names it (§3 item 7). The rule below stands, because a trap still ends the program.)* Use
   an explicit stack with a stated depth limit — **and remember the walk, the
   compare, the print and the drop**, because a tree built by a depth-bounded
   parser and freed by a recursive drop overflows at the end of a *successful*
@@ -1342,8 +1342,16 @@ already used for *rule* prefixes inside spec documents (`S-1` in a safety doc,
 | `nitpick-regex` | `RX-` |
 | `nitpick-sockets` | `SK-` |
 | `nitpick-time` | `TM-` |
+| `nitpick-posix` (an application, under `nitpick-apps/`) | `PX-` |
 
 `D-nnn` always means the **compiler's** decisions and is never ours to amend.
+
+**`PD-n` is a plan's draft label, not a decision number.** A plan drafts its decisions as `PD-n`, and each becomes its
+repository's next decision number when the dispatching seat accepts it. The labels are now allocated ecosystem-wide, in
+blocks: each plan takes the next block after the last label used anywhere, the dispatching seat names the block in the
+dispatch, and the plan says so in its first commit (the Team brief's §8). Earlier labels were per repository and collide:
+`nitpick-time`'s PD-66 and PD-72 are not `nitpick-regex`'s. So cite an old label with its repository, as `nitpick-time`
+PD-66, and prefer the decision number it became. *(The ecosystem audit's E3-2, 2026-10-15; landed 2026-10-15.)*
 
 **A specification's internal rule prefix must not collide with `O-N`, `O-x` or
 `Q-` either.** Rule prefixes are single letters scoped to their document (`S-1`
