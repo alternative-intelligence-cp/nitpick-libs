@@ -12931,3 +12931,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Its reading is scoped:** §0's list and each step's own; the credits brief as a map only.
   - **Expected:** about 3 hours and 3.5–4 points, by the fit management approved.
   - **Budget:** the week at 16 % (the meter written by `nitpick-libs_21`, the same account), the five-hour window at 5 %, 126 GiB available, room 29.
+
+### F55, the advance notice for landing 113 (DEF-235 …): regex's `stack` field the one rename, as measured here; question 32, the re-pin's point — 2026-10-15 12:01 (shell time)
+
+- **F55 from `nitpick-compiler_38`:** five lower-priority rows. A keyword declared as any kind of name is PARSE-001, and there are TYPE-045, DERIVE-007 (new), RESOLVE-014 (new) and two texts. Its harness starts within the hour.
+- **Ours: one rename,** the field `Vec<Frame>:stack;` at `nitpick-regex/src/syntax/parse.npk:223` and its 12 uses (491, 616, 629, 643, 712, 717, 1430, 1458, 1525, 1527, 1547, 1551). Their sweep and this seat's of this morning agree to the line.
+  - Under 113 every importer of `parse.npk` is refused: 5 source files, 60 unit tests, and 4 rejection tests that lose 11 TYPE-079/TYPE-080 sites to the cascade. The rename restores all of them.
+  - Re-read at `0e4e8d7`: 0.2.5 did not touch the file, and the word's six other lines are comments. One of them (1138) names `p.stack`, so the rename's step takes it too.
+  - The rename stays its own step of 0.2.6, first in line for Sunday's release, or else the re-pin's regex adoption.
+- **The fuzzer's eight newly refused programs** (F-029's `k1`, `me0119`, `me0119b`, `as0043`, `tr0368`, `as0555`, `as0583`, `as0572`) are `nitpick-fuzz_2`'s. Of them, `me0119`, `me0119b` and `me0183` need their binding `buffer` re-spelled to keep their claims, and `as0572`'s claim is overturned (no `#[align]`, D-020). It is told.
+- **The queue now reads:** 113, 114 (DEF-250), 115 (DEF-251), 116 (DEF-252, the use-after-free), 117 (D-353's RESERVED code).
+- **question 32 raised: the re-pin's point.** The author put it after 115 at 07:42:39, before DEF-252 existed. DEF-252 now lands directly after 115.
+  - **Recommendation:** wait for 116 if it lands within about a day of 115, so one adoption round carries the memory-safety fix; otherwise re-pin at 115.
+  - **The default if unanswered is 115**, by his word. It goes to `management_0` for the author's next batch.
