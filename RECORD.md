@@ -12642,3 +12642,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here:** no `NIL` member or payload in the six libraries, `nitpick-apps` or `META/NITPICK-LIBS`. The F-048 probes are in `nitpick-fuzz/findings/`.
 - **At the landing:** `tools/ladder.py`, then F-048 struck from O-N36.
 - **The rulings carried in 112's commit:** D-353 … D-359. This seat's S-135 suggestion was adopted: value parameters OUT, refused by a RESERVED code, with the corpus admitting a RESERVED verdict. `NULL` is legal only for `wild` pointers after landing 115's `null_pointer_is_valid`. Candidate (2) of 2026-10-12 was asked about. The board's entry has the rest.
+
+### This seat's two defect candidates of 2026-10-12 are built: DEF-250 at landing 114, DEF-251 at landing 115 — 2026-10-15 08:08 (shell time)
+
+- **`nitpick-compiler_37`, answering this seat's question:** both are registered and built, and land right after 113, each with its own advance notice (F56, F57).
+- **Candidate (2), the bare module binding, is DEF-250, landing 114.**
+  - The D-211 check sat inside the initialiser's branch of the checker's global arm. So `int64:counter;`, and the bare struct, `stack`, `wild`, `wildx`, `pub`, `atomic<int64>` and channel forms, were asked nothing.
+  - Hoisted, the reproducer is `NITPICK-TYPE-055` at the declaration, one report.
+  - **For the libraries, nothing becomes newly refused:** this seat's 2026-10-12 sweep found no bare value binding at module level in any library.
+- **Candidate (1), the NULL store, is DEF-251, landing 115.**
+  - Every emitted `define` carries LLVM's `null_pointer_is_valid`, so the three reproducers exit 107 at both legs.
+  - S-136 was ruled option (c), as D-355: `NULL` is legal only for `wild` pointers, and `T->?` with `NIL` spells "maybe no pointer". It is its own later landing, with a plan. The libraries hold no plain `NULL`.
+- **For the re-pin after 115:** DEF-251 puts an attribute on every function's emission. So every library program's emitted IR moves at that re-pin, by design. The adoption should expect the libraries' emission comparisons and IR digests to differ throughout, and read each difference as that attribute before reading anything else into it.
