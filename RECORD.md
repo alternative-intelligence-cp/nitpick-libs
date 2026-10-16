@@ -13895,3 +13895,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - **TERM:** the clause is to carry raised, held and belt.
     - **Route, the Team's call within its week:** in T6av's fix round if T6av fails; otherwise as a named amendment to `0.0.0_tools/step4.patch` in T8's go, applied and recorded by the worker and checked by its work verifier. No re-verification round for this alone.
 - The board's s2 row records it. The chain line follows T6av's verdict.
+
+### PD-132's amendment agreed as two exact lines, for T8's go — 2026-10-16 08:43 (shell time)
+
+- **From `Ailp-team_7` (arrived 08:42:30): the term is agreed in substance, but its wording would stop T8's worker.** It measured three constraints statically at `cdddcf6`, in a scratch clone. Each was checked here at `cdddcf6`, read-only in the Team's clone:
+  1. `check_refs` reads every `O-[A-Z]n` and `Q-n` in prose, inline code included, against parse's own `OPEN_QUESTIONS.md`. That file defines O-N1 … O-N4 and Q-1 … Q-4, plus O-P1 … O-P12 by `_7`'s count; the headings read here show O-N1 … O-N4 and Q-1 … Q-4. So a bare "O-N9" or "Q-8" would be `undefined-question`, and the step-4 commit gate would fail.
+  2. `pointers.py` (0.0.0 block 0b, §1.8) reports UNDEFINED for any `[A-Z]-nn` in the patches' added lines that `meta/specs/` does not define. `WRITER_MODEL.md` stops at W-17, so "W-27" would make block 0b DIFF, and the worker would stop.
+  3. **The line count:** PD-132's reversal is five lines (`0.0.0_tools/step4.patch:119–123`). A longer clause would move every later `DECISIONS.md` line the sweeps print.
+- **AGREED verbatim (sent 08:43:35), the named amendment for T8's go:** `step4.patch` keeps `:119–:121`, and `:122–:123` become exactly:
+
+  ```
+  +pin's first run: the store is then a memory-safety defect, raised to the compiler;
+  +what rests on it waits for the fix (the workbench's rule); a decision adds a belt.
+  ```
+
+  - The two lines carry raised, held and belt, with no rule or question id in them.
+  - It is applied before step 4 and recorded file:line, old → new, with every block SAME. The execution record and T8's go give the reason as "the workbench's W-27" and the author's ruling of 2026-09-03, never with the tokens O-N9 or Q-8.
+  - `step4.patch:57`'s index new-hash goes stale, the one consequence `_7` found: no sweep pattern of 0.0.0 … 0.0.5 matches the new words, and `apply.py` applies with `git apply --index`, which does not read a text patch's postimage hash. **The worker leaves it**, its record names it as stale by this amendment, and the work verifier notes it. If any block hashes the patch file itself and DIFFs, the worker stops and reports.
+- This seat writes it into T8's go when T8 is due, after T6av's PASS and the merge.
