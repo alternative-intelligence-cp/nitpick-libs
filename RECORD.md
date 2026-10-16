@@ -14361,3 +14361,63 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Each agrees with RX-244 as landed at `084187a`. DEF-258 adds that a macro parameter so named is `PARSE-002` at its use, which RX-244 does not claim either way.
 - **The landing:** on branch `39-d360` off `34979dc`, with its harness on that commit itself (about 2 h 35 m). Its notice is to be verified with `tools/ladder.py` against the baseline written at `93c0ace`, plus the three read-only git checks. F63 (landing 121) follows.
 - **The board:** F62 filed newest first, above 119's entry.
+
+### Regex 0.2.5a VERIFIED PASS: `nitpick-regex` is the first library at `c9baa9e`; the worker's two findings land in the playbook; the chain's cost line goes to management — 2026-10-16 12:52 (shell time)
+
+- **The verifier** (`s1-nregex-0.2.5a-verify-work`, `sonnet`, dispatched 12:11; about 418 k tokens, 142 tool uses, 37.7 min by the harness): **`VERIFY nitpick-regex 0.2.5a PASS`**, on `084187a`.
+  - **The standard checks:**
+    - the porcelain is empty, before and after its run;
+    - `check_refs` is clean (99 markdown files; the leak scan read 557 of 557 tracked files), and `check_record` is clean;
+    - the harness line in the real checkout at `c9baa9e`: 347/347 in 310.7 s, GREEN.
+  - **(1) Hygiene:**
+    - `HEAD` = `ls-remote` = `084187a`, and `main` is the only local branch;
+    - `.git/config` holds no `user.*` and no `core.hooksPath`;
+    - there is no tag, stash or `lost-found`;
+    - the worker's scratch is gone, and there is no `__pycache__`. Its own run refreshed the ignored `.internal/rx120/`, as every run does.
+  - **(2) The six commits:**
+    - they are linear, each with the configured identity and one trailer pair;
+    - the steps' subjects are byte-identical to the plan's `Commit:` lines;
+    - `50ac35e` is the one hunk `@@ -27,3 +27,3 @@`;
+    - each file set is its patch's: 3, 12, 1 and 4 files.
+  - **(3) The replays:**
+    - each step's committed patch, applied by `apply.py` at its parent, gives its commit's tree exactly. The 22 `@@DATE025A@@` positions read 2026-10-16;
+    - step 2's ORIGINAL patch over `dfa4327` differs from `33ffa97` in one line, `meta/DECISIONS.md:6726`, §6 against §7, and in nothing under `src/`, `tests/` or `harness/`;
+    - plan verification 2's SAME carries to the committed tree, and blocks 0a, 0b, 0r, 1, 2, 3, 4 and 5, re-run through the comparator, read SAME.
+  - **(4) The amendment's facts,** swept over all 170 keywords at both pins:
+    - as a function's, struct's or module's name, exactly `acquire`, `any`, `nit` and `trit` compile at `7e91730`, and all 170 are `PARSE-001` at `c9baa9e`;
+    - the empty-name finding reproduced: two `define … @"npk.B_two_fns."`, and llc's *"invalid redefinition"*;
+    - `func:f<comptime>` is `PARSE-001` at both pins, and a generic parameter accepts the other 169;
+    - variadics and macro parameters accept all 170 at both pins;
+    - a local `T:name` is `PARSE-002` for all 170 at both pins.
+    - **RX-244 is exact.** `SAFETY.md` §7 holds S-17 with `fold_expr` and `fold_string_builtin`, and §6 is right for the `Match` fields.
+  - **(5) The full runs:** 347/347 at `c9baa9e` over `084187a` (310.7 s), and 347/347 at `7e91730` over `dfa4327` in a stand-in (310.1 s, rx120's `950bb1d` control run, not skipped). Each was preceded by `free -g` at 120 GiB.
+  - **(6) CI, per job,** both byte counts asserted: every asserted line is present, and no FAIL line.
+  - **(7) The decision log:**
+    - only additions, +42 and +52;
+    - RX-244 (`:6657`) and RX-245 (`:6694`) under the batch heading, after RX-243;
+    - `check_refs` clean at all six commits. Its stand-in's two broken `../` links were artefacts, gone once the workbench files were copied in.
+  - **(8) The record:** the amendment, both stale index lines and the pointer fix with its order are all there, and so are every block's verdict and every full run. The cost line's slip is as disclosed (reads of 122, 120, 120, 120 and 120 GiB; 118 at block 0b), and the README's six boxes are ticked.
+  - **(9) Block 5:** both sweeps were re-run at `0c32e83`, and the 13 counts, the 192 and 42 totals and the 54-line control are identical. Every 19th and every 8th saved row, fifteen in all, holds its class. Blaming the 234 rows gives exactly the record's "own" counts.
+- **Its non-blocking items, ruled here:**
+  - the cost line's "118 to 122 GiB": **to 0.2.6**, a dated correction;
+  - **RX-245's "`m.end` read 3"** (`meta/DECISIONS.md:6705`), where the program computes `m.end − m.start`, and RX-134's was 4 − 1. A landed text, so it is never rewritten. **To 0.2.6:** a dated note or a superseding line, the close's choice;
+  - the plan's own lines 34 and 268 keep §6. That is the plan's dated text, disclosed in the record, and needs no action;
+  - the stale index lines and `CLAUDE.md`'s `c970483` bullet (`:445` at `084187a`) are as ruled at the report, the bullet **to 0.2.6**;
+  - RX-244's "not refused" is exact, and the empty-name detail lives in the record. No action.
+- **Its own slip:** its cost line says "about 55 minutes of wall clock (12:11 to 13:06)". Its run lasted 37.7 min by the harness, and this seat read 12:49:57 just after its report. **A time not taken from `date`, in a report that commits nothing,** so it is recorded here only.
+- **Read here at 12:52:** the porcelain is 0, `HEAD` = `ls-remote` = `084187a`, and there is no `harness/__pycache__`.
+- **The advance:** 0.2.5a is DONE and verified, and the claim stays `CLAIMED s1` on regex. **Next is 0.2.6, the cycle's close.** Its plan, which no file holds yet, goes in management's Sunday release, with nothing new on Max before it. Its planner brief takes management's sizing note of 12:13.
+- **`LIBRARIES.md`:** regex's row now reads 0.2.5a verified, the first library at `c9baa9e`, decisions to RX-245, with its old text kept in a *(Was …)* note.
+- **`PLAYBOOK.md` gains the worker's two findings,** under *"Landed 2026-10-16 (`nitpick-regex` 0.2.5a's work …)"*:
+  - a keyword-named declaration that compiles proves only that it was not refused, so declare two of a kind;
+  - check each citation, not each document.
+- **The chain's cost,** the six agents of 0.2.5a by the harness's token counts:
+  - the planner (`opus`, 05:53–08:23, under `_19`): about 730 k;
+  - plan verification 1 (`sonnet`, 08:30–09:15, under `_19`): about 499 k;
+  - fix round 1 (`opus`, 09:25–10:21): 615 k;
+  - plan verification 2 (`sonnet`, 10:24–10:55): 428 k;
+  - the worker (`opus`, 11:03–12:04): about 796 k;
+  - the work verifier (`sonnet`, 12:11–12:49): about 418 k.
+  - **That is about 2.14 M of Opus over three agents and about 1.35 M of Sonnet over three,** plus the two orchestrators' own turns. Management's dollar figures (12:13) give the share: at or a little over the allocation.
+- **The meter at 12:51:** written by `nitpick-fuzz_3`, with `account_check` matching. The week is at 44 % and Fable at 33 % (07:30), so the room is 17.5 by the raw formula and about 21 by DR-56, with Fable about 40 %. **The hold is in force:** nothing of the libraries' is in flight or queued on Max. 120 GiB available.
+- **The cost line goes to `management_1` after this commit.**

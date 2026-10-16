@@ -2188,3 +2188,17 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   for 166 of the 170 at `7e91730`, not for all of them, and `comptime` is refused as a generic parameter. A claim measured
   with one member of a set (`end`) is still a claim about the set. *(`nitpick-regex` 0.2.5a's fix round and its
   re-verification.)*
+
+**Landed 2026-10-16 (`nitpick-regex` 0.2.5a's work, at its work verifier's PASS):**
+
+- **A keyword-named declaration that compiles proves only that it was not refused. Declare two of a kind to learn what name
+  it took.** This morning's first bullet, for a field, holds for a declaration's own name. At `7e91730`, `func:acquire`
+  alone compiles and runs 0 / 0. Beside `func:any`, both define `@"npk.<module>."`, and llc refuses the second as a
+  redefinition: the EMPTY name, the shape DEF-235 closed for a field. This seat's brief had said the four exempt keywords
+  "compile as those names". The worker measured two together before writing the amendment, and the work verifier
+  reproduced it. *(`nitpick-regex` 0.2.5a's work.)*
+- **Check each citation, not each document: the same section cited rightly beside it proves nothing.** RX-245 cited
+  `SAFETY.md` §6 twice: rightly for the `Match` fields, and wrongly for the `comptime` wall, which is §7. Two plan
+  verifications, a design pass and every block passed it, since no comparator sees a citation (the 0.2.0 bullet above).
+  The worker found it by reading each of the twenty added lines that carry a pointer against the documents, before step
+  2's commit. *(The same.)*
