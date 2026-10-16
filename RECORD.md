@@ -14483,3 +14483,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the landing texts name regex's own tree at `084187a` as what the sweep reads, with the rename since `dfa4327` noted once;
   - landing 121's texts and commit are unchanged, as this seat asked. No reply was needed.
 - **Our own measurement agrees:** at our pin, all 188 of regex's files reach the type checker, and none of them carries a `PARSE` or `LEX` code (F63's entry).
+
+### Notice 121 verified: D-361 and the `#ptr_add` confinement as F63 said; nothing of ours refused; one count to query; the baseline for 122 written — 2026-10-16 18:59 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 18:52:15):** `f9a9428`, landing 121 (1.6.1e, D-361 and the `#ptr_add` confinement). A value of wild provenance enters a plain pointer slot, or an `Optional` of one, only through `=>! T->`; anything else is `NITPICK-TYPE-097` at the value. S-138 is LANDED, its (b) still open. Built and landed by `_39`: committed 16:16:52, pushed 18:50 after its harness.
+- **The ladder:** MATCH against the baseline for 121, with the one-digit-off control failing. `npkc.ll` +21 747 B, `npkc.o` +8 616 B and `npkc` +7 168 B; `npkrt.o`, `builder.o` and `builder` unchanged. The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught. The extracted baseline was identical to the block self-checked at `c18a6b8`.
+- **The git checks,** read-only and with no fetch:
+  - parent `0156326`, one commit, authored and committed 2026-10-16 16:16:52;
+  - 9 files under `src/`, 0 under `runtime/` and 0 under `bootstrap/`; 25 in all, the two named tests among them;
+  - `main` = `origin/main` = `f9a9428`.
+- **Their harness and sweep,** as the board's entry gives them: 55 of 55 on the landed SHA; parity 2 103; 7 121 obligations matching; 6 820 rows, 6 705 shared, zero verdicts moved, three rows added (the new predicate's own); the floor's 388 unmoved. 5 169 files: 17 appeared (the new rejection file's twelve, the fuzz corpus's 5) and 0 vanished. The libraries and applications: 4 033 programs, 1 876 byte-identical, 2 153 refused by both, 0 different, 4 newly refused (the fuzz four), and 0 sites of ours. The sums were checked here.
+- **Ours:** 0 sites, by F63's census, and none of the seven trees has moved since: each `HEAD` is the census's, and each tree is clean. Their census at the landed tree agrees. **So 121 is nothing to adopt.**
+- **The renamed-copy leg retires** with this landing, as agreed at 16:29.
+- **One count to query, not to adopt:** row 121 (`meta/NOTICES.md:190`, and the roadmap README's 1.6.1e row) says "the compiler's own twelve copies". F63's row (`:189`) says thirteen, and the commit's `src/` diff adds thirteen pointer crossings: twelve wild table handles, and `assoc_binding_of`'s `impl_at(t, i)` in `type_trait.npk`. It is their tree, and nothing of ours turns on it. It goes to `_39` with this seat's next message, F64's census, not in a message of its own.
+- **The baseline for 122 is written** (121's rows), generated from the transcription by script, and self-checked by extraction from the edited board: identical to the generated block. The ladder against an all-unchanged notice of the new values MATCHes, with the control failing.
+- **No floor byte, so no re-pin is forced;** the pin stays `c9baa9e`.
+- **Next from them:** F64, for landing 122 (D-357, a `comptime func:` at compile time only, `NITPICK-TYPE-098`), with its census, before it lands.
+- **The machine:** 119 GiB available. Nothing of the libraries' is in flight or queued on Max, by management's hold until Sunday's release.

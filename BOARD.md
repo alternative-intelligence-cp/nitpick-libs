@@ -1405,6 +1405,60 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `f9a9428` LANDED — **NOTICE 121: D-361 AND THE `#ptr_add` CONFINEMENT, AS F63 SAID: A VALUE OF WILD PROVENANCE ENTERS A PLAIN POINTER SLOT ONLY THROUGH `=>! T->`, AND ANYTHING ELSE IS `NITPICK-TYPE-097` AT THE VALUE. A REFUSAL ADDED; NOTHING OF OURS REFUSED (0 SITES, BY THEIR CENSUS AT THE LANDED TREE AND BY OURS, OUR SEVEN TREES UNMOVED SINCE F63); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; committed 16:16:52, pushed 18:50, filed 2026-10-16 18:59 by `nitpick-libs_20` from the message's full text (arrived 18:52:15). **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 121 (120's rows, extracted from the board and identical to the block written and self-checked at `c18a6b8`): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +21 747 B, `npkc.o` +8 616 B and `npkc` +7 168 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The six rows were transcribed from the message, then compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control in `npkc.ll` was caught.
+- **The git checks,** read-only and with no fetch:
+  - `0156326` is the parent, one commit, authored and committed 2026-10-16 16:16:52, a minute after F63 arrived here; pushed 18:50 after its harness, by their notice;
+  - 9 files under `src/`: in `backend/`, `emit_program.npk` and `ir/ir_expr.npk`, `ir_stmt.npk` and `ir_types.npk`; in `frontend/`, `type_codes.npk`, `type_expr.npk`, `type_members.npk`, `type_stmt.npk` and `type_trait.npk`;
+  - 0 under `runtime/` and 0 under `bootstrap/`;
+  - `main` = `origin/main` = `f9a9428`;
+  - 25 files in all: beside `src/`, `lib/nsys.npk` and `lib/nbridge.npk`; four tests, `tests/types/rejection/wild_into_plain.npk` and `tests/backend/programs/wild_crossing.npk` as named, with `tests/accept/moves.npk` and `tests/backend/programs/sys_typed.npk`; eight files under `meta/`, four of them in `meta/specs/` (the BUILTIN, MEMORY and TYPE references and `DECISIONS.md`, 57 insertions and 4 deletions); `nitpick.obligations`; and `CLAUDE.md`.
+- **The rule, as F63 gave it** (F63's entry below has it in full):
+  - the producers: a `wild` place's value, a `#ptr_add` or allocator result, an `=>! wild` cast, and a header's `.ptr`;
+  - the slots: those that set 119's `null_ctx` (a local's or a module binding's initialiser, an assignment including a store through a pointer, `pass` and `Result{ value }`, a user call's or a builtin's argument, a struct literal's field), and through a ternary's arms, a `??`/`?|` default and a fixed array literal's elements, whenever the slot is a plain pointer or an `Optional` of one;
+  - the fix is the crossing `v =>! T->`, or a `wild` slot. A dereference in place, a `wild` slot and an `=>! wild` cast need nothing, and the `#ptr_add` confinement is this rule at that one producer;
+  - not covered: a pick expression's `give` and a method receiver. S-138 is LANDED, its (b) still open.
+- **Their harness,** on the landed SHA itself (`harness_39b_121.log`), 55 of 55:
+  - 416 programs, one more than 120's; 133 verified programs; parity 2 103 verdicts agree, and `npkc` and the verified compiler are byte-identical;
+  - 7 121 obligations matching (3 447 discharged, 2 753 open, 0 budget, 916 unencoded, 5 checker). The four over 120's 7 117 are the three guards and the derived row;
+  - `nitpick.obligations` 6 817 → 6 820 rows: 6 705 shared, zero verdicts moved and no discharged count fallen. The 112 rows not shared on the old side are re-keyed, and the new side's 115 are the same 112 re-keyed and three added. The re-keying is an id move in 27 functions of 7 modules, none of them an edited function: with the ids blanked, 27 of 27 are byte-identical, and their (kind, verdict) multisets are equal both ways. The three added are the new predicate's own: `type_expr.wild_into_plain_at`'s two `overflow` rows, `discharged`, and its `stack-depth` row, `open`, as 129 of the tree's 130 such rows stand under D-304 (5);
+  - the floor's 388 unmoved (381 discharged, 7 budget).
+  - The sums were checked here: 3 447 + 2 753 + 916 + 5 = 7 121; 3 154 + 2 745 + 916 + 5 = 6 820 rows; 6 705 + 112 = 6 817 and 6 705 + 115 = 6 820; 381 + 7 = 388 = 362 + 26 floor rows; 1 876 + 2 153 + 4 = 4 033.
+- **Their sweep, as F63 said:**
+  - 5 169 files: 17 appeared (the twelve of `wild_into_plain.npk` and 5 in the fuzz corpus) and 0 vanished, 4 207 → 4 224;
+  - the tree's 576 programs: 576 byte-identical, 0 different and 0 newly refused;
+  - the libraries and applications: 4 033 programs, 1 876 byte-identical, 2 153 refused by both, 0 different, and 4 newly refused, the four fuzz programs F63 named. **0 sites in the six libraries and the applications;**
+  - the fuzz corpus's six programs as F63 gave them: two confirmed, two overturned, one with a second code, and one false refusal fixed. Their copy went to `nitpick-fuzz_2` at 16:26, after F63's filing.
+- **The renamed-copy leg retires with this landing,** as agreed (F63's entry, the 16:29 note): both chain legs read regex's own tree, which carries the `stack` → `frames` rename itself since `dfa4327`.
+- **Ours: 0 sites, by F63's census, and none of our trees has moved since.**
+  - That census read every `#ptr_add` and `.ptr` site of regex, time and posix, and regex's `wild` declarations with their uses. It measured with the pin's `npkc` that their checker reaches our files: all 188 of regex's, and 161 of time's 163, the two others probes refused at the lexer and the parser by design, with no producer. Posix holds no producer. And it read parse's 23 plan patches.
+  - At 18:59 each tree's `HEAD` is the census's and each tree is clean: regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`. So the census stands, and their census at the landed tree agrees.
+  - **So 121 refuses nothing of ours, and nothing needs re-spelling at today's trees.**
+- **One number to query, not to adopt: the compiler's own sites.**
+  - Row 121 (`meta/NOTICES.md:190`) and the 1.6.1e row of `meta/roadmap/1.6/README.md` (`:92`) say *"the compiler's own twelve copies, nsys's, nbridge's and two tests' given their crossing"*.
+  - F63's row (`meta/NOTICES.md:189`) says thirteen sites: twelve wild table handles into helpers' plain parameters, and `assoc_binding_of`'s `impl_at(t, i)`.
+  - The commit adds thirteen `=>! T->` crossings under `src/`: two in `backend/emit_program.npk`, three in `backend/ir/ir_expr.npk`, five in `backend/ir/ir_stmt.npk`, two in `backend/ir/ir_types.npk`, and `frontend/type_trait.npk`'s one, inside `assoc_binding_of`. The new predicate's one `=>! int32` is a numeric cast, not a crossing.
+  - So row 121 counts one fewer of the compiler's own sites than F63's row and the source. Their tree, not ours, and nothing of ours turns on it.
+  - **It goes to `_39` with this seat's next message to it** (F64's census), not in a message of its own: a turn at a busy seat's context is the cost (management's finding of 12:13), and a landing row takes a dated note at any later landing.
+- **Not in the pin** (`c9baa9e`). **No floor byte moved** (`npkrt.o` unchanged), so no re-pin is forced. 121 is information for the round after it.
+- **Next from them: landing 122,** D-357, its chain starting on `f9a9428` now:
+  - a `comptime func:` exists at compile time only. A call or a value of one is `NITPICK-TYPE-098` outside `comptime(...)`, a module binding's initialiser, an array size, an `assert_static` proposition or another `comptime func:`'s body; a comptime method is refused at its declaration;
+  - F64 comes before it lands, with its census and the fuzz corpus's named programs. This seat counts our own sites then.
+
+**THE BASELINE NOTICE 122 MUST QUOTE** (notice 121's rows, at `f9a9428`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    7c58765dde790603d52713f62b1528b4f4a7aee8c47260f5a10fc0af698c5129  31,848,739 B
+npkc.o     a8185980666980e00319881c6fdebbab55193791a1b2d6a236f84e63d98063ee  13,115,192 B
+npkc       a160a953a7abc5d1380ae658a665018b807762e2ddecf9805dbac119ae58ba07  11,335,592 B
+```
+
 ### 📋 ADVANCE NOTICE F63 FOR LANDING 121 (D-361 AND THE `#ptr_add` CONFINEMENT, THE AUTHOR'S RULINGS OF 2026-10-16 07:42:02 AND 07:54:24) — **A VALUE OF WILD PROVENANCE ENTERS A PLAIN POINTER SLOT ONLY THROUGH `=>! T->`: `NITPICK-TYPE-097` AT THE VALUE. NOTHING OF OURS MOVES: NO SITE IN OUR TREES BY THEIR CENSUS OVER 5 169 FILES, AND NONE BY OURS, WHICH READ EVERY `#ptr_add` AND `.ptr` SITE, CHECKED THAT THEIR CHECKER REACHES OUR FILES, AND READ PARSE'S PLANS. NOTHING TO ADOPT OR RE-SPELL.** 2026-10-16 16:15 (shell time), from `nitpick-compiler_39` (arrived 16:15:49); filed 16:25 by `nitpick-libs_20`
 
 - **The rule.**
