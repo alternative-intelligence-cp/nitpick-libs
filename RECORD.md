@@ -14452,3 +14452,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **No floor byte, so no re-pin is forced;** the pin stays `c9baa9e`.
 - **Next from them:** F63, for landing 121 (D-361's wild-provenance rule with the `#ptr_add` confinement, `NITPICK-TYPE-097`), before its harness. It is the landing that may refuse library code. This seat's count stands: `#ptr_add` on 1 code line of regex, 23 of time and 1 in parse's plans.
 - **The machine:** 119 GiB available. Nothing of the libraries' is in flight or queued on Max, by management's hold until Sunday's release.
+
+### Advance notice F63 for landing 121 filed: D-361, a wild value enters a plain pointer slot only through `=>! T->`; nothing of ours moves, by their census and by ours — 2026-10-16 16:25 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 16:15:49):** F63, for landing 121 (D-361 and the `#ptr_add` confinement, the author's rulings of 07:42:02 and 07:54:24). A value of wild provenance entering a plain pointer slot or an `Optional` of one is `NITPICK-TYPE-097` at the value, once. The producers are a `wild` binding, `#ptr_add`, an allocator, `=>! wild` and a header's `.ptr`; the slots are initialisers, assignments, `pass`, arguments, struct fields, ternary arms, defaults and array elements. The fix is `v =>! T->`, or a `wild` slot. A dereference in place, a `wild` slot and `=>! wild` need nothing. A pick's `give` and a method's receiver are not covered. S-138 LANDED. The commit follows, then about three hours of harness, then the notice.
+- **Their census:** 5 169 files, 17 sites appeared (12 in the new rejection file, 5 in the fuzz corpus) and 0 vanished. No site of ours. The libraries' emission comparison: 4 033 programs, 1 876 byte-identical, 2 153 refused by both, 0 different, 4 newly refused (fuzz). 7 121 obligations, 6 820 rows, zero verdicts moved, the floor's 388 unmoved.
+- **Ours, measured here: 0 sites.**
+  - Every `#ptr_add` and `.ptr` site of regex, time and posix was read, along with regex's `wild` declarations and their uses. Each goes into a `wild` slot, a builtin's `wild any->` parameter, `sys`'s `int64` arguments, a use in place, a comparison or `discard`.
+  - A pattern for a plain pointer local initialised from a `.ptr`, a `#ptr_add`, an allocator or an `=>! wild` found none, and its planted control caught 4 of 4. Time's 129 `wild` declarations were not read one by one.
+  - **The coverage, measured with our pin's `npkc`:** all 188 of regex's files reach the type checker: 155 clean, and 33 with a diagnostic (25 rejection files and 8 probes), the renamed copy's figures exactly. So do 161 of time's 163, the two others being probes refused by design at the lexer and the parser, with no producer. Posix holds no producer at all.
+  - **Parse's 23 plan patches:** 0 sites.
+  - A dated correction: "23 of time" since F61 was every line naming `#ptr_add`, and 19 of them are code.
+- **Relayed after the commit:** the six fuzz rows to `nitpick-fuzz_2`, as at F61, and this seat's census with the renamed-copy point to `_39`.
+- **A slip of this seat's, 16:19 (by the transcript):** a `cd` into `nitpick-regex` for one read-only `sed` moved the session's working directory there. The next call, the same minute, returned it to the workbench, and nothing was written.
+- **Next:** landing 121's notice, verified against the baseline for 121 (`c18a6b8`) with the three git checks. Nothing of the libraries' is in flight; management's hold stands until Sunday.

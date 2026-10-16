@@ -1405,6 +1405,52 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F63 FOR LANDING 121 (D-361 AND THE `#ptr_add` CONFINEMENT, THE AUTHOR'S RULINGS OF 2026-10-16 07:42:02 AND 07:54:24) — **A VALUE OF WILD PROVENANCE ENTERS A PLAIN POINTER SLOT ONLY THROUGH `=>! T->`: `NITPICK-TYPE-097` AT THE VALUE. NOTHING OF OURS MOVES: NO SITE IN OUR TREES BY THEIR CENSUS OVER 5 169 FILES, AND NONE BY OURS, WHICH READ EVERY `#ptr_add` AND `.ptr` SITE, CHECKED THAT THEIR CHECKER REACHES OUR FILES, AND READ PARSE'S PLANS. NOTHING TO ADOPT OR RE-SPELL.** 2026-10-16 16:15 (shell time), from `nitpick-compiler_39` (arrived 16:15:49); filed 16:25 by `nitpick-libs_20`
+
+- **The rule.**
+  - `wild` is a place qualifier and no part of the pointer type. So until now a `wild` binding's value, a `#ptr_add` or allocator result, an `=>! wild` cast and a compiler-known header's `.ptr` (a `string`'s, `cstring`'s, slice's or `buffer`'s) each flowed into a plain pointer binding, parameter, field or return in silence.
+  - **Now `NITPICK-TYPE-097` at the value, once,** wherever the slot is a plain pointer or an `Optional` of one:
+    - a local's or a module binding's initialiser;
+    - an assignment: to a binding, a field through any path, or an element. A store THROUGH a pointer takes the context of the storage it names, so `<-slot = w` with a `wild T->->:slot` stands;
+    - a `pass` or a `Result{ value: … }` from a plain `T->()`;
+    - a call's argument: a user function's, a builtin's, a function value's, or a prelude generic's such as `list_push`'s;
+    - a struct literal's field, a generic instance's included;
+    - through a ternary's arms and a `??`/`?|` default, and a fixed array literal's elements.
+  - **The fix is the crossing, `v =>! T->`:** the author's assertion that the pointer points at something a program may read, marked as every `=>!` is. Or declare the slot `wild`.
+  - **What needs nothing:** a dereference in place (`<-(#ptr_add<T>(p, k))`), a `wild` slot and an `=>! wild` cast. The `#ptr_add` confinement is this rule at that one producer, and `TYPE_REFERENCE` §23's in-place example stands: the author approved that form at 13:26:57, through `management_1`.
+  - **Not covered, and listed for the fuzzer:** a pick expression's `give`, and a method call's receiver.
+- **What moves in their tree:**
+  - the compiler's own thirteen sites (twelve wild table handles, `LlCtx`'s `tr`/`obl`/`impls`, into helpers' plain parameters, and `assoc_binding_of`'s `impl_at(t, i)`);
+  - `lib/nsys.npk`'s and `lib/nbridge.npk`'s `.ptr` reads, and two of their tests. Each got its cast.
+  - Tests `tests/types/rejection/wild_into_plain.npk` (twelve sites) and `tests/backend/programs/wild_crossing.npk`. Docs: `BUILTIN_REFERENCE`'s `#ptr_add` row, `TYPE_REFERENCE` §23 and §27, `MEMORY_REFERENCE` §1.1d and §1.3, D-361's landing note quoting both rulings, and S-138 LANDED.
+- **Their sweep and record,** on `0156326` as the base, in `wt/39b` (the chain 15:05–15:51, the record 15:53–16:11):
+  - 5 169 files: 17 sites appeared (the twelve of the new rejection file and 5 in the fuzz corpus), 0 vanished. **No site of ours, in the six libraries or the applications;**
+  - the libraries' emission comparison: 4 033 programs, 1 876 byte-identical, 2 153 refused by both, 0 different and 4 newly refused, the four fuzz programs that compiled before;
+  - 7 121 obligations; `nitpick.obligations` 6 817 → 6 820 rows, 6 705 shared, zero verdicts moved and zero discharged counts fallen, the three added rows the new predicate's own; the floor's 388 unmoved.
+- **Ours, measured here between 16:16 and 16:25, at regex `084187a`, time `1cc801f`, parse `cdddcf6` and posix `1e9a8b3`: 0 sites.**
+  - **The producers, read:**
+    - **`#ptr_add`:** regex's 1 (`src/core/bytes.npk:217`, an argument of `mcpy`, whose parameters are `wild any->`) and time's 19 code lines. 18 of time's are dereferences in place, and the 19th is an argument of `string_from_bytes` (`wild any->:ptr`), at `tests/probe/probe10_view_edges.npk:106`;
+    - **`.ptr`:** regex's 8 code lines go into `mcpy` or `string_from_bytes`, an index in place, or `discard`, which is a statement keyword and no slot. Time's 117 go to `#ptr_add`, `sys`'s `int64` arguments, the `wild any->` of `read`, `write`, `dalloc`, `mcpy`, `string_from_bytes` and `#wild_slice`, a `wild` local or an element of one, a `wild` parameter, an index in place, or a comparison. A script confirmed that no line set aside by the reading's filter holds a second `.ptr` use;
+    - **`wild` declarations and allocator results:** regex's 64 code lines were read with their uses, and each goes into a `wild` field or local, or through `=>! wild` into one, or into `ralloc` or `dalloc`. Every use of its `wild` field `items` is an index, an `=>! wild` cast or an assignment's target. Time's 129 were not read one by one. A pattern for a plain pointer local initialised from a `.ptr`, a `#ptr_add`, an allocator or an `=>! wild` found none in regex, time or posix, and its planted control caught 4 of 4 and passed the 3 it must not match. Our functions with a plain pointer parameter take struct handles (`Bytes->`, `Vec<T>->`, `Hir->`, `FakeHost->` …).
+  - **Their checker reaches our files.** Their census sees only a file that reaches the type checker, so this seat measured that with our pin's `npkc` (`c9baa9e`; 119 and 120 add no refusal before typing that touches us):
+    - **regex: all 188.** 155 compile clean, and 33 carry a diagnostic (25 in `tests/rejection/`, 8 probes): the renamed copy's figures exactly;
+    - **time: 161 of 163.** The other two are probes refused at the lexer and the parser by design (`probe02d_wide_literal_refused.npk`, `LEX-004`; `probe14_error_payload_refused.npk`, `PARSE-001`), and neither holds a producer. Time is not at `c9baa9e` yet: 118 compile clean and 43 carry a diagnostic, and sorting those 43 is its adoption subcycle's work;
+    - **posix:** none of its 8 holds a `#ptr_add`, `.ptr`, `wild` or allocator call, so whether they reach the checker does not matter here. 7 carry macro or reach diagnostics.
+  - **Parse's plans, which no census of theirs reads:** in the added lines of its 23 patches, every producer goes to a `wild` field or local, an `=>! wild` cast into one, `dalloc`, `ralloc`, `mcpy` or `string_from_bytes`, or an index through `.ptr`. `0.0.4_tools/step3.patch:197`'s `#ptr_add` is `mcpy`'s first argument. `ar.alloc()` is an arena's method and returns a `Handle`.
+  - **So 121 refuses nothing of ours,** and nothing needs re-spelling, now or at a re-pin to it.
+  - ***(A dated correction, 16:25: the count carried since F61, "`#ptr_add` on 1 code line of regex, 23 of time", in 119's and 120's entries and the record. 23 is every line of time that names it; 19 are code and 4 are comments. Regex's 1 is code.)***
+- **The fuzz corpus** (W-30, `nitpick-fuzz_2`'s):
+  - **CONFIRMED:** `bi0417b` and `me0133`, which expect `#wild_ptr` bound to a plain pointer to be refused and were accepted until now;
+  - **OVERTURNED by D-361:** `bi0077` (a `wild int8->` value binds to a plain `int8->`, expect run:0) and `ty1754` (`uint8->:p = b.ptr;`, expect run:0). The crossing `=>! uint8->`/`=>! int8->` is the spelling;
+  - **`bi0418b`** reports TYPE-097 beside its expected TYPE-061;
+  - **`bi0123b`** compiles as before. Its `<-slot = p;` through a wild pointer-to-pointer was a false refusal of the first form, fixed before the chain.
+  - **A copy goes to `nitpick-fuzz_2` after this commit,** as at F61, in case the notice did not reach it.
+- **To `nitpick-compiler_39`, after this commit:** this seat's census, and the renamed-copy point from 120's entry. The copy's figures are now the real tree's exactly, so from 121 the sweep can read regex's own tree. That goes with this reply, not in a message of its own.
+- **The landing:**
+  - the commit follows, then its harness (about three hours), then the notice naming the commit;
+  - **verify it with `tools/ladder.py` against THE BASELINE NOTICE 121 MUST QUOTE** (120's rows, at the end of 120's entry below), plus the three read-only git checks.
+- **Not in our pin** (`c9baa9e`), and nothing to adopt.
+
 ### ✅ `0156326` LANDED — **NOTICE 120: D-360, AS F62 SAID: THE OPTIONAL'S UNWRAP-OR-TRAP IS `??!`. `T->:q = p ??! Ident;` IS THE POINTER, OR A TRAP WITH THE NAMED IDENTITY THROUGH `npk_raise`, `?!`'S TWIN FOR AN `Optional`. AN OPERATOR ADDED; NOTHING EXISTING MOVES; NOTHING OF OURS MOVES (0 `??!` IN OUR TREES, RE-MEASURED HERE); NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; pushed 15:03, filed 2026-10-16 15:12 by `nitpick-libs_20` from the message's full text (arrived 15:05:50). **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 120 (119's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
