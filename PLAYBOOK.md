@@ -325,6 +325,14 @@ on a `never fails` callee compiling as the control; landed 2026-10-15.)*
 compiler's `BUILTIN_REFERENCE.md` lists it in the planned `nlibc` string surface, whose names resolve only where a marked
 table also lists them. A string's length is `string_bytes(s).len`. *(The same close and measurement; landed 2026-10-15.)*
 
+**Through a generic bound, or on a pointer receiver, call a trait method with the dotted form.** `f.step()` reaches the
+impl through a bound whether `step` takes `Self` or `Self->`, from the compiler's landing 118 (DEF-253 and DEF-254, both
+fixed there; at `7e91730` the `Self->` form through a bound names a symbol nothing defines, and `llc` refuses the module).
+The qualified form `Src.step(f)` is `NITPICK-TYPE-019` through a bound, by value or by pointer, and on a concrete pointer
+receiver; only a concrete by-value receiver compiles it, where `TRAITS_REFERENCE.md` promises the bound form. That is
+the compiler's DEF-255, open and low: measured on its landing 112 and still open at 118. *(The compiler's landing 118
+and its registry, 2026-10-16; F60's sweep found no qualified trait call in our code or plans.)*
+
 ### A file's name is part of the language
 
 A file's `mod:` declaration must equal its basename, and **no identifier may

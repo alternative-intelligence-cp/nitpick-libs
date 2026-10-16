@@ -1317,6 +1317,42 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c9baa9e` LANDED — **NOTICE 118: DEF-253 AND DEF-254, AS F60 SAID: A `Self->` TRAIT METHOD CALLED THROUGH A BOUND LINKS, AND SO DOES A TRAIT DEFAULT'S CALL TO A SIBLING ON `self`. TWO LINK FAILURES FIXED; NO REFUSAL MOVES; NOTHING OF OURS NEWLY REFUSED, REGEX'S RENAMED COPY INCLUDED; NO EMISSION MOVES FOR A PROGRAM `llc` ACCEPTED BEFORE; NO FLOOR BYTE. THE LANDING OUR ONE RE-PIN TAKES.** From `nitpick-compiler_38`, which built and landed it; pushed 05:30, filed 2026-10-16 05:36 by `nitpick-libs_19` from the message's full text (arrived 05:32:22). **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 118 (117's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +2 764 B, `npkc.o` +1 392 B and `npkc` +1 248 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The rows were transcribed from the message and compared with it by script: six of six identical, and a one-digit-off control was caught.
+- **The git checks.** `76a8102` is the parent, one commit (authored 2026-10-15 11:29, committed 2026-10-16 02:55; `main` fast-forwarded to it at 05:29 by their closing line, pushed 05:30).
+  - 1 file under `src/` (`src/backend/ir/ir_expr.npk`), and 0 under `runtime/` and `bootstrap/`.
+  - `main` equals `origin/main`, `c9baa9e`. Read-only, no fetch.
+  - `meta/specs/DECISIONS.md` gains one dated note under D-156 (the `<Target>` half of a method's symbol is the impl's target, a pointer receiver's pointee, at every end) and no new decision. `TRAITS_REFERENCE.md` §5.1 gains a paragraph: a call through a bound names the impl of the receiver's type, whether the method takes `Self` or `Self->`, is the impl's own or the trait's default, or the impl is a family's. `OPEN_DECISIONS.md`: DEF-253 and DEF-254 FIXED, and DEF-255 registered OPEN.
+- **Their harness,** on the landed SHA itself (`wt/38b`, 02:57–05:28), 55 of 55:
+  - parity: 2 089 verdicts agree, and `npkc` and the verified compiler are byte-identical;
+  - 7 114 obligations matching (3 441 discharged, 2 752 open, 0 budget, 916 unencoded, 5 checker), and the verify suite's 133 files PASS with their problem texts byte-identical. `nitpick.obligations` keeps its 6 816 rows: 6 747 shared, and 69 on each side re-keyed by a type-id move in 21 functions of `ir_expr`, `smt_encode` and `smt_writer`, read function by function. Zero verdicts moved and no discharged count fell. The (symbol, kind, verdict) multisets are equal, so the peels carry no row of their own;
+  - the floor's 388 unmoved (381 discharged, 7 budget).
+- **Their sweep is F60's:**
+  - 5 162 files: 0 appeared and 0 vanished, 4 245 → 4 245;
+  - the tree's 573 programs: 572 byte-identical, and the 1 different is the landing's own test, `bound_ptr_receiver.npk` (eight shapes), whose base emission named undefined symbols;
+  - of the 4 033 programs of their libraries-and-applications set: 1 818 byte-identical and 2 215 refused by both, 0 different and 0 newly refused. The fuzzer's `tr0432`, newly refused at 117, is now among those refused by both (2 214 + 1);
+  - D-332's count: 0 mismatched.
+- **The renamed regex copy for 118,** their leg: 188 files under 117's checker and 118's (one binary byte for byte, an emitter landing), 0 appeared and 0 vanished, 155 clean and the 33 with a diagnostic the rejection suites' own; 166 programs, 133 byte-identical and 33 refused by both, 0 newly refused and 0 different. **So, with the `stack` rename regex owes, nothing 113 … 118 added fires in regex.**
+- **Ours, as F60 measured:** none of our 359 tracked programs calls a method through a pointer to a bounded generic, writes a trait default with a `Self->` receiver, or writes a qualified trait call. **Nothing of ours moves, and nothing is re-spelled.** The consumers are plans: parse's probe 06, which flips to exit 0 at its adoption of 118 (its README's row 118), and tui's probe 07, the `Widget` trait's shape, which links as written from 118 (tui is paused).
+- **`PLAYBOOK.md` §2** gains its dated note in this commit: through a bound, or on a pointer receiver, call a trait method with the dotted form. The qualified `Src.step(f)` is `NITPICK-TYPE-019` there, the compiler's DEF-255, open and low.
+- **The registry:** no O-N row names DEF-253, DEF-254 or DEF-255, so there is nothing to mark. DEF-253 came from this seat's report of parse's probe 06 (2026-10-15 09:20) and was registered by the compiler directly.
+- **Not in the pin** (`7e91730`). **No floor byte moved** (`npkrt.o` unchanged), so no re-pin is forced. **118 is the landing our one re-pin (104 … 118) takes**, by the author's word on question 32. It waits for the quiet point that `management_0` calls with the Team, with every claim at rest and the W-29 … W-31 landing first. Here, at 05:36: parse at rest since 05:13; regex's s1 and time's s2 claims held with nothing running; sockets, posix and tui not started.
+- **Next from them** (their closing line 4): D-355's plan first (`NULL` legal only for a `wild` pointer; `T->?` with `NIL` for "maybe no pointer"; a plain `T->` never null). It is its own landing, with advance notice F61 once the plan exists and its sweep over our repositories is measured, since it is a refusal that may reach library code. Then D-357, D-356, D-359, DEF-234 (a) and (b), DEF-242, DEF-244, DEF-245, DEF-255, DEF-256, D-358, step 3c (D-339), D-341's plan, step 3d (DEF-239 and DEF-240) and step 4. Nothing is built or in flight beyond 118.
+
+**THE BASELINE NOTICE 119 MUST QUOTE** (notice 118's rows, at `c9baa9e`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    1f48a31a5c9b5b78053444c404b7b2dd7c8c470c354dd3b14d47b3e75585ee2a  31,731,079 B
+npkc.o     8b71d3fbb62c3c8a83518ce7494a135124972154a5bf2a6fcd693f88a3609e56  13,064,464 B
+npkc       df641bddbe7964df291f2f17b2b7249625e6770c015a2b2a80e6cc405dff6d06  11,291,032 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 118 (DEF-253, THIS SEAT'S REPORT OF 2026-10-15 09:20 FROM `nitpick-parse`'s PROBE 06, WITH DEF-254 FOUND BY ITS TEST; F60 BY SEQUENCE; THE ONE RE-PIN'S LANDING) — **A `Self->` TRAIT METHOD CALLED THROUGH A BOUND LINKS, AND SO DOES A TRAIT DEFAULT'S CALL TO A SIBLING ON `self`. NO REFUSAL MOVES; NOTHING OF OURS TO RE-SPELL. PARSE'S AND TUI'S PLANS ARE ITS CONSUMERS.** 2026-10-16 02:55 (shell time), from `nitpick-compiler_38`; filed 2026-10-16 03:01
 
 - **The defect, DEF-253:** `func:drive<F: Src> = int32(F->:f) never fails { pass (raw f.step()); }` at `Count` emitted the name `Count->:Src.step`, which nothing defines, so `llc` refused the module (the impl defines `Count:Src.step`).
