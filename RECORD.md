@@ -14226,3 +14226,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-compiler_39` (arrived 10:57:22):** F62, F63 and every later notice come here.
   - The three observations sent at 10:56:08 are measured on 119's compiler and registered at landing 120's `OPEN_DECISIONS.md` edit, with the DEF numbers sent with F62. They are RX-134 `K`'s diagnostic, a `T:name` local still `PARSE-002` against 113's headline, and a keyword accepted as the empty name of a generic parameter, a variadic and possibly a macro parameter.
   - The third is a silent acceptance in DEF-235's family. It blocks nothing for a library.
+
+### The six playbook findings of regex 0.2.5a's planning landed, at its plan's PASS — 2026-10-16 11:05 (shell time)
+
+- **`PLAYBOOK.md`** gains a dated section at its end. It holds the planner's five findings, held since the entry of 08:28, and the fix round's one, held since 10:23:
+  - a measurement of a declaration is not a measurement of the names it declares (RX-134's `K`);
+  - an adoption's mutants can make the old pin testify to completeness;
+  - emissions are compared across pins over one tree;
+  - a landing's sweep counts only the files its base compiles (F47's 24 against regex's 78);
+  - a red run's summary shows each check's status;
+  - a verifier's counter-example is itself a general rule until it is measured where it stops.
+- **The last of them carries a recurrence:** the binding lesson "a claim about a whole set is checked by enumerating the set". `end` stood for all 170 keywords until the scoped re-verification swept them, and found four exemptions (`acquire`, `any`, `nit`, `trit`) and `comptime`.
+- `check_refs`: only the two known `[leak]` lines.

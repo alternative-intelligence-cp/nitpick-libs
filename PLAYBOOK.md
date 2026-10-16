@@ -2155,3 +2155,32 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   every sentence saying that the reader writes or sets nothing. Since `nitpick-regex` 0.2.5's RX-242, RX-239's *"`hir_read`
   sets none"* (its `meta/DECISIONS.md:6434`) is false, and no sweep looked for it; 0.2.6 marks it. *(`nitpick-regex` 0.2.5's
   work.)*
+
+**Landed 2026-10-16 (`nitpick-regex` 0.2.5a's plan, its fix round and its scoped re-verification; all 2026-10-16):**
+
+- **A measurement of a declaration is not a measurement of the names it declares.** RX-134's `K`, a struct of three keyword
+  fields, compiled at three pins and was read as "a field is its own namespace". Through `7e91730` a keyword field was the
+  EMPTY name, one to a struct: a literal writing two of them is `NITPICK-TYPE-028`, *"'' is given twice"*. From `c9baa9e`
+  each is `NITPICK-PARSE-001`. Measure a name by writing it and reading it back, and two of them together. *(`nitpick-regex`
+  0.2.5a's plan.)*
+- **An adoption's mutants can make the OLD pin testify to a change's completeness, not only to its harmlessness.** Put each
+  changed site back alone. If the old pin refuses every one, its green run says the change is whole. `nitpick-regex`
+  0.2.5a's fourteen rename mutants did this, each code site refused at both pins. This extends the 2026-10-09 bullet above,
+  where the old pin could not prove a re-spelling true. *(The same.)*
+- **Compare emissions across pins over ONE tree.** An added comment line moves a program's site table. Two trees at two pins
+  therefore differ for two reasons at once. Compare two trees at one pin, or one tree at two pins, each pair through the
+  compiler's normalisers (`attrnorm.py`, then `dropnorm.py`). *(The same.)*
+- **A landing's sweep counts only the files its base compiles.** F47's "24 programs differ by flag tests" was measured while
+  78 of `nitpick-regex`'s files were refused by both compilers of that leg (landing 103's `TYPE-007`). At the adoption of
+  `c9baa9e`, landing 105 moves 78 of regex's 155 emitted files: 3 076 drops are made unconditional, flag tests only. Read a
+  landing's count with the set it could compile, as §6's "refused by both" bullet says. *(The same.)*
+- **A red run's summary shows each check's status.** A helper that prints only the tree checks' names, with the FAIL lines
+  filtered out, shows a red check as green. `nitpick-regex` 0.2.5a's `env.sh` counts the checks by status. *(The same.)*
+- **A verifier's counter-example is itself a general rule until it is measured where it stops.** Against "a keyword as a name
+  of any kind is `PARSE-001`", plan verification 1 said "a local is `PARSE-002`". That holds only for a local declared
+  `T:name`: one that `wild` or `fixed` leads is `PARSE-001` at `c9baa9e`. Measuring each kind found two that the compiler
+  does not refuse at all, a generic parameter's and a variadic's name, each read as the empty name. The scoped
+  re-verification then swept all 170 keywords through each kind. A function's, a type's and a module's name were refused
+  for 166 of the 170 at `7e91730`, not for all of them, and `comptime` is refused as a generic parameter. A claim measured
+  with one member of a set (`end`) is still a claim about the set. *(`nitpick-regex` 0.2.5a's fix round and its
+  re-verification.)*
