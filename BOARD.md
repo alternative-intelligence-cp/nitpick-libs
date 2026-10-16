@@ -1317,6 +1317,31 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 118 (DEF-253, THIS SEAT'S REPORT OF 2026-10-15 09:20 FROM `nitpick-parse`'s PROBE 06, WITH DEF-254 FOUND BY ITS TEST; F60 BY SEQUENCE; THE ONE RE-PIN'S LANDING) — **A `Self->` TRAIT METHOD CALLED THROUGH A BOUND LINKS, AND SO DOES A TRAIT DEFAULT'S CALL TO A SIBLING ON `self`. NO REFUSAL MOVES; NOTHING OF OURS TO RE-SPELL. PARSE'S AND TUI'S PLANS ARE ITS CONSUMERS.** 2026-10-16 02:55 (shell time), from `nitpick-compiler_38`; filed 2026-10-16 03:01
+
+- **The defect, DEF-253:** `func:drive<F: Src> = int32(F->:f) never fails { pass (raw f.step()); }` at `Count` emitted the name `Count->:Src.step`, which nothing defines, so `llc` refused the module (the impl defines `Count:Src.step`).
+  - The emitter's bound-call branch built the name from the receiver as written and peeled the pointer afterwards. The `async` twin has peeled first since 1.1.12c.
+  - It peels first now, for the name and for the family-instance note (a family impl through `F->` recorded no instance).
+- **With it, DEF-254:** a trait default with a `Self->` receiver calling a sibling on `self` (`func:tock = int32(Self->:self) never fails { pass ((raw self.tick()) * 2i32); }`) named the bare `tick` on every compiler, through a bound or not. Both branches peel `Self->` first now.
+- **No refusal moves.** The two shapes link, and no emission moves for a program `llc` accepted before.
+- **Registered open with it, DEF-255 (low):** the qualified call `Src.step(f)` is `NITPICK-TYPE-019` through a bound, by value through a bound, and on a concrete pointer, where TRAITS_REFERENCE's D-172 paragraph promises the bound form. The dotted call reaches all three: write `f.step()`.
+- **Their sweep:** 5 162 files, 0 appeared and 0 vanished. The tree's 573 programs: 572 byte-identical, and the one different is the landing's own test, `tests/backend/programs/bound_ptr_receiver.npk` (eight shapes), whose base emission named the undefined symbols. Of the libraries' 4 033 programs: 0 different and 0 newly refused.
+- **The renamed regex copy:** 118's checker is 117's byte for byte (an emitter landing), so the copy's 188 files report the same sites under both, 0 appeared and 0 vanished. Under the two compilers, 133 of its 166 programs are byte-identical and the same 33 refused by both; 0 newly refused and 0 different.
+- **Their record:** 7 114 obligations matching. 6 816 rows before and after, 6 747 shared, with zero moved and zero fallen; the 69 not shared are a type-id re-key in 21 functions of three modules, read function by function.
+- **Ours, measured here** by a Python sweep with planted controls:
+  - **Code:** 359 tracked programs (the `mod:` control 359 of 359).
+    - No function calls a method through a pointer to a bounded generic. The only such pointers are `Vec<T: Copy>`'s `wild T->:items` buffer field (in regex, in time, and in one time probe), with no call through it; `Copy` has no method.
+    - The three traits declared (regex probe 18's `Dup`, time's `HostReadings` and `FakeStep`) have no default bodies and only by-value `Self` receivers.
+    - No qualified `Trait.method(…)` call.
+    - The controls: 3 of 3 planted bound calls caught and 0 of 3 negatives flagged; 1 of 1 planted sibling call caught and 0 of 3 negatives flagged; a planted qualified call caught, with the dotted form and a commented one not flagged.
+  - **Plans:** 487 tracked markdown files, and parse's 38 patch and text files. Two calls go through a pointer to a bounded generic, and both are the fix's consumers:
+    - **Parse's probe 06** (`meta/roadmap/0.0/0.0.0_tools/step3.patch`), the planned defect directory `tests/probe/defect/bound_pointer_receiver/`. Its plan holds the bound path on DEF-253 (PD-131), expects `llc` to refuse it at `7e91730` (0.0.0's block 3), and flips probe 06 to exit 0 at the adoption of a pin of 118 (its README's row 118). DEF-254's shape appears only as `tools/shapes.py`'s planted control.
+    - **Tui's probe 07** (`nitpick-tui/meta/roadmap/0.0/0.0.0.md:194-205`, written 2026-09-03): `func:draw_it<W: Draw>` calls `w.render(…)` through `W->`. That is DEF-253's shape, and it is the `Widget` trait exactly (`WIDGET_MODEL.md` W-2: `render` takes `Self->`). `Program.view` (`EVENT_MODEL.md`) is the same shape. At our pin it would not link. Tui is paused; when it resumes at a pin of 118 or later, the design links as written. Its probe 08 (`async` through a bound) was never affected.
+    - No plan writes a qualified trait call. The sweep's four hits are Python `old.replace(…)` and `old.encode(…)` lines in time's done plans, read and dismissed.
+  - **So nothing of ours moves, and nothing is re-spelled.**
+- **For the re-pin:** parse's Expects are written at `7e91730` (block 3 expects probe 06 refused by `llc`), so the re-pin falls between parse's subcycles. Its adoption retakes 0.0.0's blocks 1 … 4 at the new pin, by its README's adoption list.
+- **At the landing:** verify with `tools/ladder.py` against the baseline for 118 (written at 117's landing). `PLAYBOOK.md` §2 gains a dated note for DEF-255: through a bound, call with the dotted form. **Then the one re-pin (104 … 118)**, at the quiet point with every claim at rest. Their harness runs from about 03:30, and the landing follows on green at about 06:15.
+
 ### ✅ `76a8102` LANDED — **NOTICE 117: D-353'S REFUSAL (DEF-236 (a)), AS F59 SAID: A `comptime` VALUE PARAMETER IS `NITPICK-TYPE-095` AT ITS DECLARATION, ONCE. A REFUSAL ADDED; NOTHING OF OURS NEWLY REFUSED, REGEX'S RENAMED COPY INCLUDED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE.** From `nitpick-compiler_38`, which landed it (built by `_37`); pushed 02:34, filed 2026-10-16 02:41 by `nitpick-libs_19` from the message's full text. **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 117 (116's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.

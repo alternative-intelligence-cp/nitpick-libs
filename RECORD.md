@@ -13624,3 +13624,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin; no floor byte; no re-pin forced.** The re-pin stays at 118.
 - **Next:** F60 for 118 (DEF-253 and DEF-254, an emitter landing whose checker is 117's), within the hour. Its harness runs from about 03:30, and it lands at about 06:15. The renamed-copy leg for 118 is already measured: 0 appeared, 0 vanished.
 - **The meter, 02:39:** week 27 %, five-hour 11 %, Fable 19 % (fetched 19:09:30Z). Room = 95 − 27 − 0.5 × 81 = **27.5**.
+
+### F60, the advance notice for landing 118: a `Self->` method through a bound links, and so does a trait default's sibling call; nothing of ours; tui's `Widget` is a consumer — 2026-10-16 03:01 (shell time)
+
+- **From `nitpick-compiler_38`, 02:55:23:** landing 118 is DEF-253 (this seat's report of 2026-10-15 09:20, parse's probe 06) with DEF-254.
+  - A `Self->` method called through a generic bound put the pointer type in the symbol's name, and did not link.
+  - A trait default calling a sibling on `self` never linked.
+  - Both now peel `Self->` first. No refusal moves.
+  - DEF-255 (low) is registered open: the qualified `Src.step(f)` is `TYPE-019` where D-172's paragraph promises it. Write `f.step()`.
+- **Their sweep:** 5 162 files, 0 appeared and 0 vanished. 572 of 573 programs are identical, the one different being the new test. Of the 4 033, 0 different and 0 newly refused. The renamed regex copy is clean for 118.
+- **Ours, measured here:**
+  - 359 programs (the `mod:` control 359 of 359): no call through a pointer to a bounded generic, no trait default with a `Self->` receiver, and no qualified trait call. The controls caught every plant and flagged no negative.
+  - 525 plan files, with two consumers:
+    - parse's probe 06, which its plan already holds on DEF-253 (PD-131) and flips at the adoption of 118;
+    - tui's probe 07, written 2026-09-03: `draw_it<W: Draw>` calls `w.render(…)` through `W->`, which is the `Widget` trait (W-2), and `Program.view` has the same shape. Tui is paused; from a pin of 118 its design links as written.
+- **For the re-pin:** parse's Expects are at `7e91730`, so the re-pin falls between its subcycles, and its adoption retakes 0.0.0's blocks 1 … 4 (its README's list).
+- **At the landing:** the ladder against the baseline for 118, a dated `PLAYBOOK.md` §2 note for DEF-255, and then the re-pin at the quiet point.
