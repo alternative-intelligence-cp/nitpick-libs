@@ -13710,3 +13710,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The baseline for 119 written** (118's rows) and self-checked by extraction: identical to the generated block, and the ladder against an all-unchanged notice of the new values MATCHes, with the control failing. The values agree with the compiler seat's closing line 2.
 - **No floor byte, so no re-pin is forced, and 118 is the landing the one re-pin (104 … 118) takes.** It waits for `management_0`'s quiet point with the Team, every claim at rest, the W-29 … W-31 landing first. At 05:36: parse at rest since 05:13; regex's s1 and time's s2 claims held with nothing running; sockets, posix and tui not started.
 - **Next from them:** D-355's plan, then its own landing under F61, once its sweep over our repositories is measured, since the refusal may reach library code. Nothing is built or in flight beyond 118.
+
+### The rules W-29 … W-31 landed at the quiet point, with the review's four amendments — 2026-10-16 05:43 (shell time)
+
+- **The quiet point:** `management_0` called it at 05:39 for the re-pin at 118 (its message arrived 05:39:18). The Team runs nothing and holds every new library dispatch until the re-pin is reported done; Diogenes' D5 still goes at Sat 03:00. Its order: these rules, then the re-pin, then the adoption subcycles. Regex's adoption, with the `stack` rename, may go now on Max, and the others are sized and their number sent before they start.
+- **The authority:** question 33, answered by the author 2026-10-15 14:21:45 and relayed by `management_0`: *"your recommendations are fine"*. The recommendation was that this seat drafts W-29 on as descriptions of approved practice and lands them at the quiet point before the re-pin. The draft and this seat's review are `.internal/credits/out/w29-rules-draft-2026-10-15.md` and `….review.md` (2026-10-15 17:57).
+- **Landed, as the review gives it:**
+  - **W-29:** a chain from the Team seat works on a `team/` branch, and the orchestrator reviews it and fast-forwards `main`. It cites the Team brief (gitignored, under `.internal/team/`) and orchestrate §14. One wording change from the draft: "fast-forwards the workbench clone's `main`" reads "fast-forwards the repository's `main`, in this workbench's checkout", since the Team seat's own clone of this workbench is also called its workbench clone.
+  - **W-30:** a tool repository has its own manager, and this workbench does not claim, dispatch or write it. It refines W-7, W-17 and W-18, and takes EC8's fourth point: a tool repository's sessions follow its own `CLAUDE.md`, and the fuzzer's build their compilers in its own `.work/`.
+  - **W-31:** a re-pin is taken with every claim at rest, and each library adopts it in a lettered subcycle.
+  - **Dated notes** on W-7, W-17 (with W-30's clause) and W-18 (with W-30's clause). Each rule's own text stays.
+  - **E2-14:** the edge `PA --> PX11` is kept, with a dated note under the graph. Posix's `ROADMAP.md` owes the 0.11 gate on `nparse`, or the reason for none, as AUDIT input to its cycle-0.0 plan chain.
+  - **E2-10:** stream 3's count reads 27 cycles.
+  - **`skills/orchestrate/SKILL.md`:** §14 gains "A chain from the Team seat is the exception: this seat fast-forwards its branch onto `main` after review (W-29, 2026-10-16)". §3's title reads "(W-18, W-31)"; nothing links to its anchor.
+  - **`CLAUDE.md:26`:** the rules' range reads W-1…W-31. That is the only change to the file, and it is the one the review listed. This seat made it as its own planned edit under the author's answer, not at a peer's request.
+  - The board's question 33 reads LANDED.
+- **`check_refs`:** only the two known `[leak]` lines (`tools/guard_domains.py`). PX-008 in the graph's note is not flagged.
+- **Told after the push:** `management_0`, who tells the Team to fast-forward its clone, the skill being a plugin file; and the fuzzer's manager, `nitpick-fuzz_2`, that `nitpick-fuzz/CLAUDE.md:10` ("the workbench has merged the one before it") is stale under W-30 and is its file to fix.
+- **Owners' items not landed here:** posix's 0.11 gate, and `APPS.md:10`'s "14 cycles" (E2-10's apps half, deferred to its next touch).

@@ -61,6 +61,8 @@ graph LR
   CL -.->|dogfood gate| PA12["nitpick-parse 0.12"]
 ```
 
+*(Note 2026-10-16, E2-14: posix's `ROADMAP.md` gates 0.11 on 0.10 only, while its decision PX-008 makes `awk` a consumer of both `nparse` and `nregex`, as these edges draw. The edges stand; posix's plan owes the gate, or the reason for none.)*
+
 **Rule W-2 — the libraries do not depend on each other.** `[dependencies]` is
 empty everywhere by decision, and the only recorded overlaps (Unicode tables
 between `ntui` and `nregex`; datetime scanning between `nparse` and `ntime`)
@@ -84,7 +86,7 @@ cross-stream edges land where the streams naturally arrive at them.
 |---|---|---|
 | **1 — text** | `nitpick-regex` → `nitpick-tui` → `nitpick-logview` | 34 cycles + an app |
 | **2 — data** | `nitpick-time` → `nitpick-parse` → `nitpick-conflint` | 25 cycles + an app |
-| **3 — system** | `nitpick-sockets` → `nitpick-posix` | 26 cycles |
+| **3 — system** | `nitpick-sockets` → `nitpick-posix` | 27 cycles |
 
 **Why this partition and not another.** Three properties, in order of weight:
 
@@ -136,6 +138,8 @@ enforceable.
 in `BOARD.md` before touching it and releases it when the cycle closes. A
 repository with no claim is nobody's. Enforced by the guard for sessions
 started outside the repository (0.2.5).
+
+*(Note 2026-10-16, E3-4: a tool repository is not claimed here and is its own manager's, which W-30 records. The Team seat's chains are claimed here for the review and merge, which W-29 records.)*
 
 **Rule W-8 — the orchestrator owns `BOARD.md`.** Agents do not edit it. That
 removes every merge conflict by construction and matches the compiler's
@@ -190,11 +194,15 @@ takeover in `RECORD.md`. Enforced by the guard (0.2.5). (P-2, P-19)
 **Rule W-17 — workers commit to `main`.** Nothing is branched and nothing is
 merged; one writer per repository makes both redundant. (P-3)
 
+*(Note 2026-10-16, E3-4 and EC8: a chain from the Team seat works on a `team/` branch and is merged here by a fast-forward of `main`, which W-29 records. A worker dispatched from here still commits to `main`. A tool repository's sessions commit as its own `CLAUDE.md` says, which W-30 records.)*
+
 **Rule W-18 — the toolchain is pinned.** The orchestrator copies `npkc` and
 `npkrt.o` out of the compiler's `build/` into `.internal/toolchain/<commit>/`,
 records the commit on the board, and passes the paths to every worker. A
 worker never reads `../nitpick/build/` and never builds the compiler. A re-pin
 happens between cycles, by the orchestrator, and is recorded. (P-4)
+
+*(Note 2026-10-16, E3-4 and EC9: a re-pin has been taken with every claim at rest and a library mid-cycle, and each library then adopts the pin in a lettered subcycle, which W-31 records. A tool repository's sessions build their compilers in its own tree, which W-30 records.)*
 
 **Rule W-19 — a claim is recoverable.** The board's in-flight table names the
 subcycle, the agent label, the start time and the model for every claim. A
@@ -273,6 +281,62 @@ in checks whose name is wider than their mechanism.
 It reached this table twice — a worker declined the edit and argued the case, a
 second dispatch met the same question, and both left it open. Writing it down
 costs one rule and stops a third dispatch re-deciding it from scratch.
+
+**Rule W-29 — a chain from the Team seat works on a `team/` branch, and the
+orchestrator reviews it and fast-forwards `main`.** Refines W-17, which still
+holds for a worker dispatched from here. The Team seat is a second account
+whose sessions work in `~/Team`, in clones of their own. Each side reads the
+other's domain and never writes it, and `tools/guard_domains.py` enforces that
+both ways. The Team seat's manager runs a chain on a subcycle (plan, plan
+verifier, work, work verifier) on a `team/<repository>-<item>` branch in its
+clone, pushed to GitHub. It never pushes `main` and never edits `BOARD.md`
+(W-8). The orchestrator claims the repository for the merge (W-7), and for the
+chain itself where the board says so. It reads the chain's reports,
+spot-checks them against the fetched branch, fast-forwards the repository's
+`main`, in this workbench's checkout, to the verified commit, pushes, and
+releases the claim. A chain stops before a cycle's close, which stays the
+orchestrator's. It also stops at a decision for the author, a re-pin, a
+verifier failing twice on one point, or a compiler defect (W-11, W-23). A
+chain's next subcycle starts on the same branch once the previous one has
+reported CHAIN PASS. A cycle's close is dispatched only after its last
+subcycle is merged. The procedure lives in the Team brief (gitignored, under
+`.internal/team/`) and orchestrate §14. *Described 2026-10-16, from practice
+the author approved 2026-10-15.*
+
+**Rule W-30 — a tool repository has its own manager, and this workbench does
+not claim, dispatch or write it.** Refines W-7, W-17 and W-18. A tool
+repository, today `nitpick-fuzz`, is recorded on the board under *Outside the
+streams — tools* and is not a stream. From 2026-10-15 it has a manager session
+of its own, which owns its milestones and its merges. Diogenes' merges are
+likewise its own manager's. Above the managers, management allocates each
+account's usage and the credits. The orchestrator does not claim, dispatch or
+write such a repository, so "a repository with no claim is nobody's" (W-7)
+does not apply to it. A chain from the Team seat on a tool repository reports
+to that repository's manager, not here, and W-29's review and merge are then
+the manager's. What crosses goes by message and by git: a compiler landing
+that moves a tool repository's programs is told to its manager, and its
+findings reach the compiler seat from its manager with the orchestrator
+copied. Where a tool repository orders its milestones as a gate (the fuzzer's:
+a milestone starts only after the one before it is merged), the gate is that
+repository's own. Its sessions follow its own `CLAUDE.md`, not this book's
+worker rules: W-17's commit to `main` and W-18's "never builds the compiler"
+bind the workers dispatched from here, and the fuzzer's sessions build their
+compilers in its own `.work/` (`nitpick-fuzz/CLAUDE.md:27-28`). *Described
+2026-10-16, from practice the author approved 2026-10-15.*
+
+**Rule W-31 — a re-pin is taken with every claim at rest, and each library
+adopts it in a lettered subcycle.** Refines W-18, which still holds for who
+pins and records. A re-pin is taken by the orchestrator when no claim is in
+flight (orchestrate skill §2, step 4), even with a library mid-cycle. It does
+not wait for a cycle's end. Each library then adopts the new pin in a lettered
+subcycle, for example regex 0.2.1a and time 0.3.2a for `7e91730`. That
+subcycle is the first thing dispatched on the library at the new pin, and
+nothing else is dispatched on it until it lands, since its harness may be red
+at the new pin. The adoption carries the CI pin bump and the checks the
+re-pin's landings owe that library, with an old-pin leg on the kept pin. The
+procedure lives in the orchestrate skill (§2 step 4, §3) and in each cycle's
+README, which names the lettered row. *Described 2026-10-16, from practice the
+author approved 2026-10-15.*
 
 ---
 

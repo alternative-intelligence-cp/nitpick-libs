@@ -89,7 +89,7 @@ Skipped in `tick` mode.
    count**, each stream's next item and its gate, anything recovered,
    anything on the questions table. Then §5.
 
-## 3. The pin procedure (W-18)
+## 3. The pin procedure (W-18, W-31)
 
 ```bash
 COMMIT=$(git -C ../nitpick log -1 --format=%h)
@@ -311,6 +311,8 @@ is what `/loop /npk:orchestrate tick` re-runs.
 ## 14. There is no merge step
 
 Every repository has one writer (W-7) and workers commit to `main` (W-17).
+A chain from the Team seat is the exception: this seat fast-forwards its
+branch onto `main` after review (W-29, 2026-10-16).
 The compiler's cumulative-prefix protocol
 (`../nitpick/meta/roadmap/ORCHESTRATION.md` §4) applies only where several
 writers share one tree, which nothing here does. Independently green is
