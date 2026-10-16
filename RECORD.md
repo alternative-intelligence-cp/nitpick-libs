@@ -13789,3 +13789,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The Team's workbench clone was fast-forwarded to `3c08937` first (05:56:15). By their check, its plugin directories are identical to this workbench's.
   - Next: its report, a scoped re-verification, then the chain line with every changed PD's old and new.
 - **A slip of this seat's, the third today on times:** the registry entry above was headed 06:03 when the clock read 05:57. It now says 05:57. Each slip was a minute written before `date` was read; from here every time is taken from `date` or the transcript first, and written after.
+
+### The fuzzer's stale line fixed by its own manager, read here; the Max meter at 32 % — 2026-10-16 07:24 (shell time)
+
+- **From `nitpick-fuzz_2` (arrived 07:22:08):** the line flagged here at W-30's landing (`8375e93`) is fixed at `nitpick-fuzz` `581c091`, with the author's approval. No reply was asked.
+  - **Read here, not taken on report:** `git ls-remote` gives the fuzzer's `main` as `581c0915…c711`. At that commit, read through `gh api`, `CLAUDE.md`'s order gate (lines 10–11) says a milestone starts once "the fuzzer's manager (the workbench until 2026-10-15)" has merged the one before it. `README.md:46` says findings are verified by the fuzzer's manager, the library workbench until 2026-10-15. The commit message says the change is wording only, and both files keep their line counts.
+  - The workbench's own clone of the repository is not fetched from here (W-30). Nothing of this seat's changes.
+- **The Max meter at 07:23:** the week 32 %, the five-hour window 19 %, Fable 19 % (fetched 2026-10-15 19:09Z, stale). The room is 95 − 32 − 40.5 = 22.5. At 05:13 the week was 27 %, so it rose 5 points in 2 h 10 min, with regex 0.2.5a's planner running throughout (1 h 30 min so far, 188 turns, its context near 680 k tokens, still rehearsing step 1 on its branch `p025a-r1`). Other sessions on the account share the meter. Told `management_0`. Under 20, this seat asks management before the next dispatch.
