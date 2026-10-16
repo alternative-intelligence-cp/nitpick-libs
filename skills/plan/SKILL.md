@@ -86,6 +86,14 @@ The shape, the sources that count, and the request and digest formats are
   implementations, the standards body's current guidance, the current test
   vectors — re-run at hardening (`skills/research/SKILL.md` §8). A finding
   there is a cycle-0.0 probe before it is anything else.
+  *(2026-10-16, at `nitpick-parse`'s research gate: a probe asks the compiler
+  whether a shape is spellable (below), so the finding that becomes a cycle-0.0
+  probe is one that asks the language a question. Every other finding is held
+  where its subject is decided — a currency row, a specification, or the
+  roadmap item of the cycle that owns it — and the plan's currency table says
+  where each is held, or who decides it. None is dropped for want of a probe.
+  This seat read the sentence above so at that gate; the gate's re-cut
+  verifier found that the sentence did not say it.)*
 - **The model's knowledge is months old.** Anything the plan calls "current"
   without a date beside it is a currency row waiting to be found.
 

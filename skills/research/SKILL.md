@@ -111,7 +111,10 @@ every reference implementation the plan reads; the standards body's current
 guidance for the primitives chosen; the current versions of the test
 vectors. All three are re-run at the hardening cycle. Research changes probes
 and specifications, not just code: a finding here is a cycle-0.0 probe before
-it is anything else.
+it is anything else. *(2026-10-16: the finding that becomes a probe is one
+that asks the language a question; every other finding is held where its
+subject is decided, and the plan's currency table says where. The reason is
+`skills/plan/SKILL.md`'s, under Currency.)*
 
 ## 9. Boundaries and limits
 

@@ -13640,3 +13640,55 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - tui's probe 07, written 2026-09-03: `draw_it<W: Draw>` calls `w.render(…)` through `W->`, which is the `Widget` trait (W-2), and `Program.view` has the same shape. Tui is paused; from a pin of 118 its design links as written.
 - **For the re-pin:** parse's Expects are at `7e91730`, so the re-pin falls between its subcycles, and its adoption retakes 0.0.0's blocks 1 … 4 (its README's list).
 - **At the landing:** the ladder against the baseline for 118, a dated `PLAYBOOK.md` §2 note for DEF-255, and then the re-pin at the quiet point.
+
+### `nitpick-parse` 0.0's research re-cut VERIFIED PASS and merged at `be5f446`; PD-137 re-read and accepted, its attribution made true in the skills; the one dropped finding held — 2026-10-16 05:15 (shell time)
+
+- **The chain line** (`Ailp-team_6`, 05:05:27): `nitpick-parse 0.0 PLAN CHAIN PASS (the research re-cut) branch team/parse-0.0-plan commit be5f446…`. The reports are `~/Team/REPORTS/T6r-parse-0.0-research-recut.md` and `T6rv-parse-0.0-verify-recut.md`.
+- **The chain:**
+  - T6r (`npk:planner`, Opus 5.5, 03:02:50–04:19:07, about 681 k tokens) made two commits. `bf6563f` holds the findings, (a) to (k), and gate item 7 now knows the three digests by sha256. `be5f446` retakes the Expects the comparator read as differing, from a run in plan order with the real digests. Its confirmation pass from a fresh clone read 45 of 45 SAME. It read no finding as asking the language, so there is no probe.
+  - T6rv (`npk:verifier`, Sonnet 5.5, 04:23:01–05:03:53, about 471 k tokens): **PASS**, with nothing on the decline point.
+    - Every placeholder set, `decisions.txt`, `env.sh` and the clause's 17 Expect lines are byte-equal at both tips, so no decline was run.
+    - A fresh clone with the real digests read 45 of 45 SAME.
+    - Gate item 7's controls each DIFF: a trailing space, another run, a changed date, a lost heading suffix and an absent digest.
+    - Six non-blocking findings.
+- **Checked here, independently:**
+  - Fetched from GitHub, the branch is `be5f446`: 2 commits on our `main` (`fca1333`), which is its ancestor, so a fast-forward. 18 files, +262 −73, none outside `meta/roadmap/0.0/`. Both commits are under the configured identity, with one trailer and one parent each.
+  - Every `@@PD-n@@` block in both tips' patches was compared by script. PD-129 … PD-145 are each declared once in both, and only PD-137 differs, by exactly the reported clause. A one-character edit planted in PD-129 was caught.
+  - Block 0a's Expect (`0.0.0.md:347–349`) writes the sha256 of each of the three digests placed at `.internal/team/parse-0.0.0-digests/`.
+  - `check_refs` over the merged tree, in place: clean, 56 md files, leak scan 125 of 125.
+- **Applied:**
+  - `nitpick-parse`'s `main` was fast-forwarded `fca1333` → `be5f446` and pushed (05:13:29). `ls-remote` reads `be5f446` for `main` and for the branch.
+  - The s2 claim, held since 03:04, is released, and the stream table's row 2 reads at rest.
+  - `LIBRARIES.md`'s parse row records the merge.
+- **PD-137, re-read and accepted** (question 35's condition).
+  - Old: "…so that a finding becomes a cycle-0.0 probe before it is anything else, as the workbench plan skill asks."
+  - New: "…so that a finding that asks the language a question becomes a cycle-0.0 probe before it is anything else, as the workbench plan skill asks; `CURRENCY.md`'s research section says where every other finding is held and who decides it."
+  - **T6rv's finding 1, ruled.** The narrowing is this seat's reading of 01:22:20, while the skills state the rule unqualified (`skills/plan/SKILL.md`'s Currency section, `skills/research/SKILL.md` §8). The fix is made at the source, by a dated note in both. A probe asks the compiler whether a shape is spellable, so the finding that becomes a cycle-0.0 probe is one that asks the language a question. Every other finding is held where its subject is decided, with the plan's currency table naming where, and none is dropped for want of a probe. With the note, PD-137's attribution and `CURRENCY.md`'s gate sentence are true as written, and sockets' planner reads the same rule.
+  - PD-137's choice and its reversal are unchanged, so question 35's recommendation stands. PD-129, PD-143 and PD-145 are byte-identical. This is noted on the board's question 35 and said to `management_0`.
+- **The findings, ruled here:**
+  - **The one finding (d) drops is held instead.** The defects digest's item 4 says no limits row bounds a document's total nodes or pool bytes.
+    - The re-cut gave it "no line, since S-19 bounds a `Document` 'by the node and pool growth its arena does'". T6rv found that reason sound: `VALUE_MODEL.md` D-6 copies each scalar's bytes once, so the input bounds the pool.
+    - But S-19's title promises "a stated function of the input", and its `Document` clause states none. A `Node` is 56 bytes at 0.4.0, while a JSON element can cost two input bytes and a CSV field one. So the arena can grow tens of times faster than the input.
+    - It is held at 0.4.0, which writes `Node`, the arena and the pool. That cycle states the function, nodes and pool bytes against the input's length, and decides whether a per-parse total joins `SAFETY.md` §7's table. Each later format's cycle re-reads it.
+  - **Finding 2:**
+    - 0.1's held line on an oversize input keeps its flat statement, which S-1, §3, §8 and C-5 make true (question 36 states it the same way). It cites them beside the digest's hedged observation.
+    - 0.6's line on TOML's reserved escapes quotes "should produce an error".
+  - **Finding 3:** `0.0.5.md:139–141` take the digests' date, 2026-10-16.
+  - **Finding 4:** `ROADMAP.md:10–11`'s "the questions for the project's author are settled" is arguably stale while question 36 is open. A dated note there names that question, open until cycle 0.1 settles it.
+  - **Finding 5: accepted.** The decision that settles question 36 in cycle 0.1 also amends `limits.npk`'s `NPARSE_MAX_INPUT` comment (0.0.4's `step1.patch:132–133`). (f)'s line in the 0.1 roadmap names that comment, and the board's question 36 notes it.
+  - **Finding 6:** moot, as T6rv says. No action.
+  - **T6r's note:** the 0.1 roadmap's header says `0.1.0.md` is written at "0.0.5, step 4", where 0.0.5's table now says step 5. It is corrected with the rest.
+  - **T6rv's note on `CURRENCY.md`'s "eleven defect classes":** the line repeats the digest, whose own table marks one of the eleven "Not a separate record class". The held line takes the digest's caveat. The digest itself is never edited.
+  - **T6rv's note on (a):** accepted. The hold is narrower than this seat's "the comparison is made", and soundly so, since the digest read only the changelog. Cycle 0.6.0 compares the texts.
+- **How these land:** all are text, and none touches 0.0.0's files. They ride with the next planner round on the plan before 0.0.1's dispatch, with a scoped re-verification after it.
+  - The re-pin's adoption brings such a round in either order: before T8 if the re-pin comes first, or before 0.0.1 if it comes after 0.0.0.
+  - If no round comes before 0.0.1's dispatch, one text-only round of its own goes first.
+- **The go for 0.0.0's work (T8)** goes to `Ailp-team_6` after this commit.
+  - It is for Sat 2026-10-17 03:00 at `7e91730`, in management's lane 1, with a DIGESTS line naming the three placed digests and their sha256.
+  - If the re-pin to 118 comes first, T8 waits for parse's adoption round, which retakes 0.0.0's blocks 1 … 4 at the new pin.
+  - s2 is claimed here on the manager's line just before T8's dispatch.
+  - The T8 draft (saved 04:24:12) was read here; it follows the re-cut's gate item 7.
+- **The Team's clone of the workbench** fast-forwards to this commit before T7 or T8, so that their planners and workers read the skills' note.
+- **The meters, 05:13:**
+  - The libraries: week 27 %, five-hour 3 %, Fable 19 % (fetched 19:09:30Z). The file was written by `management_1`, with the account check matching. Room = 95 − 27 − 0.5 × 81 = **27.5**.
+  - The Team: week 56 %, five-hour 37 %.
