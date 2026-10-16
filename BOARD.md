@@ -1317,6 +1317,47 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `76a8102` LANDED — **NOTICE 117: D-353'S REFUSAL (DEF-236 (a)), AS F59 SAID: A `comptime` VALUE PARAMETER IS `NITPICK-TYPE-095` AT ITS DECLARATION, ONCE. A REFUSAL ADDED; NOTHING OF OURS NEWLY REFUSED, REGEX'S RENAMED COPY INCLUDED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE.** From `nitpick-compiler_38`, which landed it (built by `_37`); pushed 02:34, filed 2026-10-16 02:41 by `nitpick-libs_19` from the message's full text. **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 117 (116's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +6 458 B, `npkc.o` +2 216 B and `npkc` +1 856 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - By their note, `npkc.ll`'s growth is the new check's two walks and `TYPE-095`'s text.
+  - The rows were transcribed from the message and compared with it by script: six of six identical.
+- **The git checks.** `2f50640` is the parent, one commit (authored 2026-10-15 08:16, committed 23:59, pushed 02:34).
+  - 3 files under `src/` (`src/frontend/type_codes.npk`, `type_resolve.npk` and `type_trait.npk`), and 0 under `runtime/` and `bootstrap/`.
+  - `main` equals `origin/main`. Read-only, no fetch.
+  - `meta/specs/DECISIONS.md` gains one dated note on D-353 (the refusal landed) and no new decision. `OPEN_DECISIONS.md`'s DEF-236 now reads (a) FIXED under D-353, beside (c)–(e) at 113.
+- **Their harness,** on the landed SHA itself (00:03–02:31), 55 of 55:
+  - parity: 2 087 verdicts agree, and `npkc` and the verified compiler are byte-identical;
+  - 7 114 obligations matching, and the verify suite's 133 files PASS with their problem texts byte-identical. `nitpick.obligations` keeps its 6 816 rows: 6 585 shared and 231 on each side re-keyed by a type-id move, with zero verdicts moved and no discharged count fallen. The (symbol, kind, verdict) multisets are equal, so the new check carries no row of its own;
+  - the floor's 388 unmoved.
+- **Their sweep is F59's:**
+  - 5 161 files: 11 sites appeared, the new test's five and six fuzz programs' at the declaration; 7 vanished, the test's 4 use-site reports (silenced by D-240 behind the declaration's one) and three fuzz programs' codes at the uses. `TYPE-095` goes from 0 to 11 and `TYPE-021` from 3 to 0, and the per-code counts recompute (4 241 − 7 + 11 = 4 245);
+  - the tree's 572 programs byte-identical;
+  - of the 4 033 programs of their libraries-and-applications set (the fuzzer's corpus among them): 1 818 byte-identical and 2 214 refused by both, 0 different, and 1 newly refused, the fuzzer's `tr0432`, whose claim D-353 overturns;
+  - D-332's count: 0 mismatched.
+- **The renamed regex copy for 117,** their leg: 188 files under 116's and 117's checkers, 0 appeared and 0 vanished, 155 clean and the 33 with a diagnostic the rejection suites' own; 166 programs, 133 byte-identical and 33 refused by both, 0 newly refused and 0 different. **So nothing 113 … 117 added fires in regex.**
+- **Ours, as F59 measured:** none of our 359 tracked programs declares a `comptime` value parameter, and no plan proposes the form. **Nothing of ours moves.** A library wanting a compile-time constant uses a `fixed` module binding.
+- **The registry:** O-N36 marks F-039 (a) landed in 117, in this commit.
+- **Not in the pin** (`7e91730`). **No floor byte moved, so no re-pin is forced.** The one re-pin is at 118.
+- **The fuzzer's rows:** its manager has F59's list (sent 00:01) and re-reads `tr0432` and `as0062` as RESERVED at its next M11 re-read, with the four `expect: refuse` programs and the two `PARSE-001` ones (its reply, 00:04).
+- **Next from them: 118** (DEF-253 and DEF-254: a `Self->` trait method called through a bound, and a trait default's sibling call). It is an emitter landing, and its checker is 117's byte for byte.
+  - Its chain is read clean: 5 162 files, 0 appeared and 0 vanished; 573 programs, 572 byte-identical, the one different the new test `bound_ptr_receiver.npk`, whose base emission names an undefined symbol; of the 4 033, 0 different and 0 newly refused.
+  - The renamed-copy leg is measured for 118 already: 188 files, 0 appeared and 0 vanished; 166 programs, 133 byte-identical and 33 refused by both, 0 newly refused and 0 different.
+  - Its record started at 02:32, and F60 follows within the hour. Its harness starts once its texts are applied (about 03:30), and it lands on green at about 06:15.
+  - **118 is the landing our one re-pin (104 … 118) takes.**
+
+**THE BASELINE NOTICE 118 MUST QUOTE** (notice 117's rows, at `76a8102`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    31061b6042a8f0dc11664274179aa95cc6ce7960abfbde05ab2550db21209a40  31,728,315 B
+npkc.o     0d2f99512624cba1bb59f920df89ad0193b772733630b870d6091969923ba9cd  13,063,072 B
+npkc       da3749348ce51ed04e3b16b4099ce30748bb5f4af72e85bf73c77e0543fc3ee5  11,289,784 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 117 (D-353, S-135'S RULING OF 2026-10-15, THIS SEAT'S SUGGESTION; THE FUZZER'S F-039 IN O-N36 AND ITS `as0062`; F59 BY SEQUENCE) — **A `comptime` VALUE PARAMETER IS A RESERVED FORM: `NITPICK-TYPE-095` AT ITS DECLARATION, ONCE. NOTHING OF OURS TO RE-SPELL, BY THEIR SWEEP AND BY OURS.** 2026-10-15 23:58 (shell time), from `nitpick-compiler_38` (built by `_37`); filed 2026-10-16 00:01
 
 - **The ruling, D-353:** a user-declared value parameter is reserved until it is designed. That covers a function's (`func:scale<comptime int32:K>`), a struct's (`struct:Lock<T, comptime int32:LEVEL>`), a trait's, an enum's and an impl's.

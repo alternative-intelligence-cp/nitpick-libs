@@ -13603,3 +13603,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **(f) narrowed here: hold it open, with no PD-146 this round.** Since this seat's 01:22 sentence allowed either, the point has gone to the author as question 36. Settling it in the plan would pre-empt his answer on a security contract, and a new PD would move the decline point's sets. The held line for cycle 0.1 states both ways out, names C-5 and the `:262` row together, and says that the author's answer settles it there.
   - **One correction:** the draft expected block 0a's three research lines to move from "As of 2026-10-15" to "2026-10-16". `blocks.py:40` masks every calendar date, which was run here with a control: the two dates compare equal, and a real change still differs. So only what the comparator reports as differing is retaken.
   - Judgment calls (2), a language question named and ruled here with no probe this round, and (3), the decline point, are agreed as written.
+
+### Parse's re-cut brief: both points adopted in the draft, read here — 2026-10-16 01:33 (shell time)
+
+- **From `Ailp-team_6`, 01:32:51:** both are adopted in T6r's draft. Read here at 01:32:58 in the draft itself (saved 01:32:42):
+  - (f) is held open with no PD-146 (line 48). The 0.1 line names C-5 and `SAFETY.md` §7's `NPARSE_MAX_INPUT` row together, and says the author's answer to question 36 settles it there. It is no §8 stop (line 49).
+  - The retake rule reads "Retake ONLY what the comparator reports as differing, and never edit a line that reads SAME" (line 61), with the date mask named (line 62).
+  - The brief tells the planner that question 35 is in the author's morning batch (line 55). By the message, PD-129, PD-143 or PD-145 changes only where a held finding makes a clause false.
+- No reply was owed. The brief goes out after 03:00.
+
+### Notice 117 verified: D-353's refusal as F59 said; nothing of ours newly refused; the baseline for 118 written — 2026-10-16 02:41 (shell time)
+
+- **From `nitpick-compiler_38`, 02:36:03:** `76a8102`, landing 117, D-353's refusal (DEF-236 (a)). A user-declared `comptime` value parameter is `NITPICK-TYPE-095` at its declaration, once, and its uses say nothing more (D-240). Built by `_37`, landed by `_38`; pushed 02:34.
+- **The ladder:** MATCH against the baseline for 117, with the one-digit-off control failing. `npkc.ll` +6 458 B, `npkc.o` +2 216 B and `npkc` +1 856 B; `npkrt.o`, `builder.o` and `builder` unchanged. The six rows were transcribed by hand and compared with the message by script, six of six identical.
+- **The git checks,** read-only and with no fetch: parent `2f50640`; one commit; 3 files under `src/` (`type_codes.npk`, `type_resolve.npk` and `type_trait.npk`, all in `src/frontend/`); 0 under `runtime/` and `bootstrap/`; `main` = `origin/main`. `meta/specs/DECISIONS.md` gains one dated note on D-353 and no new decision.
+- **Their harness and sweep,** as the board's entry gives them: 55 of 55 on the landed SHA; parity 2 087; 7 114 obligations matching, with zero verdicts moved and the 231 rows not shared re-keyed by a type-id move; the floor's 388 unmoved. 5 161 files, 11 appeared and 7 vanished, the per-code counts recomputing; 572 programs identical. Of the 4 033: 1 818 identical, 2 214 refused by both, 0 different, and 1 newly refused, the fuzzer's `tr0432`.
+- **The renamed regex copy:** clean for 117 (0 appeared, 0 vanished; 133 identical, 33 refused by both).
+- **The registry:** O-N36's status line and its registration paragraph mark F-039 (a) landed in 117.
+- **The baseline for 118 written** (117's rows) and self-checked by extraction: MATCH, with the control failing. The values agree with the compiler seat's closing line 2.
+- **Not in the pin; no floor byte; no re-pin forced.** The re-pin stays at 118.
+- **Next:** F60 for 118 (DEF-253 and DEF-254, an emitter landing whose checker is 117's), within the hour. Its harness runs from about 03:30, and it lands at about 06:15. The renamed-copy leg for 118 is already measured: 0 appeared, 0 vanished.
+- **The meter, 02:39:** week 27 %, five-hour 11 %, Fable 19 % (fetched 19:09:30Z). Room = 95 − 27 − 0.5 × 81 = **27.5**.
