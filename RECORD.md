@@ -14024,3 +14024,22 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   2. regex 0.2.5a's fix round 1 (a fresh `opus` planner on `07022d6`, room-checked), then its scoped re-verification;
   3. parse's chain line at T6av's verdict, then the merge and T8's go;
   4. landing 119's notice, by the ladder.
+
+### Regex 0.2.5a's fix round 1 dispatched, a fresh planner on `07022d6`; the claims recovered at the take — 2026-10-16 09:24 (shell time)
+
+- **Recovery (orchestrate §2 step 5 and §4), every `CLAIMED` row after the take.** This session's `ListAgents` shows none of `_19`'s agents, so by §4's rule every claim is stale, and each is read by its file and its tree:
+  - `stale claim nitpick-regex: 0.2.5a PLANNED at 07022d6, plan verification 1 FAILED (recorded 09:17); clean and level at 07022d6; the fix round dispatched.`
+  - `stale claim nitpick-time: cycle 0.4, 0.4.0 PLANNED, at rest by the allocation (its adoption held to Sunday's release); clean and level at 1cc801f; nothing dispatched.`
+  - `stale claim nitpick-parse: the Team seat's chain, its agent T6av (Ailp-team_7's, running since 08:36:49) not this session's; clean and level at be5f446 here; nothing to recover.`
+- **dispatch `s1-nregex-0.2.5a-fix1-0924`** (`npk:planner`, `opus`), a fresh planner on `07022d6`. It is FIX ROUND 1 of plan verification 1's FAIL, by the list in the entry of 09:17. Its NOTES carry:
+  - D1, with the planner asked to measure `Reader` as a field at both pins before writing the note;
+  - N4, N5 and N7, fixed in the patches before PD-179 and PD-180 become RX-244 and RX-245, since an accepted decision's text is never rewritten;
+  - N1–N3, N6, N8 and N9;
+  - text only: no choice moved and no new PD, or else NEEDS-DECISION;
+  - blocks 2 and 5 rehearsed on a throwaway branch, and 1 and 4 if their patches change. The harness blocks run only if a change reaches what they read. Every unchanged fence stays byte-identical, and the moved fences are named;
+  - the fix committed on `main` and pushed, with CI read per job;
+  - the kept `7e91730` pin, the machine's rules, the sandbox's, and the CI-log rule.
+
+  Expect about an hour.
+- **Room 26.5** at 09:23: the week 35 %, the five-hour window 10 %, and Fable 33 % by the author's `/usage` of 07:30. The file was written by `nitpick-fuzz_3`, with the account check matching. That is over 20, so this seat did not ask management first. `free -g`: 121 GiB available.
+- **Next:** its report, then the scoped re-verification (`sonnet`): the fixed hunks, the re-run blocks, and the fences otherwise byte-identical.
