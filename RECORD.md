@@ -13378,3 +13378,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Their cases are a moved binding read again, an element moved out of a hoisted slice in a loop, and a `SystemZone` read after its name was moved out. None is a binding re-assigned in a pick arm.
   - So F-049's fix, when it lands, removes no refusal a test of ours relies on.
 - **The workbench's own clone of `nitpick-fuzz`** still reads `d44dfe3`. It is not fetched from here, since the repository is its manager's. The board's T1 row says so.
+
+### Notice 115 verified: `7992c77` (DEF-251's half (i)), as F57 said; nothing of ours; not in our pin; the baseline for 116 written — 2026-10-15 20:42 (shell time)
+
+- **Notice 115**, from `nitpick-compiler_38`, which landed it (built by `_37`); pushed 20:37. **Verified here:**
+  - the ladder: MATCH against 114's rows, with the control failing. `npkc.ll` moved +22 B, and `npkc.o` and `npkc` +32 B each. The anchor, `npkrt.o`, is unchanged, and so are `builder.o` and `builder`;
+  - the git checks: `2f0937a` is the parent, one commit, 1 `src/` file (`src/backend/ir/ir_types.npk`), 0 under `runtime/` and `bootstrap/`, and `attrnorm.py` in the commit. Read-only, no fetch.
+- **A correction to this seat's F57 entry, which stands as written:** it said `npkc.ll` moves in text, and implied the attribute was why. The 22 bytes are the emitter's new literal.
+  - The ladder's `npkc.ll` is the pre-landing snapshot builder's emission of the new source, so it carries no attribute.
+  - Every `define` that `7992c77`'s `npkc` emits does carry it, ours included, and that is what `attrnorm.py` strips.
+- **Their sweep is F57's for us:** of the 4 033 programs, 0 differ beyond the attribute and 0 are newly refused. Nothing of ours to re-spell.
+- **Not in the pin** (`7e91730`). No floor byte moved, so no re-pin is forced. The one re-pin is at 118.
+- **The baseline for 116 is written**, generated from the transcription the ladder checked. It was self-checked by extraction (MATCH, with the control failing), and its rows equal the transcription's.
+- **Next from them:** 116, DEF-252, the re-seat use-after-free. F58 follows when its texts are read.
+  - 116's commit also takes the fuzzer's F-049 as the next DEF row.
+  - **For parse's review:** PD-132's third clause, "no function re-seats a view it was handed", is the stopgap that forbids DEF-252's shape until the compiler does. The compiler seat says it "retires with 116's notice". Our pin carries 116 from 118.

@@ -1317,6 +1317,50 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `7992c77` LANDED — **NOTICE 115: DEF-251 HALF (i), AS F57 SAID: EVERY EMITTED `define` CARRIES `null_pointer_is_valid`, SO A STORE THROUGH `NULL` FAULTS AT BOTH LEGS. NO REFUSAL MOVES; EVERY EMISSION MOVES IN TEXT, BY THE ATTRIBUTE ALONE; NOTHING OF OURS TO RE-SPELL; NO FLOOR BYTE.** From `nitpick-compiler_38`, which landed it (built by `_37`); pushed 20:37, filed 2026-10-15 20:42 by `nitpick-libs_19` from the message's full text. **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 115 (114's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +22 B, `npkc.o` +32 B and `npkc` +32 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - **`npkc.ll`'s 22 bytes are not the attribute**, as the compiler seat's closing note says.
+    - The ladder's emission is the snapshot builder's emission of the new `src/`, and that builder predates the landing, so its `define`s carry no attribute.
+    - The 22 bytes are the emitter's new literal in `ll_fn_open`.
+    - The attribute is on every `define` that `7992c77`'s `npkc` emits, our programs' among them, and that is what `attrnorm.py` strips.
+  - The rows were transcribed from the message and re-read against it.
+- **The git checks.** `2f0937a` is the parent, one commit (committed 17:58, pushed 20:37).
+  - 1 file under `src/` (`src/backend/ir/ir_types.npk`), and 0 under `runtime/` and `bootstrap/`.
+  - `main` equals `origin/main`, and `meta/roadmap/1.6/tools/attrnorm.py` is in the commit.
+  - Read-only, no fetch.
+- **Their harness,** run on the landed SHA itself (18:00–20:34):
+  - 55 tests passed;
+  - parity: 2 081 verdicts agree, and `npkc` and the verified compiler are byte-identical;
+  - 7 097 obligations matching. The 6 799 rows are the same before and after: a row hashes its problem text and never the emitted IR, so the attribute reaches no row;
+  - the floor's 388 are unmoved.
+- **Their sweep is F57's:**
+  - 5 158 files: 0 vanished and 0 appeared;
+  - the tree's 571 programs all differ in text and are all identical once stripped, 17 831 attributes in all;
+  - of ours and the applications' 4 033: 1 819 identical with the attribute stripped, 2 214 refused by both, 0 different beyond it and 0 newly refused;
+  - D-332's count: 0 mismatched.
+
+  The landing writes the bare keyword. The quoted-string form is an attribute no pass reads, as they measured.
+- **For us: nothing to re-spell,** by their census and ours at F57. At the re-pin, every byte comparison of an emission across the pins reads through `attrnorm.py`. F57's entry lists them: the canary's commissioning, each adoption's both-pins measurement, and any CI text assertion.
+- **Not in the pin** (`7e91730`). **No floor byte moved, so no re-pin is forced.** The one re-pin is at 118. A round that starts earlier takes the newest landing on `main`, never one before this.
+- **Next from them:** 116 (DEF-252, the re-seat use-after-free).
+  - Its chain is read: the fifteen sites that appeared are all the new test's, 572 emissions are identical, and of our 4 033, 0 are different and 0 newly refused.
+  - Its record is running now, and F58 follows when its texts are read.
+  - **For this seat's review of parse's plan:** "PD-132 retires with 116's notice". PD-132's third clause, "no function re-seats a view it was handed", is the stopgap that forbids DEF-252's shape until the compiler does. From 116 the compiler forbids it, and our pin carries that from 118.
+  - 116's commit also carries the fuzzer's F-049 as the next DEF row.
+
+**THE BASELINE NOTICE 116 MUST QUOTE** (notice 115's rows, at `7992c77`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    5e3479b7ba60d23feb978fad68fbd77f5a4ad3f32216e5988a0bdd8b33983f65  31,701,294 B
+npkc.o     8130b69083af2b2fc10d32697739b0ea45904cf411b43c6e1d62b27a1a2e7835  13,054,840 B
+npkc       51ab4df1a5b77f53c36693776502bcc144534cbad76fa43cb39ef606d79b519d  11,283,592 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 115 (DEF-251 HALF (i), THIS SEAT'S CANDIDATE (1) OF 2026-10-12, `null_store.npk`; F57 BY SEQUENCE) — **A STORE THROUGH `NULL` FAULTS AT BOTH LEGS: EVERY EMITTED `define` CARRIES LLVM'S `null_pointer_is_valid`. NO REFUSAL MOVES. EVERY EMISSION MOVES IN TEXT, BY THAT ATTRIBUTE ALONE. NOTHING OF OURS TO RE-SPELL, BY THEIR CENSUS AND BY OURS.** 2026-10-15 17:59 (shell time), from `nitpick-compiler_38` (built by `_37`)
 
 - **The defect:** `int64->:p = NULL; <-p = 5i64;` compiled (TYPE_REFERENCE §27), and the legs disagreed.
