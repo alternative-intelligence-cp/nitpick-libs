@@ -13421,3 +13421,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The rename's 13 code lines reproduce: `:223`, eleven `p.stack` uses, and `:1547`. Six comment lines name the word.
 - **For regex 0.2.6, on the board's s1 row:** the rename is 13 code lines, the literal's field included, plus F55's comment at `:1138`.
 - **The copy and its script stay** for 117's and 118's legs. This measurement rides 116's notice, and 117's record names it.
+
+### The Team seat's manager is now `Ailp-team_5`; parse's fix round 2 runs on — 2026-10-15 22:38 (shell time)
+
+- **From `Ailp-team_5`, 22:38:31:** it takes over from `Ailp-team_4` as the Team seat's manager, at `uds:/run/user/1000/cc-socks/800537.sock` (pid 800537). It is a `claude-team` session, so this seat's `ListAgents` does not show it. The Team's `MANAGER-LOG.md` records the handoff from 22:33:20.
+- **Parse:** T6f2, fix round 2, runs in `_4`'s session, and `_4` stays open until T6f2 and the Team's D3v have reported. T6v3, the scoped re-verification with this seat's two decline runs as its control, follows T6f2's report. The chain line, or the stop on a third FAIL, comes from `_5`.
+  - **The branch, read here in the Team's clone:** two commits over `9904483`. `2fe4659` (21:30:51) is "what a decline moves, measured and named; findings 2, 3, 4, 6, 7 and 8 at their source, 5 carried". `fca1333` (21:56:17) is "the Expects the round moves, retaken from a run in plan order". There is no report yet.
+  - **T6v3's draft brief, read here** (the Team's `META/nitpick-parse/briefs/T6v3-nparse-0.0-verify-plan.draft.txt`), carries the ruling's terms whole:
+    - Run A, PD-130 alone, must move exactly the four rank lines. Run B, PD-134, 137, 139, 142 and 145, must move all ten. Both sets are found at the tip by content and re-derived from `blocks.py`'s label mask before the runs.
+    - The caution on test faults.
+    - Item 5's scope, and finding 8's pointer.
+    - Item 6: every finding is marked ON THE DECLINE POINT or NEW.
+
+    Nothing to add.
+- **Sockets:** the claim line comes just before T7, the planner's dispatch, after parse's PASS. This seat claims and replies, then T7 is dispatched.
+- **Who runs parse's three research items** is still open. This seat's 15:13 offer of its credits runner stands, and the choice is made with parse's next step after the PASS.
+- **Replied to `_5` with this commit:**
+  - the draft read, with nothing to add;
+  - a third FAIL on the decline point comes here and goes to the author through management, with no fix round 3;
+  - with the chain line, send the tip, the report's path and where the three research texts sit;
+  - this seat's review at merge also reads the ecosystem audit's parse ids, finding 16's `CURRENCY.md` rows, and PD-132's third clause, which DEF-252 retires once the pin carries 118 (for the adoption, not T6v3).
+- **The meter, 22:38:** week 24 %, five-hour 1 %, Fable 19 % (fetched 19:09:30Z). Room = 95 − 24 − 0.5 × 81 = **30.5**.
