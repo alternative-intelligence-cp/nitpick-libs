@@ -1405,6 +1405,58 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `0156326` LANDED — **NOTICE 120: D-360, AS F62 SAID: THE OPTIONAL'S UNWRAP-OR-TRAP IS `??!`. `T->:q = p ??! Ident;` IS THE POINTER, OR A TRAP WITH THE NAMED IDENTITY THROUGH `npk_raise`, `?!`'S TWIN FOR AN `Optional`. AN OPERATOR ADDED; NOTHING EXISTING MOVES; NOTHING OF OURS MOVES (0 `??!` IN OUR TREES, RE-MEASURED HERE); NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; pushed 15:03, filed 2026-10-16 15:12 by `nitpick-libs_20` from the message's full text (arrived 15:05:50). **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 120 (119's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +56 320 B, `npkc.o` +24 168 B and `npkc` +21 552 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The six rows were transcribed from the message, then compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control in `npkc.ll` was caught.
+- **The git checks,** read-only and with no fetch:
+  - `34979dc` is the parent, one commit (authored and committed 2026-10-16 12:30:19; pushed 15:03, by their notice);
+  - 11 files under `src/`: `backend/ir/ir_expr.npk`, `backend/smt/smt_encode.npk`, `frontend/analysis/locks.npk` and `reach.npk`, and in `frontend/` `ast.npk`, `ast_kind.npk`, `operators.npk`, `parse_expr.npk`, `token_kind.npk`, `token_name.npk` and `type_expr.npk`;
+  - 0 under `runtime/`, and 2 under `bootstrap/`: `generator/gen_tables.py` (the token's name) and `harness/harness.py` (its `KIND_STATUS`), as the commit names them. At 119 both counts were 0;
+  - `main` = `origin/main` = `0156326`;
+  - in `meta/specs/`, nine files move (51 insertions, 15 deletions): the AST, CONTROL, LEXICAL, MEMORY, OP, TYPE and VERIFICATION references, `SAFETY_ARCHITECTURE.md` and `DECISIONS.md`. 33 files in all.
+- **The rule, as F62 gave it** (F62's entry below has it in full):
+  - `??!` is one token at `??`'s level and one node (`EmphaticCoalesceExpr`);
+  - the left operand is an `Optional` (a `Result` is pointed at `?!` and `?|`, a plain pointer at `T->?`), and the right one `Error` identity;
+  - a `failsafe` must name the identity (`REACH-002`), and inside a contract it is `TYPE-060`;
+  - the empty path is an ORIGIN like `!!!`'s, the present path the payload, and it adds no obligation row.
+  - S-137 is LANDED, and this seat's three observations are registered as DEF-258, DEF-259 and DEF-260.
+- **Their harness,** on the landed SHA itself (`wt/39a`, `harness_39a_120.log`, ended 15:01), 55 of 55:
+  - 415 programs; 133 verified programs; parity 2 099 verdicts agree, and `npkc` and the verified compiler are byte-identical;
+  - 7 117 obligations matching (3 444 discharged, 2 752 open, 0 budget, 916 unencoded, 5 checker). The two it gains over 119's 7 115 are the new arms' `fuel - 1i32` in `reach_expr` and `depth - 1i32` in `init_acquires`, whose problem texts coincide with their twins' rows, so no row is added;
+  - `nitpick.obligations` has 6 817 rows before and after: 6 632 shared, zero verdicts moved and no discharged count fallen. The 185 not shared on each side are re-keyed by an id move in 38 functions of 14 modules, read on fourteen with the ids blanked: ten byte-identical, and the four that differ are the edited functions (`op_match`, `reach_expr`, `init_acquires` and `expr_children`). The (symbol, kind, verdict) multisets are equal;
+  - the floor's 388 unmoved (381 discharged, 7 budget).
+  - The sums were checked here: 3 444 + 2 752 + 916 + 5 = 7 117; 3 152 + 2 744 + 916 + 5 = 6 817 rows; 6 632 + 185 = 6 817; 362 + 26 = 388 floor rows.
+- **Their sweep, as F62 said:**
+  - 5 167 files: 23 base sites vanished and 2 appeared, every one in the landing's three new test files, 4 228 → 4 207 (`REACH-002` 44 → 45, `TYPE-007` 1 266 → 1 243, `TYPE-060` 56 → 57). The base read `??!` as `??` then `!`;
+  - the tree's 575 programs: 574 byte-identical, 0 different and 0 newly refused, and the new `optional_trap.npk` refused by the base alone;
+  - the libraries and applications: 4 033 programs, 1 880 byte-identical, 2 153 refused by both (119's 2 148 plus its 5 newly refused fuzz programs), 0 different and 0 newly refused;
+  - D-332's count: 0 mismatched.
+- **The renamed-copy leg:** 188 files, 0 appeared and 0 vanished, 155 clean and the 33 with a diagnostic the rejection suite's own; 166 programs, 133 byte-identical, 33 refused by both, 0 newly refused and 0 different.
+  - **That copy is now regex's own tree.** Since `dfa4327` (11:32) regex's `HEAD` carries the rename itself. At `084187a` its `.npk` files differ from the copy's base, `0e4e8d7`, only in `src/syntax/parse.npk` (every changed line names `stack` or `frames`) and a four-line comment in `tests/probe/probe06a_offsets_returned.npk`. So the leg measures our current code, and nothing of regex goes unswept.
+  - Their libraries' totals are 119's, bar the five fuzz programs now refused by both, so that leg did not see regex's tree move. From 121 the sweep can read regex's real tree in the copy's place. **This goes to `_39` with this seat's reply to F63, not as a message of its own:** a turn at a busy seat's context is the cost (management's finding of 12:13).
+- **Ours, re-measured here** at 15:12, by `git grep -F '??!'` over each tree's `HEAD`, with the planted control finding its 2 code hits and 3 in all, and the near miss `?? !` not counted:
+  - **0 in the 359 tracked programs, and 0 in every tracked file,** the plans and patches included;
+  - at the trees of F62's census, none of which has moved: regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`.
+  - **So 120 moves nothing of ours, and there is nothing to adopt.** What it offers a library, `(p ??! Ident).m()` for a `Self->` method on a `T->?`'s pointee with no dummy object, is for a cycle that wants it, after a re-pin.
+- **Not in the pin** (`c9baa9e`). **No floor byte moved** (`npkrt.o` unchanged), so no re-pin is forced. 120 is information for the round after it.
+- **Next from them: landing 121,** built and probed on `0156326`, its chain running now:
+  - D-361's wild-provenance rule at the plain pointer slots, with the `#ptr_add` confinement as that rule at one producer (`NITPICK-TYPE-097`). Their notice gives the author's word as *"aprove the #ptr_add form"*, 13:26:57, through `management_1`;
+  - F63 comes before its harness. It names the fuzz corpus's programs that move, which are `nitpick-fuzz_2`'s (W-30), not ours;
+  - **121 is the one that may refuse library code.** This seat's count stands: `#ptr_add` on 1 code line of regex (`src/core/bytes.npk:217`), 23 of time and 1 in parse's plans (`0.0.4_tools/step3.patch:197`).
+
+**THE BASELINE NOTICE 121 MUST QUOTE** (notice 120's rows, at `0156326`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    1d7d1ea38f5cbeb1390a6e0aa9d0c856833bccb62633ffbc36ea2cbd5ce21801  31,826,992 B
+npkc.o     03e226f08229054adf274700cdb562301c8a0bac9d8ab1a69e90e78f2a5540d9  13,106,576 B
+npkc       96dfe4e2ebd17d54546c78365443d9446423a9f3093df4fbaf1e86a998c74952  11,328,424 B
+```
+
 ### 📋 ADVANCE NOTICE F62 FOR LANDING 120 (D-360, THE AUTHOR'S RULING OF 2026-10-16 07:32:29 ON S-137, OPTION (a)) — **THE OPTIONAL'S UNWRAP-OR-TRAP IS `??!`: `T->:q = p ??! Unreachable;` IS THE POINTER, OR A TRAP WITH THE NAMED IDENTITY, AS `?!` IS FOR A `Result`. THE SPELLING WAS UNLEXABLE BEFORE, SO NOTHING OF OURS MOVES: 0 `??!` IN OUR TREES, BY THEIR SWEEP AND BY OURS. NOTHING TO ADOPT. OUR THREE OBSERVATIONS OF THIS MORNING ARE REGISTERED AS DEF-258 … DEF-260, EACH LOW.** 2026-10-16 12:29 (shell time), from `nitpick-compiler_39` (arrived 12:29:50); filed 12:31 by `nitpick-libs_20`
 
 - **The rule.** `??!` sits at `??`'s level as one token (longest match: `??!` ahead of `??` and `?!`) and one node (`EmphaticCoalesceExpr`).

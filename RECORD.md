@@ -14435,3 +14435,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `tools/reinject_orchestrator.py`, read here, prints only for the session whose id is in `.internal/orchestrator.session` and skips any input with `agent_id`. So no other seat gets the orchestrator's block.
   - The Team clone may now diverge, and the Team's own agents follow it. That is the Team's domain.
 - **Nothing in flight here.** The hold on Max dispatches runs to Sunday's release.
+
+### Notice 120 verified: D-360 as F62 said; nothing of ours moves, re-measured; the baseline for 121 written — 2026-10-16 15:12 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 15:05:50):** `0156326`, landing 120 (1.6.1e, D-360). The Optional's unwrap-or-trap is `??!`: `T->:q = p ??! Ident;` is the pointer, or a trap with the named identity through `npk_raise`, `?!`'s twin for an `Optional`. S-137 is LANDED, and DEF-258 … DEF-260, this seat's three observations, are registered. Built and landed by `_39`, pushed 15:03.
+- **The ladder:** MATCH against the baseline for 120, with the one-digit-off control failing. `npkc.ll` +56 320 B, `npkc.o` +24 168 B and `npkc` +21 552 B; `npkrt.o`, `builder.o` and `builder` unchanged. The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught.
+- **The git checks,** read-only and with no fetch:
+  - parent `34979dc`, one commit, authored and committed 2026-10-16 12:30:19;
+  - 11 files under `src/`, 0 under `runtime/`, and 2 under `bootstrap/` (the table generator and the harness's `KIND_STATUS`);
+  - `main` = `origin/main` = `0156326`;
+  - nine files of `meta/specs/` move; 33 files in all.
+- **Their harness and sweep,** as the board's entry gives them: 55 of 55 on the landed SHA; parity 2 099; 7 117 obligations matching, 6 632 rows shared and 185 re-keyed, zero verdicts moved and no row added; the floor's 388 unmoved. 5 167 files: 23 vanished and 2 appeared, all in the three new test files. The libraries and applications: 4 033 programs, 1 880 byte-identical, 2 153 refused by both, 0 different, 0 newly refused. The sums were checked here.
+- **The renamed regex copy:** clean for 120 (0 appeared, 0 vanished; 133 identical, 33 refused by both). **It is now regex's own tree:** since `dfa4327` (11:32) `HEAD` carries the rename, and at `084187a` regex's `.npk` files differ from the copy's base `0e4e8d7` only by it and one probe's four-line comment. Their libraries' totals are 119's, bar the five fuzz programs now refused by both, so that leg did not see regex's tree move. Nothing of regex goes unswept. From 121 the sweep can read the real tree. This seat says so with its reply to F63, not in a message of its own, since a turn at a busy seat's context is the cost (12:13).
+- **Ours, re-measured here** with the planted control (2 code hits and 3 in all, the near miss not counted): 0 `??!` in the 359 tracked programs and in every tracked file, at the seven trees of F62's census, none moved. **So 120 is nothing to adopt**, as F62 said.
+- **The baseline for 121 is written** (120's rows), generated from the transcription by script, and self-checked by extraction from the edited board: identical to the generated block. The ladder against an all-unchanged notice of the new values MATCHes, with the control failing.
+- **No floor byte, so no re-pin is forced;** the pin stays `c9baa9e`.
+- **Next from them:** F63, for landing 121 (D-361's wild-provenance rule with the `#ptr_add` confinement, `NITPICK-TYPE-097`), before its harness. It is the landing that may refuse library code. This seat's count stands: `#ptr_add` on 1 code line of regex, 23 of time and 1 in parse's plans.
+- **The machine:** 119 GiB available. Nothing of the libraries' is in flight or queued on Max, by management's hold until Sunday's release.
