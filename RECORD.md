@@ -13728,3 +13728,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`check_refs`:** only the two known `[leak]` lines (`tools/guard_domains.py`). PX-008 in the graph's note is not flagged.
 - **Told after the push:** `management_0`, who tells the Team to fast-forward its clone, the skill being a plugin file; and the fuzzer's manager, `nitpick-fuzz_2`, that `nitpick-fuzz/CLAUDE.md:10` ("the workbench has merged the one before it") is stale under W-30 and is its file to fix.
 - **Owners' items not landed here:** posix's 0.11 gate, and `APPS.md:10`'s "14 cycles" (E2-10's apps half, deferred to its next touch).
+
+### pin c9baa9e, tree clean — the one re-pin, landing 118, carrying 104 … 118; the adoptions next — 2026-10-16 05:50 (shell time)
+
+- **The pin, by orchestrate §3, at the quiet point `management_0` called at 05:39, with no claim in flight.** Parse has been at rest since 05:13; regex's s1 and time's s2 claims are held with nothing running; nothing of this seat's was running. The author's word is question 32's (2026-10-15 12:04:21): the one re-pin at landing 118.
+  - **Provenance:** `../nitpick` clean at `c9baa9e` on `main` (porcelain 0, `main` = `origin/main`); `build/npkc` 9 310 s newer than `HEAD`'s commit (02:55:35); the mid-rebuild guard cleared (`npkc` 820 s old, `npkrt.o` 870 s old at 05:44:25).
+  - **The copies** (05:44): `cmp`-identical to `build/`, with `SHA256SUMS` written and checked. Each equals notice 118's row to 64 hex and exact size, with a one-digit-off control failing: `npkc` 11 291 032 B `df641bdd…`, `npkrt.o` 72 656 B `c8e5033a…` (the anchor, unchanged).
+  - **The LLVM:** the machine's 20.1.8 (D-349), the same as the kept `7e91730` pin's, so the old-pin leg needs no private LLVM.
+  - **Commissioned both ways:**
+    - the canary compiles at exit 0 with 16 defines and 57 255 B. The kept `7e91730` pin reproduces its recorded 56 903 B / 16 exactly, and through the compiler's `attrnorm.py` (taken from `c9baa9e` by `git show`) the two emissions are the same, with 16 attributes stripped from the new side. So the +352 B is landing 115's `null_pointer_is_valid` on each of the 16 defines (16 × 22 B), and nothing else;
+    - linked with llc 20.1.8 and the pin's `npkrt.o`, it runs to exit 0;
+    - the malformed file exits 1 at `PARSE-001`, writing no IR.
+  - **`PIN.md`** carries the six rows, the carried landings (104 … 118), those not carried (D-355's plan and landing under F61, and the rest of the compiler's queue), and what the pin moves for us.
+- **The board's header names `c9baa9e`,** keeping `7e91730` under *Before*. Each library's next dispatch is its adoption, in a lettered subcycle.
+  - **Regex** is RED at this pin until its adoption renames the field `stack` (113's `PARSE-001`; the field, its 12 uses and a comment). By the compiler's renamed-copy leg, nothing else of 113 … 118 fires in regex.
+  - **Time** has nothing to re-spell; its `check_call_edges` and `check_purity` re-run at its adoption (105).
+  - **Parse's** adoption is a planner round on the Team that retakes its plan's Expects, before T8. Probe 06 flips to exit 0 (118) and probe 08h to refused (116), and the re-cut's text items ride with it.
+  - Posix's three probes gain the `StackExhausted` and `MachineFault` arms (109) at its next dispatch, and tui's probe 07 links as written (118).
+  - Every byte comparison of an emission across the pins reads through `attrnorm.py`: each adoption's both-pins measurement and any CI text assertion.
+- **The registry's rows discharged by this pin** (O-N36's landed items, O-N40's first item, O-N41) are marked in a commit of their own, as at `7e91730`.
+- **Next:** regex's adoption on Max, which management cleared at 05:39; the other adoptions are sized and their number sent to management before they start.
