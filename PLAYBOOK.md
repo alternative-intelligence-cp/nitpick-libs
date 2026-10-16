@@ -1263,6 +1263,10 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   scratch copy with only that refusal's cause fixed. A graph of a library's imports must follow `pub use` as well as
   `use`. *(This seat at F58, 2026-10-15. The first import graph missed `pub use` and read zero, and a direct control
   caught it. Landed 2026-10-15.)*
+- **Read an environment variable only by its exact name** — `printenv NAME` or `"${NAME}"` — never by listing the environment
+  and filtering it. On 2026-10-16 an `env | grep` printed a session's own messaging token, because its redaction matched
+  values, not names. A filter can never be shown complete over a set it has not seen. *(`management_1`'s cross-seat rule,
+  2026-10-16; landed 2026-10-16.)*
 
 ## 7. Repository conventions
 

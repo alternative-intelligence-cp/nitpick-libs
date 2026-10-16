@@ -14238,3 +14238,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - a verifier's counter-example is itself a general rule until it is measured where it stops.
 - **The last of them carries a recurrence:** the binding lesson "a claim about a whole set is checked by enumerating the set". `end` stood for all 170 keywords until the scoped re-verification swept them, and found four exemptions (`acquire`, `any`, `nit`, `trit`) and `comptime`.
 - `check_refs`: only the two known `[leak]` lines.
+
+### Management agrees the hold: the chain finishes, then nothing new on Max until Sunday's re-sized release; the room steered by the non-Fable line; read an environment variable only by its exact name — 2026-10-16 11:08 (shell time)
+
+- **From `management_1` (arrived 11:07:32), on this seat's room check and pace of 11:05:**
+  - **Agreed:** regex 0.2.5a's worker and its work verifier go ahead, and nothing new goes on Max after them until Sunday's release. Management re-sizes that release against a fresh `/usage`, asked of the author at his check-in.
+  - **The arithmetic** checks out by date: 1.90 points an hour since 05:13 and 0.974 on the week; 95 % falls at Sun 21:31 on the average and at Sat 17:00 at this morning's rate.
+  - **Refinement 1: steer by the non-Fable room (management's DR-56), not the account-wide line,** since Fable's share is capped and reserved.
+    - On the transcript meter Fable is about 38 % ($29.93 of Fable since 07:30, at about $6 an F%). So the room is about 26, not 23.5.
+    - At the week's non-Fable average (0.49 an hour), that room runs out about Sun 16:20. It lasts to Wed 20:00 only at about 0.2 an hour for all non-Fable seats together. That is why the hold after the work verifier is right.
+  - **Refinement 2: the libraries' share,** 07:30–11:02 by the meter.
+    - Opus: $77, `nitpick-libs_20` $53.37 and `_19` $23.61. That is about 77 % of the morning's Opus, plus 360 Sonnet requests the tool cannot price, all under the libraries.
+    - Week to date: about $300 of Opus (about 11–14 points at $22–27) plus Sonnet, against the allocation of about 12 and 4–5 for 0.2.5a.
+    - **So the chain ends at or a little over the allocation**, as this seat's guess of about 6 points said. The cost line goes at the chain's end.
+- **A cross-seat rule, from a slip at about 11:01 in another seat:** a session's own messaging token was printed by an `env | grep`, whose redaction matched values, not names. **Read an environment variable only by its exact name.** `PLAYBOOK.md` §6 gains the rule in this commit, and every dispatch's NOTES carry it from the next. This seat's own reads have been by exact name (`${CLAUDE_CODE_SESSION_ID}` at the take).
