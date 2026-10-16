@@ -14102,3 +14102,51 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **If this seat has not answered that line within 10 minutes, the Team dispatches anyway.** This seat then records the claim at its next turn, dated to the line.
   - The claim keeps a second writer out of parse's `main`, and nothing else writes there: the chain works on its `team/` branch. So the go need not wait on this seat's turn at 03:00.
 - **The Team seat's manager passes from `Ailp-team_7` to `Ailp-team_8`** (`uds:/run/user/1000/cc-socks/400168.sock`), which sends the s2 line.
+
+### Regex 0.2.5a's fix round 1 DONE at `0f5878b`; its scoped re-verification dispatched; the Team's manager is `Ailp-team_8` — 2026-10-16 10:23 (shell time)
+
+- **report `s1-nregex-0.2.5a-fix1-0924` DONE 615 157 tokens 56 min** (09:25–10:21, 372 tool uses, `opus`). One commit, `0f5878b`, on `07022d6`, pushed: 6 files, +218/−127, all under `meta/roadmap/0.2/`. Text only, with no choice moved and no new PD.
+  - **D1:** `step2.patch:259` (→ `BUILD.md:729`) now says every KEYWORD of the table is `PARSE-001` as a field's name, measured word by word. `Reader` is no keyword but the prelude's trait, and a field so named compiles and reads back at both pins. Its measurement: the table's 34 words each compile as a field's name at `7e91730`, and at `c9baa9e` the 33 keywords are `PARSE-001` at 3:29 while `Reader` compiles. A `Reader` field, written and read, exits 7 at both legs at both pins.
+  - **N4, and its widening:** PD-179's opening (`step1.patch:25`) and step 4's `CLAUDE.md` bullet (`step4.patch:58`) now name only the kinds measured, each with `end` at both pins.
+    - At `c9baa9e`, `PARSE-001` at the name: a field, a variant, a parameter, a `for` binding, a module binding, and a local that `wild` or `fixed` leads. A function, a type and a module were `PARSE-001` already at `7e91730`.
+    - A local declared `T:name` is `PARSE-002` at both pins.
+    - A generic parameter's and a variadic's name compile at both pins, as the empty name.
+    - **Beyond the dispatch's list, by that measurement,** every "any kind" or "any declared name" text is narrowed too: the plan's title, §1 and §1.4, and the cycle README's row 80; RX-134's marker, `API.md`'s note, probe 06a's note, `BUILD.md`'s `stack` row and PD-180's first bullet in step 2; `README.md`'s status and `CLAUDE.md`'s note on a local in step 4. **Accepted here as text within the round**, subject to the re-verifier's reading of each hunk.
+  - **N7, N5, N1–N3, N6, N8 and N9** as listed in the entry of 09:17. N9: step 6's `gh run watch` runs with `run_in_background: true`. N3's padding is stated in the plan, with `step1.patch` unchanged there. A sixth item in §8 records the round.
+  - **The blocks**, rehearsed on `fix1-r1` and confirmed on `fix1-r2` (never pushed, both deleted): 0a, 0b, 1, 2, 3, 4 and 5 are SAME against the committed plan. The harness blocks (0h, 0r, 1h, 2h, 4h) were not run, since by its account no change reaches what a full run reads.
+  - **The fences moved, eight lines**, with every other fence byte-identical to `07022d6` by its script:
+    - expect 1's line 25 (55 → 58 insertions);
+    - expect 2's line 28 (96 → 103);
+    - expect 4's line 3 (32 → 35);
+    - expect 5's lines 3, 6, 12, 14 and 15 (block 5 saves 192 and 42 lines, where it saved 190 and 41).
+  - **CI** run `38914223167`, job `117017429359` (97 428 B): success, at `7e91730` by design, 347/347.
+  - **findings-for-playbook, held for the PASS** with the five of 08:28: a verifier's counter-example is itself a general rule until it is measured where it stops. N4's "a local is `PARSE-002`" holds only for a local declared `T:name`, and measuring each kind found two the compiler does not refuse at all.
+  - **Two observations for the compiler seat** (its plan's §9; nothing in this library declares either shape). They go with this seat's next message to the compiler seat, beside the RX-134 `K` observation of 08:28:
+    - notice 113's "any kind" headline and `LEXICAL_REFERENCE.md` §4's note do not hold for a local declared `T:name`, still `PARSE-002` "expected an expression";
+    - `func:f<end>` and `..*int64[]:end` compile at both pins as the empty name, the shape DEF-235 closed for fields, where `parse_decl.npk`'s own comment says every declared name goes through its two helpers.
+  - **Its disclosures:**
+    - **A slip, against the dispatch's rule:** its first scratch clone set a local `user.name` and `user.email` and committed with `--no-verify`. It rebuilt the clone at once without either. That clone was never pushed and is deleted, and no real commit was affected. The rule stands in every dispatch's NOTES.
+    - A branch deletion hit the sandbox's "could not write config file .git/config: Device or resource busy", as at planning.
+    - `.internal/fix1/` and `.internal/w025a/` are removed.
+  - **Checked here (10:21):**
+    - `HEAD` = `origin/main` = `ls-remote` = `0f5878b`, clean, with `main` the only branch;
+    - the commit's identity is the configured one, with its trailer;
+    - its 6 files are all under `meta/roadmap/0.2/`;
+    - no local `user.*` and no `core.hooksPath`;
+    - `check_refs` clean, and `check_record` gives `[no-report]` only, as a PLANNED file does;
+    - CI's one job succeeded on `0f5878b` (`gh run view`).
+- **dispatch `s1-nregex-0.2.5a-verify-plan-2`** (`npk:verifier`, `sonnet`), the scoped re-verification on `0f5878b`. Its ten questions:
+  1. the diff;
+  2. each item's hunk, the widening included;
+  3. the measurements at both pins by its own probes, with `keywords.npk` read;
+  4. the fences byte-identical but the eight moved lines, and blocks 0a, 0b, 1, 2, 3, 4 and 5 SAME in a stand-in;
+  5. whether any change reaches a full run;
+  6. CI, per job;
+  7. the decision log;
+  8. block 5's saved lines;
+  9. hygiene, the config included;
+  10. step 6.
+
+  Its stand-in reaches the compiler through a `--shared --no-checkout` clone, not a symlink, since verification 1's symlink could not be removed under the guard.
+- **Room 25.5** at 10:22: the week 36 %, the five-hour window 16 %, and Fable 33 % by the author's `/usage` of 07:30. That is stale, which understates the room. `free -g`: 121 GiB available.
+- **The Team seat's manager is `Ailp-team_8`** since 10:10:10 (`uds:/run/user/1000/cc-socks/400168.sock`), taking over from `Ailp-team_7`. It holds this seat's merge message (10:04:09) and T8's go (10:06:43) verbatim, and sends the s2 line just before T8's dispatch.
