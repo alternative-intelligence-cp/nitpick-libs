@@ -13770,3 +13770,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the pin commit (`4540f20`) wrote the board's toolchain line with its prefix doubled ("**Toolchain:** **Toolchain:**"). The replacement prepended a text that already carried the prefix;
   - the pin's record heading said 05:50, a minute written before the clock was read. It was filed at 05:48 (the commit is 05:48:13), and the heading now says so.
 - **The registry's discharges for the pin** follow in their own commit, while the planner runs.
+
+### The registry's rows discharged at the pin `c9baa9e`: O-N36's landed findings, O-N40's first item and O-N41 — 2026-10-16 06:03 (shell time)
+
+- **O-N36, PARTLY DISCHARGED at the pins `7e91730` and `c9baa9e`.** At `c9baa9e`: F-038 and F-046 (111), F-048 (112), F-036 a, F-039 (c)–(e) with F-042 (a), F-045 and F-034 (c) (113), and F-039 (a) (117). Each was verified here at its landing.
+  - **Still open:** F-034 (a) and (b) (DEF-234 (a), (b)); F-042's rows beyond its (a); F-039 (b); the documentation rows (DEF-239); `npkg`'s stage list (DEF-240); and Gemini's 01–03 (S-130).
+  - F-039 (b) is read by the compiler (its DEF-236 entry at `c9baa9e`) as no defect but a correction of F-031's pipe row, so it is a documentation row.
+  - The status line's old "LANDED SINCE, NOT YET IN OUR PIN" list is kept in a dated parenthesis.
+- **O-N40, PARTLY DISCHARGED at `c9baa9e`:** item 1 is DEF-243, landed in 107 (`508d7c5`; verified here 2026-10-09 14:05). Item 2, the sibling import, is DEF-244 and still open.
+- **O-N41, DISCHARGED and struck:** DEF-249, landed in 104 (`085bc01`; verified here 2026-10-09 05:17). An `exit` operand is held to `int32`. The entry as it stood is kept under the struck heading, as at `7e91730`.
+- **O-N34**, struck since `7e91730`, said DEF-226 was open. It gains a dated note: DEF-226 landed in 110 (`599e5ad`), and this pin carries it. Its kept text is left as history.
+- `check_refs`: only the two known `[leak]` lines.
