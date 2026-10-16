@@ -13953,3 +13953,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Today's order of handoffs:** this seat first; `nitpick-compiler_38` → `_39` after landing 119 (about 10:45); then `management_0` → `_1`. `_20` is to be introduced to `nitpick-compiler_39` once both are in, since 119's notice and F61 cross between them.
   - One line goes to management when `_20` has taken over.
 - **The earlyoom memory** (`machine-memory-and-earlyoom`) gains the correction under his OK. From a sandboxed shell, `systemctl is-active earlyoom` fails on the bus and reads as inactive, while `journalctl -u earlyoom` works.
+
+### Regex 0.2.5a's plan verification 1 FAILED on one blocking text defect; fix round 1 is `nitpick-libs_20`'s to dispatch — 2026-10-16 09:17 (shell time)
+
+- **The verifier** (`s1-nregex-0.2.5a-verify-plan`, `sonnet`, 08:30:05–09:15:37, 183 tool uses, about 499 k tokens): **FAIL, on one defect.** Everything else it measured holds, in a stand-in workbench under `$TMPDIR`, its three toolchains checked against their `SHA256SUMS`:
+  - **The blocks:** all twelve read SAME (0a 0h 0r 0b 1 1h 2 2h 3 4 4h 5). It re-classified 0r's 151 failures itself: 139 `PARSE-001` at `parse.npk:223:16`, 8 the rejection fixtures' verdicts, and 4 PENDING lines for `PARSE-001` roots, with 0 other.
+  - **PD-179:** the 14 mutants each revert exactly one line, all 14 together give the base file back byte for byte, and the 13 code mutants are refused at both pins.
+  - **PD-180:** the keyword-field probes are its own. One keyword field compiles at `7e91730` (exit 7), and two in a literal give `TYPE-028`, "'' is given twice". At `c9baa9e` both are `PARSE-001`. The nine texts are complete by its own search. The emissions are 155 pairs: 77 attribute-only, 78 also flag tests (3 076 drops made unconditional), 0 different, with `irscan.py`'s edges and the `target` lines equal in all 155.
+  - **The rest:** D-332's 33 files at both pins; `rx120.sh` at `c9baa9e` (floor 5, syscaller 6, `{npk_sys6}`); B-4e's re-read; CI's four rows; the decision log's four pure-addition hunks (89 lines); block 5's 190 and 41 lines; hygiene.
+  - Step 6 is executable as written.
+- **D1 (blocking):** `0.2.5a_tools/step2.patch:253`, which becomes `meta/specs/BUILD.md:727`, says "every word in the table above is `NITPICK-PARSE-001` as a field's name". **`Reader` is in that table and is no keyword:** it is the prelude's trait, and a field `Reader` compiles, links and runs (exit 7) at both pins. That is the fault RX-134 records, a rule generalised without measurement, in new text the sweep cannot see.
+- **The non-blocking items, three of which land in decision or tracked texts and so belong in the fix round:**
+  - **N4:** RX-244's text and step 4's `CLAUDE.md` bullet say a keyword as a name "of any kind" is `PARSE-001`. A local is `PARSE-002` at its declaration at both pins.
+  - **N7:** RX-245 names eight of the nine dated texts; `CLAUDE.md` is dated in step 4.
+  - **N5:** "every declared name read as an identifier" (§1.8, `lexical.py`'s note, the B-4e note) is not the compiler's source at `c9baa9e`. `parse_decl.npk` reads generic-parameter names (`:805`, `:810`), a variadic's name (`:1109`) and macro parameter names (`:1444`) with a plain `p_advance`. The re-read verdict does not move.
+  - **The plan-text items:**
+    - N1: `env.sh:22–23` lists `cat-file`, which no block runs, and omits `log` and `ls-tree`;
+    - N2: §4.2's "three lines" in probe 06a are four;
+    - N3: line 223 loses one space of padding;
+    - N6: in §5b, only pattern 1 sees `lexical.py:40`;
+    - N8: three of the seven `hir_literal` units import the parser transitively;
+    - **N9, which matters to the worker:** step 6's `gh run watch` needs a background instruction. The first CI run at a new pin builds the compiler cold, about 7–8 minutes against the ten-minute cap.
+  - N10, the harness's own `.internal/rx120/` scratch, needs nothing.
+- **Fix round 1, for `nitpick-libs_20`:** D1, with the hunk to say "every keyword in the table above" and to note that `Reader` is no keyword and compiles as a field at both pins. N4, N5 and N7, before the PDs become RX numbers, since an accepted decision's text is never rewritten. N1–N3, N6, N8 and N9. Then re-run blocks 2 and 5, whose diffstat, hit counts and §5b line numbers may move; the harness blocks are unaffected by prose.
+  - **A fresh planner** (`opus`, room-checked) on `07022d6` with a scoped brief. This planner's context was about 750 k and belongs to this seat's session.
+  - **Then a scoped re-verification** (`sonnet`): the fixed hunks, blocks 2 and 5, and the fences otherwise byte-identical.
+- **Its disclosures:** it ran a run-level `gh run view --log` once, to count bytes (126 161 B, so "prints nothing" did not reproduce). The guard refused its `rm -f` of the stand-in's symlink to the compiler tree, so **`/tmp/claude-1000/sw/nitpick`, a symlink, remains, for the author to remove by hand.** It is not worked around here. The real checkout is unchanged at `07022d6`.
+- **The meter at 09:16:** the week 34 %, the five-hour window 9 %, Fable 33 % (07:30). The room is 27.5.
+- **The handoff break holds:** the verifier has reported, this entry records it, and the worker has not gone out. The fix round is the successor's first dispatch.
