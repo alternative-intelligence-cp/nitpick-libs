@@ -13849,3 +13849,30 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep read regex's working tree mid-rehearsal.** 0.2.5a's planner had the rename checked out on `p025a-r1` from 07:04 to 07:21. So the libraries' totals moved from 118's (1 818 → 1 880 byte-identical, 2 215 → 2 148 refused by both), with no difference between the two compilers. The notice says so itself. **A rehearsal in a library's own checkout is visible to the compiler's sweep**; here it cost a footnote, not a verdict.
 - **For F63** (D-361's `#ptr_add` confinement, landing 121), counted here ahead of its notice: `#ptr_add` is on 1 code line of regex, 23 of time and 1 of parse's plans.
 - **A slip, caught before this commit:** the board entry was first written with a placeholder minute ("08:1x") for the sweep, before the transcript was read. It reads 08:12 to 08:15 now, from the transcript's tool times. Times inside an entry are now read first and written after, like its heading.
+
+### Regex 0.2.5a PLANNED at `07022d6`; its plan verifier next; two in-flight rows' doubled prefixes removed — 2026-10-16 08:28 (shell time)
+
+- **The planner's report** (`s1-nregex-0.2.5a-0552`, `opus`, 05:53:48–08:23:44, 221 tool uses, about 730 k subagent tokens, its context about 750 k at the end): status DONE. Its plan is committed at `07022d6` (08:17:58) and pushed, and CI run `38899548119` is green on it (job `116968110412`, still at `7e91730` by design, 347/347).
+  - The rehearsal and its confirmation ran on two throwaway branches in the checkout, `p025a-r1` and `p025a-r2`, with twelve blocks SAME. Both branches are deleted and were never pushed, and `.internal/p025a/` and `.internal/w025a/` are removed.
+  - **What it rests on, as measured:** the unchanged tree is 347/347 at `7e91730` and 204/355 at `c9baa9e`, every failure `PARSE-001` at `src/syntax/parse.npk:223:16` (the field `stack`) over 76 roots, or following from it.
+  - **PD-179:** the field is renamed `frames` at the old pin: 13 code lines and the one comment that names the field. Fourteen mutants test it: the 13 code sites, each put back alone, are refused at both pins, and the comment's compiles at both. So the old pin's green says the rename is whole.
+  - **PD-180:** the adoption. **Found beyond the dispatch's list:** RX-134 says a keyword is "accepted as a FIELD name", but through `7e91730` such a field was the EMPTY name, one to a struct (two of them are `TYPE-028`), and from `c9baa9e` it is `PARSE-001`. So RX-134, RX-050 and nine texts gain dated notes or markers.
+    - Every emission is read through the compiler's `attrnorm.py` and `dropnorm.py`. Of 155 files, 77 differ by 115's attribute alone and 78 also by 105's flag tests, none otherwise, with `irscan.py`'s edges unchanged.
+    - `rx120.sh` holds at `c9baa9e`, B-4e's third re-read moves neither reader, and CI's rows are notice 118's.
+  - PD-179 and PD-180 become RX-244 and RX-245 at the plan verifier's PASS. The planner recommends accepting both, and neither can be struck alone (§5).
+  - **Disclosed by the planner:** at planning only, in no block, two read-only git commands outside the dispatch's list ran in the compiler tree, a `git grep -l` and a `git rev-list --count`. **Accepted here:** neither writes, and neither asks the tree's status. A branch deletion printed the sandbox's "could not write config file" warning; the plan verifier checks `.git/config`.
+  - **Five playbook findings are held for the PASS:**
+    - a declaration's measurement is not the names' (RX-134's K);
+    - an adoption's mutants make the old pin testify to completeness;
+    - an emission is compared across pins over one tree, since a comment line moves the site table;
+    - a landing's sweep counts only files its base compiles (F47's 24 against regex's 78);
+    - a red run's summary must show each check's status.
+  - **Its §9 observation for the compiler seat**, not a defect: in RX-134's `K`, `c9baa9e` reports `PARSE-001` at `range` and `in` and passes over `limit`, which alone is refused at its name. The file is refused either way. It goes with this seat's next message to the compiler seat.
+- **Checked here:**
+  - `check_record` gives `[no-report]` only, as a PLANNED file does;
+  - `check_refs` is clean (99 md files, the leak scan 557 of 557);
+  - HEAD, `origin/main` and `ls-remote` all read `07022d6`, and only `main` remains locally;
+  - the commit's 20 files are all under `meta/roadmap/0.2/`, with the configured identity and the trailer;
+  - CI's one job succeeded on `07022d6` (`gh run view`, read per job).
+- **Room 28.5** at 08:25 (the week 33 %, the five-hour window 4 %, Fable 33 % by the author's `/usage` of 07:30): over 20, so the plan verifier goes without asking first.
+- **Board hygiene:** the in-flight table's s1 row began with its first two cells written four times over, and time's s2 row twice. They were left by the prepends at `a8518cf` (2026-10-10) and `ffeb243` (2026-10-09), which carried the row's prefix inside the new text. Both rows now begin once.
