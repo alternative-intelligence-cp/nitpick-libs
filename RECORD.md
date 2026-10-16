@@ -13729,7 +13729,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Told after the push:** `management_0`, who tells the Team to fast-forward its clone, the skill being a plugin file; and the fuzzer's manager, `nitpick-fuzz_2`, that `nitpick-fuzz/CLAUDE.md:10` ("the workbench has merged the one before it") is stale under W-30 and is its file to fix.
 - **Owners' items not landed here:** posix's 0.11 gate, and `APPS.md:10`'s "14 cycles" (E2-10's apps half, deferred to its next touch).
 
-### pin c9baa9e, tree clean — the one re-pin, landing 118, carrying 104 … 118; the adoptions next — 2026-10-16 05:50 (shell time)
+### pin c9baa9e, tree clean — the one re-pin, landing 118, carrying 104 … 118; the adoptions next — 2026-10-16 05:48 (shell time)
 
 - **The pin, by orchestrate §3, at the quiet point `management_0` called at 05:39, with no claim in flight.** Parse has been at rest since 05:13; regex's s1 and time's s2 claims are held with nothing running; nothing of this seat's was running. The author's word is question 32's (2026-10-15 12:04:21): the one re-pin at landing 118.
   - **Provenance:** `../nitpick` clean at `c9baa9e` on `main` (porcelain 0, `main` = `origin/main`); `build/npkc` 9 310 s newer than `HEAD`'s commit (02:55:35); the mid-rebuild guard cleared (`npkc` 820 s old, `npkrt.o` 870 s old at 05:44:25).
@@ -13748,3 +13748,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Every byte comparison of an emission across the pins reads through `attrnorm.py`: each adoption's both-pins measurement and any CI text assertion.
 - **The registry's rows discharged by this pin** (O-N36's landed items, O-N40's first item, O-N41) are marked in a commit of their own, as at `7e91730`.
 - **Next:** regex's adoption on Max, which management cleared at 05:39; the other adoptions are sized and their number sent to management before they start.
+
+### Parse's adoption round claimed for s2 on the Team seat; regex 0.2.5a, the adoption of `c9baa9e`, its planner dispatched; two slips of this seat's fixed — 2026-10-16 05:53 (shell time)
+
+- **From `management_0`, 05:50:40:** the quiet point is lifted with the Team, and the toolchain copy step passed on, with both hashes checked against the files.
+  - Parse's adoption round runs now, before T8, past the Team's 58 % stop by management's word: about 1 point over Saturday 03:00's line, in otherwise idle hours.
+  - Regex 0.2.5a goes, at about 4 points on Max.
+  - Time's adoption is held for Sunday's release, after the author's `/usage` refresh. It is not needed before time 0.4.0.
+- **Parse: `CLAIMED s2` at 05:52** for the adoption round, before its dispatch. The round is a planner round on `team/parse-0.0-plan` after `be5f446`, by the cycle README's adoption list (`meta/roadmap/0.0/README.md:119`). The plan has never run, so it is planned at `c9baa9e` from the start:
+  - every Expect the pin moves, retaken at `c9baa9e`: each block 0a's toolchain lines, 0.0.0's blocks 1 … 4, each subcycle's facts block, CI's pinned rows (the commit and notice 118's `npkc.ll` row), `irscan.py`'s two lists against the runtime object (byte-identical to `7e91730`'s), and the landing table's "what it would move" column, row by row;
+  - probe 06 links and exits 0 (DEF-253, 118), and probe 08h is refused, `BORROW-002` (DEF-252, 116);
+  - PD-131's hold on DEF-253 and PD-132's third clause, DEF-252's house rule, each say what happens when the compiler fixes its defect. Neither has landed, so the planner proposes either re-cutting the draft or a later decision that withdraws it. A new decision takes parse's unused PD-146 … PD-148. Every changed or new PD comes here by text, for re-read before T8;
+  - the re-cut's text items, as ruled here at 05:16.
+- **Regex 0.2.5a:** `s1-nregex-0.2.5a-0552` (`npk:planner`, `opus`), claimed at 05:52 and dispatched after this commit, on `0e4e8d7` (clean and equal to `origin/main`; 122 GiB available). It is the only agent of this seat's running.
+  - The brief is in 0.2.1a's shape. The unchanged tree is measured at both pins first, `7e91730` and `c9baa9e`, both under the machine's LLVM 20.1.8, with every emission comparison through the compiler's `attrnorm.py`.
+  - Then 113's `stack` rename: 13 code lines of `src/syntax/parse.npk` (the declaration at `:223`, eleven `p.stack` uses, and the literal's `stack:` at `:1547`), with six comment lines naming the word.
+  - Then CI's rows, B-4e's re-read, and the rest of 104 … 118 measured at the tree.
+  - Its decisions are drafted as PD-179 onward, the ecosystem-wide block after sockets' PD-159 … PD-178.
+  - As at `7e91730`, the audits' items stay out of the adoption. 0.2.6's close keeps what it carries, now without the rename.
+- **Two slips of this seat's, fixed in this commit:**
+  - the pin commit (`4540f20`) wrote the board's toolchain line with its prefix doubled ("**Toolchain:** **Toolchain:**"). The replacement prepended a text that already carried the prefix;
+  - the pin's record heading said 05:50, a minute written before the clock was read. It was filed at 05:48 (the commit is 05:48:13), and the heading now says so.
+- **The registry's discharges for the pin** follow in their own commit, while the planner runs.
