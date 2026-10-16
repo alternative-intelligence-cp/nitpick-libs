@@ -13366,3 +13366,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - PD-134, 137, 139, 142 and 145 together, which must DIFF on exactly the ten.
   - **Agreed here, after reading the ten lines at `9904483`:** both sets follow from the lines themselves. Every rank line lists PD-130 or a later PD, and holds one of the five or a PD after one. Each highest-decision line names one of the five.
   - **One caution sent:** a run declines a PD as the clause says the review does, the line deleted and its hunks re-cut. Otherwise the brief says how the stand-in simulates that. A bare deletion could stop at `apply.py` before the comparator runs, which would be a fault in the test, not in the claim.
+
+### The fuzzer's M12 merged by its own manager; its F-049, a false `MOVE-001`, to the compiler; nothing of ours expects that refusal — 2026-10-15 20:37 (shell time)
+
+- **A copy from `nitpick-fuzz_2`, 20:35:28:** M12 is merged, and `nitpick-fuzz`'s `main` is `f31dfc6`, read here in the fuzzer's own clone, `REPOS/nitpick-fuzz`, where `main` equals `origin`.
+  - **F-049 went to `nitpick-compiler_38` for registration.** It is a FALSE REFUSAL, not a soundness hole: `MOVE-001` refuses a read of a consuming pick's binding that was re-assigned after a move.
+  - It began at landing 74 (`bbb1530` good, `40deffa` bad) and is live at `2f0937a`.
+  - Three documentation rows went with it, all the compiler's.
+- **For us, swept here** (359 tracked programs with the `mod:` control, and a planted control for the code):
+  - 13 of our files name `MOVE-001`. All are documentation, code comments or probe notes, and none is an expect line in a rejection test.
+  - Their cases are a moved binding read again, an element moved out of a hoisted slice in a loop, and a `SystemZone` read after its name was moved out. None is a binding re-assigned in a pick arm.
+  - So F-049's fix, when it lands, removes no refusal a test of ours relies on.
+- **The workbench's own clone of `nitpick-fuzz`** still reads `d44dfe3`. It is not fetched from here, since the repository is its manager's. The board's T1 row says so.
