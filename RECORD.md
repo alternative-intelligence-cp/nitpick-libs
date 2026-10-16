@@ -13823,3 +13823,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The under-20 guard applies to this figure.
   - Sunday's release is sized as planned: regex 0.2.6 first, then time's adoption if the room holds.
 - The board's question rows 35 and 36 read ANSWERED, each keeping its text as raised.
+
+### T6a takes the five question-36 texts as its AMENDMENT 1 — 2026-10-16 07:38 (shell time)
+
+- **From `Ailp-team_7` (arrived 07:38:10):** the route is T6a's own round, before T6av. `_7` read all five lines at `66ab09d` in a fresh clone, and each held question 36 open. AMENDMENT 1 goes to T6a through `Ailp-team_6`, which holds the agent:
+  - the five texts say the point was answered on 2026-10-16, (A), with cycle 0.1's decision recording it;
+  - a sweep by subject finds any other text that holds 35 or 36 open;
+  - text only, with no new PD and no PD's choice moved; a PD need comes here as NEEDS-DECISION;
+  - the differing Expects are retaken, then one confirmation pass runs from the final tip, re-run if one was under way.
+  - If T6a has already reported, `_6` resumes it with the same text. The chain line lists these texts beside the PD changes.
+- The board's s2 row records it.
