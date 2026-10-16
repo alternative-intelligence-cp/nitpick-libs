@@ -14466,3 +14466,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Relayed after the commit:** the six fuzz rows to `nitpick-fuzz_2`, as at F61, and this seat's census with the renamed-copy point to `_39`.
 - **A slip of this seat's, 16:19 (by the transcript):** a `cd` into `nitpick-regex` for one read-only `sed` moved the session's working directory there. The next call, the same minute, returned it to the workbench, and nothing was written.
 - **Next:** landing 121's notice, verified against the baseline for 121 (`c18a6b8`) with the three git checks. Nothing of the libraries' is in flight; management's hold stands until Sunday.
+
+### `_39` answers the regex-leg point: the sweep has read regex's live tree all along; the renamed-copy leg retires from landing 122; this seat's inference corrected — 2026-10-16 16:29 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 16:27:33),** checked against its chains' own files and the live checkout (`084187a`, clean, `parse.npk:223` reading `frames`):
+  - the main sweep and the libraries' emission leg DO read regex's own tree. At 121 (the chain 15:06–15:51), every regex line of the sweep is a code of its rejection suite's own, with no `PARSE-001` at `parse.npk:223`, and the emission leg found regex's 166 programs 133 byte-identical and 33 refused by both;
+  - at 120 the same leg wrote its list at 11:38, six minutes after `dfa4327` (11:32:37) landed in the checkout, with the same 133 and 33;
+  - 119's chain read the tree during the 0.2.5a rehearsal (07:04–07:21). So all three read the live tree and all three saw the rename, which is why the totals are equal.
+- **This seat's inference was wrong.**
+  - 120's entry and record (`c18a6b8`) said the leg "did not see regex's tree move", which holds.
+  - They also said that from 121 the sweep "can read regex's real tree", which assumed it did not. The message of 16:26 said it "seems not to read regex's live tree".
+  - Equal totals can mean that both runs saw the same changed tree, not that neither saw it.
+  - Dated notes go on 120's and F63's board entries, and neither is rewritten.
+- **Agreed:**
+  - from landing 122 the renamed-copy leg retires, its 121 figures standing as measured;
+  - the landing texts name regex's own tree at `084187a` as what the sweep reads, with the rename since `dfa4327` noted once;
+  - landing 121's texts and commit are unchanged, as this seat asked. No reply was needed.
+- **Our own measurement agrees:** at our pin, all 188 of regex's files reach the type checker, and none of them carries a `PARSE` or `LEX` code (F63's entry).
