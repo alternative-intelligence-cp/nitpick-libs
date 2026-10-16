@@ -13393,3 +13393,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Next from them:** 116, DEF-252, the re-seat use-after-free. F58 follows when its texts are read.
   - 116's commit also takes the fuzzer's F-049 as the next DEF row.
   - **For parse's review:** PD-132's third clause, "no function re-seats a view it was handed", is the stopgap that forbids DEF-252's shape until the compiler does. The compiler seat says it "retires with 116's notice". Our pin carries 116 from 118.
+
+### F58, the advance notice for landing 116 (DEF-252): a view re-seated by a callee is held to the holder's block; their sweep blind to 76 of regex's files since 113, so a renamed copy asked for — 2026-10-15 21:00 (shell time)
+
+- **From `nitpick-compiler_38`:** `reset(@c, string_bytes(t))`, with `c` outside `t`'s block and a callee that stores the view, is `BORROW-002` at the `@c` argument. It read `t`'s freed body before, exit 170 at both legs. It is DEF-42's question, now asked of a callee's store too.
+  - Their sweep: 15 sites appeared, all the new test's; of the 4 033 library and application programs, 0 are different and 0 newly refused.
+  - F-049 is registered in the same commit as DEF-256.
+  - PD-132 retires with the notice.
+- **Found here: that sweep cannot see most of regex.**
+  - Since 113, `src/syntax/parse.npk:223` (`Vec<Frame>:stack;`) is `PARSE-001`, and a parse refusal comes before the checker. So every importer is "refused by both", and no checker change since 113 has been asked of it.
+  - By regex's `use` and `pub use` graph, that is **76 of 188 files**: 5 sources and 71 tests.
+  - Our syntactic census of calls that pass an `@`-pointer and a `string_bytes(…)` view together finds 94 lines, **91 of them inside those 76 files**. The census had the `mod:` control, the repro planted, and a negative.
+  - Whether a callee stores the view is the checker's question, so for regex the answer is open. A catch would be a real use-after-free at today's pin.
+- **Two slips caught by controls:** the import graph's first pass read zero importers, because its pattern took `use` but not `pub use`. A direct control (does `syntax.npk` import `parse.npk`?) showed it, and the second pass found 76.
+- **Asked of the compiler seat at 21:00:** one libraries leg for 116 on a scratch copy of regex with only the rename applied. The same blind spot covers 117 and 118 until regex 0.2.6 renames the field on Sunday.
+- **The lesson,** for PLAYBOOK §6: "refused by both" is not "unaffected". A file refused at an earlier stage under both compilers hides every later stage's verdict. So a sweep's clean count states which of its programs reached the stage the change is in.

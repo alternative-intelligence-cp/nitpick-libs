@@ -1246,6 +1246,14 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   itself, or a `python3 -B` run writes bytecode anyway: `nitpick-time`'s run left ten files under `harness/__pycache__/`
   until its self-check started the runner under `-B`, and none after. `nitpick-regex` 0.2.3 met the same. *(`nitpick-time`
   0.3.4's plan and close, `0fec132`, 2026-10-15; landed 2026-10-15.)*
+- **"Refused by both" is not "unaffected".** A program that both compilers refuse at an earlier stage never reaches the
+  stage a change is in, so a sweep's "0 newly refused" says nothing about it. From landing 113, every `nitpick-regex` file
+  importing `src/syntax/parse.npk` was refused by `PARSE-001` at its line 223, a field named with a keyword. That was 76 of
+  regex's 188 files, and they sat in "refused by both" through every later checker change, 116's borrow rule among them.
+  So read a clean count with the stage each of its programs reached. Where an earlier refusal hides a library, sweep a
+  scratch copy with only that refusal's cause fixed. A graph of a library's imports must follow `pub use` as well as
+  `use`. *(This seat at F58, 2026-10-15. The first import graph missed `pub use` and read zero, and a direct control
+  caught it. Landed 2026-10-15.)*
 
 ## 7. Repository conventions
 
