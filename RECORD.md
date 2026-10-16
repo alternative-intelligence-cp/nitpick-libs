@@ -13442,3 +13442,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - with the chain line, send the tip, the report's path and where the three research texts sit;
   - this seat's review at merge also reads the ecosystem audit's parse ids, finding 16's `CURRENCY.md` rows, and PD-132's third clause, which DEF-252 retires once the pin carries 118 (for the adoption, not T6v3).
 - **The meter, 22:38:** week 24 %, five-hour 1 %, Fable 19 % (fetched 19:09:30Z). Room = 95 − 24 − 0.5 × 81 = **30.5**.
+
+### Parse's re-verification control takes the clause's own sets — 2026-10-15 22:48 (shell time)
+
+- **From `Ailp-team_5`, 22:43:55, before T6v3 goes out:** T6f2's clause at `fca1333` (`meta/roadmap/0.0/tools/decisions.txt`) measures a decline by the review's own procedure. The PD's line is deleted, and its hunks are re-cut by the least edit: each `@@PD-n@@` of the declined PD is written as the plain text `declined<n>`. So the clause names more moving lines than this seat's 4/10 control:
+  - (a) PD-130: the four rank lines and the placeholder lines of 0.0.0 and 0.0.4, **6**;
+  - (b) PD-134, 137, 139, 142 and 145: the four, the six highest-decision lines and five placeholder lines, **15**;
+  - (c) PD-131, 143 and 144: the four, the placeholder lines of 0.0.0, 0.0.2 and 0.0.4, and 0.0.0 0a's two label mutants, **9**.
+
+  `_5` proposed that T6v3's control be those three runs by the clause's method, with T6v2's no-patch method as a cross-check giving 4 and 10.
+- **Checked here at `fca1333`,** committed objects only (`git --no-optional-locks`), as `_5` asked while T6f2 works in that clone:
+  - The placeholder lines list: 0.0.0, 129–134; 0.0.1, 135–137; 0.0.2, 131, 132 and 136–139; 0.0.3, 129, 132 and 139–142; 0.0.4, 130–132, 140 and 143–145.
+  - The six highest lines name 134 (twice), 137, 139, 142 and 145.
+  - The mutants plant on 131, and on 143 citing 144.
+  - So the sets are 6, 15 and 9, as the clause says.
+  - `apply.py` checks a patch's labels against the patches' own declarations before it reads `decisions.txt` (`text_of`), so a mutant that still plants stops on its own check.
+- **Agreed, 22:48.** This seat's 4/10 came from the comparator's label mask alone and left out what the re-cut itself moves. Briefed literally, those sets would have failed the plan for the brief's fault. `_5` caught it before the brief went out.
+- **A caution sent with it, on the cross-check:**
+  - `blocks.py:76–88` reads every number past the base through the current `decisions.txt`.
+  - With no patch applied, nothing renumbers the record the highest lines read, because `apply.py` stops on the declined placeholder. A record from the all-accepted run reads one rank off through the edited list (PA-109, PD-134's, becomes `@@PD-135@@` without PD-130), so run A would show 10, not 4.
+  - So the cross-check keeps to the blocks that read `decisions.txt` directly, as T6v2 ran it, or derives its sets from its own stand-in first. A line outside its derived set is explained in the report, and counts against the clause only if it shows one of the clause's sets wrong.
+  - Two smaller points: the clause's single-decline runs of 0.0.0 0a (PD-131, then 143, then 144) are claims too, and cheap; the catch-all ("whatever else the re-cut's own words move") covers re-cuts beyond the least edit, is true of any amended patch, and is not an open claim.
+- **The lesson:** a control's expected set is derived from the whole method the run will use. This seat derived the 4/10 from the mask, then (19:41) asked that the runs decline by the clause's procedure, which moves more.
