@@ -64,6 +64,17 @@ Skipped in `tick` mode.
    `RECORD.md`.
 2. Read, in order: `BOARD.md`; `WORKSTREAMS.md` §3 and §5; `LIBRARIES.md`;
    `../nitpick-apps/APPS.md`; `git -C ../nitpick log --oneline -3`.
+   **`BOARD.md` is over 1 MB, and a whole-file Read fails** *(2026-10-16)*,
+   so read its live parts:
+   - lines 1–14: the header, the toolchain and the writer;
+   - the newest notices, which are the file's first `### ` headings, newest
+     first (`grep -n '^### ' BOARD.md | head -5`), the latest ladder
+     baseline among them (`grep -n 'THE BASELINE NOTICE' BOARD.md | head -1`);
+   - from `## Outside the streams` to the end: the tools, the in-flight
+     table, the questions for the author and the stream tables
+     (`grep -n '^## ' BOARD.md` finds each).
+
+   Search for anything older.
 3. Sweep every tree, and **discover the set rather than listing it** — a
    hand-written list ran here for four orchestrators certifying **seven**
    trees when there were eight, because `nitpick-apps` holds only documents
@@ -304,7 +315,7 @@ ran.
 
 ## 13. `tick`
 
-Skip §2. Read `BOARD.md`. Handle any report notifications already delivered
+Skip §2. Read `BOARD.md`'s live parts (§2, step 2). Handle any report notifications already delivered
 (§7). Run §5 once. If the batch conditions hold, send it. End the turn. This
 is what `/loop /npk:orchestrate tick` re-runs.
 

@@ -109,7 +109,13 @@ line is exactly what the next worker needs to see.
 - **Long commands.** The shell tool stops at ten minutes and moves most
   commands to the background at the cap — but not `git`. Start anything that
   may run more than a few minutes — a full harness, a forty-times stress run —
-  in the background and poll it. A timeout is not a red; a red is a red.
+  in the background (`run_in_background: true`) and wait for the notice that it
+  has exited. Never `sleep` and then `tail` its log, which the tool refuses, and
+  never re-run a `tail` by hand to watch it: each is a full round trip, and the
+  context grows by it. A timeout is not a red; a red is a red. *(Corrected
+  2026-10-16: this said "in the background and poll it". On 2026-10-15 four
+  `sleep` calls were refused, and one verifier ran the same `tail` 49 times, by
+  the dream pass `management_0` ran over the week's transcripts.)*
 - **External facts.** A fact about the world outside the compiler tree — a
   release number, a standard's text, a known defect in prior art — may cost
   one fetch inline. More than one, or anything security-sensitive, is a

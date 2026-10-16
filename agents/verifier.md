@@ -13,7 +13,8 @@ Run, in order, and stop at the first failure only to report it:
 3. `check_refs.py "$REPO"` exits 0
 4. `check_record.py "$REPO" <SUBCYCLE>` exits 0
 5. the harness line: run the exact command from the report — in the
-   background if it may exceed a few minutes — capture its summary line, and
+   background if it may exceed a few minutes (`run_in_background: true`, then
+   wait for its exit notice; never `sleep` and `tail`) — capture its summary line, and
    compare it byte for byte with the reported one. Before the harness exists
    (0.0.0, 0.0.1) the record lists probe commands and exit codes: run each with
    the TOOLCHAIN paths and compare exit codes.
