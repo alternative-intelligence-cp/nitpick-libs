@@ -13807,3 +13807,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - T6a runs on in `_6`'s session. At 07:27 `team/parse-0.0-plan` read `66ab09d`, four adoption commits after `be5f446`: `5715cca` (06:54:17, the pin lines), `bcd1992` (07:01:57, the defect verdicts and the PD texts they make false), `60f54d9` (07:03:07, this seat's text rulings) and `66ab09d` (07:24:29, the Expects retaken).
   - **Its question, whether this seat merges the adoption before T8's go: yes.** At T6av's PASS and this seat's re-read of every changed PD, the branch is reviewed, parse's `main` fast-forwarded, pushed and checked by `ls-remote`, and s2 released. Then T8's go at `c9baa9e`, with s2 claimed on the manager's line just before T8's dispatch. A change to any of PD-129, PD-137, PD-143 or PD-145, question 35's four, is to be named in the chain line. Told `_7` at 07:27:27.
   - The board's s2 row and s3's sockets row name `_7`.
+
+### Questions 35 and 36 ANSWERED by the author, as recommended; the true Fable reading, 33 %, room 29.5 — 2026-10-16 07:37 (shell time)
+
+- **From `management_0` (arrived 07:34:05), the author's words at 07:32:29 in its session:** *"so i ran the usage command here and also looked over all the questions. i can't find anything wrong with the recommendations. lets go with those."*
+- **Question 36 → (A), with management's addition** (agreed here in `806b7ad`). The first parse step over an oversize input answers an ordinary `Fault` (a new kind, named `InputTooLarge` in the recommendation), then `Done`. `EParseState` stays for API misuse alone. `SAFETY.md` §7's `NPARSE_MAX_INPUT` row (`:262`) answers the same `Fault`, so no input-size path reaches `EParseState`.
+  - Cycle 0.1 takes it as given: its own decision records the answer and amends `limits.npk`'s comment, as the re-cut placed it. No PD is added in cycle 0.0.
+  - **Five texts made stale by the answer**, found here by `git grep` on `team/parse-0.0-plan` at `66ab09d` (the Team's clone, read-only). Each said the point was held open for the author's answer: `0.0.1.md:554–555`; `0.0.1_tools/step5.patch:147`, `:205` (the checklist item) and `:299`; and `0.0.5_tools/step1.patch:136`.
+  - **Sent to `Ailp-team_7` at 07:36:28:** each is to say the point was answered on 2026-10-16, (A), with cycle 0.1's decision recording it. Text only, with no new PD and no choice moved. They go in T6a's own round before T6av, with any Expects they move retaken, or by resuming T6a if it has stopped. The route chosen comes back here, and the chain line lists the five beside the PD changes.
+- **Question 35 → all 17 accepted as planned.** PD-129 … PD-145 land as PA-104 … PA-120 as their subcycles apply, with the stated reversals: PD-129, PD-143 and PD-145, and PD-137's already exercised.
+  - By management's relay, PD-131's and PD-132's text changes in T6a are part of what he accepted.
+  - This seat's re-read of the delivered texts still comes before T8. It holds each to the terms of 05:55:44: the hold or reseat sentence made true at `c9baa9e`, the choice unchanged. A delivered text that changed a choice would go back to the author.
+- **M-5:** the probe-rule note `0784988` was shown to the author as information. He found nothing wrong with it.
+- **The meter:** `/usage` was fetched at 07:30:00 and the file written at 07:32:42: the week 32 %, the five-hour window 19 % (resetting 07:40), **Fable 33 %**. The room is 95 − 32 − 33.5 = **29.5**. Read here at 07:36:46, the file was rewritten by `nitpick-fuzz_4`, with the same week and Fable figures, the five-hour window at 20 %, and the account check matching.
+  - The under-20 guard applies to this figure.
+  - Sunday's release is sized as planned: regex 0.2.6 first, then time's adoption if the room holds.
+- The board's question rows 35 and 36 read ANSWERED, each keeping its text as raised.
