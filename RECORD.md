@@ -14043,3 +14043,45 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   Expect about an hour.
 - **Room 26.5** at 09:23: the week 35 %, the five-hour window 10 %, and Fable 33 % by the author's `/usage` of 07:30. The file was written by `nitpick-fuzz_3`, with the account check matching. That is over 20, so this seat did not ask management first. `free -g`: 121 GiB available.
 - **Next:** its report, then the scoped re-verification (`sonnet`): the fixed hunks, the re-run blocks, and the fences otherwise byte-identical.
+
+### Parse 0.0's adoption at `c9baa9e` VERIFIED PASS and merged at `cdddcf6`; the five changed PDs re-read and accepted, PD-131 with a named amendment for T8's go — 2026-10-16 10:05 (shell time)
+
+- **From `Ailp-team_7` (arrived 10:00:00): PLAN CHAIN PASS** on `team/parse-0.0-plan` at `cdddcf6`. The reports are T6a's and T6av's (`~/Team/REPORTS/T6av-parse-0.0-verify-adoption.md`, read here whole).
+  - **T6av** (`npk:verifier`, Sonnet 5.5, 08:36:51–09:57:03, about 420 k tokens) gave PASS, with nothing ON THE DECLINE POINT.
+  - It derived the decline sets before running (08:59:52). Then (c), (b) and (a), each in its own stand-in by the clause's method, moved exactly their sets, 9, 15 and 6 lines, with every other block SAME.
+  - Its own baseline from a fresh GitHub clone read 45 of 45 SAME, the full run "66 of 66 units passed, 0 pending". No CI ran, since the branch has no `.github/`.
+  - The Team's week read 65 % at its end, under its 68 % stop.
+- **Checked here before the merge:**
+  - fetched from GitHub into this workbench's parse clone: the branch at `cdddcf6`, `ls-remote`'s `main` at `be5f446`, and the merge base `be5f446`, so a fast-forward of 5 commits;
+  - 36 files, +809/−1036, every one under `meta/roadmap/0.0/`;
+  - each commit's author and committer the configured identity, with one trailer;
+  - `check_refs` on parse clean (56 md files, the leak scan 125 of 125).
+- **The PD re-read, by script with a control.** Every `@@PD-n@@` declaring block in the plan's patches was compared at `be5f446` and at `cdddcf6`. All 17, PD-129 … PD-145, are declared at both, and exactly **PD-131, PD-132, PD-139, PD-140 and PD-145** changed. A one-character control in the first block was caught. Each changed text was read whole here:
+  - **PD-139, PD-140 and PD-145: ACCEPTED**, as at `_19`'s early read (08:38). PD-145's choice and reversal, which the author accepted in question 35, are unchanged.
+  - **PD-132: ACCEPTED**, with the named amendment agreed at 08:43 (`0.0.0_tools/step4.patch` `:122–:123`).
+  - **PD-131: ACCEPTED, with one more named amendment for T8's go, T6av's finding 1.**
+    - Its body says the bound path "links and runs, exit 0 … (probe 06), and so do its controls". The controls run at exits 5 and 1, by T6av's table at both pins.
+    - A PD is immutable once it lands, so the line is corrected before then. Probe 06's header carries the same sentence.
+    - **Proposed to `_7` at 10:04:09, for measurement against parse's checks** as PD-132's was. Each replaces one line of `0.0.0_tools/step3.patch` exactly, so no line count moves, and neither carries a rule or question id. Line `:25`, PD-131's body, and then line `:81`, probe 06's header:
+
+      ```
+      +controls, at exits 5 and 1: a by-value method through the bound (probe 06b) and the `Self->` call with no
+      +// controls, at exits 5 and 1, `probe06b_bound_by_value.npk` (a by-value `Self` method, same bound) and
+      ```
+
+    - If the header's line moves a block, or a check refuses it, it is dropped and carried to 0.0.1's planner round, since a test's comment is not immutable.
+- **T6av's other findings, ruled here:**
+  - **2: left as written.** Each "the pin `7e91730`" line (PD-136, PD-138, PD-144 and PD-132's first paragraph) is a dated measurement. Each is true at both pins: by T6av, `BUILD_REFERENCE.md`, `npkg/expect.npk`, `npkg/manifest.npk` and `keywords.npk` are blob-identical, and the 0b blocks read SAME. The close may add dated notes.
+  - **3** goes to the next planner round on the plan, before 0.0.1's dispatch, with the findings held there. `0.0.0.md:864` says "one carries `mem-cap-mib:`", where 09b and 09c both do.
+  - **4** is a report error and needs nothing.
+  - **5** is the clause PD-132's amendment rewrites.
+- **The merge:** parse's `main` was fast-forwarded `be5f446` → `cdddcf6` and pushed at 10:03. `ls-remote` reads `cdddcf6`, and the clone is clean.
+  - **s2's claim on parse is released.** The stream row says at rest since 10:03. Time's s2 claim stands.
+  - `LIBRARIES.md`'s parse row records the adoption.
+- **Next for parse: T8's go**, 0.0.0's work at `c9baa9e` for Sat 03:00, once `_7` has measured PD-131's lines.
+  - The worker applies both named amendments before their steps, records each file:line, old → new, and keeps every block SAME.
+  - The stale index hashes are left and named.
+  - The reasons are cited as "the workbench's W-27" (PD-132) and T6av's finding 1 (PD-131).
+  - PD-129 … PD-145 land as PA-104 … PA-120.
+  - s2 is claimed on `_7`'s line just before T8's dispatch.
+- **Also:** the author removed by hand the plan verifier's stray symlink `/tmp/claude-1000/sw/nitpick` (the entry of 09:17), as he said at 09:30:12. `/tmp/claude-1000/sw/` read empty here at 09:30.
