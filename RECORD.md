@@ -13981,3 +13981,46 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Its disclosures:** it ran a run-level `gh run view --log` once, to count bytes (126 161 B, so "prints nothing" did not reproduce). The guard refused its `rm -f` of the stand-in's symlink to the compiler tree, so **`/tmp/claude-1000/sw/nitpick`, a symlink, remains, for the author to remove by hand.** It is not worked around here. The real checkout is unchanged at `07022d6`.
 - **The meter at 09:16:** the week 34 %, the five-hour window 9 %, Fable 33 % (07:30). The room is 27.5.
 - **The handoff break holds:** the verifier has reported, this entry records it, and the worker has not gone out. The fix round is the successor's first dispatch.
+
+### Handover — `nitpick-libs_20` takes the workbench lock on `nitpick-libs_19`'s briefed handoff — 2026-10-16 09:22 (shell time)
+
+**Handover.** `nitpick-libs_20` (`56604011-4fa3-4861-a64a-eccd2534f9f3`) takes the writer lock that `nitpick-libs_19` released at `31c178b` (09:18:58), at the author's word (*"yes to both, hand off to libs_20 and fix the memory note"*, 09:07:55, relayed by `management_0`). `_19` briefed this seat by message (09:08) and by the board's handoff block (`77f75a2`). It stays open until this seat says it is done with it.
+
+- **The account, checked first:** `~/.claude/usage-latest.json` was written by `nitpick-libs_20` at 13:13:17Z and read at once. It carries rate limits (the five-hour window 9 %, the week 34 %) and `model_limits.account_check` "matches this session (same weekly reset)", with Fable 33 % (fetched 07:30). Team seats get no rate limits, so this seat is on Max.
+- **The id, from values:** `CLAUDE_CODE_SESSION_ID`, the transcript `56604011-….jsonl` (the newest here, written live), the scratchpad path and `~/.claude/context/56604011-….json` (`session_name` `nitpick-libs_20`) all agree. `ListAgents` names this session `nitpick-libs_20` (`[ce70ec]`).
+  - **By content:** a nonce (`NONCE-libs20-cf868779a74f51ba7ae8a749`) is found in that one transcript only.
+  - A control generated at run time, and never printed, is found in none. The first control was typed into the command itself, and so matched this session's own transcript: a control's string must not pass through the transcript.
+  - The marker is 37 bytes.
+- **The plugin:** the `npk` skills load from this workbench, not from the Team clone (the memory `team-domain-boundary`). `npk:check`'s base directory is `nitpick-libs/skills/check`.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 09:19:26 and again inside the take's own command;
+  - `HEAD` = `origin/main` = `ls-remote` = `31c178b`, with porcelain 0;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed (read with `--no-optional-locks`), found **9 trees, every one `dirty=0` and `0/0`**, at 09:16 and again inside the take's command;
+  - the pin `c9baa9e`'s `sha256sum -c` read OK for `npkc` and `npkrt.o` at 09:21.
+- **Hazard 3, asked and answered:** `_19` measured by command at 09:19:52–09:20:07 (arrived 09:20:21):
+  - the same 9 trees clean and `0/0`. The fuzzer's clone is not fetched here (W-30), and its remote `main` is `581c091` by `ls-remote`;
+  - `HEAD` = `origin/main` = `ls-remote` = `31c178b`, the token `none` both ways, and no marker;
+  - `find .internal -newermt` the release lists 0 paths;
+  - no subagent, background child, Monitor, cron or wakeup;
+  - its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_21` (`[2aee21]`), the spare, answered in one line (arrived 09:14:13): idle, no task, nothing written in `nitpick-libs`, and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`, 09:21):**
+  - the seat's own: `nitpick-libs_19` (`[8ee0ee]`) and `_21` (`[2aee21]`), both idle;
+  - the compiler's: `nitpick-compiler_38` (`[72b76d]`, at its shell), `_39` (`[3c738f]`) and `_40` (`[147a47]`), idle;
+  - management's: `management_0` (`[86f4fb]`), `_1` (`[70bf25]`) and `_2` (`[6d43ad]`), idle;
+  - the fuzzer's: `nitpick-fuzz_2` (`[f08e44]`), `_3` (`[72e7a7]`) and `_4` (`[977ee9]`);
+  - `diogenes_0` … `_2`, `claude-skills-devTeam_51` … `_53`, and the fuzz cloud session (`[169d76]`).
+
+  The Team's `claude-team` sessions are not listed. `Ailp-team_7` introduced itself by socket at 09:20.
+- **Read before the take:**
+  - the board's live parts: lines 1–14, the newest notices, and `## Outside the streams` to the end;
+  - `_17`'s and `_19`'s handoff blocks, and the take hazards (1)–(13);
+  - `RECORD.md` from 2026-10-16 05:36;
+  - `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md` and `APPS.md`;
+  - `git -C ../nitpick log --oneline -3`: `c9baa9e`, landing 118, is `main`.
+- **Next:**
+  1. one line to `management_0`;
+  2. regex 0.2.5a's fix round 1 (a fresh `opus` planner on `07022d6`, room-checked), then its scoped re-verification;
+  3. parse's chain line at T6av's verdict, then the merge and T8's go;
+  4. landing 119's notice, by the ladder.
