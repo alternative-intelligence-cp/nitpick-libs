@@ -13408,3 +13408,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Two slips caught by controls:** the import graph's first pass read zero importers, because its pattern took `use` but not `pub use`. A direct control (does `syntax.npk` import `parse.npk`?) showed it, and the second pass found 76.
 - **Asked of the compiler seat at 21:00:** one libraries leg for 116 on a scratch copy of regex with only the rename applied. The same blind spot covers 117 and 118 until regex 0.2.6 renames the field on Sunday.
 - **The lesson,** for PLAYBOOK §6: "refused by both" is not "unaffected". A file refused at an earlier stage under both compilers hides every later stage's verdict. So a sweep's clean count states which of its programs reached the stage the change is in.
+
+### The regex leg for 116, over a renamed copy: CLEAN; nothing landings 113 … 116 added fires in regex, and the rename is all regex owes — 2026-10-15 21:11 (shell time)
+
+- **From `nitpick-compiler_38`, which took the ask at once:**
+  - The copy is our checkout at `0e4e8d7`, put in its gitignored `.internal`, outside every sweep's roots. Only the rename is applied: `stack` becomes `frames` in the declaration at `parse.npk:223`, the eleven `p.stack` uses, and the struct literal's `stack:` at `:1547`.
+  - Its first pass missed the literal's field, and every importer read `TYPE-026`/`TYPE-027` at `:1546`. That was the compiler seat's artifact, corrected in a second pass.
+  - **The checkers, 115's against 116's:** 0 sites appeared and 0 vanished. Under 116's checker, 33 files carry a diagnostic: exactly the 25 rejection tests and the 8 refused probes, each with the codes it is written for. The other 155 are clean, the five sources among them.
+  - **The compilers:** 166 programs. 133 are byte-identical, all 104 unit tests among them; 33 are refused by both; 0 newly refused and 0 different.
+- **So:** none of our 91 candidate calls stores a block-local view into an outer holder, as the checker reads the callees. **There is no use-after-free of DEF-252's shape in regex at today's pin.** The F58 question is closed.
+- **Cross-checked here against the tree:** 188 files; 25 + 8 = 33; 104 unit tests; 166 programs. Our first count read 165, because a line-start pattern missed `tests/probe/probe07_string_bytes_edges.npk:135`'s `async func:main`. Reconciled.
+  - The rename's 13 code lines reproduce: `:223`, eleven `p.stack` uses, and `:1547`. Six comment lines name the word.
+- **For regex 0.2.6, on the board's s1 row:** the rename is 13 code lines, the literal's field included, plus F55's comment at `:1138`.
+- **The copy and its script stay** for 117's and 118's legs. This measurement rides 116's notice, and 117's record names it.
