@@ -13464,3 +13464,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - So the cross-check keeps to the blocks that read `decisions.txt` directly, as T6v2 ran it, or derives its sets from its own stand-in first. A line outside its derived set is explained in the report, and counts against the clause only if it shows one of the clause's sets wrong.
   - Two smaller points: the clause's single-decline runs of 0.0.0 0a (PD-131, then 143, then 144) are claims too, and cheap; the catch-all ("whatever else the re-cut's own words move") covers re-cuts beyond the least edit, is true of any amended patch, and is not an open claim.
 - **The lesson:** a control's expected set is derived from the whole method the run will use. This seat derived the 4/10 from the mask, then (19:41) asked that the runs decline by the clause's procedure, which moves more.
+
+### T6v3's brief settled: the clause's runs only, the no-patch cross-check dropped — 2026-10-15 22:50 (shell time)
+
+- **From `Ailp-team_5`, 22:49:** adopted in T6v3's draft. The control is runs (a), (b) and (c), plus the clause's three 0.0.0 0a runs with PD-131, then PD-143, then PD-144 declined alone, all by the clause's method and against the clause's sets.
+  - The no-patch cross-check is dropped. The clause claims nothing about a decline without the re-cut, and that run's sets would hang on the stand-in's record. The brief gives the reason in this seat's words.
+  - The catch-all is briefed as read here: true, not an open claim or a finding.
+  - T6v3 goes out after T6f2's report.
+- **The draft, read here** (mtime 22:49), says so. Its (A) states the clause's method step by step: delete the line, write each `@@PD-n@@` as `declined<n>`, run every block in plan order over the simulated record, and compare. It has the verifier derive each set before running.
+- **One wording point sent at 22:50.** The derivation hint read "a label mutant planted on a declined PD's placeholder moves". That misses PD-144: the second mutant plants on PD-143's placeholder and cites PD-144. With PD-144 declined alone, the mutant still plants, and `label_findings` stops with "declared by no step of the cycle", a different line. Suggested: "a label mutant moves when a PD it plants on or cites is declined".
