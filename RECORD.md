@@ -13771,7 +13771,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the pin's record heading said 05:50, a minute written before the clock was read. It was filed at 05:48 (the commit is 05:48:13), and the heading now says so.
 - **The registry's discharges for the pin** follow in their own commit, while the planner runs.
 
-### The registry's rows discharged at the pin `c9baa9e`: O-N36's landed findings, O-N40's first item and O-N41 — 2026-10-16 06:03 (shell time)
+### The registry's rows discharged at the pin `c9baa9e`: O-N36's landed findings, O-N40's first item and O-N41 — 2026-10-16 05:57 (shell time)
 
 - **O-N36, PARTLY DISCHARGED at the pins `7e91730` and `c9baa9e`.** At `c9baa9e`: F-038 and F-046 (111), F-048 (112), F-036 a, F-039 (c)–(e) with F-042 (a), F-045 and F-034 (c) (113), and F-039 (a) (117). Each was verified here at its landing.
   - **Still open:** F-034 (a) and (b) (DEF-234 (a), (b)); F-042's rows beyond its (a); F-039 (b); the documentation rows (DEF-239); `npkg`'s stage list (DEF-240); and Gemini's 01–03 (S-130).
@@ -13781,3 +13781,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **O-N41, DISCHARGED and struck:** DEF-249, landed in 104 (`085bc01`; verified here 2026-10-09 05:17). An `exit` operand is held to `int32`. The entry as it stood is kept under the struck heading, as at `7e91730`.
 - **O-N34**, struck since `7e91730`, said DEF-226 was open. It gains a dated note: DEF-226 landed in 110 (`599e5ad`), and this pin carries it. Its kept text is left as history.
 - `check_refs`: only the two known `[leak]` lines.
+
+### T6a, parse's adoption round, out on the Team seat; a third time slip of this seat's today, fixed — 2026-10-16 05:58 (shell time)
+
+- **From `Ailp-team_6`:** T6a (`npk:planner`, Opus) went out at 05:57:26 on `team/parse-0.0-plan` after `be5f446`, at `c9baa9e`. s2 has been claimed here since 05:52.
+  - Its brief is `~/Team/META/nitpick-parse/briefs/T6a-nparse-0.0-adoption-c9baa9e.txt`. This seat's five terms (sent 05:55:44) bind word for word, saved verbatim beside the brief: PD-131's and PD-132's texts changed before they land; a sweep of every other PD; the two defect directories by `0.0.0.md:293`'s convention; §12 with no defect; and no new PD, or NEEDS-DECISION here.
+  - The Team's workbench clone was fast-forwarded to `3c08937` first (05:56:15). By their check, its plugin directories are identical to this workbench's.
+  - Next: its report, a scoped re-verification, then the chain line with every changed PD's old and new.
+- **A slip of this seat's, the third today on times:** the registry entry above was headed 06:03 when the clock read 05:57. It now says 05:57. Each slip was a minute written before `date` was read; from here every time is taken from `date` or the transcript first, and written after.
