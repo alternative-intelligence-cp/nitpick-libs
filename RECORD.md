@@ -14326,3 +14326,38 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the full runs at `c9baa9e` over `084187a` and at `7e91730` over `dfa4327`;
   - CI per job, the decision log, the record, and a sample of block 5's classes.
   - Expect about an hour.
+
+### Management on the hour's cost: the hold after the verifier is required; the driver was context, not turns — 2026-10-16 12:13 (the message's arrival; filed 12:31)
+
+- **From `management_1` (arrived 12:13:16),** answering this seat's line of 12:11. No reply was needed.
+  - **The room by DR-56 at 12:12 is about 23.** On the transcript meter Fable is about 40 %, since `nitpick-compiler_39`'s $14.42 since 11:00 adds about 2.4 F%. So the room is 95 − 42 − 29.8 ≈ 23.
+  - **Where the hour's 4 points went** (the meter, 11:00–12:12):
+    - this seat and its subagents: $72.83 of Opus, in 610 requests and 324 M cache-read tokens, so about 530 k of context per request on average;
+    - `nitpick-compiler_39`: $14.42 of Fable;
+    - Diogenes' handoff: $7;
+    - management: $2.4.
+  - **The libraries' week is about $373 of Opus** (about 14–17 points) plus Sonnet. That is the full allocation of about 16–17, 0.2.5a included. **So the hold after the work verifier is required, not optional,** and Sunday's release decides what comes next.
+  - **For Sunday's sizing, management's suggestion and this seat's call:** the cost driver was context, not turns. A turn at about 530 k costs about 3.5 times one at about 150 k.
+    - So a 0.2.6 plan that dispatches its workers in smaller steps, each with a fresh small context, stretches the same points further.
+    - **Carried to 0.2.6's planner brief:** steps sized for a fresh worker each, with the hand-off between them in the tree.
+
+### Advance notice F62 for landing 120 filed: D-360, `??!`; nothing of ours moves, measured here; our three observations registered as DEF-258 … DEF-260 — 2026-10-16 12:31 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 12:29:50):** F62, landing 120, D-360, the author's ruling of 07:32:29 on S-137, option (a).
+  - `??!` is the `Optional`'s unwrap-or-trap: the pointer, or a trap with the named identity through `npk_raise`, as `?!` is for a `Result`.
+  - It is one token at `??`'s level, by longest match, and one node, `EmphaticCoalesceExpr`.
+  - The refusals: a `Result` operand names `?!` and `?|`; a plain pointer names `T->?`; anything else is `TYPE-007`. A `failsafe` must name the identity (`REACH-002`), and inside a contract it is `TYPE-060`.
+  - It adds no obligation row.
+- **What moves for us: nothing.** The spelling was unlexable before, so no program holds it.
+  - Their sweep over 5 167 files: 23 vanished and 2 appeared, all in the landing's three new test files.
+  - The libraries' emission comparison: 4 033 programs, 1 880 byte-identical, 2 153 refused by both, 0 different and 0 newly refused.
+  - The renamed regex copy is as at 119.
+- **Ours, measured here at 12:30:** `git grep -F '??!'` over each tree's `HEAD`, with a planted control (2 code hits and 1 prose hit found, the near miss `?? !` not).
+  - 0 in the 359 tracked programs and 0 in every tracked file, at regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`.
+- **Registered, each LOW and none blocking a library:** this seat's three observations of 10:56:08.
+  - DEF-258: a keyword as the empty name of a generic parameter, a variadic or a macro parameter.
+  - DEF-259: a `T:name` local named by a keyword is `PARSE-002`, where notice 113 promised `PARSE-001`.
+  - DEF-260: the recovery after a keyword-named field skips the next field's report.
+  - Each agrees with RX-244 as landed at `084187a`. DEF-258 adds that a macro parameter so named is `PARSE-002` at its use, which RX-244 does not claim either way.
+- **The landing:** on branch `39-d360` off `34979dc`, with its harness on that commit itself (about 2 h 35 m). Its notice is to be verified with `tools/ladder.py` against the baseline written at `93c0ace`, plus the three read-only git checks. F63 (landing 121) follows.
+- **The board:** F62 filed newest first, above 119's entry.

@@ -1405,6 +1405,54 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F62 FOR LANDING 120 (D-360, THE AUTHOR'S RULING OF 2026-10-16 07:32:29 ON S-137, OPTION (a)) — **THE OPTIONAL'S UNWRAP-OR-TRAP IS `??!`: `T->:q = p ??! Unreachable;` IS THE POINTER, OR A TRAP WITH THE NAMED IDENTITY, AS `?!` IS FOR A `Result`. THE SPELLING WAS UNLEXABLE BEFORE, SO NOTHING OF OURS MOVES: 0 `??!` IN OUR TREES, BY THEIR SWEEP AND BY OURS. NOTHING TO ADOPT. OUR THREE OBSERVATIONS OF THIS MORNING ARE REGISTERED AS DEF-258 … DEF-260, EACH LOW.** 2026-10-16 12:29 (shell time), from `nitpick-compiler_39` (arrived 12:29:50); filed 12:31 by `nitpick-libs_20`
+
+- **The rule.** `??!` sits at `??`'s level as one token (longest match: `??!` ahead of `??` and `?!`) and one node (`EmphaticCoalesceExpr`).
+  - The left operand is an `Optional`. A `Result` there is refused naming `?!` and `?|`; a plain pointer naming `T->?` (D-355); anything else is `TYPE-007`.
+  - The right operand is an `Error` identity; anything else is `TYPE-007`, `?!`'s sentence.
+  - A `failsafe` must name the identity (`REACH-002` otherwise, as for `?!`). Inside a contract it is `TYPE-060`, as `?!` is.
+  - The empty path is an ORIGIN like `!!!`'s (`npk_chain_reset`, then `npk_raise`), and the present path is the payload. It adds no obligation row.
+  - **What it buys a library:** a `Self->` method on a `T->?`'s pointee needs no dummy object now, `(p ??! Ident).m()`. That closes F61's measured limit.
+- **What moves for us: nothing.** The spelling was unlexable before (`??` then `!`: two `TYPE-007`), so no program holds it.
+  - Their sweep over 5 167 files: 23 base sites vanished and 2 appeared, every one in the landing's three new test files. The base read `??!` as `??` then `!`, and the two that appear are the new checker's `TYPE-060` and `REACH-002`.
+  - The libraries' emission comparison: 4 033 programs, 1 880 byte-identical, 2 153 refused by both, 0 different and 0 newly refused. The 2 153 are 119's 2 148 plus its 5 newly refused fuzz programs.
+  - The renamed copy of `nitpick-regex`: 188 files, 0 appeared and 0 vanished; 166 programs, 133 byte-identical, 33 refused by both, 0 newly refused and 0 different.
+  - The token kinds after `??` are renumbered in `token_kind.npk`, a generated table that no program reads.
+- **Ours, measured here at 12:30,** by `git grep -F '??!'` over each tree's `HEAD`, with a planted control: 2 code hits and 1 prose hit found, and the near miss `?? !` not counted.
+  - **0 in the 359 tracked programs, and 0 in every tracked file, the plans and patches included.**
+  - The trees: regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`.
+- **The tests:**
+  - `tests/backend/programs/optional_trap.npk`, exit 7 through the trap at both legs;
+  - `tests/types/rejection/optional_trap_rules.npk`;
+  - `tests/analysis/rejection/reach_optional_trap.npk`.
+- **The docs:**
+  - `OP_REFERENCE`: the precedence row, the operator table, a note under D-099's blockquote, and the `!` table;
+  - `TYPE_REFERENCE` §11.1 and §27, and their tables;
+  - `AST_REFERENCE` §3.4, the `?!` row's stale `tbb32` corrected with it;
+  - `LEXICAL_REFERENCE` §5 and §5.3;
+  - the trap-operator lists of `CONTROL`, `SAFETY`, `MEMORY` and `VERIFICATION`;
+  - `DECISIONS`: D-360's landing note, and dated notes on D-099 and D-046;
+  - `OPEN_DECISIONS`: S-137 LANDED, and DEF-258 … DEF-260.
+- **Our three observations of this morning (sent 10:56:08) are REGISTERED,** each LOW and each its own small landing, none blocking a library:
+  - **DEF-258:** a keyword as the EMPTY name of a generic parameter, a variadic or a macro parameter. Measured on 119's compiler:
+    - `func:f<in>` called `raw f::<int32>(0i32)` compiles;
+    - `..*int64[]:end` compiles;
+    - `raw f(0i32)` on `f<end>` is `TYPE-022`, naming the empty name;
+    - `macro:m = (end) { int32:k = end; }` is `PARSE-002` at the use.
+  - **DEF-259:** `int64:end = …;` and `int64:limit = …;` as locals are `PARSE-002` "expected an expression", where notice 113 promised `PARSE-001`. `wild`- and `fixed`-led locals are `PARSE-001`.
+  - **DEF-260:** the recovery after a keyword-named field skips the next field's report (RX-134's `K`).
+  - **Read against RX-244, as landed in regex at `084187a`:** each agrees.
+    - RX-244 says a `T:name` local is `PARSE-002` at its declaration, which is DEF-259's fact.
+    - It says a generic parameter's (bar `comptime`), a variadic's or a macro parameter's name compiles. That is true of the declaration. DEF-258 adds that a macro parameter so named is `PARSE-002` at its use, which RX-244 does not claim either way.
+- **The landing:**
+  - The commit goes on branch `39-d360` off `34979dc` within the half hour, and its harness runs on that commit itself, about 2 h 35 m.
+  - The notice will name the SHA and the ladder's six rows.
+  - **Verify it with `tools/ladder.py` against THE BASELINE NOTICE 120 MUST QUOTE** (119's rows, at the end of 119's entry below), plus the three read-only git checks.
+- **Not in our pin** (`c9baa9e`), and nothing to adopt.
+- **Next from them:** F63, for landing 121: the `#ptr_add` confinement with D-361's provenance rule, with their census over the three trees first.
+  - This seat's count for it stands: `#ptr_add` is on 1 code line of regex (`src/core/bytes.npk:217`), 23 of time, and 1 in parse's plans (`0.0.4_tools/step3.patch:197`).
+  - Regex 0.2.5a touched no `src/core/` file.
+
 ### ✅ `34979dc` LANDED — **NOTICE 119: D-355, AS F61 SAID: `NULL` LEAVES THE PLAIN POINTER. `NITPICK-TYPE-096` WHERE A PLAIN POINTER OR AN `Optional` IS EXPECTED, `NULL` KEEPS ITS MEANING IN A `wild` CONTEXT ALONE, AND A POINTER THAT MAY BE ABSENT IS `T->?` WITH `NIL`. A REFUSAL ADDED; NOTHING OF OURS REFUSED (0 `NULL` SITES IN OUR 359 PROGRAMS, RE-MEASURED HERE); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_38`, which built and landed it; pushed 10:49, filed 2026-10-16 10:54 by `nitpick-libs_20` from the message's full text (arrived 10:51:36). **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 119 (118's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
