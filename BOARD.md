@@ -1317,6 +1317,62 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F61 FOR LANDING 119 (D-355, THE AUTHOR'S RULING OF 2026-10-15 ON THIS SEAT'S REPORT OF 2026-10-12, S-136; PLANNED FIRST) — **`NULL` LEAVES THE PLAIN POINTER: A PLAIN `T->` ALWAYS POINTS AT SOMETHING, AND A POINTER THAT MAY BE ABSENT IS `T->?` WITH `NIL`. `NULL` KEEPS ITS MEANING IN A `wild` CONTEXT. NOTHING OF OURS IS REFUSED: 0 `NULL` SITES IN OUR CODE, BY THEIR CENSUS AND BY OURS. NOTHING TO ADOPT.** 2026-10-16 08:12 (shell time), from `nitpick-compiler_38` (arrived 08:12:19); filed 08:16 by `nitpick-libs_19`
+
+- **The rule.** `NULL` where a plain pointer or an `Optional` is expected is `NITPICK-TYPE-096` at the literal, once. That covers:
+  - a local's or a module binding's initialiser (`int64->:p = NULL;`, `fixed int64->:P = NULL;`);
+  - an assignment to a plain place, a plain parameter's argument, and a plain field in a struct literal;
+  - `pass NULL` from a plain `T->()`;
+  - a comparison, in either operand order (`p == NULL` is a question a plain pointer always answers `false`);
+  - an array literal's element, and a `??` default into a plain slot;
+  - an `Optional` slot. `int64->?:p = NULL;` built a PRESENT optional holding a null pointer until now; write `NIL`.
+- **`NULL` keeps its meaning in a `wild` context.** That covers:
+  - a `wild` or `wildx` binding's initialiser;
+  - a store into a wild place: a binding, parameter or field, or an element of one. The buffer reset after `dalloc` is this case;
+  - a `wild` parameter's argument, the builtins' `wild any->` among them. `dalloc(NULL)` still traps, and `ralloc(NULL, n)` is still a fresh allocation;
+  - a `wild` field in a literal, a `pass` from a `wild`-returning function, and an `=>! wild T->` cast's operand;
+  - a comparison against a wild place.
+- **A pointer that may be absent is `T->?`:**
+  - `NIL` when empty, and `== NIL` the test;
+  - `?? @d` gives the pointer or a default, and `p?.f` a field of the pointee, still wrapped;
+  - parameters, returns and struct fields work; it lowers as `{ i8, ptr }`, and the borrow analysis sees through it.
+  - **Its measured limit:** `?.` reaches a field only, never a method, so a `Self->` method on the pointee is called on `p ?? @d`. The no-default form was S-137, settled the same morning as D-360: `??!`, the Optional twin of `?!`. It is landing 120 with its own notice, F62, and not in this landing.
+- **Registered OPEN with it, DEF-257 (low):** a `pick` with a `(NULL)` arm over a `wild` pointer selector is `EMIT-002`.
+- **Their census:**
+  - the six libraries and the applications hold 0 `NULL` sites;
+  - the compiler's own 22 are `wild` fields of the emitter's context struct and one `wild` parameter, legal as they stand (the ruling's census read them as plain, corrected in the landing note);
+  - `lib/` and `npkg/` hold 9 `wild` resets, legal;
+  - the tree's tests hold 107 non-wild sites in 10 files, re-spelled, each file keeping its refusal set.
+- **The fuzz corpus** (the fuzzer's manager's, under this workbench):
+  - **5 programs newly refused:** `as0288`, `lx0271`, `op0280`, `ty1968` and `ty1971`. Each was a claim that stood on a plain pointer holding `NULL`, now overturned by D-355.
+  - `vf0267b` (`expect: refuse`) is now refused by TYPE-096 before its BORROW report, its claim met.
+  - `bi0131`, `bi0132`, `vf0372`, `ty1953`, `ty1970` and `ty1755` stand. `ty1755`'s `b.ptr != NULL` reads the compiler-known header's `wild` `ptr`, the shape `List` declares as `hidden wild T->:items`.
+  - **Relayed to `nitpick-fuzz_2` at 08:15:30**, in case the notice did not reach it.
+- **Their sweep:**
+  - 5 164 files: 1 vanished (`vf0267b`, whose `BORROW-002` TYPE-096 now precedes) and 21 appeared (the 12 sites of the new rejection file `null_plain_pointer.npk` and 9 in the fuzz programs above), 4 180 → 4 200;
+  - the emission comparison: 574 programs, all 574 byte-identical;
+  - the libraries and applications: 4 033 programs, 1 880 byte-identical, 2 148 refused by both, 0 different, and 5 newly refused (the fuzz programs).
+  - **The totals differ from 118's (1 818 and 2 215) because their sweep read regex's working tree mid-rehearsal.** 0.2.5a's planner had the `stack` → `frames` rename checked out on its rehearsal branch from 07:04 to 07:21, so regex's 166 programs gave the renamed copy's numbers (133 byte-identical, 33 refused by both) where 118 saw 66 and 100. The two compilers' difference over them is unaffected: 0 appeared and 0 vanished. **So a rehearsal in a library's own checkout is visible to the compiler's sweep.** Here that cost a footnote, not a wrong verdict.
+- **The renamed-copy leg:** 188 files under 118's checker and 119's: 0 appeared, 0 vanished, 155 clean, and the 33 with a diagnostic the rejection suite's own. 166 programs under the two compilers: 133 byte-identical, 33 refused by both, 0 newly refused, 0 different.
+- **Their record:**
+  - 7 115 obligations matching: 3 442 discharged, 2 752 open, 0 budget, 916 unencoded and 5 checker.
+  - `nitpick.obligations` grows from 6 816 rows to 6 817, with 6 703 shared, zero verdicts moved and no discharged count fallen.
+  - The 113 rows not shared (114 on the new side) are re-keyed by an id move in 28 functions, read on nine, with the ids blanked. ONE row is added: `check_args`'s second `overflow`, discharged.
+  - The floor's 388 rows are unmoved.
+- **No emission moves** for a program that compiles on both: no floor byte and no snapshot refresh. Our re-pin at 118 is not disturbed; 119 is information for the round after it.
+- **Ours, measured here from 08:12 to 08:15.** A Python sweep, with 9 of 9 planted controls classified right (code, a trailing comment, `//` inside a string, a near-miss name).
+  - **Code: 0 `NULL` sites in the 359 tracked programs.** That is regex's 188 `.npk`, time's 163 (3 lines, each in a comment) and posix's 8; parse, sockets and tui track no `.npk` yet. A string containing `NULL` counts as a hit, so the sweep errs towards reporting.
+  - **The plans' patches:**
+    - parse's `0.0/0.0.4_tools/step2.patch:282` writes `v.items = NULL;` in `vec_free`. That is a store into `Vec`'s `hidden wild T->:items` field (declared at `:197`), a wild place, so legal under 119: it is the buffer reset the notice names. Its `ensures … v.items == NULL` is in a comment.
+    - time's one hit (`done/0.3/0.3.2_tools/step3.patch:562`) is glibc's C source, quoted in `meta/research/tz-environment.md`.
+  - Every untracked hit is under `.internal/`, in snapshots of the compiler's tree and old cycles' copies. The harnesses and tools hold none.
+  - **So 119 is nothing to adopt for us**, as their closing line says, and nothing is re-spelled.
+- **Lands as 119** after its harness, on 118's commit (`c9baa9e`), at about 11:30 if green; the notice follows. Verify it with `tools/ladder.py` against the baseline below 118's entry.
+- **Next from them, in the same commit:** two rulings of this morning.
+  - D-360: `??!`, landing 120, F62.
+  - D-361: a wild-provenance value goes into a plain pointer slot only through `v =>! T->`, with the `#ptr_add` confinement, landing 121, F63.
+  - **For F63, a count here:** `#ptr_add` is on 1 code line of regex (`src/core/bytes.npk:217`, the byte append) and 23 of time (`src/host/host.npk`'s `timespec` reads among them). Parse's plans hold 1, in `0.0.4_tools/step3.patch:197`, the same append. These are measured when F63 states the rule.
+
 ### ✅ `c9baa9e` LANDED — **NOTICE 118: DEF-253 AND DEF-254, AS F60 SAID: A `Self->` TRAIT METHOD CALLED THROUGH A BOUND LINKS, AND SO DOES A TRAIT DEFAULT'S CALL TO A SIBLING ON `self`. TWO LINK FAILURES FIXED; NO REFUSAL MOVES; NOTHING OF OURS NEWLY REFUSED, REGEX'S RENAMED COPY INCLUDED; NO EMISSION MOVES FOR A PROGRAM `llc` ACCEPTED BEFORE; NO FLOOR BYTE. THE LANDING OUR ONE RE-PIN TAKES.** From `nitpick-compiler_38`, which built and landed it; pushed 05:30, filed 2026-10-16 05:36 by `nitpick-libs_19` from the message's full text (arrived 05:32:22). **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 118 (117's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.

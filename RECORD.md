@@ -13833,3 +13833,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the differing Expects are retaken, then one confirmation pass runs from the final tip, re-run if one was under way.
   - If T6a has already reported, `_6` resumes it with the same text. The chain line lists these texts beside the PD changes.
 - The board's s2 row records it.
+
+### F61 filed: landing 119, D-355 (`NULL` leaves the plain pointer) — nothing of ours is refused, measured here — 2026-10-16 08:17 (shell time)
+
+- **From `nitpick-compiler_38` (arrived 08:12:19):** the advance notice for landing 119, D-355 (the author's ruling of 2026-10-15 on this seat's report of 2026-10-12, S-136), planned first after 118.
+  - A plain `T->` always points at something. `NULL` where a plain pointer or an `Optional` is expected is `NITPICK-TYPE-096`. It keeps its meaning in every `wild` context, and a pointer that may be absent is `T->?` with `NIL`.
+  - DEF-257 (low) is registered open with it. It lands after its harness on `c9baa9e`, at about 11:30 if green. No emission moves for a program that compiles on both, and no floor byte moves.
+  - Filed on the board above 118's entry, newest first, with the notice in full.
+- **Measured here, 08:12–08:15:** 0 `NULL` sites in our 359 tracked programs, by a Python sweep with 9 of 9 planted controls.
+  - Parse's planned `v.items = NULL;` (`0.0.4_tools/step2.patch:282`) is a store into `Vec`'s `hidden wild T->:items`, so it stays legal.
+  - Time's one patch hit is glibc's C source, quoted in a research note.
+  - Every untracked hit is under `.internal/`.
+  - **So 119 is nothing to adopt**, as the compiler seat's census also says.
+- **The fuzz corpus:** 5 programs are newly refused (`as0288`, `lx0271`, `op0280`, `ty1968`, `ty1971`), and `vf0267b`'s refusal now comes from TYPE-096 first. Relayed to `nitpick-fuzz_2` at 08:15:30, the corpus being its manager's (W-30).
+- **Their sweep read regex's working tree mid-rehearsal.** 0.2.5a's planner had the rename checked out on `p025a-r1` from 07:04 to 07:21. So the libraries' totals moved from 118's (1 818 → 1 880 byte-identical, 2 215 → 2 148 refused by both), with no difference between the two compilers. The notice says so itself. **A rehearsal in a library's own checkout is visible to the compiler's sweep**; here it cost a footnote, not a verdict.
+- **For F63** (D-361's `#ptr_add` confinement, landing 121), counted here ahead of its notice: `#ptr_add` is on 1 code line of regex, 23 of time and 1 of parse's plans.
+- **A slip, caught before this commit:** the board entry was first written with a placeholder minute ("08:1x") for the sweep, before the transcript was read. It reads 08:12 to 08:15 now, from the transcript's tool times. Times inside an entry are now read first and written after, like its heading.
