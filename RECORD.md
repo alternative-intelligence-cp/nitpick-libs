@@ -13498,3 +13498,94 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The renamed regex copy:** clean for 117 too, by their leg.
 - **The fuzzer's two rows** (`tr0432`, `as0062`) are `nitpick-fuzz_2`'s to re-read under D-354. A copy of that line was sent to it, since it talks to the compiler seat directly.
 - **At the landing:** the ladder against the baseline for 117, and a dated note on O-N36's F-039 row.
+
+### `nitpick-parse` 0.0's plan VERIFIED PASS and merged: the Team seat's first plan chain for a new library, spot-checked here — 2026-10-16 01:15 (shell time)
+
+- **The report** (`Ailp-team_5`, 01:04:39): `nitpick-parse 0.0 PLAN CHAIN PASS branch team/parse-0.0-plan commit fca1333…`. Its reports are `~/Team/REPORTS/T6*-parse-0.0-*.md`: the plan (T6, T6b), two fix rounds (T6f with T6fb, and T6f2) and three plan verifications (T6v, T6v2, T6v3).
+- **The chain:**
+  - the plan, `902360a` … `01e987c`: six subcycle files at execution grade at `7e91730`, 45 blocks SAME;
+  - verification 1 FAILED on 9 blocking findings, and fix round 1 ran to `9904483`. Verification 2 FAILED on the decline point a second time, so the chain stopped under brief §8, and this seat ruled to resume (2026-10-15 19:37);
+  - fix round 2, T6f2 (`npk:planner`, Opus 5.5, 19:42–22:59): `2fe4659` and `fca1333`. `tools/decisions.txt` now names every Expect line a decline moves, measured by the review's own re-cut;
+  - verification 3, T6v3 (`npk:verifier`, Sonnet 5.5, 23:02:43–00:49:24, about 514 k tokens): **PASS on `fca1333`, with nothing on the decline point.**
+    - Runs (a), (b) and (c) moved exactly the clause's 6, 15 and 9 lines, and the three 0a-alone runs one line each, each set derived before its run.
+    - A run (d), beyond the brief, declined the other eight PDs and moved its derived 9, so all 17 were declined in some run.
+    - A fresh clone read 45 of 45 SAME, the full run GREEN, 64 of 64 units, 2 pending (DEF-252, DEF-253).
+  - One NEW finding, non-blocking: block 0a's digest mutant assumes no trailing whitespace on a digest's first line, while `sweep.DIGEST` accepts it. It fails safe.
+- **Spot-checked here, independently:**
+  - the branch fetched from GitHub is `fca1333`: 19 commits on our `main` (`3cad08c`), which is its ancestor, so a fast-forward; 65 files, +16 496 −779, all under `meta/roadmap/0.0/`;
+  - all 19 commits are authored and committed under the configured identity, with one trailer and one parent each;
+  - `check_refs` over the merged tree, in place: clean, 56 md files, leak scan 125 of 125. In a scratch clone it shows only `CLAUDE.md`'s two links into the workbench, which resolve in place;
+  - the four points this seat said it would read at merge:
+    - the README's audit table carries every parse item of the 2026-10-15 ecosystem audit: E2-4, E2-6, E2-10, E2-13, E2-15, EC2, EC3, ED2, EK1, E3-1 and E3-14. This was checked against the audit file by script. E3-2, E3-4 and E3-5 name parse but are the workbench's, apps' and regex's;
+    - finding 16's three currency rows in 0.0.1's `step5.patch`: each is checked "by cycle 0.0's first work dispatch, before any probe", cites its digest, and goes stale ninety days after its date;
+    - PD-132's third clause ("no function in this library stores a view it was handed into a place it was handed") and its reversal: a later decision withdraws it on the day the compiler refuses the callee's store and `defect/view_reseat/` moves to `refused/`. The README's row for 116 agrees, so the adoption at 118 retires it;
+    - the three research requests' "would change the plan if" texts, at `step5.patch:97`, `:100` and `:103`;
+  - the README's row for 117 predates F59 but agrees with it in substance: the cycle writes no `comptime`, and 0.0.2's rulings control counts it;
+  - no CI ran, since the branch has no `.github/`; the workflow comes with 0.0.1's `step4.patch`. The harness was not re-run here: T6f2's confirmation pass and T6v3's fresh clone ran it.
+- **Applied:**
+  - the s2 row was CLAIMED for the merge (`d967337`, 01:09). Then `nitpick-parse`'s `main` was fast-forwarded `3cad08c` → `fca1333` (01:09:54) and pushed, and `ls-remote` reads `fca1333`;
+  - the s2 row now reads VERIFIED PASS, MERGED, and the claim is released. The stream table's row 2 reads at rest;
+  - `LIBRARIES.md`'s parse row records the merge.
+- **The decisions:** this review accepts all 17, PD-129 … PD-145, in PD order as `tools/decisions.txt` lists them, from base PA-103. PD-129 … PD-134 become PA-104 … PA-109 at 0.0.0, and PD-135 … PD-145 become PA-110 … PA-120 at 0.0.1 … 0.0.4. Nothing is declined. This was answered to `Ailp-team_5` at 01:16:41, with the condition that a PD whose text a research re-cut changes is re-read here before the go. Four of the reversals are choices that could be made differently now: PD-129's 32-byte `Event`, PD-137's security gating, PD-143's ninth bound waiting for cycle 0.4, and PD-145's `SmallMap` waiting for its consumer. They go to the author as one question with the recommendation to accept as planned, as regex's did (questions 27–29), once the PD set is final. The chain proceeds on the defaults. The other reversals wait on a compiler landing or need nothing.
+- **Accepted:** T6v3's finding 1, non-blocking, carried to the cycle's close. The digests this seat hands over are checked by script to have exact first lines, so block 0a runs as written.
+- **The research gate:** `management_0` asked at 01:06:10 that this seat's credits runner run parse's three research items, since the Team's week is at its pace line.
+  - Three Sonnet jobs started at 01:12, one per request. Each is in the research skill's §3 shape with `sensitivity: security`, and returns a §5 digest under the plan's file names: `security-defects.md`, `security-guidance.md` and `security-vectors.md`.
+  - The digests are read here against their sources and gate item 7's stops before they go to the Team for 0.0.0's `DIGESTS` line. If a digest's "would change the plan if" came true, a brief for a re-cut goes instead.
+- **Parse's next step**, sent to `Ailp-team_5` and `management_0` at 01:13:
+  - 0.0.0's work chain, a worker and then a work verifier, on this seat's go after the digests. s2 is claimed here when it starts, on one line from `_5` just before the worker's dispatch;
+  - each subcycle reports here at its PASS for review and merge;
+  - the chain stops before 0.0.5, the cycle's close, and at brief §8's other stops, and it is at rest at the re-pin's quiet point;
+  - management's order after 03:00: D4 first, then parse 0.0.0, ahead of sockets' planner if both are waiting.
+- **From `nitpick-fuzz_2`, 00:04:00:** D-353 moves nothing in M13, by reading files rather than by a run. `tr0432` and `as0062` are re-read as RESERVED at the next M11 re-read, and `tr0454`, `tr0456`, `tr0461`, `tr0501`, `tr0435` and `tr0448` are re-checked then.
+
+### Parse's research gate fires: three digests on this seat's credits runner, and a re-cut briefed before 0.0.0's go — 2026-10-16 01:22 (shell time)
+
+- **The jobs:** `.internal/credits/jobs/parse-research-{defects,guidance,vectors}-2026-10-16.md`, each a RESEARCH REQUEST in the research skill's §3 shape with `sensitivity: security`, read-only with web access.
+  - defects: 01:12:08–01:17:06, 65 turns, $1.6143;
+  - guidance: 01:12:09–01:16:14, 36 turns, $0.4135;
+  - vectors: 01:12:10–01:13:45, 29 turns, $0.1878.
+  - **$2.2156 in all.** This seat's allowance now stands at $11.8003 spent and $18.1997 left through 2026-11-11. The cost line went to `management_0`.
+- **Checked here:**
+  - By script, each digest passes what the plan's scripts will read:
+    - the heading matches `sweep.DIGEST`, with no trailing whitespace, and block 0a's mutant of it reads NOT;
+    - `As of 2026-10-16`;
+    - no link shape, no local path and no open-question id;
+    - every PA it cites is declared in parse's `DECISIONS.md` (PA-008 … PA-081). The trailing-whitespace and link-shape checks each caught a planted case.
+  - At four sources, every claim matched:
+    - toml-test's `0d1c92e` ("Back out UTF-8 BOM tests", 2026-09-15, both file lists);
+    - toml.io's v1.1.0 page ("Published on 12/18/2025", the lossless-integer sentence, "free to support any integer size");
+    - CVE-2026-49293 (js-toml below 1.1.1, quadratic non-decimal literals);
+    - GHSA-2xhg-w2g5-w95x (CVE-2021-41270, Symfony's CSV injection).
+  - The parse lines each digest cites were read here, and the digests read them right.
+- **Placed for the Team** at `.internal/team/parse-0.0.0-digests/security-{defects,guidance,vectors}.md`, under the plan's three file names. Each is the researcher's final message byte for byte, plus one final newline. Their sha256 prefixes: `41977626`, `a3ed2971`, `7b96cd61`.
+- **Gate item 7 fires on two counts,** so the plan is re-cut to hold the findings before any probe runs. By this seat's reading none asks the language a question, so none is a probe.
+  - **The defects digest's "would change" came true.** CSV formula injection has no rule, since `WRITER_MODEL.md`'s W-9 sets only JSON's escapes. The quadratic class is guarded only in part.
+  - **The vectors digest's came true.** toml-test v2.x carries TOML 1.0 and 1.1, chosen by `-toml=` or `tests/files-toml-1.0.0`, and its default differs between its v2.0.0 notes and its README. It withdrew its two leading-BOM valid cases on 2026-09-15.
+  - **The guidance digest contradicts `CURRENCY.md`'s TOML row.** The row says "nobody has compared the two"; the digest lists five accept/reject changes from 1.0.0 to 1.1.0. No standard now requires what a parse rule permits.
+- **One security point the defects digest raised as its own observation, confirmed here:**
+  - `SCAN_MODEL.md` C-5 refuses an input over 4 GiB with `EParseState`.
+  - But `SAFETY.md` §3 says of both identities "Neither is reachable from any byte stream", and §8 lists no input-size duty for a consumer.
+  - So a hostile 4 GiB upload reaches the `failsafe` arm, which is what S-1 rules out.
+- **The re-cut, briefed to `Ailp-team_5` at 01:22:20,** with the cost line to `management_0` at 01:22:26. This seat's classification is a starting point, not a ruling on wording.
+  - **In cycle 0.0's own patches:**
+    - `CURRENCY.md`'s TOML row (the comparison made; cycle 0.6.0 still decides);
+    - its YAML row (1.2.2, 2021-10-01, no normative changes);
+    - its corpora row (toml-test's gate names its TOML version, never the default; the yaml-test-suite from a dated `data-` tag);
+    - its research section (each finding and the cycle that holds it);
+    - gate item 7 (these digests' findings are held, so the worker files them and goes on).
+  - **For the owning cycles:**
+    - 0.1: the 4 GiB point, either a `Fault` or a stated duty, open or settled by the unused PD-146, with the author shown it either way; and C-9's TOML clause;
+    - 0.4: D-16's index past 1024 pairs, if it is D-13's unkeyed FNV-1a order, can be flooded with keys sharing one hash;
+    - 0.6: TOML's key-resolution cost, the lossless-integer rule over D-19, whole-document UTF-8, control characters, ASCII bare keys, reserved escapes, and the BOM cases against `allow_bom`;
+    - 0.7: formula injection, either neutralised by the writer or a stated duty of the caller's, and `NPARSE_MAX_SCALAR`'s "(a single JSON string)";
+    - 0.8: the alias budget before aliases ship.
+  - **Constraints:**
+    - wording and placement only;
+    - a changed or new PD is re-read here;
+    - every moved Expect is retaken in plan order with the real digests;
+    - then a scoped re-verification, then the chain line, then this seat's go for 0.0.0.
+  - By `management_0`'s order, the re-cut takes 0.0.0's place in the queue after 03:00.
+- **Received by the Team** (`Ailp-team_5`, 01:23:26): the digests seen at their path, with matching hash prefixes. The re-cut is a planner fix round on `team/parse-0.0-plan` after `fca1333`, held to this seat's classification and constraints (the message saved verbatim in the Team's META), then a scoped re-verification, then the chain line. It goes out after 03:00, ahead of sockets.
+- **The Team seat's manager changes hands:** `Ailp-team_5` hands to `Ailp-team_6` (`uds:/run/user/1000/cc-socks/808343.sock`), from whom the re-cut's brief and the claim lines now come.
+- **Question 36, `management_0`'s M-2** (asked 01:23:10, for the author's morning batch): the input-size point. This seat recommends (A): an oversize input becomes a `Fault` of its own kind, so `EParseState` stays for API misuse and §3's "No" stays true. (B), a stated size duty, is declined because a consumer that forgets it can be stopped by an upload; (C), 64-bit spans, because every event and node grows. Nothing waits on it.
+- **Question 35** goes in the same batch: parse 0.0's 17 decisions, accepted here, with three live reversal choices (PD-129, PD-143, PD-145) and PD-137 already exercised. It recommends accepting all as planned. Both questions are filed on the board.
