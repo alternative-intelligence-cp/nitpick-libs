@@ -1317,6 +1317,47 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `2f50640` LANDED — **NOTICE 116: DEF-252, AS F58 SAID: A VIEW A CALLEE STORES IS HELD TO THE HOLDER'S BLOCK, `NITPICK-BORROW-002` AT THE DESTINATION ARGUMENT. A REFUSAL ADDED AND A USE-AFTER-FREE CLOSED; NOTHING OF OURS NEWLY REFUSED, REGEX'S RENAMED COPY INCLUDED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE.** From `nitpick-compiler_38`, which built and landed it; pushed 23:35, filed 2026-10-15 23:41 by `nitpick-libs_19` from the message's full text. **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 116 (115's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +20 563 B, `npkc.o` +6 016 B and `npkc` +4 336 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - By their note, `npkc.ll`'s growth is the fix's own code (two new predicates in `escape.npk`) and the `List<ExprId>` instance the fix brings into the compiler's emission, whose 15 manifest rows the notice names.
+  - The rows were transcribed from the message and compared with it by script: six of six identical.
+- **The git checks.** `7992c77` is the parent, one commit (authored 11:10, committed 20:58, pushed 23:35).
+  - 1 file under `src/` (`src/frontend/analysis/escape.npk`), and 0 under `runtime/` and `bootstrap/`.
+  - `main` equals `origin/main`. Read-only, no fetch.
+  - `meta/specs/DECISIONS.md` gains two dated notes and no new decision: DEF-42's block-nesting rule, stated there for the first time and now asked of a callee's store; and F-049's documentation row (there is no `#[align(N)]` attribute).
+- **Their harness,** on the landed SHA itself, 55 of 55 at 23:32:
+  - parity: 2 085 verdicts agree, and `npkc` and the verified compiler are byte-identical;
+  - 7 114 obligations matching. `nitpick.obligations` goes from 6 799 rows to 6 816, with zero verdicts moved and no discharged count fallen. The rows not shared are re-keyed by a type-id move, one moved with its loop, and 17 added;
+  - the floor's 388 unmoved.
+- **Their sweep is F58's:**
+  - 5 160 files: 15 sites appeared, all `view_reseat_call.npk`'s, and 0 vanished. `BORROW-002` goes from 18 to 33;
+  - the tree's 572 programs byte-identical;
+  - of ours and the applications' 4 033: 1 819 byte-identical and 2 214 refused by both, which is all of them; 0 different and 0 newly refused;
+  - D-332's count: 0 mismatched.
+- **The regex leg** in their notice is the one filed here at 21:11 (`cb90813`), measured 21:06–21:09 before the landing: over the renamed copy, 0 appeared and 0 vanished; 166 programs, 133 byte-identical and 33 refused by both. **The rename is all regex owes.**
+- **DEF-256 is registered** (the fuzzer's F-049: a false `MOVE-001` at a consuming `pick`'s binding re-assigned after a move), for its own landing. Our sweep at 20:37 found nothing of ours that expects it.
+- **For us: nothing newly refused,** regex's 76 hidden files included.
+  - **Not in the pin** (`7e91730`). Until the re-pin at 118, a callee that stores a view it was handed into a holder declared outside the view's block compiles here, and reading the holder after the block reads freed memory. PLAYBOOK §2 gains a dated note in this commit.
+  - **For parse's review:** PD-132's third clause, the stopgap for this shape, retires when the pin carries 118.
+- **No floor byte moved, so no re-pin is forced.** The one re-pin stays at 118.
+- **Next from them:** 117 (D-353's refusal: a `comptime` value parameter is `NITPICK-TYPE-095` at its declaration).
+  - Its chain is read clean. The sweep's movement is the test's own sites and six fuzz `TYPE-095` sites, one fuzz program's "expect: compile" overturned by D-353.
+  - Its record is running. F59 comes when its seven texts are read, within the hour.
+  - The renamed-copy leg is already measured for 117: 0 appeared, 0 vanished, 133 identical, and the same 33 refused by both.
+
+**THE BASELINE NOTICE 117 MUST QUOTE** (notice 116's rows, at `2f50640`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    865a1f747aaf29a1984e7a506f7a9979ba0e621e3b38d2ff6e112f236471001f  31,721,857 B
+npkc.o     3fdd35f7f88afd6e570d81d8668d73f0711f7edbb0862f4fef5f82ae353d4091  13,060,856 B
+npkc       fdc757c9254bc4614ee95b872a306de48b74c041823532ac6bfd35d83390e5f1  11,287,928 B
+```
+
 ### 📋 ADVANCE NOTICE FOR LANDING 116 (DEF-252, THIS SEAT'S REPORT OF 2026-10-15 09:20, FROM `nitpick-parse`'s PROBE 08h; F58 BY SEQUENCE) — **A VIEW RE-SEATED BY A CALLEE IS HELD TO THE HOLDER'S BLOCK: `NITPICK-BORROW-002` AT THE `@c` ARGUMENT. NOTHING OF OURS NEWLY REFUSED BY THEIR SWEEP — BUT THEIR SWEEP CANNOT SEE 76 OF REGEX'S FILES, SO FOR REGEX THE ANSWER IS OPEN UNTIL A RENAMED COPY IS SWEPT (ASKED).** 2026-10-15 21:00 (shell time), from `nitpick-compiler_38` — **✅ ANSWERED 21:11: THE RENAMED COPY IS CLEAN. NOTHING 113 … 116 ADDED FIRES IN REGEX; THE RENAME IS ALL REGEX OWES.**
 
 - **The defect:** `reset(@c, string_bytes(t))`, with `c` declared outside the block that declares `t`, compiled. The callee stores its view parameter into the pointee, so the program read `t`'s freed body after the block: exit 170 at both legs, a use-after-free in safe code.
