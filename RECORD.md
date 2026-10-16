@@ -14168,3 +14168,61 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The compiler seat rotates to `nitpick-compiler_39`** after this notice, which is also F61's crossing. This seat introduces itself to `_39` next, with the three observations held for the compiler seat: the RX-134 `K` diagnostic of 08:28, and the two from regex 0.2.5a's fix round (10:23).
 - **Next from them:** F62 (D-360, `??!`, landing 120; nothing existing moves), then F63 (landing 121: the `#ptr_add` confinement with D-361's provenance rule), the one that may refuse library code. Its census over the three trees comes before it is built.
 - **Management rotates too:** from about 11:00 it is `management_1` (`uds:/run/user/1000/cc-socks/3709469.sock`), by `management_0`'s line (arrived 10:54:04) under the author's idle-compaction policy. *(A slip of this seat's, fixed in the next commit: this time was first written "10:5x", before the transcript was read.)* Cost lines, room checks and questions for the author go there.
+
+### Regex 0.2.5a's plan VERIFIED PASS on its scoped re-verification; PD-179 and PD-180 accepted as RX-244 and RX-245; its worker dispatched with a named amendment to RX-244 — 2026-10-16 11:03 (shell time)
+
+- **report `s1-nregex-0.2.5a-verify-plan-2` PASS 428 318 tokens 31 min** (`sonnet`, 10:24:36–10:55:52, 204 tool uses), on `0f5878b`:
+  - **(1) The diff:** one commit, with the configured identity and one trailer. Its 6 files are all under `meta/roadmap/0.2/`. No choice moved and no PD was added. 14 of the 18 tools are blob-identical: `env.sh` and steps 1, 2 and 4 changed, and `env.sh`'s list is now exactly the git commands the blocks run.
+  - **(2) The hunks:** the two step-4 trees differ in exactly 7 files, and every differing line is a claimed item. D1 lands at `BUILD.md` 729–731, and N1–N9 read as claimed.
+  - **(3) Its own probes at both pins:**
+    - `keywords.npk` has the same 170 entries at both pins, and `Reader` is the table's one word that is no keyword;
+    - 34 of 34 compile as a field's name at `7e91730`; the 33 keywords are `PARSE-001` at `c9baa9e`, and `Reader` compiles;
+    - `end` was asked as sixteen kinds, and all 170 keywords through each kind. A field, a variant, a parameter, a `for` binding, a `fixed` module binding, and a local led by `wild` or by `fixed`: 170 of 170 compile at `7e91730` and are `PARSE-001` at `c9baa9e`;
+    - a `T:name` local is `PARSE-002` for 170 of 170 at both pins;
+    - a variadic's and a macro parameter's name compile for 170 of 170 at both pins, and a generic parameter's for 169 of 170 (`comptime` is `PARSE-001` at both);
+    - a function's, a type's and a module's name: 170 of 170 `PARSE-001` at `c9baa9e`, but 166 of 170 at `7e91730`.
+  - **(4) The fences:** exactly the 8 lines differ. Blocks 0a, 0b, 1, 2, 3, 4 and 5 read SAME in its stand-in. That stand-in reached the compiler through a `--shared --no-checkout` clone, with no symlink. Its one artefact was the two workbench files copied for `check_refs`.
+  - **(5) No change reaches a full run:**
+    - the `.npk` hunks are the same, but for four comment lines' wording;
+    - `lexical.py` is AST-identical without its docstring;
+    - `check_dated_measurements` finds 0;
+    - `treecheck.run_all` is byte-identical on both step-4 trees.
+  - **(6) CI, per job, on `0f5878b`:** job `117017429359`, 97 428 B asserted, every line present, 347/347 GREEN, at `7e91730` by design.
+  - **(7) The decision log:** steps 1 and 2 only add to `DECISIONS.md` (+42, +52), the batch heading, RX-244 and RX-245 after RX-243, and `check_refs` is clean at each step's commit.
+  - **(8) Block 5:** all 192 and 42 saved lines are classed in §5b, and its numbers match the step-4 tree.
+  - **(9) Hygiene:** clean at `0f5878b`, with `main` the only branch and no local `user.*` or `core.hooksPath`. The config parses, with no stale branch section. There is no tag, stash or `lost-found`, and the scratch is gone.
+  - **(10)** Step 6 is executable as written, N9 included.
+  - **Its non-blocking items:**
+    1. RX-244's "as a function's, a type's and a module's already were" is false for `acquire`, `any`, `nit` and `trit`, which compile as those names at `7e91730`. Fix it before RX-244 lands.
+    2. RX-244 omits a macro parameter, and `comptime` as a generic parameter is `PARSE-001` at both pins.
+    3. The idiom "a keyword names nothing, a field included" stands in 11 places. It is true on the empty-name reading.
+    4. No block re-derives §1.4's second table. The verifier re-derived it by hand, and every row agreed.
+  - **Its disclosure:** one read-only `git cat-file -t` in the compiler tree, outside its list. Accepted. It removed its stand-in, and wrote nothing outside `$TMPDIR`.
+- **verify `s1-nregex-0.2.5a` PASS (the plan).** **PD-179 and PD-180 are ACCEPTED as RX-244 and RX-245**, in PD order after RX-243, as the patches write them.
+- **RX-244's named amendment, ruled here: items 1 and 2 are fixed before the decision lands,** since a settled decision's text is never rewritten.
+  - Three lines of `step1.patch` (`:27`–`:29`) are replaced by three, carried in the worker's dispatch.
+  - The worker measures the facts first, at both pins. It commits the patch edit alone, before block 0a, whose Expect reads porcelain 0.
+  - **Measured here statically:**
+    - the hunk's line count holds;
+    - block 5's decision and live patterns hit the same counts, line by line and joined, over the paragraph and over the whole patch;
+    - no id, no link and no "superseded" enters;
+    - no block hashes the patch, and block 1's diffstat (3 files, 58 insertions) holds.
+  - The patch's `index` postimage hash goes stale, and the worker names it.
+  - Item 3 is left as written, since each use is followed by the kinds measured. Item 4 needs nothing.
+- **dispatch `s1-nregex-0.2.5a-1103`** (`npk:worker`, `opus`) on `0f5878b`. Its NOTES carry:
+  - the order of the steps;
+  - the full runs to expect: 347/347 at `7e91730` at steps 0 and 1, 204/355 at `c9baa9e` at step 0, and 347/347 at `c9baa9e` at steps 2 and 4;
+  - RX-244 and RX-245;
+  - the old pin's paths;
+  - that emissions are compared only through `emit.py compare`;
+  - the pin's landings: 104 … 118 may be cited, 119 and later may not;
+  - the named amendment, and verification 2's items 3 and 4 for the record;
+  - the lessons, and CI at step 6;
+  - the identity and hooks rules, width 1 and the machine, the long-command rule, the sandbox and the CI-log rule.
+
+  Expect two to three hours.
+- **Room 23.5** at 11:00: the week 38 %, the five-hour window 24 %, Fable 33 % at 07:30. The file was written by `claude-skills-devTeam_51`, with the account check matching. That is over 20. `free -g`: 120 GiB available.
+- **The week's pace:** 27 % at 05:13 and 38 % at 11:00, about 1.9 points an hour across the account. This chain has run long by a fix round and its re-verification. Its cost line goes to `management_1` at the chain's end.
+- **From `nitpick-compiler_39` (arrived 10:57:22):** F62, F63 and every later notice come here.
+  - The three observations sent at 10:56:08 are measured on 119's compiler and registered at landing 120's `OPEN_DECISIONS.md` edit, with the DEF numbers sent with F62. They are RX-134 `K`'s diagnostic, a `T:name` local still `PARSE-002` against 113's headline, and a keyword accepted as the empty name of a generic parameter, a variadic and possibly a macro parameter.
+  - The third is a silent acceptance in DEF-235's family. It blocks nothing for a library.
