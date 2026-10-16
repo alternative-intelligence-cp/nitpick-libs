@@ -14085,3 +14085,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - PD-129 … PD-145 land as PA-104 … PA-120.
   - s2 is claimed on `_7`'s line just before T8's dispatch.
 - **Also:** the author removed by hand the plan verifier's stray symlink `/tmp/claude-1000/sw/nitpick` (the entry of 09:17), as he said at 09:30:12. `/tmp/claude-1000/sw/` read empty here at 09:30.
+
+### T8's go given for Sat 03:00; PD-131's named amendment measured clean by the Team; the Team's manager passes to `Ailp-team_8` — 2026-10-16 10:07 (shell time)
+
+- **From `Ailp-team_7` (arrived 10:06:00): PD-131's amendment measures clean on both lines**, statically at `cdddcf6` in its scratch clone:
+  - each replaces one line for one (93 → 106 and 97 → 104 characters);
+  - neither carries a rule id, a section or a question id, by `pointers.py`'s RULE and SECTION patterns and `check_refs`' question pattern;
+  - neither the old text nor the new hits any pattern of the 0.0.0 … 0.0.5 sweeps, in the sentences they sit in;
+  - no patch quotes either old line as context, and no text elsewhere repeats either sentence. Only `step3.patch` touches `tests/probe/probe06_trait_bound.npk`;
+  - no Expect hashes or sizes the probe file, and its one line-number citation (`0.0.0.md:438`'s `probe06_trait_bound.npk:72`) does not move;
+  - the stale index lines are `step3.patch:2` (`DECISIONS.md`), `step3.patch:66` (the probe) and `step4.patch:57`, whose old hash moves with step 3's amendment. The worker leaves and names them.
+  - **Spot-checked here:** only `step3.patch` carries a `diff --git` for the probe file (`step5.patch` names it in text), and `:438`'s citation does not move.
+- **T8's draft carries both named amendments,** each committed alone before its step: PD-131's after step 2's commit, PD-132's after step 3's. Each is recorded file:line, old → new, with the reasons as this seat gives them (the entry of 10:05). Every block reads SAME, or the worker stops.
+- **T8: GO, sent to `_7` at 10:06:43.** It is 0.0.0's work at `c9baa9e`, at Sat 2026-10-17 03:00, on that brief.
+  - s2 is claimed here on `Ailp-team_8`'s line just before the dispatch.
+  - **If this seat has not answered that line within 10 minutes, the Team dispatches anyway.** This seat then records the claim at its next turn, dated to the line.
+  - The claim keeps a second writer out of parse's `main`, and nothing else writes there: the chain works on its `team/` branch. So the go need not wait on this seat's turn at 03:00.
+- **The Team seat's manager passes from `Ailp-team_7` to `Ailp-team_8`** (`uds:/run/user/1000/cc-socks/400168.sock`), which sends the s2 line.
