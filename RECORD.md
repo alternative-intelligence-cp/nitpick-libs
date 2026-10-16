@@ -14252,3 +14252,77 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - Week to date: about $300 of Opus (about 11–14 points at $22–27) plus Sonnet, against the allocation of about 12 and 4–5 for 0.2.5a.
     - **So the chain ends at or a little over the allocation**, as this seat's guess of about 6 points said. The cost line goes at the chain's end.
 - **A cross-seat rule, from a slip at about 11:01 in another seat:** a session's own messaging token was printed by an `env | grep`, whose redaction matched values, not names. **Read an environment variable only by its exact name.** `PLAYBOOK.md` §6 gains the rule in this commit, and every dispatch's NOTES carry it from the next. This seat's own reads have been by exact name (`${CLAUDE_CODE_SESSION_ID}` at the take).
+
+### Regex 0.2.5a DONE at `084187a`: the adoption of `c9baa9e` worked and is read here; its two texts made exact are accepted; the work verifier dispatched — 2026-10-16 12:11 (shell time)
+
+- **The report** (`s1-nregex-0.2.5a-1103`, `opus`, arrived 12:04:53): `status: DONE` at toolchain `c9baa9e`, with `check: clean`. The record `meta/roadmap/0.2/0.2.5a.md` is DONE (2026-10-16). `next:` is 0.2.6, the close, whose plan no file holds yet.
+  - **The commits,** in order on `0f5878b`:
+    - `50ac35e`: the named amendment, alone, before block 0a;
+    - `dfa4327`: step 1, `Parser.stack` renamed `frames` at `7e91730`;
+    - `33ffa97`: step 2, the pin moves, with RX-244 and RX-245;
+    - `8cf8bd6`: step 3, CI pinned;
+    - `0c32e83`: step 4, the prose;
+    - `084187a`: the record.
+  - **The harness line:** `NPKC=…/c9baa9e/npkc NPKRT=…/c9baa9e/npkrt.o python3 -B harness/run.py` → 347/347 in 312.2 s (block 4h, over `0c32e83`).
+    - The other full runs: 0h and 1h 347/347 at `7e91730`; 0r 204/355 at `c9baa9e`, as designed; 2h 347/347 at `c9baa9e`.
+    - All twelve blocks read SAME through `blocks.py`.
+  - **The mutants and the emissions:** the fourteen mutants are at their verdicts. Step 2's 155 emission pairs across the pins are 0 identical, 77 the attribute only, 78 flag tests only and 0 DIFFERENT.
+  - **Block 5:** the 192 and 42 saved lines are each classed in §5b, and the control's NONEs by kind. Nothing is omitted.
+- **Read here at 12:11,** the report's claims checked by command:
+  - `check_record nitpick-regex 0.2.5a`: `record clean`, exit 0. `check_refs nitpick-regex`: clean, exit 0.
+  - `HEAD` = `origin/main` = `ls-remote` = `084187a`, and the porcelain is empty.
+  - **The six commits:** each has the configured identity and one trailer pair (`Co-Authored-By` and `Claude-Session`). Their file sets:
+    - `50ac35e`: 1 file, `step1.patch`, 3 lines for 3;
+    - `dfa4327`: 3 files, `meta/DECISIONS.md` +42, `meta/specs/BUILD.md` and `src/syntax/parse.npk` 14 for 14;
+    - `33ffa97`: 12 files;
+    - `8cf8bd6`: 1 file, `ci.yml`;
+    - `0c32e83`: 4 files;
+    - `084187a`: 3 files, the record, `step2.patch` 1 line for 1, and the cycle README.
+  - **CI, per job,** both runs `success`:
+    - run `38927196687` on `0c32e83`, job `117061649864`, 96 188 B;
+    - run `38928233957` on `084187a`, job `117065243770`, 96 202 B.
+    - Each log shows `compiler HEAD == c9baa9e91c553d8db2a2a62f09c36b30a984b07f (clean)`, `llvm-config --version == 20.1.8`, `npkc.ll == the pin's emission, 31731079 B / 1f48a31a5c9b…`, `rx120: every asserted leg held.`, `31 live, 4 pending, 35 cases`, 347/347 (251.5 s and 260.4 s) and `GREEN.`
+    - Each log's FAIL lines are the self-check's required reds.
+  - **The named amendment:** `step1.patch:27–29` at `HEAD` is byte-identical to the dispatch's three lines, by `cmp`, and a one-word change differs, as the control should. The diff `0f5878b..HEAD` of `step1.patch` is that hunk alone.
+  - **RX-245's pointer:** the diff `0f5878b..HEAD` of `step2.patch` is line 169 alone, `` `SAFETY.md` §6 `` → `` §7 ``.
+    - `meta/specs/SAFETY.md` §7 (*"What cannot be done today, and is wanted"*, `:821`) cites `fold_expr` and `fold_string_builtin` by name (`:836–:851`).
+    - §6 is *"Offsets, not slices"* (`:787`). So §7 is right.
+- **The for-the-author items, ruled here:**
+  1. **The named amendment, as committed (`50ac35e`): accepted.** The worker measured it first at both pins, every row as named, with controls.
+     - It adds a fact: through `7e91730` the four exempt keywords compiled as the EMPTY name.
+     - So "bar", the amended text's word, is exact. This seat's brief said "compile as those names", which was not; that is the worker's playbook finding 1, made against this seat's brief.
+  2. **RX-245's pointer, `§6` → `§7`: accepted** as the worker's tightening of a text, by the dispatch's rule. The pointer now points where the thing it cites is, and the sentence says what it said.
+     - The order is disclosed: block 2h ran over the original line. The original was then reversed and the amended patch applied before step 2's commit (11:42:45), and 4h and CI ran over the corrected line.
+     - No check reads that line for a verdict.
+     - The work verifier confirms the step 2 commit's tree by replaying the amended patch.
+  3. **`CLAUDE.md:435`, the `c970483` bullet** (*"A keyword cannot be a declared name (`NITPICK-PARSE-001`)"*), is over-broad as history.
+     - This subcycle did not make it stale, so it is left.
+     - **To 0.2.6's carried items:** the close dates it.
+  4. **The stale index lines,** `step1.patch:2` and `step2.patch:108`: no action. `git apply --index` does not read a text patch's postimage hash.
+- **Its disclosed slip:** the committed record's cost line says "118 to 122 GiB available" before the five full runs. Those reads were 120 to 122; the 118 was block 0b's.
+  - It is a dated record, so it is left as written.
+  - **To 0.2.6's carried items:** a dated correction line.
+- **Findings for the playbook,** noted here and landed at the work verifier's PASS:
+  1. ***Declare two of a kind to learn what name a declaration took.*** One keyword-named declaration that compiles proves only that it was not refused. At `7e91730`, `func:acquire` alone compiles and runs 0 / 0. Beside `func:any`, both emit `@"npk.<module>."`, and llc refuses the second: the EMPTY name, the shape DEF-235 closed for a field.
+  2. ***A pointer is checked where it points, even when the same section is cited rightly beside it.*** RX-245 cited `SAFETY.md` §6 twice: rightly for the `Match` fields, and wrongly for the `comptime` wall (§7).
+     - Two plan verifications, a design pass and the blocks all passed it, since no comparator sees a citation.
+     - Reading the twenty added lines that carry a pointer against the documents found it.
+- **Open questions raised:** none. **Compiler defect:** none.
+- **The cost:** about 796 k tokens, 590 tool uses and 61 min of the agent (`opus`). Five full local runs went one at a time; earlyoom killed nothing, and the scratch is removed.
+- **The room at 12:06.** The meter (written by this seat at 16:06:23Z; `account_check` matches) reads the week at 42 % and Fable at 33 %, from the 07:30 `/usage`.
+  - By the raw formula, that is 95 − 42 − 33.5 = **19.5**.
+  - By management's DR-56 steer, with Fable about 38 % on the transcript meter (its 11:07 figure), it is about **22**.
+  - The week moved from 38 % to 42 % during the worker.
+  - **The work verifier is the dispatch management agreed at 11:07:32,** so it goes. The chain's cost line goes to `management_1` at its PASS, and nothing new goes on Max after it until Sunday's release.
+  - 121 GiB available.
+- **`ListAgents`, read with the report:**
+  - `nitpick-libs_22` (`[365049]`, started about 2 h ago) is open and idle, beside the spare `_21`.
+  - `nitpick-libs_19` is gone.
+  - Every row of the in-flight table has its agent: s1's worker has reported, and s2's T8 is the Team seat's, at Sat 03:00.
+- **The work verifier `s1-nregex-0.2.5a-verify-work`** (`npk:verifier`, `sonnet`) is dispatched after this commit, on `084187a`. It checks:
+  - the hygiene and the six commits;
+  - the replays of the four committed patches to each work commit's tree, and step 2's original patch against its amended one;
+  - the amendment's facts and RX-245's pointer, re-measured;
+  - the full runs at `c9baa9e` over `084187a` and at `7e91730` over `dfa4327`;
+  - CI per job, the decision log, the record, and a sample of block 5's classes.
+  - Expect about an hour.
