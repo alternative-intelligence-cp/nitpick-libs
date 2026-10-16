@@ -1317,6 +1317,27 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE FOR LANDING 117 (D-353, S-135'S RULING OF 2026-10-15, THIS SEAT'S SUGGESTION; THE FUZZER'S F-039 IN O-N36 AND ITS `as0062`; F59 BY SEQUENCE) — **A `comptime` VALUE PARAMETER IS A RESERVED FORM: `NITPICK-TYPE-095` AT ITS DECLARATION, ONCE. NOTHING OF OURS TO RE-SPELL, BY THEIR SWEEP AND BY OURS.** 2026-10-15 23:58 (shell time), from `nitpick-compiler_38` (built by `_37`); filed 2026-10-16 00:01
+
+- **The ruling, D-353:** a user-declared value parameter is reserved until it is designed. That covers a function's (`func:scale<comptime int32:K>`), a struct's (`struct:Lock<T, comptime int32:LEVEL>`), a trait's, an enum's and an impl's.
+  - It is `NITPICK-TYPE-095` at the parameter, once. The uses say nothing more (D-240).
+  - The message names the spellings that stand: a `fixed` module binding, or a macro parameter (MACRO_REFERENCE §4).
+  - The compiler-known value arguments are not this form and do not change: `Mutex`'s level, `simd`'s lane count, an array size, a channel's constants.
+  - Before: the checker accepted the declaration, and the emitter stopped at the first call with `EMIT-002`.
+  - **D-354 beside it:** D-336's frozen corpus may record the form RESERVED under the one code. That verdict may move to accepted after the freeze and never back, which is why the form gets a code of its own rather than `TYPE-016`.
+- **Their sweep:** 5 161 files.
+  - 11 sites appeared: the five of `tests/types/rejection/value_param_reserved.npk` (a function, a struct, a trait, an enum, an impl), and six fuzz programs' at the declaration.
+  - 7 vanished: the base's 4 use-site reports in the new test, which D-240 silences behind the declaration's one, and three fuzz programs' codes at the uses, now `TYPE-095` at the declaration.
+  - The tree's 572 programs are byte-identical.
+  - Of the 4 033 library and application programs: 0 different, 1 newly refused, the fuzzer's `tr0432` (`Lock<int64, 2>` claimed to be a type, `expect: compile`), which D-353 overturns. `as0062` falls with it, though the base's emitter already refused it; it is refused by name now. Both are corpus rows for the fuzzer to re-read under D-354's RESERVED verdict.
+- **Ours, measured here:** 359 tracked programs (the `mod:` control, 359 of 359). **None declares a `comptime` value parameter.**
+  - 43 lines name `comptime`, all in two regex probes: `tests/probe/probe10_comptime_capabilities.npk` (35) and `tests/probe/refused/probe09_comptime_walker.npk` (8). Every code line among them is a `comptime func:` declaration or a `comptime(…)` expression.
+  - The pattern caught 5 of 5 planted declarations (function, struct, trait, enum, impl) and none of 4 negatives (`Mutex<int64, 2>`, an array size, a comment, a plain generic).
+  - 487 tracked markdown files across the workbench, the libraries and the applications: no plan proposes the form.
+- **The renamed regex copy for 117,** from their leg: 0 appeared and 0 vanished; 133 of 166 programs identical, the same 33 refused by both, 0 newly refused.
+- **So nothing of ours moves,** and the form stays out of our plans until the language designs it. A library wanting a compile-time constant uses a `fixed` module binding.
+- **At the landing:** verify with `tools/ladder.py` against the baseline for 117, then add a dated note to O-N36's F-039 row.
+
 ### ✅ `2f50640` LANDED — **NOTICE 116: DEF-252, AS F58 SAID: A VIEW A CALLEE STORES IS HELD TO THE HOLDER'S BLOCK, `NITPICK-BORROW-002` AT THE DESTINATION ARGUMENT. A REFUSAL ADDED AND A USE-AFTER-FREE CLOSED; NOTHING OF OURS NEWLY REFUSED, REGEX'S RENAMED COPY INCLUDED; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE.** From `nitpick-compiler_38`, which built and landed it; pushed 23:35, filed 2026-10-15 23:41 by `nitpick-libs_19` from the message's full text. **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 116 (115's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.

@@ -13486,3 +13486,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin; no floor byte; no re-pin forced.** The re-pin stays at 118. For parse's review, PD-132's third clause retires when the pin carries 118.
 - **Next:** F59 for 117 (D-353: a `comptime` value parameter is `NITPICK-TYPE-095` at its declaration), within the hour. The renamed-copy leg for 117 is already measured: 0 appeared, 0 vanished.
 - **The meter, 23:40:** week 25 %, five-hour 4 %, Fable 19 % (fetched 19:09:30Z). Room = 95 − 25 − 0.5 × 81 = **29.5**.
+
+### F59, the advance notice for landing 117: a `comptime` value parameter is reserved, `TYPE-095` at its declaration; nothing of ours — 2026-10-16 00:01 (shell time)
+
+- **From `nitpick-compiler_38`, 2026-10-15 23:58:53:** landing 117 is D-353 (S-135's ruling of 2026-10-15, this seat's suggestion). A user-declared value parameter of a function, struct, trait, enum or impl is `NITPICK-TYPE-095` at the parameter, once. The compiler-known value arguments do not change. D-354 lets D-336's frozen corpus record the form RESERVED.
+- **Their sweep:** 5 161 files; 11 appeared (the new test's five and six fuzz programs'), 7 vanished (use-site reports replaced by the declaration's). 572 programs identical. Of 4 033: 0 different, 1 newly refused, the fuzzer's `tr0432`, whose claim D-353 overturns.
+- **Ours, measured here:**
+  - 359 tracked programs, with the `mod:` control 359 of 359: no `comptime` value-parameter declaration. The 43 lines naming `comptime` are two regex probes' `comptime func:` declarations and `comptime(…)` expressions, and comments.
+  - The pattern caught 5 of 5 planted declarations and flagged 0 of 4 negatives.
+  - 487 tracked markdown files: no plan proposes the form.
+- **The renamed regex copy:** clean for 117 too, by their leg.
+- **The fuzzer's two rows** (`tr0432`, `as0062`) are `nitpick-fuzz_2`'s to re-read under D-354. A copy of that line was sent to it, since it talks to the compiler seat directly.
+- **At the landing:** the ladder against the baseline for 117, and a dated note on O-N36's F-039 row.
