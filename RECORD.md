@@ -14150,3 +14150,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   Its stand-in reaches the compiler through a `--shared --no-checkout` clone, not a symlink, since verification 1's symlink could not be removed under the guard.
 - **Room 25.5** at 10:22: the week 36 %, the five-hour window 16 %, and Fable 33 % by the author's `/usage` of 07:30. That is stale, which understates the room. `free -g`: 121 GiB available.
 - **The Team seat's manager is `Ailp-team_8`** since 10:10:10 (`uds:/run/user/1000/cc-socks/400168.sock`), taking over from `Ailp-team_7`. It holds this seat's merge message (10:04:09) and T8's go (10:06:43) verbatim, and sends the s2 line just before T8's dispatch.
+
+### Notice 119 verified: D-355 as F61 said; nothing of ours refused, re-measured; the baseline for 120 written; the compiler seat rotates to `nitpick-compiler_39` — 2026-10-16 10:54 (shell time)
+
+- **From `nitpick-compiler_38` (arrived 10:51:36):** `34979dc`, landing 119 (1.6.1e, D-355). `NULL` leaves the plain pointer: it is `NITPICK-TYPE-096` where a plain pointer or an `Optional` is expected, keeps its meaning in a `wild` context alone, and a pointer that may be absent is `T->?` with `NIL`. DEF-257 is registered (low), and S-137 is settled as D-360 (`??!`, landing 120). Built and landed by `_38`, pushed 10:49.
+- **The ladder:** MATCH against the baseline for 119, with the one-digit-off control failing. `npkc.ll` +39 593 B, `npkc.o` +17 944 B and `npkc` +15 840 B; `npkrt.o`, `builder.o` and `builder` unchanged. The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught.
+- **The git checks,** read-only and with no fetch:
+  - parent `c9baa9e`, one commit, authored and committed 2026-10-16 08:12;
+  - 5 files under `src/` (four in `src/frontend/` and `analysis/wild_places.npk`), 0 under `runtime/` and `bootstrap/`;
+  - `main` = `origin/main` = `34979dc`;
+  - `DECISIONS.md`, `MEMORY_REFERENCE.md`, `OP_REFERENCE.md` and `TYPE_REFERENCE.md` move in `meta/specs/`.
+- **Their harness and sweep,** as the board's entry gives them: 55 of 55 on the landed SHA; parity 2 093; 7 115 obligations matching, 6 703 rows shared and one added, zero verdicts moved; the floor's 388 unmoved. 5 164 files: 1 vanished and 21 appeared. Of the 4 033 programs of the libraries and applications: 1 880 byte-identical, 2 148 refused by both, 0 different, and 5 newly refused, all in the fuzz corpus, already relayed to `nitpick-fuzz_2` (08:15:30).
+- **The renamed regex copy:** clean for 119 (0 appeared, 0 vanished; 133 identical, 33 refused by both).
+- **Ours, re-measured here** with 9 of 9 planted controls: 0 `NULL` code sites in the 359 tracked programs, at regex `0f5878b` and parse `cdddcf6` among the rest. Parse's planned `v.items = NULL;` stores into a wild field and stays legal. **So 119 is nothing to adopt**, as F61 said.
+- **The baseline for 120 is written** (119's rows), generated from the transcription by script, and self-checked by extraction from the committed board: identical to the generated block. The ladder against an all-unchanged notice of the new values MATCHes, with the control failing.
+- **No floor byte, so no re-pin is forced;** the pin stays `c9baa9e`.
+- **The compiler seat rotates to `nitpick-compiler_39`** after this notice, which is also F61's crossing. This seat introduces itself to `_39` next, with the three observations held for the compiler seat: the RX-134 `K` diagnostic of 08:28, and the two from regex 0.2.5a's fix round (10:23).
+- **Next from them:** F62 (D-360, `??!`, landing 120; nothing existing moves), then F63 (landing 121: the `#ptr_add` confinement with D-361's provenance rule), the one that may refuse library code. Its census over the three trees comes before it is built.
+- **Management rotates too:** from about 11:00 it is `management_1` (`uds:/run/user/1000/cc-socks/3709469.sock`), by `management_0`'s line (arrived 10:5x) under the author's idle-compaction policy. Cost lines, room checks and questions for the author go there.

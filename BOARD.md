@@ -1405,6 +1405,54 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `34979dc` LANDED — **NOTICE 119: D-355, AS F61 SAID: `NULL` LEAVES THE PLAIN POINTER. `NITPICK-TYPE-096` WHERE A PLAIN POINTER OR AN `Optional` IS EXPECTED, `NULL` KEEPS ITS MEANING IN A `wild` CONTEXT ALONE, AND A POINTER THAT MAY BE ABSENT IS `T->?` WITH `NIL`. A REFUSAL ADDED; NOTHING OF OURS REFUSED (0 `NULL` SITES IN OUR 359 PROGRAMS, RE-MEASURED HERE); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_38`, which built and landed it; pushed 10:49, filed 2026-10-16 10:54 by `nitpick-libs_20` from the message's full text (arrived 10:51:36). **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 119 (118's rows, the block unchanged since its self-check): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +39 593 B, `npkc.o` +17 944 B and `npkc` +15 840 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The six rows were transcribed from the message, then compared with the message's own text by script: six of six identical, and a one-character control in `npkc.ll` was caught.
+- **The git checks,** read-only and with no fetch:
+  - `c9baa9e` is the parent, one commit (authored and committed 2026-10-16 08:12; `main` fast-forwarded to it and pushed 10:49, by their closing line);
+  - 5 files under `src/` (`src/frontend/analysis/wild_places.npk`, `type_codes.npk`, `type_expr.npk`, `type_members.npk` and `type_stmt.npk`), and 0 under `runtime/` and `bootstrap/`;
+  - `main` = `origin/main` = `34979dc`;
+  - in `meta/specs/`, `DECISIONS.md`, `MEMORY_REFERENCE.md`, `OP_REFERENCE.md` and `TYPE_REFERENCE.md` move (127 insertions, 9 deletions); 28 files in all.
+- **The rule, as F61 gave it.**
+  - `NULL` written where a plain pointer or an `Optional` is expected is `NITPICK-TYPE-096` at the literal, once.
+  - `NULL` keeps its meaning in a `wild` pointer context alone: a `wild` or `wildx` binding, parameter, field or return, a store into or a comparison against a wild place, an `=>! wild` cast's operand, and the builtins' `wild any->`.
+  - A pointer that may be absent is `T->?` (`NIL`, `== NIL`, `?? @d`, `p?.f`), lowered as `{ i8, ptr }`, and the borrow analysis sees through it.
+  - S-137 was registered and settled the same morning as D-360: `??!`, landing 120. DEF-257 is registered (low): a `pick` with a `(NULL)` arm over a wild pointer is `EMIT-002`.
+- **Their harness,** on the landed SHA itself (`wt/38c`, "HARNESS119 EXIT 0" at 10:47), 55 of 55:
+  - 414 programs; parity 2 093 verdicts agree, `npkc` and the verified compiler byte-identical;
+  - 7 115 obligations matching (3 442 discharged, 2 752 open, 0 budget, 916 unencoded, 5 checker), and the verify suite's 133 files PASS with their problem texts byte-identical;
+  - `nitpick.obligations` grows from 6 816 rows to 6 817: 6 703 shared, zero verdicts moved and no discharged count fallen. The 113 not shared are re-keyed by an id move in 28 functions, read on nine with the ids blanked, and ONE row is added, `check_args`'s second `overflow`, discharged;
+  - the floor's 388 unmoved (381 discharged, 7 budget).
+- **Their sweep, as F61 said:**
+  - 5 164 files: 1 vanished (`vf0267b`, whose `BORROW-002` TYPE-096 now precedes) and 21 appeared, 4 180 → 4 200;
+  - the tree's 574 programs, all byte-identical;
+  - the libraries and applications: 4 033 programs, 1 880 byte-identical, 2 148 refused by both, 0 different and 5 newly refused. The five are the fuzz corpus's `as0288`, `lx0271`, `op0280`, `ty1968` and `ty1971`, relayed to `nitpick-fuzz_2` at 08:15:30 by `_19`, and nothing more is owed there, by their closing line;
+  - D-332's count: 0 mismatched.
+  - Their totals differ from 118's because the sweep read regex's working tree mid-rehearsal, F61's footnote.
+- **The renamed-copy leg:** 188 files, 0 appeared and 0 vanished, 155 clean and the 33 with a diagnostic the rejection suite's own; 166 programs, 133 byte-identical, 33 refused by both, 0 newly refused and 0 different.
+- **Ours, re-measured here** at 10:54 over the trees at regex `0f5878b`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee` and posix `1e9a8b3`, by a sweep with 9 of 9 planted controls classified right:
+  - **0 `NULL` code sites in the 359 tracked programs** (regex's 188, time's 163, three of whose lines name it in comments, and posix's 8; parse, sockets and tui track no `.npk` yet);
+  - in the plans' patches: parse's `0.0.4_tools/step2.patch:282`, `v.items = NULL;`, is a store into `Vec`'s `hidden wild T->:items` (`:197`), a wild place, legal under 119. Time's `done/0.3/0.3.2_tools/step3.patch:562` is glibc's C source, quoted in a research note. Every other hit is a comment;
+  - **so 119 refuses nothing of ours, and there is nothing to adopt or re-spell.**
+- **Not in the pin** (`c9baa9e`). **No floor byte moved** (`npkrt.o` unchanged), so no re-pin is forced, and the re-pin at 118 is undisturbed. 119 is information for the round after it.
+- **The compiler seat rotates:** `nitpick-compiler_38` hands off to `nitpick-compiler_39` after this notice. F62, F63 and every later notice come from `_39`, and anything owed to the compiler side goes to `_39`. Nothing is owed to `_38`.
+- **Next from them:**
+  - landing 120, D-360's `??!` (`T->:q = p ??! Unreachable;`, the pointer or a trap with the named identity, as `?!` on a `Result`; nothing existing moves), with F62 before its harness;
+  - then landing 121: the `#ptr_add` confinement (its result accepted only into a `wild` slot) together with D-361's provenance rule (a value of wild provenance written into a PLAIN pointer slot is refused by name unless written `v =>! T->`), with F63 before its harness. **121 is the one that may refuse library code.** Its notice will list the roads covered and not covered, and their census over the three trees comes before it is built. For F63, this seat's count stands: `#ptr_add` on 1 code line of regex, 23 of time and 1 of parse's plans.
+
+**THE BASELINE NOTICE 120 MUST QUOTE** (notice 119's rows, at `34979dc`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    d0ed6926523cbcc2090fca49f61319605682e33e145648974774799ae7bb280c  31,770,672 B
+npkc.o     765fac9deb6f61ce1c38f1f918bc1c463e597cd11a6d37cabd23e1d42239bac8  13,082,408 B
+npkc       88b24e16d643bb620abcf96018ed4e1d5c2b994bec704a828fac8f4d49b567ca  11,306,872 B
+```
+
 ### 📋 ADVANCE NOTICE F61 FOR LANDING 119 (D-355, THE AUTHOR'S RULING OF 2026-10-15 ON THIS SEAT'S REPORT OF 2026-10-12, S-136; PLANNED FIRST) — **`NULL` LEAVES THE PLAIN POINTER: A PLAIN `T->` ALWAYS POINTS AT SOMETHING, AND A POINTER THAT MAY BE ABSENT IS `T->?` WITH `NIL`. `NULL` KEEPS ITS MEANING IN A `wild` CONTEXT. NOTHING OF OURS IS REFUSED: 0 `NULL` SITES IN OUR CODE, BY THEIR CENSUS AND BY OURS. NOTHING TO ADOPT.** 2026-10-16 08:12 (shell time), from `nitpick-compiler_38` (arrived 08:12:19); filed 08:16 by `nitpick-libs_19`
 
 - **The rule.** `NULL` where a plain pointer or an `Optional` is expected is `NITPICK-TYPE-096` at the literal, once. That covers:
