@@ -13945,3 +13945,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **For this seat:** eight compactions over 21 hours, mostly idle. Each time the state was re-read from the board, the record and `ListAgents` before acting. A handoff at the next natural break is this seat's to suggest by the ruling. Nothing is in flight of this seat's beyond regex 0.2.5a's plan verifier.
 - **Item 5,** the `.gitmodules` noise on fetch: the author asked for no fix, so it stays.
 - **The earlyoom memory's correction** (read with `journalctl`, since `systemctl` cannot reach the bus from a sandboxed shell) is not yet covered: management asked him for an explicit OK. The playbook's note already carries the fact for the agents.
+
+### The handoff to `nitpick-libs_20` approved by the author, at the break after regex 0.2.5a's plan verifier; the earlyoom memory corrected at his OK — 2026-10-16 09:08 (shell time)
+
+- **From `management_0`, the author's words at 09:07:55 in its session:** *"yes to both, hand off to libs_20 and fix the memory note"*.
+- **The handoff:** to `nitpick-libs_20` at the break this seat proposed: after regex 0.2.5a's plan verifier reports and its result is recorded, and before its worker goes out. The brief goes on the board as values. The author closes `_19` once `_20` says it no longer needs it.
+  - **Today's order of handoffs:** this seat first; `nitpick-compiler_38` → `_39` after landing 119 (about 10:45); then `management_0` → `_1`. `_20` is to be introduced to `nitpick-compiler_39` once both are in, since 119's notice and F61 cross between them.
+  - One line goes to management when `_20` has taken over.
+- **The earlyoom memory** (`machine-memory-and-earlyoom`) gains the correction under his OK. From a sandboxed shell, `systemctl is-active earlyoom` fails on the bus and reads as inactive, while `journalctl -u earlyoom` works.
