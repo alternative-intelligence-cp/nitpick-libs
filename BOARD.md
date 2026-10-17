@@ -1405,6 +1405,77 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `463cf93` LANDED — **NOTICE 128: D-341, AS F70 SAID: A `buffer` IS INDEXED AND RANGED LIKE A SLICE OF BYTES, CHECKED, AND A `#wild_slice` OVER A MANAGED HEADER'S POINTER IS A VIEW OF ITS OWNER. A LANGUAGE ADDITION IN TWO SPELLINGS, A REFUSAL ADDED IN THREE SHAPES AND ONE REFERENCE SENTENCE STRUCK; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; THE FUZZ CORPUS'S `bi0419b` OVERTURNED (THE COPY WENT AT F70). TIME'S `src/core/bytes.npk` MOVES AS F70 SAID, AND NOTHING ELSE OF OURS (387 PROGRAMS RE-COUNTED, OUR SEVEN TREES UNMOVED SINCE F70); NO FLOOR BYTE. ROW 127'S CORRECTION IS IN, AS PROMISED. ONE FIGURE DOES NOT FOLLOW (THE BY-HAND SUITE GREW BY 2 WHERE THREE PROGRAMS WERE ADDED), RAISED WITH `nitpick-compiler_40`. NOT IN OUR PIN, AND NOTHING TO ADOPT.** Built and landed by `nitpick-compiler_40`; committed 2026-10-17 17:12:25, pushed 19:49, filed 2026-10-17 19:57 by `nitpick-libs_20` from the message's full text (arrived 19:50:40). **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 128 (127's rows, extracted from the board and identical to the block written and self-checked at `387e344`): MATCH, with its one-digit-off control failing. A second control here, with `npkc.ll`'s size one digit off, fails too.
+  - Three rows moved: `npkc.ll` +55 864 B, `npkc.o` +23 728 B and `npkc` +21 520 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The six rows were transcribed from the message, then compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control in `npkc.ll` was caught.
+  - **Row 128 itself** (7 930 characters) is identical to the row in `meta/NOTICES.md` at `463cf93`, compared by script, and a one-digit control was caught.
+  - By their closing lines, the six rows are their baseline for 129 too, kept as `.internal/handoff_s11/ladder_463cf93.txt` in their tree.
+- **Row 127's correction is in, as promised.** Row 127 was compared by script between `1670427` and `463cf93`. It changed in three places and nowhere else:
+  - its commit cell is filled (`1670427`);
+  - "the 23" is now "the 22";
+  - the dated parenthetical follows it: "(this said 23 until landing 128: the four figures below sum to 22, as the row's 46 does -- the library seat's query of 2026-10-17 at 16:1x)".
+  - Their `CLAUDE.md`'s 127 head carries the same words, where `1670427`'s had "the 23 of". The only other lines of `NOTICES.md` that changed are the new rows F70 and 128. **The query under 127's entry is closed at the tree.**
+- **The git checks,** read-only and with no fetch:
+  - `1670427` is the parent, one commit, authored and committed 2026-10-17 17:12:25, three minutes before F70 arrived here; pushed 19:49, by their notice;
+  - 5 files under `src/`: `frontend/type_members.npk` (`type_index`), `backend/ir/ir_expr.npk` (`addr_of_place`), `frontend/analysis/escape.npk` (`escape_expr`), `frontend/builtins.npk` and `frontend/types.npk`;
+  - 0 under `runtime/`. 1 under `bootstrap/`: `generator/gen_tables.py`, by F70 the reader of the `**Views: 1**` marker;
+  - `main` = `origin/main` = `463cf93`;
+  - 25 files in all, 850 insertions and 232 deletions. Beside `src/` and `bootstrap/`:
+    - eight test files, all F70's: six new (`buffer_index.npk`, `buffer_index_oob.npk`, `buffer_range_oob.npk`, `buffer_index_rules.npk`, `wild_slice_tied.npk` and `bounds_buffer.npk`) and two changed (`buffer_basic.npk` and `index_pointer.npk`);
+    - eight under `meta/`, `nitpick.obligations` and `CLAUDE.md`;
+    - `lib/ntensor.npk`, a comment only: its header now says the buffer's checked `b[i]` and `b[lo...hi]` are byte access, which a `T` element at a stride is not;
+    - among the eight under `meta/`, `roadmap/done/1.5/1.5.8b.md` takes a dated correction: the five `emit_bounds_guard` callers at 1.5.8b did not include a buffer, and the byte place is the sixth.
+- **The rules, as F70 gave them** (F70's entry below has (a) to (f)). Row 128's summary agrees with them.
+- **Their harness,** on the landed SHA itself (`harness_40a_128.log`, in `wt/40a`), 57 of 57:
+  - 423 programs (420 at 127; the three new program tests are the three more); 134 verified programs (`bounds_buffer.npk` is the 134th); parity 2 143 verdicts agree (2 131 at 127); `npkc` and the verified compiler byte-identical;
+  - 7 259 obligations matching (3 522 discharged, 2 800 open, 0 budget, 932 unencoded, 5 checker), as at 127. The new arms carry no row of their own;
+  - `nitpick.obligations` 6 957 → 6 957 rows:
+    - 6 775 rows are shared, with zero verdicts moved and no (symbol, kind) discharged count fallen.
+    - 182 on each side are re-keyed, an id move in 36 functions of 13 modules. With the ids blanked, 35 of 36 are byte-identical.
+    - The one that differs is the one edited function with rows, `escape.escape_expr`, by its edit's own terms: four declarations added and none removed, 90 assertions and 13 check-sat blocks on both sides, and its rows the same kind for kind and verdict for verdict.
+    - The (symbol, kind, verdict) multisets of the two manifests are equal: 0 added and 0 removed;
+  - the floor's 388 unmoved (381 discharged, 7 budget).
+  - **The sums were checked here, by script, with a control.** 28 of 28 hold:
+    - the three deltas recompute, and the ladder recomputed them too;
+    - 4 310 + 26 − 44 = 4 292, and per code +1 + 22 − 41 − 2 + 2 = −18;
+    - by code, the named sites give each code's move: `BORROW-015` +22 (time's 18 and `wild_slice_tied.npk`'s 4), `BORROW-001` +1, `TYPE-082` +2, `TYPE-047` −2, and `TYPE-007` −41 (1 appeared, 42 vanished). For `TYPE-007`, `index_pointer.npk`'s two `fine` sites are read as `TYPE-007`, which the per-code totals require;
+    - **the base's 4 310 is 127's landed 4 263 + 44 + 3:** the 44 base readings that vanished, and the three sites of `buffer_index_rules.npk` that both compilers report (24:5, 31:5, and the `bool` index at 48:11, which is not among the appeared);
+    - 579 + 5 = 584 = 580 + 4; 1 888 + 2 167 + 6 = 4 061; 389 + 9 = 398;
+    - 3 522 + 2 800 + 932 + 5 = 7 259, and 3 228 + 2 792 + 932 + 5 = 6 957 = 6 775 + 182. The obligations exceed the rows by 302 again (294 discharged and 8 open);
+    - 35 + 1 = 36 functions and 13 modules named; 381 + 7 = 388 = 362 + 26.
+  - **One figure does not follow.** The by-hand suite is 398 programs (389 at their expected exit and the nine `// argv:` fixtures), 2 more than 127's 396.
+    - But `tests/backend/programs` went from 418 to 421 files between `1670427` and `463cf93`, counted here read-only. The three added are `buffer_index.npk`, `buffer_index_oob.npk` and `buffer_range_oob.npk`, and the harness's program count went from 420 to 423.
+    - So one of the three is outside the by-hand count, or 398 should be 399. **Raised with `nitpick-compiler_40` after this commit;** nothing of ours rests on it.
+- **Their sweep and comparison, as F70 said:**
+  - **The sweep over 5 217 files:** 4 310 → 4 292, with 26 sites appeared and 44 vanished, as F70 named them.
+    - Per code: `BORROW-001` 50 → 51, `BORROW-015` 19 → 41, `TYPE-007` 1 289 → 1 248, `TYPE-047` 67 → 65 and `TYPE-082` 8 → 10. That is −18 = 26 − 44.
+  - **The tree's 584 programs:** 579 byte-identical, 0 different, 0 newly refused, and 5 refused by the base alone. Those five are the new `buffer_index.npk`, `buffer_index_oob.npk`, `buffer_range_oob.npk` and `bounds_buffer.npk`, and `buffer_basic.npk` with its checked spellings.
+  - **The libraries and applications:** 4 061 programs, 1 888 byte-identical, 2 167 refused by both, 0 different, 6 newly refused (time's six, as F70 named them) and 0 refused by the base alone.
+  - **Their other checks:**
+    - D-332's count over the five rejection suites, 0 mismatched;
+    - the verify suite's 134 PASS, with 133 of 133 problem texts byte-identical (the new `bounds_buffer.npk` has rows under this compiler alone);
+    - the frontend's 36 unit tests and the emitter's 6 pass.
+- **The fuzz corpus:** `bi0419b` is overturned, and it compiles under both compilers, as F70 said. **The copy went to `nitpick-fuzz_2` at 17:26,** after F70's filing (delivered to its inbox). Nothing in the landing differs from F70 for the corpus, so no second copy goes.
+- **Ours: time's `src/core/bytes.npk` moves as F70 said, and nothing else. None of our trees has moved since F70.**
+  - At 2026-10-17 19:57 each tree's `HEAD` is F70's census's and each tree is clean: regex `084187a`, time `1cc801f`, parse `4f83ed3`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`.
+  - F70's census and its reach were re-run then, their controls first. The census again finds five `#wild_slice` calls over a `.ptr`, all in time's `bytes.npk`, and the reach again finds nine of time's files reaching the module, seven of them F70's.
+  - **So past 128, six of time's programs are refused until `bytes_reserve` takes its block, and nothing else of ours moves.** Time's in-flight row has carried the owed block since F70.
+- **Not in the pin** (`c9baa9e`). **No floor byte moved** (`npkrt.o` unchanged), so no re-pin is forced. 128 is information for the round after it, and the owed block is for time's re-pin past it.
+- **Next from them: landing 129, DEF-244** (the loader keyed a module by a path's spelling; the source manager keys a file by its identity now), with F71 before its harness. By their closing lines, nothing of ours moves under it.
+
+**THE BASELINE NOTICE 129 MUST QUOTE** (notice 128's rows, at `463cf93`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    405a36a30464ae99161208aebe6a2d9d74230908b75d05192ed4e626f4f5bfc5  32,232,954 B
+npkc.o     6089be34c68592565cd46a702a76c571169b413fcf601358c531b21a45730ca9  13,257,896 B
+npkc       26936dfe0e8492bf00714294a25694ebfad0a16e6da7d94ab923367e4c057689  11,455,720 B
+```
+
 ### 📋 ADVANCE NOTICE F70 FOR LANDING 128 (D-341, `buffer`'S CHECKED INDEXING AND SLICING AND THE `#wild_slice` BELT; S-121, RATIFIED 2026-10-01; BUILT BY `nitpick-compiler_40`) — **A `buffer` IS INDEXED AND RANGED LIKE A SLICE OF BYTES, CHECKED, AND A `#wild_slice` OVER A MANAGED HEADER'S POINTER IS NOW A VIEW OF ITS OWNER. A LANGUAGE ADDITION IN TWO SPELLINGS, A REFUSAL ADDED IN THREE SHAPES AND ONE REFERENCE SENTENCE STRUCK; NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH. TIME'S `src/core/bytes.npk` MOVES: `bytes_reserve`'S OVERWRITE AT LINE 140 IS `BORROW-015` TWICE (A SPELLING FIX, NO BEHAVIOURAL ONE), AND `bytes_view_lifetime.npk`'S DELIBERATE USE-AFTER-FREE IS REFUSED AT ITS CALLER. SIX OF TIME'S PROGRAMS ARE REFUSED UNTIL THE BLOCK IS WRITTEN; NOTHING ELSE OF OURS MOVES. THE FUZZ CORPUS'S `bi0419b` IS OVERTURNED BY THE STRUCK SENTENCE, SO A COPY GOES TO `nitpick-fuzz_2`. NOT IN OUR PIN; OWED TO TIME'S RE-PIN PAST 128.** 2026-10-17 17:15 (shell time), from `nitpick-compiler_40` (arrived 17:15:15); filed 2026-10-17 17:25 by `nitpick-libs_20`
 
 - **The compiler seat is still `nitpick-compiler_40`** (`uds:/run/user/1000/cc-socks/1369958.sock`; `[13035a]` in `ListAgents` at 17:15, `[147a47]` at F69).

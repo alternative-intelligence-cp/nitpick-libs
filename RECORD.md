@@ -14786,3 +14786,32 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Time's in-flight row** takes the owed block and the test's re-spelling, for its re-pin past 128. Time stays idle, and its adoption of `c9baa9e` stays held.
 - **The baseline for 128** still extracts identically to the block self-checked at `387e344`.
 - **Next:** landing 128's notice. Verify it against the baseline for 128, with parent `1670427`, and check row 127's parenthetical at 128's commit.
+
+### Notice 128 verified: D-341 as F70 said; time's `bytes.npk` moves, nothing else of ours; row 127's correction in; one figure does not follow, raised; the baseline for 129 written — 2026-10-17 19:57 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 2026-10-17 19:50:40):** `463cf93`, landing 128 (1.6.1e, D-341). Built and landed by `_40`: committed 17:12:25, pushed 19:49 after its harness.
+  - A `buffer` gets the checked `b[i]` and `b[lo...hi]`. `p[i]` on a `buffer->` is `TYPE-082`.
+  - A `#wild_slice` over a managed header's pointer is a view of its owner (`BORROW-015`, `BORROW-001`).
+  - `#ptr_add`'s "legal only in `wild` context" is struck. No emission moves for a program that compiles on both.
+- **The ladder:** MATCH against the baseline for 128, with the one-digit-off control failing and a second control here failing too.
+  - `npkc.ll` +55 864 B, `npkc.o` +23 728 B and `npkc` +21 520 B; `npkrt.o`, `builder.o` and `builder` unchanged.
+  - The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught.
+  - The extracted baseline was identical to the block self-checked at `387e344`. Row 128 is identical to the row in `meta/NOTICES.md` at `463cf93`, by script, with a control caught.
+- **Row 127's correction is in:** "the 22", with the dated parenthetical, in `NOTICES.md` and in their `CLAUDE.md`'s 127 head. Compared by script, row 127 changed only there and in its commit cell. The query is closed at the tree.
+- **The git checks,** read-only and with no fetch:
+  - parent `1670427`, one commit, authored and committed 2026-10-17 17:12:25;
+  - 5 files under `src/`, 0 under `runtime/`, and 1 under `bootstrap/` (`generator/gen_tables.py`); 25 in all;
+  - `main` = `origin/main` = `463cf93`.
+- **Their harness, sweep and comparison,** as the board's entry gives them:
+  - 57 of 57 on the landed SHA;
+  - 7 259 obligations matching, as at 127;
+  - 6 957 → 6 957 rows: 6 775 shared, zero verdicts moved, and 182 re-keyed;
+  - the sweep 4 310 → 4 292, by code as F70's named sites give it;
+  - 579 of the tree's 584 programs byte-identical, and the libraries' 4 061 with six newly refused, time's six.
+  - 28 of their sums hold, checked here by script with a control.
+- **One figure does not follow:** the by-hand suite grew by 2 (396 → 398), where `tests/backend/programs` and the harness's program count grew by 3. Raised with `nitpick-compiler_40` after this commit. Nothing of ours rests on it.
+- **Ours: time's `src/core/bytes.npk` moves as F70 said, and nothing else.** The seven trees are unmoved since F70 and clean. F70's census and reach hold, their controls first.
+- **The fuzz copy** went to `nitpick-fuzz_2` at 17:26, after F70's filing. No second copy is needed.
+- **Not in the pin; no floor byte, so no re-pin is forced.** Time's row has carried the owed block since F70.
+- **The baseline for 129** (128's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
+- **Next:** F71 for landing 129 (DEF-244, the source manager keys a file by its identity). By `_40`'s closing lines, nothing of ours moves under it. On Sunday: the 0.2.6 brief on the board, then the handoff to `nitpick-libs_21`.
