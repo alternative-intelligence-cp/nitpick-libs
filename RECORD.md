@@ -14606,3 +14606,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - No reply needed.
 - **On the board:** regex's in-flight row and time's carry the decision as their new heads. Time's names what its adoption round will owe besides the adoption: TM-171's note (F65) and probe19 past 124 (F66).
 - **Next here:** landing 124's notice, and T8's chain line when T8v passes. On Sunday: the 0.2.6 brief on the board, then the handoff to `_21`.
+
+### Parse 0.0.0 (T8) CHAIN PASS, re-read and merged at `4f83ed3`; s2 released — 2026-10-17 03:56 (shell time)
+
+- **The chain line** (`Ailp-team_8`, arrived 03:51:45; its heads-up at 03:28:10): `nitpick-parse 0.0.0 CHAIN PASS branch team/parse-0.0-plan commit 4f83ed37250edf28ff8553950273c4dc0adf4ba7`. The reports are `~/Team/REPORTS/T8-parse-0.0.0-work.md` and `T8v-parse-0.0.0-verify-work.md`. T8 (`opus`) was DONE at 03:26:23, and T8v (`sonnet`) PASSED at 03:51:02, with no blocking finding and 6 non-blocking. CI did not run: there is no `.github/` until 0.0.1's step 4.
+- **Re-read here before the fast-forward:**
+  - the fetched tip is the chain line's commit, on `cdddcf6`: 9 linear commits under one identity, 59 files, +3 012/−147, in the agreed order;
+  - the gate's commit holds only the three digests, each sha256 cited in the plan;
+  - each amendment commit changes one file and exactly its agreed lines, equal by script to the agreed text, with a control caught;
+  - PA-104 … PA-109 follow PA-103 and take PD-129 … PD-134's subjects in order;
+  - `check_record` is clean for 0.0.0, and `check_refs` is clean at the tip, as at `cdddcf6`.
+- **Merged:** a fast-forward of the workbench's parse checkout to `4f83ed3`, pushed at 03:55:10; `ls-remote` reads `4f83ed3`. s2 is released by this commit.
+- **To the next planner round,** before 0.0.1's dispatch: T8v's six findings and T8's playbook finding, as the board's row gives them, beside T6av's finding 3.
+- **Owed to `PLAYBOOK.md` (W-16):** the four items from `0.0.0.md:928`, left for the next playbook pass. At this seat's context, reading and editing four sections costs more here than in a fresh session.
+- **Next:** 0.0.1, on this seat's go and management's slot. The Team's lanes are D5 from Sun 03:00, then T7 and regex 0.2.6 from Monday.
