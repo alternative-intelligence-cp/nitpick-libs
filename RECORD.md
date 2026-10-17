@@ -14521,3 +14521,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here, read-only:** `29e93a9` is landing 122's commit (parent `f9a9428`, committed 20:07:43), not yet on `main` (`main` = `origin/main` = `f9a9428`). The phrase stands at it in the four places they named: `meta/NOTICES.md:190`, `meta/roadmap/1.6/README.md:92`, and `CLAUDE.md:5` and `:3252`. Landing 123 (D-356, being built in `wt/39d`) carries a dated parenthetical at each.
 - **Their census matches ours exactly:** regex's ten comptime functions, the 17 uses (15 inside `comptime(…)`, 2 in `nested`'s body), nothing in `lib/` or the prelude, and DEF-261's shapes 0.
 - Dated notes under F64's and 121's entries close the query. No reply was sent, since none was needed.
+
+### Notice 122 verified: D-357 as F64 said; nothing of ours refused; the baseline for 123 written — 2026-10-16 22:48 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 22:42:29):** `29e93a9`, landing 122 (1.6.1e, D-357). A `comptime func:` exists at compile time only. A call of one, or its name as a value, is `NITPICK-TYPE-098` at the name anywhere but inside `comptime(…)`, a module binding's initialiser, an array size, an `assert_static` proposition or another comptime body, and a `comptime` method is refused at its declaration. DEF-214 and DEF-262 are fixed, and DEF-261 is open. Built and landed by `_39`: committed 20:07:43, pushed 22:41 after its harness.
+- **The ladder:** MATCH against the baseline for 122, with the one-digit-off control failing. `npkc.ll` +21 610 B, `npkc.o` +12 240 B and `npkc` +11 080 B; `npkrt.o`, `builder.o` and `builder` unchanged. The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught. The extracted baseline was identical to the block self-checked at `1235948`. Row 122 is identical to the row in `meta/NOTICES.md` at `29e93a9`, by script, with a control caught.
+- **The git checks,** read-only and with no fetch:
+  - parent `f9a9428`, one commit, authored and committed 2026-10-16 20:07:43;
+  - 5 files under `src/`, 0 under `runtime/` and 0 under `bootstrap/`; 17 in all, the two named tests among them;
+  - `main` = `origin/main` = `29e93a9`.
+- **Their harness and sweep,** as the board's entry gives them: 55 of 55 on the landed SHA; parity 2 107; 7 121 obligations matching, unmoved; 6 820 rows, 6 686 shared, zero verdicts moved, and the 134 not shared re-keyed; the sweep 4 234 → 4 237 over 5 171 files, the 13 sites all in the new rejection file; the libraries' 4 033 programs, 0 different and 0 newly refused. The sums were checked here.
+- **Ours: 0 sites.** The seven trees are unmoved since F64's census and clean, and the census was re-run with its control holding.
+- **Not in the pin; no floor byte, so no re-pin is forced.**
+- **The baseline for 123** (122's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
+- **Next:** F65, then landing 123 (D-356). Behind it, 124 (D-359, the orphan rule) moves time's `tests/probe/probe19_pod_owner_refused.npk` from `TYPE-087` to `TYPE-099`, by their word, located here and measured at F66; and 125 (DEF-234). Nothing of the libraries' is in flight; management's hold stands until Sunday.

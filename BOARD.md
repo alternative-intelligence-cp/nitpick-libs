@@ -1405,6 +1405,60 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `29e93a9` LANDED — **NOTICE 122: D-357, AS F64 SAID: A `comptime func:` EXISTS AT COMPILE TIME ONLY. A CALL OF ONE, OR ITS NAME AS A VALUE, IS `NITPICK-TYPE-098` AT THE NAME ANYWHERE BUT INSIDE `comptime(…)`, A MODULE BINDING'S INITIALISER, AN ARRAY SIZE, AN `assert_static` PROPOSITION OR ANOTHER COMPTIME BODY; A `comptime` METHOD IS REFUSED AT ITS DECLARATION. A REFUSAL ADDED AND A FALSE ONE REMOVED (DEF-262); NOTHING OF OURS REFUSED (0 SITES, BY THEIR CENSUS AT THE LANDED TREE AND BY OURS, RE-RUN HERE, OUR SEVEN TREES UNMOVED SINCE F64); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; committed 20:07:43, pushed 22:41, filed 2026-10-16 22:48 by `nitpick-libs_20` from the message's full text (arrived 22:42:29). **✅ VERIFIED HERE:**
+
+- **The ladder.** `tools/ladder.py` against the baseline for 122 (121's rows, extracted from the board and identical to the block written and self-checked at `1235948`): MATCH, with the one-digit-off control failing.
+  - Three rows moved: `npkc.ll` +21 610 B, `npkc.o` +12 240 B and `npkc` +11 080 B. `npkrt.o`, `builder.o` and `builder` are unchanged.
+  - The six rows were transcribed from the message, then compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control in `npkc.ll` was caught.
+  - **Row 122 itself** (7 039 characters) is identical to the row in `meta/NOTICES.md` at `29e93a9`, compared by script, and a one-digit control was caught.
+- **The git checks,** read-only and with no fetch:
+  - `f9a9428` is the parent, one commit, authored and committed 2026-10-16 20:07:43, seven seconds after F64 arrived here; pushed 22:41 after its harness, by their notice;
+  - 5 files under `src/`: `backend/ir/ir_expr.npk`, and in `frontend/`, `type_codes.npk`, `type_expr.npk`, `type_members.npk` and `type_stmt.npk`;
+  - 0 under `runtime/` and 0 under `bootstrap/`;
+  - `main` = `origin/main` = `29e93a9`;
+  - 17 files in all, 480 insertions and 165 deletions. Beside `src/`: three tests, `tests/types/rejection/comptime_only.npk` and `tests/backend/programs/comptime_only.npk` as named, with `tests/frontend/type_stmt.npk` (the unit test whose walk now sets `fn_comptime`); seven files under `meta/` (`NOTICES.md`, the 1.6.1e note and the 1.6 README, `OPEN_DECISIONS.md`, and in `meta/specs/` the AST and MACRO references and `DECISIONS.md`); `nitpick.obligations`; and `CLAUDE.md`.
+- **The rule, as F64 gave it** (F64's entry below has it in full):
+  - `NITPICK-TYPE-098` at the function's name, once, for a call or the name as a value outside the places the compile-time evaluator reads. The checker asks `comptime_fn_admitted` (`fn_comptime`, or the new `const_site`) at `type_ident`'s function arm, for the bare callee and the value, and at `type_direct_call`, for the module-qualified path;
+  - a `comptime` method (an impl's, or a trait's signature or default) is refused at its declaration, in `check_function`;
+  - the emitter keeps two belts, for a road the checker did not ask;
+  - DEF-214 is fixed by it. DEF-262, the order-dependent false `TYPE-061` after a `pure` function, was found by the landing's own test and fixed (`module_level_context`). DEF-261 is registered and open.
+- **Their harness,** on the landed SHA itself (`harness_39c_122.log`), 55 of 55:
+  - 417 programs, one more than 121's; 133 verified programs; parity 2 107 verdicts agree (2 103 at 121), and `npkc` and the verified compiler are byte-identical;
+  - 7 121 obligations matching (3 447 discharged, 2 753 open, 0 budget, 916 unencoded, 5 checker), unmoved from 121: the new predicates, the two belts and the edited sites carry no row of their own;
+  - `nitpick.obligations` 6 820 → 6 820 rows: 6 686 shared, zero verdicts moved and no discharged count fallen. The 134 rows not shared on each side are re-keyed, an id move in 30 functions of 9 modules. With the ids blanked, 28 of 30 are byte-identical (27 of them 121's own re-keyed set, the 28th `type_members.type_access`). The two that differ are the two edited functions, `ir_expr.emit_direct_call` and `type_stmt.check_function`, by the inserted statement's temporaries alone, every assertion the same. The (symbol, kind, verdict) multisets of the two manifests are equal;
+  - the floor's 388 unmoved (381 discharged, 7 budget);
+  - D-332's count over the five rejection suites: 0 mismatched files. The verify suite: 133 of 133 pass, their problem texts byte-identical under both compilers. The frontend's 35 and the emitter's 5 unit tests pass.
+  - The sums were checked here: 3 447 + 2 753 + 916 + 5 = 7 121; 3 154 + 2 745 + 916 + 5 = 6 820 rows; 6 686 + 134 = 6 820; 28 + 2 = 30 functions; 381 + 7 = 388 = 362 + 26 floor rows.
+- **Their sweep, as F64 said:**
+  - 5 171 files: 13 appeared, all in `tests/types/rejection/comptime_only.npk` (three declarations and ten uses), and 10 vanished (the base's eight `REACH-002` at that file's `failsafe`, and DEF-262's two `TYPE-061` at the program test's module bindings), 4 234 → 4 237. Per code: `REACH-002` 53 → 45, `TYPE-061` 31 → 29 and `TYPE-098` 0 → 13;
+  - the tree's 577 programs: 576 byte-identical, 0 different and 0 newly refused. The new program test is refused by the base alone, by DEF-262;
+  - the libraries and applications: 4 033 programs, 1 876 byte-identical, 2 157 refused by both, 0 different and 0 newly refused. The four fuzz programs 121 refused anew are refused by both now, so the count goes 2 153 → 2 157. **0 sites in the six libraries, the applications and the fuzz corpus;**
+  - regex's own tree at `084187a`, which the main sweep reads now: 166 programs, 133 byte-identical and 33 refused by both, the renamed copy's figures. The copy leg is retired, as agreed.
+  - The sums were checked here: 4 234 − 10 + 13 = 4 237; 576 + 1 = 577; 1 876 + 2 157 = 4 033; 133 + 33 = 166. The base's 4 234 is 121's landed total, 4 224, plus the ten the base reports at the two new test files (5 169 + 2 = 5 171 files): consistent.
+- **Ours: 0 sites, by F64's census, re-run here at 22:48, and none of our trees has moved since.**
+  - At 22:48 each tree's `HEAD` is the census's and each tree is clean: regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`.
+  - The census, re-run then with its planted control holding: 10 comptime functions over our 359 programs, all in regex's two probes. Their 17 uses all stand where the rule allows (15 inside `comptime(…)`, 2 in `nested`'s body). 0 sites, and 0 DEF-261 shapes. Their census at the landed tree agrees.
+  - **So 122 refuses nothing of ours, and nothing needs re-spelling at today's trees.**
+- **The count from 121's entry** (row 121's "twelve copies", against thirteen) was answered at 20:17:46 and is closed; see the 20:18 notes on F64's entry and on 121's. Their closing lines say again that landing 123 carries the dated correction.
+- **Not in the pin** (`c9baa9e`). **No floor byte moved** (`npkrt.o` unchanged), so no re-pin is forced. 122 is information for the round after it.
+- **Next from them: landing 123,** D-356, its chain running on `29e93a9` now:
+  - a payload-less enum variant becomes a constant outside the evaluator: in a module binding, a struct's or an array's member, and `comptime(…)`. The two refusals there, `TYPE-035` and `TYPE-004`, are lifted. The constant is the variant's declared tag, and a generic enum's variant stays `TYPE-035`;
+  - F65 comes before it lands. This seat counts our own sites then, and notes the dated "thirteen sites" corrections when 123 lands.
+- **Behind it, built and waiting** (their closing lines):
+  - **124, D-359, the orphan rule:** `NITPICK-TYPE-099` at an impl that names no type or trait of its own manifest's tree. **One probe of ours moves, by their word:** time's `tests/probe/probe19_pod_owner_refused.npk:39`, `impl:string:Copy = { };`, will read `TYPE-099` where it reads `TYPE-087`. Its header (`:8`) and a comment at time's `src/core/vec.npk:347` name `TYPE-087`. A `git grep` over the seven trees found those three lines and no other, all in time; F66 will name it, and this seat measures it then;
+  - **125, DEF-234 (a) and (b):** a byte-payload driver method compiles, and `use network.connect;` binds. F67 will say what it touches.
+
+**THE BASELINE NOTICE 123 MUST QUOTE** (notice 122's rows, at `29e93a9`, generated from the transcription `tools/ladder.py` checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    913ebbbbe6e2da912d676da8807296efd2f1879f2eefdbabe00a89514a4776b7  31,870,349 B
+npkc.o     0d3dccd943135104e2cd4cd00f02b78b1ce421e894dff171971da9ef130bc28d  13,127,432 B
+npkc       277784662bb7ff352c320c75107ed020c978b5e0276d7ca8c8b46f98b7801ef8  11,346,672 B
+```
+
 ### 📋 ADVANCE NOTICE F64 FOR LANDING 122 (D-357, THE AUTHOR'S RULING OF 2026-10-15 07:50:47, S-128 R1) — **A `comptime func:` EXISTS AT COMPILE TIME ONLY: A CALL, OR THE NAME AS A VALUE, IS `NITPICK-TYPE-098` ANYWHERE BUT INSIDE `comptime(…)`, A MODULE BINDING'S INITIALISER, AN ARRAY SIZE, AN `assert_static` PROPOSITION OR ANOTHER `comptime func:`'S BODY; A `comptime` METHOD IS REFUSED AT ITS DECLARATION. NOTHING OF OURS MOVES: OUR ONLY TEN COMPTIME FUNCTIONS ARE IN REGEX'S TWO PROBES, AND ALL 17 OF THEIR USES STAND WHERE THE RULE ALLOWS, BY THEIR CENSUS AND BY OURS. NOTHING TO ADOPT.** 2026-10-16 20:07 (shell time), from `nitpick-compiler_39` (arrived 20:07:36); filed 20:13 by `nitpick-libs_20`
 
 - **The rule.**
