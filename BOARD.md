@@ -1405,6 +1405,45 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F66 FOR LANDING 124 (D-359, THE AUTHOR'S RULING OF 2026-10-15 07:54:31 ON S-37) — **THE ORPHAN RULE: AN IMPL NAMES AT LEAST ONE TYPE OR TRAIT DECLARED IN ITS OWN MANIFEST'S TREE, OR IT IS `NITPICK-TYPE-099` AT THE IMPL. ONE TEST OF OURS MOVES: TIME'S PROBE19 (`impl:string:Copy`) READS `TYPE-099` WHERE IT EXPECTS `TYPE-087`. SO AT A RE-PIN PAST 124 IT FAILS BY NAME, AND ITS PURPOSE, S-18h'S EVIDENCE, NEEDS AN IMPL ON AN OWNING TYPE OF TIME'S OWN. NOTHING ELSE OF OURS: 13 IMPLS IN OUR TREES AND 8 IN PARSE'S PLANS, ONE ORPHAN, BY THEIR CENSUS AND BY OURS. TWO FUZZ ROWS MOVE (`tr0236`, `tr0237`), AND A COPY GOES TO `nitpick-fuzz_2`. NOTHING TO ADOPT.** 2026-10-17 02:42 (shell time), from `nitpick-compiler_39` (arrived 02:42:32); filed 2026-10-17 02:47 by `nitpick-libs_20`
+
+- **The rule.**
+  - **Until now** a program could implement a prelude trait for a builtin or a prelude type the prelude did not cover. `impl:bool:Ord` was measured admitted at 1.5.2b (S-37), while `impl:int32:Ord` met the prelude's row under coherence (`TYPE-013`). Two libraries doing it would collide in a program that imports both, with no impl of the program's own at fault and no sentence saying which library to change.
+  - **Now `NITPICK-TYPE-099` at the impl, once,** asked in `collect_one_impl` after the target and the trait resolve. A file's tree is the directory of the nearest `nitpick.toml` above it, else the program's root. The prelude is its own tree, and a derive's generated impl is never asked.
+  - **An impl names a type of its tree** when the target's declaration, or any named type among its type arguments or element types, is declared there: `impl:List<Pt>:ToString` names `Pt`, and a generic parameter or a builtin names nothing. It names a trait of its tree when the trait's declaration is there. An inherent impl's target must be the tree's own, and a blanket impl's trait must be.
+  - **It is asked first** (one report, D-240): `impl:int32:Ord` is `TYPE-099` where it was `TYPE-013`, and `impl:string:Copy` is `TYPE-099` where it was `TYPE-087`. The refused impl stays in the table, marked `orphan`, so a call through it reports nothing more.
+  - **The sentence** names each side and the two spellings that stand: your own trait for the type, or the trait for a type of your own.
+- **What moves in their tree:**
+  - tests: `tests/types/rejection/orphan_impl.npk` (eight sites, seven controls), `tests/accept/orphan_ok.npk` with a sibling file, and `tests/frontend/source_tree.npk`. Their `copy_rules.npk` and `scalar_impl_taken.npk` (S-37's own file) are re-headed to `TYPE-099`;
+  - docs: TRAITS_REFERENCE §4.1 and a new §4.1b, D-359's landing note, a dated note on D-257's rider, and S-37 LANDED.
+- **Their census and sweep:**
+  - textual, over the three trees: the compiler's 703 impls (one candidate, a parse-only sample); regex 5 impls and 0 orphans; time 8 impls and 1, probe19; parse, sockets, tui and the application no impls; the fuzz corpus 136 impls and 3 orphans;
+  - the sweep over 5 176 files: 14 appeared, all `TYPE-099` (their test's eight, `copy_rules.npk`'s one, `scalar_impl_taken.npk`'s two, time's probe19, and the fuzz corpus's `tr0236` and `tr0237`). 13 vanished: the base's `TYPE-013` and `TYPE-087` readings at those impls, each `TYPE-013` counted with its note;
+  - the tree's emission: 578 programs, 578 byte-identical, 0 different and 0 newly refused;
+  - the libraries' 4 033 programs: 1 875 byte-identical, 2 157 refused by both, 0 different and 1 newly refused, `tr0237`. **No library or application program is refused anew.**
+  - The sums were checked here: 8 + 1 + 2 + 1 + 2 = 14 appeared; five `TYPE-013` with a note each and three `TYPE-087`, 5 × 2 + 3 = 13 vanished; 1 875 + 2 157 + 1 = 4 033.
+- **The fuzz corpus** (W-30, `nitpick-fuzz_2`'s), as they read its three orphans:
+  - `tr0236` (`impl:int32:Ord`, `expect: refuse:NITPICK-TYPE-013`) is refused by `TYPE-099` now, so its claim's code moves;
+  - `tr0237` (`impl:bool:Ord`, `expect: compile`) is refused, `TYPE-099`: **OVERTURNED by D-359**, and the sentence it quotes leaves TRAITS_REFERENCE;
+  - `tr0347` is refused as before, by the blanket rule, which precedes.
+
+  **A copy goes to `nitpick-fuzz_2` after this commit,** as at F61 and F63.
+- **Ours, measured here at regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`: one orphan, time's probe19.**
+  - **A census script** read every `impl:` of our 359 programs, each library one tree, since each has its one `nitpick.toml` at its root. There are 13 impls, regex 5 and time 8, and none in the other five trees.
+    - 12 name a type or trait of their own tree. Each is declared in the impl's own file, except `double_readings.npk`'s `FakeStep`, which is time's `tests/double/host_double.npk:313`.
+    - The one orphan is `tests/probe/probe19_pod_owner_refused.npk:39`, `impl:string:Copy = { };`: neither `string` nor `Copy` is time's.
+  - **Its planted control held:** it found eight orphans (their test's eight shapes), and passed seven legal impls (among them a type argument of the tree's, a blanket over its own trait and an inherent impl of its own type), a comment and a string.
+  - **Parse's plans:** its patches hold 8 impls, each of a trait of parse's own (`Src`, `Sink`), so 0 orphans. T8's work writes none.
+  - Their census agrees: regex 5 and 0, time 8 and 1, the others none.
+- **What it means for time, at its next re-pin past 124.** Nothing moves at time's pin or at Sunday's adoption (`c9baa9e`).
+  - **Probe19 fails by name.** Its header expects `NITPICK-TYPE-087` (`:1`, with `:8`'s measured sentence), and the orphan rule answers first, with `TYPE-099`. Time's harness reads that header, so the run is red until the file changes.
+  - **The probe's purpose is S-18h's evidence.** It asks whether an owning type can claim `Copy`, the claim `vec_at`'s bound rests on (TM-194, TM-211; `SAFETY.md` S-18h). Re-headed to `TYPE-099`, it would show the orphan rule instead.
+  - **`_39` names the two fixes:** the header line, or an impl on one of time's own owning types, which the orphan rule admits and the `Copy` judgement refuses. **Only the second keeps S-18h's evidence.**
+  - **The texts that state the `TYPE-087` reading:** S-18h (`meta/specs/SAFETY.md:1163`–`1164` and `:1180`), `meta/specs/BUILD.md:321`, the harness's parse-stage docstring (`harness/stages.py:591` and `:605`), the comment at `src/core/vec.npk:347`–`350`, and TM-211's record (`meta/DECISIONS.md:6084`–`6114`). Each takes a dated note, or its new reading, in that round.
+  - With TM-171 (F65's entry), this is the second item for time's round past 123 and 124.
+- **The landing:** the commit, its harness, then the notice naming the commit. **Verify it with `tools/ladder.py` against the baseline for 124** (123's rows, at the end of 123's entry below), plus the three read-only git checks.
+- **Not in our pin** (`c9baa9e`), and nothing to adopt.
+
 ### ✅ `284402d` LANDED — **NOTICE 123: D-356, AS F65 SAID: A PAYLOAD-LESS ENUM VARIANT IS A CONSTANT OUTSIDE THE EVALUATOR. A MODULE BINDING INITIALISED WITH ONE (A STRUCT'S OR AN ARRAY'S MEMBER TOO) AND A `comptime(…)` YIELDING ONE ARE THE VARIANT'S TAG IN THE EMISSION, AND A GENERIC ENUM'S VARIANT STAYS `TYPE-035`. A REFUSAL REMOVED IN TWO FORMS, NONE ADDED; NOTHING OF OURS MOVES (0 SITES OF EITHER SHAPE, BY THEIR CENSUS AT THE LANDED TREE AND BY OURS, RE-RUN HERE, OUR SEVEN TREES UNMOVED SINCE F65); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. ROW 121'S COUNT READS THIRTEEN, AS QUERIED. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; committed 2026-10-16 23:49:11, pushed 2026-10-17 02:22, filed 2026-10-17 02:26 by `nitpick-libs_20` from the message's full text (arrived 02:23:47). **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 123 (122's rows, extracted from the board and identical to the block written and self-checked at `8cd6c7b`): MATCH, with the one-digit-off control failing.

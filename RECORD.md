@@ -14565,3 +14565,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin; no floor byte, so no re-pin is forced.**
 - **The baseline for 124** (123's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
 - **Next:** F66 for landing 124 (D-359, the orphan rule). It moves time's probe19 (`TYPE-087` → `TYPE-099`) and the fuzz corpus's `tr0236` and `tr0237`, so a copy goes to `nitpick-fuzz_2` after its filing. Nothing of the libraries' is in flight; management's hold stands until Sunday.
+
+### Advance notice F66 for landing 124 filed: D-359, the orphan rule; one test of ours moves, time's probe19; two fuzz rows move — 2026-10-17 02:47 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 2026-10-17 02:42:32):** F66, for landing 124 (D-359, the author's ruling of 2026-10-15 07:54:31 on S-37). An impl must name a type or trait declared in its own manifest's tree, or it is `NITPICK-TYPE-099` at the impl, asked before coherence and the `Copy` judgement. The commit and harness follow, then the notice.
+- **Their census and sweep:** regex 5 impls and 0 orphans; time 8 and 1, probe19; the other trees none; the fuzz corpus 3 orphans. The sweep over 5 176 files: 14 appeared and 13 vanished. The libraries' 4 033 programs: 0 different, and 1 newly refused, the fuzz corpus's `tr0237`. The sums were checked here.
+- **Ours, measured here: one orphan, time's `tests/probe/probe19_pod_owner_refused.npk:39`** (`impl:string:Copy = { };`). A census script with a planted control (eight orphans, seven legal impls) read all 13 of our impls, each library one tree. The 12 others name their own tree's type or trait. Parse's 8 planned impls are all of parse's own traits.
+- **For time's re-pin past 124** (nothing at `c9baa9e` or on Sunday): probe19 fails by name, expecting `TYPE-087`. Its purpose is S-18h's evidence that an owning type cannot claim `Copy`, and only an impl on an owning type of time's own keeps it. The `TYPE-087` texts are listed on the board's entry.
+- **The fuzz corpus:** `tr0236`'s code moves to `TYPE-099`, and `tr0237` is overturned. A copy goes to `nitpick-fuzz_2` after this commit.
+- **Next:** landing 124's notice, verified against the baseline for 124 (`498651e`) with the three git checks; and at 03:00, `Ailp-team_8`'s s2 line for T8. Nothing of the libraries' is in flight; management's hold stands until Sunday.
