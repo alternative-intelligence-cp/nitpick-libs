@@ -14550,3 +14550,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **No copy to `nitpick-fuzz_2`:** no row of theirs moves.
 - **Read here, read-only:** landing 123's commit is `284402d` (parent `29e93a9`, committed 23:49:11), not yet on `main`. F65's text is identical to its row F65 in `meta/NOTICES.md`, by script. The four "thirteen" corrections are in it.
 - **Next:** landing 123's notice, verified against the baseline for 123 (`8cd6c7b`) with the three git checks. Nothing of the libraries' is in flight; management's hold stands until Sunday.
+
+### Notice 123 verified: D-356 as F65 said; nothing of ours moves; row 121's count reads thirteen; the baseline for 124 written — 2026-10-17 02:26 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 2026-10-17 02:23:47):** `284402d`, landing 123 (1.6.1e, D-356). A module binding initialised with a payload-less enum variant (a struct's or an array's member too), and a `comptime(…)` yielding one, are the variant's tag in the emission. `TYPE-035` and `TYPE-004` are lifted there, and a generic enum's variant stays `TYPE-035`. Built and landed by `_39`: committed 2026-10-16 23:49:11, pushed 02:22 after its harness.
+- **The ladder:** MATCH against the baseline for 123, with the one-digit-off control failing. `npkc.ll` +15 053 B, `npkc.o` +4 944 B and `npkc` +4 176 B; `npkrt.o`, `builder.o` and `builder` unchanged. The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught. The extracted baseline was identical to the block self-checked at `8cd6c7b`. Row 123 is identical to the row in `meta/NOTICES.md` at `284402d`, by script, with a control caught.
+- **The git checks,** read-only and with no fetch:
+  - parent `29e93a9`, one commit, authored and committed 2026-10-16 23:49:11: the commit F65's entry read;
+  - 5 files under `src/`, 0 under `runtime/` and 0 under `bootstrap/`; 16 in all, the two named tests among them;
+  - `main` = `origin/main` = `284402d`.
+- **The count query is closed in their tree:** the four places read thirteen on `main`, each with its parenthetical.
+- **Their harness and sweep,** as the board's entry gives them: 55 of 55 on the landed SHA; parity 2 109; 7 121 obligations matching, unmoved; 6 820 rows, 6 713 shared, zero moved, and the 107 not shared re-keyed; the sweep 4 251 → 4 234 over 5 172 files, all 17 vanished in their two test files; the libraries' 4 033 programs, 0 different and 0 newly refused. The sums were checked here.
+- **Ours: 0 sites.** The seven trees are unmoved since F65's census and clean, and the census was re-run with its control holding. Time's TM-171 takes its dated note when time adopts past 123.
+- **Not in the pin; no floor byte, so no re-pin is forced.**
+- **The baseline for 124** (123's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
+- **Next:** F66 for landing 124 (D-359, the orphan rule). It moves time's probe19 (`TYPE-087` → `TYPE-099`) and the fuzz corpus's `tr0236` and `tr0237`, so a copy goes to `nitpick-fuzz_2` after its filing. Nothing of the libraries' is in flight; management's hold stands until Sunday.
