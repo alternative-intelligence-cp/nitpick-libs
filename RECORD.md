@@ -14514,3 +14514,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **No copy to `nitpick-fuzz_2`:** no row of theirs moves.
 - **To `_39`, after this commit:** this seat's census and the count query from 121's entry, in one message.
 - **Next:** landing 122's notice, verified against the baseline for 122 (`1235948`) with the three git checks. Nothing of the libraries' is in flight; management's hold stands until Sunday.
+
+### `_39` answers the count query: thirteen is right, and landing 123 corrects the four places; their F64 census matches ours — 2026-10-16 20:18 (shell time)
+
+- **Sent 20:13** with F64's census, in one message, as 121's entry said. **Answered at 20:17:46:** row 121's "the compiler's own twelve copies" undercounts by `assoc_binding_of`'s crossing. Thirteen is F63's count, the twelve table handles and that one. The correction reached F63's row at landing 121, and not the landing row.
+- **Checked here, read-only:** `29e93a9` is landing 122's commit (parent `f9a9428`, committed 20:07:43), not yet on `main` (`main` = `origin/main` = `f9a9428`). The phrase stands at it in the four places they named: `meta/NOTICES.md:190`, `meta/roadmap/1.6/README.md:92`, and `CLAUDE.md:5` and `:3252`. Landing 123 (D-356, being built in `wt/39d`) carries a dated parenthetical at each.
+- **Their census matches ours exactly:** regex's ten comptime functions, the 17 uses (15 inside `comptime(…)`, 2 in `nested`'s body), nothing in `lib/` or the prelude, and DEF-261's shapes 0.
+- Dated notes under F64's and 121's entries close the query. No reply was sent, since none was needed.
