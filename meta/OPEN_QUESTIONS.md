@@ -422,7 +422,7 @@ file existed — the check works.
   - **F-048 (invalid IR)** — a struct with a NIL field is emitted as `type { i32, void }`, which `llc` and `opt` refuse.
   - **Compiler, lower priority:** F-038 (`npkc` exits 3, no message, on `give`/`fall` outside a pick arm); F-034 (an extern method with
     a byte-slice parameter gets a bridge stub refused `TYPE-072`, so no driver method can take a byte payload; `use mod.f;`
-    `RESOLVE-002`; a constant cycle never named); F-036 (`acquire`, `any`, `trit`, `nit` accepted as a function's name, every call
+    `RESOLVE-002`; a constant cycle never named) *(2026-10-17: (a) and (b) are DEF-234, landed in 125 (`2b95bb4`) and verified here; not in the pin (`c9baa9e`), so they are discharged at the re-pin that carries 125. (c), by F67, landed at 113, which the pin carries.)*; F-036 (`acquire`, `any`, `trit`, `nit` accepted as a function's name, every call
     `PARSE-002`; `10_i32` accepted); F-039 (a `comptime` value parameter `EMIT-002`; **`<|` takes its function on the right — this
     corrects F-031's `op0378` row in O-N35**; a non-constant `joins` deadline; unknown attributes; `opaque struct` at module level,
     with F-042); F-045 (`??` on a `Result` advises the retired `?`); F-046 (a frac `.num` assignment `EMIT-002`; a `fixed` parameter
