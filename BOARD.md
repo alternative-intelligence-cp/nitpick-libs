@@ -1405,6 +1405,48 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F64 FOR LANDING 122 (D-357, THE AUTHOR'S RULING OF 2026-10-15 07:50:47, S-128 R1) — **A `comptime func:` EXISTS AT COMPILE TIME ONLY: A CALL, OR THE NAME AS A VALUE, IS `NITPICK-TYPE-098` ANYWHERE BUT INSIDE `comptime(…)`, A MODULE BINDING'S INITIALISER, AN ARRAY SIZE, AN `assert_static` PROPOSITION OR ANOTHER `comptime func:`'S BODY; A `comptime` METHOD IS REFUSED AT ITS DECLARATION. NOTHING OF OURS MOVES: OUR ONLY TEN COMPTIME FUNCTIONS ARE IN REGEX'S TWO PROBES, AND ALL 17 OF THEIR USES STAND WHERE THE RULE ALLOWS, BY THEIR CENSUS AND BY OURS. NOTHING TO ADOPT.** 2026-10-16 20:07 (shell time), from `nitpick-compiler_39` (arrived 20:07:36); filed 20:13 by `nitpick-libs_20`
+
+- **The rule.**
+  - **The defect it closes, DEF-214:** the emitter has emitted no `comptime func:` since 1.0.9c, while the checker admitted a call of one anywhere a call may stand. So a call in a run-time body, a `fixed` local's initialiser, a module-qualified call, a contract's call and the name as a function value each compiled to a call of a symbol nothing defines, and `llc` refused the module with no sentence. Yet `(raw dbl(3i32)) + 1i32` ran, the call folded by the emitter inside the arithmetic node.
+  - **Now `NITPICK-TYPE-098` at the function's name, once:** a call, or the name as a value, anywhere but the places the compile-time evaluator reads. Those are the inside of `comptime(…)`, a module binding's initialiser, an array size, an `assert_static` proposition and another `comptime func:`'s body.
+  - **A `comptime` method** (an impl's, a trait's default or a trait's signature) is refused at its declaration. The evaluator folds a named call and never a method call, so such a method could be called nowhere.
+  - **The fix:** write `comptime(f(…))`, or declare an ordinary `func:`.
+- **Found by the landing's own program test and fixed with it, DEF-262:** the typer's per-function context (`pure`, `comptime`, the call-graph edge's caller …) was set by each function and reset by nothing. So a module binding declared after a `pure` function had its initialiser typed under that `pure`: an order-dependent false refusal (`TYPE-061`) on every compiler since 1.5.1. Each non-function declaration restores the module-level state now. It removes a refusal and adds none, and in their libraries' leg no program is refused by the base alone.
+- **Registered, DEF-261 (low), its own small landing at the parser later:** a function modifier on a non-function declaration (`comptime struct:S`, `async struct:S`, `thread struct:S`, `comptime enum:E`, `comptime fixed int32:K = 1i32;`, `comptime impl:S`) parses and means nothing. **There are 0 such shapes in our 359 tracked programs,** by the census below.
+- **What moves in their tree:** tests `tests/types/rejection/comptime_only.npk` (thirteen sites, eight controls) and `tests/backend/programs/comptime_only.npk` (the roads that remain, at both legs). Docs: `MACRO_REFERENCE` §8 and §10, `AST_REFERENCE`'s comptime note, D-357's landing note, and in `OPEN_DECISIONS` S-128 LANDED, DEF-214 and DEF-262 FIXED and DEF-261 registered.
+- **Their census and sweep:**
+  - two files of the six libraries declare a `comptime func:`, both regex's probes, and none of the applications:
+    - `tests/probe/probe10_comptime_capabilities.npk`: nine, every call inside `comptime(…)` or another comptime body; clean under both checkers, and byte-identical under both compilers;
+    - `tests/probe/refused/probe09_comptime_walker.npk`: one call, inside `comptime(…)`; refused by both compilers by its own `TYPE-004`;
+  - the sweep over 5 171 files: 13 sites appeared, all in the new rejection file (three declarations and ten uses), and 10 vanished. Those are the base's eight `REACH-002` at that file's `failsafe` and its two `TYPE-061` at the program test's module bindings, DEF-262's false refusal. **No file of the libraries, the applications or the fuzz corpus gains a site;**
+  - the tree's emission: 577 programs, 576 byte-identical, 0 different and 0 newly refused. The new program test is refused by the base alone, by DEF-262;
+  - the libraries' 4 033 programs: 1 876 byte-identical, 2 157 refused by both, 0 different and 0 newly refused. The four fuzz programs 121 refused anew are now refused by both, so the count goes 2 153 → 2 157 (1 876 + 2 157 = 4 033, checked here).
+- **Ours, measured here at regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`: 0 sites.**
+  - **The declarations:** a census script read the 359 tracked `.npk` files of the seven trees (regex 188, time 163, posix 8; the other four hold none). It looked for each `comptime func:` and every use of its name, with comments dropped and string contents blanked.
+    - **There are 10 comptime functions, all in regex's two probes:** probe10's nine (`answer`, `accumulate`, `sum_to`, `len_of`, `empty_of`, `same_as`, `joined_len`, `nested` and `pattern_len_ok`), and probe09's `first_paren`.
+    - None is a method.
+  - **The uses: 17, each where D-357 allows.**
+    - 15 stand inside `comptime(…)`: 14 in probe10's `main`, and probe09's one at `:82`.
+    - 2 stand inside another comptime body, `nested`'s calls of `len_of` and `sum_to`, read by eye.
+    - None stands anywhere else.
+  - **Its planted control held:**
+    - it found the three planted sites (a bare run-time call, the name as a function value, a module-qualified call);
+    - it classified the three legal uses as legal (inside `comptime(…)`, in a comptime body, a module binding's initialiser);
+    - it passed a comment, a near-miss name and a string literal.
+
+    Its first run counted twelve "sites" that were words inside regex's error-message strings ("nested repetitions …"), so the script now blanks string contents, and the control gained that case.
+  - **No comptime function from outside our trees is reachable.** At `f9a9428` the compiler's nine `lib/` modules and its prelude (`src/prelude/prelude.npk`, `src/frontend/prelude_source.npk`) declare none, read with `git show`. Our 524 `use` lines (regex 234, time 289, posix 1) name nothing in the compiler's `lib/`, by a pattern whose planted line was caught. A first pattern that looked for `import` matched nothing at all, since `use "…"` is the spelling, so it proved nothing and was replaced.
+  - **Parse's plans write no `comptime`.** Its 23 patches mention none, and its 0.0 README already holds the cycle to D-357 (*"a `comptime func:` compile-time only — no `comptime` written"*, `meta/roadmap/0.0/README.md:111`–`112`), checked by its `tools/rulings.py`. The `comptime func:twice` in `tools/rulings_planted.txt` is that tool's planted test data, not a program.
+  - **So 122 refuses nothing of ours,** and nothing needs re-spelling at today's trees.
+- **The fuzz corpus** (W-30, `nitpick-fuzz_2`'s): they read its 25 programs that declare a `comptime func:`. 14 compile clean and emit byte-identically, each calling its comptime function only inside `comptime(…)`. 11 are refused by both compilers by one code at one span, none for the shape D-357 refuses. **No fuzz row moves, so no copy goes to `nitpick-fuzz_2` this time.** At F61 and F63, rows moved.
+- **The renamed-copy leg retires,** as agreed at 16:29. The main sweep and the emission read regex's own tree at `084187a`: its 166 programs, 133 byte-identical and 33 refused by both, which were the copy's figures.
+- **To `nitpick-compiler_39`, after this commit:** this seat's census and the count query from 121's entry (row 121's "twelve copies", against thirteen in F63's row and the diff), in one message, as 121's entry said.
+- **The landing:**
+  - the commit follows, then its harness, then the notice naming the commit;
+  - **verify it with `tools/ladder.py` against the baseline for 122** (121's rows, at the end of 121's entry below), plus the three read-only git checks.
+- **Not in our pin** (`c9baa9e`), and nothing to adopt.
+
 ### ✅ `f9a9428` LANDED — **NOTICE 121: D-361 AND THE `#ptr_add` CONFINEMENT, AS F63 SAID: A VALUE OF WILD PROVENANCE ENTERS A PLAIN POINTER SLOT ONLY THROUGH `=>! T->`, AND ANYTHING ELSE IS `NITPICK-TYPE-097` AT THE VALUE. A REFUSAL ADDED; NOTHING OF OURS REFUSED (0 SITES, BY THEIR CENSUS AT THE LANDED TREE AND BY OURS, OUR SEVEN TREES UNMOVED SINCE F63); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; committed 16:16:52, pushed 18:50, filed 2026-10-16 18:59 by `nitpick-libs_20` from the message's full text (arrived 18:52:15). **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 121 (120's rows, extracted from the board and identical to the block written and self-checked at `c18a6b8`): MATCH, with the one-digit-off control failing.

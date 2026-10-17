@@ -14500,3 +14500,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **No floor byte, so no re-pin is forced;** the pin stays `c9baa9e`.
 - **Next from them:** F64, for landing 122 (D-357, a `comptime func:` at compile time only, `NITPICK-TYPE-098`), with its census, before it lands.
 - **The machine:** 119 GiB available. Nothing of the libraries' is in flight or queued on Max, by management's hold until Sunday's release.
+
+### Advance notice F64 for landing 122 filed: D-357, a `comptime func:` exists at compile time only; nothing of ours moves, by their census and by ours — 2026-10-16 20:13 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 20:07:36):** F64, for landing 122 (D-357, the author's ruling of 2026-10-15 07:50:47, S-128 R1). A call of a `comptime func:`, or its name as a value, is `NITPICK-TYPE-098` anywhere but inside `comptime(…)`, a module binding's initialiser, an array size, an `assert_static` proposition or another comptime body. A `comptime` method is refused at its declaration. It closes DEF-214, where such calls compiled to an undefined symbol and `llc` refused the module with no sentence. DEF-262, an order-dependent false `TYPE-061` after a `pure` function, is fixed with it. DEF-261, a function modifier on a non-function declaration, is registered for its own landing. The commit and harness follow, then the notice.
+- **Their census:** regex's two probes are the only files of ours declaring a `comptime func:`, and every use stands where the rule allows. The sweep over 5 171 files: 13 appeared, all in the new rejection file, and 10 vanished (the base's eight `REACH-002` there, and DEF-262's two `TYPE-061`). The libraries' 4 033 programs: 1 876 byte-identical, 2 157 refused by both, 0 different, 0 newly refused. No fuzz row moves.
+- **Ours, measured here: 0 sites.**
+  - A census script over our 359 tracked programs, with comments dropped and string contents blanked, found 10 comptime functions, all in regex's two probes (probe10's nine, probe09's one), and none a method. Their 17 uses are 15 inside `comptime(…)` and 2 inside another comptime body. Its planted control found its three sites and passed its three legal uses, a comment, a near-miss name and a string literal.
+  - Its first run counted twelve false "sites": words inside regex's error-message strings. String contents are blanked now, and the control carries the case.
+  - The compiler's `lib/` and prelude declare no comptime function at `f9a9428`, and our 524 `use` lines name nothing in its `lib/`. A first pattern for `import` matched nothing, because `use "…"` is the spelling, and it was replaced before anything rested on it.
+  - Parse's plans write no `comptime`: its 0.0 README already holds the cycle to D-357.
+  - DEF-261's shapes: 0 in our programs.
+- **No copy to `nitpick-fuzz_2`:** no row of theirs moves.
+- **To `_39`, after this commit:** this seat's census and the count query from 121's entry, in one message.
+- **Next:** landing 122's notice, verified against the baseline for 122 (`1235948`) with the three git checks. Nothing of the libraries' is in flight; management's hold stands until Sunday.
