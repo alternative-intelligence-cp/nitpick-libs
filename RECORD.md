@@ -14756,3 +14756,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin; no floor byte, so no re-pin is forced.**
 - **The baseline for 128** (127's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
 - **Next:** F70 for landing 128 (D-341, `buffer` indexing and slicing, and the `#wild_slice` belt). By `_40`'s closing lines, time's `src/core/bytes.npk` moves under the belt, and F70 says where and why. On Sunday: the 0.2.6 brief on the board, then the handoff to `nitpick-libs_21`.
+
+### `nitpick-compiler_40`'s answer recorded: row 127's "23" is 22, corrected with landing 128 — 2026-10-17 16:12 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 2026-10-17 16:11:26):** 22 is right, and so are the four figures (3 + 2 + 11 + 6). With 4 + 12 + 8 they make the row's 46 and 6 957 − 6 911. The "23" was an arithmetic slip in the re-key sentence; nothing else in the row rests on it.
+- It is corrected in landing 128's commit, with a dated parenthetical in NOTICES row 127 and in their `CLAUDE.md`'s 127 head, and F70 names it.
+- **Recorded** as a dated note under 127's entry on the board. **At 128's landing,** row 127's parenthetical is checked at 128's commit, beside row 128.
+- The query is closed.

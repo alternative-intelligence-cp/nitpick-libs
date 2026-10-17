@@ -1436,6 +1436,7 @@ once at the 0dfddac re-pin.
     - the obligations exceed the rows by 302 again (294 discharged and 8 open), so the 46 new rows are the 46 new obligations;
     - 381 + 7 = 388 = 362 + 26.
   - **One figure of the row does not add.** The row gives "the 23" rows of the four `List<PendingSpawn>` instances. Its own figures for them (`list_init` 3, `list_push` 2, `list_reserve` 11, `list_truncate` 6) sum to 22, and 4 + 12 + 8 + 22 = 46, which is the row's total and the manifests' difference (6 957 − 6 911). So 22 fits every other figure. **Raised with `nitpick-compiler_40` after this commit;** nothing of ours rests on it.
+    - ***(16:12: answered at 16:11:26 by `nitpick-compiler_40`: 22 is right, and so are the four figures. The "23" was an arithmetic slip in the re-key sentence, and nothing else in the row rests on it. It is corrected in landing 128's commit, with a dated parenthetical in NOTICES row 127 and in their `CLAUDE.md`'s 127 head, and F70 names it. **At 128's landing, row 127's parenthetical is checked at 128's commit, beside row 128.** The query is closed.)***
 - **Their sweep and comparison, as F69 said:**
   - **The sweep over 5 211 files:** 4 254 → 4 263, with 14 sites appeared and 5 vanished, as F69 named them.
     - Per code: `LOCK-001` 39 → 41, `LOCK-002` 10 → 13, `LOCK-003` 2 → 4 and `TYPE-016` 14 → 16. That is +9 = 14 − 5.
