@@ -14729,3 +14729,30 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - T7's draft brief names no lock.
   - So nothing of ours moves, and their sweep agrees.
 - **Next:** landing 127's notice, verified against the baseline for 127 (`4a17994`) with the three git checks. On Sunday: the 0.2.6 brief on the board, then the handoff to `nitpick-libs_21`.
+
+### Notice 127 verified: D-339 / DEF-181 as F69 said; nothing of ours takes a lock; one figure of row 127 does not add, raised; the baseline for 128 written — 2026-10-17 16:10 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 2026-10-17 16:06:06):** `1670427`, landing 127 (1.6.1e step 3c, the lock walk under D-339). Built by `nitpick-compiler_39` and landed by `_40`: committed 13:28:54, pushed 16:04 after its harness.
+  - Six holes, the floor and the over-restriction are closed in nine rules over one walk.
+  - A refusal is added in seven shapes and one is removed. No emission moves for a program that compiles on both.
+- **The ladder:** MATCH against the baseline for 127, with the one-digit-off control failing and a second control here failing too.
+  - `npkc.ll` +159 926 B, `npkc.o` +54 432 B and `npkc` +44 712 B; `npkrt.o`, `builder.o` and `builder` unchanged.
+  - The six rows were transcribed by hand and compared with the message's own text by script, read out of this session's transcript: six of six identical, and a one-character control was caught.
+  - The extracted baseline was identical to the block self-checked at `4a17994`. Row 127 is identical to the row in `meta/NOTICES.md` at `1670427`, by script, with a control caught.
+- **The git checks,** read-only and with no fetch:
+  - parent `e709f77`, one commit, authored and committed 2026-10-17 13:28:54;
+  - 5 files under `src/`, 0 under `runtime/`, and 1 under `bootstrap/`, the harness's own (the new walker's entry, and its absent-fact count 8 → 10); 24 in all;
+  - `main` = `origin/main` = `1670427`.
+- **Their harness, sweep and comparison,** as the board's entry gives them:
+  - 57 of 57 on the landed SHA;
+  - 7 259 obligations matching, 46 more;
+  - 6 911 → 6 957 rows, zero verdicts moved, and the 46 added all the landing's own;
+  - the sweep 4 254 → 4 263, by code as F69's named sites give it;
+  - 579 of the tree's 580 programs byte-identical, and the libraries' 4 061 with one newly refused (`cc0427`).
+  - 41 of their sums hold, checked here by script with a control.
+- **One figure of row 127 does not add:** "the 23" rows of the four `List<PendingSpawn>` instances, whose own figures sum to 22. 22 fits the row's total of 46 and the manifests' difference. Raised with `nitpick-compiler_40` after this commit. Nothing of ours rests on it.
+- **Ours: nothing moves.** The seven trees are unmoved since F69 and clean, and F69's census holds, its control first: no lock of any kind in our 387 programs.
+- **The fuzz copy** went to `nitpick-fuzz_2` at 13:38, after F69's filing. No second copy is needed.
+- **Not in the pin; no floor byte, so no re-pin is forced.**
+- **The baseline for 128** (127's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
+- **Next:** F70 for landing 128 (D-341, `buffer` indexing and slicing, and the `#wild_slice` belt). By `_40`'s closing lines, time's `src/core/bytes.npk` moves under the belt, and F70 says where and why. On Sunday: the 0.2.6 brief on the board, then the handoff to `nitpick-libs_21`.
