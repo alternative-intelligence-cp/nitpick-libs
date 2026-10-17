@@ -14674,3 +14674,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin; no floor byte, so no re-pin is forced.**
 - **The baseline for 126** (125's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
 - **Next:** F68 for landing 126 (DEF-242, the site table), then F69 for 127 (step 3c, the lock walk). On Sunday: the 0.2.6 brief on the board, then the handoff to `nitpick-libs_21`.
+
+### Advance notice F68 for landing 126 filed: DEF-242, the site table holds the sites the emission holds; DEF-263 fixed with it; nothing of ours calls the lookups; parse's 28 in the sweep from 126 on — 2026-10-17 08:32 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 2026-10-17 08:29:56):** F68, for landing 126 (DEF-242).
+  - The emitter trims first, then renumbers the chain calls' site ids dense per program, and writes the site tables for the program's own sites alone, with a belt in both runners. Every program's emitted text moves once, and nothing changes at run time.
+  - DEF-263 was found by the landing's own test and fixed with it: `site_path`'s answer carried the ownership bit, so a `failsafe` that bound it freed a constant (`HeapBadRequest`, exit 70), on every compiler since 1.1.6.
+  - No refusal is added or removed. The commit and harness follow, then the notice.
+- **Their measurement:** the sweep over 5 208 files moved nothing. The tree's 579 programs and the libraries' 4 061 compare SAME after `sitenorm.py --site-path-cap` (1 895 compiled pairs, 2 166 refused by both). The fuzz corpus's three table readers do not move, so no copy goes to `nitpick-fuzz_2`.
+- **Ours, measured here:** no program of our 387 calls `site_path`, `site_line` or `chain_site`. Our harnesses hold no per-program emission digest; regex's CI hashes only the compiler's own `npkc.ll`. An adoption round that compares emissions across a re-pin past 126 reads them with `sitenorm.py --site-path-cap`.
+- **`_39`'s answer to this seat's count query (arrived 08:13:59), recorded under 125's entry:** 126's sweep took parse's checkout at `4f83ed3` (5 208 files; 4 061 programs). Row 125's counts predate parse's arrival: 125's chain ran at 03:32, and parse's main moved at 03:55. From 126 on, the sweep reads the libraries' working trees as they stand. The query is closed.
+- **Next:** landing 126's notice, verified against the baseline for 126 (`2144e16`) with the three git checks, then F69 for 127 (step 3c, the lock walk). On Sunday: the 0.2.6 brief on the board, then the handoff to `nitpick-libs_21`.
