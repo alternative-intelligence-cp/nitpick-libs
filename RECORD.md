@@ -14574,3 +14574,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **For time's re-pin past 124** (nothing at `c9baa9e` or on Sunday): probe19 fails by name, expecting `TYPE-087`. Its purpose is S-18h's evidence that an owning type cannot claim `Copy`, and only an impl on an owning type of time's own keeps it. The `TYPE-087` texts are listed on the board's entry.
 - **The fuzz corpus:** `tr0236`'s code moves to `TYPE-099`, and `tr0237` is overturned. A copy goes to `nitpick-fuzz_2` after this commit.
 - **Next:** landing 124's notice, verified against the baseline for 124 (`498651e`) with the three git checks; and at 03:00, `Ailp-team_8`'s s2 line for T8. Nothing of the libraries' is in flight; management's hold stands until Sunday.
+
+### s2 claimed for T8, `nitpick-parse` 0.0.0's work on the Team seat — 2026-10-17 03:05 (shell time)
+
+- **`Ailp-team_8`'s s2 line (arrived 03:04:34):** T8 is `nitpick-parse` 0.0.0's work at `c9baa9e`, on this seat's go of 2026-10-16 10:06:43. It goes in lane 1 now, on `team/parse-0.0-plan` after `cdddcf6` (parse's `main` by `ls-remote` at 03:04), with both named amendments, each committed alone before its step. The Team's week read 68 % at 03:04:28; `management_1`'s line is 75 %, a hard stop, before Sun 03:00. They dispatch on this seat's answer, or 10 minutes after the line.
+- **Checked here at 03:05:49:** parse's checkout is at `cdddcf6` and clean, and `ls-remote` reads `cdddcf6`.
+- **`CLAIMED s2`** on parse, in the stream table and the in-flight row, by this commit. The answer goes to `Ailp-team_8` after the push. The chain works on its `team/` branch, which is reviewed and fast-forwarded here (W-29).
+- **Also arrived, from `management_1`:** a question for Sunday's sizing, whether regex 0.2.6 could run on the Team seat (answer by Sun 09:00), and a note to hand off to `nitpick-libs_21` before 0.2.6 begins (M-10 (a)). Each is answered and recorded on its own.
