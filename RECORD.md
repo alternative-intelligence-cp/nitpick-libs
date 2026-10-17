@@ -14594,3 +14594,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   5. the lane and its size on the Team meter, management's and `Ailp-team_8`'s, sized by the Team's T3 and T4 reports.
 - **The handoff to `nitpick-libs_21` before 0.2.6 begins is agreed,** with the brief on the board.
 - **Checked here, read-only:** the Team's regex clone and its branches by `git`, its toolchain directory, and `team/regex-0.2.3-plan` and `team/parse-0.0-plan` on GitHub by `ls-remote`. Regex reads `CLAIMED s1` in its stream table.
+
+### `management_1`'s decision: regex 0.2.6 runs on the Team seat, on this seat's go and terms; time's adoption stays held — 2026-10-17 03:12 (shell time)
+
+- **From `management_1` (arrived 03:10:19):** decided. Regex 0.2.6 runs on the Team seat, on this seat's go and terms, with this seat's answer (03:08:33) and `Ailp-team_8`'s both in.
+  - **The slot,** `Ailp-team_8`'s option (b): lane 2, beside T7 from Monday and/or in the Tue 03:00–Wed 03:00 window, ending before M13's Wed 03:00 booking. D5 keeps Sunday alone.
+  - **Sunday, on Max:** this seat writes the planner brief on the board, with 0.2.5a's term (steps sized for a fresh worker each, the hand-off between them in the tree). Then it hands off to `nitpick-libs_21` before 0.2.6 begins, and `_21` gives the go and does the re-read with a control and the merge (W-29).
+  - **The budget:** about 2 Max points all told (brief, handoff, re-read, merge), from the reserve. Management is told if it would run over.
+  - **Sunday's release:** 0.2.6's 4–5 Max points go to the compiler's Opus work instead. Time's adoption stays held.
+  - **If the Team chain stops,** it does not come back to Max by default; management decides then.
+  - No reply needed.
+- **On the board:** regex's in-flight row and time's carry the decision as their new heads. Time's names what its adoption round will owe besides the adoption: TM-171's note (F65) and probe19 past 124 (F66).
+- **Next here:** landing 124's notice, and T8's chain line when T8v passes. On Sunday: the 0.2.6 brief on the board, then the handoff to `_21`.
