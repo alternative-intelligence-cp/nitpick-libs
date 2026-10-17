@@ -1405,6 +1405,62 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F65 FOR LANDING 123 (D-356, THE AUTHOR'S RULING OF 2026-10-15 07:50:47 ON S-127) — **A PAYLOAD-LESS ENUM VARIANT IS A CONSTANT OUTSIDE THE EVALUATOR: A MODULE BINDING MAY BE INITIALISED WITH ONE (BARE, THROUGH A `comptime func:` THAT YIELDS ONE, AS A STRUCT'S OR AN ARRAY'S MEMBER, OR BY A REFERENCE TO ANOTHER SUCH BINDING), AND A `comptime(…)` MAY YIELD ONE. THE CONSTANT IS THE VARIANT'S DECLARED TAG; `TYPE-035` AND `TYPE-004` ARE LIFTED THERE, AND A GENERIC ENUM'S VARIANT STAYS `TYPE-035`. A REFUSAL REMOVED, NONE ADDED. NOTHING OF OURS MOVES: 0 SITES OF EITHER SHAPE IN OUR 359 PROGRAMS OR IN PARSE'S PLANS, BY THEIR CENSUS AND BY OURS. ONE RECORDED DECISION'S GROUND MOVES: TIME'S TM-171 DECLINED A `fixed Weekday[7]` TABLE AS NOT SPELLABLE (`TYPE-035`), AND AT 123 IT IS. NOTHING TO ADOPT.** 2026-10-16 23:48 (shell time), from `nitpick-compiler_39` (arrived 23:48:58); filed 2026-10-17 00:00 by `nitpick-libs_20`
+
+- **The rule.**
+  - **Until now:** the compile-time evaluator has held a payload-less enum variant since D-338 (landing 90), to compare with `==`/`!=` and to `pick` on inside a `comptime func:`, but the value could not leave it. `fixed Ordering:O = Ordering.Less;` is `TYPE-035`, in the sentence D-165 writes for a call, and `Ordering:o = comptime(Ordering.Less);` is `TYPE-004` with its own sentence. A struct's or an array's member, a `comptime func:` that yields a variant, and a payload-less variant of an enum that carries a payload elsewhere were refused the same way.
+  - **Now both positions are admitted.** The module-constant gate (`const_init_verdict`) and the forcing form (`type_comptime`) stop refusing a folded variant, and `TYPE-035`'s sentence names *"a payload-less variant of a non-generic enum (D-356)"*.
+  - **The constant is the variant's tag** (`variant_tag_of`: the declared literal where one is given, the position otherwise, D-342's one rule), in the shape `ll_enum_tag_const` writes: an `i32`, or for a tagged enum `{ i32 TAG, [N x iK] zeroinitializer }`, the value `emit_ctor` stores. The renderer's old fallthrough would have written the variant's position, a silent wrong constant: `Code.B` of `{ A = 10i32; B = 20i32; }` as 1, not 20. The program test reads 20 back through a `pick`.
+  - **Still refused:** a generic enum's payload-less variant (`fixed Opt<int32>:N = Opt.Nothing;`), `TYPE-035` by the same sentence.
+  - **No emission moves** for a program that compiled before: the new arm is reached only by a value no earlier compiler admitted.
+- **What moves in their tree:**
+  - tests: `tests/backend/programs/enum_constant.npk`, twenty checks, exit 0 at both legs (landing 122's compiler refuses it at its first binding); and `tests/types/rejection/comptime_enum_value.npk` rewritten, its four lifted sites now controls and `GENERIC_AT_MODULE` added as a `TYPE-035` site, seven sites where there were ten;
+  - docs: TYPE_REFERENCE's initialiser table, MACRO_REFERENCE §8, dated notes on D-165 and D-338, D-356's landing note, and S-127 SETTLED and LANDED;
+  - **also in this landing, the count from 121's entry:** row 121's "twelve copies" corrected to thirteen in the four places this seat named at 20:18.
+- **Their census and sweep:**
+  - no library or application program writes a module binding initialised with a variant, or a `comptime(…)` of one: 0 sites of either shape;
+  - the fuzz corpus: 0 sites of either shape, and no claim names S-127, so no row moves;
+  - the sweep over 5 172 files: 0 appeared and 17 vanished. They are the base's thirteen on the new program test (`TYPE-035` at its six module bindings, `TYPE-004` at its seven `comptime(…)` forms) and its four on the rewritten rejection file (`TYPE-035` at `AT_MODULE`; `TYPE-004` at `FORCED`, `at_site` and `through_call`). **No file of the libraries, the applications or the fuzz corpus moves;**
+  - the tree's emission: 578 programs, 577 byte-identical, 0 different and 0 newly refused. The new program test is refused by the base alone;
+  - the libraries' 4 033 programs: 1 876 byte-identical, 2 157 refused by both, 0 different and 0 newly refused.
+  - The sums were checked here: 6 + 7 = 13 and 13 + 4 = 17 vanished; 5 171 + 1 = 5 172 files; 577 + 1 = 578; 1 876 + 2 157 = 4 033; and the rejection file's 10 − 4 + 1 = 7 sites.
+- **Ours, measured here at regex `084187a`, time `1cc801f`, parse `cdddcf6`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`: 0 sites.**
+  - **A census script** read our 359 tracked programs (regex 188, time 163, posix 8), with comments dropped and string contents blanked, and each file read as one text so that a form may cross lines. It looked for both shapes:
+    - a module binding whose type is an enum, or whose initialiser holds a variant `E.V` or calls a comptime function that yields an enum;
+    - a `comptime(…)` whose value is a variant, or such a call.
+
+    Any `Cap.Cap` in either position whose head is not one of our enums was listed to read by eye.
+  - **What it found:**
+    - 11 enums, none generic, and none of our ten comptime functions yields one;
+    - all 375 of our module bindings (every column-0 `fixed`), plus 7 `fixed` words that are return types: 0 sites;
+    - no `comptime(…)` of a variant;
+    - 0 lines to read by eye.
+  - **Its planted control held:**
+    - it found nine planted sites: six module bindings (bare, an array's members, a struct's member, a reference to another binding, a comptime function's result, and one after an escaped-backslash string) and three `comptime(…)` forms, one across two lines;
+    - it passed a local binding, a non-enum binding, a comment, a string, a parameter modifier and a non-enum `comptime(…)`;
+    - it listed an unknown head.
+  - **Two faults in this seat's own reader, found by reconciling its counts and fixed before anything rested on them.** Its first run read 453 module bindings where a column-0 grep finds 375.
+    - It took a `fixed` parameter modifier for a binding.
+    - It missed 11 real bindings in regex, all `int64` constants and none a site. Its string blanker took the closing quote of a string ending in an escaped backslash (`"…Write \\"`, 14 lines of regex) for an escaped quote, so a brace later on the line was counted.
+
+    Both are fixed, and the control carries both cases. The old blanker fails the new case and the new one passes it.
+  - **F64's census used the same blanker.** Re-run with the escape-aware one, its output is identical to the 22:48 run (the control and all seven rows), so the census results of F64's and 122's entries stand.
+  - **Parse's plans write neither shape.** Its 23 patches add 4 378 lines to 80 `.npk` targets: 6 enums (none generic), 19 module bindings, no `comptime(…)` and 0 sites. Parse's tree cites neither D-356 nor the refusals it lifts.
+  - **Regex's notes on D-338** (its `OPEN_QUESTIONS.md` and `SAFETY.md`, each with a dated note of 2026-10-10) describe the evaluator's arms, which D-356 leaves as they are. Probe09's `TYPE-004` is `string_bytes`'s wall, and its `first_paren` yields an `int64`, so it stays refused as it is. No probe of ours expects either code for this shape.
+  - **So 123 refuses nothing of ours, and admits nothing of ours that is refused now.**
+- **One recorded decision of ours whose ground moves: time's TM-171** (`nitpick-time/meta/DECISIONS.md:4557`, cycle 0.1.3).
+  - Among its declined alternatives is *"a `fixed Weekday[7]` table, whose out-of-range index would trap `OutOfBounds` — not spellable, refused `NITPICK-TYPE-035` at `c3bdae2` (… an enum variant is not a compile-time constant for a module-level initialiser)"* (`:4595`–`4598`).
+  - At 123 that table is spellable: an array's members are among the admitted positions, and their program test carries an array's three members.
+  - **Nothing moves now.** Time's pin and Sunday's adoption are `c9baa9e`, before 123, and there TM-171 is true as written.
+  - **For time's round past 123:** TM-171 takes a dated note when time adopts a compiler at or past 123, and its planner weighs the table again. The table's trap would be `OutOfBounds`, against the `#unreachable()` belt TM-171 chose. Its text is not rewritten.
+- **No copy to `nitpick-fuzz_2`:** no row of theirs moves.
+- **The landing:**
+  - commit `284402d` (parent `29e93a9`, committed 23:49:11), read here and not yet on `main`. Its harness comes first, then the notice naming the commit;
+  - F65's text is identical to row F65 of `meta/NOTICES.md` at that commit: 6 265 characters, by script, and a one-digit control was caught;
+  - the commit carries the four "thirteen" corrections, each with a parenthetical saying it said "twelve copies" until landing 123: NOTICES row 121 (which also names this seat's query of 2026-10-16), the 1.6 README's 1.6.1e row, and `CLAUDE.md`'s 121 head and its `#ptr_add` gotcha. This seat checks them again at the landing;
+  - **verify it with `tools/ladder.py` against the baseline for 123** (122's rows, at the end of 122's entry below), plus the three read-only git checks.
+- **Not in our pin** (`c9baa9e`), and nothing to adopt.
+
 ### ✅ `29e93a9` LANDED — **NOTICE 122: D-357, AS F64 SAID: A `comptime func:` EXISTS AT COMPILE TIME ONLY. A CALL OF ONE, OR ITS NAME AS A VALUE, IS `NITPICK-TYPE-098` AT THE NAME ANYWHERE BUT INSIDE `comptime(…)`, A MODULE BINDING'S INITIALISER, AN ARRAY SIZE, AN `assert_static` PROPOSITION OR ANOTHER COMPTIME BODY; A `comptime` METHOD IS REFUSED AT ITS DECLARATION. A REFUSAL ADDED AND A FALSE ONE REMOVED (DEF-262); NOTHING OF OURS REFUSED (0 SITES, BY THEIR CENSUS AT THE LANDED TREE AND BY OURS, RE-RUN HERE, OUR SEVEN TREES UNMOVED SINCE F64); NO EMISSION MOVES FOR A PROGRAM THAT COMPILES ON BOTH; NO FLOOR BYTE. NOT IN OUR PIN, AND NOTHING TO ADOPT.** From `nitpick-compiler_39`, which built and landed it; committed 20:07:43, pushed 22:41, filed 2026-10-16 22:48 by `nitpick-libs_20` from the message's full text (arrived 22:42:29). **✅ VERIFIED HERE:**
 
 - **The ladder.** `tools/ladder.py` against the baseline for 122 (121's rows, extracted from the board and identical to the block written and self-checked at `1235948`): MATCH, with the one-digit-off control failing.

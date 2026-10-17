@@ -14535,3 +14535,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not in the pin; no floor byte, so no re-pin is forced.**
 - **The baseline for 123** (122's rows) is written at the end of the board's entry, generated from the transcription and self-checked by extraction.
 - **Next:** F65, then landing 123 (D-356). Behind it, 124 (D-359, the orphan rule) moves time's `tests/probe/probe19_pod_owner_refused.npk` from `TYPE-087` to `TYPE-099`, by their word, located here and measured at F66; and 125 (DEF-234). Nothing of the libraries' is in flight; management's hold stands until Sunday.
+
+### Advance notice F65 for landing 123 filed: D-356, a payload-less enum variant is a constant outside the evaluator; nothing of ours moves; time's TM-171 loses one premise at 123 — 2026-10-17 00:00 (shell time)
+
+- **From `nitpick-compiler_39` (arrived 2026-10-16 23:48:58):** F65, for landing 123 (D-356, the author's ruling of 2026-10-15 07:50:47 on S-127). A module binding may be initialised with a payload-less enum variant, and a `comptime(…)` may yield one. The constant is the variant's declared tag. `TYPE-035` and `TYPE-004` are lifted there, and a generic enum's variant stays `TYPE-035`. A refusal removed, none added. The landing also corrects row 121's "twelve copies" to thirteen in four places, this seat's query.
+- **Their census and sweep:** 0 sites of either shape in the libraries, the applications and the fuzz corpus. The sweep over 5 172 files: 0 appeared and 17 vanished, all in their two test files. The libraries' 4 033 programs: 0 different and 0 newly refused. The sums were checked here.
+- **Ours, measured here: 0 sites.**
+  - A census script over our 359 programs, with a planted control of nine sites, found 11 enums (none generic), no comptime function that yields one, and no module binding or `comptime(…)` holding a variant. It read all 375 of our module bindings.
+  - Reconciling its counts found two faults in its reader before anything rested on them: a parameter modifier taken for a binding, and 11 bindings missed because the string blanker mishandled a string ending in an escaped backslash. Both are fixed, and the control carries both cases.
+  - F64's census used the same blanker. Re-run with the fixed one, its output is identical, so F64's and 122's census results stand.
+  - Parse's 23 plan patches write neither shape.
+  - Regex's notes on D-338 and probe09's `TYPE-004` are untouched by D-356.
+- **One recorded decision's ground moves:** time's TM-171 declined a `fixed Weekday[7]` table as not spellable (`TYPE-035` at `c3bdae2`). At 123 it is spellable. Nothing moves at time's pin or at Sunday's adoption (`c9baa9e`). TM-171 takes a dated note when time adopts a compiler at or past 123, and its planner weighs the table again then.
+- **No copy to `nitpick-fuzz_2`:** no row of theirs moves.
+- **Read here, read-only:** landing 123's commit is `284402d` (parent `29e93a9`, committed 23:49:11), not yet on `main`. F65's text is identical to its row F65 in `meta/NOTICES.md`, by script. The four "thirteen" corrections are in it.
+- **Next:** landing 123's notice, verified against the baseline for 123 (`8cd6c7b`) with the three git checks. Nothing of the libraries' is in flight; management's hold stands until Sunday.
