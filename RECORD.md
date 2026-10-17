@@ -14763,3 +14763,26 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - It is corrected in landing 128's commit, with a dated parenthetical in NOTICES row 127 and in their `CLAUDE.md`'s 127 head, and F70 names it.
 - **Recorded** as a dated note under 127's entry on the board. **At 128's landing,** row 127's parenthetical is checked at 128's commit, beside row 128.
 - The query is closed.
+
+### Advance notice F70 for landing 128 filed: D-341, `buffer`'s checked indexing and slicing and the `#wild_slice` belt; time's `src/core/bytes.npk` moves, nothing else of ours; the fuzz corpus's `bi0419b` overturned — 2026-10-17 17:25 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 2026-10-17 17:15:15):** D-341, the author's ratification of S-121 on 2026-10-01. The commit is `463cf93` on `1670427`, in `wt/40a`, and its harness runs now (about 2.5 h).
+  - `b[i]` is the checked byte place, and `b[lo...hi]` the checked byte view. `p[i]` on a `buffer->` is `TYPE-082`.
+  - `#wild_slice` is a viewing builtin, so a slice over `x.ptr` is rooted at `x`, as `string_from_bytes(x.ptr, n)` is: `BORROW-015` under D-325's freeze, `BORROW-001` for a `pass` out of the frame.
+  - BUILTIN_REFERENCE:425's "legal only in `wild` context" on `#ptr_add` is struck. It was never the code's rule, which was read here at `1670427`.
+  - DEF-264 is registered (a `fixed buffer`'s bytes written through `.ptr`), and it is not closed here.
+- **The row-127 correction is named in F70,** as `_40` promised. It is checked at 128's commit when the landing notice arrives.
+- **Time's `src/core/bytes.npk` moves,** every line F70 names read here at `1cc801f`:
+  - `bytes_reserve`'s overwrite at line 140 is `BORROW-015` twice (140:6 and 140:19), under the views of lines 126 and 127. It is not a use-after-free; the fix is a block that ends the two views before the overwrite, a spelling change with no behavioural one;
+  - `tests/unit/bytes_view_lifetime.npk`'s deliberate use-after-free is refused at its caller (77:63 and 107:63, the `@b` and `@c` handed to `bytes_push` while the views live). Its §2 becomes a rejection or is retired, and its §1 is re-spelt;
+  - nine of time's files import the module, by a `use` census with a planted control. Seven are F70's: `src/lib.npk` and the six programs refused until the block is written. The other two are refusal probes (`probe16c`, `TYPE-079`; `probe16i`, `TYPE-080`) that keep their own refusals, by their sweep.
+- **Nothing else of ours moves,** by a census of our 387 programs with a planted control, at the seven trees' unmoved HEADs:
+  - five `#wild_slice` calls over a `.ptr`, all time's `bytes.npk`; seventeen over bare `wild` pointers, all time's;
+  - none at all in the other six trees;
+  - two `buffer->` parameters in time's `probe08_readlink.npk`, reached through `.ptr` only;
+  - no refusal header naming "cannot be indexed" or "cannot be ranged", and no `fixed buffer`.
+- **Their sums:** 16 of 16 hold, checked by script with a control. The sweep's total falls by 18 (26 appeared, 44 vanished).
+- **The fuzz corpus:** `bi0419b` is overturned by the struck sentence. A copy goes to `nitpick-fuzz_2` after this commit.
+- **Time's in-flight row** takes the owed block and the test's re-spelling, for its re-pin past 128. Time stays idle, and its adoption of `c9baa9e` stays held.
+- **The baseline for 128** still extracts identically to the block self-checked at `387e344`.
+- **Next:** landing 128's notice. Verify it against the baseline for 128, with parent `1670427`, and check row 127's parenthetical at 128's commit.
