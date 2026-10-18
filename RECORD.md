@@ -15107,3 +15107,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here at 14:21 by `verify131.py`,** kept with its inputs in `.internal/landing/n131L/`: the transcription identical; the ladder MATCH; row 131 identical to `meta/NOTICES.md` at `b1a23b8`; the git checks (`c1e20e8` the parent, one commit, 3 files under `src/`, 0 under `runtime/` and `bootstrap/`, 13 files, +605/−224); 34 of 34 sums; our seven trees unmoved and clean. Each comparison has a control.
 - **A control slip, caught and fixed before filing:** the script derived from 130's keyed row 131's control on "5,218", which row 131 does not hold. So the control first read MISSED, a broken control rather than a failed check. It now flips the row's last digit, which every row has, and was caught on the rerun. `n131L`'s script is the template for 132.
 - **The baseline for 132** is generated and self-checked. No fuzz copy and no reply.
+
+### Advance notice F74 for landing 132 filed: DEF-256, a consuming pick's binding re-assigned after a move is live again; nothing of ours moves, the fuzz side does — 2026-10-18 14:39 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 14:38:13):** F74 for landing 132, DEF-256, the fuzzer's F-049. One refusal is removed and none added.
+- **Checked here at 14:38:** 6 of its sums by script with a control. Our census over 387 tracked `.npk` files finds 0 consuming arms whose binding is moved and then assigned again, with a planted control found. The three files naming `MOVE-001` (time's `vec.npk` and probes 12 and 12b) concern a set's overwrite. Our seven trees are unmoved and clean.
+- **The fuzz side moves:** F-049's two reproducers compile and answer 22. A copy goes to `nitpick-fuzz_2` after this push.
+- **Next:** landing 132's notice, by the ladder against the baseline for 132 with parent `b1a23b8`.
