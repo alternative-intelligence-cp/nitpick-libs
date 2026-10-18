@@ -14822,3 +14822,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Counted here, read-only:** 396 of the 421 files in `tests/backend/programs` state the line at `463cf93`, and 394 of 418 at `1670427`. The by-hand figures are the harness's count less the files without the line: 423 − 25 = 398, and 420 − 24 = 396.
 - The answer's "23 of the 421" files without the line reads as 421 − 398. The count is 25, 13 of them modules that other programs import. That is not raised, since the notice's figures stand.
 - **Recorded** as a dated note under 128's entry on the board. The query is closed.
+
+### Advance notice F71 for landing 129 filed: DEF-244 (our O-N40 item 2), the source manager keys a file by its identity; nothing of ours takes the shape — 2026-10-17 20:59 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 2026-10-17 20:55:12):** DEF-244, our O-N40's item 2 of 2026-10-08, registered at landing 99. The commit follows on `463cf93`, in `wt/40b`, and its harness follows it (about 2.5 h).
+  - Until now a module's key was its path's spelling after a textual `..` collapse. So a root named from its own directory and imported back from a sibling directory was read twice: `RESOLVE-010` at its error constant, `RESOLVE-013` at its entry points.
+  - Now the key is the absolute normalised path. The shown path does not move, so no diagnostic, site row or emission moves.
+  - A double load is removed and no refusal is added.
+- **Ours: nothing takes the shape.** Our census replays the old keying for all 346 programs of ours, each from its tree's root and from its own directory: 0 double loads in 3 474 keys, every `use` resolved. Its planted control, O-N40's own pair, was caught from `a/` and loads once from the parent.
+- **Their figures:** the sweep's 0 appeared and 0 vanished over 5 218 files; 584 of 584 tree programs byte-identical; the libraries' 4 061 with 0 newly refused. 6 of 6 sums hold, checked by script with a control.
+- **No fuzz row moves,** so no copy goes.
+- **O-N40's item 2 is discharged at the re-pin that carries 129.** Its registry row is amended then.
+- **The baseline for 129** still extracts identically to the block self-checked at `23dc0fb`.
+- **Next:** landing 129's notice. Verify it against the baseline for 129, with parent `463cf93`.
