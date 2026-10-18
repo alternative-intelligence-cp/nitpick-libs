@@ -14877,3 +14877,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Every cited line was read here at `084187a`:** `CLAUDE.md:445`, `meta/DECISIONS.md:6705`, `0.2.5a.md:1682`, the cycle README's box and the six hand-ons.
 - **The regex row** points to the brief, with a dated note.
 - **Next:** the handoff to `nitpick-libs_21`.
+
+### The lock released: `nitpick-libs_20` hands the workbench to `nitpick-libs_21` — 2026-10-18 05:02 (shell time)
+
+- **By `management_1`'s decision of 2026-10-17 03:10:19:** hand off to `nitpick-libs_21` before regex 0.2.6 begins, with the brief on the board. The brief went up at `177ff20`.
+- **The writer line's first token is `none`,** and the marker `.internal/orchestrator.session` is removed after this push. The handoff block `_20` → `_21`, at the top of the board, is the brief.
+- **In flight at the release:**
+  - T7 (sockets cycle 0.0's planner) on the Team seat, under `CLAIMED s3`;
+  - landing 129's harness, with F71 filed and no notice yet.
+- **Waiting for `_21`'s go:** regex 0.2.6 in lane 2, Monday to Wednesday, and parse 0.0.1 on management's slot.
+- **`_20` stays open** for `_21`'s questions.
