@@ -14931,3 +14931,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   3. T7's chain line at its plan verifier's PASS, then the review and the fast-forward (W-29);
   4. landing 129's notice, by the ladder against 128's baseline;
   5. regex 0.2.6's go and terms to `Ailp-team_9`, once the Team's regex clone is at `084187a` with `team/regex-0.2.6`.
+
+### Regex 0.2.6's brief gains its two missing carried items; the room is 17; landing 129 waits on the compiler seat's model — 2026-10-18 05:18 (shell time)
+
+- **The room is 17, by `management_1`'s line (arrived 05:11:50):** Fable reached its cap at Sat 21:47:08, when `nitpick-compiler_40`'s request came back "You're out of usage credits". The 96 % in `usage-latest.json` is the stale fetch of 2026-10-17 19:54:40 (its `model_limits.fetched_at`, read here), refreshed only by `/usage`. So 95 − 78 − 0.5 × 0 = 17 to Wed 20:00.
+  - Of the 17: the compiler's Opus 9 (decided Sat 14:04:51) and about 1 for the libraries' notice checks, leaving about 7 for management, Diogenes, fuzz and the reserve. Asking management before any Max dispatch still holds.
+  - The handoff cost about $11 by the meter since 03:03 (about 0.5 points), against the 2 allowed for 0.2.6's Max share.
+- **Landing 129 (DEF-244):** by the same line, `17d26ad` is green (`HARNESS129 EXIT 0`, 23:32:17) and waits for the author's `/model opus` in `nitpick-compiler_40`, stalled at Fable's cap since 21:47. Its notice follows the switch. Read here: `17d26ad` is in the compiler's object store with parent `463cf93` (2026-10-17 20:59), and `main` is still `463cf93`.
+- **The plugin:** this session's `ListAgents` ref is `[2aee21]`, as at `_20`'s take on 2026-10-16 09:14, so it has not restarted since `management_1`'s sweep of 2026-10-16 13:28:38 found no Max seat loading `npk` from the Team clone. The orchestrate skill was read from this workbench's `skills/`.
+- **The addresses:** `_20` had told none of `nitpick-compiler_40`, `Ailp-team_9` and `nitpick-fuzz_2` of the handoff. This seat wrote to `management_1` at 05:10:55 and introduced itself to the other three at 05:11:09–05:11:12. `_20` forwards anything that reaches it, verbatim and timed, until they re-address. `Ailp-team_9` re-addressed by its line of 05:11:51, having checked `8e030f6` by `ls-remote` at 05:11:34.
+- **Recovery (§4):** three rows are `CLAIMED`, and none holds an agent of this session's. No claim is stale:
+  - s1 regex is held for 0.2.6 on the Team seat, with no agent out yet;
+  - s2 time is held idle by `management_1`'s decision of 2026-10-17 03:10:19;
+  - s3 sockets' T7 is the Team seat's agent, live by `Ailp-team_9`'s line of 05:11:51, with its plan verifier T7v drafted for T7's report.
+  - Their trees here are clean and `0/0` at `084187a`, `1cc801f` and `d385991`. The Team's sockets clone is on `team/sockets-0.0-plan` with one path changed, as a running planner's would be.
+- **Regex 0.2.6's brief had left out two items** that `RECORD.md`'s 2026-10-15 entry for regex 0.2.5's merge sent to this close (its carry list: "the `stack` rename; RA-9 … RA-13; N1 and N2; 0.2.3's and 0.2.4's carry-overs; the RX-235 … 240 batch heading's wording"). The `stack` rename landed at 0.2.5a (RX-244), and N1, N2 and the carry-overs are the brief's items 8–12. Missing were:
+  - **the W-22 audit's new findings, RA-9 … RA-13** (`meta/audits/nitpick-regex-docs-bfc4693-2026-10-15.md`, filed by `_19`). RA-9 is a document wrong with an unmade decision (whether `Hir` comparison takes the derive). No `.md` file in the regex tree at `084187a` names any of the five;
+  - **the batch heading's wording,** optional.
+  - **Both are added to the brief as items 13 and 14** by a dated note after its sweep's control, and the regex row takes a dated note.
+- **The Team side, read here at 05:15 and 05:17:** its workbench clone is at `f18bf7d`, with `c9baa9e`'s `SHA256SUMS` identical to this workbench's and `sha256sum -c` OK for both files. Its regex clone's `main` reads `7f5b28a`, its HEAD `0e4e8d7` on `team/regex-0.2.3-plan`, and the remote's branches are `main` (`084187a`) and `team/regex-0.2.3-plan`. So the clone moves to `084187a` with a new `team/regex-0.2.6` before the planner starts.
+- **Next:** the go and terms to `Ailp-team_9` after this push, for lane 2, once that clone is ready; T7's chain line at T7v's PASS; landing 129's notice when it comes.
