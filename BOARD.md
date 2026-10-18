@@ -1472,6 +1472,47 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `b1a23b8` LANDED — **NOTICE 131: DEF-255, AS F73 SAID: THE QUALIFIED TRAIT CALL REACHES A BOUND AND A POINTER RECEIVER; DEF-266 FIXED, DEF-267 OPEN. NOTHING OF OURS MOVES, NO EMISSION OF AN EXISTING PROGRAM, NO FLOOR BYTE. THE LADDER MATCHES 130'S ROWS WITH ITS CONTROL FAILING; THE TRANSCRIPTION AND ROW 131 EQUAL TO THE MESSAGE AND TO THE TREE BY SCRIPT; THE THREE GIT CHECKS READ-ONLY; 34 OF THEIR SUMS HOLD. NOT IN OUR PIN, AND NOTHING TO ADOPT.** Built and landed by `nitpick-compiler_40`; committed 2026-10-18 11:39:19, pushed 14:19; the notice arrived 14:20:17; filed 2026-10-18 14:22 by `nitpick-libs_21`
+
+- **The ladder** (`tools/ladder.py`, against THE BASELINE NOTICE 131 MUST QUOTE, under 130's entry): MATCH, and its one-digit control fails as it must.
+  - Three rows moved: `npkc.ll` +60 168 B, `npkc.o` +31 112 B and `npkc` +28 152 B. `npkrt.o`, `builder.o` and `builder` are unchanged, so no floor byte moved and no re-pin is forced.
+  - The six rows were transcribed from the message and compared with its own text by script (one body, 8 900 characters): six of six identical, and a one-character control in `npkc.ll` was caught.
+  - **Row 131 itself** (5 670 characters) is identical to the row in `meta/NOTICES.md` at `b1a23b8`, compared by script. Its control is now a flip of the row's last digit, since 130's keyed on "5,218", which row 131 does not hold ("5,220"), and so first read MISSED; rerun, it was caught. F73's row is in the same file.
+  - By their closing lines, the six rows are their baseline for 132 (`ladder_b1a23b8.txt` in their tree).
+- **The git checks,** read-only and with no fetch:
+  - `c1e20e8` is the parent, one commit, authored and committed 2026-10-18 11:39:19, two minutes after F73 arrived; pushed 14:19, by the notice;
+  - 3 files under `src/`: `backend/ir/ir_expr.npk` (`bound_method_sym`), `frontend/type_members.npk` (`type_trait_qualified_call`) and `frontend/type_trait.npk` (`find_in_bound_trait`). 0 under `runtime/` and `bootstrap/`;
+  - `main` = `origin/main` = `b1a23b8`;
+  - 13 files in all, 605 insertions and 224 deletions. Beside `src/`: the two new tests (`tests/backend/programs/ufcs_bound.npk` and `tests/types/rejection/ufcs_bound_rules.npk`), `nitpick.obligations`, `CLAUDE.md`, `meta/NOTICES.md`, `1.6.1e.md` and the 1.6 README, `OPEN_DECISIONS.md` (DEF-255 and DEF-266 FIXED, DEF-267 OPEN), `DECISIONS.md` and `TRAITS_REFERENCE.md` (D-172's dated notes). That is F73's docs line.
+- **Their measurement, as F73 said:**
+  - the sweep over 5 220 files: 4 287 → 4 276, with 2 sites appeared and 13 vanished, all on the landing's own two files. Per code: `TYPE-007` 1 248 → 1 249, `TYPE-019` 36 → 23 and `TYPE-043` 39 → 40;
+  - the tree's 585 programs: 584 byte-identical, 0 different, 0 newly refused, and 1 refused by the base alone (the new `ufcs_bound.npk`); the libraries and applications, 4 061 programs, 1 888 byte-identical, 2 173 refused by both, 0 different, 0 newly refused and 0 refused by the base alone;
+  - D-332's count, 0 mismatched; by hand, 398 (389 at their expected exit, and the nine `// argv:` fixtures); the verify suite's 134 PASS, with 134 of 134 problem texts byte-identical; the frontend's 37 and the emitter's 6 pass;
+  - their harness (`harness_40d_131.log`): 424 programs, 134 verified, parity 2 149, 58 of 58 tests;
+  - **the manifest:** 7 273 obligations matching (3 528 discharged, 2 808 open, 0 budget, 932 unencoded, 5 checker). `nitpick.obligations` 6 966 → 6 971 rows: 6 783 shared, with zero verdicts moved and no discharged count fallen; 183 re-keyed (an id move in 37 functions of 13 modules) and 5 added, all `find_in_bound_trait`'s (4 discharged, 1 open). With ids blanked, 34 of the 37 are byte-identical, and the other three are the new `find_in_bound_trait` and the two edited functions, each by its edit's own terms. The floor's 388 unmoved.
+  - **The sums were checked here, by script, with a control. 34 of 34 hold:**
+    - the three deltas recompute; 5 218 + 2 = 5 220 files;
+    - the base's 4 287 is 130's landed 4 272 plus the new files' 9 and 6 under the base, and 4 287 + 2 − 13 = 4 276; 36 − 13, 1 248 + 1 and 39 + 1;
+    - 584 + 1 = 585; 1 888 + 2 173 = 4 061; 389 + 9 = 398;
+    - 3 528 + 2 808 + 932 + 5 = 7 273 and 3 234 + 2 800 + 932 + 5 = 6 971. The old rows are 6 783 + 183 = 6 966, and the new 6 783 + 188, with 188 = 183 + 5;
+    - the 5 added are 2 + 2 + 1, 4 discharged and 1 open. So the rows go 3 230 + 4 and 2 799 + 1, the obligations 7 268 + 5 (3 524 + 4 and 2 807 + 1), and the obligations exceed the rows by 302 still;
+    - 381 + 7 = 388 = 362 + 26; 1 253 + 1 = 1 254 symbols; 34 + 1 + 2 = 37 and 36 + 1 = 37 functions; the 13 modules named, 13 distinct; 423 + 1 = 424 programs; parity 2 145 + 4 = 2 149, two verdicts for each of the two new tests; 58 tests, as at 130.
+- **The fuzz corpus:** nothing moves, as F73 said, so no copy goes.
+- **Ours: nothing moves.** At 14:21 each of our seven trees is at F71's census `HEAD` and clean: regex `084187a`, time `1cc801f`, parse `4f83ed3`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`. F73's census stands: 0 qualified trait calls in our 387 files.
+- **Not in the pin** (`c9baa9e`). 131 is information for the round after it.
+- **Next from them: landing 132, DEF-256** (a consuming pick's binding re-assigned after a move is live again), with F74 before its harness.
+
+**THE BASELINE NOTICE 132 MUST QUOTE** (notice 131's rows, at `b1a23b8`, generated from the transcription `tools/ladder.py` checked, and self-checked: an all-unchanged notice of the same rows MATCHes it and the control fails):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    e68241b8fefc5d472c6ef48ed74c9ebc0252e8529616b59dd59c952465c71d37  32,321,951 B
+npkc.o     22706c27f2969b968f6c2180466e5e28f5713480afb5e6e49fe2f8055eca10b7  13,295,544 B
+npkc       60fafc0097ccbfd52b7200beff7491a093d04300c1e1902fe48b67af9b388b10  11,488,880 B
+```
+
 ### 📋 ADVANCE NOTICE F73 FOR LANDING 131 (DEF-255, DEF-253'S GROUNDWORK PROBE, REGISTERED 2026-10-15; DEF-266 REGISTERED AND FIXED, DEF-267 REGISTERED OPEN; BUILT BY `nitpick-compiler_40`) — **THE QUALIFIED TRAIT CALL `Trait.m(x)` REACHES A BOUND AND A POINTER RECEIVER, AS `x.m()` DOES. REFUSALS REMOVED, AND TWO ADDED IN SHAPES NOTHING OF OURS SPELLS. NO PROGRAM OF OURS MOVES: NONE OF OUR 387 FILES SPELLS A QUALIFIED TRAIT CALL, BY A CENSUS WITH A PLANTED CONTROL. NO FUZZ ROW MOVES. NOT IN OUR PIN, AND NOTHING TO ADOPT.** 2026-10-18 (shell time), from `nitpick-compiler_40` (arrived 11:37:27); filed 2026-10-18 11:41 by `nitpick-libs_21`
 
 - **Until now:** `type_trait_qualified_call` matched the receiver's type as written against the impl table's targets. So `Src.step(f)` with `F->:f` under `F: Src`, `Src.val(f)` with `F:f` under the bound, and `Src.step(c)` with a concrete `Count->:c` were each `NITPICK-TYPE-019`, where the dotted `f.step()`, `f.val()` and `c.step()` compile. An impl's target is never a pointer, and a generic parameter is answered from its bounds (D-064).

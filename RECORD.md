@@ -15100,3 +15100,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - A first census walked every directory, untracked ones included, and was stopped after 100 s. The second read `git ls-files`, the right denominator, and ran at once.
 - **Filed on the board** as F73's entry. No fuzz copy, since no fuzz row moves.
 - **Next:** landing 131's notice, by the ladder against the baseline for 131 with parent `c1e20e8`.
+
+### Notice 131 verified — `b1a23b8`, DEF-255 as F73 said — 2026-10-18 14:22 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 14:20:17):** landing 131, committed 2026-10-18 11:39:19 on `c1e20e8`, pushed 14:19. Its advance notice was F73, filed at `2769c41`.
+- **Checked here at 14:21 by `verify131.py`,** kept with its inputs in `.internal/landing/n131L/`: the transcription identical; the ladder MATCH; row 131 identical to `meta/NOTICES.md` at `b1a23b8`; the git checks (`c1e20e8` the parent, one commit, 3 files under `src/`, 0 under `runtime/` and `bootstrap/`, 13 files, +605/−224); 34 of 34 sums; our seven trees unmoved and clean. Each comparison has a control.
+- **A control slip, caught and fixed before filing:** the script derived from 130's keyed row 131's control on "5,218", which row 131 does not hold. So the control first read MISSED, a broken control rather than a failed check. It now flips the row's last digit, which every row has, and was caught on the rerun. `n131L`'s script is the template for 132.
+- **The baseline for 132** is generated and self-checked. No fuzz copy and no reply.
