@@ -1472,6 +1472,45 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c1e20e8` LANDED — **NOTICE 130: DEF-245 AND DEF-260, AS F72 SAID: A DECLARATION WHOSE HEADER FAILS IS ONE REPORT, AND A KEYWORD-NAMED FIELD'S RECOVERY SKIPS NOTHING. 20 PHANTOM REPORTS LEAVE THE FUZZ CORPUS, NONE OF OURS; NOTHING THAT PARSES MOVES, NO FLOOR BYTE. THE LADDER MATCHES 129'S ROWS WITH ITS CONTROL FAILING; THE TRANSCRIPTION AND ROW 130 EQUAL TO THE MESSAGE AND TO THE TREE BY SCRIPT; THE THREE GIT CHECKS READ-ONLY; 32 OF THEIR SUMS HOLD. NOT IN OUR PIN, AND NOTHING TO ADOPT.** Built and landed by `nitpick-compiler_40`; committed 2026-10-18 08:37:35, pushed 11:16; the notice arrived 11:16:37; filed 2026-10-18 11:18 by `nitpick-libs_21`
+
+- **The ladder** (`tools/ladder.py`, against THE BASELINE NOTICE 130 MUST QUOTE, under 129's entry): MATCH, and its one-digit control fails as it must.
+  - Three rows moved: `npkc.ll` +22 744 B, `npkc.o` +4 720 B and `npkc` +3 408 B. `npkrt.o`, `builder.o` and `builder` are unchanged, so no floor byte moved and no re-pin is forced.
+  - The six rows were transcribed from the message and compared with its own text by script, out of this session's transcript (one body, 9 344 characters): six of six identical, and a one-character control in `npkc.ll` was caught.
+  - **Row 130 itself** (6 105 characters) is identical to the row in `meta/NOTICES.md` at `c1e20e8`, compared by script, and a one-digit control was caught. F72's row is in the same file.
+  - By their closing lines, the six rows are their baseline for 131 (`ladder_c1e20e8.txt` in their tree).
+- **The git checks,** read-only and with no fetch:
+  - `17d26ad` is the parent, one commit, authored and committed 2026-10-18 08:37:35, twelve seconds after F72 arrived here; pushed 11:16, by the notice;
+  - 2 files under `src/`: `frontend/parse_decl.npk` and `frontend/parser.npk`. 0 under `runtime/` and `bootstrap/`;
+  - `main` = `origin/main` = `c1e20e8`;
+  - 9 files in all, 488 insertions and 229 deletions. Beside the parser: `tests/frontend/parse_one_report.npk` (+24 cases), `nitpick.obligations`, `CLAUDE.md` (the gotcha), `meta/NOTICES.md`, `meta/roadmap/1.6/1.6.1e.md` and the 1.6 README, and `OPEN_DECISIONS.md` (DEF-245 and DEF-260 FIXED, DEF-164's dated line, DEF-265 registered). That is F72's docs line.
+- **Their measurement, as F72 said:**
+  - the sweep over 5 218 files: 4 292 → 4 272, with 0 sites appeared and 20 vanished, each a phantom in the fuzz corpus named as F72 named it. `NITPICK-PARSE-001` goes 127 → 107;
+  - the tree's 584 programs byte-identical; the libraries and applications, 4 061 programs, 1 888 byte-identical, 2 173 refused by both, 0 different, 0 newly refused and 0 refused by the base alone;
+  - D-332's count, 0 mismatched; by hand, 398 (389 at their expected exit, and the nine `// argv:` fixtures); the verify suite's 134 PASS, with 134 of 134 problem texts byte-identical; the frontend's 37 and the emitter's 6 pass;
+  - their harness on the landed SHA (`harness_40c_130.log`; `HARNESS130 EXIT 0`, 11:14): 423 programs, 134 verified, parity 2 145, 58 of 58 tests;
+  - **the manifest:** 7 268 obligations matching (3 524 discharged, 2 807 open, 0 budget, 932 unencoded, 5 checker). `nitpick.obligations` 6 957 → 6 966 rows: 6 831 shared, with zero verdicts moved and no discharged count fallen; 126 re-keyed (an id move in 34 functions of 10 modules) and 9 added, the landing's own new guards (`p_recover_decl`'s 6 `overflow`, `p_parse_module`'s 2 `terminate` and `p_prev_kind`'s 1 `overflow`: 2 discharged, 7 open). With ids blanked, 28 of the 34 are byte-identical, and the other six are the new `p_prev_kind` and the five edited functions, each by its edit's own terms. The floor's 388 unmoved.
+  - **The sums were checked here, by script, with a control. 32 of 32 hold:**
+    - the three deltas recompute; 4 292 − 20 = 4 272; 127 − 20 = 107; 1 888 + 2 173 = 4 061; 389 + 9 = 398;
+    - 3 524 + 2 807 + 932 + 5 = 7 268 and 3 230 + 2 799 + 932 + 5 = 6 966. The old rows are 6 831 + 126 = 6 957, and the new 6 831 + 135, with 135 = 126 + 9;
+    - the 9 added are 6 + 2 + 1, 2 discharged and 7 open. So the rows' discharged go 3 228 + 2 and open 2 792 + 7, the obligations 7 259 + 9 (discharged 3 522 + 2, open 2 800 + 7), and the obligations exceed the rows by 302 still;
+    - 381 + 7 = 388 = 362 + 26; 1 252 + 1 = 1 253 symbols; 28 + 1 + 5 = 34 and 31 + 3 = 34 functions; the 10 modules named, 10 distinct; tests 58 and parity 2 145, as at 129, with no new test file.
+- **The fuzz corpus:** as F72 said, to the site. F72's copy went to `nitpick-fuzz_2` at 08:40, and nothing in the landing differs from it for the corpus, so no second copy goes.
+- **Ours: nothing moves.** At 11:17 each of our seven trees is at F71's census `HEAD` and clean: regex `084187a`, time `1cc801f`, parse `4f83ed3`, sockets `d385991`, tui `e5439ee`, posix `1e9a8b3` and apps `03c24a7`.
+- **Not in the pin** (`c9baa9e`). 130 is information for the round after it.
+- **Next from them: landing 131, DEF-255** (the qualified trait call through a bound and a pointer), with F73 before its harness.
+
+**THE BASELINE NOTICE 131 MUST QUOTE** (notice 130's rows, at `c1e20e8`, generated from the transcription `tools/ladder.py` checked, and self-checked: an all-unchanged notice of the same rows MATCHes it and the control fails):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    9029483eea70ff7e43d96584c1e3c2e29df12d22a08b0ff4b809cdaa8862a65a  32,261,783 B
+npkc.o     97770e279660dada2fe65ab4e6fcf2b63e29c62afc1545fb7c3d66acf356d014  13,264,432 B
+npkc       81e9f90c48008ba8cbb66e408de60b1aa90c5dd4162d4aa87b45c440988b05d7  11,460,728 B
+```
+
 ### 📋 ADVANCE NOTICE F72 FOR LANDING 130 (DEF-245 AND DEF-260, DEF-164'S FAMILY; DEF-260 OUR REGEX PLANNER'S OBSERVATION, RELAYED 2026-10-16; BUILT BY `nitpick-compiler_40`) — **A DECLARATION WHOSE HEADER FAILS IS ONE REPORT, AND A KEYWORD-NAMED FIELD'S RECOVERY SKIPS NOTHING. PARSE-ERROR COUNTS MOVE IN THE FUZZ CORPUS ALONE: 20 PHANTOM REPORTS LEAVE 13 OF ITS PROGRAMS AND ONE FINDING'S PROBE, EACH KEEPING ITS FIRST REPORT, AND EVERY REFUSED PROGRAM STAYS REFUSED. NOTHING THAT PARSES MOVES, AND NO FILE OF OURS MOVES. DEF-265 IS REGISTERED, A STATEMENT-LEVEL ARTEFACT. A COPY GOES TO `nitpick-fuzz_2`. NOT IN OUR PIN, AND NOTHING TO ADOPT.** 2026-10-18 (shell time), from `nitpick-compiler_40` (arrived 08:37:23); filed 2026-10-18 08:39 by `nitpick-libs_21`
 
 - **Until now:**
