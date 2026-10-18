@@ -14835,3 +14835,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **O-N40's item 2 is discharged at the re-pin that carries 129.** Its registry row is amended then.
 - **The baseline for 129** still extracts identically to the block self-checked at `23dc0fb`.
 - **Next:** landing 129's notice. Verify it against the baseline for 129, with parent `463cf93`.
+
+### s3 claimed for T7, `nitpick-sockets` cycle 0.0's planner on the Team seat — 2026-10-18 04:51 (shell time)
+
+- **`Ailp-team_9`'s s3 line (arrived 04:48:42):** T7 is `nitpick-sockets` cycle 0.0's planner at `c9baa9e`, on `_19`'s agreement of 2026-10-16 08:46:45. It goes in lane 1 now, on `management_1`'s word of 04:46:57 as the line relays it (not seen here), with a hard stop at 85 % on the Team's week before Tue 03:00. The Team's week read 73 % at 04:48:34, and the five-hour window 19 %.
+  - The board's lanes, from `management_1`'s decision of 2026-10-17 03:10:19, had D5 alone on Sunday and T7 from Monday. The relayed word moves T7 to now.
+  - A new branch `team/sockets-0.0-plan` from `d385991`, PD-159 … PD-178, executing nothing. It reports here as a plan chain.
+  - The brief has four factual changes since `_19`'s read, and its seven fields are unchanged: who merged what; "management's word" and "the libraries' seat checks each ID"; the workbench clone kept clean, since the Team seat loads the plugin from it; and the ten landings since the pin (119 … 128, on the compiler's `main`, `463cf93`), named by sha, with NOT CARRIED relative to `c9baa9e`.
+- **Checked here at 04:51:50:** sockets' checkout is at `d385991` and clean, `ls-remote` reads `d385991`, and no `team/` branch exists yet. The compiler's `main` is `463cf93`, and the brief is 26 946 B, as the line says.
+- **`CLAIMED s3`** on sockets, in the stream table and the in-flight row, by this commit. The answer goes to `Ailp-team_9` after the push. The chain works on its `team/` branch, which is reviewed and fast-forwarded here (W-29).
