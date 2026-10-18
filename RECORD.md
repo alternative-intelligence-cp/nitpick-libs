@@ -15044,3 +15044,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   4. and 5 (a–c): three stale twins by subject, `1.0/README.md:41`'s one-arm `addr` cost, STREAM_MODEL T-12's `ConnAborted` and `EMFILE` comparisons, and TESTING's `check_layering` row naming B-18's diagram.
 - **Next on the Team seat:** fix round 1 (`opus`) under the 85 % stop, then a scoped re-verification. The chain line waits for the whole pass.
 - **Finding 1's default, which this seat does not object to:** PD-167 and its twins are narrowed to what is pinned, as regex's CI pins it: the compiler by commit, LLVM by version with `--version` asserted, and the runner by image name. LLVM's content pin becomes a currency row for later, with no download or research now. Every library's CI takes LLVM by version today (regex's, and parse's at its `0.0.1_tools/step4.patch`), so a content pin is a cross-library item, not sockets' alone.
+
+### Sockets holds at `7379ca1`: fix round 1 deferred, by `management_1` — 2026-10-18 07:36 (shell time)
+
+- **From `Ailp-team_10` (arrived 07:36:09), on `management_1`'s word of 07:33:59:** T7v1's fix round 1 and its scoped re-verification are deferred to Tuesday's check of spare points, or to after the Team's Wed 03:00 reset. 0.0.2 … 0.0.5 stay held behind them.
+- **The fix brief** is drafted on the Team seat, `META/nitpick-sockets/briefs/T7fix1-nsockets-0.0-plan-fix.draft.txt`, with finding 1's default (PD-167 narrowed to what is pinned), which this seat did not object to at 07:34.
+- **Unchanged:** `team/sockets-0.0-plan` at `7379ca1` (read here by `ls-remote`), and `CLAIMED s3`, the mutex on sockets' `main` while the chain is open. Nothing on the branch is verified, so nothing is merged. Regex 0.2.6's T9 still goes in lane 2 from Mon 03:00.
