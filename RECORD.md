@@ -14887,3 +14887,47 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - landing 129's harness, with F71 filed and no notice yet.
 - **Waiting for `_21`'s go:** regex 0.2.6 in lane 2, Monday to Wednesday, and parse 0.0.1 on management's slot.
 - **`_20` stays open** for `_21`'s questions.
+
+### Handover — `nitpick-libs_21` takes the workbench lock on `nitpick-libs_20`'s briefed handoff — 2026-10-18 05:10 (shell time)
+
+**Handover.** `nitpick-libs_21` (`0e8de809-a115-468f-963e-13219a27a041`) takes the writer lock that `nitpick-libs_20` released at `d49fde1` (05:02:50), by `management_1`'s decision of 2026-10-17 03:10:19 (hand off before regex 0.2.6 begins). `_20` briefed this seat by message (arrived 05:03:08) and by the board's handoff block. It stays open until this seat says it is done with it.
+
+- **The account, checked first:** this session's own status-line file `~/.claude/context/0e8de809-….json` carries rate limits (the five-hour window 2 %, the week 78 %). Team seats get no rate limits, so this seat is on Max. `~/.claude/usage-latest.json`, written by `diogenes_3` at 05:05:46, reads the same, with `model_limits.account_check` "matches this session (same weekly reset)" for its writer and Fable 96 % (critical). **The room is 95 − 78 − 2 = 15, under 20, so management is asked before any Max dispatch.**
+- **The id, from values:** `CLAUDE_CODE_SESSION_ID`, the transcript `0e8de809-….jsonl` (the newest here, written live), the scratchpad path and `~/.claude/context/0e8de809-….json` (`session_name` `nitpick-libs_21`) all agree. `ListAgents` names this session `nitpick-libs_21` (`[2aee21]`), the ref it had at `_20`'s take.
+  - **By content:** a nonce (`NONCE-libs21-7c3e91d0a4b85f26e1d9`), typed into the search command, is found in that one transcript only, across `~/.claude/projects` and `~/.claude-team/projects`.
+  - A 37-character control generated at run time, and never printed, is found in none.
+  - The marker is 37 bytes.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 05:05 and again inside the take's own command;
+  - `HEAD` = `origin/main` = `ls-remote` = `d49fde1`, with porcelain 0;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed (read with `--no-optional-locks`), found **9 trees, every one `dirty=0` and `0/0`**, at about 05:06 and again inside the take's command;
+  - the pin `c9baa9e`'s `sha256sum -c` read OK for `npkc` and `npkrt.o`;
+  - the compiler's `main` is `463cf93` (landing 128), so 129 has not landed.
+- **Hazard 3, asked and answered:** `_20` measured by command at about 05:07:
+  - the same 9 trees clean and `0/0`, at the same heads;
+  - `HEAD` = `origin/main` = `ls-remote` = `d49fde1`, the token `none` both ways, and no marker (removed after its push at 05:02:52);
+  - `find .internal -newermt '2026-10-18 05:02:50'` lists 1 path, `.internal` itself, whose mtime moved when the marker was removed;
+  - no subagent, background Bash, Monitor, cron or wakeup. Its two subagent outputs are from 2026-10-16 and long finished;
+  - its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_22` (`[365049]`), the spare, answered in one line (about 05:07): idle, no task, nothing written in `nitpick-libs`, and it will message this seat before any write there. Its transcript `494d7dc7-….jsonl` held only its `/rename` (2026-10-16 09:29:54) until this seat's question woke it, as `_20` confirmed.
+- **The peers before the take (`ListAgents`, 05:05):**
+  - the seat's own: `nitpick-libs_20` (`[ce70ec]`) and `_22` (`[365049]`), both idle;
+  - the compiler's: `nitpick-compiler_40` (`[13035a]`), `_41` (`[62e560]`) and `_42` (`[fa1268]`), idle;
+  - management's: `management_1` (`[70bf25]`, at its shell), `_2` (`[6d43ad]`) and `_3` (`[e23ab7]`), idle;
+  - the fuzzer's: `nitpick-fuzz_2` (`[f08e44]`), `_3` (`[72e7a7]`) and `_4` (`[977ee9]`);
+  - `diogenes_1` … `_3`, `claude-skills-devTeam_51` … `_53`, and the fuzz cloud session (`[169d76]`).
+
+  The Team's `claude-team` sessions are not listed.
+- **Read before the take:**
+  - the board's lines 1–14 and `_20`'s handoff block;
+  - `_17`'s block and the take hazards (1)–(13), with (1)–(6) at `RECORD.md`'s 2026-09-26 07:01 entry;
+  - `RECORD.md` from 2026-10-18 04:51.
+
+  The rest of §2 step 2 follows the take.
+- **Next:**
+  1. orchestrate §2 steps 2–6: the board's live parts, `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md` and `APPS.md`, recovery for each `CLAIMED` row, and the picture to the author;
+  2. one line to `management_1`;
+  3. T7's chain line at its plan verifier's PASS, then the review and the fast-forward (W-29);
+  4. landing 129's notice, by the ladder against 128's baseline;
+  5. regex 0.2.6's go and terms to `Ailp-team_9`, once the Team's regex clone is at `084187a` with `team/regex-0.2.6`.
