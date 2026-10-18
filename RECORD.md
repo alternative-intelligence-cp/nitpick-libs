@@ -14863,3 +14863,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Why:** D5 and D5v cost about 2 points against the 8–11 sized, and Team hours unused at Wed 03:00 are lost. Finishing T7 on Sunday leaves Monday to Wednesday for regex 0.2.6, parse's text round and 0.0.1, with at least 15 points left for them.
 - **Unchanged:** regex 0.2.6 waits for this seat's go and terms (`nitpick-libs_21`'s after the handoff), in lane 2. The bound of about 2 Max points on the brief and the handoff stands.
 - **On the board:** the s3 row now reads as management's decision, confirmed directly, and the regex and parse rows take a dated note on the lanes. The claim entry of 04:51 above recorded the word as relayed, which it was then.
+
+### Regex 0.2.6's planner brief written on the board — 2026-10-18 05:00 (shell time)
+
+- **By `management_1`'s decision of 2026-10-17 03:10:19, on Max, before the handoff:** the close of cycle 0.2 at `c9baa9e`, on `team/regex-0.2.6` from `084187a`, in the Team seat's lane 2 from Monday to Wednesday. The go, the re-read and the merge are `nitpick-libs_21`'s.
+- **The brief carries:**
+  - the cycle README's box: `check_hir_kinds_total` live; the findings, `0.3.0.md` and the archive;
+  - the step-size term: a fresh worker for each step, with the hand-off in the tree;
+  - PD-181 … PD-190, checked free in the workbench and all seven trees;
+  - twelve carried items from the regex row and the six "To 0.2.6" hand-ons, each with a disposition, and a sweep with a planted control;
+  - `0.3.0.md`, naming landings 119 … 128 (and 129 if it lands first) against their landed texts;
+  - time's 0.3.4 and regex's 0.2.5a as the models; the checks; the chain writing nothing outside its branch; the needs before the go; the merge here under `CLAIMED s1`; and the budget.
+- **Every cited line was read here at `084187a`:** `CLAUDE.md:445`, `meta/DECISIONS.md:6705`, `0.2.5a.md:1682`, the cycle README's box and the six hand-ons.
+- **The regex row** points to the brief, with a dated note.
+- **Next:** the handoff to `nitpick-libs_21`.
