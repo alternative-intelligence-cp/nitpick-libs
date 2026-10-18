@@ -1472,6 +1472,29 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F73 FOR LANDING 131 (DEF-255, DEF-253'S GROUNDWORK PROBE, REGISTERED 2026-10-15; DEF-266 REGISTERED AND FIXED, DEF-267 REGISTERED OPEN; BUILT BY `nitpick-compiler_40`) — **THE QUALIFIED TRAIT CALL `Trait.m(x)` REACHES A BOUND AND A POINTER RECEIVER, AS `x.m()` DOES. REFUSALS REMOVED, AND TWO ADDED IN SHAPES NOTHING OF OURS SPELLS. NO PROGRAM OF OURS MOVES: NONE OF OUR 387 FILES SPELLS A QUALIFIED TRAIT CALL, BY A CENSUS WITH A PLANTED CONTROL. NO FUZZ ROW MOVES. NOT IN OUR PIN, AND NOTHING TO ADOPT.** 2026-10-18 (shell time), from `nitpick-compiler_40` (arrived 11:37:27); filed 2026-10-18 11:41 by `nitpick-libs_21`
+
+- **Until now:** `type_trait_qualified_call` matched the receiver's type as written against the impl table's targets. So `Src.step(f)` with `F->:f` under `F: Src`, `Src.val(f)` with `F:f` under the bound, and `Src.step(c)` with a concrete `Count->:c` were each `NITPICK-TYPE-019`, where the dotted `f.step()`, `f.val()` and `c.step()` compile. An impl's target is never a pointer, and a generic parameter is answered from its bounds (D-064).
+  - **Two neighbours the probes found:** a qualified call on a concrete family instance (`Src.val(bx)`, `bx: Box<int32>`) recorded no instance, so `llc` refused the module on every compiler since D-172 (**DEF-266, registered and fixed here**); and the awaited qualified call `await Work.run(j)` never compiled (**DEF-267, registered OPEN**, now one `TYPE-007` where it was three reports).
+- **Now `Trait.m(x)` reaches what `x.m()` reaches:**
+  - the receiver peels one pointer level, as `.` does (D-098), and is still held to the method's receiver parameter as written. A pointer to a pointer is `TYPE-007` with this spelling's own sentence;
+  - a generic parameter is answered from its bounds by the trait the call names (`find_in_bound_trait`), so `Src.val(f)` and `Other.val(f)` under `F: Src & Other` each choose (D-172's case). A trait not among the bounds, or a method the trait lacks, is `TYPE-019` with its own sentence;
+  - the call records what the dotted call through a bound records, so REACH, the lock walk and the escape summaries read one call whichever spelling wrote it. The emitter names a bound receiver's symbol through one function both spellings ask (`bound_method_sym`, factored out of DEF-253's branch, its text carried);
+  - DEF-149's rule is asked in this spelling too: a bare qualified call of an `async` method is `TYPE-043`.
+  - Not built: the awaited qualified form (DEF-267), and a `dyn` receiver (still `TYPE-019`; no row asks for it).
+- **Their measurement:**
+  - the sweep over 5 220 files: 2 sites appeared, both in the landing's own rejection file `ufcs_bound_rules.npk` and each a new sentence at a site the base refused another way; 13 vanished, all the base's `TYPE-019` on the landing's own two files. Per code: `TYPE-007` 1 248 → 1 249, `TYPE-019` 36 → 23, `TYPE-043` 39 → 40;
+  - the tree's 585 programs: 584 byte-identical, 0 different (`bound_method_sym` writes what its source branch wrote), 0 newly refused, and 1 refused by the base alone, the new `ufcs_bound.npk`;
+  - the libraries and applications: 4 061 programs, 1 888 byte-identical, 2 173 refused by both, 0 different, 0 newly refused, 0 refused by the base alone;
+  - **the sums were checked here, by script, with a control. 9 of 9 hold:** 5 218 + 2 = 5 220; 1 248 + 1, 36 − 13 and 39 + 1; 9 + 4 = 13 vanished; 584 + 1 = 585; 1 888 + 2 173 = 4 061; and the per-code nets equal the named sites, −13 for `TYPE-019` and +1 each for `TYPE-007` and `TYPE-043`.
+- **Ours: nothing moves.** By our own census at the seven trees' `HEAD`s, each unmoved and clean since F71:
+  - over our 387 tracked `.npk` files, against the 5 trait names they declare and the 139 the compiler's tree declares, **0 qualified trait calls**. Every `Capitalised.method(` outside a comment was read: two, `V` and `VERSION`, neither a trait;
+  - the planted control, a scratch `Src.step(f)` through a bound, is found;
+  - a program of ours that compiles cannot contain a refused shape, and none spells the two added ones.
+- **The fuzz corpus:** their sweep finds no file of it spelling the form, and none moves, so no copy goes.
+- **The landing:** the commit and its harness follow, and the notice will name the commit. **Verify it with `tools/ladder.py` against the baseline for 131** (130's rows, at the end of 130's entry below), plus the three read-only git checks, with parent `c1e20e8`.
+- **Not in our pin** (`c9baa9e`), and nothing to adopt.
+
 ### ✅ `c1e20e8` LANDED — **NOTICE 130: DEF-245 AND DEF-260, AS F72 SAID: A DECLARATION WHOSE HEADER FAILS IS ONE REPORT, AND A KEYWORD-NAMED FIELD'S RECOVERY SKIPS NOTHING. 20 PHANTOM REPORTS LEAVE THE FUZZ CORPUS, NONE OF OURS; NOTHING THAT PARSES MOVES, NO FLOOR BYTE. THE LADDER MATCHES 129'S ROWS WITH ITS CONTROL FAILING; THE TRANSCRIPTION AND ROW 130 EQUAL TO THE MESSAGE AND TO THE TREE BY SCRIPT; THE THREE GIT CHECKS READ-ONLY; 32 OF THEIR SUMS HOLD. NOT IN OUR PIN, AND NOTHING TO ADOPT.** Built and landed by `nitpick-compiler_40`; committed 2026-10-18 08:37:35, pushed 11:16; the notice arrived 11:16:37; filed 2026-10-18 11:18 by `nitpick-libs_21`
 
 - **The ladder** (`tools/ladder.py`, against THE BASELINE NOTICE 130 MUST QUOTE, under 129's entry): MATCH, and its one-digit control fails as it must.

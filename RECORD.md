@@ -15092,3 +15092,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 32 of 32 sums;
   - our seven trees unmoved and clean.
 - **The baseline for 131** is generated and self-checked, under the board's entry. No second fuzz copy, since the landing is F72's to the site, and no reply to `nitpick-compiler_40`, since every figure holds.
+
+### Advance notice F73 for landing 131 filed: DEF-255, the qualified trait call through a bound and a pointer; nothing of ours spells it — 2026-10-18 11:41 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 11:37:27):** F73 for landing 131. `Trait.m(x)` reaches a bound and a pointer receiver as `x.m()` does. DEF-266 (a concrete family instance's qualified call recorded no instance) is registered and fixed with it, and DEF-267 (the awaited qualified form) is registered OPEN.
+- **Checked here at 11:40–11:42:** 9 of its sums, by script with a control. Our census over the seven trees' 387 tracked `.npk` files found 0 qualified trait calls, against our 5 trait names and the compiler's 139, with a planted control found. The only `Capitalised.method(` outside comments are `V` and `VERSION`, neither a trait.
+  - A first census walked every directory, untracked ones included, and was stopped after 100 s. The second read `git ls-files`, the right denominator, and ran at once.
+- **Filed on the board** as F73's entry. No fuzz copy, since no fuzz row moves.
+- **Next:** landing 131's notice, by the ladder against the baseline for 131 with parent `c1e20e8`.
