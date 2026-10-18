@@ -14988,3 +14988,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 0.0.2 … 0.0.5 wait for Tuesday's check, when the spare goes to sockets' resume or to Diogenes' next plan on management's word, or for Wed 03:00.
   - The held points are the buffer for regex 0.2.6 and parse. The 85 % stop stays the outer limit.
 - **For this seat at T7v1's verdict:** whether to fast-forward sockets' `main` to the verified 0.0.0 and 0.0.1 during the hold (the README already makes 0.0.2 … 0.0.5 subordinate to 0.0.0's verdicts, and later commits on the branch fast-forward again), and sockets' O-N5 to the registry and the compiler seat once T7v1 has ruled on its two refusals.
+
+### T7b DONE: sockets 0.0.1 planned; T7v1 out; a finding for parse's text round — 2026-10-18 06:52 (shell time)
+
+- **From `Ailp-team_10` (arrived 06:51:31):** T7b is DONE at `7379ca1`, one commit after `84d165d`. Its report is the Team seat's `REPORTS/T7b-sockets-0.0.1-plan.md` (12 042 B, STATUS DONE), skimmed here for anything addressed to this seat; it names none.
+  - 0.0.1 has 9 of 9 blocks SAME, and 0.0.0's 8 were re-run and read SAME. PD-164 … PD-168 are used, and no CI ran.
+  - **O-K4,** a new question of the repository's own, held for cycle 0.2 with a recommendation: `SOCKET_MODEL.md` K-12's builder in `socket` returns `stream`'s `TcpListener` and `TcpStream`, which PD-164's layering table does not let `socket` import.
+- **Checked here at 06:51:** the remote's `team/sockets-0.0-plan` is `7379ca1`, one commit on `84d165d` by the configured identity, 11 files, +2 226/−93, none outside `meta/roadmap/0.0/`.
+- **T7v1,** the plan verifier on 0.0.0 and 0.0.1, went out at 06:50:50. Then 0.0.2 … 0.0.5 hold, by `management_1`'s decision of 05:58.
+- **For parse's text round,** found by T7b and checked by `Ailp-team_10`: parse's 0.0.1 block 4 (`0.0.1.md:326` at `4f83ed3`) counts the workflow's env rows with `^  [A-Z_]+: `.
+  - Read here: the pattern cannot match `NPKC_LL_SHA256`, which has digits, and `0.0.1_tools/step4.patch:40` quotes that row beside `NITPICK_COMMIT`, `NPKC_LL_BYTES` and `LLVM_VERSION`. So the Expect's "quoted: 3" covers 3 of the 4 quoted rows, and an unquoted `NPKC_LL_SHA256` would slip past both counts.
+  - It joins the parse row's list for the next planner round, by a dated note.
