@@ -14844,3 +14844,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The brief has four factual changes since `_19`'s read, and its seven fields are unchanged: who merged what; "management's word" and "the libraries' seat checks each ID"; the workbench clone kept clean, since the Team seat loads the plugin from it; and the ten landings since the pin (119 … 128, on the compiler's `main`, `463cf93`), named by sha, with NOT CARRIED relative to `c9baa9e`.
 - **Checked here at 04:51:50:** sockets' checkout is at `d385991` and clean, `ls-remote` reads `d385991`, and no `team/` branch exists yet. The compiler's `main` is `463cf93`, and the brief is 26 946 B, as the line says.
 - **`CLAIMED s3`** on sockets, in the stream table and the in-flight row, by this commit. The answer goes to `Ailp-team_9` after the push. The chain works on its `team/` branch, which is reviewed and fast-forwarded here (W-29).
+
+### T7 dispatched on the Team seat; two additions sent for its brief — 2026-10-18 04:54 (shell time)
+
+- **From `Ailp-team_9` (arrived 04:53:07):** T7 went out at 04:52:56 (`npk:planner`, `opus`), lane 1, on the claim at `f18bf7d`.
+  - The Team's workbench clone was fast-forwarded to `f18bf7d` first, and its plugin directories are identical to the Workspace copy's.
+  - The filled brief is 27 491 B, and the report goes to the Team seat's `REPORTS/T7-sockets-0.0-plan.md`. This seat's terms are in it.
+  - The note that `management_1`'s word was relayed goes to `management_1` in their dispatch line.
+- **Two additions were sent through `Ailp-team_9` at 04:53:28,** for relay to the planner:
+  - landing 121's `#ptr_add` confinement is D-361's rule on the result (`=>! T->` into a plain slot, else `TYPE-097`), and 128 struck the separate "legal only in `wild` context" sentence. So the plan does not confine `#ptr_add` to wild context on that sentence's account. Time has 19 sites in code by F70's census (20 mentions), and regex 1;
+  - landing 128 (D-341) matters for sockets' buffer surface: the checked `b[i]` and `b[lo...hi]`, `TYPE-082` on a `buffer->`, and the `#wild_slice` belt. The surface is to need neither raw `.ptr[i]` nor a view over `.ptr` held across a write.
+- **Checked before they were sent:** the brief's ten landings 119 … 128 match the compiler's log by sha and decision, all ten.
+- **Next:** T7's report, its plan verifier, and the chain line at PASS. It is reviewed and fast-forwarded here (W-29).
