@@ -14951,3 +14951,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Both are added to the brief as items 13 and 14** by a dated note after its sweep's control, and the regex row takes a dated note.
 - **The Team side, read here at 05:15 and 05:17:** its workbench clone is at `f18bf7d`, with `c9baa9e`'s `SHA256SUMS` identical to this workbench's and `sha256sum -c` OK for both files. Its regex clone's `main` reads `7f5b28a`, its HEAD `0e4e8d7` on `team/regex-0.2.3-plan`, and the remote's branches are `main` (`084187a`) and `team/regex-0.2.3-plan`. So the clone moves to `084187a` with a new `team/regex-0.2.6` before the planner starts.
 - **Next:** the go and terms to `Ailp-team_9` after this push, for lane 2, once that clone is ready; T7's chain line at T7v's PASS; landing 129's notice when it comes.
+
+### Regex 0.2.6's go acknowledged, its precondition met — 2026-10-18 05:21 (shell time)
+
+- **From `Ailp-team_9` (arrived 05:20:41):** the go is noted at 05:18:42, on the brief at `177ff20` as amended at `9967c91`, with items 13 and 14.
+- **Checked here at 05:20:55:** the regex remote's branches are `main` and `team/regex-0.2.6`, both `084187a`, and `team/regex-0.2.3-plan`, `0e4e8d7`. The Team's clone is on `team/regex-0.2.6` at `084187a`, its `main` the same, with `status --porcelain --ignored` empty.
+- **The timing:** T7 reads the Team's workbench clone, so that clone stays at `f18bf7d` until T7 reports. `Ailp-team_9` fast-forwards it to `9967c91` before 0.2.6's planner goes, in lane 2 from Mon 03:00, within `management_1`'s stops.
+- **Lines to this seat:** a heads-up at the plan verifier's PASS, not waited on, and the chain line at the work verifier's PASS, with the tip, CI run and job ids per push, and the report paths.
