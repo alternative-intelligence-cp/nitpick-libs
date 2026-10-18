@@ -14965,7 +14965,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Who holds what:** `_9` keeps T7 until T7 reports. `_10` holds T7v, sockets' chain line to this seat at T7v's PASS, and regex 0.2.6, whose chain is T9, in lane 2 from Mon 03:00 on this seat's go, with the two lines to this seat.
 - **The Team's workbench clone:** after T7 reports and before T7v, `_10` fast-forwards it by name to this workbench's head then, after a fresh compare (`f0da946` at 05:28:15).
 
-### T7 BLOCKED on context after 0.0.0; its continuation T7b out; sockets' O-N5 to carry — 2026-10-18 05:58 (shell time)
+### T7 BLOCKED on context after 0.0.0; its continuation T7b out; sockets' own question N-5 to carry — 2026-10-18 05:58 (shell time)
 
 - **From `Ailp-team_10` (arrived 05:55:44):** T7 came back BLOCKED on context after 0.0.0. Its report is the Team seat's `REPORTS/T7-sockets-0.0-plan.md` (13 303 B, read here in full).
   - The planner ran 04:52:59–05:48:03, about 750 k tokens and 215 tool uses, and stopped at a clean, pushed point at about 735 k.
@@ -14975,7 +14975,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here at 05:57:** the remote's `team/sockets-0.0-plan` is `84d165d`, one commit on `d385991` by the configured identity, 24 files, +5 422/−383, none outside `meta/roadmap/0.0/`. The Team's clone is on the branch at `84d165d`, porcelain 0, and its workbench clone is at `136e27c` (fast-forwarded by name at 05:52:15).
 - **T7b,** the continuation for 0.0.1 alone (a fresh `npk:planner` on `opus`, PD-164 on), went out at 05:55:20 under s3's claim, "unless you object". This seat does not object, since fresh small-context planners fit management's sizing note. 0.0.2 … 0.0.5 follow, one planner each, then T7v and the chain line.
 - **The Team points, to `management_1` at about 05:58:** the chain now needs about five planners more than sized. This seat recommended that T7b finish and that the rest wait for the Team's Wed 03:00 reset, unless the meter has room beside regex 0.2.6, parse's text round and parse 0.0.1 with management's 15 points kept for them. Nothing else waits on sockets 0.0.2 … 0.0.5 this week. The call is management's.
-- **Sockets' O-N5,** the repository's own id (its ED2 note says so): at the pin a program can forward a kernel errno but cannot name it or read its number. `error:EInProgress = 115i32;` is `NITPICK-RESOLVE-010` ("an explicit error code is the prelude's alone"), and `r.err =>! int32` is `NITPICK-TYPE-032`; an error compares only with the prelude's five named errnos or another error.
+- **Sockets' own question N-5,** the repository's own id (its ED2 note says so): at the pin a program can forward a kernel errno but cannot name it or read its number. `error:EInProgress = 115i32;` is `NITPICK-RESOLVE-010` ("an explicit error code is the prelude's alone"), and `r.err =>! int32` is `NITPICK-TYPE-032`; an error compares only with the prelude's five named errnos or another error.
   - `connect` is spelled without naming `EINPROGRESS` (probe 08, 40 runs a leg). The accept loop's `ECONNABORTED` and the `EMFILE`/`ENFILE` rows (cycles 0.3 and 0.8) wait on the compiler.
   - W-27: it blocks those rows of cycles 0.3 and 0.8, and nothing in cycles 0.0 … 0.2.
   - **This seat carries it:** a workbench registry entry and a request to the compiler seat, once T7v rules on the two refusals (its item 5). The compiler seat is stalled at Fable's cap meanwhile.
@@ -14987,13 +14987,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - T7v1 is a plan verifier on 0.0.0 and 0.0.1, asked for at 05:56:58, so that a shared fault is caught before more planners run.
   - 0.0.2 … 0.0.5 wait for Tuesday's check, when the spare goes to sockets' resume or to Diogenes' next plan on management's word, or for Wed 03:00.
   - The held points are the buffer for regex 0.2.6 and parse. The 85 % stop stays the outer limit.
-- **For this seat at T7v1's verdict:** whether to fast-forward sockets' `main` to the verified 0.0.0 and 0.0.1 during the hold (the README already makes 0.0.2 … 0.0.5 subordinate to 0.0.0's verdicts, and later commits on the branch fast-forward again), and sockets' O-N5 to the registry and the compiler seat once T7v1 has ruled on its two refusals.
+- **For this seat at T7v1's verdict:** whether to fast-forward sockets' `main` to the verified 0.0.0 and 0.0.1 during the hold (the README already makes 0.0.2 … 0.0.5 subordinate to 0.0.0's verdicts, and later commits on the branch fast-forward again), and sockets' own question N-5 to the registry and the compiler seat once T7v1 has ruled on its two refusals.
 
 ### T7b DONE: sockets 0.0.1 planned; T7v1 out; a finding for parse's text round — 2026-10-18 06:52 (shell time)
 
 - **From `Ailp-team_10` (arrived 06:51:31):** T7b is DONE at `7379ca1`, one commit after `84d165d`. Its report is the Team seat's `REPORTS/T7b-sockets-0.0.1-plan.md` (12 042 B, STATUS DONE), skimmed here for anything addressed to this seat; it names none.
   - 0.0.1 has 9 of 9 blocks SAME, and 0.0.0's 8 were re-run and read SAME. PD-164 … PD-168 are used, and no CI ran.
-  - **O-K4,** a new question of the repository's own, held for cycle 0.2 with a recommendation: `SOCKET_MODEL.md` K-12's builder in `socket` returns `stream`'s `TcpListener` and `TcpStream`, which PD-164's layering table does not let `socket` import.
+  - **Sockets' own question K-4,** new, held for cycle 0.2 with a recommendation: `SOCKET_MODEL.md` K-12's builder in `socket` returns `stream`'s `TcpListener` and `TcpStream`, which PD-164's layering table does not let `socket` import.
 - **Checked here at 06:51:** the remote's `team/sockets-0.0-plan` is `7379ca1`, one commit on `84d165d` by the configured identity, 11 files, +2 226/−93, none outside `meta/roadmap/0.0/`.
 - **T7v1,** the plan verifier on 0.0.0 and 0.0.1, went out at 06:50:50. Then 0.0.2 … 0.0.5 hold, by `management_1`'s decision of 05:58.
 - **For parse's text round,** found by T7b and checked by `Ailp-team_10`: parse's 0.0.1 block 4 (`0.0.1.md:326` at `4f83ed3`) counts the workflow's env rows with `^  [A-Z_]+: `.
@@ -15028,3 +15028,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`_20`'s forwarding is no longer needed for the compiler seat,** which wrote here directly.
 - **A correction to this seat's entry of 07:27 above:** "Answered at about 07:0x" was a slip; the answer went at 07:26:52.
 - **`management_1` agreed (arrived 07:27:28):** the `bytes_view` items wait for time's re-pin past 128 and then run first in time's round, ahead of non-safety work, with no reserve needed now. The re-pin past 128 goes into next week's plan, set with the author at a quiet point (W-31), and time's round may adopt the newer pin directly. It is correcting the author on "the library's own code", and it will raise the fuzz corpus's `t07_bytes_view_bounds.npk` with fuzz at its next re-pin.
+
+### A correction in form: sockets' own question ids written in words — 2026-10-18 07:33 (shell time)
+
+- **What happened:** this seat's entries of 05:58 and 06:52 (`1f0821a`, `590ef64`) cited sockets' own questions as `O-…` ids. `check_refs` reads every such id as this registry's. So sockets' new K-4 made it report `[undefined-question]` from `590ef64`, and sockets' N-5 resolved silently to the registry's unrelated O-N5 (`npkg` multi-artifact), which misleads a reader. Neither commit ran `check_refs` after staging. The run at `4af4708` showed 3 findings, and that commit went out without the count being read against the 2 known.
+- **The fix, in form only, as `ab2e017` did for the ecosystem audit:** sockets' ids are written as "sockets' own question K-4" and "… N-5", in the board's s3 row and in the record's three entries. `check_refs` is back at the 2 known `[leak]` lines, run after staging.
+- **This seat's discipline, as `_19`'s was:** stage, run `check_refs`, read the count against the 2 known, then commit. The commit is gated on that count.
