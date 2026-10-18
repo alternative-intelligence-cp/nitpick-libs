@@ -15034,3 +15034,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **What happened:** this seat's entries of 05:58 and 06:52 (`1f0821a`, `590ef64`) cited sockets' own questions as `O-…` ids. `check_refs` reads every such id as this registry's. So sockets' new K-4 made it report `[undefined-question]` from `590ef64`, and sockets' N-5 resolved silently to the registry's unrelated O-N5 (`npkg` multi-artifact), which misleads a reader. Neither commit ran `check_refs` after staging. The run at `4af4708` showed 3 findings, and that commit went out without the count being read against the 2 known.
 - **The fix, in form only, as `ab2e017` did for the ecosystem audit:** sockets' ids are written as "sockets' own question K-4" and "… N-5", in the board's s3 row and in the record's three entries. `check_refs` is back at the 2 known `[leak]` lines, run after staging.
 - **This seat's discipline, as `_19`'s was:** stage, run `check_refs`, read the count against the 2 known, then commit. The commit is gated on that count.
+
+### T7v1 FAILED on text; fix round 1 next, finding 1's default not objected to — 2026-10-18 07:34 (shell time)
+
+- **From `Ailp-team_10` (arrived 07:33:26):** T7v1 FAILED on sockets 0.0.0 and 0.0.1 at `7379ca1`. All 17 blocks read SAME and every probe holds; the findings are text. Its report is the Team seat's `REPORTS/T7v1-sockets-0.0.0-0.0.1-verify-plan.md`.
+  1. PD-167's "every input pinned by content" is false: LLVM comes by version, asserted only by `--version`. Its claim that actions are the only inputs workflows do not pin by content is false of regex's `ci.yml:199–215` too;
+  2. PD-161's "SL-6's eight sites" are 9 places and 11 lines;
+  3. PD-159's reversal clause misdescribes probe 04;
+  4. and 5 (a–c): three stale twins by subject, `1.0/README.md:41`'s one-arm `addr` cost, STREAM_MODEL T-12's `ConnAborted` and `EMFILE` comparisons, and TESTING's `check_layering` row naming B-18's diagram.
+- **Next on the Team seat:** fix round 1 (`opus`) under the 85 % stop, then a scoped re-verification. The chain line waits for the whole pass.
+- **Finding 1's default, which this seat does not object to:** PD-167 and its twins are narrowed to what is pinned, as regex's CI pins it: the compiler by commit, LLVM by version with `--version` asserted, and the runner by image name. LLVM's content pin becomes a currency row for later, with no download or research now. Every library's CI takes LLVM by version today (regex's, and parse's at its `0.0.1_tools/step4.patch`), so a content pin is a cross-library item, not sockets' alone.
