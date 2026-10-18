@@ -15064,3 +15064,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Then a scoped plan verifier, 0.0.1's work in steps sized for a fresh worker, and its work verifier, with CI read per job at each push.
   - Lines to this seat: a heads-up at the scoped plan verifier's PASS, not waited on, and the chain line at the work verifier's PASS.
   - `CLAIMED s2` is taken for parse when the chain starts. The PLAYBOOK items and the skill's finding stay this workbench's (W-16).
+
+### Parse's slot is after regex 0.2.6's chain; sockets after Wed 03:00, by `management_1` — 2026-10-18 07:53 (shell time)
+
+- **From `management_1` (arrived 07:53:03):** from Mon 03:00, regex 0.2.6's chain (T9 on, on this seat's go) runs first, to its end. Parse's text round, its scoped verifier, 0.0.1's work and its verifier (this seat's go of 07:49:06) follow with what remains. They stop at a clean, pushed point at 97 % before Wed 03:00, and anything left resumes after the reset.
+- **Why:** the Team's measured sizes, 0.2.6 about 8–15 points (plus 3–8 if it fails once) and parse about 7–15, together exceed the ~15 left. One finished chain beats two half-finished ones, and serial work keeps the one harness lock uncontended.
+- **Moved to after Wed 03:00:** sockets' fix round with its re-verification, and Diogenes' next plan.
+- **This seat's Max:** about 1 point for the notice checks and 0.2.6's merge, as before.
+- **On the board:** the parse and sockets rows take dated notes.
