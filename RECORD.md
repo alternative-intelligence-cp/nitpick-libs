@@ -14980,3 +14980,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - W-27: it blocks those rows of cycles 0.3 and 0.8, and nothing in cycles 0.0 … 0.2.
   - **This seat carries it:** a workbench registry entry and a request to the compiler seat, once T7v rules on the two refusals (its item 5). The compiler seat is stalled at Fable's cap meanwhile.
 - **For T7v, from the report:** eight points to rule on, among them T7's read-only `cd`s outside its repository and its `git clone --shared` stand-in, both disclosed as slips.
+
+### Sockets holds after T7b and T7v1, by `management_1` — 2026-10-18 05:58 (shell time)
+
+- **From `management_1` (arrived 05:58:14):** this seat's recommendation is adopted, and `Ailp-team_10` has the change.
+  - T7v1 is a plan verifier on 0.0.0 and 0.0.1, asked for at 05:56:58, so that a shared fault is caught before more planners run.
+  - 0.0.2 … 0.0.5 wait for Tuesday's check, when the spare goes to sockets' resume or to Diogenes' next plan on management's word, or for Wed 03:00.
+  - The held points are the buffer for regex 0.2.6 and parse. The 85 % stop stays the outer limit.
+- **For this seat at T7v1's verdict:** whether to fast-forward sockets' `main` to the verified 0.0.0 and 0.0.1 during the hold (the README already makes 0.0.2 … 0.0.5 subordinate to 0.0.0's verdicts, and later commits on the branch fast-forward again), and sockets' O-N5 to the registry and the compiler seat once T7v1 has ruled on its two refusals.
