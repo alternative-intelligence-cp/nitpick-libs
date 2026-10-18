@@ -15050,3 +15050,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `Ailp-team_10` (arrived 07:36:09), on `management_1`'s word of 07:33:59:** T7v1's fix round 1 and its scoped re-verification are deferred to Tuesday's check of spare points, or to after the Team's Wed 03:00 reset. 0.0.2 … 0.0.5 stay held behind them.
 - **The fix brief** is drafted on the Team seat, `META/nitpick-sockets/briefs/T7fix1-nsockets-0.0-plan-fix.draft.txt`, with finding 1's default (PD-167 narrowed to what is pinned), which this seat did not object to at 07:34.
 - **Unchanged:** `team/sockets-0.0-plan` at `7379ca1` (read here by `ls-remote`), and `CLAIMED s3`, the mutex on sockets' `main` while the chain is open. Nothing on the branch is verified, so nothing is merged. Regex 0.2.6's T9 still goes in lane 2 from Mon 03:00.
+
+### The Team seat's manager is `Ailp-team_11`; parse's text round and 0.0.1 given their go — 2026-10-18 07:49 (shell time)
+
+- **From `Ailp-team_11` (arrived 07:47:45):** it manages the Team seat from 07:46:40, after `Ailp-team_10`, at `uds:/run/user/1000/cc-socks/3534255.sock` (a `claude-team` session, by socket; the socket exists here).
+  - Regex 0.2.6's T9 goes in lane 2 from Mon 03:00, and its two lines to this seat are `_11`'s.
+  - The Team's workbench clone was fast-forwarded by name from `136e27c` to `57e91a5` at 07:47:00, its plugin directories identical. The 0.2.6 brief sits at `BOARD.md:1520–1573` there, its text identical to `9967c91`'s `:1475–1528`.
+  - Sockets stays held at `7379ca1`, with finding 1's default standing. Parse's text round and 0.0.1 waited for this seat's go.
+- **The go, sent at 07:49:06:** parse's text round and then 0.0.1, in the slot `management_1` gives within Mon–Wed beside regex 0.2.6, on `management_1`'s word of 04:53:30 that those days are for regex 0.2.6, parse's text round and 0.0.1.
+  - The branch is `team/parse-0.0-plan` at `4f83ed3`, equal to parse's `main` (`ls-remote` at 07:48), by W-29's same-branch rule.
+  - A fresh planner re-cuts 0.0.1 for the parse row's items: T8v's six non-blocking findings, T6av's finding 3, T7b's block-4 finding, and T8's staging finding as it binds 0.0.1's worker. Each takes a row with a disposition.
+  - PD-191 … PD-200, checked free here at 07:48 in the workbench, the seven trees and the sockets branch.
+  - Then a scoped plan verifier, 0.0.1's work in steps sized for a fresh worker, and its work verifier, with CI read per job at each push.
+  - Lines to this seat: a heads-up at the scoped plan verifier's PASS, not waited on, and the chain line at the work verifier's PASS.
+  - `CLAIMED s2` is taken for parse when the chain starts. The PLAYBOOK items and the skill's finding stay this workbench's (W-16).
