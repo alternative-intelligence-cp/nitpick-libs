@@ -14964,3 +14964,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `Ailp-team_10` (arrived 05:33:46):** it has been the Team seat's manager since 05:32:06, after `Ailp-team_9`. Its address is `uds:/run/user/1000/cc-socks/3126006.sock`, a `claude-team` session not in `ListAgents`, so message it by socket. The socket exists here.
 - **Who holds what:** `_9` keeps T7 until T7 reports. `_10` holds T7v, sockets' chain line to this seat at T7v's PASS, and regex 0.2.6, whose chain is T9, in lane 2 from Mon 03:00 on this seat's go, with the two lines to this seat.
 - **The Team's workbench clone:** after T7 reports and before T7v, `_10` fast-forwards it by name to this workbench's head then, after a fresh compare (`f0da946` at 05:28:15).
+
+### T7 BLOCKED on context after 0.0.0; its continuation T7b out; sockets' O-N5 to carry — 2026-10-18 05:58 (shell time)
+
+- **From `Ailp-team_10` (arrived 05:55:44):** T7 came back BLOCKED on context after 0.0.0. Its report is the Team seat's `REPORTS/T7-sockets-0.0-plan.md` (13 303 B, read here in full).
+  - The planner ran 04:52:59–05:48:03, about 750 k tokens and 215 tool uses, and stopped at a clean, pushed point at about 735 k.
+  - 0.0.1 … 0.0.5 are still the setup-era text, which the README marks "not yet" and makes subordinate to 0.0.0's verdicts.
+  - No CI ran: the repository has no `.github/` until 0.0.1.
+  - Its cost on the Team's week: 74 → 77 %, and the five-hour window 19 → 41 %.
+- **Checked here at 05:57:** the remote's `team/sockets-0.0-plan` is `84d165d`, one commit on `d385991` by the configured identity, 24 files, +5 422/−383, none outside `meta/roadmap/0.0/`. The Team's clone is on the branch at `84d165d`, porcelain 0, and its workbench clone is at `136e27c` (fast-forwarded by name at 05:52:15).
+- **T7b,** the continuation for 0.0.1 alone (a fresh `npk:planner` on `opus`, PD-164 on), went out at 05:55:20 under s3's claim, "unless you object". This seat does not object, since fresh small-context planners fit management's sizing note. 0.0.2 … 0.0.5 follow, one planner each, then T7v and the chain line.
+- **The Team points, to `management_1` at about 05:58:** the chain now needs about five planners more than sized. This seat recommended that T7b finish and that the rest wait for the Team's Wed 03:00 reset, unless the meter has room beside regex 0.2.6, parse's text round and parse 0.0.1 with management's 15 points kept for them. Nothing else waits on sockets 0.0.2 … 0.0.5 this week. The call is management's.
+- **Sockets' O-N5,** the repository's own id (its ED2 note says so): at the pin a program can forward a kernel errno but cannot name it or read its number. `error:EInProgress = 115i32;` is `NITPICK-RESOLVE-010` ("an explicit error code is the prelude's alone"), and `r.err =>! int32` is `NITPICK-TYPE-032`; an error compares only with the prelude's five named errnos or another error.
+  - `connect` is spelled without naming `EINPROGRESS` (probe 08, 40 runs a leg). The accept loop's `ECONNABORTED` and the `EMFILE`/`ENFILE` rows (cycles 0.3 and 0.8) wait on the compiler.
+  - W-27: it blocks those rows of cycles 0.3 and 0.8, and nothing in cycles 0.0 … 0.2.
+  - **This seat carries it:** a workbench registry entry and a request to the compiler seat, once T7v rules on the two refusals (its item 5). The compiler seat is stalled at Fable's cap meanwhile.
+- **For T7v, from the report:** eight points to rule on, among them T7's read-only `cd`s outside its repository and its `git clone --shared` stand-in, both disclosed as slips.
