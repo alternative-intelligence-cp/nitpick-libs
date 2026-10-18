@@ -14958,3 +14958,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here at 05:20:55:** the regex remote's branches are `main` and `team/regex-0.2.6`, both `084187a`, and `team/regex-0.2.3-plan`, `0e4e8d7`. The Team's clone is on `team/regex-0.2.6` at `084187a`, its `main` the same, with `status --porcelain --ignored` empty.
 - **The timing:** T7 reads the Team's workbench clone, so that clone stays at `f18bf7d` until T7 reports. `Ailp-team_9` fast-forwards it to `9967c91` before 0.2.6's planner goes, in lane 2 from Mon 03:00, within `management_1`'s stops.
 - **Lines to this seat:** a heads-up at the plan verifier's PASS, not waited on, and the chain line at the work verifier's PASS, with the tip, CI run and job ids per push, and the report paths.
+
+### The Team seat's manager is `Ailp-team_10` — 2026-10-18 05:34 (shell time)
+
+- **From `Ailp-team_10` (arrived 05:33:46):** it has been the Team seat's manager since 05:32:06, after `Ailp-team_9`. Its address is `uds:/run/user/1000/cc-socks/3126006.sock`, a `claude-team` session not in `ListAgents`, so message it by socket. The socket exists here.
+- **Who holds what:** `_9` keeps T7 until T7 reports. `_10` holds T7v, sockets' chain line to this seat at T7v's PASS, and regex 0.2.6, whose chain is T9, in lane 2 from Mon 03:00 on this seat's go, with the two lines to this seat.
+- **The Team's workbench clone:** after T7 reports and before T7v, `_10` fast-forwards it by name to this workbench's head then, after a fresh compare (`f0da946` at 05:28:15).
