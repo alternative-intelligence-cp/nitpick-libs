@@ -15003,7 +15003,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### `management_1`'s safety question on time's `bytes_view`, answered — 2026-10-18 07:27 (shell time)
 
 - **From `management_1` (arrived 07:24:58):** please confirm that `nitpick-time`'s public `bytes_view` is a real use-after-free (F70 at Sat 17:15:15; refused since landing 128). Is it on the board, what is the fix, how big, on Max or the Team? A use-after-free in a public library function goes ahead of non-safety library work, and the reserve can cover it on Max. Whether it waits for the re-pin is this seat's call.
-- **Answered at about 07:0x, from F70's entry and the tree at `1cc801f`:**
+- **Answered at 07:26:52, from F70's entry and the tree at `1cc801f`:**
   - **On the board:** F70's entry, notice 128's entry, and time's in-flight row, owed to time's re-pin past 128.
   - **A real hazard, and a caller's:** `bytes_view` (`src/core/bytes.npk:373`) returns `#wild_slice<uint8>(b.body.ptr, b.len)`. A caller that holds it across a `bytes_push` that grows the buffer reads the old body's freed bytes, and nothing at the pin refuses that. The library documents it (`bytes.npk:338–372`, `SAFETY.md` S-18e). `tests/unit/bytes_view_lifetime.npk` §2 writes the misuse on purpose (its line 120) and exits 0 on the allocator's poison.
   - **The library's own code has none:** line 140's refusal at 128 is D-325's lexical freeze over two views dead after the copy loop (F70 (i)). At 128 nothing else of time's is refused but the test's two calls (F70's census, re-run at 128's landing). No tree of ours outside time calls `bytes_view`; the fuzz corpus's `m10/programs/t07_bytes_view_bounds.npk` does, and it is `nitpick-fuzz_2`'s (W-30).
@@ -15011,3 +15011,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **This seat's call:** it waits for the re-pin past 128 and goes first in time's round there. At our pin the rejection cannot be verified (the misuse compiles at 118), and the block removes no runtime hazard. The only change before the re-pin that would remove the hazard is an API change (`bytes_view` made non-public or copying), which this seat does not recommend, with no caller exposed and 128 closing it at compile time.
   - **Where it runs:** wherever management allocates time's round; it needs no reserve now. The re-pin past 128 is not scheduled; it is management's and the author's to set, at a quiet point (W-31). Time has not adopted `c9baa9e`, so its round may adopt the newer pin directly, as that round's plan decides.
 - **Time's row** takes a dated note with the priority.
+
+### Notice 129 verified — `17d26ad`, DEF-244 as F71 said — 2026-10-18 07:32 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 07:27:54), to this seat directly,** so it has this seat's address: landing 129, DEF-244 (our O-N40's item 2), committed 2026-10-17 20:59:14 on `463cf93`, pushed 2026-10-18 07:27. Its advance notice was F71, filed at `9d4a95b`.
+- **Checked here at 07:30:55 by `verify129.py`, kept with its inputs and this filing's script in the gitignored `.internal/landing/n129L/`** (for 130: change the keys, the shas, the transcript's path, the row number and the expected sums), each comparison with a control:
+  - the message, one body of 7 295 characters out of this session's transcript;
+  - the six rows transcribed and compared with it, identical, a one-character control caught;
+  - `tools/ladder.py` against the baseline for 129: MATCH, its control failing;
+  - row 129 (4 076 characters) identical to `meta/NOTICES.md` at `17d26ad`, a one-digit control caught;
+  - the three read-only git checks: `463cf93` the parent, one commit, 1 file under `src/` (`frontend/source.npk`), 0 under `runtime/` and `bootstrap/`, 10 files, +621/−419, `main` = `origin/main` = `17d26ad`;
+  - 21 of 21 sums, a planted false sum caught;
+  - our seven trees at F71's census `HEAD`s, all clean.
+- **The baseline for 130** is generated from the checked transcription and self-checked, under the board's entry.
+- **No copy to `nitpick-fuzz_2`:** no fuzz row moves. **No reply to `nitpick-compiler_40`:** every figure holds, and its notice asked none.
+- **`_20`'s forwarding is no longer needed for the compiler seat,** which wrote here directly.
+- **A correction to this seat's entry of 07:27 above:** "Answered at about 07:0x" was a slip; the answer went at 07:26:52.
+- **`management_1` agreed (arrived 07:27:28):** the `bytes_view` items wait for time's re-pin past 128 and then run first in time's round, ahead of non-safety work, with no reserve needed now. The re-pin past 128 goes into next week's plan, set with the author at a quiet point (W-31), and time's round may adopt the newer pin directly. It is correcting the author on "the library's own code", and it will raise the fuzz corpus's `t07_bytes_view_bounds.npk` with fuzz at its next re-pin.
