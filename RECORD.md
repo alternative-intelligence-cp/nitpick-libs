@@ -15072,3 +15072,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Moved to after Wed 03:00:** sockets' fix round with its re-verification, and Diogenes' next plan.
 - **This seat's Max:** about 1 point for the notice checks and 0.2.6's merge, as before.
 - **On the board:** the parse and sockets rows take dated notes.
+
+### Advance notice F72 for landing 130 filed: DEF-245 and DEF-260, parse-error counts in the fuzz corpus alone; nothing of ours moves — 2026-10-18 08:39 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 08:37:23):** F72, the advance notice for landing 130. A declaration whose header fails is one report (DEF-245), and a keyword-named field's recovery skips nothing (DEF-260, our regex planner's observation relayed on 2026-10-16). It registers DEF-265 (OPEN), a statement-level artefact found on `tr0550`.
+- **Checked here at 08:38:** the notice's 9 sums by script, with a control. Every file it names lives in `nitpick-fuzz` alone, one each. Our seven trees are unmoved and clean. Nothing of ours moves, since the success path is untouched and their sweep names no site of ours.
+- **Filed on the board** as F72's entry. A copy goes to `nitpick-fuzz_2` after this push.
+- **Next:** landing 130's notice, verified by the ladder against the baseline for 130 with parent `17d26ad`.
