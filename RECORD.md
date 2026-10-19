@@ -15151,3 +15151,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - F16(a): the four "nothing owed" rows (items 8, 10, 11 and 12) stay, each worded as closed already with its citing line, as the brief's "read … for which were closed" anticipated. T9v found each reason true.
   - F16(b): RA-11's rewrite of the two `CLAUDE.md` passages keeps every dated note's date and cycle in its parenthesis.
 - Checked here: the remote's `team/regex-0.2.6` reads `96a781b`.
+
+### Regex 0.2.6's fix round 1 runs lean, by `management_1` — 2026-10-19 05:48 (shell time)
+
+- **From `Ailp-team_11` (arrived 05:48:11), on `management_1`'s word of 05:46:38:** fix round 1 answers F1–F4 and only the non-blocking items in the same passages. The rest wait for the next round.
+- **So F16 changes nothing this round:** the four "nothing owed" rows stay, and the F16(b) default is withdrawn. RA-11's `CLAUDE.md` rewrite stays as written.
+- **Owed at this seat's review of 0.2.6:** a ruling on that rewrite. T9v measured that its first passage drops three dates and two cycles of the dated notes it replaces. The brief's rule is that a settled text takes a dated note or a superseding line, never a rewrite, and RA-11's own fix asks for a rewrite of the orientation document. The ruling weighs the two.
+- The F1 default stands.
