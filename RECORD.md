@@ -15211,3 +15211,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-compiler_40` (arrived 11:51:13):** landing 135 on `a73b68d`, pushed 11:48. Checked at 11:52 by `verify135.py` (`.internal/landing/n135L/`), in the lean form: the transcription, the ladder, row 135 against the tree, the git checks (1 commit, 5 `src/` files, 0 `runtime/` or `bootstrap/`), 28 of 28 sums, our trees unmoved. Each comparison has a control.
 - **Row 134's correction,** compared by script between `a73b68d` and `0280fc9`: the claim is gone, the clause survives only quoted in its dated note, and the commit cell is filled. The baseline for 136 is self-checked.
 - **Next:** F78 for landing 136, which touches keyword names. It gets a census of ours.
+
+### Advance notice F78 for landing 136 filed, in the lean form: keywords as parameter and local names, and modifiers before `func:` alone; nothing of ours moves — 2026-10-19 12:09 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 12:07:53):** F78, covering DEF-258 and DEF-259 (ours, from regex 0.2.5a's planning) and DEF-261.
+- **Checked here at 12:08:** 9 of its sums with a control. Our census finds 0 modifiers before a non-function declaration in 387 tracked files, with planted controls. Their sweep finds none of our programs newly refused, which covers the keyword-name shapes. Our trees are unmoved.
+- **For regex 0.2.6's review:** F3's keyword hand-on is read against 136.
+- **A copy to `nitpick-fuzz_2`:** six files' sentences move from the type to the name.
