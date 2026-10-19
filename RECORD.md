@@ -15114,3 +15114,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here at 14:38:** 6 of its sums by script with a control. Our census over 387 tracked `.npk` files finds 0 consuming arms whose binding is moved and then assigned again, with a planted control found. The three files naming `MOVE-001` (time's `vec.npk` and probes 12 and 12b) concern a set's overwrite. Our seven trees are unmoved and clean.
 - **The fuzz side moves:** F-049's two reproducers compile and answer 22. A copy goes to `nitpick-fuzz_2` after this push.
 - **Next:** landing 132's notice, by the ladder against the baseline for 132 with parent `b1a23b8`.
+
+### Notice 132 verified — `6f0f518`, DEF-256 as F74 said — 2026-10-19 02:14 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 2026-10-19 02:12:59):** landing 132, committed 2026-10-18 14:38:21 on `b1a23b8`, pushed 2026-10-19 02:12. Its advance notice was F74, filed at `1e44af5`.
+- **Checked here at 02:13 by `verify132.py`,** kept with its inputs in `.internal/landing/n132L/`: the transcription identical; the ladder MATCH; row 132 identical to `meta/NOTICES.md` at `6f0f518`; the git checks (`b1a23b8` the parent, one commit, 1 file under `src/`, 0 under `runtime/` and `bootstrap/`, 13 files, +518/−189); 26 of 26 sums; our seven trees unmoved and clean. Each comparison has a control.
+- **One figure read, not derived:** parity +9 where two verdicts for each new file would give 8. Nothing of ours rests on it, so it is not raised.
+- **The baseline for 133** is generated and self-checked. No second fuzz copy and no reply.
+- **Next:** F75 for landing 133, which strikes the pipe operators `|>` and `<|` (S-139). It needs a census of our files for the two spellings.
