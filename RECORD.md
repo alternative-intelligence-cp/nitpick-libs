@@ -15162,3 +15162,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Notice 133 verified — `c230073`, DEF-257 and D-362 as F75 said — 2026-10-19 05:59 (shell time)
 
 - **From `nitpick-compiler_40` (arrived 05:58:28):** landing 133 on `6f0f518`, pushed 05:57. Checked at 05:59 by `verify133.py` (`.internal/landing/n133L/`), in the lean form: the transcription, the ladder, row 133 against the tree, the git checks (1 commit, 3 `src/` files, 0 `runtime/` or `bootstrap/`), 24 of 24 sums, and our trees unmoved. Each comparison has a control. The baseline for 134 is self-checked. No fuzz copy (F75's went), and no reply.
+
+### Advance notice F76 for landing 134 filed, in the lean form: a pick's value pattern is a constant of the selector's type; nothing of ours moves — 2026-10-19 06:16 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 06:15:55):** F76, covering DEF-178 and DEF-187: silent wrong answers at a `pick`'s value patterns closed, a float selector refused, named constants now cases.
+- **Checked here:** 11 of its sums with a control. Our trees are unmoved. Their sweep compiles every file of ours under both compilers and finds none newly refused and none different, which a wrong-typed pattern of ours would have shown. No fuzz row moves.
