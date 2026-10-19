@@ -1472,6 +1472,25 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `19d674b` LANDED — **NOTICE 136: DEF-258, DEF-259 AND DEF-261, AS F78 SAID: A KEYWORD IS NEVER A PARAMETER'S NAME, A LOCAL `T:keyword` IS `PARSE-001` AT THE NAME, AND A FUNCTION MODIFIER STANDS BEFORE `func:` ALONE. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 136 EQUAL, GIT CHECKS READ-ONLY, 29 SUMS HOLD. NOT IN OUR PIN.** Committed 2026-10-19 12:08:07, pushed 14:48, by `nitpick-compiler_40`; the notice arrived 14:48:48; filed 14:50 by `nitpick-libs_21`, in the lean form
+
+- **Ladder** (against the baseline for 136): MATCH, its control failing. `npkc.ll` +9 684 B, `npkc.o` +2 952 B, `npkc` +2 472 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 8 832 characters) and **row 136** (5 344 characters, against `meta/NOTICES.md` at `19d674b`) identical by script, each control caught; F78's row in the same file.
+- **Git checks,** read-only: parent `0280fc9`, one commit, 14 seconds after F78 arrived; 2 files under `src/`, 0 under `runtime/` and `bootstrap/`; 9 files, +310/−130; `main` = `origin/main` = `19d674b`. F78's two corrections of their landed text (a `CLAUDE.md` gotcha, `OPEN_DECISIONS.md`'s DEF-180 row) are said to be in it, and are theirs.
+- **Their measurement, as F78 said:** sweep 4 298 → 4 298 (6 appeared and 6 vanished, the six fuzz locals' sentences moved to the name); 589 programs byte-identical; libraries 1 885 / 2 176 / 0 / 0 / 0; manifest 7 277 obligations (+2, the new reads' guards, both open), 6 975 rows (6 860 shared, 113 re-keyed, 2 added); floor 388; harness 428 programs, 60 tests, parity 2 168; by hand 402. **29 of 29 sums hold here, with a control.**
+- **Fuzz:** as F78 said; its copy went at 12:09, so no second one. **Ours:** our seven trees at F71's `HEAD`s and clean at 14:49; F78's census stands. **For regex 0.2.6's review:** F3's keyword hand-on is read against this landing.
+- **Next from them:** landing 137, DEF-267 (the awaited and the spawned qualified call reach, as `await x.m()` and `drop x.m()` do), with F79 first.
+
+**THE BASELINE NOTICE 137 MUST QUOTE** (notice 136's rows, at `19d674b`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    8b48ee0bfd8eed1a4f157f1d3671ccf8586c02a52d814534db303988d51c1b7b  32,422,502 B
+npkc.o     510ec4155d0b4abde2f69d10b7f85fe987fd75dd7de5b04f97e63df0b507005f  13,338,776 B
+npkc       68bab6e996f7f0fa681ae8f319e0c85ea81ec55896478c65042efe5535fc1a51  11,527,392 B
+```
+
 ### 📋 ADVANCE NOTICE F78 FOR LANDING 136 (DEF-258 AND DEF-259, OUR OBSERVATIONS FROM REGEX 0.2.5a'S PLANNING, REGISTERED AT LANDING 120; DEF-261, LANDING 122'S MODIFIER ROW; BUILT BY `nitpick-compiler_40`) — **A KEYWORD IS NEVER A PARAMETER'S NAME, A LOCAL `T:keyword` IS `PARSE-001` AT THE NAME, AND A FUNCTION MODIFIER STANDS BEFORE `func:` ALONE. NOTHING OF OURS MOVES: THEIR SWEEP FINDS NONE OF OUR PROGRAMS NEWLY REFUSED, AND OUR CENSUS FINDS NO MODIFIER BEFORE A NON-FUNCTION DECLARATION. SIX FUZZ FILES' SENTENCES MOVE FROM THE TYPE TO THE NAME, SO A COPY GOES TO `nitpick-fuzz_2`. NOT IN OUR PIN.** 2026-10-19 (shell time), from `nitpick-compiler_40` (arrived 12:07:53); filed 12:09 by `nitpick-libs_21`, in the lean form
 
 - **The change:**
