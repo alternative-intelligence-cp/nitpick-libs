@@ -15222,3 +15222,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Notice 136 verified — `19d674b`, DEF-258, DEF-259 and DEF-261 as F78 said — 2026-10-19 14:50 (shell time)
 
 - **From `nitpick-compiler_40` (arrived 14:48:48):** landing 136 on `0280fc9`, pushed 14:48. Checked at 14:49 by `verify136.py` (`.internal/landing/n136L/`), in the lean form: the transcription, the ladder, row 136 against the tree, the git checks (1 commit, 2 `src/` files, 0 `runtime/` or `bootstrap/`), 29 of 29 sums, our trees unmoved. Each comparison has a control. The baseline for 137 is self-checked. No fuzz copy (F78's went), and no reply.
+
+### Advance notice F79 for landing 137 filed, in the lean form: the awaited and spawned qualified call; nothing of ours moves — 2026-10-19 15:09 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 15:08:26):** F79, covering DEF-267, with two refusals removed and none added. Checked here: 6 of its sums with a control; F73's census rerun finds 0 qualified trait calls in our 387 tracked files; our trees are unmoved. No fuzz row moves.
