@@ -15226,3 +15226,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 ### Advance notice F79 for landing 137 filed, in the lean form: the awaited and spawned qualified call; nothing of ours moves — 2026-10-19 15:09 (shell time)
 
 - **From `nitpick-compiler_40` (arrived 15:08:26):** F79, covering DEF-267, with two refusals removed and none added. Checked here: 6 of its sums with a control; F73's census rerun finds 0 qualified trait calls in our 387 tracked files; our trees are unmoved. No fuzz row moves.
+
+### Notice 137 verified — `c72639f`, DEF-267 as F79 said; DEF-265 held — 2026-10-19 17:45 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 17:44:28):** landing 137 on `19d674b`, pushed 17:43. Checked at 17:45 by `verify137.py` (`.internal/landing/n137L/`), in the lean form: the transcription, the ladder, row 137 against the tree, the git checks (1 commit, 3 `src/` files, 0 `runtime/` or `bootstrap/`), 22 of 22 sums, our trees unmoved. Each comparison has a control. The baseline for 138 is self-checked.
+- **DEF-265 is held** until an older recovery defect it exposed is fixed. Five fuzz programs would gain a false `PARSE-003`. Its advance notice comes first.

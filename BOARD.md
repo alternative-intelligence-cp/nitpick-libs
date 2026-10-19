@@ -1472,6 +1472,25 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c72639f` LANDED — **NOTICE 137: DEF-267, AS F79 SAID: THE AWAITED AND THE SPAWNED QUALIFIED CALL REACH. TWO REFUSALS REMOVED, NONE ADDED; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 137 EQUAL, GIT CHECKS READ-ONLY, 22 SUMS HOLD. NOT IN OUR PIN.** Committed 2026-10-19 15:08:30, pushed 17:43, by `nitpick-compiler_40`; the notice arrived 17:44:28; filed 17:45 by `nitpick-libs_21`, in the lean form
+
+- **Ladder** (against the baseline for 137): MATCH, its control failing. `npkc.ll` +1 910 B, `npkc.o` +728 B, `npkc` +608 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 7 756 characters) and **row 137** (4 036 characters, against `meta/NOTICES.md` at `c72639f`) identical by script, each control caught; F79's row in the same file.
+- **Git checks,** read-only: parent `19d674b`, one commit, 4 seconds after F79 arrived; 3 files under `src/`, 0 under `runtime/` and `bootstrap/`; 12 files, +239/−119; `main` = `origin/main` = `c72639f`.
+- **Their measurement, as F79 said:** sweep 4 303 → 4 298 (0 appeared, 5 vanished at the new `ufcs_await.npk`); 590 programs, 589 byte-identical and 1 refused by the base alone; libraries 1 885 / 2 176 / 0 / 0 / 0; manifest 7 277 unmoved, 6 975 rows (6 865 shared, 110 re-keyed in 26 functions of 6 modules); floor 388; harness 429 programs, 60 tests, parity 2 170; by hand 403. **22 of 22 sums hold here, with a control.**
+- **Ours:** our seven trees at F71's `HEAD`s and clean at 17:45; F79's census stands. **Fuzz:** nothing moves.
+- **Next from them: DEF-265 (the statement level knows a brace group) is HELD.** Its chain found that the brace-group rule exposes an older recovery defect: a block entered without its `{` after a failed `for` or `if` header takes the enclosing body's `}`. Five fuzz programs, refused by both compilers, would gain a false `PARSE-003` at `main`'s brace. It lands after that defect is fixed, with its advance notice first.
+
+**THE BASELINE NOTICE 138 MUST QUOTE** (notice 137's rows, at `c72639f`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    2f1b9480701e1c86468be1b5da617ef965f4a6239ba4c8be239594e843bc85cc  32,424,412 B
+npkc.o     8299668097e438b3285fd5e69cc09ec291353ab3b5b0ed0cef6c5fa40d1b7736  13,339,504 B
+npkc       e258d3249e2c5f7e1464c638452f81c93b64ce3bc3d3136223e068b8597c347f  11,528,000 B
+```
+
 ### 📋 ADVANCE NOTICE F79 FOR LANDING 137 (DEF-267, REGISTERED AT LANDING 131 FROM DEF-255'S PROBES; BUILT BY `nitpick-compiler_40`) — **THE AWAITED AND THE SPAWNED QUALIFIED CALL REACH, AS `await x.m()` AND `drop x.m()` DO. TWO REFUSALS REMOVED, NONE ADDED. NOTHING OF OURS MOVES: NO FILE OF OURS SPELLS A QUALIFIED TRAIT CALL AT ALL. NO FUZZ ROW MOVES. NOT IN OUR PIN.** 2026-10-19 (shell time), from `nitpick-compiler_40` (arrived 15:08:26); filed 15:09 by `nitpick-libs_21`, in the lean form
 
 - **The change:** `await Work.run(j)` was `TYPE-007` ("`Work` is a trait, not a value"), since the await typer probed the operand as a value; `drop Work.poke(j)` passed the checker and was `EMIT-002`, since the child-frame builder and `async_callee_name` read the receiver from the operand. Now the await typer skips its probe when the operand names a trait (`trait_qualified_trait`), landing 131's typer types the call, and both builders read the receiver from argument 0.
