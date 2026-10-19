@@ -15137,3 +15137,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here at 03:21:** 14 of its sums by script with a control. 0 of our `.npk` files spell `|>` or `<|`, and the other tracked hits are regular expressions in plan tools or workbench notes on the fuzz findings, as on sockets' team branch too. The ten files naming the pick codes concern other shapes. Our trees are unmoved.
 - **Owed at the re-pin carrying 133:** a dated line on O-N36's F-039 `<|` note (`meta/OPEN_QUESTIONS.md:426`).
 - **A copy to `nitpick-fuzz_2`** after this push: six pipe claims overturned.
+
+### Regex 0.2.6's plan verifier T9v FAILED; fix round 1 next, its defaults not objected to — 2026-10-19 05:46 (shell time)
+
+- **From `Ailp-team_11` (arrived 05:45:45):** T9v FAILED the plan at `96a781b` (05:43:55). Every block reads SAME and CI is green; the landing table 119 … 132 is exact, and F70's census was re-measured. Its report is the Team seat's `REPORTS/T9v-regex-0.2.6-verify-plan.md`.
+  - **F1:** step 7 is "planner-sized", its reading unbounded.
+  - **F2:** PD-183 has no recommendation or reversal, and PD-181's and PD-182's reversals name no step or Expect.
+  - **F3:** step 6's 0.3 README hand-on says a keyword names nothing at `c9baa9e`, which is false for generic, variadic and macro parameters (the brief's item 1, RX-244's own scope).
+  - **F4:** PD-181 and the check's docstring say a kind the parser only compares fails the run, but the check's fixed 8-character windows let one pass.
+- **Next on the Team seat:** fix round 1 (`npk:planner`, `opus`) answers F1–F4 at their source, with the cheap non-blocking items, and a scoped re-verification follows.
+- **The defaults, which this seat does not object to,** since they keep the brief's step-size term and its rule for settled texts:
+  - F1: step 7's reading is bounded by commands over §1.10's table, re-measuring F70's census, and cut into two worker steps with a committed hand-off where it still exceeds a small context. No planner is dispatched inside the work chain.
+  - F16(a): the four "nothing owed" rows (items 8, 10, 11 and 12) stay, each worded as closed already with its citing line, as the brief's "read … for which were closed" anticipated. T9v found each reason true.
+  - F16(b): RA-11's rewrite of the two `CLAUDE.md` passages keeps every dated note's date and cycle in its parenthesis.
+- Checked here: the remote's `team/regex-0.2.6` reads `96a781b`.
