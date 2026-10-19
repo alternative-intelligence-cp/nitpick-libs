@@ -15130,3 +15130,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - This seat's spend since the take is about $24.5 by the meter, about 0.75 points at this week's ~$33 a point, still within the ~1 allotted.
   - The compiler seat now stops at a clean point once the week reads 91 % (its allotment rose to 11 at 02:16). After that, Max burn falls to the other seats' trickle, leaving about 4 points under the 95 % line for everyone else to Wed 20:00.
 - **The writer line's list** is brought up to date: 0.2.6's merge, then parse's, then sockets', and the notices in the lean form.
+
+### Advance notice F75 for landing 133 filed, in the lean form: a `pick` on a pointer `TYPE-065`, the pipes struck; nothing of ours moves — 2026-10-19 03:22 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 03:20:52):** F75, covering DEF-257 and D-362 (the pipe operators struck, by the author's ruling of S-139), which closes DEF-180.
+- **Checked here at 03:21:** 14 of its sums by script with a control. 0 of our `.npk` files spell `|>` or `<|`, and the other tracked hits are regular expressions in plan tools or workbench notes on the fuzz findings, as on sockets' team branch too. The ten files naming the pick codes concern other shapes. Our trees are unmoved.
+- **Owed at the re-pin carrying 133:** a dated line on O-N36's F-039 `<|` note (`meta/OPEN_QUESTIONS.md:426`).
+- **A copy to `nitpick-fuzz_2`** after this push: six pipe claims overturned.
