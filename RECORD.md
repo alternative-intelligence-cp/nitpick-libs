@@ -15158,3 +15158,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **So F16 changes nothing this round:** the four "nothing owed" rows stay, and the F16(b) default is withdrawn. RA-11's `CLAUDE.md` rewrite stays as written.
 - **Owed at this seat's review of 0.2.6:** a ruling on that rewrite. T9v measured that its first passage drops three dates and two cycles of the dated notes it replaces. The brief's rule is that a settled text takes a dated note or a superseding line, never a rewrite, and RA-11's own fix asks for a rewrite of the orientation document. The ruling weighs the two.
 - The F1 default stands.
+
+### Notice 133 verified — `c230073`, DEF-257 and D-362 as F75 said — 2026-10-19 05:59 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 05:58:28):** landing 133 on `6f0f518`, pushed 05:57. Checked at 05:59 by `verify133.py` (`.internal/landing/n133L/`), in the lean form: the transcription, the ladder, row 133 against the tree, the git checks (1 commit, 3 `src/` files, 0 `runtime/` or `bootstrap/`), 24 of 24 sums, and our trees unmoved. Each comparison has a control. The baseline for 134 is self-checked. No fuzz copy (F75's went), and no reply.

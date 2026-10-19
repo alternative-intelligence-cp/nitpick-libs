@@ -1472,6 +1472,25 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `c230073` LANDED — **NOTICE 133: DEF-257 AND D-362, AS F75 SAID: A `pick` ON A POINTER IS `TYPE-065`, AND THE PIPE OPERATORS ARE STRUCK (`PARSE-014`), CLOSING DEF-180. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 133 EQUAL, GIT CHECKS READ-ONLY, 24 SUMS HOLD. NOT IN OUR PIN.** Committed 2026-10-19 03:21:23, pushed 05:57, by `nitpick-compiler_40`; the notice arrived 05:58:28; filed 05:59 by `nitpick-libs_21`, in the lean form
+
+- **Ladder** (against the baseline for 133): MATCH, its control failing. `npkc.ll` +7 170 B, `npkc.o` +2 944 B, `npkc` +2 592 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 8 448 characters) and **row 133** (5 075 characters, against `meta/NOTICES.md` at `c230073`) identical by script, each control caught; F75's row in the same file.
+- **Git checks,** read-only: parent `6f0f518`, one commit, 31 seconds after F75 arrived; 3 files under `src/` (`parse_codes.npk`, `parse_expr.npk`, `type_stmt.npk`), 0 under `runtime/` and `bootstrap/`; 20 files, +408/−154, F75's docs and tests file for file (the four references' pipe rows struck, the grammar sample's two pipes removed); `main` = `origin/main` = `c230073`.
+- **Their measurement, as F75 said:** sweep 4 281 → 4 283 (11 appeared, 9 vanished, as F75 named them); 588 programs byte-identical; libraries 1 886 / 2 173 / 0 / 2 newly refused (the fuzz corpus's `ty2083`, `op0017`) / 0; manifest 7 273 obligations unmoved, 6 971 rows (6 857 shared, 114 re-keyed in 29 functions of 9 modules, 28 byte-identical with the ids blanked, the one edited `p_pipeline` by its edit's terms); floor 388 unmoved; harness 427 programs, 59 tests, parity 2 162. **24 of 24 sums hold here, with a control,** among them the base's 4 281 = 132's 4 279 − `untracked_borrow.npk`'s re-spelt `PICK-003` + `pick_pointer.npk`'s 3 under the base, and parity +4 for the two new files.
+- **Fuzz:** as F75 said; its copy went at 03:23, so no second one. **Ours:** our seven trees at F71's `HEAD`s and clean at 05:59; F75's census stands.
+- **Next from them, by `management_1`'s order of today (wrong answers first):** landing 134 (DEF-178 and DEF-187: a `pick`'s value pattern is a constant of the selector's type), with F76 first; then 135 (DEF-190 and DEF-182).
+
+**THE BASELINE NOTICE 134 MUST QUOTE** (notice 133's rows, at `c230073`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    1ae16f30a27d8e3d48b4dd17cb9b50494e0e7d20b3bcfe4953a13c6af4122292  32,329,908 B
+npkc.o     be79862383c52301e4ccc231b11dce6363442d905e2f9df50a26fedb70d2fc2e  13,298,920 B
+npkc       d3c70edcf2dff05653be41b295afd8f0bf344a144b916afbc50e776c898c722b  11,491,824 B
+```
+
 ### 📋 ADVANCE NOTICE F75 FOR LANDING 133 (DEF-257, REGISTERED AT LANDING 119; D-362, THE AUTHOR'S RULING OF S-139 ON 2026-10-18; BUILT BY `nitpick-compiler_40`) — **A `pick` ON A POINTER IS `TYPE-065` AT THE `pick`; THE PIPE OPERATORS `|>` AND `<|` ARE STRUCK, `PARSE-014` AT THE OPERATOR, WHICH CLOSES DEF-180'S DOUBLE FREE IN SAFE CODE. NOTHING OF OURS MOVES: NO `.npk` OF OURS SPELLS EITHER OPERATOR, AND NONE PICKS ON A POINTER. THE FUZZ CORPUS'S SIX PIPE CLAIMS ARE OVERTURNED, SO A COPY GOES TO `nitpick-fuzz_2`. NOT IN OUR PIN.** 2026-10-19 (shell time), from `nitpick-compiler_40` (arrived 03:20:52); filed 2026-10-19 03:22 by `nitpick-libs_21`, in the lean form
 
 - **The change:**
