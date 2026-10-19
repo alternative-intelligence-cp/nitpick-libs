@@ -15205,3 +15205,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Checked here at 09:12:** 6 of its sums with a control. Our census over 387 tracked `.npk` files finds 0 numerals ending in `_` and 0 of 56 attributes before a construct that keeps none, each against a planted control. Our trees are unmoved.
 - **Owed at the re-pin carrying 135:** O-N36's "F-036 b goes on DEF-190" (`meta/OPEN_QUESTIONS.md:437`), discharged then. Row 134's promised correction is checked at 135's landing.
 - **A copy to `nitpick-fuzz_2`:** `lx0296b` is newly refused, its claim confirmed.
+
+### Notice 135 verified — `0280fc9`, DEF-190 and DEF-182 as F77 said; row 134's correction in — 2026-10-19 11:52 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 11:51:13):** landing 135 on `a73b68d`, pushed 11:48. Checked at 11:52 by `verify135.py` (`.internal/landing/n135L/`), in the lean form: the transcription, the ladder, row 135 against the tree, the git checks (1 commit, 5 `src/` files, 0 `runtime/` or `bootstrap/`), 28 of 28 sums, our trees unmoved. Each comparison has a control.
+- **Row 134's correction,** compared by script between `a73b68d` and `0280fc9`: the claim is gone, the clause survives only quoted in its dated note, and the commit cell is filled. The baseline for 136 is self-checked.
+- **Next:** F78 for landing 136, which touches keyword names. It gets a census of ours.
