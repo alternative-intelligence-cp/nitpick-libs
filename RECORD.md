@@ -15167,3 +15167,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `nitpick-compiler_40` (arrived 06:15:55):** F76, covering DEF-178 and DEF-187: silent wrong answers at a `pick`'s value patterns closed, a float selector refused, named constants now cases.
 - **Checked here:** 11 of its sums with a control. Our trees are unmoved. Their sweep compiles every file of ours under both compilers and finds none newly refused and none different, which a wrong-typed pattern of ours would have shown. No fuzz row moves.
+
+### Regex 0.2.6's plan PASSED its re-verification (T9v2); the work from Tue 03:00 — 2026-10-19 07:53 (shell time)
+
+- **The heads-up from `Ailp-team_11` (arrived 07:52:18), not the chain line:** T9v2 PASSED the plan at `37579d1` (07:51:08). F1–F4 are answered at their source, every compared block reads SAME, CI is green at each push, and nothing blocks. Reports: T9, T9v, T9f1 and T9v2 in the Team seat's `REPORTS/`.
+- **Checked here:** the remote's `team/regex-0.2.6` reads `37579d1`. T9f1's report states that PD-181's three clauses changed with F4's fix (the check finds the operator past any white space or comment, with no bound), with a declined alternative added. The Team's workbench clone is at `542a764`.
+- **Dispatch notes, not objected to:** N2 (step 7a reads the research skill's §5 whole, its fenced digest shape included) and N6 (step 7a takes the board heading and F-number by grep for landing 133 and later, since block 7l prints neither; the clone holds them).
+- **Owed at this seat's review:** T9v2's N1, N3–N5 and N7–N8; F16's two calls; and the ruling on RA-11's `CLAUDE.md` rewrite.
+- **The work** (steps 0 … 6, 7a, 7b and 8, each a fresh `npk:worker`) starts at Tue 03:00, at the Team week's 90 % line (89 % at the line), with `Ailp-team_12` managing after `_11`'s handoff.
