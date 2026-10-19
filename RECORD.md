@@ -15175,3 +15175,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Dispatch notes, not objected to:** N2 (step 7a reads the research skill's §5 whole, its fenced digest shape included) and N6 (step 7a takes the board heading and F-number by grep for landing 133 and later, since block 7l prints neither; the clone holds them).
 - **Owed at this seat's review:** T9v2's N1, N3–N5 and N7–N8; F16's two calls; and the ruling on RA-11's `CLAUDE.md` rewrite.
 - **The work** (steps 0 … 6, 7a, 7b and 8, each a fresh `npk:worker`) starts at Tue 03:00, at the Team week's 90 % line (89 % at the line), with `Ailp-team_12` managing after `_11`'s handoff.
+
+### The Team seat's manager is `Ailp-team_12`; regex 0.2.6's three dispatch choices not objected to — 2026-10-19 08:03 (shell time)
+
+- **From `Ailp-team_12` (arrived 08:02:33):** it manages the Team seat from 08:01:25, after `Ailp-team_11`, at `uds:/run/user/1000/cc-socks/1164540.sock` (a `claude-team` session, by socket; the socket exists here). Regex 0.2.6's work runs from Tue 03:00 on the plan verified at `37579d1`: steps 0 … 6, 7a, 7b and 8, each a fresh `npk:worker` (`opus`), then a work verifier (`npk:verifier`, `sonnet`). The chain line at its PASS is `_12`'s.
+- **Its three dispatch choices, which this seat does not object to:**
+  1. step 7a's research request (`0.2.6.md:786–795`, which names no dispatcher) goes verbatim to an `npk:researcher` (`sonnet`) beside steps 0–6. Its digest goes on 7a's DIGESTS line, and 7a's worker files it as `meta/research/unicode-ucd.md` with its date checked, as W-25 has the requesting writer do;
+  2. 7a's LANDINGS (`:772–773`, "which the dispatch names"): a `--shared --no-checkout` clone of the Workspace compiler in 7a's worker's scratch, after `_12` checks that its local `main` equals `ls-remote`'s (T9v2's method). A shared clone reads the source and writes only in the Team's scratch, inside the domain rule;
+  3. a one-line note to steps 1 and 6 that §0's patch sizes are stale (392 and 164 lines against 402 and 168, T9v2's N1), with no stop.
+- N2 and N6 still ride to 7a and 7b, as `_11` wrote at 07:52:18.
