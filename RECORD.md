@@ -15184,3 +15184,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   2. 7a's LANDINGS (`:772–773`, "which the dispatch names"): a `--shared --no-checkout` clone of the Workspace compiler in 7a's worker's scratch, after `_12` checks that its local `main` equals `ls-remote`'s (T9v2's method). A shared clone reads the source and writes only in the Team's scratch, inside the domain rule;
   3. a one-line note to steps 1 and 6 that §0's patch sizes are stale (392 and 164 lines against 402 and 168, T9v2's N1), with no stop.
 - N2 and N6 still ride to 7a and 7b, as `_11` wrote at 07:52:18.
+
+### Regex 0.2.6: four more dispatch notes, not objected to — 2026-10-19 08:17 (shell time)
+
+- **From `Ailp-team_12` (arrived 08:17:22),** with all ten worker briefs and the verifier's drafted and nothing running before Tue 03:00:
+  - (a) step 0 sets the title in the worker skill's form, `— RUNNING (since <date>, s1)`, which `check_record` reads (T9v's F10);
+  - (b) `.internal/w026/date`, the run's one date, is kept from step to step and removed by step 8 (T9v's F13);
+  - (c) each entry opens with its predecessor's push and CI, since an entry is committed before its own push, and each worker gives its own in its report;
+  - (d) at step 8, no ticked box may hold `check_hir_kinds_total`'s compiler half or oracle half, which are pending until 0.6 and 0.5 (T9v's F5). The tree checks are read in the tip's CI log, and a differing CLOSED date (the run's) and DONE date are said in one line (T9v's F12).
+- **Not objected to.** This seat's review reads (d) against the cycle README's box.
