@@ -1472,6 +1472,26 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `a73b68d` LANDED — **NOTICE 134: DEF-178 AND DEF-187, AS F76 SAID: A `pick`'S VALUE PATTERN IS A CONSTANT OF THE SELECTOR'S TYPE. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 134 EQUAL, GIT CHECKS READ-ONLY, 24 SUMS HOLD. ROW 134'S CLOSING CLAUSE IS 133'S BY THEIR OWN CORRECTION, MENDED IN 135'S COMMIT. NOT IN OUR PIN.** Committed 2026-10-19 06:16:18, pushed 08:52, by `nitpick-compiler_40`; the notice arrived 08:53:26; filed 08:54 by `nitpick-libs_21`, in the lean form
+
+- **Ladder** (against the baseline for 134): MATCH, its control failing. `npkc.ll` +51 633 B, `npkc.o` +27 416 B, `npkc` +24 992 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 8 135 characters) and **row 134** (4 452 characters, against `meta/NOTICES.md` at `a73b68d`) identical by script, each control caught; F76's row in the same file.
+- **Git checks,** read-only: parent `c230073`, one commit, 23 seconds after F76 arrived; 4 files under `src/`, 0 under `runtime/` and `bootstrap/`; 14 files, +610/−196; `main` = `origin/main` = `a73b68d`.
+- **Their measurement, as F76 said:** sweep 4 284 → 4 297 (14 appeared and 1 vanished, all in the landing's own rejection file); 589 programs, 588 byte-identical and 1 refused by the base alone (the new `pick_constant_patterns.npk`); libraries 1 886 / 2 175 / 0 / 0 / 0; manifest 7 273 unmoved, 6 971 rows (6 784 shared, 187 re-keyed in 37 functions of 14 modules, all byte-identical with the ids blanked); floor 388; harness 428 programs, 59 tests, parity 2 166; by hand 402. **24 of 24 sums hold here, with a control.**
+- **A slip in their row, theirs to mend:** row 134 closes "AND A FORM STRUCK (two spellings, one of them a double free in safe code)", which is 133's. The notice says so and promises the row, 134's status paragraph and its record corrected with a dated note in landing 135's commit. **That is checked at 135's landing,** as row 127's correction was at 128.
+- **Fuzz:** nothing moves. **Ours:** our seven trees at F71's `HEAD`s and clean at 08:54; their sweep finds none of ours newly refused or different.
+- **Next from them:** landing 135, DEF-190 and DEF-182 (a numeral's digit run ends in a digit; an attribute decorates only what keeps one), with F77 first.
+
+**THE BASELINE NOTICE 135 MUST QUOTE** (notice 134's rows, at `a73b68d`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    84f6db1291e9b244064dbabd3be5284c0ccc86565bc87699fb8ab9a09acac1f6  32,381,541 B
+npkc.o     5dcde3c1e862b08fd685275d098e7646a4f1445397d5fbeacde1fd60a7fc417e  13,326,336 B
+npkc       f787784089f2a735dd19f561e0b4a715954e216a28b0dddff971c60832d1e495  11,516,816 B
+```
+
 ### 📋 ADVANCE NOTICE F76 FOR LANDING 134 (DEF-178 AND DEF-187, REGISTERED 2026-09-30 AT 1.6.1e STEP 3; BUILT BY `nitpick-compiler_40`) — **A `pick`'S VALUE PATTERN IS A CONSTANT OF THE SELECTOR'S TYPE: SILENT WRONG ANSWERS CLOSED (`(true)` OVER AN `int32` MATCHED 1, `('A')` 65, `(300)` OVER AN `int8` WAS CUT TO 44), A FLOAT SELECTOR REFUSED WHOLE, AND NAMED CONSTANTS NOW CASES WHERE THEY WERE `EMIT-002`. NOTHING OF OURS MOVES: THEIR SWEEP COMPILES EVERY FILE OF OURS UNDER BOTH COMPILERS, NONE NEWLY REFUSED AND NONE DIFFERENT. NO FUZZ ROW MOVES. NOT IN OUR PIN.** 2026-10-19 (shell time), from `nitpick-compiler_40` (arrived 06:15:55); filed 06:16 by `nitpick-libs_21`, in the lean form
 
 - **The change** (`check_value_patterns`, `type_stmt.npk`, from `type_pick_rules`, both spellings):

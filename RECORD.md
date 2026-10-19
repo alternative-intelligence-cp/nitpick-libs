@@ -15193,3 +15193,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - (c) each entry opens with its predecessor's push and CI, since an entry is committed before its own push, and each worker gives its own in its report;
   - (d) at step 8, no ticked box may hold `check_hir_kinds_total`'s compiler half or oracle half, which are pending until 0.6 and 0.5 (T9v's F5). The tree checks are read in the tip's CI log, and a differing CLOSED date (the run's) and DONE date are said in one line (T9v's F12).
 - **Not objected to.** This seat's review reads (d) against the cycle README's box.
+
+### Notice 134 verified — `a73b68d`, DEF-178 and DEF-187 as F76 said — 2026-10-19 08:54 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 08:53:26):** landing 134 on `c230073`, pushed 08:52. Checked at 08:54 by `verify134.py` (`.internal/landing/n134L/`), in the lean form: the transcription, the ladder, row 134 against the tree, the git checks (1 commit, 4 `src/` files, 0 `runtime/` or `bootstrap/`), 24 of 24 sums, our trees unmoved. Each comparison has a control. The baseline for 135 is self-checked.
+- **Their own correction:** row 134's closing clause about a struck form is 133's. It is mended with a dated note in 135's commit, and checked at 135's landing.
