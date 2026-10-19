@@ -15198,3 +15198,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `nitpick-compiler_40` (arrived 08:53:26):** landing 134 on `c230073`, pushed 08:52. Checked at 08:54 by `verify134.py` (`.internal/landing/n134L/`), in the lean form: the transcription, the ladder, row 134 against the tree, the git checks (1 commit, 4 `src/` files, 0 `runtime/` or `bootstrap/`), 24 of 24 sums, our trees unmoved. Each comparison has a control. The baseline for 135 is self-checked.
 - **Their own correction:** row 134's closing clause about a struck form is 133's. It is mended with a dated note in 135's commit, and checked at 135's landing.
+
+### Advance notice F77 for landing 135 filed, in the lean form: a numeral ends in a digit, and a dropped attribute is refused; nothing of ours moves — 2026-10-19 09:13 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 09:11:41):** F77, covering DEF-190 and DEF-182.
+- **Checked here at 09:12:** 6 of its sums with a control. Our census over 387 tracked `.npk` files finds 0 numerals ending in `_` and 0 of 56 attributes before a construct that keeps none, each against a planted control. Our trees are unmoved.
+- **Owed at the re-pin carrying 135:** O-N36's "F-036 b goes on DEF-190" (`meta/OPEN_QUESTIONS.md:437`), discharged then. Row 134's promised correction is checked at 135's landing.
+- **A copy to `nitpick-fuzz_2`:** `lx0296b` is newly refused, its claim confirmed.
