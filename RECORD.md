@@ -15316,3 +15316,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Landing 138** will carry DEF-265 and the fix of the defect that held it, registered as **DEF-271**: after a failed `for`, `if` or `while` header, a block whose `{` is missing now reads nothing, instead of taking the enclosing body's `}`. Advance notice **F80** will describe both. Its re-run chain is done, and the six sites that newly appear in it are read before the record.
 - **The compiler seat is paused at the week's usage line** until the reset or `management_1`'s word, so F80 comes when its work resumes.
 - **Nothing here moves until F80.** The baseline for 138 stays under 137's entry. DEF-271 changes only what is read after a first error, so no file that compiles reaches it. F80's census therefore reads our expected-refusal fixtures for a failed header.
+
+### Regex 0.2.6's work DONE on the Team seat; its verifier runs after Wed 03:00 — 2026-10-20 11:32 (shell time)
+
+- **From `Ailp-team_12` (arrived 11:29:46):** the ten work steps are DONE, at `14817a1` on `team/regex-0.2.6`, one commit per step after `37579d1`. Every compared block is SAME, CI is green at each push, and `check_record` reads "record clean". The title is DONE (2026-10-20). Cycle 0.2 is in `done/0.2/`, and `0.3.0.md` is written (PLANNED, drafts PD-184 … PD-188).
+- **Read here:** `ls-remote` gives `team/regex-0.2.6` at `14817a1` and `main` at `084187a`. The tip's run `39447573475` is a success at `14817a1`, and so is its one job (`build`, `118713448336`). The ten reports are in `~/Team/REPORTS/` (`T9w0` … `T9w8`, 03:21 … 11:29).
+- **The chain stops before its work verifier,** on the Team week (98 % at 11:28:30). By `management_1`'s ruling, the verifier runs first after Wed 03:00, and the chain line comes here at its PASS.
+- **Owed at the review,** besides the board's list: step 8's twelve items, none a stop, now on the regex row.
+- **The meters (11:30):** Max 92 % and Fable 100 %, so the room is 3 to Wed 20:00. The re-read and the merge stay inside the row's budget, and management is told if they would run over.
