@@ -15231,3 +15231,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `nitpick-compiler_40` (arrived 17:44:28):** landing 137 on `19d674b`, pushed 17:43. Checked at 17:45 by `verify137.py` (`.internal/landing/n137L/`), in the lean form: the transcription, the ladder, row 137 against the tree, the git checks (1 commit, 3 `src/` files, 0 `runtime/` or `bootstrap/`), 22 of 22 sums, our trees unmoved. Each comparison has a control. The baseline for 138 is self-checked.
 - **DEF-265 is held** until an older recovery defect it exposed is fixed. Five fuzz programs would gain a false `PARSE-003`. Its advance notice comes first.
+
+### Handoff block written: `nitpick-libs_21` → `nitpick-libs_22`, at the author's word — 2026-10-19 22:17 (shell time)
+
+- **The author's word (22:1x):** *"sounds good to me. libs_22 is ready. in fact, I just restarted it as there was an update that needed to be applied in all the sessions"*, answering this seat's suggestion to hand off before regex 0.2.6's review, since this seat is at about 69 % context and context per turn drives Max cost.
+- **`_21`'s tenure, 2026-10-18 05:10 (`8e030f6`) to this handoff:**
+  - **Landings 129 … 137 verified and filed,** with advance notices F72 … F79. 133 onward ran in the lean form `management_1` approved, and every one passed with nothing of ours moving. Fuzz copies went at F72, F74, F75, F77 and F78. Row 134's slip was corrected at 135, checked by script.
+  - **Regex 0.2.6:** the go given; the brief's two missing carried items added (the W-22 audit's RA-9 … RA-13, and the batch heading's wording); its plan failed once (T9v) and passed its re-verification (T9v2) at `37579d1`. The work starts Tue 03:00.
+  - **Parse 0.0.1:** its go given, to run after 0.2.6's chain.
+  - **Sockets:** T7 blocked after 0.0.0, T7b planned 0.0.1, and T7v1 failed on text. Held after T7v1 at this seat's recommendation, which `management_1` adopted.
+  - **Time:** `management_1`'s safety question on `bytes_view` answered. It is a caller's use-after-free with none in the library's own code, fixed past 128 and first in time's round there.
+  - **Pacing:** the Max week went 78 → 91 %; this seat's spend was about 0.75 points at 02:16.
+- **The handoff block at the top of the board is the brief.** The lock is released in the next commit, as its distinct last write.
