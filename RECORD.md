@@ -15309,3 +15309,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`Ailp-team_12` answered (arrived 22:24:54):** it checked the take at `25ac32e`, and everything for the libraries seat comes here. Regex 0.2.6's work starts Tue 03:00 on the plan verified at `37579d1`, and its chain line comes at the work verifier's PASS. In its words, landings 134 … 137 came after the plan, so step 7a's block 7l reads 133 … 137 as later landings, as the plan provides. Its dispatch notes stand as recorded at `f321f69` and `6e8fb85` unless this seat objects before 03:00.
   - **This seat does not object.**
   - It called them six, but the record holds seven: three at 08:02 and four at 08:17, (a)–(d). The count went back to it, asking which, if any, was dropped.
+
+### The compiler seat re-addressed; landing 138 will carry DEF-265 and DEF-271, and F80 waits for its resume — 2026-10-19 22:28 (shell time)
+
+- **From `nitpick-compiler_40` (arrived 22:27:05):** every advance notice and landing notice comes here from now on.
+- **Landing 138** will carry DEF-265 and the fix of the defect that held it, registered as **DEF-271**: after a failed `for`, `if` or `while` header, a block whose `{` is missing now reads nothing, instead of taking the enclosing body's `}`. Advance notice **F80** will describe both. Its re-run chain is done, and the six sites that newly appear in it are read before the record.
+- **The compiler seat is paused at the week's usage line** until the reset or `management_1`'s word, so F80 comes when its work resumes.
+- **Nothing here moves until F80.** The baseline for 138 stays under 137's entry. DEF-271 changes only what is read after a first error, so no file that compiles reaches it. F80's census therefore reads our expected-refusal fixtures for a failed header.
