@@ -15324,3 +15324,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The chain stops before its work verifier,** on the Team week (98 % at 11:28:30). By `management_1`'s ruling, the verifier runs first after Wed 03:00, and the chain line comes here at its PASS.
 - **Owed at the review,** besides the board's list: step 8's twelve items, none a stop, now on the regex row.
 - **The meters (11:30):** Max 92 % and Fable 100 %, so the room is 3 to Wed 20:00. The re-read and the merge stay inside the row's budget, and management is told if they would run over.
+
+### `nitpick-regex` 0.2.6 CHAIN PASS, re-read and merged at `14817a1`: cycle 0.2 CLOSED; question 37 for the author; s1 released — 2026-10-21 04:07 (shell time)
+
+- **The chain line** (`Ailp-team_12`, arrived 03:56:15): `nitpick-regex 0.2.6 CHAIN PASS branch team/regex-0.2.6 commit 14817a1…`, with the reports `~/Team/REPORTS/T9`, `T9v`, `T9f1`, `T9v2`, `T9w0` … `T9w8` and `T9vw`, and every push's run and job. T9vw (`sonnet`) PASSED at 03:55:05: every compared block SAME, 347/347 at the tip, `check_record` and `check_refs` clean, eight non-blocking findings. Read here: T9vw's verdict and findings, T9v2's N1 … N8 and step 8's twelve items. The step reports were not read whole.
+- **Re-read here against the fetched branch:**
+  - the tip is the chain line's commit; `main` = `origin/main` = `084187a`, its ancestor, so the merge fast-forwards;
+  - 19 linear commits under one identity (`084187a`'s): the plan's nine and the work's ten, in the chain line's order;
+  - CI: each of the 18 listed runs is a success at its head, with its one job; all 19 runs on the branch are a success;
+  - the step patches at the tip equal the plan-verified ones at `37579d1` but for the three disclosed amendments (`step2.patch:111–112`, `step4.patch:12–14` and `:64–66`); a character planted in a copy of `step3.patch` was caught;
+  - RX-246 … RX-248 are contiguous after RX-245; `src/` changed only in two dated comments (`byteset.npk:34`, `limits.npk:110`);
+  - `0.3.0.md`'s landings 119 … 137: all nineteen equal the board's entries by commit and F-number, and its five full shas equal the compiler's log, with a flipped sha caught. Its ids column names one id where the board names more: 122 (DEF-262), 126 (DEF-263), 127 (DEF-181, T9vw's finding 3), 131 (DEF-266) and 133 (DEF-180);
+  - `check_record` reads "record clean" for 0.2.6, and `check_refs` is clean (102 md files, a leak scan of 579 of 579), on the fast-forwarded tree before the push.
+- **Merged:** `nitpick-regex` `main` fast-forwarded `084187a` → `14817a1` and pushed at 04:03:25; `ls-remote` reads `14817a1`. s1 is released by this commit. **Cycle 0.2, the HIR, is CLOSED** (2026-10-20, at `c9baa9e`). `LIBRARIES.md`'s row reads cycles 0.0 … 0.2 closed, 347 units, four pending, decisions to RX-248.
+- **Rulings:**
+  - **step 4's first amendment is accepted** (T9vw's finding 6): the old list left out the macro parameter its own "still do" clause names, and the new nine-kind list is RX-244's and the compiler's at `7e91730`. It was made in the patch and disclosed;
+  - **F16(a): the four "nothing owed" rows (8, 10, 11 and 12) stand,** each closed by the line its §2 row names;
+  - **RA-11's `CLAUDE.md` rewrite is accepted as written** (question 37's item 5). It makes true a passage that said *"Nothing is PENDING any more"* above notes adding four units, and keeps every unit, its file and its decision. Its dated note miscounts (the first of the three notes added two units, step 8's item 8), and it leaves out the three notes' dates and two of their cycles (T9v's F16). One dated correction naming them goes to 0.3.0's first step, rather than a fix round now;
+  - **item 5's `opsweep.py` note is kept**, as §9 item 7 recommends;
+  - **dispatch note (d) is met:** the ticked box at `done/0.2/README.md:164` claims the parser's half, and the 0.6.1 and 0.5.0 boxes, unticked, own the compiler's and the oracle's;
+  - **F3's hand-on** (`0.3/README.md:30–34`) is true at `c9baa9e`. Past landing 136, two of its clauses fall: no generic, variadic or macro parameter takes a keyword name (DEF-258), and a local `T:keyword` is `PARSE-001` at the name (DEF-259). This is owed to the adoption past 136.
+- **The findings' dispositions:**
+  - T9v2's N1 was closed by the dispatch note to steps 1 and 6; N4 and N5 are in question 37; N3 is carried; N7 and N8 need nothing.
+  - T9vw's 1, 4, 5, 7 and 8 need nothing (citations; the committed REPORT block governs, W-28; a listing exact; block 8s by design). Its 2 and 3 are carried.
+  - Step 8's items 1–4, 6, 8, 9 and 11 are carried; 5 and 7 are ruled; 10 is read; 12 comes before 0.3.0.
+- **Question 37 is raised:** 0.2.6's six items for the author (§9), recommended as merged.
+- **Owed before 0.3.0's dispatch:** PD-184 … PD-188 accepted or struck, and PD-185's UCD route (`0.3.0.md` §9 items 1 and 2), with the carried texts above. The kept `7e91730` pin is no longer regex's (0.2.5a §7), and it stays for time, whose adoption is held.
+- **The Team seat's manager is `Ailp-team_13`** from 04:04:52 (`uds:/run/user/1000/cc-socks/3295111.sock`, arrived 04:05:17). `_12`'s chain line stands, and parse's T10 and 0.0.1 wait in lane 1 for the author's review and `management_1`'s go.
+- **The meters:** Max 92 % before and after the review; the cost line goes to `management_1`.
