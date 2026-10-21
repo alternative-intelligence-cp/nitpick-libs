@@ -15396,3 +15396,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Claimed:** `CLAIMED s2` for parse, beside time's idle `CLAIMED s2`, as on 2026-10-17 03:05.
 - **Next:** a plan verifier scoped to what the round changed, then 0.0.1's work and its work verifier. A heads-up comes at the scoped verifier's PASS, and the chain line at the work verifier's PASS; then this seat's re-read and fast-forward (W-29).
 - **The meters:** Max 94 %, so the room is 1 to Wed 20:00. This seat stays idle on Max until the reset unless something safety-critical comes.
+
+### Sockets' fix round 1 (T7fix1) starts on the Team seat; the hold lifted — 2026-10-21 10:36 (shell time)
+
+- **The start line** (`Ailp-team_13`, arrived 10:36:13): `management_1`'s word, which reached the Team seat at 10:34:47, lifts the hold of 2026-10-18 on `team/sockets-0.0-plan` at `7379ca1`. T7fix1, a fresh `npk:planner` (`opus`), starts in lane 1. It answers T7v1's blocking findings 1–4 and 5(a)–(c), and 7, 9 and 10, at their sources in 0.0.0, 0.0.1, the README and the tools; 0.0.2 … 0.0.5 stay held. It uses PD-169 … PD-178 only. PD-167's default stands, since no objection came to this seat's "unless you object" of 2026-10-18 07:33:26. No CI runs (no `.github/`), and parse's chain outranks it on the harness lock, by `management_1`'s word.
+- **Read here:** `ls-remote` gives `team/sockets-0.0-plan` at `7379ca1` and `main` at `d385991` (10:36), and the workbench's sockets checkout is clean at `d385991`.
+- **`CLAIMED s3` stands** as `_20` took it at `f18bf7d`; the in-flight row now reads the round instead of HELD.
+- **Next:** a scoped re-verification (T7v2, from T7v1's brief), then the chain line at its PASS. Owed then: sockets' own question N-5 to the registry and the compiler seat, once a verifier rules on its two refusals.
