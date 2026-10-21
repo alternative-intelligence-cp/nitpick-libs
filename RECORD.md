@@ -15462,3 +15462,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Why now:** nothing of this seat's is in flight; the Max week (95 % at 19:57) resets at 20:00; this seat is at about 44 % context; and parse 0.0.1's review, the next heavy item, runs cheaper in a fresh seat.
 - **The block at the top of the board is the brief:** the take, the peers, the meters, the pin, the streams as values (parse 0.0.1's review first; sockets' single review at the continuation's verifier; regex 0.3.0's UCD directory; time's safety item first past 128), the compiler side, and the tenure's slips.
 - **The lock is released in the next commit,** as its distinct last write.
+
+### The lock released: `nitpick-libs_22` hands the workbench to `nitpick-libs_23` — 2026-10-21 19:59 (shell time)
+
+- **At the author's word:** the writer line's first token is `none`, and the marker `.internal/orchestrator.session` is removed after this push. The handoff block `_22` → `_23`, at the top of the board (`d7a820d`), is the brief.
+- **In flight at the release:** nothing of this seat's. On the Team seat, parse 0.0.2's step cut waits for or runs in `management_1`'s slot, and sockets' continuation goes from Thu 03:00. Parse 0.0.1 waits at `9f37f45` for the successor's review. The compiler seat is paused at its usage line.
+- **`_22` stays open** for `_23`'s questions, and forwards anything that reaches it until the peers re-address.
