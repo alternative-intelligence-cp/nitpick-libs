@@ -15,6 +15,74 @@ blocked, what is done. The durable plan is
 
 
 
+> **🔁 HANDOFF — `nitpick-libs_22` → `nitpick-libs_23`, 2026-10-21 19:59 (shell time), at the author's word (*"if you think its a good time to handoff i'm fine with it"*, 19:56:49), at a quiet point: nothing of this seat's is in flight, the Max week resets at 20:00, and parse 0.0.1's review is the next heavy item.** This seat is at about 44 % context, and context per turn drives Max cost (`management_1`, 2026-10-16), so a fresh seat runs the parse review and the sockets review cheaper.
+>
+> **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes:
+> - your id, from your transcript and your scratchpad, cross-checked with `~/.claude/context/<id>.json`'s `session_name`;
+> - a nonce typed into the search command and found in your transcript alone, plus a control generated at run time and never printed;
+> - the 37-byte marker `.internal/orchestrator.session`, removed by `_22` at this release;
+> - the token as the writer line's first backticked token, then push, then re-read it with hazard (5)'s command;
+> - **`check_refs` exits 1 whenever it reports findings, the two known `[leak]` lines included.** Do not chain it with `&&`: read its count after staging, against the 2 known.
+>
+> **Hazard 3:** ask `nitpick-libs_22`. **Hazard 4:** ask `nitpick-libs_24` (`[4ba56a]` in `ListAgents` at 19:57), the next spare. You were restarted for an update at about 19:56, so your own ref is new (`[9bc069]`).
+>
+> **Read the board's live parts** (orchestrate §2 step 2): lines 1–14; the newest entries (`grep -n '^### ' BOARD.md | head -6`); and `## Outside the streams` to the end, each in-flight row up to its first `*Before:*`. `BOARD.md` is 1.6 MB and `RECORD.md` 1.8 MB, so read them by line and by search, never whole.
+>
+> **WHO** (at 19:57; re-derive each from `ListAgents` or its next message):
+> - **`management_1`** (`uds:/run/user/1000/cc-socks/3709469.sock`, `[70bf25]`, at its shell): the allocation. **Send it one line when you have taken over.**
+> - **The Team seat's manager, `Ailp-team_15`** (`uds:/run/user/1000/cc-socks/3594543.sock`, from 13:48:42). It is a `claude-team` session, not in `ListAgents`, so message it by socket. Its managers rotated four times today (`_12` … `_15`), and each new one announces its socket.
+> - **The compiler seat, `nitpick-compiler_40`** (`[d9f13d]`), paused at the week's usage line until the reset or `management_1`'s word.
+> - **The fuzzer's manager, `nitpick-fuzz_2`** (`[b4a7f2]`). A copy goes to it after filing whenever a fuzz row moves (W-30).
+> - **None of them knows of this handoff yet.** Introduce yourself to each after the take. Until they re-address, `_22` forwards anything that reaches it, verbatim and with its arrival time.
+>
+> **THE METERS** (read 19:57):
+> - **Max:** the week read 95 % at 19:57 and resets at 20:00 today. Fable reads 100 %, so its term is 0 until its own reset. Room = 95 − the week − 0.5 × (100 − Fable %); under 20, ask management first, with a cost line to management per chain. This seat's reviews cost about 1 point each (regex 0.2.6's, 92 → 93 %).
+> - **Notice checks run in the lean form** `management_1` approved: the ladder, the three git checks, the sums and our trees, with the entries about a third as long. Batching the full checks at the re-pin is the fallback.
+> - **The Team:** its chains run under `management_1`'s week gate.
+> - **Credits:** $18.1997 of $30 through 2026-11-11 (`_19`'s figure). No credits job has run since.
+>
+> **THE PIN:** `c9baa9e` (landing 118), unmoved. The compiler's `main` is `c72639f` (landing 137), and **the baseline for 138 is under 137's entry.** Landing 138 will carry DEF-265 and DEF-271 (after a failed `for`, `if` or `while` header, a block missing its `{` reads nothing instead of taking the enclosing body's `}`), both in advance notice F80, when the compiler seat resumes. DEF-271 reaches only what follows a first error, so its census reads our expected-refusal fixtures. F-050's fix, the fuzzer's use after free, comes with its own advance notice; run its census then.
+>
+> **THE STREAMS, as values:**
+> - **s2 `nitpick-parse` 0.0.1, YOURS FIRST:** CHAIN PASS at `9f37f45` (`Ailp-team_15`'s line of 14:10:51), **not yet merged.** T10vw (`sonnet`) PASSED at 14:08:42. **Yours:** re-read it with a control, as `RECORD.md` 2026-10-21 04:07 did for regex, then fast-forward `main` `4f83ed3` → `9f37f45` and push. `CLAIMED s2` stays for 0.0.2. The re-read covers:
+>   - the tip is the chain line's commit, with twelve linear commits under one identity;
+>   - CI per push from step 4: `9a9c037` 39634141608/119339969762, `a0ced0c` 39637609916/119352313534, `ed9af4b` 39642213111/119368383321, and the tip 39645185965/119378752676;
+>   - the step patches against the plan-verified ones, with a planted control;
+>   - PA-110 … PA-112 against their PD texts;
+>   - `check_record` for 0.0.1 and `check_refs` on the fast-forwarded tree before the push.
+>   **Owed at the review:**
+>   - the REPORT block's seven items (`0.0.1.md:1156–1195`), item 3's ten drafting dates needing one ruling for all ten;
+>   - T10vw's five findings;
+>   - three playbook items to land (W-16): CI's 4 min 14 s against the "sixty minutes" (the job's timeout), `pointers.py` checking only that a heading exists, and PLAYBOOK §10's `stack` account.
+>   Steps 0–1 end with one trailer line and steps 2–7 with two; both stand. **0.0.2's go** went at 14:12 in two parts, timing `management_1`'s. Its step cut runs now: a fresh planner, fresh-worker steps, the seven items and the five findings to dispositions, item 3 waiting for your ruling, then a scoped verifier. Its work comes only after your review and fast-forward of 0.0.1, which may add items to the cut.
+> - **s3 `nitpick-sockets`:** 0.0.0–0.0.1's plan CHAIN PASS at `19c02e1` (T7v2, 12:16:42), **not merged, by this seat's choice:** one re-read and fast-forward over 0.0.0 … 0.0.5 at the continuation's plan verifier's PASS, which `Ailp-team_15` confirmed. The continuation is 0.0.2 … 0.0.5 on the same branch, with T7c3 (0.0.3's planner) at Thu 03:00 under the gate, then one plan verifier. **Owed then:**
+>   - T7v2's F1–F8, on the row;
+>   - PD-159 … PD-168, to the author with the cycle's others;
+>   - sockets' own question N-5 (`RESOLVE-010`, `TYPE-032`), asked of that verifier, to the registry and the compiler seat once ruled. Write a repository's own question ids in words, never as `O-…`.
+> - **s1 `nitpick-regex`:** at rest. 0.2.6 is merged at `14817a1`, cycle 0.2 is CLOSED, and question 37 is answered (all six ratified). 0.3.0 is next and not scheduled; the author accepted PD-184 … PD-188 at 07:41:33. **Owed before its dispatch:**
+>   - the UCD directory `.internal/ucd/18.0.0/` (the eight files, `SHA256SUMS`, `PIN.md`), this seat's to provide, with CI's fetch as the second reading;
+>   - `0.3.0.md` §9 items 3–5, to schedule;
+>   - the carried texts on the regex row.
+>   F3's keyword hand-on is owed at the re-pin past 136.
+> - **s2 `nitpick-time`:** `CLAIMED s2` and idle, its adoption held. At its round past 128, the `bytes_view` safety item goes first. The kept `7e91730` pin is now time's alone.
+> - **posix and tui** adopt at their next dispatch, as `_19`'s block gives it.
+> - **The fuzzer (W-30):** M13 merged at `e289864`, and F-050, F-051 and F-052 are with the compiler. Ours: none of F-050's shape in 387 tracked `.npk` files, no `atomic<` (F-052), and F-051 not measured (232 `wild` sites).
+>
+> **THE COMPILER SIDE:**
+> - **Landings 129 … 137 are verified and filed** (133 onward in the lean form), with advance notices F72 … F79. The scripts are kept in the gitignored `.internal/landing/n129L/` … `n137L/`. **For 138, copy `n137L/verify137.py`:** change the keys, the two shas, the transcript's path (your own), the row and F numbers, and the expected sums.
+> - **Owed at the re-pin that carries them:** O-N40's item 2 (129); a dated line on O-N36's F-039 `<|` note (133, `meta/OPEN_QUESTIONS.md:426`); and O-N36's "F-036 b goes on DEF-190", discharged (135, `:437`).
+> - **`PLAYBOOK.md` items still owed,** as `_20`'s block lists them, plus parse 0.0.1's three.
+>
+> **OPEN WITH THE AUTHOR:** nothing on the questions table. His word of 19:53 on the trailers: either way, and credit where it is due, so orchestrate `SKILL.md:230`'s form stands (the dispatcher's own trailer lines, verbatim).
+>
+> **WHAT WORKED, AND THE SLIPS, each fixed in its own commit:**
+> - **`check_refs`'s exit 1 stopped this seat's take after staging** when chained with `&&`. Nothing was written beyond the staging. Read the count instead.
+> - **Take every figure and time from its command, correction notes included.** The merge entry's "92 % after" was read before the writes (`87559fc`), and the correction's own "04:08" was not taken from `date` (`93627bb`). A draft claimed F-051 and F-052 counts that no command had run; they were counted and fixed before the commit.
+> - **A relay can answer a different question.** `management_1`'s 07:41 answer covered `0.3.0.md` §9 under question 37's name. Read what the summary named before closing a question.
+> - **This machine's `grep` is `ugrep`, which refuses `.{0,N}` on UTF-8 text.** Use Python for context.
+> - **A Team chain's re-read is cheap by script:** the step patches against the plan-verified ones, with a planted control, and a table of landings against the board's headings, with a flipped sha.
+> - **A mid-tool message's arrival time** is in the transcript's `queue-operation` record (`enqueue`).
+
 > **🔁 HANDOFF — `nitpick-libs_21` → `nitpick-libs_22`, 2026-10-19 22:17 (shell time), at the author's word (*"sounds good to me. libs_22 is ready"*), at a quiet point: the compiler is between landings with DEF-265 held, regex 0.2.6's work starts no earlier than Tue 03:00, and nothing of this seat's is in flight.** This seat is at about 69 % context, and context per turn drives Max cost (`management_1`, 2026-10-16). So a fresh seat runs regex 0.2.6's review and merge cheaper.
 >
 > **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes:

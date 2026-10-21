@@ -15455,3 +15455,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The author, to this seat at 19:53, in his words:** *"i myself don't really have much of an opinion on the commit thing either way. Whatever makes things work out the best for everyone."* He had seen `Ailp-team_15`'s version first, and told it that he did not see where it was hurting anything, and to check with management if there was any possibility of it being an issue. On attribution: *"As far as people knowing i had AI assistance, i don't give a single damn lol :-) I named my organizaion Alternative Intelligence Liberation Platform for a reason. … Whether managing a construction crew or a codebase, i think you always give credit where credit is due."*
 - **So the question held at 11:44 is settled.** The Team's briefs keep ATTRIBUTION as orchestrate `SKILL.md:230` says, the dispatcher's own trailer lines verbatim (two today), as they have since parse 0.0.1's step 2. Commits made in either form stand, and nothing else changes.
 - **Told to `Ailp-team_15`,** so a check with management is its own call, and none is needed from this seat's side.
+
+### Handoff block written: `nitpick-libs_22` → `nitpick-libs_23`, at the author's word — 2026-10-21 19:59 (shell time)
+
+- **The author's word** (19:56:49): *"if you think its a good time to handoff i'm fine with it."* He had just restarted `_23` and `_24` for an update, and was restarting the other idle sessions before the reset.
+- **Why now:** nothing of this seat's is in flight; the Max week (95 % at 19:57) resets at 20:00; this seat is at about 44 % context; and parse 0.0.1's review, the next heavy item, runs cheaper in a fresh seat.
+- **The block at the top of the board is the brief:** the take, the peers, the meters, the pin, the streams as values (parse 0.0.1's review first; sockets' single review at the continuation's verifier; regex 0.3.0's UCD directory; time's safety item first past 128), the compiler side, and the tenure's slips.
+- **The lock is released in the next commit,** as its distinct last write.
