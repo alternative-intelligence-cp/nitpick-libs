@@ -15437,3 +15437,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **This seat's choice: no merge yet.** It will re-read and fast-forward once, over 0.0.0 … 0.0.5, at the continuation's plan verifier's PASS. Nothing waits on sockets' `main`, one review costs less than two, and Max is at 94 % until 20:00. The continuation is 0.0.2 … 0.0.5 on the same branch in lane 1, a fresh planner each, then one plan verifier over them (`management_1`, 11:49:05).
 - **Asked of `_14` for that verifier's brief:** a ruling on N-5's two refusals (`RESOLVE-010`, `TYPE-032`), so the question can go to the registry and the compiler seat.
 - **Owed at the review:** T7v2's F1–F8, on the board's sockets row, and PD-159 … PD-168 to the author with the cycle's others.
+
+### Parse 0.0.1 CHAIN PASS at `9f37f45`; its review held for the Max reset; 0.0.2's go in two parts — 2026-10-21 14:12 (shell time)
+
+- **The chain line** (`Ailp-team_15`, the Team's manager from 13:48:42 after `Ailp-team_14`, at `uds:/run/user/1000/cc-socks/3594543.sock`; arrived 14:10:51): `nitpick-parse 0.0.1 CHAIN PASS branch team/parse-0.0-plan commit 9f37f45…`, with the reports T10w0 … T10w7 and T10vw. T10vw (`sonnet`) PASSED at 14:08:42 with no blocking finding. CI is one job per push from step 4, each a success; steps 0–3 had none, with no `.github/` before step 4. Steps 0–1 end with one trailer line, steps 2–7 with two.
+- **Read here:** the branch fetched and read by `ls-remote` at `9f37f45`, twelve commits after `4f83ed3` (T10's four and 0.0.1's eight); `main` `4f83ed3`. The cycle README marks 0.0.2 execution-grade ("three patches over 0.0.1's record"), with PD-138 and PD-139 its own.
+- **The review and fast-forward wait for the Max reset at 20:00.** The meter reads 94 %, so the room is 1, and a review costs about that. Nothing waits on parse's `main`.
+- **Owed at the review:** the REPORT block's seven items (`0.0.1.md:1156–1195`), item 3's ten drafting dates needing one ruling; T10vw's five new findings; and three playbook items for this seat to land (W-16).
+- **0.0.2's go, sent at 14:12,** timing `management_1`'s:
+  - its step cut now: a fresh `npk:planner` on the branch at `9f37f45` cuts 0.0.2 into fresh-worker steps, as T10 did for 0.0.1. It plans and rehearses only and changes no settled line. It uses PD-191 … PD-200 only if a draft is needed, and takes the seven items and the five findings each to a disposition, item 3 waiting for this seat's ruling. Then comes a scoped plan verifier;
+  - its work comes after this seat's review and fast-forward of 0.0.1, which may add items to the cut.
+- **Sockets:** T7c3, 0.0.3's planner, goes at Thu 03:00 under the Team's gate. The single fast-forward after the final T7v stands.
+- **This seat's context is at 41 %** (14:11), and context per turn drives Max cost. The author is told that a fresh seat would run the next reviews cheaper.
