@@ -15352,3 +15352,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Owed before 0.3.0's dispatch:** PD-184 … PD-188 accepted or struck, and PD-185's UCD route (`0.3.0.md` §9 items 1 and 2), with the carried texts above. The kept `7e91730` pin is no longer regex's (0.2.5a §7), and it stays for time, whose adoption is held.
 - **The Team seat's manager is `Ailp-team_13`** from 04:04:52 (`uds:/run/user/1000/cc-socks/3295111.sock`, arrived 04:05:17). `_12`'s chain line stands, and parse's T10 and 0.0.1 wait in lane 1 for the author's review and `management_1`'s go.
 - **The meters:** Max 92 % before the review and 93 % after its writes (04:07), so it cost about 1 point. The cost line goes to `management_1`. *(Corrected at 04:07: the entry first said 92 % after too, a reading taken at 04:03, before the writes.)*
+
+### The author accepts `0.3.0.md` §9 (PD-184 … PD-188), relayed by `management_1`; question 37 stays open, asked back — 2026-10-21 07:43 (shell time)
+
+- **From `management_1` (arrived 07:42:11):** the author's words of Wed 07:41:33, verbatim: *"The recommendations sound fine to me."* What he accepted, as management summarized it to him:
+  - PD-184 … PD-188, accepted as written;
+  - PD-185's route: the dispatching seat provides `$WB/.internal/ucd/18.0.0/`, with the eight files, `SHA256SUMS` and `PIN.md`, before dispatch, with CI's fetch as the second reading. The worker gets no fetches;
+  - §9's items 3–5 (rehearse before dispatch, the re-pin past 119 … 137 before or between steps, the harness's time) are this seat's to schedule.
+
+  0.3.0 itself is not scheduled.
+- **Recorded as the author's decision on `0.3.0.md` §9,** in the board's regex rows and `LIBRARIES.md`. This seat owes the UCD directory before 0.3.0's dispatch.
+- **Question 37 is not what the relay names.** The relay calls the answer "Question 37 (`0.3.0.md` §9)". Question 37 asks `done/0.2/0.2.6.md` §9's six items: PD-181 … PD-183, now RX-246 … RX-248; item 3's noted line; RA-11's rewrite; and the two optional notes. The summary names none of them. So the question stays open, and it was asked back to `management_1`. This seat's own summary to the author after the merge set the two side by side, which may have joined them.
