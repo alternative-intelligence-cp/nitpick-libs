@@ -15388,3 +15388,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not measured:** a view stored into a `Vec<T>` element behind a pointer, through a call. That is a different path from F-050's, and F-050's fix and its advance notice will say whether it reaches it.
 - **F-052 touches nothing of ours:** there is no `atomic<` in those 387 files. **F-051 is not measured:** they hold 232 `wild` sites, regex's `src/core/vec.npk` among them, and a dead load through a NULL `wild` (a load whose value is unused) is a semantic shape that no pattern reads. Its fix's advance notice will say what moves. *(This entry's draft said both were uncounted and absent; it was counted before the commit, and the draft corrected.)*
 - **Next:** the census at F-050's advance notice, when the compiler seat resumes.
+
+### Parse's text round (T10) starts on the Team seat; `CLAIMED s2` taken for parse — 2026-10-21 09:19 (shell time)
+
+- **The start line** (`Ailp-team_13`, arrived 09:18:36): T10, a fresh `npk:planner` (`opus`), starts now on `team/parse-0.0-plan` at `4f83ed3`, in lane 2 at width 2, on `management_1`'s go (arrived there 09:15:33). Diogenes' next plan runs beside it in lane 1, and the two share one harness lock. T10 works on `_21`'s go of 2026-10-18 07:49:06, which this seat keeps: the nine items, then 0.0.1 cut into steps for a fresh worker each, PD-191 … PD-200 only. It plans and rehearses only, and no CI runs, since the tip has no `.github/`.
+- **Read here:** `ls-remote` gives parse's `main` and `team/parse-0.0-plan` both at `4f83ed3` (09:19), and the workbench's parse checkout is clean there.
+- **Claimed:** `CLAIMED s2` for parse, beside time's idle `CLAIMED s2`, as on 2026-10-17 03:05.
+- **Next:** a plan verifier scoped to what the round changed, then 0.0.1's work and its work verifier. A heads-up comes at the scoped verifier's PASS, and the chain line at the work verifier's PASS; then this seat's re-read and fast-forward (W-29).
+- **The meters:** Max 94 %, so the room is 1 to Wed 20:00. This seat stays idle on Max until the reset unless something safety-critical comes.
