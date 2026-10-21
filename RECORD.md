@@ -15449,3 +15449,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - its work comes after this seat's review and fast-forward of 0.0.1, which may add items to the cut.
 - **Sockets:** T7c3, 0.0.3's planner, goes at Thu 03:00 under the Team's gate. The single fast-forward after the final T7v stands.
 - **This seat's context is at 41 %** (14:11), and context per turn drives Max cost. The author is told that a fresh seat would run the next reviews cheaper.
+
+### The author on the trailer question: either way, and credit where it is due; `SKILL.md:230`'s form stands — 2026-10-21 19:53 (shell time)
+
+- **The author, to this seat at 19:53, in his words:** *"i myself don't really have much of an opinion on the commit thing either way. Whatever makes things work out the best for everyone."* He had seen `Ailp-team_15`'s version first, and told it that he did not see where it was hurting anything, and to check with management if there was any possibility of it being an issue. On attribution: *"As far as people knowing i had AI assistance, i don't give a single damn lol :-) I named my organizaion Alternative Intelligence Liberation Platform for a reason. … Whether managing a construction crew or a codebase, i think you always give credit where credit is due."*
+- **So the question held at 11:44 is settled.** The Team's briefs keep ATTRIBUTION as orchestrate `SKILL.md:230` says, the dispatcher's own trailer lines verbatim (two today), as they have since parse 0.0.1's step 2. Commits made in either form stand, and nothing else changes.
+- **Told to `Ailp-team_15`,** so a check with management is its own call, and none is needed from this seat's side.
