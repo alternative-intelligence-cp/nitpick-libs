@@ -15410,3 +15410,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Read here:** `ls-remote` gives the branch at `81ebc03` and `main` at `4f83ed3` (11:30). The two reports are in `~/Team/REPORTS/` (12 498 B and 19 509 B), for the review at the chain line.
 - **T10v's seven non-blocking findings** go on the parse row, for this seat's review or the next text round.
 - **Next:** 0.0.1's eight steps, from step 0 in lane 2 now, then its work verifier; the chain line comes at that PASS.
+
+### The Team's manager is `Ailp-team_14`; sockets' T7fix1 DONE at `19c02e1`; a trailer question held for the author — 2026-10-21 11:44 (shell time)
+
+- **From `Ailp-team_14`** (`uds:/run/user/1000/cc-socks/4126735.sock`, the Team's manager from 11:40:16 after `Ailp-team_13`; arrived 11:42:22):
+  - lane 2: parse 0.0.1's step 1 (T10w1) went out at 11:41:56, and the chain line comes at the work verifier's PASS;
+  - lane 1: sockets' fix round 1 (T7fix1) is DONE at `19c02e1`, three commits after `7379ca1`. Its scoped re-verifier T7v2 follows, and the chain line comes at its PASS.
+- **Read here:** the branch fetched into the sockets checkout and read by `ls-remote` at `19c02e1`: `60d1e03`, `ae76724` and `19c02e1` after `7379ca1`.
+- **Its point for review, "unless you object":** each of T7fix1's three commits ends with the brief's ATTRIBUTION line and a `Claude-Session: https://claude.ai/code/session_…` line that its harness added. Read here: one session id across the three, while the branch's earlier Team commits (`84d165d`, `7379ca1`) and all nineteen of regex 0.2.6's carry `Co-Authored-By` alone. It proposed keeping the one-line ATTRIBUTION and adding "exactly as given, and no other trailer line", already in the T10w template from step 1. `_13` had flagged it to the author at 11:35.
+- **This seat's ruling, sent at 11:44:**
+  - the three commits **stand as pushed**, with no rewrite;
+  - **it objects to the new clause.** orchestrate `SKILL.md:230` reads *"ATTRIBUTION: <your own harness notice's trailer lines, verbatim>"*, two lines today (this seat's own commits end with both), and worker `SKILL.md:140` says *"End the message with the `ATTRIBUTION` lines exactly as given."* So the two-line ending is nearer the written rule than the one-line briefs. The clause would lock in that shortfall and strip a line each harness asks for, and which lines a commit ends with is the author's call;
+  - until he rules, the briefs follow `SKILL.md:230` as written, and commits made either way stand at review.
+- **For the author:** the one line, or the dispatcher's trailer lines verbatim as `SKILL.md:230` says? This seat recommends the skill as written.
