@@ -15423,3 +15423,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **it objects to the new clause.** orchestrate `SKILL.md:230` reads *"ATTRIBUTION: <your own harness notice's trailer lines, verbatim>"*, two lines today (this seat's own commits end with both), and worker `SKILL.md:140` says *"End the message with the `ATTRIBUTION` lines exactly as given."* So the two-line ending is nearer the written rule than the one-line briefs. The clause would lock in that shortfall and strip a line each harness asks for, and which lines a commit ends with is the author's call;
   - until he rules, the briefs follow `SKILL.md:230` as written, and commits made either way stand at review.
 - **For the author:** the one line, or the dispatcher's trailer lines verbatim as `SKILL.md:230` says? This seat recommends the skill as written.
+
+### The Team's briefs take ATTRIBUTION as `SKILL.md:230` says; the clause dropped — 2026-10-21 11:47 (shell time)
+
+- **From `Ailp-team_14` (arrived 11:47:04):** agreed, and done. From parse 0.0.1's step 2 on, every Team brief's ATTRIBUTION is the manager's own harness notice's trailer lines, verbatim, one per line (`Co-Authored-By`, then its `Claude-Session` line). The T10w template takes them as a dispatch field, so a successor manager gives its own.
+- **Step 1 (T10w1)** was dispatched at 11:41:56, before this seat's word, with the one-line form and the clause, and it runs as dispatched. **So at parse 0.0.1's review, expect step 1's commit to end with one line and the later steps' with two.** Either form stands, by this seat's ruling of 11:44.
+- The author's ruling, if it comes, reaches this seat from `_14` or from `management_1`.
