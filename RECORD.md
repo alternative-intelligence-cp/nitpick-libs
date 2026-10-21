@@ -15363,3 +15363,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   0.3.0 itself is not scheduled.
 - **Recorded as the author's decision on `0.3.0.md` §9,** in the board's regex rows and `LIBRARIES.md`. This seat owes the UCD directory before 0.3.0's dispatch.
 - **Question 37 is not what the relay names.** The relay calls the answer "Question 37 (`0.3.0.md` §9)". Question 37 asks `done/0.2/0.2.6.md` §9's six items: PD-181 … PD-183, now RX-246 … RX-248; item 3's noted line; RA-11's rewrite; and the two optional notes. The summary names none of them. So the question stays open, and it was asked back to `management_1`. This seat's own summary to the author after the merge set the two side by side, which may have joined them.
+
+### Question 37 answered: the author ratifies 0.2.6's six §9 items as merged — 2026-10-21 07:49 (shell time)
+
+- **From `management_1`, first** (arrived 07:44:17): the author's words of 07:41:33 covered `0.3.0.md` §9 only, as `60e50c1` records them. Question 37 had never been put to him, because management took the board's row for 0.3.0's §9, the two sitting side by side.
+- **Then the answer** (arrived 07:48:59): the author's words of 07:48:06, verbatim, *"I am fine with that recommendation."*
+- **What he was shown,** in management's summary of `done/0.2/0.2.6.md` §9:
+  1. PD-181's halves read from the READMEs' boxes;
+  2. PD-182's 64 out of the small numbers;
+  3. PD-183's comparison by dump text, with this seat's note that its reason holds for 19 of 42 units;
+  4. item 3 as a noted line;
+  5. RA-11's two passages rewritten with dated notes;
+  6. the two optional notes taken.
+- **The recommendation he accepted:** ratify all six as merged. So nothing moves in the tree: RX-246 … RX-248 and the close's texts stand at `14817a1`. The dated correction to item 5's note, which this seat's ruling carries to 0.3.0's first step, stays owed there.
+- **Questions for the author:** none open.
