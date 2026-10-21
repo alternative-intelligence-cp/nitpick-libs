@@ -15403,3 +15403,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Read here:** `ls-remote` gives `team/sockets-0.0-plan` at `7379ca1` and `main` at `d385991` (10:36), and the workbench's sockets checkout is clean at `d385991`.
 - **`CLAIMED s3` stands** as `_20` took it at `f18bf7d`; the in-flight row now reads the round instead of HELD.
 - **Next:** a scoped re-verification (T7v2, from T7v1's brief), then the chain line at its PASS. Owed then: sockets' own question N-5 to the registry and the compiler seat, once a verifier rules on its two refusals.
+
+### Parse's text round PASSED its scoped verifier (T10v) at `81ebc03`; 0.0.1's work begins — 2026-10-21 11:30 (shell time)
+
+- **The heads-up** (`Ailp-team_13`, arrived 11:29:58; not the chain line): T10v PASSED `team/parse-0.0-plan` at `81ebc03` at 11:28:46, with no blocking finding. T10 made four commits after `4f83ed3`: `32b31a9`, `e6c3fc4`, `c510e86` and `81ebc03`. All nine items are answered, 0.0.1 is cut into eight fresh-worker steps, no PD is used (PD-191 … PD-200 free), and no settled line changed. T10v read 37 of 37 blocks SAME in a fresh stand-in, and blocks 1–7 SAME from fresh clones at each predecessor's commit.
+- **Read here:** `ls-remote` gives the branch at `81ebc03` and `main` at `4f83ed3` (11:30). The two reports are in `~/Team/REPORTS/` (12 498 B and 19 509 B), for the review at the chain line.
+- **T10v's seven non-blocking findings** go on the parse row, for this seat's review or the next text round.
+- **Next:** 0.0.1's eight steps, from step 0 in lane 2 now, then its work verifier; the chain line comes at that PASS.
