@@ -15557,3 +15557,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Kept for successors:** `_22`'s three re-read scripts (the regex 0.2.6 patch comparison, the 0.3.0 landings comparison, and the F-050 census), copied from its scratchpad into the gitignored `.internal/review-scripts/`.
 - **A slip:** one command began with a `cd` into `nitpick-parse` and returned to the workbench within the same command (`pwd` read the workbench after). Nothing ran there.
 - **The meters:** the Max week reads 2 % after the review's reads (1 % at the take), and the five-hour window 8 %. The cost line goes to `management_2`.
+
+### Parse 0.0.1's three findings for the playbook landed (W-16) — 2026-10-21 20:24 (shell time)
+
+- **§10, `stack`:** the account of "this `{` is never closed" is kept as what `nitpick-regex` 0.0.0 met at its pin, and step 6's re-measurement at `c9baa9e` is added beside it, dated: six shapes, a local `PARSE-002` at its declaration and refused again at each later use, a parameter `PARSE-001`, and none prints "never closed". Landing 136 (DEF-259) moves the account again at the re-pin past 136. The advice now covers a cascade from one declaration as well as a false unclosed brace. The lesson goes with it: a plan that writes a playbook account as measured re-measures it at its own pin.
+- **§6, CI:** a job's `timeout-minutes` is a ceiling, not a length. The first uncached run at `c9baa9e` took 4 min 14 s (job 119339969762), 2 min 24 s of it LLVM's install, against the plan's "allow its sixty minutes".
+- **§6, pointer checks:** a check that asks only whether the cited section exists passes a pointer to the wrong section. **Verified here before landing:** `pointers.py:64` matches `^## <n>\.` alone; `SCAN_MODEL.md` §3 is byte classification, and C-9 is at §4 (`:114`); `CURRENCY.md:17` cites §3.
+- **A figure kept out:** the first draft of §10's lesson said the account reached parse "three pins after it was measured", which no command had counted. It now says "at a later pin".
+- **Still owed for the playbook:** the items `_20`'s block lists, unchanged.

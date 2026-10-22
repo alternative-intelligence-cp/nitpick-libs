@@ -1244,6 +1244,18 @@ run — yet its expected lines still belong in a plan's expected output, or a ca
   `'7e91730'`, so a plan that parses its workflow with PyYAML cannot see it; judge a scalar by YAML 1.2's core schema.
   Nothing asserted that row, so that run's verdicts stood; the fix quoted the five hex rows. *(`nitpick-time` 0.3.2a's work,
   `9929d17`, and its verifier, 2026-10-10; landed 2026-10-10.)*
+- **A CI job's `timeout-minutes` is a ceiling, not a length: a plan states the measured length.** `nitpick-parse`
+  0.0.1's plan told its worker to "allow its sixty minutes" for CI's first run, reading the job's `timeout-minutes: 60`
+  (`ci.yml:44`) as a duration. That first run, at `c9baa9e` with no cache, took 4 min 14 s (job 119339969762, 16:22:16Z …
+  16:26:30Z), 2 min 24 s of it LLVM 20.1.8's install. A worker told to allow an hour budgets an hour. Quote the last
+  measured run's length, and keep the timeout as the bound. *(`nitpick-parse` 0.0.1's step 4 and record, 2026-10-21;
+  landed 2026-10-21.)*
+- **A pointer check that asks only whether the section exists passes a pointer to the wrong section.** `nitpick-parse`'s
+  `pointers.py` confirms that a cited document has a `## <n>.` heading (its line 64), so `CURRENCY.md:17`'s
+  "`SCAN_MODEL.md` §3" passed, while the rule it means, C-9, is in §4 (§3 is byte classification). A verified Expect and
+  the plan's §1.7 carried the same pointer. A check is only as wide as its mechanism: check that the named rule or term
+  is in the section the pointer names, and plant a pointer to a real but wrong section as the control. *(`nitpick-parse`
+  0.0.1's step 5, 2026-10-21; landed 2026-10-21.)*
 - **In a Claude Code shell, `grep` is a function, and `xargs grep` is another program.** The Bash tool defines `grep` as a
   shell function over an embedded ugrep, while `xargs`, `find -exec` and every script run `/usr/bin/grep` (GNU grep 3.11
   here). Their regex dialects differ. To ugrep, `[A-Za-z_\[\]-]` is one bracket of letters, brackets and a hyphen; to GNU
@@ -1668,13 +1680,30 @@ enters a plan. **Check a planned type's name against the prelude's as well:** `R
 rather than reported.
 
 **`stack` is the one that costs an hour, because it does not fail where you
-wrote it.** It is the natural name for an explicit-stack parser's local, and
-using it produces `PARSE-002` at the declaration followed by "this `{` is never
-closed" pointing at `main`'s closing brace — so it reads as a brace imbalance
-dozens of lines away, and it is bisected as one. `nitpick-regex` 0.0.0 lost
-about an hour to exactly that. If a parse error claims an unclosed brace and
-the braces are balanced, check whether a local is named after a qualifier
-before you touch the braces.
+wrote it.** It is the natural name for an explicit-stack parser's local. At
+`nitpick-regex` 0.0.0's pin, using it produced `PARSE-002` at the declaration
+followed by "this `{` is never closed" pointing at `main`'s closing brace — so
+it read as a brace imbalance dozens of lines away, and it was bisected as one.
+`nitpick-regex` 0.0.0 lost about an hour to exactly that. *(Re-measured
+2026-10-21 at `c9baa9e` by `nitpick-parse` 0.0.1's step 6, in six scratch
+programs: a local named `stack`, a `Vec<Frame>` in a helper, in `main` or
+before a braced loop, or an `int64`, is `NITPICK-PARSE-002`, "expected an
+expression", at the declaration, and each later line naming it is refused
+again, `PARSE-002` and `PARSE-001`. In the loop's shape the errors run on to
+the function's closing `};` and into the next function. A parameter named
+`stack` is `NITPICK-PARSE-001`, "`stack` is a keyword and cannot name a
+binding, a parameter, a field or a variant". None of the six prints "this `{`
+is never closed", which the compiler issues only when the file ends inside a
+block (`src/frontend/parse_stmt.npk:467–473` at `c9baa9e`, by that step's
+reading), and the control, the same local named `frames`, parses and resolves.
+Landing 136 (DEF-259) makes a local `T:keyword` `PARSE-001` at the name, so
+the account moves again at the re-pin past 136.)* So if parse errors cascade
+from one declaration through the lines after it, or claim an unclosed brace
+when the braces are balanced, check whether a local or a parameter is named
+after a qualifier before you touch anything else. **And a plan that writes a
+playbook account as measured re-measures it at its own pin:** this one reached
+`nitpick-parse`'s `CLAUDE.md` and `BUILD.md` as fact, at a later pin than the
+one it was measured at. *(`nitpick-parse` 0.0.1's step 6, 2026-10-21; landed 2026-10-21.)*
 
 Three shapes that surprise a C or Rust habit: adjacent string literals do not
 concatenate; `discard(x);` takes parentheses and `defer { … }` takes no
