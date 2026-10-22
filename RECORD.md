@@ -15720,3 +15720,48 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **At the author's word:** the writer line's first token is `none`, and the marker `.internal/orchestrator.session` is removed after this push. The handoff block `_23` → `_24`, at the top of the board (`a2769da`), is the brief.
 - **In flight at the release:** nothing of this seat's. The pin is `2e1cb4a`, taken at 04:59 (`4db3f92`). On the Team seat, parse (`619fc4e`) and sockets (`fe5106e`) rest until their adoptions, with no new Team chain before Fri 03:00. Only D7 (diogenes) runs there. The compiler seat's landing 141 is in its harness.
 - **`_23` stays open** for `_24`'s questions, and forwards anything that reaches it until the peers re-address.
+
+### Handover — `nitpick-libs_24` takes the workbench lock on `nitpick-libs_23`'s briefed handoff — 2026-10-22 05:23 (shell time)
+
+**Handover.** `nitpick-libs_24` (`a0c46691-c5d4-4abe-8b31-043b75c1c982`) takes the writer lock that `nitpick-libs_23` released at `56d5de1` (05:15), at the author's word (*"I'm fine with you handing off whenever you think it is a good point."*, 05:11:30). `_23` briefed this seat by message (about 05:17) and by the board's handoff block (`a2769da`). It stays open until this seat says it is done with it.
+
+- **The account, checked first:** this session's own status-line file `~/.claude/context/a0c46691-….json` carries rate limits (the five-hour window 25 %, resetting 05:30; the week 14 %, resetting 2026-10-28 20:00), so this seat is on Max. The meters file's last row (`nitpick-libs_23`, 05:12:52) reads the week 14 %, the five-hour 25 % and Fable 21 %. **The room is 95 − 14 − 0.5 × (100 − 21) = 41.5, so over 20.** A cost line still goes to management for each chain.
+- **The id, from values:** `CLAUDE_CODE_SESSION_ID`, the transcript `a0c46691-….jsonl` (written live, 05:18:37), the scratchpad path and `~/.claude/context/a0c46691-….json` (`session_name` `nitpick-libs_24`) all agree. `ListAgents` names this session `nitpick-libs_24` (`[4ba56a]`), the ref the handoff block gave it.
+  - **By content:** a nonce (`NONCE-libs24-b7e2d94c1a6f305e8d17`), typed into the search command, is found in that one transcript only, across `~/.claude/projects` (1.3 G) and `~/.claude-team/projects` (454 M), at 05:19:09.
+  - **The first run found it nowhere (05:18:53):** the transcript records a tool call once it has run, so the command carrying a new nonce cannot find itself. The second run found the first run's text. So run the search twice, and read the second.
+  - A 37-character control generated at run time, and never printed, is found in none, on both runs.
+  - The marker is 37 bytes.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 05:18:37 and again at 05:22:26, just before the edit;
+  - `HEAD` = `origin/main` = `ls-remote` = `56d5de1`, with porcelain 0;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed (read with `--no-optional-locks`), found **9 trees, every one `dirty=0`**, at 05:19: the workbench `56d5de1`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `9f37f45`, regex `14817a1`, sockets `d385991`, time `1cc801f` and tui `e5439ee`. Eight read `0/0`. Fuzz reads `0/19`: its local `origin/main` is `e289864`, its GitHub `main`, fast-forwarded by a `fetch -q origin` at 2026-10-22 02:46:14 (its reflog). This workbench never fetches that checkout (W-30), and the checkout stays `d44dfe3`;
+  - the pin `2e1cb4a`'s `sha256sum -c` read OK for `npkc` and `npkrt.o`;
+  - the compiler's `main` is `2e1cb4a` (landing 140), clean, so 141 has not landed;
+  - `check_refs` read its 2 known `[leak]` lines (`tools/guard_domains.py`) on the clean tree, at exit 1.
+- **Hazard 3, asked and answered:** `_23` measured by command, 05:18:58 to 05:20:
+  - the same 9 trees clean, each `HEAD` its tracking ref and `ls-remote`, but fuzz: `0/19` by design, its local `origin/main` `e289864` as `ls-remote` reads. The compiler `2e1cb4a`, dirty 0, `0/0`. No fetch anywhere;
+  - `HEAD` = `origin/main` = `ls-remote` = `56d5de1`, porcelain 0, the token `none` both ways, and no marker;
+  - `find .internal -newermt '2026-10-22 05:15:51'` (its release commit's time) lists 1 path, `.internal` itself, whose mtime moved with the marker's removal after the push;
+  - nothing live: across its transcript 0 `Agent`, `Workflow`, `CronCreate`, `ScheduleWakeup`, `Monitor`, `RemoteTrigger` and background Bash calls, and `CronList` empty;
+  - its remaining actions are messages only: answering this seat, and forwarding what reaches it until the peers re-address.
+- **Hazard 4:** `nitpick-libs_25` (`[027bc7]`), the spare, answered in one line (about 05:19): idle, no task (a fresh session, no brief yet), nothing written in `nitpick-libs` (its only tool call loaded `SendMessage`), and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`, 05:18 and 05:21):**
+  - the seat's own: `nitpick-libs_23` (`[9bc069]`) and `_25` (`[027bc7]`);
+  - the compiler's: `nitpick-compiler_41` (`[ec6c0a]`, at its shell), `_42` (`[8ad158]`, idle) and `_43` (`[b1a966]`, idle, opened about 04:20);
+  - management's: `management_2` (`[abdc11]`, at its shell), `_3` (`[bea6d2]`) and `_4` (`[32dfcc]`), both idle;
+  - the fuzzer's: `nitpick-fuzz_3` (`[68732d]`), `_4` (`[516d46]`) and `_5` (`[35803e]`, opened about 04:20), all idle;
+  - `diogenes_1` … `_3`, `claude-skills-devTeam_51` … `_53`, and the fuzz cloud session (`[169d76]`, milestone M11).
+
+  The Team's `claude-team` sessions are not listed.
+- **Read before the take:**
+  - the board's lines 1–14 and the handoff blocks `_23` → `_24` and `_22` → `_23`;
+  - `_17`'s block and the take hazards (1)–(13), with (1)–(6) at `RECORD.md`'s 2026-09-26 07:01 entry;
+  - orchestrate §1, §2 and §4 … §14;
+  - `RECORD.md`'s take entry of 2026-10-21 20:06 and its last entries;
+  - `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md`, `APPS.md`, and the board's in-flight table, questions table (nothing open) and stream tables.
+- **Waiting at the take:** `_23`'s recommendations for the three parse rulings owed to `Ailp-team_15` before T11v, by message (about 05:21), and its note that parse's adoption moves its CI's three compiler pins to notice 140's `npkc.ll` row. Both are weighed after the take.
+- **Next:**
+  1. the rest of orchestrate §2: recovery for each `CLAIMED` row, and the picture to the author;
+  2. one line to `management_2`, and an introduction to `Ailp-team_15` (by socket), `nitpick-compiler_41` (and `_42` from 142) and `nitpick-fuzz_3`;
+  3. the three parse rulings to `Ailp-team_15` before T11v, and time's adoption of `2e1cb4a`, its `bytes_view` block first.
