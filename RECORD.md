@@ -15659,3 +15659,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `PLAYBOOK.md` §3 points to the section.
 - **The compiler's part:** R1 and R4's `--reach` listing, at the end of its queue. R3 is not adopted.
 - **The re-pin** still waits for the author's word.
+
+### The re-pin approved by the author; the Team told the order — 2026-10-22 03:54 (shell time)
+
+- **From `management_2` (arrived 03:50:26):** the author at 03:49:41: "for the two questions i agree with the recommendations". One of the two is the re-pin, management's Q54.
+- **So:**
+  - It is taken at the quiet point after T11 and T7c3, with every claim at rest.
+  - It goes past the newest landing then: 140 if it has landed (about 04:33), without waiting for more.
+  - Time adopts first, with its `bytes_view` block. Parse and sockets each adopt before their next dispatch. The one-pin rule stands.
+- **`Ailp-team_15` was told the order at 03:53:25,** by socket, before any further dispatch on a library. T11v waits for parse's adoption.
+- **The cost** is about 1 + 1–2 points within the libraries' 17. Those stand until the Max week's re-size at Fable's cap, about Fri 06:00–07:40 (`management_2`'s correction, arrived 03:52:39; it had said Saturday).
+- **Owed to management:** the re-pin's commit and each adoption's.
