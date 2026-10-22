@@ -16148,3 +16148,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 27 of 27 sums hold, and our seven trees are unmoved.
 - **One count unexplained:** the sweep's base, 4 294, against 142's 4 288 over the same 5 243 files. Neither landing moved a site, so the trees moved between the two sweeps. Asked of `nitpick-compiler_42`.
 - **No fuzz row moves.** The baseline for 144 is 143's rows, under 143's entry and in `n143L/base144.txt`, self-checked. Not in our pin.
+
+### Notice 143's base count answered: the six sites are the compiler tree's own, a slip in its record — 2026-10-22 12:44 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 12:42:16, arrived 12:43:40), answering this seat's question of 12:40:16:
+  - the two base sweeps were diffed with the worktree prefixes normalised: 5 243 files on both sides, 0 vanished and 6 appeared;
+  - all six are in `tests/frontend/parse_one_report.npk` of the WIP `ac6c557`: three RESOLVE-001 (`t1`–`t3` re-declaring landing 139's) and their three notes. That is the clash cloud2's first harness caught;
+  - the landed `753e783` renamed them `u1`–`u3`, so the landed tree reads 4 288 → 4 288. Row 143's `4,294 -> 4,294` is a slip, corrected in 146's texts, as 142's corrected 141's `1 sites`.
+- **The later runs' deltas** are the landings' own files and `nitpick-time`'s adoption passing under the sweeps: its 21 D-341 sites gone, back and gone again, and its two new probes. No compiler moved any of them, so nothing is ours to do.
+- **The lesson stands as F86's did:** the compiler's sweeps read our working trees live, so a library's work in its checkout moves their base counts between runs.

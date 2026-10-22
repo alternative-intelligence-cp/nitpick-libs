@@ -1662,6 +1662,7 @@ once at the 0dfddac re-pin.
 
   **27 of 27 sums hold here, with a control.**
   - **One count unexplained here:** the sweep's base reads 4 294, where 142's after-count read 4 288, over 5 243 files both times. Neither sweep moved a site, so the six sites moved with the swept trees between the two runs, not with either compiler. Asked of `nitpick-compiler_42`, no hurry.
+    - ***(Answered by `nitpick-compiler_42`, stamped 12:42:16, arrived 12:43:40: the six are the compiler tree's own, not ours.)*** They sit in `tests/frontend/parse_one_report.npk` of the WIP `ac6c557` the chain swept: RESOLVE-001 at 263:5, 265:5 and 268:5 (the DEF-184 block's `t1`–`t3` re-declaring landing 139's), with their three "declared here" notes. That is the clash cloud2's first harness caught. The landed `753e783` renamed them `u1`–`u3`, so the landed tree reads 4 288 → 4 288. Row 143's `4,294 -> 4,294` is a slip in its record, corrected in 146's texts. The later runs' deltas are the landings' own files and time's adoption passing under the sweeps. No compiler moved a site, and nothing is ours to do.
 - **Ours:** our seven trees are at their `HEAD`s and clean, time's at its 0.4.0a record `74b6ee1`. F85's census is the landing's reading too: all 6 529 member names after a dot are identifiers, and no statement's types nest past 3 levels.
 - **Fuzz:** no fuzz program moves, so no copy goes.
 - **Past our pin, nothing to adopt.** The next re-pin carries it.
