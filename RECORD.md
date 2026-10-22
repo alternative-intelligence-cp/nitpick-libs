@@ -15621,3 +15621,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Our trees are clean.
 - **The fuzz row doesn't move,** so no copy goes (W-30).
 - **139's notice hasn't arrived yet;** 140 lands after it.
+
+### Notice 139 verified in the lean form, `a3c873c`, DEF-265 and DEF-271 as F81 said — 2026-10-22 02:42 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 02:38:35):** landing 139 is `a3c873c`, parent `2a9d601`, pushed 02:37. Its harness ran on management's second harness machine.
+- **Checked here:**
+  - The ladder against the baseline for 139: MATCH, its control failing.
+  - The transcription and row 139, identical by script.
+  - The three git checks, read-only.
+  - 41 sums, with a control. Among them, the 27 vanished sites equal F81's, program by program.
+  - Our seven trees are clean.
+- **The fuzz row moves,** so it is updated, and a copy goes to `nitpick-fuzz_3` (W-30).
+- **The baseline for 140** is written and self-checked (`.internal/landing/n139L/base140.txt`), and it is on the board under 139's entry.
