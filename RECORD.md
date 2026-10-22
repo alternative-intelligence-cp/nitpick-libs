@@ -15670,3 +15670,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`Ailp-team_15` was told the order at 03:53:25,** by socket, before any further dispatch on a library. T11v waits for parse's adoption.
 - **The cost** is about 1 + 1–2 points within the libraries' 17. Those stand until the Max week's re-size at Fable's cap, about Fri 06:00–07:40 (`management_2`'s correction, arrived 03:52:39; it had said Saturday).
 - **Owed to management:** the re-pin's commit and each adoption's.
+
+### The Team holds parse and sockets for their adoptions; T7c3 closed — 2026-10-22 04:36 (shell time)
+
+- **`Ailp-team_15` (arrived 03:54:01):** noted and held. Nothing more goes on parse or sockets until each adopts the new pin: T11v waits for parse's adoption, and T7c4 waits for sockets'. It proposes to `management_2` that the Team seat opens each library's next chain with its adoption, a fresh `npk:planner` per library at the new pin. D7 takes the first free lane meanwhile.
+- **T7c3 closed (arrived 04:35:20):** sockets 0.0.3 is planned and rehearsed at `c9baa9e` on `team/sockets-0.0-plan` at `fe5106e`, pushed 04:32:08. `ls-remote` reads it, and `main` `d385991` is untouched. Sockets rests until its adoption.
+- **The quiet point** is now T11's close.
