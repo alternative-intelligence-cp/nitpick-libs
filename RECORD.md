@@ -16034,3 +16034,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - §6's `git add -A` would stage what a plan keeps unstaged, here the RUNNING title. It now says to commit the staged files alone when the plan stages its own files or keeps one unstaged.
 - **Its cost:** about 30 min and 34 tool uses, with a subagent token count of 165 k.
 - **dispatch `s2-ntime-0.4.0a-w2-0945`** (`npk:worker`, `sonnet`) on `6a6c848`, TREE dirty (the title alone): steps 3–5, that is blocks 3, 4 and 5 at `2e1cb4a`, three commits, nothing pushed.
+
+### `nitpick-time` 0.4.0a worker 2 DONE: steps 3–5 committed, all three blocks SAME; worker 3 dispatched for the sweep, the push, CI and the record — 2026-10-22 09:59 (shell time)
+
+- **report `s2-ntime-0.4.0a-w2-0945` DONE** (`sonnet`, about 09:46–09:58:32, about 15 min, 33 tool uses). Blocks 3, 4 and 5 are SAME. Its three commits are on `6a6c848`, not pushed:
+  - `8ad4917`, step 3, the pin (20 files). Its census gives 162 files with the same codes and sites, and 3 that differ: probe10d, probe19 and probe19b. The runner's judge passes 45 and fails 2 at `7e91730`, and passes 47 at `2e1cb4a`. probe10d's control gives 170/170 at `7e91730`, and part E's third half runs 21 spellings. The full run at `2e1cb4a` is RED 146 of 148 at the namespace pair alone (230.1 s);
+  - `f1210b3`, step 4, CI (3 files). The install step exits 1 on the fake asset with the pin's digest, unpacking nothing, and 0 on the fake's own digest. The emission step exits 1 and 0 the same way, and the eight rows are equal. There is no full run, as the plan says;
+  - `a11f3b3`, step 5, the prose (6 files). The full run is RED 146 of 148 at the namespace pair alone (233.9 s).
+  - earlyoom stayed quiet, with 118–119 GiB available at each start.
+- **Checked here:** time is on `main` at `a11f3b3`, 5 ahead of `origin/main`, and the plan's title is the one unstaged change. The five commits chain `2a33a7a` → `3a71a04` → `6a6c848` → `8ad4917` → `f1210b3` → `a11f3b3`, each with the `Claude Sonnet 5.5` trailer.
+- **findings-for-playbook, held for the final PASS:**
+  - `pgrep` inside a worker's sandbox sees only its own PID namespace, so `free -g`, host-wide, is the only gauge it has;
+  - a background block can be waited on in one call, with `timeout 585 tail -n +1 -f <output> | sed -n '/<second-to-last line>/{p;q};p'`.
+- **dispatch `s2-ntime-0.4.0a-w3-0959`** (`npk:worker`, `sonnet`) on `a11f3b3`, TREE dirty (the title alone): block 6, the sweep read line by line against §3b; then step 7, the push, CI read per job and the record. Its `NOTES` carry:
+  - workers 1 and 2's reports;
+  - the landings past the plan's commit, to row as NOT CARRIED: 142 now, and 143 and 144 if they land first;
+  - the verifier's two §7 nits, as dated notes. The PD-149 … PD-154 one is this seat's error.
+  - This run's CI cache keys are new, so it downloads LLVM and builds the compiler, and it will take longer than the last.
