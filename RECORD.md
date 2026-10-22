@@ -15714,3 +15714,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **The author's word (05:11:30):** "I'm fine with you handing off whenever you think it is a good point." This seat judges now good: nothing is in flight, the re-pin is taken, and time's adoption chain is the next heavy item. It is at 42 % context.
 - **The block,** at the top of the board, is the brief. The lock is released in the next commit.
+
+### The lock released: `nitpick-libs_23` hands the workbench to `nitpick-libs_24` — 2026-10-22 05:15 (shell time)
+
+- **At the author's word:** the writer line's first token is `none`, and the marker `.internal/orchestrator.session` is removed after this push. The handoff block `_23` → `_24`, at the top of the board (`a2769da`), is the brief.
+- **In flight at the release:** nothing of this seat's. The pin is `2e1cb4a`, taken at 04:59 (`4db3f92`). On the Team seat, parse (`619fc4e`) and sockets (`fe5106e`) rest until their adoptions, with no new Team chain before Fri 03:00. Only D7 (diogenes) runs there. The compiler seat's landing 141 is in its harness.
+- **`_23` stays open** for `_24`'s questions, and forwards anything that reaches it until the peers re-address.
