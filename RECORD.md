@@ -15676,3 +15676,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`Ailp-team_15` (arrived 03:54:01):** noted and held. Nothing more goes on parse or sockets until each adopts the new pin: T11v waits for parse's adoption, and T7c4 waits for sockets'. It proposes to `management_2` that the Team seat opens each library's next chain with its adoption, a fresh `npk:planner` per library at the new pin. D7 takes the first free lane meanwhile.
 - **T7c3 closed (arrived 04:35:20):** sockets 0.0.3 is planned and rehearsed at `c9baa9e` on `team/sockets-0.0-plan` at `fe5106e`, pushed 04:32:08. `ls-remote` reads it, and `main` `d385991` is untouched. Sockets rests until its adoption.
 - **The quiet point** is now T11's close.
+
+### Notice 140 verified in the lean form, `2e1cb4a`, DEF-275 as F82 said — 2026-10-22 04:40 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 04:37:03):** landing 140 is `2e1cb4a`, parent `a3c873c`, pushed 04:36. Its harness ran on `cloud2`.
+- **Checked here:**
+  - The ladder against the baseline for 140: MATCH, its control failing.
+  - The transcription and row 140, identical by script.
+  - The three git checks, read-only.
+  - 49 sums, with a control. Among them, the 38 added rows by function and verdict. One sum failed at first by this seat's own typo in its model (`escape_dump`'s open rows as 15 − 5 where the notice gives 10 + 5), corrected before filing.
+  - Our seven trees are clean.
+- **The fuzzer:** no program moves. F-051 (DEF-273) closes by a sentence at landing 142, by the author's approval of S-140's R1. The fuzz row notes it, and a copy goes to `nitpick-fuzz_3`.
+- **The baseline for 141** is written and self-checked (`.internal/landing/n140L/base141.txt`), and it is on the board under 140's entry.
+- **The re-pin** takes 140 at T11's close, or 141 if that has landed by then.
