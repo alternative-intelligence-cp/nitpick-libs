@@ -1647,6 +1647,39 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `6451911` LANDED — **NOTICE 144: DEF-185, DEF-186, DEF-188 AND DEF-240, AS F86 SAID: A MACRO BODY DECLARES ONLY WHAT AN EXPANSION EMITS (`MACRO-005` AT THE DECLARATION), A MACRO TAKES NO TYPE ARGUMENTS (`MACRO-002`), AND MACRO-009 NOTES ITS OWN INVOCATION; DEF-194 CLOSED, DEF-270 REGISTERED. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 144 EQUAL, GIT CHECKS CLEAN, 36 OF 36 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 13:17:57, arrived 13:19:08); verified 13:20 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 144): MATCH, its control failing. `npkc.ll` +29 237 B, `npkc.o` +9 168 B, `npkc` +7 536 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 10 392 characters) and **row 144** (6 524 characters, against `meta/NOTICES.md` at `6451911`) are identical by script, each control caught (`.internal/landing/n144L/verify144.py`).
+- **Git checks,** read-only:
+  - parent `753e783`, one commit, authored 09:09:19 and committed 10:42:09;
+  - 3 files under `src/` (`frontend/ast.npk`, `frontend/macro/expand.npk`, `frontend/type_resolve.npk`) and `npkg/manifest.npk` (DEF-240's one stage list), 0 under `runtime/` and `bootstrap/`;
+  - 15 files, +537/−272, with the three new rejection files; `main` = `origin/main` = `6451911`. F86's row is in `NOTICES.md` now.
+- **Their measurement, as F86 said:**
+  - the sweep over 5 246 files: 4 300 → 4 289. 10 appeared and 21 vanished, all in the landing's own files but `round_bound.npk`'s false note. MACRO-002 2 → 5, MACRO-005 19 → 25, MACRO-006 6 → 0, REACH-001 6 → 5, TYPE-004 38 → 37;
+  - 592 programs all byte-identical, 0 / 0 / 0. The libraries 1 886 / 2 176 / 0 / 0 / 0: the listing found 4 064, and time's two probes left the checkout mid-run;
+  - the manifest 7 347 → 7 357 obligations and 7 045 → 7 055 rows: 6 808 shared, 236 re-keyed in 49 functions of 17 modules, 1 removed and 11 added;
+    - the removed row is `record_site`'s `open` `overflow`, the line of slack;
+    - the added rows are `ast_macro_end`'s six `overflow`, two `terminate` and three `bounds` (4 + 2 discharged, 2 open, 3 unencoded);
+    - zero verdicts moved, and no discharged count fell;
+  - floor 388; harness 431 programs, 60 tests, parity 2 184; by hand 405; the verify suite 134 of 134.
+
+  **36 of 36 sums hold here, with a control.**
+- **Ours:** our seven trees are at their `HEAD`s and clean. F86's census is the landing's reading too: our five macro bodies (`nitpick-posix` probes) declare none of the six kinds, no macro call of ours takes a type argument, and our `#name<…>` calls are builtins.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** The next re-pin carries it.
+- **Next from them:** 145 (`9c08ccc`, DEF-269, F87) has been on cloud2 since 12:32 and lands about 14:26. 146 (F88) is recording its manifest, and its harness follows. Row 143's `4,294 -> 4,294` is corrected to `4,288 -> 4,288` in 146's texts.
+
+**THE BASELINE NOTICE 145 MUST QUOTE** (notice 144's rows, at `6451911`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    174b6ca8b756af9623d178b063ff6a24bc3d9e2ba1db6e7f398fa64f0f820718  32,656,402 B
+npkc.o     fb03e8e5a8c333474793fc10c1ded2284f43594c65a5ee727654f1aac319a462  13,467,824 B
+npkc       f041e3185686aa6f968e50c27997b871c3e9223d14a32144d72773936af3104c  11,639,600 B
+```
+
 ### ✅ `753e783` LANDED — **NOTICE 143: DEF-184 AND DEF-177, AS F85 AND ITS CORRECTION SAID: A TYPE'S NESTING IS THE PARSER'S DESCENT, AND A MEMBER IS NAMED AFTER A DOT. A TYPE PAST 256 LEVELS (A `List<…>`, A POINTER OR A NESTED FUNCTION TYPE) IS ONE `PARSE-012`, AND `p.386` IS `PARSE-001`. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 143 EQUAL, GIT CHECKS CLEAN, 27 OF 27 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 12:35:44, arrived 12:36:53); verified 12:40 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 143): MATCH, its control failing. `npkc.ll` +7 288 B, `npkc.o` +2 528 B, `npkc` +1 880 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 9 291 characters) and **row 143** (5 454 characters, against `meta/NOTICES.md` at `753e783`) are identical by script, each control caught (`.internal/landing/n143L/verify143.py`).

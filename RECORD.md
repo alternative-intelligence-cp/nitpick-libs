@@ -16157,3 +16157,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the landed `753e783` renamed them `u1`–`u3`, so the landed tree reads 4 288 → 4 288. Row 143's `4,294 -> 4,294` is a slip, corrected in 146's texts, as 142's corrected 141's `1 sites`.
 - **The later runs' deltas** are the landings' own files and `nitpick-time`'s adoption passing under the sweeps: its 21 D-341 sites gone, back and gone again, and its two new probes. No compiler moved any of them, so nothing is ours to do.
 - **The lesson stands as F86's did:** the compiler's sweeps read our working trees live, so a library's work in its checkout moves their base counts between runs.
+
+### Notice 144 verified in the lean form: the expander rows as F86 said; nothing of ours moves; the baseline for 145 written — 2026-10-22 13:20 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 13:17:57, arrived 13:19:08): `6451911`, landing 144 (1.6.1e: DEF-185, DEF-186, DEF-188 and DEF-240), on `753e783`, pushed 13:17. DEF-194 is closed, and DEF-270 registered.
+- **`.internal/landing/n144L/verify144.py`** found everything as the notice said, each control caught:
+  - the transcription and row 144 are identical, and the ladder MATCHes 143's rows;
+  - parent `753e783`, one commit, with 3 files under `src/` and `npkg/manifest.npk`;
+  - 36 of 36 sums hold, and our seven trees are unmoved.
+- **Ours: nothing moves,** by F86's census. No fuzz row moves.
+- **The baseline for 145** is 144's rows, under 144's entry and in `n144L/base145.txt`, self-checked. Not in our pin.
