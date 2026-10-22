@@ -15975,3 +15975,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Its findings at 142 equal 141's** line for line, over F-050, F-051, F-052 and F-024 (nineteen programs): F-050 stays fixed, F-051 reads as S-140 permits, F-052 keeps three EMIT-002, and F-024's deep chain stays PARSE-012.
 - **§27 at `79cd363`** says the fuzz corpus records F-051's programs as the permitted disagreement, but the fuzz repository re-classes them only at its next run's opening, unfunded until Fri 10-23.
 - **Filed** on 142's entry and in the fuzz row. No copy back (W-30).
+
+### `nitpick-time` 0.4.0a's plan verified PASS; PD-201 … PD-203 accepted as TM-263 … TM-265; its work dispatched to three fresh workers in turn — 2026-10-22 09:13 (shell time)
+
+- **report `s2-ntime-0.4.0a-verify-0826`: `VERIFY nitpick-time 0.4.0a PASS`** (`sonnet`, 08:26:52–09:08:21, 41.5 min, about 260 tool uses), twelve of twelve:
+  - (1) the commit and the hygiene: one commit, 22 files under `meta/roadmap/0.4/`, the trailers verbatim, `check_refs` clean, `check_record` `[no-report]` only;
+  - (2) CI per job: success at `7e91730`, 146 units. V-14's thirteenth case is case 6, PEND until cycle 0.5, because `tools/gen_tzdb.py` does not exist yet;
+  - (3) all eight blocks SAME in a stand-in, which reached the compiler through a `--shared --no-checkout` clone. The stand-in's step trees equal its own `git apply --index` of the patches, and the planner's rehearsal commits in the reflog differ by one confirmation line;
+  - (4) F70's safety item, by its own census:
+    - the unchanged tree's eight roots are `BORROW-015` at `bytes.npk:140` at `2e1cb4a`, and none is after step 1;
+    - `bytes_reserve` is unchanged, with the same heap lines and a byte-identical body;
+    - its planted consumer, holding a view across 64 growing pushes, exits 170/170 (the allocator's poison) at `7e91730` and is `BORROW-015` at 10:61 at `2e1cb4a`;
+  - (5) PD-202 by its own consumers: a plain binding is TYPE-007, a write through the answer TYPE-086, and a read compiles and exits 15. In the step-1 tree a write through the answer read back 65 where 97 had been written;
+  - (6) the plan's moves, each by its own probe: `86400_i64` LEX-003, probe10d `BORROW-015` at 42:63, probe19b TYPE-099 at 32:1, a module binding with no initialiser TYPE-055, and the reserved words;
+  - (7) the decisions by value: TM-262 the highest at `1cc801f`, the three added with their alternatives, and TM-171's dated note;
+  - (8) the landings: 104 … 140 rowed, and 141 NOT CARRIED. **One stale fact:** the compiler's `main` moved to `79cd363` (142) at 08:28:26, after the plan's commit, so §1.1 has no 142 row. Worker 3's record adds the rows past 141;
+  - (9) the LLVM asset against GitHub's own record (asset 271269785: the same URL, 2 021 269 412 B and `sha256:1ead36b3…`, `immutable: false`), and the install step exits 1 on a fake with nothing unpacked;
+  - (10) `check_purity` and `check_call_edges`, with a planted negative control caught by each;
+  - (11) §7 covers 0.4.0's pin-bound statements, by its own build of the 0.4.0 candidate at both pins, **with two wording nits.** (a) Item 2 says PD-149 … PD-154 "still await the author", but `0.4.0.md` gate 4 and this record (cycle 0.3's close) make them the dispatching seat's to accept or strike. **That error is this seat's:** its planner brief said so. (b) Item 5 names "a NIL member (112)" where gate 6 names a `frac` member (111), and it omits the macro parameter (106). Worker 3 corrects both as dated notes;
+  - (12) the sandbox's namespace: `unshare --user` refused, and probe22 and system_zone_etc the only local failures.
+  - It left REPO and the compiler's tree untouched and removed its scratch.
+- **PD-201 … PD-203 are ACCEPTED** by this seat at this PASS, as the plan's §9 and 0.3.2a's precedent give it. They become TM-263 … TM-265 through steps 1 … 3's patches. PD-202's narrowed `bytes_view` goes to the author as information: no consumer exists before cycle 1.0, and it can be struck alone.
+- **findings-for-playbook, decided:** the two are one lesson, now `PLAYBOOK.md` §12's last bullet. An Expect quotes no path the leak scan reads as a home, whether a temp directory in a tool's message or a fake `HOME` named `home/<word>`.
+- **The LLVM digest goes to `Ailp-team_16`** for parse's T12 comparison, as ruled at 06:10:54, now verified against GitHub's record.
+- **The work: three fresh workers in turn, `sonnet`, each briefed with only its steps' files.** Worker 1 takes steps 0–2 (blocks 0a, 0b, 1 and 2, at the old pin), worker 2 takes steps 3–5 (the pin, CI and the prose), and worker 3 takes steps 6–7 (the sweep, the push, CI and the record), with the final verifier after.
+  - **Why three, not one a step:** each brief still holds only its steps' files. One dispatch a step would cost this seat's own context, the dearest per call, about as much again.
+  - **Why `sonnet`:** the plan is rehearsed and every block is a SAME-or-stop comparison, which a plan written for a weaker executor allows. The verifier ran all eight blocks on `sonnet`, in a harder stand-in. The cap is about 3 points for the rest of 0.4.0a, and the plan verifier spent part of it.
+  - **Attribution:** each worker's commits carry its own model's trailer, `Claude Sonnet 5.5`, with this session's link.
+- **dispatch `s2-ntime-0.4.0a-w1-0913`** (`npk:worker`, `sonnet`) on `2a33a7a`, TOOLCHAIN `2e1cb4a`, the old pin `7e91730`: steps 0–2, two commits, nothing pushed. Before it: 117 GiB available; no other agent of this seat's (W-24).
