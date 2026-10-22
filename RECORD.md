@@ -15565,3 +15565,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **§6, pointer checks:** a check that asks only whether the cited section exists passes a pointer to the wrong section. **Verified here before landing:** `pointers.py:64` matches `^## <n>\.` alone; `SCAN_MODEL.md` §3 is byte classification, and C-9 is at §4 (`:114`); `CURRENCY.md:17` cites §3.
 - **A figure kept out:** the first draft of §10's lesson said the account reached parse "three pins after it was measured", which no command had counted. It now says "at a later pin".
 - **Still owed for the playbook:** the items `_20`'s block lists, unchanged.
+
+### Advance notice F80 for landing 138 filed, in the lean form: an explicit `<-` is a place step, closing F-050; nothing of ours moves — 2026-10-21 21:46 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 21:35:11):** F80 covers DEF-272, the fuzzer's F-050, which is fixed. It adds refusals (`BORROW-002`, `BORROW-015`) and removes one, `pass @((<-a)[i])` from a pointer parameter's element. It also registers DEF-273 (F-051), DEF-274 (F-052) and DEF-275 (a pointer local handed by value to a writer, found by its probes).
+- **Checked here:**
+  - 11 of its sums, with a control.
+  - A census of the family's shapes over our 396 library files, with planted controls and near-misses, finds 0 explicit `<-` under a place step and 0 of the lifted shape. Seven whole-pointee writes through pointer parameters stand, and their sweep newly refuses none of them.
+  - A rough census for DEF-275's shape over our 81 pointer locals finds none.
+  - Our trees are clean.
+- **The fuzz row moves** (F-050 fixed, F-051 and F-052 registered), so it is updated, and a copy goes to `nitpick-fuzz_2` (W-30).
+- **A tool fault, caught before use:** the three scripts copied from `_22` into `.internal/review-scripts/` each ended in two stray lines from its extraction commands, which would have written into `_22`'s scratchpad. Only the census's Python block was read, and the stray lines were removed from all three. F80's census is kept beside them as `f080-census.py`.
+- **A slip:** one `cd` into `.internal/review-scripts/`, the workbench's own and not a library checkout, moved this session's working directory. It was returned in the next command.
