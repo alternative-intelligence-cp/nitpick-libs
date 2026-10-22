@@ -16207,3 +16207,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The three holes go from EMIT-002 at 145 to `npkc` 0, 0/0, and both controls give 0/0. F-050 and F-051 are unchanged.
   - `npkc.ll` and `npkc.o` equal row 146's, and its linked `npkc` differs in its sha256 alone (`b83ba12f…`, same size).
 - **Filed** on 146's entry and in the fuzz row. No copy back (W-30).
+
+### Advance notice F91 for landing 149 filed in the lean form: the verified build's statement walk holds a nest of blocks (DEF-277); DEF-281, nested loops, registered — 2026-10-22 16:51 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 16:49:36, arrived 16:50:19): `walk_stmt`'s 18 arms are frames of their own, so `--obligations` decides a nest past 229 blocks. Nothing in the plain build moves.
+- **DEF-281, registered OPEN on both compilers:** nested loops take about ×1.8 a level in time and memory, because `assign_loop_body` walks each body twice. 24 levels go past 6 GB.
+- **Ours: nothing moves.** Our deepest block nest is 8, and our deepest loop nest is 4 (regex's `hir_literal_oracle.npk`). The planted 5-deep nest was caught. 6 of 6 sums hold.
+- **A note for planners** is on the board: keep loop nests shallow until DEF-281 lands. No fuzz row moves. Not in our pin.
