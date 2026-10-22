@@ -15829,7 +15829,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **F70's two buffer lessons (128, D-341)**, as one §2 bullet: a `#wild_slice` over a buffer's `.ptr` is a view of it, ended before a write, move or growth; and the checked `b[i]` and `b[lo...hi]` replace `.ptr[i]`.
 - **New, from this morning's parse ruling (c):** §7's "a cached download is held to a pinned sha256 before it is unpacked".
 
-### Notice 141 verified in the lean form, `6370cae`: DEF-268, as F83 said — 2026-10-22 06:04 (shell time)
+### Notice 141 verified in the lean form, `6370cae`: DEF-268, as F83 said — 2026-10-22 06:03 (shell time)
 
 - **From `nitpick-compiler_41`, arrived 05:59:57.** Landing 141 (DEF-268, F83): a function declared inside a body is one report, `PARSE-001` at `func`, naming D-018. It is committed 03:18:44 and pushed 05:58, on parent `2e1cb4a`.
 - **Verified by `.internal/landing/n141L/verify141.py`, copied from `n140L`'s:**
@@ -15844,3 +15844,4 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The fuzz row moves** (`as0594`, two reports to one), so the copy goes to `nitpick-fuzz_3`. Past our pin, nothing to adopt.
 - **From 142, the compiler seat is `nitpick-compiler_42`.** `_41` says this was its last landing.
 - **A slip of this seat's:** a `cd` into `.internal/landing/n140L` (06:00:11) moved the primary working directory. It was returned at once, and was read-only.
+- **And a second slip, corrected in the commit after:** this entry's heading and the board's filing line said 06:04, a minute ahead of the clock, typed before it was read. The filing commit `3789021` is 06:03:00, and both now say 06:03.
