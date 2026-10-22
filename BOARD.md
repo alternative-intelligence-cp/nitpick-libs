@@ -1647,6 +1647,38 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F85 FOR LANDING 143 (DEF-184 AND DEF-177, REGISTERED 2026-09-30 AT 1.6.1e STEP 3 BY WP-C'S AND WP-A'S IMPLEMENTERS; BUILT BY `nitpick-compiler_40`, SENT BY `nitpick-compiler_42`) — **A TYPE'S NESTING IS THE PARSER'S DESCENT, AND A MEMBER IS NAMED AFTER A DOT. A TYPE NESTED PAST 256 LEVELS IS ONE `PARSE-012`, WHERE IT STOPPED THE COMPILER IN SILENCE (EXIT 3), WAS `TYPE-018`, OR (A POINTER TYPE) COMPILED. `p.386`, `p.5` OR `o?.386` IS `PARSE-001` AT THE TOKEN, WHERE IT READ WHATEVER MEMBER SAT AT THAT INTERN INDEX. NO EMISSION MOVES. NOTHING OF OURS MOVES: ALL 6 529 MEMBER NAMES AFTER A DOT IN OUR 433 FILES ARE IDENTIFIERS, AND NO STATEMENT'S TYPES NEST PAST 3 LEVELS. NO FUZZ ROW MOVES. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 07:52:16, arrived 07:53:01); filed 08:02 by `nitpick-libs_24`, in the lean form
+
+- **The change, DEF-184** (registered by WP-C's implementer): `AST_DEPTH_MAX` (256, DEF-150) bounded the parser's descent through expressions and counted no type.
+  - A `List<List<…>>` about 8 300 levels deep, as a field or a parameter, ran the type parser out of stack. An `int32->->…` about 12 700 deep, built by a loop, did the same in the resolver (`resolve_type`, `resolve_pointee`). Each was exit 3 with no message.
+  - Below those stops, a `List<…>` past the resolver's cap of 64 nested instantiations was TYPE-018 (DEF-229's class). A pointer type 257 to some 12 700 levels deep compiled, because no bound measured its loop.
+  - Now the parser's descent has one bound, `p_too_deep` (`parser.npk`). It is asked by `p_unary` (through `p_depth_refused`), by `p_parse_type` at each entry (a type argument, an element and a pointee each count), and by `p_suffixes` once per suffix (`->`, `?`, `[]`, `.`).
+  - A type nested past 256 levels is one PARSE-012, and the declaration bails at its header (DEF-245). So a `List<…>` 257 deep and more is PARSE-012 where it was TYPE-018, and a pointer type 257 deep and more is PARSE-012 where it compiled. A type 200 deep parses as before, and a `List<…>` 200 deep is still TYPE-018 on both compilers.
+- **The change, DEF-177** (registered by WP-A's implementer): after `.` the parser took any token and read its payload as an intern index.
+  - So `p.386` compiled and read field `x` of a two-field struct, `p.5` asked for a member named after another string, `o?.386` passed the parser, and `p.99999999` trapped the checker (exit 3).
+  - Now, after `.` and after `?.`, the parser takes an identifier or one of the four keywords that name a member after a dot: `acquire` (D-056), `any` (D-194), `trit` and `nit` (D-197). Anything else is PARSE-001 at the token (`p_member_name`, `parse_expr.npk`), and the panic stops the rest of the expression.
+- **Their measurement:**
+  - the sweep over 5 243 files: 0 appeared, 0 vanished, and no code's count moves. The two refusals reach only the landing's own unit cases and probes;
+  - the tree's 592 programs: all 592 byte-identical, 0 different, 0 newly refused, and 0 refused by the base alone;
+  - the libraries' 4 062: 1 886 byte-identical, 2 176 refused by both, 0 / 0 / 0;
+  - `tests/frontend/parse_one_report.npk` gains six cases (178–183, D-085): two PARSE-001s and two PARSE-012s, each pair with its control. Landing 142's parser fails the first.
+
+  **13 of 13 sums hold here, with a control.**
+- **Checked against their tree at `6370cae`**, read by `git show`:
+  - DEF-177's row (`meta/roadmap/OPEN_DECISIONS.md:3195`) recommends this fix, naming the same four keywords;
+  - `AST_DEPTH_MAX` is 256 (`src/frontend/ast.npk:336`);
+  - the `PDot` arm (`parse_expr.npk`) interns exactly those four spellings;
+  - `p_suffixes` (`parse_type.npk:336`) applies `.` (D-164's projection), `->`, `?` and `[]` in its loop.
+  - **One gap, asked of `nitpick-compiler_42`:** DEF-184's note (`OPEN_DECISIONS.md:3280`) registers a third shape, `func func …` at about 9 350 levels. Neither measurement names it. The one bound should meet it, since each nested type is a `p_parse_type` entry.
+- **Ours: nothing moves.** `.internal/review-scripts/f085-census.py` reads the keyword table and the four member keywords from `6370cae`. It scans our 433 files: the 396 at each tree's committed `main`, and parse's 37 on `team/parse-0.0-plan` at `619fc4e`, read in the Team's clone. Sockets' `fe5106e` holds no `.npk` file yet.
+  - All 6 529 member names after `.` or `?.` are identifiers. None is one of the four keywords, and none is refused at 143.
+  - Even by the census's over-count, no statement's types nest past 3 levels. The deepest generic is 1 level and the longest `func` run is 1. The longest suffix run is 2 (`wild int8->->`, `nitpick-time/tests/unit/system_zone_tz_raw.npk:52`). Summed in one statement, the most is 3 (`nitpick-regex/src/core/vec.npk:491`).
+  - No test of ours expects TYPE-018 or PARSE-012.
+  - Its six planted controls were caught: `p.386`, `o?.386`, `s.fd`, `p.99999999` inside a template's `&{ }`, a `List<…>` 300 deep and an `int32->…` 300 deep.
+  - Its near-misses passed: the four keywords after a dot, a float, a range, and dots in a string, a comment, a block comment and a template's text. So did `.fdx`, `.end_pos`, and two-level generics, pointers and `func` types.
+- **No fuzz row moves.** Neither DEF is a fuzz finding, and their sweep moves no file of the fuzz corpus, so no copy goes to `nitpick-fuzz_3` (W-30).
+- **The landing:** verify it with `tools/ladder.py` against the baseline for 143, which will be 142's rows under 142's entry. Add the three read-only git checks, with 142's commit as the parent. It is not in our pin (`2e1cb4a`), and there is nothing to adopt.
+
 ### 📋 ADVANCE NOTICE F84 FOR LANDING 142 (DEF-176, REGISTERED 2026-09-30 BY WP-A'S IMPLEMENTER AT 1.6.1e STEP 3; BUILT BY `nitpick-compiler_40`, SENT BY `nitpick-compiler_42`) — **A NON-FOLDING CHAIN AT THE DEPTH BOUND COMPILES: THE EMITTER'S AND THE FOLDER'S DISPATCH FRAMES ARE SMALL, SO A CHAIN 54 TO 254 LEVELS DEEP NO LONGER STOPS THE COMPILER IN SILENCE (EXIT 3). NO REFUSAL AND NO EMISSION MOVES. NOTHING OF OURS MOVES: OUR DEEPEST STATEMENT HOLDS 11 OPERATORS AND 5 NESTED PARENTHESES. DEF-269 (THE ENCODER) AND DEF-276 (THE RESIDUE) ARE REGISTERED. THE AUTHOR'S S-134 IS RECORDED AS D-363 AND S-140 AS D-364, AND F-051 (DEF-273) CLOSES BY D-364'S SENTENCE, SO A COPY GOES TO `nitpick-fuzz_3`. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 06:28:54, arrived 06:30:16); filed 06:32 by `nitpick-libs_24`, in the lean form
 
 - **The change:** until now, `int32:y = x + x + … ;` compiled at 53 terms, and at 54 `npkc` exited 3 with no message.

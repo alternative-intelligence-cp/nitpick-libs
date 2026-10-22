@@ -15871,3 +15871,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: nothing moves.** `.internal/review-scripts/f084-census.py`, over our 396 files at each tree's committed `main`, finds no statement near the bounds. The deepest holds 11 operators and 5 nested parentheses. Its two planted controls were caught and its near-misses passed. 9 of 9 sums hold, with a control.
 - **The fuzz row moves:** F-051 (DEF-273) closes by D-364's sentence at 142, so a copy goes to `nitpick-fuzz_3`. No fuzz program moves by DEF-176.
 - **142 is verified against `n141L/base142.txt`**, with parent `6370cae`. Not in our pin.
+
+### Advance notice F85 for landing 143 filed in the lean form: DEF-184 and DEF-177, a type's nesting is the parser's descent and a member is named after a dot — 2026-10-22 08:02 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 07:52:16, arrived 07:53:01). No emission moves.
+  - DEF-184: a type nested past 256 levels is one PARSE-012. Before, it stopped the compiler in silence (a `List<…>` about 8 300 deep, a pointer about 12 700), was TYPE-018 (a `List<…>` 257 deep and more), or compiled (a pointer 257 to some 12 700 deep).
+  - DEF-177: after `.` or `?.`, anything but an identifier or `acquire`, `any`, `trit` or `nit` is PARSE-001 at the token. Before, 142's compiler read the member at the token's payload taken as an intern index, so `p.386` read `x`.
+- **Ours: nothing moves.** `.internal/review-scripts/f085-census.py` scans our 433 files: the 396 at each `main`, and parse's 37 at the Team's `619fc4e`. All 6 529 member names after a dot are identifiers, and none is refused at 143. Even by its over-count, no statement's types nest past 3 levels. Its six planted controls were caught and its near-misses passed. 13 of 13 sums hold, with a control.
+- **One question to `nitpick-compiler_42`:** DEF-184's note also registers `func func …` at about 9 350 levels, which neither measurement names.
+- **No fuzz row moves**, so no copy goes to `nitpick-fuzz_3`.
+- **143 is verified against 142's rows** once 142 lands, with 142's commit as the parent. Not in our pin.
