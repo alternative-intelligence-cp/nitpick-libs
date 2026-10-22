@@ -15897,3 +15897,46 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Under 143's, 3 and 200 compile, and 300 and 9 350 are one PARSE-012 each, as a pointer type is.
 - **So 143 closes all three of DEF-184's traps**, and adds the refusal for a nested function type 257 deep and more. Our longest `func` run is 1, so nothing of ours moves.
 - **143's commit is `ac6c557`**, amended from `4922c64` for its texts alone, with the same compiler. F85's board entry carries the answer, and its heading names the function type.
+
+### `nitpick-time` 0.4.0a planned at `2a33a7a` — the adoption of `2e1cb4a`, carrying 104 … 140; its plan verifier dispatched — 2026-10-22 08:26 (shell time)
+
+- **report `s2-ntime-0.4.0a-0530` DONE (plan)** (`opus`, 05:30:02–08:20, about 2 h 50 min, about 475 tool uses). Commit `2a33a7a` (08:15:08) on `1cc801f`, pushed to `main`: `meta/roadmap/0.4/0.4.0a.md` (1 612 lines, PLANNED), `0.4.0a_tools/` (20 files: the five step patches, `env.sh`, `facts.sh`, `blocks.py` and the rest), and the cycle README's 0.4.0a row with its seven boxes.
+  - **Its harness line:** all eight blocks (0a, 0b, 1–6) are SAME through `blocks.py`, confirmed on a second throwaway branch 07:39–08:14.
+    - Local full runs: `7e91730` RED 144 of 146, and `2e1cb4a` after steps 3 and 5 RED 146 of 148. In both, the only failures are probe22 and system_zone_etc, because this sandbox refuses a user namespace.
+    - CI run `39776825332` at `2a33a7a` (job `119817779926`, 85 654 B): GREEN, 146 units, at `7e91730` by design.
+  - **The plan:**
+    - Steps 1 and 2 re-spell the tree at `7e91730`. `bytes_reserve`'s two views go in a block ended before the overwrite, and `bytes_view_lifetime` takes each view in a block of its own. probe19 claims `Copy` for `Bytes`, and `bytes_view` returns the read-only view.
+    - Step 3 moves the pin. Part E drops `86400_i64`, which `2e1cb4a` refuses with LEX-003, and probe10d and probe19b are new.
+    - Step 4 is CI, with the LLVM asset held to its digest before unpacking. Step 5 is the prose, step 6 the sweep, and step 7 the push and the record.
+  - **Decisions:** PD-201 … PD-203, accepted at the plan verifier's PASS as TM-263 … TM-265 (§9). PD-201 and PD-203 are the adoption itself. PD-202 can be struck alone.
+  - **For the author:**
+    - PD-202 narrows a public signature: `bytes_view` returns `fixed uint8[]`. A plain binding of its answer is TYPE-007, and a write through it is TYPE-086. No consumer of `ntime` exists before cycle 1.0, and the planner recommends accepting it.
+    - TM-171's `fixed Weekday[7]` table is declined again, in a dated note.
+  - **compiler-defect: none.** Every measurement agrees with notices 104 … 140 (F65, F66, F70), and DEF-250 closes the candidate 0.3.3 raised. Landing 141 is rowed NOT CARRIED and moves nothing: no nested `func:` in 163 files, and the census's control was found.
+  - **For the workbench:**
+    - The sandbox refuses a user namespace (`max_user_namespaces` 0), so CI is probe22's and system_zone_etc's only full reading.
+    - `.git/config` writes are refused: `git branch -D` reported "Device or resource busy", as at 0.2.5a. The branches were deleted anyway.
+    - The LLVM asset for parse's chain: `LLVM-20.1.8-Linux-X64.tar.xz`, 2 021 269 412 B, sha256 `1ead36b3…1ae6`. It equals GitHub's record (asset 271269785) and the project's attestation, and it goes to the Team with the PASS.
+  - **findings-for-playbook, held for the PASS:**
+    - a plan's Expect that quotes a tool's message with its temp directory puts a home path in the plan, which `check_refs` flags. `refusals.py` now prints `<scratch>` and `<tree>` instead.
+    - a fake HOME named `home/<word>` under the scratch directory trips the leak scan. Block 4 uses `$G/hm`.
+  - **Its cost:** about 547 k output tokens, 211 M cache-read and 3.5 M cache-write. The week read 15 % at 05:27 and 22 % at 08:07, all seats together.
+- **Checked here (08:26):**
+  - `nitpick-time` is clean on `main` at `2a33a7a` = `origin/main` = `ls-remote`, the only branch and its only worktree, and the scratch directories are gone;
+  - the commit's 22 files are all under `meta/roadmap/0.4/`, with the configured identity and the two trailers;
+  - `check_record` gives `[no-report]` only, as a PLANNED file does.
+- **dispatch `s2-ntime-0.4.0a-verify-0826`** (`npk:verifier`, `sonnet`) on `2a33a7a`, TOOLCHAIN `2e1cb4a`, the old pin `7e91730`. Its twelve checks:
+  - the commit and the hygiene;
+  - CI per job;
+  - the eight blocks in a stand-in workbench, reaching the compiler through a `--shared --no-checkout` clone;
+  - F70's safety item, with a consumer planted by hand;
+  - PD-202 by its own consumer;
+  - PD-203's moves by its own probes;
+  - the decisions by value;
+  - the landings;
+  - the LLVM asset against GitHub's record;
+  - `check_purity` and `check_call_edges`;
+  - §7's re-read list;
+  - the sandbox's namespace.
+- **Before it:** room 33.5 (the week 22 %, Fable 21 % as read at 03:41), above 20; 119 GiB available; no other agent of this seat's (W-24). **Expect an hour or more:** its blocks run several full harnesses at two pins.
+- **On PASS:** PD-201 … PD-203 are accepted as TM-263 … TM-265. Then the playbook findings are decided, the LLVM digest goes to `Ailp-team_16` for parse's T12, and the worker follows. **On FAIL:** the planner is re-dispatched, with the FAIL text in `NOTES`.
