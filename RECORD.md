@@ -16092,3 +16092,41 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the record, with this seat's three additions;
   - step 5's prose against the tree;
   - the compiler's `main` now.
+
+### `nitpick-time` 0.4.0a VERIFIED PASS and DONE at `74b6ee1`: time is on `2e1cb4a`; the claim at rest with 0.4.0 next; four lessons landed — 2026-10-22 11:07 (shell time)
+
+- **report `s2-ntime-0.4.0a-verify-work-1048`: `VERIFY nitpick-time 0.4.0a PASS`** (`sonnet`, 14:49Z–15:05Z, about 16 min, about 85 tool uses), nine of nine:
+  - (1) **the commits:** the six chain from `2a33a7a`. Each work commit's tree equals its patch applied with `git apply --index` on its parent, and the record commit holds the plan and the README alone. The identities, the trailers and the hygiene are right, and `check_refs` and `check_record` are clean;
+  - (2) **CI, read per job:**
+    - at `a11f3b3` all 17 steps succeeded. The LLVM asset printed `downloaded 2021269412 B` and `OK`, with `sha256sum -c` before `tar`; `npkc.ll` is the pin's emission; GREEN 148;
+    - at `74b6ee1` both caches hit, GREEN 148;
+  - (3) **one full run of the final tree** at `2e1cb4a`, in a stand-in: RED 146 of 148 at the namespace pair alone, its 35 summary lines equal to block 5's Expect. Block 6 is SAME again, and its own join of the 464 saved lines equals the record's per-class counts;
+  - (4) **F70 at the final tree:**
+    - `bytes_reserve`'s block closes at line 154, before line 156's overwrite;
+    - its own consumer, holding a view across 40 pushes, is BORROW-015 at 10:61 at `2e1cb4a`, and `7e91730` compiles it;
+    - of the eleven bytes calls with a held view, the six growing ones are refused and the five others admitted;
+  - (5) **PD-202:** `bytes_view` takes a `Bytes->` and returns `fixed uint8[]`. A plain binding is TYPE-007, a write is TYPE-086, and a read runs;
+  - (6) **the decisions:** the batch heading and TM-263 … TM-265 follow TM-262, each with its alternatives, and 265 is the highest. TM-171 has its dated note;
+  - (7) **the record:**
+    - the README's seven boxes are ticked, with the TM numbers;
+    - block 6's eight classes sum to 464 (144 + 74 + 20 + 132 + 53 + 4 + 4 + 33);
+    - this seat's three additions are present.
+    - **Its note:** the plan's own §5 boxes still read `[ ]`, as in the archived `0.3.2a.md` and `0.3.4.md`. The README's boxes are the ticked ones, by the worker skill's §7 and step 7, so this is not a defect, by precedent;
+  - (8) **step 5's prose:** `ci.yml`'s four rows are at notice 140's values, and the LLVM asset's URL and digest are pinned before `tar`. No stale `7e91730` remains where the pin is named, and the prose's claims were probed at both pins;
+  - (9) **the compiler's `main`** is `79cd363`, so no landing lies past the record's rows.
+- **0.4.0a is DONE, and `nitpick-time` is on `2e1cb4a`.**
+  - Its safety item (F70) is closed: a caller can no longer hold a view across a growing push, and the library's own `bytes_reserve` ends its views before its overwrite.
+  - `bytes_view` answers the read-only view (TM-264).
+- **The claim stays `CLAIMED s2`, at rest** (§5.6). Cycle 0.4 continues with 0.4.0. Its re-read at `2e1cb4a` (a planner's, by `0.4.0a.md` §7's list) comes before its dispatch, and PD-149 … PD-154 are this seat's to accept or strike then. Nothing is dispatched, by the allocation.
+- **findings-for-playbook, decided** (workers 2 and 3's four):
+  - the worker skill's §10 gains three. A worker's `pgrep` sees only its own PID namespace, so `free -g` is its one host-wide gauge. A background block can be waited on in one call, in worker 2's `tail -f | sed` form. A CI run closes minutes after its job, so the job's log is read when the job completes;
+  - `PLAYBOOK.md` §12 gains one: a sweep's reading can be keyed before it is read, by file and line against the plan's class table, with `git blame` for the new-text classes.
+- **The chain's cost, 05:30–11:05:**
+  - the planner: `opus`, 2 h 50 min, about 475 tool uses, 547 k output, 211 M cache-read and 3.5 M cache-write. It was the dear part;
+  - then five `sonnet` agents, about 1.58 M subagent tokens and 494 tool uses in all:
+    - the plan verifier: 41.5 min, about 260 tool uses, 584 k;
+    - worker 1: 30 min, 34 tool uses, 165 k;
+    - worker 2: 15 min, 33 tool uses, 197 k;
+    - worker 3: 46 min, 84 tool uses, 331 k;
+    - the work verifier: 16 min, about 85 tool uses, 306 k.
+  - The week read 15 % at 05:27, 22 % at 08:22 and 27 % at 11:02, all seats together. The close line goes to `management_2` with `74b6ee1`.

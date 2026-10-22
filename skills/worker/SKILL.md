@@ -221,3 +221,13 @@ string literals do not concatenate; `discard(x);` takes parentheses and
 `defer { … }` takes no trailing semicolon; declarations end `};` and
 control-flow blocks do not; a file's `mod:` name must equal its basename, and
 no identifier — so no file name — begins with a digit.
+
+**In the sandbox and on CI.** `pgrep` inside a worker's sandbox sees only its
+own PID namespace, so it cannot show another session's harness: `free -g`,
+which is host-wide, is the one gauge you have before a full run. A block run
+in the background can be waited on in one call, with no sleep: `timeout 585
+tail -n +1 -f <output> 2>/dev/null | sed -n '/^<a line before the last>/{p;q};p'`.
+Quit on a line before the file's last, or `tail` never sees the closed pipe
+and hangs until its timeout. A CI run closes minutes after its job, so wait on
+the run, but read the job's log as soon as the job completes.
+*(`nitpick-time` 0.4.0a's workers.)*

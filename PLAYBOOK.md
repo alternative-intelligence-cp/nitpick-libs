@@ -2276,3 +2276,7 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   named `home/<word>` under the scratch directory. Print a placeholder for each place (`<scratch>`, `<tree>`), and name a
   fake home so that the scan cannot read it as one (`$G/hm`). The planner's own `check_refs` found both before its
   commit. *(`nitpick-time` 0.4.0a's plan.)*
+- **A sweep's reading can be keyed before it is read.** Key each saved line by its file and line against the plan's class
+  table, and `git blame` the new-text classes against the plan's and the work's commits. In `nitpick-time` 0.4.0a, 464 of
+  464 lines keyed, 148 of them new and 316 older. The eye is then left only the lines the join cannot settle, and the
+  plan's table checks the reading instead of guiding it. *(`nitpick-time` 0.4.0a's record.)*
