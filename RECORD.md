@@ -15694,3 +15694,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `nitpick-fuzz_3` (arrived 04:42:22), a copy of its note to the compiler seat:** F-050 … F-052 re-run on its own build (LLVM 20.1.2), each program twice at `2e1cb4a` and once at `a3c873c`. All 14 are identical to 139, exit codes included, and they match the readings filed at 138. It has noted that F-051 closes by a sentence at 142 and that `nitpick-compiler_42` holds the seat from 142.
 - **Recorded** on 140's entry and in the fuzz row. The row now holds the fuzzer's own reading, so no copy goes back.
+
+### pin 2e1cb4a, tree clean — the libraries' one re-pin, landing 140, carrying 119 … 140 — 2026-10-22 05:00 (shell time)
+
+- **The author's word** (03:49:41, relayed by `management_2`): the re-pin at the quiet point after T11 and T7c3, past the newest landing then, without waiting for more.
+- **The quiet point:** `Ailp-team_15` called it at 04:55:53, when T11 closed (T7c3 had closed at 04:34). Both Team library chains are at rest, parse at `619fc4e` and sockets at `fe5106e`; only D7 (diogenes) runs there. Nothing of this seat's was running.
+- **The compiler:** `main` = `origin/main` = `2e1cb4a`, clean. Landing 141 was still in its harness. `build/npkc` was built 8,981 s after the commit and was not mid-rebuild.
+- **The copies** are cmp-identical to `build/`, and they equal notice 140's `npkc` and `npkrt.o` rows to 64 hex and exact size, with a one-digit-off control failing. `c9baa9e` is an ancestor (22 commits), and every notice from 119 to 140 has a ladder MATCH on the board.
+- **Commissioned both ways:**
+  - The canary compiles at exit 0: 23,905 B, 16 defines.
+  - The kept `c9baa9e` pin reproduces its 57,255 B / 16.
+  - The difference is landing 126 alone (DEF-242's site-table trim and DEF-263's view), classified by script.
+  - Linked, it runs to exit 0. The malformed file exits 1 at `PARSE-001`, writing no IR.
+- **`tools/canary.md`** gains the `c9baa9e` row its own re-pin left out, and this pin's row.
+- **What moves for us:** time's `bytes_reserve` (six programs refused until its adoption gives it the block F70 describes) and time's probe19 (124). Nothing else, by each notice's census.
+- **Next:** each library adopts in a lettered subcycle, time first. Lines go to `management_2` and `Ailp-team_15` with this commit.
