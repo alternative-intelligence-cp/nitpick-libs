@@ -16200,3 +16200,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Row 143's sweep line** is corrected to `4,288 -> 4,288`, with a dated note quoting the old figure. The script's first reading called it uncorrected, because it wanted the old figure absent; read by hand, the row is right.
 - **Fuzz:** F-052 is fixed, the row notes it, and a copy goes to `nitpick-fuzz_3`.
 - **The baseline for 147** is 146's rows, under 146's entry and in `n146L/base147.txt`, self-checked. Not in our pin.
+
+### The fuzzer's reading of landing 146: its own build agrees — F-052's holes compile, as at 141 and 142 a linked-binary difference alone — 2026-10-22 16:30 (shell time)
+
+- **From `nitpick-fuzz_3`** (stamped 16:30, arrived 16:30:08, a copy of its line to `nitpick-compiler_42`): its build of `915f427` reads F-052's five programs as the notice does.
+  - The three holes go from EMIT-002 at 145 to `npkc` 0, 0/0, and both controls give 0/0. F-050 and F-051 are unchanged.
+  - `npkc.ll` and `npkc.o` equal row 146's, and its linked `npkc` differs in its sha256 alone (`b83ba12f…`, same size).
+- **Filed** on 146's entry and in the fuzz row. No copy back (W-30).
