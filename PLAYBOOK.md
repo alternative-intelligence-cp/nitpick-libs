@@ -59,7 +59,7 @@ list of the ones that reach a library.
 | every path of every function **leaves explicitly** | D-323; `FLOW-001` (1.6.0 step 5c, DEF-108); in the pin from `c970483` | a body that can reach its closing brace is refused. A `NIL` function passes `NIL`, a fallible function names its failure on every path, and `main` exits. There is no implicit return and no implicit value. **The walk is conservative towards refusal** (CONTROL_REFERENCE's words): an `if` without `else` completes, a `while (true)` with no `break` never does, and every other loop and `when` completes as a whole — so a body ending in such a loop still owes a final `pass`, `fail` or trap. **Until `c970483` the emitter returned a zero, and for a fallible function a SUCCESS carrying zero** (O-N26) — a silent wrong answer, found by `nitpick-fuzz` |
 | a zero-length array `T[0]` is a type, and **owns when `T` owns** | TYPE_REFERENCE §9.2, stated 2026-09-25 at the library side's request, measured at 1.6.0 step 3g | zero bytes wide (`[0 x T]`). **A struct with a `hidden string[0]` field is move-only at no cost in bytes**, while `int64[0]` copies freely — the way a library marks a struct move-only without paying for a field |
 | borrows are second class | D-004 | a view cannot be returned, stored past the call, sent, or held across `await` |
-| a struct holding a borrow cannot be **returned** | D-004 | build it by struct literal at the call site |
+| a struct holding a borrow cannot be **returned** | D-004 | build it by struct literal at the call site. *(2026-10-22, `nitpick-parse` 0.0.0's probe 08, measured at `7e91730`: true of a borrow of a LOCAL, and false of one of a PARAMETER's bytes, which a returned struct may hold.)* |
 | `exit 0` with live `wild` allocations traps | D-151 | every `wild` byte is paired on every path; **make the test programs exit 0 so a leak is a trap** |
 | a clean exit with a registered child traps | D-188 | reap what you spawn |
 | every blocking operation carries a **mandatory deadline** | D-056, D-176 | there is no unbounded read, write or wait |
@@ -164,7 +164,29 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
   `pick` inside an `if`, a `loop`, a bare block, or a statement-position macro
   expansion (which *becomes* a block, `MACRO_REFERENCE.md` §4) is invisible to
   it, and the program is refused `NITPICK-REACH-001` — a diagnostic that says
-  there is no `pick` while one is plainly in view.
+  there is no `pick` while one is plainly in view. *(Changed by the compiler's
+  landing 109, DEF-224 under D-352, in every pin since `c9baa9e`: the
+  exhaustive `pick` may stand in a bare block at any depth, a statement
+  macro's expansion being one, and never inside a conditional, a loop or an
+  arm. So a `pick` in a bare block or a statement-position macro expansion is
+  found now. Inside an `if`, a `loop` or an arm it is still `REACH-001`.
+  From `nitpick-parse` 0.0.0's hand-on; landed 2026-10-22.)*
+- **Locks, from the compiler's landing 127 (D-339), for the first library of
+  ours that takes one.** A trait method that callers must reach while holding a
+  guard declares its level exactly, `acquires N`. `acquires <= N` is a ceiling
+  only, and a call through it is legal only with nothing held, or it is
+  `NITPICK-LOCK-001`. And a function that hands on a user-levelled lease (a
+  struct that is not a `Guard`) writes `acquires N`, since a binding raises the
+  held level only to a hold it can see. A helper that takes and releases a lock
+  inside and returns a number holds nothing. *(F69, and notice 127, 2026-10-17:
+  no program of ours took a lock then; landed 2026-10-22.)*
+- **A `buffer`, from the compiler's landing 128 (D-341).** A `#wild_slice` over a
+  buffer's `.ptr` is a view of the buffer, so declare it in a block that ends
+  before the buffer is written, moved or grown. `nitpick-time`'s `bytes_reserve`
+  held two across its `b.body = move(fresh)`, `NITPICK-BORROW-015` twice. And
+  the checked `b[i]` and `b[lo...hi]` replace `.ptr[i]` wherever a library wants
+  the check. *(F70, and notice 128, 2026-10-17; landed 2026-10-22. Time's adoption
+  of `2e1cb4a`, 0.4.0a, owes the first such block.)*
 
 - **There is no checked narrowing cast.** `=>!` is the *unchecked* one and it
   **truncates silently** — `nitpick-time` probe 02 pinned four shapes of it,
@@ -241,7 +263,11 @@ corrected in its 1.6.0 docs. The bullet below is kept as measured at `aaffb87`.
   `NITPICK-LEX-004`, because the literal envelope is 64-bit and the magnitude
   is one too large. The MAXIMUM is fine. So **a bound pair written by symmetry
   from a working upper bound is exactly what stops compiling**; build the
-  minimum arithmetically instead.
+  minimum arithmetically instead. **The unsigned half is the same envelope:**
+  every `uint64` literal above `INT64_MAX`, `18446744073709551615u64` among
+  them, is `NITPICK-LEX-004` at the literal (the compiler's D-148), so build
+  `UINT64_MAX` as `I64_MAX * 2u64 + 1u64`. *(`nitpick-parse` 0.0.0 §1.3, probe
+  01b; landed 2026-10-22.)*
 - **Measure `#size_of`; never derive it from field widths.** A `string` is
   **24** bytes, not a slice's 16, and `enum { Literal(uint16); … }` is **8**,
   not 6, because the payload aligns. Two drafts in one subcycle asserted the
@@ -440,7 +466,12 @@ So:
    every code from 80 to 99 was already in use somewhere, and 97, 89 and 90 already
    meant different things in different repositories. **A test whose computed exit
    equals an arm code cannot tell its answer from that trap**, so check every
-   `// expect-exit:` whenever codes are assigned.
+   `// expect-exit:` whenever codes are assigned. **Three more, assigned
+   2026-10-22 from `nitpick-parse`'s PA-109: 97 `DivByZero`, 98 `DivOverflow`
+   and 110 `StaleHandle`.** 97 and 98 are as `nitpick-time`'s arms
+   already spell them. 110 is the prelude's `StaleHandle`, which no library has needed
+   yet. *`nitpick-regex`'s `tests/unit/vec_unit.npk:167` exits 110 as an
+   assertion's own code, so that code moves below 91 at regex's next dispatch.*
 9. **Add arms in the order the compiler can see them.** A REACH-002 demand stays
    hidden while an earlier phase refuses the file — `TYPE-072` refuses a
    clause-less loop before REACH ever runs — so write the loop clauses first, then
@@ -1432,6 +1463,12 @@ per-repository numbers collide.
 - **Push each commit as it is made.** GitHub's push trigger runs on a push's HEAD commit only, so a commit pushed beneath
   another has no CI run of its own: cycle 0.1's move, `96aac77`, had none. *(`nitpick-time` cycle 0.2's close, 2026-10-02;
   landed 2026-10-05.)*
+- **A cached download is held to a pinned sha256 before it is unpacked.** A cache keyed on a version string trusts whatever
+  the first fetch got: a replaced or corrupted asset with the same version passes a `--version` check and then stays cached
+  for good. So pin the digest in the workflow's `env`, download to a file, run `sha256sum -c` before `tar`, and say in the
+  comment what the check guarantees. Measure the digest once from the real asset, with CI's own fetch as the second reading.
+  *(Found 2026-10-22 at `nitpick-parse`'s `ci.yml:74`, "an immutable asset", unmeasured; time's and regex's LLVM installs
+  had the same `curl | tar`. Each library takes the fix at its adoption of `2e1cb4a`; landed 2026-10-22.)*
 
 ---
 

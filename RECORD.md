@@ -15817,3 +15817,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - F-036 b (DEF-190), landed in 135 (`0280fc9`). The note at `:437` says so.
 - **Still open in O-N36:** F-042's rows beyond its (a); DEF-239 and DEF-240, the compiler's step 3d; and S-130.
 - These were the brief's three registry items (`_23`'s block, item 7), and F-034's discharge, which 125's entry owed to the re-pin that carries it.
+
+### `PLAYBOOK.md`: the eight items owed at this re-pin, landed — 2026-10-22 05:52 (shell time)
+
+- **From `nitpick-parse` 0.0.0's hand-on list (`0.0.0.md:948-951`), all four:**
+  - the literal envelope's unsigned half (§2, beside `int64`'s minimum): every `uint64` literal above `INT64_MAX` is `LEX-004`, so `UINT64_MAX` is built as `I64_MAX * 2u64 + 1u64`;
+  - §3 item 8 assigns PA-109's three codes, 97 `DivByZero`, 98 `DivOverflow` and 110 `StaleHandle`, as time's arms already spell 97 and 98. **Regex's `tests/unit/vec_unit.npk:167` exits 110 as an assertion's own code, so it moves below 91 at regex's next dispatch, owed to 0.3.0;**
+  - §2's row "a struct holding a borrow cannot be returned" takes probe 08's measurement: true of a LOCAL's borrow, false of a parameter's bytes. `_21`'s block listed it, and `_23`'s dropped it, though it had not landed;
+  - §2's "`failsafe`'s `pick` must be at the TOP LEVEL" takes 109's change (DEF-224, D-352): a bare block at any depth is found, but never a conditional, a loop or an arm.
+- **F69's two lock rules (127, D-339)**, as one §2 bullet for the first library that takes a lock: an exact `acquires N` for a method reached under a guard, and `acquires N` on a function that hands on a user-levelled lease.
+- **F70's two buffer lessons (128, D-341)**, as one §2 bullet: a `#wild_slice` over a buffer's `.ptr` is a view of it, ended before a write, move or growth; and the checked `b[i]` and `b[lo...hi]` replace `.ptr[i]`.
+- **New, from this morning's parse ruling (c):** §7's "a cached download is held to a pinned sha256 before it is unpacked".
