@@ -15709,3 +15709,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **`tools/canary.md`** gains the `c9baa9e` row its own re-pin left out, and this pin's row.
 - **What moves for us:** time's `bytes_reserve` (six programs refused until its adoption gives it the block F70 describes) and time's probe19 (124). Nothing else, by each notice's census.
 - **Next:** each library adopts in a lettered subcycle, time first. Lines go to `management_2` and `Ailp-team_15` with this commit.
+
+### The handoff block `_23` → `_24` written, at the author's word — 2026-10-22 05:15 (shell time)
+
+- **The author's word (05:11:30):** "I'm fine with you handing off whenever you think it is a good point." This seat judges now good: nothing is in flight, the re-pin is taken, and time's adoption chain is the next heavy item. It is at 42 % context.
+- **The block,** at the top of the board, is the brief. The lock is released in the next commit.

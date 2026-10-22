@@ -15,6 +15,59 @@ blocked, what is done. The durable plan is
 
 
 
+> **🔁 HANDOFF — `nitpick-libs_23` → `nitpick-libs_24`, 2026-10-22 05:15 (shell time), at the author's word (*"I'm fine with you handing off whenever you think it is a good point."*, 05:11:30), at a quiet point: nothing of this seat's is in flight, the re-pin to `2e1cb4a` is taken, and time's adoption is the next heavy item.** This seat is at 42 % context, about 421 k tokens a turn, and context per turn drives Max cost (`management_1`, 2026-10-16), so a fresh seat runs time's adoption chain cheaper. `_22` handed off at 44 % for the same reason.
+>
+> **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes:
+> - your id, from your transcript and your scratchpad, cross-checked with `~/.claude/context/<id>.json`'s `session_name`;
+> - a nonce typed into the search command and found in your transcript alone, plus a control generated at run time and never printed;
+> - the 37-byte marker `.internal/orchestrator.session`, removed by `_23` at this release;
+> - the token as the writer line's first backticked token, then push, then re-read it with hazard (5)'s command;
+> - **`check_refs` exits 1 whenever it reports findings, the two known `[leak]` lines included.** Do not chain it with `&&`: read its count after staging, against the 2 known.
+>
+> **Hazard 3:** ask `nitpick-libs_23` (`[9bc069]`). **Hazard 4:** ask `nitpick-libs_25` (`[027bc7]` in `ListAgents` at 05:15), the next spare. Your own ref there was `[4ba56a]`.
+>
+> **Read the board's live parts** (orchestrate §2 step 2): lines 1–14; the newest entries (`grep -n '^### ' BOARD.md | head -8`); and `## Outside the streams` to the end, each in-flight row up to its first `*Before:*`. `BOARD.md` is 1.6 MB and `RECORD.md` 1.8 MB, so read them by line and by search, never whole.
+>
+> **WHO** (at 05:15; re-derive each from `ListAgents` or its next message):
+> - **`management_2`** (`uds:/run/user/1000/cc-socks/1668145.sock`, `[abdc11]`): the allocation, 17 Max points to Wed 10-28 20:00, re-sized at Fable's cap (about Fri 06:00–07:40). **Send it one line when you have taken over.** Owed to it: each adoption's commit, and a cost line per chain.
+> - **The Team seat's manager, `Ailp-team_15`** (`uds:/run/user/1000/cc-socks/3594543.sock`). It is a `claude-team` session, not in `ListAgents`, so message it by socket. It holds parse and sockets for their adoptions, and starts no new Team chain before Fri 03:00 (its week at the 35 % line).
+> - **The compiler seat:** `nitpick-compiler_41` (`[ec6c0a]`, `uds:/run/user/1000/cc-socks/1669389.sock`) through landing 141, then `nitpick-compiler_42` (`[8ad158]`) from 142, which records S-134 and S-140 with 142's texts.
+> - **The fuzzer's manager, `nitpick-fuzz_3`** (`[68732d]`, `uds:/run/user/1000/cc-socks/1671714.sock`). A copy goes to it after filing whenever a fuzz row moves (W-30). It re-measures each fuzz-relevant landing on its own build and copies its reading here: record that on the landing's entry and in the fuzz row, with no copy back. `nitpick-fuzz_2` is gone.
+> - **None of them knows of this handoff yet.** Introduce yourself to each after the take. Until they re-address, `_23` forwards anything that reaches it, verbatim and with its arrival time.
+>
+> **THE METERS** (`~/Workspace/MANAGEMENT/meters/usage-log.csv`, written by `nitpick-fuzz_3`; read at 04:42:52): the week 14 %, the five-hour 24 %, Fable 21 %. Room = 95 − the week − 0.5 × (100 − Fable %) = 41.5; under 20, ask management first. **Notice checks run in the lean form** (`management_1`, 2026-10-19), and every notice from 133 to 140 did: the ladder, the three git checks, the sums and our trees. Credits: $18.1997 of $30 through 2026-11-11, with no job run since.
+>
+> **THE PIN: `2e1cb4a` (landing 140), TAKEN 2026-10-22 04:59 (`4db3f92`)**, the one re-pin by the author's word of 03:49:41, carrying 119 … 140. `PIN.md` beside the binaries says what it carries and what it moves. The kept `c9baa9e` pin serves the adoptions' old-pin leg. **Each library adopts in a lettered subcycle before its next dispatch, time first.**
+>
+> **YOURS, IN ORDER:**
+> 1. **Time's adoption of `2e1cb4a`** (`CLAIMED s2`, idle), from this seat: plan, plan verifier, worker and verifier, at width 1.
+>    - **Its `bytes_view` block leads (F70):** `src/core/bytes.npk`'s `bytes_reserve` holds two `#wild_slice` views across line 140's overwrite (`b.body = move(fresh)`), `BORROW-015` twice since 128, so six of time's programs are refused at this pin. Give it a block that ends both views before the overwrite, re-spell `tests/unit/bytes_view_lifetime.npk` §1, and make its §2 a rejection or retire it.
+>    - **Also owed to that round:** probe19's `TYPE-099` (124, F66's entry); TM-171's dated note and the `Weekday[7]` table, weighed again (F65's entry); `check_call_edges` and `check_purity` re-run.
+>    - Time's last adoption was 0.3.2a (of `7e91730`); its `c9baa9e` adoption was never taken. About 1–2 points: send management the cost line and the adoption's commit.
+> 2. **Landing 141 (DEF-268, F83)** when its notice comes: the lean form against `.internal/landing/n140L/base141.txt`, parent `2e1cb4a`. Copy `n140L/verify140.py` and change the keys, the shas, the row and F numbers and the sums. The fuzz row moves (`as0594`, two reports to one), so a copy goes to `nitpick-fuzz_3`. 141 is past the pin.
+> 3. **Parse (`CLAIMED s2`):** T11 closed at `619fc4e` on `team/parse-0.0-plan`, three commits after `9f37f45` (`48385ad`, `6d46177`, `619fc4e`), with CI green per job and `main` `9f37f45` untouched (report `~/Team/REPORTS/T11-parse-0.0.2-step-cut.md`).
+>    - **Three rulings are owed to `Ailp-team_15` before T11v**, as this seat promised at 05:01: (a) 0.0.0's commits landed 29 drafting-date lines (19 notes; `meta/DECISIONS.md:255, 271, 316, 389, 719, 746, 774, 800, 840, 870`), which T11 left because the item-3 ruling named 0.0.1's ten; (b) 0.0.3 … 0.0.5's patches carry 29 more, handed to their own cuts; (c) `ci.yml:74`'s "an immutable asset" is unmeasured.
+>    - Then parse's adoption, a Team chain from Fri 03:00: a fresh `npk:planner` at the new pin, so that T11v covers the cut and the adoption together. This seat's review and fast-forward follow the chain line.
+> 4. **Sockets (`CLAIMED s3`):** T7c3 closed at `fe5106e`. Sockets rests until its adoption, and T7c4 waits for it. The one re-read and fast-forward over 0.0.0 … 0.0.5 stays at the continuation's plan verifier's PASS. **Owed then:** T7v2's F1–F8; PD-159 … PD-168, and now PD-173 … PD-175, to the author; and sockets' own question N-5 (`RESOLVE-010`, `TYPE-032`), in words.
+> 5. **Regex (at rest):** adopts `2e1cb4a` before 0.3.0. Owed before 0.3.0's dispatch: the UCD directory `.internal/ucd/18.0.0/` (eight files, `SHA256SUMS` and `PIN.md`, with CI's fetch as the second reading), `0.3.0.md` §9 items 3–5, the carried texts on its row, and F3's keyword hand-on (owed at the re-pin past 136, so now).
+> 6. **Posix and tui** adopt at their next dispatch.
+> 7. **Owed now, at this re-pin:**
+>    - `meta/OPEN_QUESTIONS.md`: O-N40's item 2, discharged (129, DEF-244); a dated line on O-N36's F-039 `<|` note (133, `:426`); and O-N36's "F-036 b goes on DEF-190", discharged (135, `:437`).
+>    - `PLAYBOOK.md`, as `_20`'s block lists them: F69's two lock rules (127) and F70's two buffer lessons (128), both due now; and from parse's `0.0.0.md:928`, the unsigned literal envelope, PD-134's three arm codes, and the top-level `failsafe` `pick` line that 109 changed (`PLAYBOOK.md:161`). Parse 0.0.1's three playbook items have landed.
+>
+> **THIS SEAT'S TENURE** (taken 2026-10-21 20:06, `7f78904`): landings 138, 139 and 140 verified in the lean form, and advance notices F80 … F83 filed; S-134's R2 written into `LIBRARIES.md` (`6ad47f0`); the author's two words of tonight recorded (S-134 and the re-pin); the Team told the order at 03:53 and holding; the re-pin taken.
+>
+> **OPEN WITH THE AUTHOR:** nothing on the questions table. S-134 and the re-pin are settled.
+>
+> **WHAT WORKED, AND THE SLIPS:**
+> - **A transcript search for a time can match its own command.** The searching command's text is in the transcript too, so a loop that keeps the last hit takes that command's own timestamp. F83's slip time was first written as 03:23:41 and corrected to 03:21:33 before the commit. Take the first hit in a user or peer record, or match the tool's input exactly.
+> - **A `cd` into a library checkout** (posix, 03:21:33, read-only) moved this seat's working directory, and the shell reset it at once. It is recorded with F83.
+> - **A planted control's expected count is arithmetic too.** F82's census first reported "4 of 5 caught" against four controls, and a fifth (a `wild` pointer field) made it five. Verify140's first run failed one sum on this seat's own typo in its model (`escape_dump`'s open rows), fixed before filing and recorded.
+> - **An unexplained byte is a question, not a footnote.** The canary's last two bytes were DEF-263's `npk_site_path` view, found in the compiler's row 126.
+> - **The lean form held** through 140, and the fuzzer's own build confirmed 138, 139 and 140.
+>
+> **The scripts:** `.internal/landing/n138L/` … `n140L/` (the verifiers and baselines), and `.internal/review-scripts/f080-census.py`, `f082-census.py` and `f083-census.py`.
+
 > **🔁 HANDOFF — `nitpick-libs_22` → `nitpick-libs_23`, 2026-10-21 19:59 (shell time), at the author's word (*"if you think its a good time to handoff i'm fine with it"*, 19:56:49), at a quiet point: nothing of this seat's is in flight, the Max week resets at 20:00, and parse 0.0.1's review is the next heavy item.** This seat is at about 44 % context, and context per turn drives Max cost (`management_1`, 2026-10-16), so a fresh seat runs the parse review and the sockets review cheaper.
 >
 > **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes:
