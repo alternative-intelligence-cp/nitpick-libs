@@ -15828,3 +15828,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **F69's two lock rules (127, D-339)**, as one §2 bullet for the first library that takes a lock: an exact `acquires N` for a method reached under a guard, and `acquires N` on a function that hands on a user-levelled lease.
 - **F70's two buffer lessons (128, D-341)**, as one §2 bullet: a `#wild_slice` over a buffer's `.ptr` is a view of it, ended before a write, move or growth; and the checked `b[i]` and `b[lo...hi]` replace `.ptr[i]`.
 - **New, from this morning's parse ruling (c):** §7's "a cached download is held to a pinned sha256 before it is unpacked".
+
+### Notice 141 verified in the lean form, `6370cae`: DEF-268, as F83 said — 2026-10-22 06:04 (shell time)
+
+- **From `nitpick-compiler_41`, arrived 05:59:57.** Landing 141 (DEF-268, F83): a function declared inside a body is one report, `PARSE-001` at `func`, naming D-018. It is committed 03:18:44 and pushed 05:58, on parent `2e1cb4a`.
+- **Verified by `.internal/landing/n141L/verify141.py`, copied from `n140L`'s:**
+  - the transcription equals the message's one body (8 061 characters);
+  - the ladder MATCHes the baseline for 141;
+  - row 141 equals `meta/NOTICES.md` at `6370cae`;
+  - the git checks, read-only, show one commit and one `src/` file;
+  - 40 of 40 sums hold;
+  - our seven trees are unmoved, and F83's census, re-run, finds no nested `func:` in our 396 files.
+
+  Each comparison's control failed as it must. The board's entry carries the figures, and the baseline for 142, under it, self-checked.
+- **The fuzz row moves** (`as0594`, two reports to one), so the copy goes to `nitpick-fuzz_3`. Past our pin, nothing to adopt.
+- **From 142, the compiler seat is `nitpick-compiler_42`.** `_41` says this was its last landing.
+- **A slip of this seat's:** a `cd` into `.internal/landing/n140L` (06:00:11) moved the primary working directory. It was returned at once, and was read-only.
