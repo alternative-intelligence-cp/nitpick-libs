@@ -167,6 +167,55 @@ recorded as an open question in **both**, and resolved when resolution lands.
 | generated, version-pinned data tables committed as source | `ntui` (UCD), `nregex` (UCD), `ntime` (IANA tzdb) | one shape, three instances — the pattern is `ntui`'s T-021 |
 | an accumulator over untrusted digits | all five | the playbook's §5, because it is a language-wide hazard rather than a library one |
 
+## Conventions
+
+Norms each library states in its own documents and keeps. The rules behind them are
+[`PLAYBOOK.md`](PLAYBOOK.md)'s; this section records what the ecosystem adopted as a whole, and when.
+
+### The error budget, so a large program's `failsafe` stays writable
+
+*Adopted 2026-10-22 from the compiler's S-134 (its R2, and R4's library side), by the author's word at
+03:44:01, relayed by `management_2`: "i agree with your recommendations, go with those". The question was
+the author's own, on 2026-10-09: does a program that imports many libraries end up with a `failsafe`
+nobody can manage?*
+
+REACH-002 makes every identity a program can reach a named arm that its `failsafe` must write. That is the
+acknowledgement the author wants forced (`PLAYBOOK.md` §3). The compiler's measurement for S-134 found that
+the system set is most of every bill: the prelude declares 31 identities, the compiler's own `failsafe`
+carries 40 arms, and a small program's carries 9 to 13. Each library adds its own few on top: one for regex,
+two for parse, three for time, four for sockets and nine for tui, so 19 for all five (`nitpick-posix`'s
+`SAFETY.md` S-5). So the union is kept small at its source:
+
+1. **A library publishes its arm bill with its errors.** That is the exact set of arms a consuming program
+   owes for each import, stated beside the identities that cause it. An out-of-date list is a defect.
+2. **It keeps its public identities few,** under a stated ceiling. Adding one after 1.0 is a major version.
+3. **It declares one umbrella identity where a distinction buys a consumer nothing.** A shutdown handler
+   doesn't care which syntax error it was, so the detail goes in a value the caller reads.
+4. **A consumer that wants the distinction reads the error's origin chain** (the compiler's D-179), not a
+   separate arm.
+5. **A generated `failsafe` stays a repository's own tool** (R4). `nitpick-posix` generates its sixty
+   utilities' handlers (its PX-100), and any library or application may do the same. The compiler won't
+   generate one, because a reviewed diff would then be the only acknowledgement. What it adds instead, at
+   the end of its queue, is a `--reach` listing: the reachable set grouped by declaring module, which is the
+   list of arms a program must write.
+
+Each library states its budget and its bill in its `meta/specs/SAFETY.md`:
+
+| Repository | Public identities, a ceiling | Where its arm bill is |
+|---|---|---|
+| `nitpick-regex` | one, `ERegexPattern` (S-8, RX-060) | §4: importing it costs one arm of its own; §4.2: what else an import charges |
+| `nitpick-time` | three (TM-017) | §2, S-4 … S-4c: generated per module; `cal` costs 11 arms and the umbrella 13 |
+| `nitpick-parse` | two, and no input can produce either (§3) | §3, S-7: the exact arm set per import |
+| `nitpick-tui` | nine (§3) | §3, S-10: the exact arm set per import |
+| `nitpick-sockets` | four (§3) | §3, S-9: the exact arm set per import |
+| `nitpick-posix` | three of its own (S-6); an application, so it pays the libraries' bills | §3, S-5: the system set + 1 for `grep`, + 3 for `date`, + 19 for all five; its handlers are generated (PX-100) |
+
+**What changes for a consumer later.** R1, the compiler's one language change for S-134, lets a `pick` arm
+name several values with a comma: `(ntime.ETimeValue, ntime.ETzMissing) { exit 87i32; }`. A bill then
+becomes one line per dependency per action, and every identity is still written. It is planned as a landing
+at the end of the compiler's queue, so it is in no pin of ours yet. R3, a frozen named set acknowledged by
+its name, was not adopted.
+
 ## What the first five taught
 
 Findings from the planning passes that outlived the library that found them.

@@ -454,6 +454,9 @@ So:
    that arm. So *"hand-spell the trap so nothing changes when the clause is uncommented"* is false at `c3bdae2`:
    something changes in every consumer's `failsafe`. The board's Q-6 carries the consequence.
 
+*(2026-10-22: the norm every library states against these rules, the compiler's S-134 R2 and R4 as the author
+adopted them, is in [`LIBRARIES.md`](LIBRARIES.md) under Conventions.)*
+
 ---
 
 ## 4. Determinism and testability

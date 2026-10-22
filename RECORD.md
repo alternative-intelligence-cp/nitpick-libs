@@ -15649,3 +15649,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Our trees are clean.
 - **The fuzz row moves,** so it is updated, and a copy goes to `nitpick-fuzz_3` (W-30).
 - **A slip, recorded:** at 03:21:33 a read-only `cd` into `../nitpick-apps/nitpick-posix` moved this session's working directory. The shell reset it at once, and nothing was written there. Reads since then use absolute paths.
+
+### S-134 settled by the author, R1–R4 as recommended; R2, the libraries' budget norm, written into `LIBRARIES.md` — 2026-10-22 03:50 (shell time)
+
+- **From `management_2` (arrived 03:45:58):** the author approved S-134's recommendations at 03:44:01: "reviwed your recommendations about failsafe ( i agree with your recommendations, go with those)". S-134's row on the compiler's `main` (`a3c873c`) was read here, and it matches the relay.
+- **Written here:**
+  - `LIBRARIES.md` gains a section, Conventions, with R2's norm and R4's library side.
+  - A table in it points at each library's budget and arm bill in its `SAFETY.md`; every library already keeps the norm.
+  - `PLAYBOOK.md` §3 points to the section.
+- **The compiler's part:** R1 and R4's `--reach` listing, at the end of its queue. R3 is not adopted.
+- **The re-pin** still waits for the author's word.
