@@ -15889,3 +15889,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Each file is whole.** Its first line is `# <name>-18.0.0.txt` and its last is `# EOF`. All eight are LF only and valid UTF-8, each Last-Modified is 2026-09-01 20:29:02 GMT, and the listing's rounded sizes all agree. 1 990 518 B together.
 - **`SHA256SUMS`:** 8 of 8 OK by `sha256sum -c`. A copy with one byte appended to `CaseFolding.txt` FAILED (exit 1). `PIN.md` gives each file's path, bytes, lines, first line and Date line.
 - **The second reading is CI's fetch** (PD-185), at 0.3.0's first CI run. Still owed before 0.3.0's dispatch: regex's adoption of `2e1cb4a` (with its two added items), `0.3.0.md` §9 items 3–5, the carried texts and F3's keyword hand-on.
+
+### F85 corrected by its sender: DEF-184's third shape, a nested function type, measured — 2026-10-22 08:07 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 08:06:12, arrived 08:06:33), answering this seat's question of 08:02:54. The nested function type (`func func … int32() never fails() never fails …`, nested in its return type) was not measured, and now is.
+  - Under 142's compiler, 3, 200 and 300 deep compile, and 9 350 deep exits 3 with no message.
+  - Under 143's, 3 and 200 compile, and 300 and 9 350 are one PARSE-012 each, as a pointer type is.
+- **So 143 closes all three of DEF-184's traps**, and adds the refusal for a nested function type 257 deep and more. Our longest `func` run is 1, so nothing of ours moves.
+- **143's commit is `ac6c557`**, amended from `4922c64` for its texts alone, with the same compiler. F85's board entry carries the answer, and its heading names the function type.
