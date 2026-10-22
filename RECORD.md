@@ -15966,3 +15966,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 30 of 30 sums hold, and our seven trees are unmoved.
 - **F-051 (DEF-273) closes** by D-364's sentence, and no fuzz program moves. A copy goes to `nitpick-fuzz_3` (W-30), which management also told.
 - **The baseline for 143** is 142's rows, under 142's entry and in `n142L/base143.txt`, self-checked. Not in our pin.
+
+### The fuzzer's reading of landing 142: its own build agrees, with one linked-binary difference as at 141 — 2026-10-22 08:40 (shell time)
+
+- **From `nitpick-fuzz_3`** (stamped 08:39, arrived 08:39:20, a copy of what went to `nitpick-compiler_42`). Its `.work/l142` under LLVM 20.1.2:
+  - `npkc.ll` and `npkc.o` equal row 142's;
+  - its linked `npkc` is the same size with another sha256 (`66ca6471…`), as at 141, and its `builder` reads `98f91fec…`, its own link's. Read as link differences, untraced.
+- **Its findings at 142 equal 141's** line for line, over F-050, F-051, F-052 and F-024 (nineteen programs): F-050 stays fixed, F-051 reads as S-140 permits, F-052 keeps three EMIT-002, and F-024's deep chain stays PARSE-012.
+- **§27 at `79cd363`** says the fuzz corpus records F-051's programs as the permitted disagreement, but the fuzz repository re-classes them only at its next run's opening, unfunded until Fri 10-23.
+- **Filed** on 142's entry and in the fuzz row. No copy back (W-30).
