@@ -15956,3 +15956,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - time's plan verifier, already running on `sonnet`, counts in the cap;
   - after its PASS, each step of 0.4.0a gets a fresh worker briefed with its step's files alone, and the final verifier follows;
   - the notice checks stay lean, and are batched at the next re-pin when the room is tight.
+
+### Notice 142 verified in the lean form: DEF-176 as F84 said; nothing of ours moves; F-051 closes; the baseline for 143 written — 2026-10-22 08:35 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 08:30:35, arrived 08:31:49): `79cd363`, landing 142 (1.6.1e, DEF-176), on `6370cae`, pushed 08:30. A non-folding chain at the depth bound compiles, and no refusal and no emission moves. D-363 and D-364 are ratified; DEF-276 and DEF-269 are OPEN.
+- **`.internal/landing/n142L/verify142.py`** found everything as the notice said, each control caught:
+  - the transcription and row 142 are identical to the message and to `meta/NOTICES.md` at `79cd363`, and the ladder MATCHes 141's rows;
+  - parent `6370cae`, one commit, with 2 files under `src/` and the harness's partner table;
+  - 30 of 30 sums hold, and our seven trees are unmoved.
+- **F-051 (DEF-273) closes** by D-364's sentence, and no fuzz program moves. A copy goes to `nitpick-fuzz_3` (W-30), which management also told.
+- **The baseline for 143** is 142's rows, under 142's entry and in `n142L/base143.txt`, self-checked. Not in our pin.
