@@ -15611,3 +15611,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - A census of our refusal fixtures, which carry one `expect-error` line per site. It finds one parse-refused fixture, naming one site, its first, which stays. Every multi-site fixture parses.
   - Our trees are clean.
 - **The fuzz row moves,** so it is updated, and a copy goes to `nitpick-fuzz_3` (W-30).
+
+### Advance notice F82 for landing 140 filed, in the lean form: a pointer's value handed to a writer is checked against the views through it; nothing of ours moves — 2026-10-22 02:18 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 02:06:10):** F82 covers DEF-275, the use after free that F80 registered. A pointer-typed place chain handed by value to a callee is now checked against the views through it, as `@place` is. New `BORROW-015` sites appear in the landing's own test alone, and nothing is lifted: a view of a `List` element's body across a push stays refused.
+- **Checked here:**
+  - 19 of its sums, with a control.
+  - A census at the landing's reach (pointer locals, parameters and fields) over our 396 library files, with five controls. It finds no by-value pass of a pointer chain after a view through its root. With their sweep, that settles the question F80 left open.
+  - Our trees are clean.
+- **The fuzz row doesn't move,** so no copy goes (W-30).
+- **139's notice hasn't arrived yet;** 140 lands after it.
