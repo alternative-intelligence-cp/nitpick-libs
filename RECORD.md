@@ -15881,3 +15881,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **One question to `nitpick-compiler_42`:** DEF-184's note also registers `func func …` at about 9 350 levels, which neither measurement names.
 - **No fuzz row moves**, so no copy goes to `nitpick-fuzz_3`.
 - **143 is verified against 142's rows** once 142 lands, with 142's commit as the parent. Not in our pin.
+
+### Regex 0.3.0's UCD directory provided: `.internal/ucd/18.0.0/`, the eight files with `SHA256SUMS` and `PIN.md` — 2026-10-22 08:06 (shell time)
+
+- **PD-185's route** (accepted with PD-184 … PD-188 by the author, 2026-10-21 07:41:33): this seat provides the eight before dispatch, as the toolchain is provided, and the worker makes no fetch.
+- **Fetched 08:04:31–08:04:33** from `https://www.unicode.org/Public/18.0.0/`, one `curl --fail` a file, into a new and empty directory. The layout is flat: `DerivedGeneralCategory.txt` (`ucd/extracted/` in the release) sits beside the other seven (`ucd/`). `UCD/latest/` still reads 18.0.0.
+- **Each file is whole.** Its first line is `# <name>-18.0.0.txt` and its last is `# EOF`. All eight are LF only and valid UTF-8, each Last-Modified is 2026-09-01 20:29:02 GMT, and the listing's rounded sizes all agree. 1 990 518 B together.
+- **`SHA256SUMS`:** 8 of 8 OK by `sha256sum -c`. A copy with one byte appended to `CaseFolding.txt` FAILED (exit 1). `PIN.md` gives each file's path, bytes, lines, first line and Date line.
+- **The second reading is CI's fetch** (PD-185), at 0.3.0's first CI run. Still owed before 0.3.0's dispatch: regex's adoption of `2e1cb4a` (with its two added items), `0.3.0.md` §9 items 3–5, the carried texts and F3's keyword hand-on.
