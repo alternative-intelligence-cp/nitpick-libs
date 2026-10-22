@@ -38,10 +38,12 @@ form everywhere.
 
 ## 2. Before touching anything
 
-1. **The claim.** `grep -n '`<repo-name>`' "$WB/BOARD.md"` must show a
-   stream-table line containing `CLAIMED <your STREAM>`. Anything else →
-   stop, report `BLOCKED`, `for-the-author: claim mismatch`. One writer per
-   repository, always (W-7).
+1. **The claim.** `grep -n -F '| `<repo-name>` |' "$WB/BOARD.md" | grep -F CLAIMED | cut -c1-300`
+   must show a stream-table line containing `CLAIMED <your STREAM>`. Keep the
+   pipe: some board lines run to hundreds of kilobytes, and an uncut grep
+   prints them whole into your context. Anything else → stop, report
+   `BLOCKED`, `for-the-author: claim mismatch`. One writer per repository,
+   always (W-7).
 2. **The tree.** `git -C "$REPO" status --porcelain`. `TREE: clean` was
    promised and this is non-empty → `BLOCKED`. `TREE: dirty` → read
    `git -C "$REPO" diff` and the subcycle file's execution record first: a
@@ -135,6 +137,11 @@ Clean, or the commit does not happen. Then:
 ```bash
 git -C "$REPO" add -A && git -C "$REPO" commit -F "$msgfile"
 ```
+
+When the plan stages its own files (an `apply.py` that stages a patch) or keeps
+a change unstaged until the record, read `git -C "$REPO" status --short` and
+commit the staged files alone: `git -C "$REPO" commit -F "$msgfile"`, with no
+`add`.
 
 The subject is `cycle <SUBCYCLE>: <what>`; the body says **why** — the diff
 says what. End the message with the `ATTRIBUTION` lines exactly as given.

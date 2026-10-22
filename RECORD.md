@@ -16017,3 +16017,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Its seven planted controls were caught and its near-misses passed. 16 of 16 sums hold, with a control.
 - **Their listing's two vanished `nitpick-time` files** were most likely the planner's rehearsal of probe10d and probe19b. Time's workers commit in that checkout today, and `nitpick-compiler_42` is told.
 - **No fuzz row moves.** 144 is verified against 143's rows once 143 lands. Not in our pin.
+
+### `nitpick-time` 0.4.0a worker 1 DONE: steps 0–2 committed, all four blocks SAME; two worker-skill fixes; worker 2 dispatched — 2026-10-22 09:45 (shell time)
+
+- **report `s2-ntime-0.4.0a-w1-0913` DONE** (`sonnet`, 09:13–09:42:52, about 30 min, 34 tool uses).
+  - Blocks 0a, 0b, 1 and 2 are SAME.
+  - Its two commits are on `2a33a7a`, not pushed: `3a71a04` (step 1, the freeze met at the old pin, 6 files) and `6a6c848` (step 2, `bytes_view` answering the read-only view, 9 files).
+  - The full runs at `7e91730` are RED 144 of 146 at the namespace pair alone (235.1, 227.2 and 227.5 s). At `2e1cb4a`, block 0a stops at the self-check. Both are as the Expects say.
+  - Block 0b ran with `api.github.com` declared, and its `(any)` line matched with the compiler's `main` at `79cd363`. `check_refs` was clean with each patch staged.
+- **Checked here:**
+  - time is on `main` at `6a6c848`, 2 ahead of `origin/main`, and its one unstaged change is the plan's title, `RUNNING (since 2026-10-22, s2)`;
+  - each commit's parent is the step before, with Randy's identity and the two trailers (`Claude Sonnet 5.5` and this session's link);
+  - there is no local `user.*`.
+- **findings-for-playbook: both are fixes to the worker skill, made here** (`skills/worker/SKILL.md`):
+  - §2's claim check printed about 246 KB, because a grep for the repository's name matches board lines hundreds of kilobytes long. It now reads `grep -n -F '| `<repo>` |' … | grep -F CLAIMED | cut -c1-300`;
+  - §6's `git add -A` would stage what a plan keeps unstaged, here the RUNNING title. It now says to commit the staged files alone when the plan stages its own files or keeps one unstaged.
+- **Its cost:** about 30 min and 34 tool uses, with a subagent token count of 165 k.
+- **dispatch `s2-ntime-0.4.0a-w2-0945`** (`npk:worker`, `sonnet`) on `6a6c848`, TREE dirty (the title alone): steps 3–5, that is blocks 3, 4 and 5 at `2e1cb4a`, three commits, nothing pushed.
