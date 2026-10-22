@@ -16003,3 +16003,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **Why `sonnet`:** the plan is rehearsed and every block is a SAME-or-stop comparison, which a plan written for a weaker executor allows. The verifier ran all eight blocks on `sonnet`, in a harder stand-in. The cap is about 3 points for the rest of 0.4.0a, and the plan verifier spent part of it.
   - **Attribution:** each worker's commits carry its own model's trailer, `Claude Sonnet 5.5`, with this session's link.
 - **dispatch `s2-ntime-0.4.0a-w1-0913`** (`npk:worker`, `sonnet`) on `2a33a7a`, TOOLCHAIN `2e1cb4a`, the old pin `7e91730`: steps 0–2, two commits, nothing pushed. Before it: 117 GiB available; no other agent of this seat's (W-24).
+
+### Advance notice F86 for landing 144 filed in the lean form: a macro body declares only what an expansion emits, and a macro takes no type arguments — 2026-10-22 09:16 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 09:08:16, arrived 09:09:01): DEF-185, DEF-186, DEF-188 and DEF-240, with DEF-194's struct face closed and DEF-270 registered. No emission moves.
+  - A body declaring one of six kinds is MACRO-005 at its declaration, where it was MACRO-006 at the first instantiation.
+  - A type argument on a macro invocation is MACRO-002, where it was ignored.
+  - MACRO-009 notes the right invocation, and `npkg` names all twelve stages.
+- **Ours: nothing moves.** `.internal/review-scripts/f086-census.py` scans our 433 files:
+  - our 5 macro bodies (`nitpick-posix` probes) declare none of the six kinds;
+  - no macro call carries a type argument, and our 152 `#name<…>` calls are builtins;
+  - regex's probe09 keeps its TYPE-004.
+  - Its seven planted controls were caught and its near-misses passed. 16 of 16 sums hold, with a control.
+- **Their listing's two vanished `nitpick-time` files** were most likely the planner's rehearsal of probe10d and probe19b. Time's workers commit in that checkout today, and `nitpick-compiler_42` is told.
+- **No fuzz row moves.** 144 is verified against 143's rows once 143 lands. Not in our pin.
