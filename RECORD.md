@@ -15862,3 +15862,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - (1) each adoption rows every landing past 140, up to `main` at its dispatch, as NOT carried, with what each would move. Today that is 141 (`6370cae`), which moves nothing of ours;
   - (2) T12 compares its LLVM tarball digest with time's 0.4.0a's and sockets' PD-172.
 - **Time's planner** (`s2-ntime-0.4.0a-0530`) got the addition by message at 06:10:54, as its NOTES items (10) and (11): the not-carried rows from 141 on, and the asset's URL and size beside any digest it measures.
+
+### Advance notice F84 for landing 142 filed in the lean form: DEF-176, a deep non-folding chain compiles; S-134 and S-140 recorded as D-363 and D-364 — 2026-10-22 06:33 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 06:28:54, arrived 06:30:16), its first message as the compiler seat. DEF-176: a non-folding chain 54 to 254 levels deep compiles, where 141's compiler stopped on it in silence (exit 3). No refusal and no emission moves.
+  - DEF-269 (the verified build's encoder) and DEF-276 (the residue: `#sqrt`, `??`, ternary and cast chains past 150 to 200 levels) are registered.
+  - The author's S-134 is recorded as D-363, and S-140 as D-364.
+- **Ours: nothing moves.** `.internal/review-scripts/f084-census.py`, over our 396 files at each tree's committed `main`, finds no statement near the bounds. The deepest holds 11 operators and 5 nested parentheses. Its two planted controls were caught and its near-misses passed. 9 of 9 sums hold, with a control.
+- **The fuzz row moves:** F-051 (DEF-273) closes by D-364's sentence at 142, so a copy goes to `nitpick-fuzz_3`. No fuzz program moves by DEF-176.
+- **142 is verified against `n141L/base142.txt`**, with parent `6370cae`. Not in our pin.
