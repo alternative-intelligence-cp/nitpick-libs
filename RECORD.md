@@ -15583,3 +15583,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The announcement:** `nitpick-fuzz_3` (`[68732d]`, `uds:/run/user/1000/cc-socks/1671714.sock`) said at 21:54:15 that it holds the fuzzer's manager seat after `nitpick-fuzz_2`. It asked for W-30 copies, starting with landing 138's.
 - **Checked here:** both sessions are live in `ListAgents` at 21:54. The fuzz remote's `main` is still `e289864` (M13), so that repository has no handoff commit to read.
 - **Taken as:** the routing for copies, which carries no authority. F80's copy went to `nitpick-fuzz_2` at 21:47, before the announcement. A short copy goes again to `nitpick-fuzz_3`.
+
+### Notice 138 verified — `2a9d601`, DEF-272 as F80 said; the fuzzer's F-050 closed — 2026-10-22 00:21 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 00:15:20):** notice 138, commit `2a9d601`, pushed 00:13. Landing 139 (DEF-265 and DEF-271) is next, with F81 within the hour.
+- **Checked here, in the lean form,** by `.internal/landing/n138L/verify138.py` (137's script with its keys, shas, transcript, rows and sums changed):
+  - the transcription and row 138 identical, each with a control;
+  - the ladder MATCH against the baseline for 138, its control failing;
+  - the git checks, read-only: parent `c72639f`, one commit, 2 `src/` files, none under `runtime/` or `bootstrap/`;
+  - 28 of 28 sums, with a control;
+  - our seven trees clean.
+
+  No floor byte moved, so no re-pin is forced. The baseline for 139 is generated from the checked transcription and self-checked by `tools/ladder.py`.
+- **A second reading:** `nitpick-fuzz_3` re-measured F-050, F-051 and F-052 on its own build of `2a9d601` (arrived 00:18:18). F-050 is fixed, and the other two are unmoved. A copy goes to it (W-30).
