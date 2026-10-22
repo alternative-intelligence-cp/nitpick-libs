@@ -15633,3 +15633,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Our seven trees are clean.
 - **The fuzz row moves,** so it is updated, and a copy goes to `nitpick-fuzz_3` (W-30).
 - **The baseline for 140** is written and self-checked (`.internal/landing/n139L/base140.txt`), and it is on the board under 139's entry.
+
+### Notice 139: the fuzzer's own build confirms the 27 — 2026-10-22 02:46 (shell time)
+
+- **From `nitpick-fuzz_3` (arrived 02:45:51), a copy of its note to the compiler seat:** a second reading of `a3c873c` on its own build (LLVM 20.1.2). At `2a9d601` all 27 of F81's sites are present (16 `PARSE-001` and 11 `PARSE-002`, which are the notice's per-code drops). At `a3c873c` all 27 are gone, no site appears, and each program stays refused at its first report. No `m11` verdict moves.
+- **Recorded** on 139's entry and in the fuzz row. The row now holds the fuzzer's own reading, so no copy goes back to it.
+- **It re-runs F-050 … F-052 at 140** and will copy the lines here.
