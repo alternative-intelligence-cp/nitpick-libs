@@ -16062,3 +16062,33 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their sweep sees time's adoption from outside:** six of its `bytes.npk` readers compile under both compilers, where 144's chain found them refused by both.
 - **Ours: nothing moves.** Our harnesses never run the verified build. `.internal/review-scripts/f087-census.py` scans our 435 files: the deepest braces are 8, the deepest `pick` in `pick` is 2, and there is no mask AND. 11 of 11 sums hold, with a control.
 - **The fuzz row** notes DEF-279, and a copy goes to `nitpick-fuzz_3`. 145 is verified against 144's rows once 144 lands. Not in our pin.
+
+### `nitpick-time` 0.4.0a worker 3 DONE: the sweep SAME, pushed, CI green at both heads, the record written; its work verifier dispatched — 2026-10-22 10:48 (shell time)
+
+- **report `s2-ntime-0.4.0a-w3-0959` DONE** (`sonnet`, 10:00–10:46, about 46 min, 84 tool uses; its harness counter about 325 k):
+  - **block 6 SAME** over `a11f3b3`'s tree: 368 and 211 saved lines, 464 distinct, each in its §3b class and none an omission, with no patch amended. The control gives 92 hunks, 66 matched and 26 appends;
+  - **the push and CI:**
+    - run `39792933155`, job `119873202477`, at `a11f3b3` (7 min 13 s, log 93 468 B): `GREEN -- 148 unit(s), 0 failures; 4 pending`;
+    - its lines include `compiler HEAD == 2e1cb4adef79… (clean)`, `downloaded 2021269412 B` and the asset's `OK`, which is **CI's own reading of the LLVM digest, the second**. They also include `npkc.ll == the pin's emission, 32569732 B / 0073060250…`, the namespace step 1 → 0 with a private `/etc`, and 12 of V-14's 13 cases;
+    - the runner's `npkrt.o`, `builder.o`, `npkc.ll` and `npkc.o` equal notice 140's rows. Its linked `builder` and `npkc` differ by their link alone, +72 B each (D-265);
+  - **the record** is `74b6ee1` (`0.4.0a.md` and the cycle README), with its own run `39796418775`, job `119884620694`, GREEN on both caches. The title reads `DONE (2026-10-22)`, and `check_record` is clean;
+  - **this seat's three additions** are in the record:
+    - landing 142 is rowed NOT CARRIED, since `main` is `79cd363` and 143 and 144 have not landed;
+    - the two §7 nits are dated notes under items 2 and 5;
+    - the cost of the plan, its verifier and the three workers is given.
+- **Checked here:**
+  - `check_record` gives "record clean";
+  - `HEAD` = `origin/main` = `ls-remote` = `74b6ee1`, clean, with `main` the only branch and `.internal/w040a/` removed;
+  - the six commits chain from `2a33a7a` in step order, the record's with 2 files and the `Claude Sonnet 5.5` trailer.
+- **findings-for-playbook, held for the PASS** with worker 2's two:
+  - a block-6-shaped reading can be mechanised before it is read. Key each saved line by file and line against the plan's class table, and `git blame` the new-text classes, which leaves the eye only the lines the join cannot settle;
+  - a CI run closes minutes after its job (here about six). So wait on the run, but read the job's log as soon as the job completes.
+- **dispatch `s2-ntime-0.4.0a-verify-work-1048`** (`npk:verifier`, `sonnet`) on `74b6ee1`. Its checks:
+  - the six commits against their patches;
+  - CI per job for both runs;
+  - one full run at the final tree in a stand-in;
+  - the safety item and PD-202 by its own consumers;
+  - the decisions;
+  - the record, with this seat's three additions;
+  - step 5's prose against the tree;
+  - the compiler's `main` now.
