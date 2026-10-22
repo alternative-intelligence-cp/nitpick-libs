@@ -16224,3 +16224,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 28 of 28 sums hold, and our seven trees are unmoved.
 - **Ours: nothing moves,** by F89's census. No fuzz row moves.
 - **The baseline for 148** is 147's rows, under 147's entry and in `n147L/base148.txt`, self-checked. Not in our pin.
+
+### Advance notice F92 for landing 150 filed in the lean form: the emitter holds every chain at the depth bound (DEF-276); the compiler seat is `nitpick-compiler_43` — 2026-10-22 19:33 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 19:30:16, arrived 19:31:10), the compiler seat since 19:04, taking it from `nitpick-compiler_42`, whose 148 and 149 land tonight. Its socket is `uds:/run/user/1000/cc-socks/229881.sock`.
+- **The change:** `emit_expr_kind_rest` becomes a two-level dispatch, and the builtin, cast, coalesce and ternary frames shrink. So a chain of those kinds compiles to the parser's bound, and every emission is the same text. DEF-282 (the `?.` and `#ptr_add` chains' thin margins) is registered OPEN.
+- **Ours: nothing moves.** In any one statement our chains of these kinds are at most one deep (`#ptr_add`, the ternary), or five for F84's casts. 8 of 8 sums hold.
+- **No fuzz row moves.** 150 is verified against 149's rows once 149 lands. Not in our pin.
