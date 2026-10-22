@@ -15468,3 +15468,48 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **At the author's word:** the writer line's first token is `none`, and the marker `.internal/orchestrator.session` is removed after this push. The handoff block `_22` → `_23`, at the top of the board (`d7a820d`), is the brief.
 - **In flight at the release:** nothing of this seat's. On the Team seat, parse 0.0.2's step cut waits for or runs in `management_1`'s slot, and sockets' continuation goes from Thu 03:00. Parse 0.0.1 waits at `9f37f45` for the successor's review. The compiler seat is paused at its usage line.
 - **`_22` stays open** for `_23`'s questions, and forwards anything that reaches it until the peers re-address.
+
+### Handover — `nitpick-libs_23` takes the workbench lock on `nitpick-libs_22`'s briefed handoff — 2026-10-21 20:06 (shell time)
+
+**Handover.** `nitpick-libs_23` (`bb5f8bf8-ae81-4c0f-ad6b-31f6fdea2439`) takes the writer lock that `nitpick-libs_22` released at `bdf9478` (19:59), at the author's word (*"if you think its a good time to handoff i'm fine with it"*, 19:56:49). `_22` briefed this seat by message and by the board's handoff block (`d7a820d`). It stays open until this seat says it is done with it.
+
+- **The account, checked first:** this session's own status-line file `~/.claude/context/bb5f8bf8-….json` carries rate limits (the five-hour window 5 %, resetting 2026-10-22 00:30; the week 1 %, resetting 2026-10-28 20:00). Team seats get no rate limits, so this seat is on Max. `~/.claude/usage-latest.json`, written by `claude-skills-devTeam_53` at 20:03:53, has `model_limits.account_check` "unverified: no weekly reset to compare", no five-hour or weekly figure, and Fable at 1 % with the week's reset. **The room is 95 − 1 − 0.5 × (100 − 1) = 44.5 to 2026-10-28 20:00, at Fable's lowest reading, so over 20.** A cost line still goes to management for each chain.
+- **The id, from values:** `CLAUDE_CODE_SESSION_ID`, the transcript `bb5f8bf8-….jsonl` (written live, 20:03:54), the scratchpad path and `~/.claude/context/bb5f8bf8-….json` (`session_name` `nitpick-libs_23`) all agree. `ListAgents` names this session `nitpick-libs_23` (`[9bc069]`), the ref the handoff block gave it after its restart at about 19:56.
+  - **By content:** a nonce (`NONCE-libs23-e4a19c7b250fd83e6a1c`), typed into the search command, is found in that one transcript only, across `~/.claude/projects` (1.3 G) and `~/.claude-team/projects` (433 M), at 20:04.
+  - A 37-character control generated at run time, and never printed, is found in none.
+  - The marker is 37 bytes.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 20:04:28 and again inside the take's own command;
+  - `HEAD` = `origin/main` = `ls-remote` = `bdf9478`, with porcelain 0;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed (read with `--no-optional-locks`), found **9 trees, every one `dirty=0` and `0/0`**, at 20:04: the workbench `bdf9478`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `4f83ed3`, regex `14817a1`, sockets `d385991`, time `1cc801f`, tui `e5439ee`;
+  - the pin `c9baa9e`'s `sha256sum -c` read OK for `npkc` and `npkrt.o`;
+  - the compiler's `main` is `c72639f` (landing 137), so 138 has not landed;
+  - `check_refs` read its 2 known `[leak]` lines (`tools/guard_domains.py`) on the clean tree, at exit 1.
+- **Hazard 3, asked and answered:** `_22` measured by command at 20:03:38:
+  - the same 9 trees clean and `0/0` against their local tracking refs, at the same heads. Fuzz's GitHub `main` is `e289864` (its `ls-remote`, 09:05), and its checkout is not ours to fetch (W-30). The team branches `_22` fetched into parse, sockets and regex today touched only their `.git` refs and `FETCH_HEAD`;
+  - `HEAD` = `origin/main` = `ls-remote` = `bdf9478`, the token `none` both ways, and no marker (removed after its push, at 19:59:41);
+  - `find .internal -newermt '2026-10-21 19:59:41'` lists 1 path, `.internal` itself, whose mtime moved with the removal;
+  - nothing live: no subagent ever, and no cron, wakeup, Monitor or background Bash;
+  - its remaining actions are messages only.
+- **Hazard 4:** `nitpick-libs_24` (`[4ba56a]`), the spare, answered in one line (about 20:03): idle, no task, nothing written in `nitpick-libs` (no file or shell tool run since its start, only the rename), and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`, about 20:02):**
+  - the seat's own: `nitpick-libs_22` (`[a74f25]`) and `_24` (`[4ba56a]`), both idle;
+  - the compiler's: `nitpick-compiler_40` (`[d9f13d]`, idle), `_41` (`[ec6c0a]`, busy) and `_42` (`[8ad158]`, idle), the last two restarted about 19:57;
+  - management's: `management_1` (`[70bf25]`, busy), `_2` (`[abdc11]`, busy) and `_3` (`[bea6d2]`, idle);
+  - the fuzzer's: `nitpick-fuzz_2`, now `[f2bfcc]` after a restart about 19:58 (the block's `[b4a7f2]` is gone), `_3` (`[68732d]`) and `_4` (`[516d46]`);
+  - `diogenes_1` … `_3`, `claude-skills-devTeam_51` … `_53`, and the fuzz cloud session (`[169d76]`).
+
+  The Team's `claude-team` sessions are not listed.
+- **Read before the take:**
+  - the board's lines 1–14 and `_22`'s handoff block;
+  - `_17`'s block and the take hazards (1)–(13), with (1)–(6) at `RECORD.md`'s 2026-09-26 07:01 entry;
+  - orchestrate §1 and §2;
+  - `RECORD.md`'s take entry of 2026-10-19 22:22 and its last three entries.
+
+  The rest of §2 step 2 follows the take.
+- **Waiting at the take:** `Ailp-team_15`'s note to `_22`, forwarded verbatim (arrived 20:01:34). T11, parse 0.0.2's step cut, is drafted at `~/Team/META/nitpick-parse/briefs/T11-nparse-0.0.2-step-cut.draft.txt` and goes at Thu 03:00 unless `management_1` says otherwise. It reads the 14:12 go two ways: (a) a fix in a file 0.0.1 landed is made only through a 0.0.2 step's patch, and a settled record takes a dated note; (b) each 0.0.2 step pushes and reads CI per job, replacing `0.0.2.md` §3's "Push only after the record". Item 3's ten dates are carried for this seat's ruling, and the review's items go into T11's NOTES if they reach it before dispatch. No reply is needed unless this seat objects. `_22`, the go's writer, reads both as what it meant.
+- **Next:**
+  1. orchestrate §2 steps 2–6: the board's live parts, `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md` and `APPS.md`, recovery for each `CLAIMED` row, and the picture to the author;
+  2. one line to `management_1`, and an introduction to `Ailp-team_15` (by socket), `nitpick-compiler_40` and `nitpick-fuzz_2`;
+  3. parse 0.0.1's re-read and fast-forward, with item 3's ruling and the review's items to T11 before Thu 03:00.
