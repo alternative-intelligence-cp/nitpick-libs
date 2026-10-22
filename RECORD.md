@@ -15602,3 +15602,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Asked:** this seat put the re-pin's timing to `management_2` at 00:22. 138 has landed and 139 lands within the hour. The Team's T11 and T7c3 start at 03:00:30, and a re-pin would hold both (W-31). This seat recommended no re-pin tonight: pin past 139 at the next quiet point after Thursday's chains, with time adopting first. It offered (a), two pins live with parse and sockets kept on `c9baa9e`, or (b), the one-pin rule.
 - **`management_2`'s answer (arrived 00:24:57):** not tonight. (b): the one-pin rule stands, because (a)'s traps are correctness risks that would save hours at most. The re-pin comes at the next quiet point after T11 and T7c3, past the newest landing then: 139 at least, and 140 (DEF-275) if it has landed, without waiting for it. Time adopts first with its `bytes_view` block, then parse and sockets, each before its next dispatch, within the 17 points. The board's line sets the re-pin with the author, so management puts it to him at his next check-in and relays his answer verbatim.
 - **Here:** the toolchain line carries this as the next re-pin, the author's word pending. Nothing moves until his answer.
+
+### Advance notice F81 for landing 139 filed, in the lean form: the statement level knows a brace group; 27 fuzz phantoms vanish; nothing of ours moves — 2026-10-22 00:40 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 00:37:44):** F81 covers DEF-265 and DEF-271, parser recovery only. It removes 27 phantom reports in ten fuzz programs, adds none, and registers DEF-268 OPEN.
+- **Checked here:**
+  - 19 of its sums, with a control.
+  - A census of our refusal fixtures, which carry one `expect-error` line per site. It finds one parse-refused fixture, naming one site, its first, which stays. Every multi-site fixture parses.
+  - Our trees are clean.
+- **The fuzz row moves,** so it is updated, and a copy goes to `nitpick-fuzz_3` (W-30).
