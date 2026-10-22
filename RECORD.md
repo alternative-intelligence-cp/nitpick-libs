@@ -15639,3 +15639,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-fuzz_3` (arrived 02:45:51), a copy of its note to the compiler seat:** a second reading of `a3c873c` on its own build (LLVM 20.1.2). At `2a9d601` all 27 of F81's sites are present (16 `PARSE-001` and 11 `PARSE-002`, which are the notice's per-code drops). At `a3c873c` all 27 are gone, no site appears, and each program stays refused at its first report. No `m11` verdict moves.
 - **Recorded** on 139's entry and in the fuzz row. The row now holds the fuzzer's own reading, so no copy goes back to it.
 - **It re-runs F-050 … F-052 at 140** and will copy the lines here.
+
+### Advance notice F83 for landing 141 filed, in the lean form: a nested `func:` is one report at `func`, naming D-018; nothing of ours moves — 2026-10-22 03:23 (shell time)
+
+- **From `nitpick-compiler_41` (arrived 03:20:38):** F83 covers DEF-268, from the fuzz corpus's `as0594`. A function declared inside a body becomes one `PARSE-001` at `func`, naming D-018, where it was two reports. Only `as0594` moves.
+- **Checked here:**
+  - 17 of its sums, with a control.
+  - A brace-stack census of our 396 library files, with a control. It finds no `func:` inside a function's body. Posix's two declaration macros hold one each, and both expand at module level.
+  - Our trees are clean.
+- **The fuzz row moves,** so it is updated, and a copy goes to `nitpick-fuzz_3` (W-30).
+- **A slip, recorded:** at 03:21:33 a read-only `cd` into `../nitpick-apps/nitpick-posix` moved this session's working directory. The shell reset it at once, and nothing was written there. Reads since then use absolute paths.
