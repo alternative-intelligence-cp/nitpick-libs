@@ -16138,3 +16138,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - `npkc FILE --reach OUT` lists the identities a `failsafe` must name. Its first reading found two dead arms in the compiler's own `failsafe`.
 - **Ours: nothing moves.** There is no `atomic<` in our 435 files, and a planted control was caught. 11 of 11 sums hold, with a control. Our 380 `func:failsafe` gain a tool at the next re-pin.
 - **The fuzz row moves:** F-052 is fixed at 146, and a copy goes to `nitpick-fuzz_3`. 146 is verified against 145's rows once 145 lands. Not in our pin.
+
+### Notice 143 verified in the lean form: DEF-184 and DEF-177 as F85 and its correction said; nothing of ours moves; the baseline for 144 written — 2026-10-22 12:40 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 12:35:44, arrived 12:36:53): `753e783`, landing 143 (1.6.1e), on `79cd363`, pushed 12:35. A type past 256 levels is one PARSE-012, and anything but a member's name after a dot is PARSE-001.
+- **`.internal/landing/n143L/verify143.py`** found everything as the notice said, each control caught:
+  - the transcription and row 143 are identical, and the ladder MATCHes 142's rows;
+  - parent `79cd363`, one commit, with 3 files under `src/`;
+  - 27 of 27 sums hold, and our seven trees are unmoved.
+- **One count unexplained:** the sweep's base, 4 294, against 142's 4 288 over the same 5 243 files. Neither landing moved a site, so the trees moved between the two sweeps. Asked of `nitpick-compiler_42`.
+- **No fuzz row moves.** The baseline for 144 is 143's rows, under 143's entry and in `n143L/base144.txt`, self-checked. Not in our pin.

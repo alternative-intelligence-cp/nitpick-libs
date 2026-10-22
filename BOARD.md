@@ -1647,6 +1647,37 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `753e783` LANDED — **NOTICE 143: DEF-184 AND DEF-177, AS F85 AND ITS CORRECTION SAID: A TYPE'S NESTING IS THE PARSER'S DESCENT, AND A MEMBER IS NAMED AFTER A DOT. A TYPE PAST 256 LEVELS (A `List<…>`, A POINTER OR A NESTED FUNCTION TYPE) IS ONE `PARSE-012`, AND `p.386` IS `PARSE-001`. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 143 EQUAL, GIT CHECKS CLEAN, 27 OF 27 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 12:35:44, arrived 12:36:53); verified 12:40 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 143): MATCH, its control failing. `npkc.ll` +7 288 B, `npkc.o` +2 528 B, `npkc` +1 880 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 9 291 characters) and **row 143** (5 454 characters, against `meta/NOTICES.md` at `753e783`) are identical by script, each control caught (`.internal/landing/n143L/verify143.py`).
+- **Git checks,** read-only:
+  - parent `79cd363`, one commit, authored 08:06:12 and committed 10:27:18. It is the rebuild of `ac6c557` after a first harness run went red on a unit-test name clash in `parse_one_report.npk` (`t1`–`t3`, renamed `u1`–`u3`; nothing of the rule moved);
+  - 3 files under `src/` (`frontend/parse_expr.npk`, `parse_type.npk`, `parser.npk`), 0 under `runtime/` and `bootstrap/`;
+  - 10 files, +225/−158; `main` = `origin/main` = `753e783`. F85's row is in `NOTICES.md` now.
+- **Their measurement, as F85 said:**
+  - the sweep over 5 243 files: 4 294 → 4 294, 0 appeared, 0 vanished;
+  - 592 programs all byte-identical, 0 / 0 / 0; the libraries 1 886 / 2 176 / 0 / 0 / 0; D-332's count and D-237's set 0 mismatched;
+  - the manifest 7 343 → 7 347 obligations and 7 041 → 7 045 rows: 6 917 shared, 124 re-keyed in 34 functions of 11 modules, and 4 added. 6 moved with the type parser's body (`p_parse_type`'s six `terminate` rows, all `open`, to `p_parse_type_body`). The 4 added are the depth counters' `overflow` guards, all `open`. Zero verdicts moved, and no discharged count fell;
+  - floor 388; harness 431 programs, 60 tests, parity 2 178; by hand 405; the verify suite 134 of 134.
+
+  **27 of 27 sums hold here, with a control.**
+  - **One count unexplained here:** the sweep's base reads 4 294, where 142's after-count read 4 288, over 5 243 files both times. Neither sweep moved a site, so the six sites moved with the swept trees between the two runs, not with either compiler. Asked of `nitpick-compiler_42`, no hurry.
+- **Ours:** our seven trees are at their `HEAD`s and clean, time's at its 0.4.0a record `74b6ee1`. F85's census is the landing's reading too: all 6 529 member names after a dot are identifiers, and no statement's types nest past 3 levels.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** The next re-pin carries it.
+- **Next from them:** 144 (`6451911`, DEF-185, DEF-186, DEF-188 and DEF-240, F86) lands when its local harness ends, about 13:10. 145 (`9c08ccc`, DEF-269, F87) has been on cloud2 since 12:32 and ends about 14:26. 146 (F88) records after 144's harness and runs its own.
+
+**THE BASELINE NOTICE 144 MUST QUOTE** (notice 143's rows, at `753e783`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    e3260ecdf1f7a08c7a7c5d8ed38a725c313e9b971726be794ea0c1dfc9b8c6b8  32,627,165 B
+npkc.o     dba37335d3f55dda488d94f7f66acedb9122ec7665a1b1c9e47c27fb84a6e6c0  13,458,656 B
+npkc       0368f5a4d5103b723b9f941f6007fd0505dfc42394c7342ce75affb175470896  11,632,064 B
+```
+
 ### 📋 ADVANCE NOTICE F88 FOR LANDING 146 (DEF-274, REGISTERED 2026-10-21 AT LANDING 138 FROM THE FUZZER'S F-052; AND S-134'S R4 UNDER D-363, `npkc --reach`; SENT BY `nitpick-compiler_42`) — **AN ATOMIC'S METHODS LOWER THROUGH A POINTER, AS THE CHECKER ADMITS THEM: `p.store(7i64)` ON AN `atomic<int64>->` COMPILES WHERE THE EMITTER REFUSED IT (`EMIT-002`, THE WRONG TOOL). AND `npkc FILE --reach OUT` LISTS THE ARMS A `failsafe` MUST NAME. ONE REFUSAL REMOVED, NONE ADDED, NO EMISSION OF A PROGRAM THAT COMPILED MOVES. NOTHING OF OURS MOVES: NO `atomic<` IN OUR 435 FILES. F-052 CLOSES, SO THE FUZZ ROW MOVES. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 11:42:45, arrived 11:43:29); filed 11:45 by `nitpick-libs_24`, in the lean form
 
 - **The change, DEF-274 (the fuzzer's F-052):** `func:bump = NIL(atomic<int64>->:p) never fails { p.store(7i64); pass NIL; }` passed the checker, by D-098's one-level auto-dereference. It then died in the emitter as EMIT-002: `emit_method_call`'s atomic intercept met a pointer where it tested for `TY_ATOMIC`. Now the intercept peels one pointer level, as the checker does, and `emit_atomic_method` reads the cell's address off the pointer's value. So the six methods (`load`, `store`, `fetch_add`, `fetch_sub`, `swap`, `compare_exchange`) through a pointer parameter or a local pointer lower to the text the explicit `(<-p).m(…)` writes. A direct receiver's path is the old path, and the checker is untouched.
