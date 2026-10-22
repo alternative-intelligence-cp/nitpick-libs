@@ -1647,6 +1647,37 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `d422c1e` LANDED — **NOTICE 147: DEF-270 AND DEF-280, AS F89 SAID: A GENERIC `comptime func:` NAMES ITS TYPE PARAMETER IN A TYPE UNDER EVALUATION, AND `move(x)` FOLDS IN A COMPTIME BODY. TWO REFUSALS REMOVED, NONE ADDED; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 147 EQUAL, GIT CHECKS CLEAN, 28 OF 28 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 18:56:58, arrived 18:58:03); verified 18:59 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 147): MATCH, its control failing. `npkc.ll` +11 206 B, `npkc.o` +4 032 B, `npkc` +3 704 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 8 599 characters) and **row 147** (4 775 characters, against `meta/NOTICES.md` at `d422c1e`) are identical by script, each control caught (`.internal/landing/n147L/verify147.py`).
+- **Git checks,** read-only:
+  - parent `915f427`, one commit, authored and committed 16:55:12;
+  - 1 file under `src/` (`frontend/type_resolve.npk`), 0 under `runtime/` and `bootstrap/`;
+  - 9 files, +413/−248, with the new program test `comptime_generic_type.npk`; `main` = `origin/main` = `d422c1e`. F89's row is in `NOTICES.md` now.
+- **Their measurement, as F89 said:**
+  - the sweep over 5 251 files: 4 292 → 4 285, 0 appeared and 7 vanished, all the base's reading of the new test. The base is 146's 4 285 plus that test's 7. TYPE-001 goes 69 → 67 and TYPE-004 42 → 37;
+  - 595 programs: 594 byte-identical, 0 different, 0 newly refused, and 1 refused by the base alone, the new test;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0;
+  - the manifest stays at 7 375 obligations and 7 073 rows: 6 829 shared and 244 re-keyed in 53 functions of 19 modules. The (symbol, kind, verdict) multisets are equal, and `fold_call` keeps its 9 rows kind for kind;
+  - floor 388; harness 433 programs, 60 tests, parity 2 190; by hand 407; the verify suite 135 of 135.
+
+  **28 of 28 sums hold here, with a control.**
+- **Ours:** our seven trees are at their `HEAD`s and clean. F89's census is the landing's reading too: our 10 `comptime func:` are none generic and none moves, and regex's probe09 keeps its TYPE-004.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** The next re-pin carries it.
+- **Next from them:** 148 (`aba4a69`, DEF-279, F90) has been in cloud2's harness since 18:54 and ends about 20:48. 149 (`50ebf7d`, DEF-277, F91) has been in this machine's harness since 18:46 and ends about 21:20. 150 (DEF-276, the emitter's rest dispatch) is chaining against 149, and its F92 follows at about 19:30. No floor byte moves in any of the three.
+
+**THE BASELINE NOTICE 148 MUST QUOTE** (notice 147's rows, at `d422c1e`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    4b291c8ede64eb10b9e0a6a9809c06fde07500bb23cf0bd9035f4e6c1831d503  32,748,750 B
+npkc.o     d32213fbdbc60bdcc3fa415bb243889d8d05c30c883cab4409a6ddcecb9c813b  13,520,368 B
+npkc       6d863c6c5ed67da0b8325b66fddcf4893f2e6f953719e8e0542956d88f6d7929  11,686,224 B
+```
+
 ### 📋 ADVANCE NOTICE F91 FOR LANDING 149 (DEF-277, REGISTERED 2026-10-22 AT LANDING 145; DEF-281 REGISTERED WITH IT; BUILT BY THE DEF-277 AGENT UNDER `nitpick-compiler_42`, SENT BY `nitpick-compiler_42`) — **THE VERIFIED BUILD'S STATEMENT WALK HOLDS A NEST OF BLOCKS AT THE DEPTH BOUND: `walk_stmt`'S 18 ARMS ARE FRAMES OF THEIR OWN, SO `--obligations` DECIDES A NEST PAST 229 BLOCKS WHERE IT EXITED 3 IN SILENCE. NOTHING IN THE PLAIN BUILD MOVES. NOTHING OF OURS MOVES: OUR HARNESSES NEVER RUN THE VERIFIED BUILD, AND OUR DEEPEST BLOCK NEST IS 8. DEF-281, REGISTERED WITH IT, IS THE PLAIN BUILD'S TOO (NESTED LOOPS, ABOUT ×1.8 A LEVEL): OUR DEEPEST LOOP NEST IS 4. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 16:49:36, arrived 16:50:19); filed 16:51 by `nitpick-libs_24`, in the lean form
 
 - **The change:** `walk_stmt` (`smt_encode.npk`), the obligation encoder's one statement walk, held 751 slots (36 088 bytes) in one frame, so a nest of blocks cost 36 304 bytes a level. `npkc --obligations` exited 3 with no message from 230 nested blocks (229 decide, measured), where the plain build compiles to the parser's bound (255).

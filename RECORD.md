@@ -16214,3 +16214,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **DEF-281, registered OPEN on both compilers:** nested loops take about ×1.8 a level in time and memory, because `assign_loop_body` walks each body twice. 24 levels go past 6 GB.
 - **Ours: nothing moves.** Our deepest block nest is 8, and our deepest loop nest is 4 (regex's `hir_literal_oracle.npk`). The planted 5-deep nest was caught. 6 of 6 sums hold.
 - **A note for planners** is on the board: keep loop nests shallow until DEF-281 lands. No fuzz row moves. Not in our pin.
+
+### Notice 147 verified in the lean form: DEF-270 and DEF-280 as F89 said; nothing of ours moves; the baseline for 148 written — 2026-10-22 18:59 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 18:56:58, arrived 18:58:03): `d422c1e`, landing 147, on `915f427`, pushed 18:56. A generic `comptime func:` names its type parameter, and `move(x)` folds in a comptime body. Two refusals are removed.
+- **`.internal/landing/n147L/verify147.py`** found everything as the notice said, each control caught:
+  - the transcription and row 147 are identical, and the ladder MATCHes 146's rows;
+  - parent `915f427`, one commit, with 1 file under `src/`;
+  - 28 of 28 sums hold, and our seven trees are unmoved.
+- **Ours: nothing moves,** by F89's census. No fuzz row moves.
+- **The baseline for 148** is 147's rows, under 147's entry and in `n147L/base148.txt`, self-checked. Not in our pin.
