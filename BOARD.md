@@ -1647,6 +1647,37 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `9c08ccc` LANDED — **NOTICE 145: DEF-269, AS F87 SAID: THE VERIFIED BUILD'S ENCODER HOLDS A CHAIN AT THE DEPTH BOUND, `enc_expr`'S 26 ARMS IN FRAMES OF THEIR OWN. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. DEF-277, DEF-278 AND DEF-279 REGISTERED. LADDER MATCH, TRANSCRIPTION AND ROW 145 EQUAL, GIT CHECKS CLEAN, 30 OF 30 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 14:29:48, arrived 14:31:01); verified 14:32 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 145): MATCH, its control failing. `npkc.ll` +30 311 B, `npkc.o` +29 296 B, `npkc` +27 216 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 9 295 characters) and **row 145** (5 595 characters, against `meta/NOTICES.md` at `9c08ccc`) are identical by script, each control caught (`.internal/landing/n145L/verify145.py`).
+- **Git checks,** read-only:
+  - parent `6451911`, one commit, authored 10:21:19 and committed 10:42:09;
+  - 1 file under `src/` (`backend/smt/smt_encode.npk`), 0 under `runtime/` and `bootstrap/`;
+  - 8 files, +849/−631, with the new verify test `tests/verify/chain_bound.npk`; `main` = `origin/main` = `9c08ccc`. F87's row is in `NOTICES.md` now.
+- **Their measurement, as F87 said:**
+  - the sweep over 5 247 files: 4 307 → 4 307, 0 appeared, 0 vanished;
+  - 593 programs all byte-identical, 0 / 0 / 0;
+  - the libraries 1 892 / 2 170 / 0 / 0 / 0, with time's six `bytes.npk` readers compiling under both compilers since its adoption;
+  - the manifest stays at 7 357 obligations and 7 055 rows: 7 036 shared and 19 re-keyed. 15 of the 19 moved with their arms, verdict for verdict, from `enc_expr` into six `enc_k_*` arms, and 4 are id moves. The gate's four falls (`enc_expr`'s `bounds`, `div-zero`, `div-min` and `overflow`) are the move's source exactly;
+  - floor 388; harness 431 programs, 60 tests, parity 2 186; by hand 405; the verify suite 135 (`chain_bound.npk` the 135th).
+
+  **30 of 30 sums hold here, with a control.**
+- **Ours:** our seven trees are at their `HEAD`s and clean. Our harnesses never run the verified build (F87's census), so nothing of ours moves.
+- **Fuzz:** DEF-279, from the corpus's `lx0332b.npk`, stays OPEN as F87 filed it. No fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** The next re-pin carries it.
+- **Next from them:** 146 (`915f427`, F88) lands when its local harness ends, about 16:20. 147 (DEF-270 and DEF-280: a generic `comptime func:`'s type arguments binding its body, and a `move` in a `comptime` body folding) is in its chain, and its F89 follows.
+
+**THE BASELINE NOTICE 146 MUST QUOTE** (notice 145's rows, at `9c08ccc`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    e0111e54413c923a85b23488051e96732f99fa14a3fe0a0408496476f522e67d  32,686,713 B
+npkc.o     16391579dbd94fee3d0d33a7b8954d02205ee2e9ab0fefd240b13e6b67088ce6  13,497,120 B
+npkc       e42544be5b133d1f4ff2f56c1a5daf153555e3018f42333cdf628ee9aca07a1b  11,666,816 B
+```
+
 ### ✅ `6451911` LANDED — **NOTICE 144: DEF-185, DEF-186, DEF-188 AND DEF-240, AS F86 SAID: A MACRO BODY DECLARES ONLY WHAT AN EXPANSION EMITS (`MACRO-005` AT THE DECLARATION), A MACRO TAKES NO TYPE ARGUMENTS (`MACRO-002`), AND MACRO-009 NOTES ITS OWN INVOCATION; DEF-194 CLOSED, DEF-270 REGISTERED. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 144 EQUAL, GIT CHECKS CLEAN, 36 OF 36 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 13:17:57, arrived 13:19:08); verified 13:20 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 144): MATCH, its control failing. `npkc.ll` +29 237 B, `npkc.o` +9 168 B, `npkc` +7 536 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 10 392 characters) and **row 144** (6 524 characters, against `meta/NOTICES.md` at `6451911`) are identical by script, each control caught (`.internal/landing/n144L/verify144.py`).

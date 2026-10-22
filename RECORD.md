@@ -16167,3 +16167,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 36 of 36 sums hold, and our seven trees are unmoved.
 - **Ours: nothing moves,** by F86's census. No fuzz row moves.
 - **The baseline for 145** is 144's rows, under 144's entry and in `n144L/base145.txt`, self-checked. Not in our pin.
+
+### Notice 145 verified in the lean form: DEF-269 as F87 said; nothing of ours moves; the baseline for 146 written — 2026-10-22 14:32 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 14:29:48, arrived 14:31:01): `9c08ccc`, landing 145 (1.6.1e, DEF-269), on `6451911`, pushed 14:29. The verified build's encoder holds a chain at the depth bound, and no refusal or emission moves.
+- **`.internal/landing/n145L/verify145.py`** found everything as the notice said, each control caught:
+  - the transcription and row 145 are identical, and the ladder MATCHes 144's rows;
+  - parent `6451911`, one commit, with 1 file under `src/`;
+  - 30 of 30 sums hold, and our seven trees are unmoved.
+- **Ours: nothing moves.** Our harnesses never run the verified build, and no fuzz row moves.
+- **The baseline for 146** is 145's rows, under 145's entry and in `n145L/base146.txt`, self-checked. Not in our pin.
