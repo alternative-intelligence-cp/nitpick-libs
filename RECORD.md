@@ -15807,3 +15807,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - what 0.4.0's re-read at `2e1cb4a` must cover before its dispatch.
   - **Decisions** are drafted from PD-201, free at `HEAD` in every tree. Parse's T11 took PD-191 … PD-200.
   - **Cost:** about 1–2 of the libraries' 17 points for the chain. The commit and a cost line go to `management_2` at its close.
+
+### The registry's rows discharged at the pin `2e1cb4a`: O-N40 closed by its item 2, and O-N36's F-034 (a) and (b), F-036 b and F-039 (b) — 2026-10-22 05:36 (shell time)
+
+- **O-N40, struck:** item 2, the sibling import's false collision, is DEF-244, landed in 129 (`17d26ad`) and verified here 2026-10-18 07:32. Item 1 was discharged at `c9baa9e`.
+- **O-N36, three more discharged**, each verified at its landing:
+  - F-034 (a) and (b) (DEF-234), landed in 125 (`2b95bb4`);
+  - F-039 (b), the `<|` row, answered by D-362's strike of the pipe operators in 133 (`c230073`). It takes a dated note at `:426`;
+  - F-036 b (DEF-190), landed in 135 (`0280fc9`). The note at `:437` says so.
+- **Still open in O-N36:** F-042's rows beyond its (a); DEF-239 and DEF-240, the compiler's step 3d; and S-130.
+- These were the brief's three registry items (`_23`'s block, item 7), and F-034's discharge, which 125's entry owed to the re-pin that carries it.
