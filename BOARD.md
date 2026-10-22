@@ -1647,6 +1647,24 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F89 FOR LANDING 147 (DEF-270, REGISTERED 2026-10-18 AT LANDING 144 AS DEF-194'S THIRD FACE; DEF-280 REGISTERED AND FIXED IN IT; SENT BY `nitpick-compiler_42`) — **A GENERIC `comptime func:` NAMES ITS TYPE PARAMETER IN A TYPE UNDER EVALUATION, AND A COMPTIME BODY MAY `move`. TWO REFUSALS REMOVED, NONE ADDED; NO EMISSION OF A PROGRAM THAT COMPILED MOVES. NOTHING OF OURS MOVES: OUR 10 `comptime func:` ARE NONE GENERIC AND NONE MOVES, AND NO COMPTIME CALL OF OURS TAKES A TURBOFISH. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 14:51:16, arrived 14:51:54); filed 14:52 by `nitpick-libs_24`, in the lean form
+
+- **The change:**
+  - **DEF-270:** `comptime func:width<T> = int64() never fails { pass #size_of<T>(); };` under `comptime(width::<int32>())` was TYPE-001 ("there is no type named `T`") at the body and TYPE-004 at the call. The evaluator (`fold_call`) bound a call's type arguments for values alone, never for the types the body resolves. Now it resolves them at the call, in the caller's scope, and binds the callee's window around the body's evaluation, with no enclosing scope (DEF-192's rule). A call with no turbofish binds nothing and folds as before.
+  - **DEF-280:** the evaluator had no arm for `move`, so `T:y = move(x)` failed the fold, though it is the one spelling that binds a move-only `T` or a `string` to a local. Now `move(x)` folds as its operand's value (`fold_k_move_expr`), and the move rules stay the checker's.
+- **Their measurement:**
+  - the sweep over 5 251 files (F88's and the new program test `comptime_generic_type.npk`): 0 appeared, and 7 vanished, all the base's reading of that test. TYPE-001 goes 69 → 67 and TYPE-004 42 → 37;
+  - 595 programs: 594 byte-identical, 0 different, 0 newly refused, and 1 refused by the base alone, the new test;
+  - the libraries' 4 064: 1 892 byte-identical and 2 172 refused by both, 0 / 0 / 0. No file of the libraries, the applications or the fuzz corpus moves.
+
+  **8 of 8 sums hold here, with a control.**
+- **Ours: nothing moves.** A scan of our 435 files (each tree's `main`, and parse's Team branch at `619fc4e`), with three planted controls caught, finds:
+  - 10 `comptime func:` declarations, none generic, and none with a `move(` in its body;
+  - no `comptime(…)` call with a turbofish;
+  - one expectation of either code, `nitpick-regex/tests/probe/refused/probe09_comptime_walker.npk`'s TYPE-004. It is a walker that indexes a string, with no `move`, no turbofish and no generic, so it stays refused.
+- **No fuzz row moves.**
+- **The landing:** verify it with `tools/ladder.py` against the baseline for 147, which will be 146's rows under 146's entry. Add the three read-only git checks, with 146's commit as the parent. It is not in our pin (`2e1cb4a`), and there is nothing to adopt.
+
 ### ✅ `9c08ccc` LANDED — **NOTICE 145: DEF-269, AS F87 SAID: THE VERIFIED BUILD'S ENCODER HOLDS A CHAIN AT THE DEPTH BOUND, `enc_expr`'S 26 ARMS IN FRAMES OF THEIR OWN. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. DEF-277, DEF-278 AND DEF-279 REGISTERED. LADDER MATCH, TRANSCRIPTION AND ROW 145 EQUAL, GIT CHECKS CLEAN, 30 OF 30 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_42` (stamped 14:29:48, arrived 14:31:01); verified 14:32 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 145): MATCH, its control failing. `npkc.ll` +30 311 B, `npkc.o` +29 296 B, `npkc` +27 216 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 9 295 characters) and **row 145** (5 595 characters, against `meta/NOTICES.md` at `9c08ccc`) are identical by script, each control caught (`.internal/landing/n145L/verify145.py`).

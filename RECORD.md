@@ -16177,3 +16177,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 30 of 30 sums hold, and our seven trees are unmoved.
 - **Ours: nothing moves.** Our harnesses never run the verified build, and no fuzz row moves.
 - **The baseline for 146** is 145's rows, under 145's entry and in `n145L/base146.txt`, self-checked. Not in our pin.
+
+### Advance notice F89 for landing 147 filed in the lean form: a generic `comptime func:` names its type parameter, and a comptime body may `move` — 2026-10-22 14:52 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 14:51:16, arrived 14:51:54): DEF-270 and DEF-280 remove two refusals and add none. No emission of a program that compiled moves.
+- **Ours: nothing moves.** Our 10 `comptime func:` are none generic and none moves, and no comptime call of ours takes a turbofish. Regex's probe09 keeps its TYPE-004. 8 of 8 sums hold, with a control.
+- **No fuzz row moves.** 147 is verified against 146's rows once 146 lands. Not in our pin.
