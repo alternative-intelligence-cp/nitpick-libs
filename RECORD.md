@@ -15513,3 +15513,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   1. orchestrate §2 steps 2–6: the board's live parts, `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md` and `APPS.md`, recovery for each `CLAIMED` row, and the picture to the author;
   2. one line to `management_1`, and an introduction to `Ailp-team_15` (by socket), `nitpick-compiler_40` and `nitpick-fuzz_2`;
   3. parse 0.0.1's re-read and fast-forward, with item 3's ruling and the review's items to T11 before Thu 03:00.
+
+### Startup after the take: orchestrate §2 steps 2–6; no claim stale; sockets' branch past its chain line; `management_2`'s allocation; landing 138 is F-050's fix — 2026-10-21 20:11 (shell time)
+
+- **Read (§2 step 2):** the board's lines 1–14, its newest entries (notice 137 and advance notice F79) and its live parts (the tools, the in-flight table to each row's first *Before:*, the questions table, the three stream tables); `WORKSTREAMS.md` §3 and §5; `LIBRARIES.md`'s and `../nitpick-apps/APPS.md`'s tables; the compiler's log, at `c72639f` (landing 137).
+- **The sweep and the pin (§2 steps 3–4):** as at the take, 9 trees, every one `dirty=0` and `0/0`, and `c9baa9e`'s `sha256sum -c` OK for `npkc` and `npkrt.o`. No re-pin.
+- **Recovery (§4):** three rows are `CLAIMED`, and none holds an agent of this session's. No claim is stale:
+  - s2 parse: 0.0.1 at CHAIN PASS, `team/parse-0.0-plan` at `9f37f45` on GitHub (`ls-remote`, 20:09) and fetched here, waiting for this seat's re-read and fast-forward. 0.0.2's step cut (T11) goes Thu 03:00 on the Team seat;
+  - s3 sockets: `team/sockets-0.0-plan` reads **`fe34909`**, three commits past the plan's chain line `19c02e1`, which is its ancestor: `e73cb1f`, `f968e68` and `fe34909`, 13:26–13:32 today, each "0.0.2 planned and rehearsed at `c9baa9e`". The board did not hold that head. It is the continuation's 0.0.2 plan, and T7c3 (0.0.3's planner) goes Thu 03:00;
+  - s2 time: held idle by `management_1`'s decision of 2026-10-17 03:10:19.
+  - Their trees here are clean and `0/0` at `4f83ed3`, `d385991` and `1cc801f`. The two fetches touched only parse's and sockets' `.git`.
+- **Questions for the author:** none open.
+- **The peers, told 20:07–20:08:**
+  - `management_1` is no longer reachable (`SendMessage` refused the name at 20:07). `management_2` (`[abdc11]`) is the live management seat from 20:02:45, in its own words, and management's lines go to it;
+  - introductions went to `Ailp-team_15` (by socket, `3594543`) and `nitpick-fuzz_2` (now `[f2bfcc]`);
+  - `nitpick-compiler_40` is gone (HTTP 409 at 20:07, and absent from `ListAgents` at 20:08). The introduction went to `nitpick-compiler_41` (`[ec6c0a]`), which answered (arrived 20:10:30): it holds the compiler seat from 20:01, on Fable, and every landing and advance notice comes here.
+- **`management_2`'s allocation (arrived 20:07:27):** the libraries get **17 points of the Max week, to Wed 10-28 20:00**, re-sized at Saturday's sizing.
+  - It covers parse 0.0.1's review, the notice checks (the full checks batched at a re-pin when room is tight), and time's re-pin past 128 with the `bytes_view` cleanup first. The order is this seat's, and work goes on the Team where it fits.
+  - Management has no objection to T11 (lane 2) and T7c3 (lane 1) at Thu 03:00:30, each only under the 35 % line. Whether `Ailp-team_15`'s two readings of `_22`'s go stand is this seat's to rule.
+  - **So this week's ceiling is the allocation, 17 points,** under the room formula's 44.5.
+- **Landing 138 is F-050's fix, not DEF-265 and DEF-271** (`nitpick-compiler_41`, arrived 20:10:30). By management's order of 20:01, safety first, the fuzzer's F-050 (a use after free in safe code, a callee's view stored through `(<-p)[i]`, registered as DEF-272) lands first as 138, in advance notice F80. DEF-265 and DEF-271 become 139, in F81, and the stack behind shifts by one. F80 follows once the fix is chained and measured. The writer line is corrected in this commit. The handoff block keeps `_22`'s reading as given; its F-050 census goes with F80.
+- **Next:** parse 0.0.1's re-read and fast-forward. Then item 3's ruling, the review's items and any objection to T11's two readings go to `Ailp-team_15` before Thu 03:00.
