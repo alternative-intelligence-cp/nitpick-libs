@@ -16189,3 +16189,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From `nitpick-compiler_42`** (stamped 15:53:26, arrived 15:53:58): the verified build decides `2^63 − 1` and the sign-bit mask where the compiler trapped under `--obligations`. Nothing in the plain build moves.
 - **Ours: nothing moves.** Our harnesses never run the verified build, and no AND in our 435 files uses either edge mask. The controls were caught and the near-misses passed. 6 of 6 sums hold.
 - **The fuzz row moves:** DEF-279 is fixed at 148, and a copy goes to `nitpick-fuzz_3`. 148 is verified against 147's rows once 147 lands. Not in our pin.
+
+### Notice 146 verified in the lean form: DEF-274 (F-052) and `--reach` as F88 said; row 143 corrected; nothing of ours moves; the baseline for 147 written — 2026-10-22 16:28 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 16:25:06, arrived 16:26:25): `915f427`, landing 146, on `9c08ccc`, pushed 16:24. An atomic's methods lower through a pointer, and `npkc --reach` lists a `failsafe`'s arms.
+- **`.internal/landing/n146L/verify146.py`** found everything as the notice said, each control caught:
+  - the transcription and row 146 are identical, and the ladder MATCHes 145's rows;
+  - parent `9c08ccc`, one commit, with 4 files under `src/`;
+  - 35 of 35 sums hold, and our seven trees are unmoved.
+- **Row 143's sweep line** is corrected to `4,288 -> 4,288`, with a dated note quoting the old figure. The script's first reading called it uncorrected, because it wanted the old figure absent; read by hand, the row is right.
+- **Fuzz:** F-052 is fixed, the row notes it, and a copy goes to `nitpick-fuzz_3`.
+- **The baseline for 147** is 146's rows, under 146's entry and in `n146L/base147.txt`, self-checked. Not in our pin.
