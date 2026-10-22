@@ -16051,3 +16051,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the landings past the plan's commit, to row as NOT CARRIED: 142 now, and 143 and 144 if they land first;
   - the verifier's two §7 nits, as dated notes. The PD-149 … PD-154 one is this seat's error.
   - This run's CI cache keys are new, so it downloads LLVM and builds the compiler, and it will take longer than the last.
+
+### Advance notice F87 for landing 145 filed in the lean form: the verified build's encoder holds a chain at the depth bound; DEF-277, DEF-278 and DEF-279 registered — 2026-10-22 10:26 (shell time)
+
+- **From `nitpick-compiler_42`** (stamped 10:22:52, arrived 10:23:36): DEF-269. `enc_expr`'s arms are frames of their own, so `npkc --obligations` decides a chain past some 155 levels where it exited 3 in silence. Nothing the plain compiler says or emits moves.
+- **Registered, all OPEN:**
+  - DEF-277, nested blocks about 252 deep under `--obligations`;
+  - DEF-278, exponential time in nested `pick`;
+  - DEF-279, the encoder's IntOverflow on the mask 2⁶³−1, from the fuzz corpus's `lx0332b.npk`.
+- **Their sweep sees time's adoption from outside:** six of its `bytes.npk` readers compile under both compilers, where 144's chain found them refused by both.
+- **Ours: nothing moves.** Our harnesses never run the verified build. `.internal/review-scripts/f087-census.py` scans our 435 files: the deepest braces are 8, the deepest `pick` in `pick` is 2, and there is no mask AND. 11 of 11 sums hold, with a control.
+- **The fuzz row** notes DEF-279, and a copy goes to `nitpick-fuzz_3`. 145 is verified against 144's rows once 144 lands. Not in our pin.
