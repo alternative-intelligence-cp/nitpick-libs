@@ -15577,3 +15577,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The fuzz row moves** (F-050 fixed, F-051 and F-052 registered), so it is updated, and a copy goes to `nitpick-fuzz_2` (W-30).
 - **A tool fault, caught before use:** the three scripts copied from `_22` into `.internal/review-scripts/` each ended in two stray lines from its extraction commands, which would have written into `_22`'s scratchpad. Only the census's Python block was read, and the stray lines were removed from all three. F80's census is kept beside them as `f080-census.py`.
 - **A slip:** one `cd` into `.internal/review-scripts/`, the workbench's own and not a library checkout, moved this session's working directory. It was returned in the next command.
+
+### The fuzzer's manager seat moves to `nitpick-fuzz_3`, by its own word — 2026-10-21 21:55 (shell time)
+
+- **The announcement:** `nitpick-fuzz_3` (`[68732d]`, `uds:/run/user/1000/cc-socks/1671714.sock`) said at 21:54:15 that it holds the fuzzer's manager seat after `nitpick-fuzz_2`. It asked for W-30 copies, starting with landing 138's.
+- **Checked here:** both sessions are live in `ListAgents` at 21:54. The fuzz remote's `main` is still `e289864` (M13), so that repository has no handoff commit to read.
+- **Taken as:** the routing for copies, which carries no authority. F80's copy went to `nitpick-fuzz_2` at 21:47, before the announcement. A short copy goes again to `nitpick-fuzz_3`.
