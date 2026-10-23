@@ -1647,6 +1647,42 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `9eaf3b6` LANDED — **NOTICE 151: D-363'S R1 AND DEF-212, AS F93 SAID: A `pick` ARM NAMES SEVERAL VALUES WITH ONE BODY, A COMMA LIST OF VALUES OR BIND-FREE PATHS; A REPEATED VALUE, VARIANT OR IDENTITY IS `PICK-004` AT ITS SECOND SPELLING, AND A PATH OVER A SELECTOR THAT IS NO ENUM IS `TYPE-007`. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 151 EQUAL, GIT CHECKS CLEAN, 42 OF 42 SUMS; F93'S OPEN COUNT CONFIRMED FROM THE COMMITTED FILES; ONE DECOMPOSITION OFF BY ONE, ASKED. NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 01:48:29, arrived 01:50:16); verified 01:58 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 151): MATCH, its control failing. `npkc.ll` +133 496 B, `npkc.o` +60 640 B, `npkc` +54 656 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 13 636 characters) and **row 151** (8 190 characters, against `meta/NOTICES.md` at `9eaf3b6`) are identical by script, each control caught (`.internal/landing/n151L/verify151.py`).
+- **Git checks,** read-only:
+  - parent `ea571d5`, one commit, authored and committed 2026-10-22 23:44:35 (the squash; the cloud2 harness ran 23:52:50–01:44:28, and the push was at 01:47);
+  - 11 files under `src/` (`parse_pick`, `ast_kind`, and the readers of a pattern: `resolve`, `type_resolve`, `type_stmt`, `exhaust`, `bindings`, `reach`, `expand`, `smt_encode` and `ir_stmt`), 1 under `bootstrap/` (`generator/gen_tables.py`), 0 under `runtime/`;
+  - 30 files, +1 270/−430, with five new tests: `tests/backend/programs/pick_values.npk` and `pick_values_failsafe.npk`, `tests/types/rejection/pick_values_rules.npk`, `tests/analysis/rejection/pick_values_dead.npk` and `tests/verify/pick_values.npk` (the verify suite's `.npk` files 137 → 138, the program directory's 432 → 434). `main` = `origin/main` = `9eaf3b6`. F93's row is in `NOTICES.md` now.
+- **The libraries' pair is the landing's own:** the message names `npkc` `b7a9a840` against `d6ec20b7`, which are 151's and 150's rows here. **Their re-measurement of 148, 149 and 150,** F93's correction of method, is in the 1.6.1e record under 151's dated heading and in row 151.
+- **F93's open count, confirmed from the committed files:** the two rejection files expect exactly the twelve coded errors at the twelve places the notice gives. `pick_values_rules.npk` has three `TYPE-007` (at `2i64`, `n` and `m.K`), one `RESOLVE-002` (at `Color.Purple`) and four `PICK-004`; `pick_values_dead.npk` has four `PICK-004`. Every `PICK-004` stands at a second spelling, the `fixed` `K` folding to `5i32`.
+  - The expectations carry no notes, so the 4 sites beyond the 12 are, by the notice's words, the notes at the first spelling of the rules file's four, the checker's half. By the count, the dead file's four, the exhaustiveness analysis's half, carry none: with them it would be 20. **Asked** whether that half should point at the first spelling too.
+  - One detail of the same file: the analysis reports a lone repeated arm at its parenthesis (`(Boom)`, 29:39), where the checker reports at the value (`(3i32)`, 48:40).
+- **Their measurement, as F93 said** (F93's five figures, as filed here, equal the landing's):
+  - the sweep over 5 259 files: 4 409 → 4 301, 16 appeared and 124 vanished, the base's PARSE-001 at the lists in the landing's own files. The base's 4 409 is 150's 4 285 plus those 124. Per code PARSE-001 221 → 97, PICK-004 2 → 10, RESOLVE-002 174 → 175, TYPE-007 1 256 → 1 259;
+  - 601 programs: 598 byte-identical, 0 different, 0 newly refused, and 3 refused by the base alone, the new list tests;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0, with this landing's own pair;
+  - the manifest 7 375 → 7 385 obligations (open +6, unencoded +4, discharged 3 554 unmoved), and rows 7 073 → 7 083 over 1 278 symbols: 6 823 shared, 11 added (the landing's own) and 1 removed. The removed row is `exhaust.arm_variant`'s discharged `overflow`: its function is deleted, and its `n - 1i32` is `arm_names_variant`'s now, a move. Zero verdicts moved among shared rows;
+  - floor 388; harness 436 programs, 60 tests, parity 2 206; by hand 410; the verify suite 138.
+
+  **42 of 42 sums hold here, with a control,** and their 17 inputs are found as the message spells them.
+- **One decomposition does not close, by one:** the rows not shared, 250 before and 260 after, are given as "250 re-keyed, 11 added and 1 removed". Either side implies 249 re-keyed (250 − 1 and 260 − 11), or 250 with the move counted among them and 10 added. It is a slip in the text, with no number of ours behind it. **Sent to `nitpick-compiler_43`** with the notes question.
+- **Ours:** our seven trees are at their `HEAD`s and clean. F93's census is the landing's reading: none of our 445 picks spells a list, repeats a value or names a path over a selector that is no enum, so nothing moves.
+- **Fuzz:** no fuzz program moves (no corpus file spells a list or a repeated arm), so no copy goes.
+- **Past our pin, nothing to adopt.** A re-pin carrying 151 lets our `failsafe` bills use lists. By F93's census that merges only 28 lines, because our tests give each identity its own exit code.
+- **Next from them:** DEF-278 with DEF-281 (the front half's exponential walks over nested loops and `pick` expressions, measured first, with F94 before its commit); DEF-282 (`emit_safe_nav`'s split, and tests for the `?.` and `#ptr_add` chains); D-358 (the floor through the pinned `opt -O2`); step 3d's rest (DEF-239); and step 4. Each comes with its own F-notice. S-134 is closed, and DEF-212 is fixed.
+
+**THE BASELINE NOTICE 152 MUST QUOTE** (notice 151's rows, at `9eaf3b6`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    e43209029e0829e2db4942dfef08e41dece5d0a30d3a34b2317c5999885d9eb5  32,921,624 B
+npkc.o     4932c8ce39c57486dd38eadd88d3639f95466f878e75f9f6957636a6f4f12f1d  13,626,872 B
+npkc       b7a9a840859ccb5aed919c1816d73f59ee8452755d1dcdf910fec65caf1d346d  11,783,840 B
+```
+
 ### ✅ `ea571d5` LANDED — **NOTICE 150: DEF-276, AS F92 SAID: THE EMITTER HOLDS EVERY CHAIN AT THE DEPTH BOUND, `emit_expr_kind_rest` A TWO-LEVEL DISPATCH OVER FOUR GROUPS AND THE BUILTIN, CAST, COALESCE AND TERNARY FRAMES SMALL. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. DEF-282 REGISTERED. LADDER MATCH, TRANSCRIPTION AND ROW 150 EQUAL, GIT CHECKS CLEAN, 24 OF 24 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 23:49:56, arrived 23:51:07); verified 23:54 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 150): MATCH, its control failing. `npkc.ll` +30 822 B, `npkc.o` +32 816 B, `npkc` +31 496 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 10 175 characters) and **row 150** (4 500 characters, against `meta/NOTICES.md` at `ea571d5`) are identical by script, each control caught (`.internal/landing/n150L/verify150.py`).

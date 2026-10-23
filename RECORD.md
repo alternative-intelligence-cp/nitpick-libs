@@ -16272,3 +16272,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 24 of 24 sums hold, and our seven trees are unmoved.
 - **Ours: nothing moves,** by F92's census. No fuzz row moves.
 - **The baseline for 151** is 150's rows, under 150's entry and in `n150L/base151.txt`, self-checked. Not in our pin.
+
+### Notice 151 verified in the lean form: D-363's R1 and DEF-212 as F93 said; F93's open count confirmed; one decomposition off by one, asked; nothing of ours moves; the baseline for 152 written — 2026-10-23 01:58 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 01:48:29, arrived 01:50:16): `9eaf3b6`, landing 151 (1.6.1e, D-363's R1), on `ea571d5`, pushed 01:47. A `pick` arm names several values with one body. A repeated value, variant or identity is `PICK-004`, and a path over a selector that is no enum is `TYPE-007`. S-134 is closed and DEF-212 fixed.
+- **`.internal/landing/n151L/verify151.py`** found everything as the notice said, each control caught:
+  - the transcription and row 151 are identical, and the ladder MATCHes 150's rows;
+  - parent `ea571d5`, one commit, 11 files under `src/` and 1 under `bootstrap/`, and five new tests;
+  - the libraries' pair is this landing's own, and the re-measurement of 148, 149 and 150 is in their record and in row 151;
+  - 42 of 42 sums hold, with their inputs as the message spells them, and F93's figures equal the landing's. Our seven trees are unmoved.
+- **F93's open count:** the committed rejection files expect the twelve coded errors at the notice's places, each `PICK-004` at a second spelling. The other 4 of the 16 are the rules file's notes, so the analysis's four appear to carry none: asked.
+- **One decomposition is off by one:** "250 re-keyed, 11 added and 1 removed", for 250 and 260 rows not shared, implies 249 re-keyed. Sent to the compiler seat with the notes question.
+- **Ours: nothing moves,** by F93's census. No fuzz row moves.
+- **The baseline for 152** is 151's rows, under 151's entry and in `n151L/base152.txt`, self-checked. Not in our pin.
