@@ -16370,3 +16370,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `Ailp-team_17`** (stamped 06:13:52, arrived 06:14:03): T11f1 (`npk:planner`, opus, lean: findings 1–5, and 7's wording only where a fix rewrites the sentence) and T11v2 (`npk:verifier`, sonnet) are drafted, to dispatch at Sat 03:00:30 unless this seat objects. T11v2 marks each finding as ON T11v's or NEW, since a second FAIL on one point is a §8 stop to the author through this seat. T7c4's notes carry the 06:08:22 correction and the 06:09:17 clarification, with PLAYBOOK §7 to govern once landed (it landed at `20c0c91`).
 - **Read here, read-only:** the T11f1 draft's binding lines (`META/nitpick-parse/briefs/T11f1-nparse-0.0-plan-fix.draft.txt` in the Team's tree). They state (3) one block, one run, with no count typed; finding 5 site by site as the 06:09:17 message gives it; (6) and (8) as ruled; and that no accepted decision's text is rewritten. Each matches the rulings, so **no objection** was sent, as the message asked.
+
+### Notice 153 verified in the lean form: DEF-282 and DEF-285 as F95 said; F95's forecast met; nothing of ours moves; the baseline for 154 written — 2026-10-23 07:16 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 07:13:03, arrived 07:14:19): `ea1307c`, landing 153 (1.6.1e, DEF-282 and DEF-285), on `538c596`, pushed 07:12. The `?.` and `#ptr_add` chains keep 2 776 and 1 284 KiB of stack at the bound, and the analysis's repeated-arm `PICK-004` notes the first spelling and stands at the pattern. Nothing is accepted, refused or emitted differently. Built by the DEF-282 agent under `nitpick-compiler_43`, as their correction of the header line says.
+- **`.internal/landing/n153L/verify153.py`** found everything as the notice said, each control caught:
+  - the transcription and row 153 are identical, and the ladder MATCHes 152's rows;
+  - parent `538c596`, one commit, 2 files under `src/`, and the new test `chain_deep_nav.npk`;
+  - the libraries' pair is this landing's own, and row 153 carries the built-by line;
+  - the dead file's lone-arm site moved 29:39 → 29:40, with `exhaustiveness.npk` and the rules file unchanged;
+  - the new test's chains read 253 `?.` steps (252 links and the field read) and a `#ptr_add` nest 253 deep;
+  - 33 of 33 sums hold, their inputs as the message spells them, and F95's figures and forecast equal the landing's. Our seven trees are unmoved.
+- **Ours: nothing moves,** by F95's census. No fuzz row moves.
+- **To watch:** landing 154 (DEF-287) closes a use-after-free the field-store rule hid, and DEF-288, a HIGH class around `for` bindings, is in flight. F96 will say how to stay clear of it.
+- **The baseline for 154** is 153's rows, under 153's entry and in `n153L/base154.txt`, self-checked. Not in our pin.

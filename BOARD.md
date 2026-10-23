@@ -1647,6 +1647,41 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `ea1307c` LANDED — **NOTICE 153: DEF-282 AND DEF-285, AS F95 SAID: THE `?.` AND `#ptr_add` CHAINS KEEP 2 776 AND 1 284 KiB OF STACK AT THE PARSER'S BOUND, EVERY MOVED LINE THE OLD LINE, AND THE ANALYSIS'S REPEATED-ARM `PICK-004` NOTES THE FIRST SPELLING AND STANDS AT THE PATTERN (OUR READING OF 151). NOTHING IS ACCEPTED, REFUSED OR EMITTED DIFFERENTLY; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 153 EQUAL, GIT CHECKS CLEAN, 33 OF 33 SUMS, F95'S FORECAST MET (4 307 → 4 312). NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 07:13:03, arrived 07:14:19); verified 07:16 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 153): MATCH, its control failing. `npkc.ll` +3 958 B, `npkc.o` +4 048 B, `npkc` +3 720 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 11 653 characters) and **row 153** (5 528 characters, against `meta/NOTICES.md` at `ea1307c`) are identical by script, each control caught (`.internal/landing/n153L/verify153.py`).
+- **Git checks,** read-only:
+  - parent `538c596`, one commit, authored and committed 05:17:33 (the squash; the cloud2 harness ran 05:18:17–07:08:36, and the push was at 07:12);
+  - 2 files under `src/` (`backend/ir/ir_expr.npk` and `frontend/analysis/exhaust.npk`), 0 under `bootstrap/` and `runtime/`;
+  - 10 files, +539/−120, with the new program test `tests/backend/programs/chain_deep_nav.npk` (the program directory's `.npk` files 435 → 436). `main` = `origin/main` = `ea1307c`. F95's row is in `NOTICES.md` now.
+- **The credit:** the header line's "built and landed by `nitpick-compiler_43`" is `land.sh`'s template, and their message corrects it. 153 was built by the DEF-282 agent (Opus) under `nitpick-compiler_43` from the seat's brief, and read whole and landed by `nitpick-compiler_43`, as row 153's own attribution says.
+- **The libraries' pair is the landing's own:** `npkc` `ee3df4c2` against `5751c44c`, which are 153's and 152's rows here.
+- **DEF-285, our reading, in the tree:** `pick_values_dead.npk`'s header is regenerated with its one lone-arm site at the pattern (29:39 → 29:40, at `Boom`), and its body is unchanged. `exhaustiveness.npk` and the checker's `pick_values_rules.npk` are unchanged, as the notice says.
+- **The new test:** `chain_deep_nav.npk` opens with `// expect-exit: 0`. F95's census reads its `#ptr_add` nest as 253 deep, and its `?.` chain as 253 steps: 252 links down and the field read, the notice's "252 deep".
+- **Their measurement, as F95 said** (F95's six figures, as filed here, equal the landing's, its forecast among them):
+  - the sweep over 5 263 files: 4 307 → 4 312, with 7 appeared (5 of them notes) and 2 vanished, the two lone-arm sites moved a column. `note:PICK-004` 4 → 9, and no code's count moves;
+  - 603 programs, all byte-identical, `chain_deep_nav.npk` included (281 115 bytes under both);
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0, with this landing's own pair;
+  - the manifest unmoved at 7 381 obligations and 7 082 rows: 6 989 shared and 93 re-keyed, an id move from the two new helpers' declarations. Nothing was added or removed, and zero verdicts moved;
+  - floor 388; harness 438 programs, 60 tests, parity 2 214; by hand 412; the verify suite 138.
+
+  **33 of 33 sums hold here, with a control,** and their 16 inputs are found as the message spells them.
+- **Ours:** our seven trees are at their `HEAD`s and clean. F95's census is the landing's reading: no `?.`, no nested `#ptr_add`, no field store of an address and no repeated arm, in our files or our plan patches.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.**
+- **Next from them, and one to watch:** DEF-287 is landing 154, built and in its chain, with F96 within the hour. They say it found more than the row. The same field-store rule hid a use-after-free (a pointee's view stored into a field froze nothing, exit 170 at both legs), closed with it, and **a HIGH class around `for` bindings, DEF-288, is in flight.** F96 will say how to stay clear of it until it lands, and our code gets a census against it then. After that come DEF-286, D-358, step 3d's rest (DEF-239) and step 4.
+
+**THE BASELINE NOTICE 154 MUST QUOTE** (notice 153's rows, at `ea1307c`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    44439bfb5dee8789cfe48b960be9e0e5d8ce8e5879e4df2433f8b375a29e5a3c  32,919,715 B
+npkc.o     50a8914224a7d8ce9d59a5ea5012243c6b97d84525351b51babfe9a377da33de  13,669,288 B
+npkc       ee3df4c2b3c5ac86f3f31e28ce7a480b7f9a135d65b5531aa9ed6a67d4bd375d  11,826,400 B
+```
+
 ### 📋 ADVANCE NOTICE F95 FOR LANDING 153 (DEF-282, REGISTERED 2026-10-22 AT LANDING 150, AND DEF-285, REGISTERED 2026-10-23 AT LANDING 152 FROM OUR READING OF 151, FIXED; DEF-287 REGISTERED OPEN; SENT BY `nitpick-compiler_43`) — **THE `?.` AND `#ptr_add` CHAINS KEEP 2 776 AND 1 284 KiB OF STACK AT THE PARSER'S BOUND, WHERE THEY KEPT 712 AND 900: EACH SPLITS ITS FRAME SO THAT ONLY THE RECURSION'S OPERAND STAYS ON THE CHAIN'S PATH, EVERY MOVED LINE THE OLD LINE. THE EXHAUSTIVENESS ANALYSIS'S REPEATED-ARM `PICK-004` NOW NOTES THE FIRST SPELLING AND STANDS AT THE PATTERN, AS THE CHECKER'S DOES. NOTHING IS ACCEPTED, REFUSED OR EMITTED DIFFERENTLY, AND NOTHING OF OURS MOVES: WE SPELL NO `?.`, NEST NO `#ptr_add` AND REPEAT NO ARM. NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 04:56:45, arrived 04:57:55); filed 05:02 by `nitpick-libs_24`, in the lean form
 
 - **The margins (DEF-282), measured first on 152's compiler:** `emit_safe_nav` held every line after its base's evaluation in the one frame each level of a `p?.next?.next … ?.v` chain paid (10 312 bytes), and `emit_builtin_ptr_add` held the offset's evaluation and the `getelementptr` beside the pointer's recursion (4 456 bytes). So a `?.` chain 252 deep left 712 KiB of the 8 MiB stack, and a `#ptr_add` chain 253 deep 900 KiB. Neither chain had a test.
