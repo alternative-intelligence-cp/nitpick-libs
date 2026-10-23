@@ -1469,6 +1469,21 @@ per-repository numbers collide.
   comment what the check guarantees. Measure the digest once from the real asset, with CI's own fetch as the second reading.
   *(Found 2026-10-22 at `nitpick-parse`'s `ci.yml:74`, "an immutable asset", unmeasured; time's and regex's LLVM installs
   had the same `curl | tar`. Each library takes the fix at its adoption of `2e1cb4a`; landed 2026-10-22.)*
+- **A dated line says when the tree began to say it, and a measurement's date says when it was taken.** In a plan's
+  patches, for every library:
+  - a dated note carries the landing run's one date, by placeholder (regex's `@@DATE@@`), and a pin the note names beside
+    that date is the pin the landing run builds at;
+  - a decision not yet landed opens with that date too, and its drafting and acceptance dates stay in the plan's history.
+    What it was decided on, its "measured at the pin X" evidence, stays as written in its body, and a dated note beneath
+    it records a later re-measurement;
+  - a decision already landed keeps its text and its date, and takes an added dated note;
+  - a record of when or where a measurement was made (a `CURRENCY.md` row, a digest's "As of", "measured at compiler X")
+    keeps the measurement's own date and pin. The placeholder would claim a measurement the landing run did not take;
+  - a clause that states what the plan does must be true when it lands, so it is corrected rather than noted;
+  - an `Expect` block is one run's output. A block a run retakes is retaken whole from that run, masked lines included,
+    copied and never typed, and a block the run finds SAME throughout is left whole.
+  *(The libraries' seat's rulings for `nitpick-parse` of 2026-10-21 and 10-22, and for sockets' and parse's adoptions of
+  `2e1cb4a` on 2026-10-23, consolidated after parse's T11v found two of them in conflict; landed 2026-10-23.)*
 
 ---
 
