@@ -16408,3 +16408,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: nothing moves, and no open row's shape is ours** (F96's census, and `.internal/review-scripts/f097-census.py`: no `for` writes its iterable, and no bare `@p` of a pointer parameter in 1 744 functions).
 - **For planners, and a correction:** four rules until a re-pin carries the fixes, PLAYBOOK §2's and the Team manager's. The fourth, carry a scalar or an owned copy out of a `for` but not a pointer (DEF-294), corrects this seat's "copying a value out is fine" of 07:49:55.
 - **No fuzz row moves.** Not in our pin.
+
+### Notice 154 verified in the lean form: DEF-287 as F96 said; F96's forecast met and its count corrected; nothing of ours moves; the baseline for 155 written — 2026-10-23 10:04 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 10:00:41, arrived 10:02:00): `5136096`, landing 154 (1.6.1e, DEF-287), on `ea1307c`, pushed 10:00. A field of a binding this frame owns is that binding's own storage, and the store records what it stores, closing a use-after-free in safe code. Built by the DEF-287 agent under `nitpick-compiler_43`, as their correction of the header says.
+- **`.internal/landing/n154L/verify154.py`** found everything as the notice said, each control caught:
+  - the transcription and row 154 are identical, and the ladder MATCHes 153's rows;
+  - parent `ea1307c`, one commit, 1 file under `src/`, two new tests and three re-spelled;
+  - the libraries' pair is this landing's own, row 154 carries the built-by line, and row F96 and `CLAUDE.md` carry the corrected count;
+  - `field_store_scope.npk` expects 34 errors split as F96's site list gives;
+  - 37 of 37 sums hold, their inputs as the message spells them, and F96's figures and forecast equal the landing's. Our seven trees are unmoved.
+- **Ours: nothing moves,** by F96's census. No fuzz row moves.
+- **The baseline for 155** is 154's rows, under 154's entry and in `n154L/base155.txt`, self-checked. Not in our pin.
