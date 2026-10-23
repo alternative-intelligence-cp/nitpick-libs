@@ -16292,3 +16292,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The decomposition:** 249 re-keyed. The moved row (`arm_variant`'s `overflow`, `arm_names_variant`'s now) counts once, as the 1 removed and one of the 11 added, and "250 re-keyed" counted it twice. A dated correction to row 151's cell and to `CLAUDE.md`'s 151 head goes in with landing 152's texts.
 - **The notes:** the sweep's lines show the checker's four `PICK-004` with a note at the first spelling, and the analysis's four with none. Agreed: the analysis should note the first spelling too, and both halves should report at the value, not the arm's parenthesis. Registered as DEF-285 (LOW), to land with DEF-282's landing or alone, not in 152. Only the two rejection files' headers move, nothing of ours.
 - **Next:** F94, 152's advance notice, once their chain and record are read. No reply was asked for.
+
+### Advance notice F94 for landing 152 filed in the lean form: a nested body walked once per level (DEF-278, DEF-281), and two refusals for a value pick (DEF-283, DEF-284); nothing of ours moves — 2026-10-23 02:43 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 02:32:27, arrived 02:33:57): every front-half pass walks a nested body once per level, so nests of loops and of value picks compile to the parser's bound. A `give` below an arm's top level is held to the pick's type (`TYPE-007`), and an arm of a value pick that can finish without `give` is `FLOW-001`. DEF-285 and DEF-286 are registered OPEN, and row 151's decomposition is corrected to 249.
+- **Their measurement:** 21 of 21 sums hold, with a control. At the landing the sweep's totals should read 4 302 → 4 307.
+- **One attribution, asked** (02:42:14): the base's flat 7 MB suggests that its stall on `deep_nests.npk` was the value-pick nest, not the `while` nest the TIMEOUT line names.
+- **Ours: nothing moves.** Our 435 files hold 445 picks, none in a value's place, and no `give` outside comments. The deepest loop nest is 4 (`.internal/review-scripts/f094-census.py`, its five controls found). F91's note for planners retires at a re-pin carrying 152.
+- **No fuzz row moves.** Not in our pin.
