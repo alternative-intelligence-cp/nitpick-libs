@@ -16333,3 +16333,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 41 of 41 sums hold, their inputs as the message spells them, and F94's figures and forecast equal the landing's. Our seven trees are unmoved.
 - **Ours: nothing moves,** by F94's census and the patch scan. No fuzz row moves.
 - **The baseline for 153** is 152's rows, under 152's entry and in `n152L/base153.txt`, self-checked. Not in our pin.
+
+### Advance notice F95 for landing 153 filed in the lean form: the `?.` and `#ptr_add` chains given stack to spare (DEF-282), and the analysis's repeated-arm note (DEF-285, our reading); nothing of ours moves — 2026-10-23 05:02 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 04:56:45, arrived 04:57:55 while this seat filed 152): two emitter frames are split, so a `?.` chain 252 deep keeps 2 776 KiB of stack and a `#ptr_add` chain 253 deep 1 284 KiB. Every moved line is the old line, so no emission moves. The exhaustiveness analysis's repeated-arm `PICK-004` notes the first spelling and stands at the pattern. DEF-287, a field store of a local's address refused, is registered OPEN.
+- **Their measurement:** 25 of 25 sums hold, with a control. At the landing the sweep's totals should read 4 307 → 4 312.
+- **Ours: nothing moves.** Our files and plan patches spell no `?.`, never nest `#ptr_add`, store no address into a field and repeat no arm (`.internal/review-scripts/f095-census.py`, its six controls found).
+- **No fuzz row moves.** Not in our pin.
