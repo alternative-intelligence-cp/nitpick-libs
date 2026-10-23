@@ -16440,3 +16440,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: none of the faces is ours.** F96's view-store census covers the field and element faces, all safe. `.internal/review-scripts/f098-census.py` adds the dereferenced store and the call road, and finds none in our files or the plans' patches, its four controls found. 2 of 2 sums hold, with a control.
 - **For planners:** PLAYBOOK §2 carries the rule until a re-pin carries 156.
 - **No fuzz row moves.** Not in our pin.
+
+### A correction against this seat: rule 5 for the Team's planners named an untracked spelling as the safe one — 2026-10-23 12:06 (shell time)
+
+- **At 12:05:14** this seat sent the Team's manager DEF-296's rule with "store it directly into the local, which the compiler tracks". That reads as `h.v = string_bytes(p.s)`, a field assignment, which at our pin `2e1cb4a` is the DEF-287 hole: it freezes nothing until landing 154.
+- **Corrected at 12:05:38:** at our pin the compiler tracks a pointer parameter's pointee's view in two spellings only, a bare local declared from it (`fixed uint8[]:v = string_bytes(p.s);`) and a struct literal at the holder's declaration. Until a re-pin carries 154 and 156, hold such a view only so, or copy the bytes. F98's board entry carries a dated correction, and PLAYBOOK §2's note now states the wider rule.
+- **No code was affected:** our census found none of these shapes in our files or plans, and the Team's briefs dispatch at Sat 03:00:30.
