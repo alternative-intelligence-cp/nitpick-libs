@@ -16393,3 +16393,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: nothing moves, and none of our code holds an open defect's shape.** `.internal/review-scripts/f096-census.py` reads 94 `for` loops in our files and 114 in the plans' patches: no view or address of a binding leaves its iteration, only two scalar copies. The stores of a view into a field or an element are all safe ones, and no `for` runs over a call's result. Seven controls were found.
 - **For planners:** keep a `for` binding's view and address inside its iteration until a re-pin carries DEF-288's fix. Sent to the Team's manager for T7c4 and T11f1; PLAYBOOK §2 carries it, in its own commit next.
 - **No fuzz row moves.** Not in our pin.
+
+### F96's probe count answered: 47, with two category counts corrected; our scan enters DEF-288's row — 2026-10-23 07:52 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 07:51:07, arrived 07:51:56), on this seat's point of 07:49:55: 47 is right. Reconciled probe by probe against the agent's table: 14 admitted, 14 refused at the statement (not 15), 3 with one report fewer, 12 at a later statement (not 9), and 4 of the hole, 14 + 14 + 3 + 12 + 4 = 47. The twelve unchanged tail refusals are among the 45 that did not move.
+- Their record, row F96 and `CLAUDE.md`'s head carry the corrected sentence, with the arithmetic spelled out. The F96 filed here keeps "fifteen" and "nine" in that one sentence.
+- **Our census enters DEF-288's row** as the libraries' measurement at our pin, dated 07:49: 94 + 114 `for` loops, no view or address of a `for` binding leaving its iteration, and none of DEF-289's, DEF-290's or DEF-291's shapes. No reply was asked for.
