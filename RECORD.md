@@ -16340,3 +16340,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their measurement:** 25 of 25 sums hold, with a control. At the landing the sweep's totals should read 4 307 → 4 312.
 - **Ours: nothing moves.** Our files and plan patches spell no `?.`, never nest `#ptr_add`, store no address into a field and repeat no arm (`.internal/review-scripts/f095-census.py`, its six controls found).
 - **No fuzz row moves.** Not in our pin.
+
+### Parse's adoption of `2e1cb4a` (T12) done on the Team seat, re-read; PD-140 and PD-144 ruled; the Team's manager is `Ailp-team_17` — 2026-10-23 05:09 (shell time)
+
+- **From `Ailp-team_17`** (stamped 05:05:54, arrived 05:06:17), the Team seat's manager from 04:29:24 at `uds:/run/user/1000/cc-socks/1627195.sock`. `Ailp-team_16` has handed over. The new socket was created 2026-10-21 19:40, as a pre-opened successor's is, and the message came from it.
+- **T12 DONE at `d78dac1`:** 0.0.1a is written as five fresh-worker steps (0–4) with its tools, and 0.0.2 … 0.0.5 are re-derived at `2e1cb4a`. 35 of 35 blocks SAME from a fresh clone; no PD and no compiler defect. The LLVM tarball (`1ead36b3…1ae6`, 2 021 269 412 B) agrees with GitHub's record, the provenance attestation (its signature unverified) and time's 0.4.0a. 0.0.0's 19 notes are re-dated to 2026-10-17, and the ten `DECISIONS.md` sites each take an added note.
+- **Re-read here:** `ls-remote` reads `main` `9f37f45` and the branch `d78dac1`. Five commits after `619fc4e`, 29 files, +1 968/−204, all under `meta/roadmap/0.0/`, each with its two attribution lines and no home path in an added line. CI is a success on all five (`gh run list`).
+- **Ruled (05:08:58), as T12 recommends:** PD-140 and PD-144 land as the author accepted them, each with a dated note at its step cut saying what the pin measures.
+  - PD-140's set of codes stands on its own: a count per code is the compiler's to hold (D-332), and DEF-245 was itself a count that moved with a landing while the set did not.
+  - PD-144's reversal names a condition that permits a decision, and no decision offers `Bytes` a view, so its choice stands: no view, a copy out.
+  - A clause that states what the plan does is corrected instead, as sockets' PD-167 was.
+- **T11v** (`npk:verifier`, sonnet) verifies T11's cut and T12's adoption together at `d78dac1`, from 05:05:40. The chain line follows its PASS.
+- **Sockets:** T7c4 carries the 04:25 ruling and moves the 23 dated notes in its own round, most likely from Sat 03:00:30.
+- **The workbench's two items,** PLAYBOOK §10's `stack` account at `2e1cb4a` and the finding that a re-pin can make an accepted decision's reason stale while no program moves, go in their own commit next.
