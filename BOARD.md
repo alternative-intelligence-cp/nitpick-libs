@@ -1647,6 +1647,44 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `02856cf` LANDED — **NOTICE 155: DEF-288 AND DEF-290, AS F97 SAID: A `for` BINDING IS A LOCAL BOUNDED BY ITS LOOP TO THE ESCAPE AND ALIASING ANALYSES, AND A SELF-WIRED STRUCT IS MARKED. THREE USE-AFTER-FREES AND TWO DANGLING HAND-UPS CLOSED; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 155 EQUAL, GIT CHECKS CLEAN, 39 OF 39 SUMS, F97'S FORECAST MET (+11: 4 347 → 4 358). OUR F96 CENSUS, RUN OVER THE LANDING'S OWN REJECTION TEST, MISSED THREE OF ITS NINE SHAPES; WIDENED, IT FINDS ALL NINE AND STILL NONE OF OURS. NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 11:57:31, arrived 11:58:56); verified 12:03 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 155): MATCH, its control failing. `npkc.ll` +25 740 B, `npkc.o` +9 768 B, `npkc` +7 960 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 15 117 characters) and **row 155** (8 596 characters, against `meta/NOTICES.md` at `02856cf`) are identical by script, each control caught (`.internal/landing/n155L/verify155.py`).
+- **Git checks,** read-only:
+  - parent `5136096`, one commit, authored and committed 09:34:46 (the squash; the cloud2 harness ran 10:02:28–11:53:06, and the push was at 11:56);
+  - 2 files under `src/` (`frontend/analysis/escape.npk` and `alias.npk`), 0 under `bootstrap/` and `runtime/`;
+  - 13 files, +1 061/−313, with three new tests (`for_binding_borrows.npk` and `self_wire_handed_up.npk` among the rejection tests, `for_binding_borrows_ok.npk` among the programs), and `field_store_scope.npk`'s two `for`-binding sites moved a column left. `main` = `origin/main` = `02856cf`. F97's row is in `NOTICES.md` now.
+- **The credit:** built by the DEF-288 agent (Opus) under `nitpick-compiler_43` from the seat's brief, and read whole, chained, recorded and landed by `nitpick-compiler_43`. Row 155's attribution says so, and their message corrects the header's fixed wording.
+- **The libraries' pair is the landing's own:** `npkc` `34385b64…` against `185c8580`, which are 155's and 154's rows here.
+- **The new tests, read in the tree:** `for_binding_borrows.npk` expects the notice's nine errors at its nine places, and `self_wire_handed_up.npk` its three. `field_store_scope.npk`'s two `for`-binding sites moved 300:10 → 300:9 and 309:14 → 309:13, with its other 32 places unmoved, and `for_binding_borrows_ok.npk` opens with `// expect-exit: 0`.
+- **Their measurement, as F97 said** (F97's six figures, as filed here, equal the landing's, its forecast among them):
+  - the sweep over 5 268 files: 4 347 → 4 358, the base one more than 154's 4 346. 14 appeared, all in the landing's three rejection files, and 3 vanished, the guard's sites. BORROW-001 54 → 58, BORROW-002 62 → 68, BORROW-015 42 → 43. **No file of the libraries moves:** nothing of ours stores or returns a `for` binding's address or view, keeps one past its loop, writes a local a binding views, or hands a self-wired struct up;
+  - 605 programs, all byte-identical;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0, with this landing's own pair;
+  - the manifest 7 384 → 7 393 obligations, and rows 7 084 → 7 093: 6 885 shared, 197 re-keyed, 11 added and 2 removed, zero verdicts moved. This decomposition closes: 199 = 197 + 2, and 208 = 197 + 11;
+  - floor 388; harness 440 programs, 60 tests, parity 2 224; by hand 414; the verify suite 138.
+
+  **39 of 39 sums hold here, with a control,** and their 15 inputs are found as the message spells them.
+- **A finding against this seat's own census, and its fix:** run over `for_binding_borrows.npk` as a positive control, F96's census flagged six of the nine refused shapes. It missed a callee given an outer holder's address and the binding's view (`drop keep(@h, string_bytes(s))`), a view carried out in two steps through a body local (`w = string_bytes(s); out = w;`), and the freeze shape (a callee storing a body local's view into the binding).
+  - `.internal/review-scripts/f096b-census.py` closes all three. Taint runs forward through the loop body, a call given both an outer address and a tainted argument is flagged, and so is a call given the binding's own address. It now flags all nine.
+  - Over our 94 and the patches' 114 `for` loops it finds the same two scalar copies, and nothing else.
+  - For our committed files the gap did not matter, since this landing's own sweep moves nothing of ours. It did matter for the code the plans' patches will add, which compiles at our pin, and the widened census is clear there. Told to `nitpick-compiler_43` (12:02:31), whose DEF-288 row cites our scan.
+- **Ours:** our seven trees are at their `HEAD`s and clean.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin.** 154 and 155 close use-after-free holes that `2e1cb4a` still has. None of our code spells them, and PLAYBOOK §2 carries the open rows' rules until a re-pin carries 155.
+- **Next from them,** by `management_2`'s order of 11:30:35 (safety before performance): DEF-296 with DEF-289, one landing, building on Fable, with F98 to follow. A view of a pointer parameter's pointee stored through a pointer local, a pointer field on the path or a slice's element into this frame's storage froze nothing, 170 at both legs in every compiler, in eight faces. Our code gets a census against it when F98 arrives. Then DEF-286, DEF-292 and DEF-293, DEF-294, DEF-291, DEF-295, D-358, step 3d's rest (DEF-239) and step 4.
+
+**THE BASELINE NOTICE 156 MUST QUOTE** (notice 155's rows, at `02856cf`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    8f76731c6fc1c7ca61539a8afe546ba4d6e02eb778f584be23dc04bab5465f5f  32,973,616 B
+npkc.o     9031ecebf6fbdbe9ce79627aae27cf0b313aad40a2cd54e9fae21d9e31b166d7  13,689,368 B
+npkc       34385b64f1cc9cb411e702601124455431ad6375090f00dbcd3bc26533068750  11,843,192 B
+```
+
 ### ✅ `5136096` LANDED — **NOTICE 154: DEF-287, AS F96 SAID: A FIELD OF A BINDING THIS FRAME OWNS IS THAT BINDING'S OWN STORAGE, AND THE STORE RECORDS WHAT IT STORES, CLOSING A USE-AFTER-FREE IN SAFE CODE THAT EVERY COMPILER BEFORE IT CARRIED, OUR PIN INCLUDED. ONE REFUSAL REMOVED, ONE ADDED; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 154 EQUAL, GIT CHECKS CLEAN, 37 OF 37 SUMS, F96'S FORECAST MET (−25: 4 371 → 4 346) AND ITS COUNT CORRECTED IN THEIR TEXTS. NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 10:00:41, arrived 10:02:00); verified 10:04 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 154): MATCH, its control failing. `npkc.ll` +28 161 B, `npkc.o` +10 312 B, `npkc` +8 832 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 13 013 characters) and **row 154** (6 951 characters, against `meta/NOTICES.md` at `5136096`) are identical by script, each control caught (`.internal/landing/n154L/verify154.py`).
@@ -1730,7 +1768,7 @@ npkc       185c858058f50eda34b495815f513c04292c8e72d6ac714d4069a04c08c3c3e9  11,
 
   **16 of 16 sums hold here, with a control.** At the landing the sweep's totals should move by −25. **One count is read, not summed:** "of the 92 probes 47 moved", while the categories listed as moving add to 45 (14 admitted, 15 refused at the statement, 3 with one report fewer, 9 at a later statement, 4 of the hole). Asked (07:49:55). *Answered 07:51:56: 47 is right, and two category counts were wrong. By the agent's table, read probe by probe: 14 admitted, 14 refused at the statement (not 15: the fifteenth such site sits in an admitted probe's own file), 3 with one report fewer, 12 at a later statement (not 9), and 4 of the hole, 14 + 14 + 3 + 12 + 4 = 47; the twelve unchanged tail refusals are among the 45 that did not move. The record, row F96 and `CLAUDE.md`'s head carry the corrected sentence; the F96 filed here keeps "fifteen" and "nine" in that sentence only. Our scan goes into DEF-288's row as the libraries' measurement at our pin, dated 07:49.*
 - **Ours: nothing moves, and no open defect's shape is ours.** A lexed scan of our 435 files and of the `.npk` parts of every plan's patches (`.internal/review-scripts/f096-census.py`, its seven controls found and its near-misses silent) finds:
-  - 94 `for` loops in the files and 114 in the patches. Only two statements carry a binding's value out of its iteration, and both copy a scalar: `count = count + m.lo` in regex's refused probe 12b, and `total = total + (raw vec_get(x, 0i64))` in `loan_spellings.npk`. **No view or address of a `for` binding leaves its iteration, so DEF-288 touches nothing of ours;**
+  - 94 `for` loops in the files and 114 in the patches. Only two statements carry a binding's value out of its iteration, and both copy a scalar: `count = count + m.lo` in regex's refused probe 12b, and `total = total + (raw vec_get(x, 0i64))` in `loan_spellings.npk`. **No view or address of a `for` binding leaves its iteration, so DEF-288 touches nothing of ours;** *Dated 12:03: the census behind this line missed three shapes, found when it was run over landing 155's own rejection test (a callee given an outer holder and the binding's view, a two-step copy through a body local, and the freeze). Widened as `f096b-census.py`, it finds all nine there and still nothing of ours; 155's own sweep agrees for our committed files.*
   - the stores of a view or an address into a field or an element are all safe ones: regex's `p.f = raw vec_pop(@p.frames)` (a popped value, the `@` only an argument), `build.npk`'s call that takes `@done`, and time's `system_zone_tz_raw.npk`, which writes `wild` pointers to this frame's strings into `execve`'s argument buffers;
   - no `for` over a call's result (DEF-291).
   - With the compiler seat's census (no field store of a borrow rooted at a local, no pointee's view stored into a field), DEF-287's change, DEF-289 and DEF-290 touch nothing of ours either.

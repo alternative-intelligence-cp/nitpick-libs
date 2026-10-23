@@ -16420,3 +16420,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 37 of 37 sums hold, their inputs as the message spells them, and F96's figures and forecast equal the landing's. Our seven trees are unmoved.
 - **Ours: nothing moves,** by F96's census. No fuzz row moves.
 - **The baseline for 155** is 154's rows, under 154's entry and in `n154L/base155.txt`, self-checked. Not in our pin.
+
+### Notice 155 verified in the lean form: DEF-288 and DEF-290 as F97 said; F97's forecast met; F96's census widened after missing three of the landing's shapes; nothing of ours moves; the baseline for 156 written — 2026-10-23 12:03 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 11:57:31, arrived 11:58:56): `02856cf`, landing 155 (1.6.1e, DEF-288 and DEF-290), on `5136096`, pushed 11:56. A `for` binding is a local bounded by its loop to the escape and aliasing analyses, and a self-wired struct is marked. Built by the DEF-288 agent under `nitpick-compiler_43`.
+- **`.internal/landing/n155L/verify155.py`** found everything as the notice said, each control caught:
+  - the transcription and row 155 are identical, and the ladder MATCHes 154's rows;
+  - parent `5136096`, one commit, 2 files under `src/`, and three new tests;
+  - the libraries' pair is this landing's own, and row 155 carries the built-by line;
+  - the two new rejection files expect the notice's twelve errors, and `field_store_scope.npk`'s two sites moved a column left;
+  - 39 of 39 sums hold, their inputs as the message spells them, and F97's figures and forecast equal the landing's. Our seven trees are unmoved.
+- **A finding against this seat:** F96's census, run over `for_binding_borrows.npk`, flagged six of its nine shapes. `.internal/review-scripts/f096b-census.py` widens it (forward taint, a call given an outer address and a tainted argument, a call given the binding's address) and flags all nine. Over our files and plan patches it still finds only two scalar copies. F96's entry carries a dated note, and `nitpick-compiler_43` was told at 12:02:31.
+- **Ours: nothing moves.** No fuzz row moves.
+- **The baseline for 156** is 155's rows, under 155's entry and in `n155L/base156.txt`, self-checked. Not in our pin.
