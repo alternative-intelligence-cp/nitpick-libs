@@ -1647,6 +1647,46 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `538c596` LANDED — **NOTICE 152: DEF-278 AND DEF-281, WITH DEF-283 AND DEF-284, AS F94 SAID: EVERY FRONT-HALF PASS WALKS A NESTED BODY ONCE PER LEVEL; A `give` BELOW AN ARM'S TOP LEVEL IS HELD TO THE PICK'S TYPE (`TYPE-007`), AND A VALUE PICK'S ARM THAT CAN FINISH WITHOUT `give` IS `FLOW-001`. NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 152 EQUAL, GIT CHECKS CLEAN, 41 OF 41 SUMS, F94'S FORECAST MET (4 302 → 4 307); ROW 151 CORRECTED TO 249. NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 04:54:02, arrived 04:55:39); verified 04:59 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 152): MATCH, its control failing. `npkc.ll` −5 867 B, `npkc.o` +38 368 B, `npkc` +38 840 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 15 641 characters) and **row 152** (10 120 characters, against `meta/NOTICES.md` at `538c596`) are identical by script, each control caught (`.internal/landing/n152L/verify152.py`).
+- **Git checks,** read-only:
+  - parent `9eaf3b6`, one commit, authored and committed 02:57:20 (the squash; the cloud2 harness ran 02:58:48–04:50:37, and the push was at 04:53);
+  - 4 files under `src/` (`bindings`, `escape`, `type_expr` and `type_stmt`), 1 under `bootstrap/` (`harness/harness.py`), 0 under `runtime/`;
+  - 17 files, +560/−206, with three new tests: `tests/backend/programs/deep_nests.npk`, `tests/analysis/rejection/pick_arm_falls_off.npk` and `tests/types/rejection/pick_give_nested.npk` (the program directory's `.npk` files 434 → 435). `main` = `origin/main` = `538c596`. F94's row is in `NOTICES.md` now.
+- **The libraries' pair is the landing's own:** `npkc` `5751c44c` against `b7a9a840`, which are 152's and 151's rows here.
+- **Our two readings are in their texts:**
+  - row 151 now reads "249 RE-KEYED, 11 ADDED and 1 REMOVED (this said 250 RE-KEYED until landing 152 …)", and `CLAUDE.md` carries the same correction;
+  - F94's row reads the stall on `deep_nests.npk` as the value-pick nest's 2^40 typings, with the `while`s never reached.
+- **The new tests, read in the tree:**
+  - `pick_arm_falls_off.npk` expects four `FLOW-001`, each at the arm's parenthesis (27:26, 29:49, 31:26, 33:26): a `give` under an `if` with no `else`, an empty `(*)` arm, a `give` inside a counted `loop`, and one inside a `while (c) unbounded`;
+  - `pick_give_nested.npk` expects two `TYPE-007`, each at the `give`: 25:44, a `give 7i64` in an `int32` pick, and 27:44, a `give 7i32` in an `int64` pick;
+  - `deep_nests.npk` opens with `// expect-exit: 0`, and F94's census reads its deepest loop nest as 100 and its deepest nest of value picks as 40, as the notice says.
+- **Their measurement, as F94 said** (F94's six figures, as filed here, equal the landing's, its forecast among them):
+  - the sweep over 5 262 files: 4 302 → 4 307, with 6 appeared in the two new rejection files and 1 vanished, the TIMEOUT marker. FLOW-001 16 → 20, TYPE-007 1 259 → 1 261;
+  - 602 programs: 599 byte-identical, 2 different (DEF-286's type-id shift, identical through `tidnorm.py`), 0 newly refused, and 1 refused by the base alone, `deep_nests.npk`;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0, with this landing's own pair;
+  - the manifest 7 385 → 7 381 obligations (the deleted `stmt_gives_borrowy`'s 10 sites out, the frames' 6 in), and rows 7 083 → 7 082: 6 981 shared, 95 re-keyed, 6 added and 7 removed. The two discharged counts the gate reports fallen are the deleted function's, so they are a deletion, not a regression. Zero verdicts moved among shared rows;
+  - floor 388; harness 437 programs, 60 tests, parity 2 212; by hand 411; the verify suite 138.
+
+  **41 of 41 sums hold here, with a control,** and their 18 inputs are found as the message spells them. This time the decomposition closes: 102 = 95 + 7 before, and 101 = 95 + 6 after.
+- **Registered with it, both LOW:** DEF-285, our reading of 151, whose fix is landing 153; and DEF-286: `fn_type` interns a fresh function type at every typing of a call with an argument, so type ids shift with the number of typings. DEF-286's own landing will rename every emission's drop bodies once, so an adoption that carries it should compare emissions through `tidnorm.py`.
+- **Ours:** our seven trees are at their `HEAD`s and clean. F94's census is the landing's reading, and the plans' patch code is clear too: no value pick and no `give` anywhere of ours.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** F91's note for planners, to keep loop nests shallow, retires at a re-pin carrying 152.
+- **Next from them:** 153 (DEF-282 with DEF-285); its advance notice F95 arrived 04:56 and is filed next. Then DEF-286, D-358, step 3d's rest (DEF-239) and step 4, each with its own F-notice.
+
+**THE BASELINE NOTICE 153 MUST QUOTE** (notice 152's rows, at `538c596`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    c272e2c70a1260f74a4ee81730eab1689d3663474aaba4fd22637fd9fa147b91  32,915,757 B
+npkc.o     7209758fba17fb91cc176030001efa95e2f8ff53a80cb4474fd7727e2ddf6ce7  13,665,240 B
+npkc       5751c44c6534f14a40aa591b404d8c992e05a0a883c6164a057b5d341e70da93  11,822,680 B
+```
+
 ### 📋 ADVANCE NOTICE F94 FOR LANDING 152 (DEF-278, REGISTERED 2026-10-22 AT LANDING 145, AND DEF-281, REGISTERED 2026-10-22 AT LANDING 149, FIXED; DEF-283 AND DEF-284 REGISTERED AND FIXED WITH THEM; DEF-285 AND DEF-286 REGISTERED OPEN; SENT BY `nitpick-compiler_43`) — **A BODY NESTED IN A BODY IS WALKED ONCE PER LEVEL BY EVERY FRONT-HALF PASS, SO A NEST OF LOOPS OR OF VALUE PICKS COMPILES TO THE PARSER'S BOUND WHERE TWENTY-FOUR LEVELS DID NOT FINISH. TWO REFUSALS ARE NEW, BOTH FOR A `pick` USED AS A VALUE: A `give` BELOW AN ARM'S TOP LEVEL WHOSE TYPE IS NOT THE PICK'S IS `TYPE-007` (DEF-283), AND AN ARM THAT CAN REACH ITS END WITHOUT `give` IS `FLOW-001` (DEF-284). NOTHING OF OURS MOVES: OUR 435 FILES HOLD NO `pick` IN A VALUE'S PLACE AND NO `give`, AND OUR DEEPEST LOOP NEST IS 4. NOT IN OUR PIN.** 2026-10-23 (shell time), from `nitpick-compiler_43` (stamped 02:32:27, arrived 02:33:57); filed 02:43 by `nitpick-libs_24`, in the lean form
 
 - **The cost (DEF-281, DEF-278), measured first on 151's compiler** under a 6 GB cap and a 300 s timeout:

@@ -16321,3 +16321,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The ruling on the 49 lines that keep `c9baa9e`** (sent 04:25:36): one rule for every library. A line the landing run writes that carries a date carries the landing run's one date, by placeholder (regex's `@@DATE@@`; parse from 0.0.2), and a pin beside that date moves with it, so the 23 dated notes move. The 13 decision texts and markers keep the date and evidence they were decided on, as parse's four PA sites did, with a dated note where a landing run re-measures. The 11 undated records and the two RX-245 quotations stay. T7c4 and T7c5 follow it, and the 23 notes move in T7c4 or T7v, as the Team's lanes allow.
 - **A gap in F93's and F94's censuses, closed:** both read committed `.npk` files only. The code the plans' patches will add (616 `.npk` hunks on sockets' branch, parse's branch and `main`, and regex's and time's `main`) holds 270 picks, none in a value's place, no `give`, no repeated value, no list and no path over a selector that is no enum. So 151 and 152 move nothing there either. Both entries carry a dated note.
 - **Next:** T7c4 in the Team's next free lane under 50 %, after Diogenes' 8b. T12 (parse 0.0.1a) is still in flight.
+
+### Notice 152 verified in the lean form: DEF-278, DEF-281, DEF-283 and DEF-284 as F94 said; F94's forecast met; row 151 corrected to 249; nothing of ours moves; the baseline for 153 written — 2026-10-23 04:59 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 04:54:02, arrived 04:55:39): `538c596`, landing 152 (1.6.1e, DEF-278 and DEF-281), on `9eaf3b6`, pushed 04:53. Every front-half pass walks a nested body once per level. A `give` below an arm's top level is held to the pick's type, and a value pick's arm that can finish without `give` is `FLOW-001`. DEF-285 and DEF-286 are registered.
+- **`.internal/landing/n152L/verify152.py`** found everything as the notice said, each control caught:
+  - the transcription and row 152 are identical, and the ladder MATCHes 151's rows;
+  - parent `9eaf3b6`, one commit, 4 files under `src/` and 1 under `bootstrap/`, and three new tests;
+  - the libraries' pair is this landing's own; row 151 and `CLAUDE.md` carry the 249 correction; F94's row reads the stall as the pick nest's;
+  - the two rejection files expect the notice's six errors at its six places, and `deep_nests.npk` nests 100 loops and 40 value picks by F94's census;
+  - 41 of 41 sums hold, their inputs as the message spells them, and F94's figures and forecast equal the landing's. Our seven trees are unmoved.
+- **Ours: nothing moves,** by F94's census and the patch scan. No fuzz row moves.
+- **The baseline for 153** is 152's rows, under 152's entry and in `n152L/base153.txt`, self-checked. Not in our pin.
