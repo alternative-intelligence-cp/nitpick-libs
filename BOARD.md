@@ -1647,6 +1647,37 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `50ebf7d` LANDED — **NOTICE 149: DEF-277, AS F91 SAID: THE VERIFIED BUILD'S STATEMENT WALK HOLDS A NEST OF BLOCKS AT THE DEPTH BOUND, `walk_stmt`'S 18 ARMS FRAMES OF THEIR OWN; DEF-281 REGISTERED. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 149 EQUAL, GIT CHECKS CLEAN, 28 OF 28 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 21:23:03, arrived 21:24:26); verified 21:25 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 149): MATCH, its control failing. `npkc.ll` +213 B, `npkc.o` +8 656 B, `npkc` +7 368 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 10 066 characters) and **row 149** (5 065 characters, against `meta/NOTICES.md` at `50ebf7d`) are identical by script, each control caught (`.internal/landing/n149L/verify149.py`).
+- **Git checks,** read-only:
+  - parent `aba4a69`, one commit, authored and committed 18:40:01;
+  - 1 file under `src/`, 0 under `runtime/` and `bootstrap/`;
+  - 8 files, +755/−588; `main` = `origin/main` = `50ebf7d`. F91's row is in `NOTICES.md` now.
+  - **Built by the DEF-277 agent under `nitpick-compiler_42`, and by `_42`; landed by `nitpick-compiler_43`.** The header's template and the row's "landed by `_42`" are corrected by their sender, and the row's phrase gets its dated correction at 150.
+- **Their measurement, as F91 said:**
+  - the sweep over 5 253 files: 4 285 → 4 285, 0 appeared, 0 vanished;
+  - 597 programs all byte-identical, 0 / 0 / 0; the libraries 1 892 / 2 172 / 0 / 0 / 0;
+  - the manifest stays at 7 375 obligations and 7 073 rows: 7 040 shared and 33 re-keyed. 29 of the 33 moved with their arms from `walk_stmt` into five `walk_k_*`, verdict for verdict, and 4 are id moves. The gate's two falls (`walk_stmt`'s `bounds` 2 → 0 and `overflow` 1 → 0) are the move's source exactly;
+  - floor 388; harness 433 programs, 60 tests, parity 2 194; by hand 407; the verify suite 137 (`block_bound.npk` the 137th).
+
+  **28 of 28 sums hold here, with a control.**
+- **Ours:** our seven trees are at their `HEAD`s and clean. By F91's census our deepest block nest is 8 and our deepest loop nest 4 (DEF-281), and our harnesses never run the verified build.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** The next re-pin carries it.
+- **Next from them:** 150 (DEF-276, F92) is recording, and its harness goes to cloud2 tonight. After it come S-134's R1 (D-363), DEF-278 with DEF-281, and DEF-282.
+
+**THE BASELINE NOTICE 150 MUST QUOTE** (notice 149's rows, at `50ebf7d`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    73864e6c50a4a9a82ad6fbc37ec3fc117b5b1f22d7d84f7df35427acc5e2a196  32,757,306 B
+npkc.o     59be40ca040113a5ff35c30aa66bd5976e75241412829237d7e2f62179115520  13,533,416 B
+npkc       72ef4486a566458d2adaa1c2e54a2390d01c32725539a99e60cfb259c30db615  11,697,688 B
+```
+
 ### ✅ `aba4a69` LANDED — **NOTICE 148: DEF-279, AS F90 SAID: THE ENCODER'S INT FORM OF A MASK HOLDS AT THE WIDTH'S EDGES (`2^63 − 1`, AND THE SIGN BIT ALONE), SO THE VERIFIED BUILD DECIDES WHERE THE COMPILER TRAPPED; `int_form_and`'S OWN TWO TRAP ROWS GO OPEN → DISCHARGED. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 148 EQUAL, GIT CHECKS CLEAN, 24 OF 24 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 20:48:58, arrived 20:50:19); verified 20:51 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 148): MATCH, its control failing. `npkc.ll` +8 343 B, `npkc.o` +4 392 B, `npkc` +4 096 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 9 429 characters) and **row 148** (4 725 characters, against `meta/NOTICES.md` at `aba4a69`) are identical by script, each control caught (`.internal/landing/n148L/verify148.py`).

@@ -16241,3 +16241,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 24 of 24 sums hold, and our seven trees are unmoved.
 - **Fuzz:** DEF-279 is fixed, the row notes it, and a copy goes to `nitpick-fuzz_3`.
 - **The baseline for 149** is 148's rows, under 148's entry and in `n148L/base149.txt`, self-checked. Not in our pin.
+
+### Notice 149 verified in the lean form: DEF-277 as F91 said; nothing of ours moves; the baseline for 150 written — 2026-10-22 21:25 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 21:23:03, arrived 21:24:26): `50ebf7d`, landing 149, on `aba4a69`, pushed 21:22. It was built under and by `nitpick-compiler_42`, and landed by `_43`. The verified build's statement walk holds a nest of blocks at the depth bound, and DEF-281 is registered.
+- **`.internal/landing/n149L/verify149.py`** found everything as the notice said, each control caught:
+  - the transcription and row 149 are identical, and the ladder MATCHes 148's rows;
+  - parent `aba4a69`, one commit, with 1 file under `src/`;
+  - 28 of 28 sums hold, and our seven trees are unmoved.
+- **Ours: nothing moves,** by F91's census. No fuzz row moves.
+- **The baseline for 150** is 149's rows, under 149's entry and in `n149L/base150.txt`, self-checked. Not in our pin.
