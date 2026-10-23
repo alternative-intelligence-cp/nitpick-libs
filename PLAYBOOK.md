@@ -1737,7 +1737,13 @@ is never closed", which the compiler issues only when the file ends inside a
 block (`src/frontend/parse_stmt.npk:467–473` at `c9baa9e`, by that step's
 reading), and the control, the same local named `frames`, parses and resolves.
 Landing 136 (DEF-259) makes a local `T:keyword` `PARSE-001` at the name, so
-the account moves again at the re-pin past 136.)* So if parse errors cascade
+the account moves again at the re-pin past 136.)* *(Re-measured 2026-10-23 at
+`2e1cb4a`, which carries 136, in `nitpick-parse` 0.0.2's plan §1.16 by its
+adoption (T12, on the Team seat; 35 of 35 blocks the same from a fresh clone,
+its verifier running at this writing): a local named `stack` is
+`NITPICK-PARSE-001` at its name and is refused again at each later use, a
+parameter so named is `NITPICK-PARSE-001` once, and no brace error follows. At
+this pin it fails where you wrote it.)* So if parse errors cascade
 from one declaration through the lines after it, or claim an unclosed brace
 when the braces are balanced, check whether a local or a parameter is named
 after a qualifier before you touch anything else. **And a plan that writes a
@@ -2280,3 +2286,11 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   table, and `git blame` the new-text classes against the plan's and the work's commits. In `nitpick-time` 0.4.0a, 464 of
   464 lines keyed, 148 of them new and 316 older. The eye is then left only the lines the join cannot settle, and the
   plan's table checks the reading instead of guiding it. *(`nitpick-time` 0.4.0a's record.)*
+- **A re-pin can make an accepted decision's stated reason stale while no program moves.** Parse's PD-140 declined a
+  count of reports per code because the compiler's DEF-245 reported one failing header two or three times, and PD-144
+  said a `buffer` could not be ranged at the pin (D-341, settled and unbuilt). Landings 130 and 128, both carried by
+  `2e1cb4a`, made each reason the compiler's state before the pin, and every program of the plan stayed the same, so no
+  census saw it: the adoption found it by reading each accepted decision's text against the landings it carries. Read
+  them so at every re-pin. A reason gone stale takes a dated note at the decision's landing, saying what the new pin
+  measures; a clause that states what the plan does must be true when it lands, and is corrected (sockets' PD-167).
+  *(`nitpick-parse` 0.0.1a's adoption plan (T12), 2026-10-23.)*
