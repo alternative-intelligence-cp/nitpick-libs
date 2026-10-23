@@ -16300,3 +16300,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **One attribution, asked** (02:42:14): the base's flat 7 MB suggests that its stall on `deep_nests.npk` was the value-pick nest, not the `while` nest the TIMEOUT line names.
 - **Ours: nothing moves.** Our 435 files hold 445 picks, none in a value's place, and no `give` outside comments. The deepest loop nest is 4 (`.internal/review-scripts/f094-census.py`, its five controls found). F91's note for planners retires at a re-pin carrying 152.
 - **No fuzz row moves.** Not in our pin.
+
+### F94's attribution answered: the base's stall on `deep_nests.npk` was the value-pick nest in the checker — 2026-10-23 02:45 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 02:44:30, arrived 02:45:27), on this seat's point of 02:42:14, measured before their texts were corrected: alone under 151's compiler, the 100 `while`s exit 3 at 9.3 s with 1.98 GB under a 2 GB cap, and the 40 value picks are killed at 30 s with flat memory.
+- The pipeline types the module before any analysis runs, so the full file stalled in the checker's `arm_give_type` (2^40 typings) and never reached the bindings walk over the `while`s. F94's row in `NOTICES.md` and the landing's record say so now; the F94 filed here keeps the old wording in those two places only. No number moves, and no reply was asked for.
