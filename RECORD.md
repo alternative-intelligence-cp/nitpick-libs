@@ -16231,3 +16231,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The change:** `emit_expr_kind_rest` becomes a two-level dispatch, and the builtin, cast, coalesce and ternary frames shrink. So a chain of those kinds compiles to the parser's bound, and every emission is the same text. DEF-282 (the `?.` and `#ptr_add` chains' thin margins) is registered OPEN.
 - **Ours: nothing moves.** In any one statement our chains of these kinds are at most one deep (`#ptr_add`, the ternary), or five for F84's casts. 8 of 8 sums hold.
 - **No fuzz row moves.** 150 is verified against 149's rows once 149 lands. Not in our pin.
+
+### Notice 148 verified in the lean form: DEF-279 as F90 said; nothing of ours moves; the baseline for 149 written — 2026-10-22 20:51 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 20:48:58, arrived 20:50:19): `aba4a69`, landing 148, on `d422c1e`, pushed 20:48. It was built by `nitpick-compiler_42` and landed by `_43`. The encoder's mask holds at the width's edges, and its own two trap rows go `open` → `discharged`.
+- **`.internal/landing/n148L/verify148.py`** found everything as the notice said, each control caught:
+  - the transcription and row 148 are identical, and the ladder MATCHes 147's rows;
+  - parent `d422c1e`, one commit, with 1 file under `src/`;
+  - 24 of 24 sums hold, and our seven trees are unmoved.
+- **Fuzz:** DEF-279 is fixed, the row notes it, and a copy goes to `nitpick-fuzz_3`.
+- **The baseline for 149** is 148's rows, under 148's entry and in `n148L/base149.txt`, self-checked. Not in our pin.
