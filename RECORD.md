@@ -16384,3 +16384,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: nothing moves,** by F95's census. No fuzz row moves.
 - **To watch:** landing 154 (DEF-287) closes a use-after-free the field-store rule hid, and DEF-288, a HIGH class around `for` bindings, is in flight. F96 will say how to stay clear of it.
 - **The baseline for 154** is 153's rows, under 153's entry and in `n153L/base154.txt`, self-checked. Not in our pin.
+
+### Advance notice F96 for landing 154 filed in the lean form: a field store into a binding this frame owns admitted, and a use-after-free in safe code closed (DEF-287); DEF-288 (HIGH, `for` bindings) open in every compiler; none of our code holds an open defect's shape — 2026-10-23 07:50 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 07:43:06, arrived 07:44:31): `n.next = @m;` on same-block locals compiles, as the literal always did. The store now records what it stores, so a pointee's view put into a field, an element or a by-value parameter's field freezes its root, where it read freed memory at both legs before, our pin included. One refusal removed, one added.
+- **Registered OPEN:** DEF-288 (HIGH: the escape analysis reads a `for` binding as a parameter, so a view or the address of one can leave its iteration), DEF-289 (HIGH: a pointee's view stored through a slice's element), DEF-290 (MEDIUM-HIGH: `t.p = @t.a; pass t;`) and DEF-291 (LOW: a `for` over an array temporary, EMIT-002).
+- **Their measurement:** 16 of 16 sums hold, with a control. At the landing the sweep's totals should move by −25. One probe count ("47 moved" against categories adding to 45) was asked at 07:49:55, with our census result for DEF-288's row.
+- **Ours: nothing moves, and none of our code holds an open defect's shape.** `.internal/review-scripts/f096-census.py` reads 94 `for` loops in our files and 114 in the plans' patches: no view or address of a binding leaves its iteration, only two scalar copies. The stores of a view into a field or an element are all safe ones, and no `for` runs over a call's result. Seven controls were found.
+- **For planners:** keep a `for` binding's view and address inside its iteration until a re-pin carries DEF-288's fix. Sent to the Team's manager for T7c4 and T11f1; PLAYBOOK §2 carries it, in its own commit next.
+- **No fuzz row moves.** Not in our pin.
