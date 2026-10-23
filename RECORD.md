@@ -16433,3 +16433,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A finding against this seat:** F96's census, run over `for_binding_borrows.npk`, flagged six of its nine shapes. `.internal/review-scripts/f096b-census.py` widens it (forward taint, a call given an outer address and a tainted argument, a call given the binding's address) and flags all nine. Over our files and plan patches it still finds only two scalar copies. F96's entry carries a dated note, and `nitpick-compiler_43` was told at 12:02:31.
 - **Ours: nothing moves.** No fuzz row moves.
 - **The baseline for 156** is 155's rows, under 155's entry and in `n155L/base156.txt`, self-checked. Not in our pin.
+
+### Advance notice F98 for landing 156 filed in the lean form: a store through an indirection recorded where it lands (DEF-296, DEF-289's first face), a use-after-free in every compiler closed; none of its faces is ours — 2026-10-23 12:05 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 12:02:47, arrived 12:03:33): a view of a pointer parameter's pointee stored through a pointer local, a pointer field on the path or a slice's element into this frame's storage froze nothing, and read freed memory at both legs in every compiler, our pin included. Eight faces and a slice local's element; from 156 the pointee's later write is `BORROW-015`. Refusals added only. `nitpick-compiler_44` lands it.
+- **Ours: none of the faces is ours.** F96's view-store census covers the field and element faces, all safe. `.internal/review-scripts/f098-census.py` adds the dereferenced store and the call road, and finds none in our files or the plans' patches, its four controls found. 2 of 2 sums hold, with a control.
+- **For planners:** PLAYBOOK §2 carries the rule until a re-pin carries 156.
+- **No fuzz row moves.** Not in our pin.
