@@ -1647,6 +1647,39 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `ea571d5` LANDED — **NOTICE 150: DEF-276, AS F92 SAID: THE EMITTER HOLDS EVERY CHAIN AT THE DEPTH BOUND, `emit_expr_kind_rest` A TWO-LEVEL DISPATCH OVER FOUR GROUPS AND THE BUILTIN, CAST, COALESCE AND TERNARY FRAMES SMALL. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. DEF-282 REGISTERED. LADDER MATCH, TRANSCRIPTION AND ROW 150 EQUAL, GIT CHECKS CLEAN, 24 OF 24 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 23:49:56, arrived 23:51:07); verified 23:54 by `nitpick-libs_24`, in the lean form
+
+- **Ladder** (against the baseline for 150): MATCH, its control failing. `npkc.ll` +30 822 B, `npkc.o` +32 816 B, `npkc` +31 496 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 10 175 characters) and **row 150** (4 500 characters, against `meta/NOTICES.md` at `ea571d5`) are identical by script, each control caught (`.internal/landing/n150L/verify150.py`).
+- **Git checks,** read-only:
+  - parent `50ebf7d`, one commit, authored and committed 21:45:41;
+  - 1 file under `src/` (`backend/ir/ir_expr.npk`), 1 under `bootstrap/` (`harness/harness.py`, the belt `check_rest_groups_agree` that F92 named), 0 under `runtime/`;
+  - 9 files, +540/−199, with the new program test `tests/backend/programs/chain_deep_rest.npk`; `main` = `origin/main` = `ea571d5`. F92's row is in `NOTICES.md` now.
+- **The credit, corrected by their sender:** the header's "built and landed by `nitpick-compiler_43`" is `land.sh`'s template. 150 was built by the DEF-276 agent under `nitpick-compiler_42`, with `nitpick-compiler_43` writing its texts, its record and its squash, and landed by `nitpick-compiler_43` after the cloud2 harness (21:51:46–23:43:36). Row 150's own words say so.
+  - **Row 149's attribution** gets the dated correction that 149's entry here said it would: one line in each of four documents (`CLAUDE.md`, `NOTICES.md`, the 1.6.1e roadmap and the 1.6 README). Row 149 still names `50ebf7d`.
+- **Their measurement, as F92 said:**
+  - the sweep over 5 254 files: 4 285 → 4 285, 0 appeared, 0 vanished;
+  - 598 programs: 597 byte-identical, 0 different, 0 newly refused, and 1 refused by the base alone, `chain_deep_rest.npk`, on which 149's compiler exits 3 with no message;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0, measured with this landing's own pair. Their message names `npkc` `d6ec20b7` against `72ef4486`, which are 150's and 149's `npkc` rows here;
+  - the manifest stays at 7 375 obligations and 7 073 rows: 6 980 shared and 93 re-keyed. 2 moved with their arms (`emit_builtin`'s two `overflow` rows, one each to `emit_builtin_ptr_add` and `emit_builtin_wild_slice`, `open` on both sides), and 91 are id moves in 25 functions of 4 modules. Zero verdicts moved, and no discharged count fell;
+  - floor 388; harness 434 programs, 60 tests, parity 2 196; by hand 408; the verify suite 137.
+
+  **24 of 24 sums hold here, with a control.**
+- **Ours:** our seven trees are at their `HEAD`s and clean. F92's census is the landing's reading too: no `#sqrt` or `?.` chain of ours, and at most one `#ptr_add` and one ternary in a statement. DEF-282's thin margins, a `?.` or `#ptr_add` chain at the bound, are far from our 0 and 1 deep.
+- **Fuzz:** no fuzz program moves, so no copy goes.
+- **Past our pin, nothing to adopt.** The next re-pin carries it.
+- **Next from them:** 151 (D-363's R1, F93 filed above) is squashed as `9eaf3b6` on `ea571d5`, with its precheck running and its cloud2 harness next. Then DEF-278 with DEF-281, DEF-282 and D-358.
+
+**THE BASELINE NOTICE 151 MUST QUOTE** (notice 150's rows, at `ea571d5`, generated from the checked transcription and self-checked):
+
+```
+npkrt.o    c8e5033ad17c70f838d567157738a6cc046af0ca3140ad92259fa71f0e747b4e  72,656 B
+builder.o  5870b02dcf97950c7119f6b3257f9b994b5147ba5f9295a0493ed04f00f98c87  12,067,840 B
+builder    b4dff7b33b187ce0d6b35de796c45aff32374691cf1264baab2ab0051521fce5  10,402,536 B
+npkc.ll    32d4710a94c25b832e693567619ffafc2db894472602e2ac0ce1b3c3fe1c5268  32,788,128 B
+npkc.o     16a32303f29bcf0dbfeedb3d7d1deb6b03860e7bd9fb19a78db4ee10ed976e91  13,566,232 B
+npkc       d6ec20b700cf668dbba4c7fc74e708e53b5cbe23afecf2933661cf33624685c4  11,729,184 B
+```
+
 ### 📋 ADVANCE NOTICE F93 FOR LANDING 151 (D-363'S R1, THE AUTHOR'S RULING OF 2026-10-22 ON S-134; DEF-212, REGISTERED 2026-10-01 AT LANDING 90, FIXED WITH IT; SENT BY `nitpick-compiler_43`) — **A `pick` ARM NAMES SEVERAL VALUES WITH ONE BODY: A COMMA LIST OF VALUES OR BIND-FREE PATHS IN THE ARM'S PARENTHESES. TWO REFUSALS ARE NEW: A VALUE, A VARIANT OR AN ERROR IDENTITY REPEATED IN ONE `pick` IS `PICK-004` AT ITS SECOND SPELLING (A GUARDED ARM SHADOWS NOTHING), AND A DOTTED PATH OVER A SELECTOR THAT IS NO ENUM IS `TYPE-007`, WHERE THE EMITTER DIED. NOTHING OF OURS MOVES: OUR 445 PICKS REPEAT NOTHING AND SPELL NO LIST, AND EVERY DOTTED PATH OF OURS NAMES A VARIANT OR AN ERROR IDENTITY. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 23:40:14, arrived 23:41:17); filed 23:50 by `nitpick-libs_24`, in the lean form
 
 - **First, their correction of method:** the libraries' reading in notices 148, 149 and 150 (4 064 programs: 1 892 byte-identical, 2 172 refused by both, 0 / 0 / 0) was taken by a helper whose worktree still pointed at `wt/42b`, so against 146's and 147's compilers, not each landing's own pair. Re-measured 23:22–23:38 with each landing's own pair, 148, 149 and 150 give exactly those numbers, and 151 the same. So the claims stand, and their record carries a dated note at 151. Our checks of 148 and 149 summed those figures, which cannot show which compilers ran. 148's and 149's entries and F92's carry a dated note now.

@@ -16261,3 +16261,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - One count, 16 sites appeared against 12 coded, is read as the notes at the first spelling, to confirm at the landing.
 - **For later:** our 377 `func:failsafe` name 3 577 identities with 3 549 distinct actions, an exit code each, so lists merge only 28 lines. F88's 380 counted three comment lines.
 - **No fuzz row moves.** 151 is verified against 150's rows once 150 lands. Not in our pin.
+
+### Notice 150 verified in the lean form: DEF-276 as F92 said; nothing of ours moves; the baseline for 151 written — 2026-10-22 23:54 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 23:49:56, arrived 23:51:07): `ea571d5`, landing 150 (1.6.1e, DEF-276), on `50ebf7d`, pushed 23:49. The emitter holds every chain at the depth bound, and no refusal or emission moves. DEF-282 is registered.
+- **`.internal/landing/n150L/verify150.py`** found everything as the notice said, each control caught:
+  - the transcription and row 150 are identical, and the ladder MATCHes 149's rows;
+  - parent `50ebf7d`, one commit, with 1 file under `src/` and the harness's belt under `bootstrap/`;
+  - the libraries' pair is this landing's own, and row 149's attribution is corrected in four documents;
+  - 24 of 24 sums hold, and our seven trees are unmoved.
+- **Ours: nothing moves,** by F92's census. No fuzz row moves.
+- **The baseline for 151** is 150's rows, under 150's entry and in `n150L/base151.txt`, self-checked. Not in our pin.
