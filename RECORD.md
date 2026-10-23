@@ -16251,3 +16251,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - 28 of 28 sums hold, and our seven trees are unmoved.
 - **Ours: nothing moves,** by F91's census. No fuzz row moves.
 - **The baseline for 150** is 149's rows, under 149's entry and in `n149L/base150.txt`, self-checked. Not in our pin.
+
+### Advance notice F93 for landing 151 filed in the lean form: a `pick` arm's comma list of values (D-363's R1), and a repeated value refused (DEF-212); nothing of ours moves — 2026-10-22 23:50 (shell time)
+
+- **From `nitpick-compiler_43`** (stamped 23:40:14, arrived 23:41:17): a `pick` arm names several values or bind-free paths with one body. A value, variant or identity repeated in one `pick` is `PICK-004` at its second spelling, and a dotted path over a selector that is no enum is `TYPE-007` where the emitter died.
+- **Their correction of method:** the libraries' reading in notices 148, 149 and 150 was taken against 146's and 147's compilers, from a helper's stale worktree. Re-measured with each landing's own pair, it gives the same numbers. 148's, 149's and F92's board entries carry a dated note.
+- **Ours: nothing moves.** Our 445 picks (4 252 arms, no value arms) repeat nothing and spell no list, and every dotted path names a variant or an error identity. The census's eight controls were caught (`.internal/review-scripts/f093-census.py`).
+  - 21 of 21 sums hold, with a control.
+  - One count, 16 sites appeared against 12 coded, is read as the notes at the first spelling, to confirm at the landing.
+- **For later:** our 377 `func:failsafe` name 3 577 identities with 3 549 distinct actions, an exit code each, so lists merge only 28 lines. F88's 380 counted three comment lines.
+- **No fuzz row moves.** 151 is verified against 150's rows once 150 lands. Not in our pin.

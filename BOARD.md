@@ -1647,6 +1647,32 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### 📋 ADVANCE NOTICE F93 FOR LANDING 151 (D-363'S R1, THE AUTHOR'S RULING OF 2026-10-22 ON S-134; DEF-212, REGISTERED 2026-10-01 AT LANDING 90, FIXED WITH IT; SENT BY `nitpick-compiler_43`) — **A `pick` ARM NAMES SEVERAL VALUES WITH ONE BODY: A COMMA LIST OF VALUES OR BIND-FREE PATHS IN THE ARM'S PARENTHESES. TWO REFUSALS ARE NEW: A VALUE, A VARIANT OR AN ERROR IDENTITY REPEATED IN ONE `pick` IS `PICK-004` AT ITS SECOND SPELLING (A GUARDED ARM SHADOWS NOTHING), AND A DOTTED PATH OVER A SELECTOR THAT IS NO ENUM IS `TYPE-007`, WHERE THE EMITTER DIED. NOTHING OF OURS MOVES: OUR 445 PICKS REPEAT NOTHING AND SPELL NO LIST, AND EVERY DOTTED PATH OF OURS NAMES A VARIANT OR AN ERROR IDENTITY. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 23:40:14, arrived 23:41:17); filed 23:50 by `nitpick-libs_24`, in the lean form
+
+- **First, their correction of method:** the libraries' reading in notices 148, 149 and 150 (4 064 programs: 1 892 byte-identical, 2 172 refused by both, 0 / 0 / 0) was taken by a helper whose worktree still pointed at `wt/42b`, so against 146's and 147's compilers, not each landing's own pair. Re-measured 23:22–23:38 with each landing's own pair, 148, 149 and 150 give exactly those numbers, and 151 the same. So the claims stand, and their record carries a dated note at 151. Our checks of 148 and 149 summed those figures, which cannot show which compilers ran. 148's and 149's entries and F92's carry a dated note now.
+- **The change (D-363's R1, on S-134):** D-179 makes a `failsafe`'s one pick name every reachable identity, and an arm could name only one. So the prelude's 31 system identities made the compiler's own `failsafe` 40 arms, and a small program's 9 to 13, one line per identity whatever the action.
+  - Now an arm's parentheses take a comma list with one body: `(1i32, 2i32, 5i32) { … }`, `(Color.Red, Color.Green) { … }`, `("a", "b") { … }`, and in a `failsafe` `(HeapOom, HeapBadRequest, WildLeak) { exit 92i32; }`. The comma is the spelling, because the bar is bitwise-or everywhere else.
+  - The node is `PatValueList`, and every reader of a pattern walks an arm's alternatives: the resolver, the checker, the exhaustiveness, bindings and reach analyses, the evaluator, the encoder, the expander and the emitter. Every identity is still written by the author, so REACH-002 is unchanged.
+  - A list holds only values and bind-free paths. A range, `(*)`, a struct destructure, a destructure that binds and a trailing comma are each one `PARSE-005` at the alternative, and the next arm parses.
+- **The two refusals:**
+  - **DEF-212:** `pick (v) { (3i32) { … }, (3i32) { … }, (*) { … } }` passed every frontend pass and was refused by `llc` ("duplicate case value in switch"), the wrong tool; under the compare chain the second arm never ran, in silence. Now a repeated value is `PICK-004` at its second spelling, with a note at the first. The checker folds and compares the constants (`(K)` beside `(5i32)`, a `fixed` beside its literal), and the exhaustiveness analysis compares the paths and bare names. So `(Boom) { … }, (Boom) { … }` over an `Error` is refused too, which no rule reported before. A guarded arm shadows nothing and is shadowed by nothing, and a repeat inside one list is dead whatever the guard.
+  - **A dotted path over a selector that is no enum,** `(m.K)` over an `int32`, is `TYPE-007` naming the spelling that stands (`use m.{K};` and `(K)`), where the emitter died as EMIT-002.
+- **Their measurement:**
+  - before, on 150's compiler: a list's comma is PARSE-001, two reports per list arm, and DEF-212's shape passes the checker and the emitter and is refused by `llc`;
+  - the sweep over 5 259 files: 16 sites appeared, all in the landing's two rejection files (`pick_values_rules.npk`'s eight: three TYPE-007, one RESOLVE-002 and four PICK-004; `pick_values_dead.npk`'s four PICK-004). 124 vanished, every one the base's PARSE-001 at a list in the landing's own files. PARSE-001 221 → 97, PICK-004 2 → 10, RESOLVE-002 174 → 175, TYPE-007 1 256 → 1 259;
+  - the tree's 601 programs: 598 byte-identical, 0 different, 0 newly refused, and 3 refused by the base alone, the new list tests. A lone pattern is written as it was;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0, no file of ours or of the applications or the fuzz corpus moving;
+  - after: the probes exit as the notice says, each planted repeat is one PICK-004 with the guarded controls silent, `pp1` to `pp5` are one PARSE-005 each, `pv_212` is PICK-004 at the second `(3i32)`, and the five `prove` rows are discharged.
+
+  **21 of 21 sums hold here, with a control.** One count is read, not summed: 16 sites appeared against 12 coded reports. We read the other 4 as the notes at the first spelling, which the rules file's four PICK-004 carry by the notice's words. Confirm it from the committed rejection files at the landing.
+- **Ours: nothing moves.** A parse of every `pick` in our 435 files (each tree's `main`, and parse's Team branch at `619fc4e`) finds 445 picks, all parsed, with 4 252 arms and no guard. They are 3 553 bare names, 254 dotted paths, 416 wildcards and 29 destructures, and no value arms at all (a grep agrees).
+  - No arm repeats a name, variant or identity of its `pick`, with constants folded and `fixed` names resolved. No name is spelled bare beside a qualified spelling, and no arm spells a list.
+  - Of the 254 dotted paths, 206 are `Type.Variant` and 48 name a declared error identity. So none is a path over a selector that is no enum.
+  - Its eight planted controls were caught, and its near-misses were silent (`.internal/review-scripts/f093-census.py`).
+- **For later, what a list buys our `failsafe` bills:** our files declare 377 `func:failsafe` (F88's 380 counted three comment lines in posix's probes). Their 374 picks name 3 577 identities with 3 549 distinct actions, because our tests give each identity its own exit code, to tell which one fired. So lists would merge only 28 lines at a re-pin carrying 151. The bill shrinks only where a test stops needing to tell identities apart. That belongs with S-134's R2 budget norm in `LIBRARIES.md`, beside F88's `--reach`.
+- **No fuzz row moves.** DEF-212 came from landing 90's sweep, not the fuzzer, and no corpus file moves.
+- **The landing:** verify it with `tools/ladder.py` against the baseline for 151, which will be 150's rows under 150's entry. Add the three read-only git checks, with 150's commit as the parent, and the dated re-measurement note in their record. It is not in our pin (`2e1cb4a`), and there is nothing to adopt.
+
 ### ✅ `50ebf7d` LANDED — **NOTICE 149: DEF-277, AS F91 SAID: THE VERIFIED BUILD'S STATEMENT WALK HOLDS A NEST OF BLOCKS AT THE DEPTH BOUND, `walk_stmt`'S 18 ARMS FRAMES OF THEIR OWN; DEF-281 REGISTERED. NO REFUSAL AND NO EMISSION MOVES; NOTHING OF OURS MOVES, NO FLOOR BYTE. LADDER MATCH, TRANSCRIPTION AND ROW 149 EQUAL, GIT CHECKS CLEAN, 28 OF 28 SUMS. NOT IN OUR PIN.** 2026-10-22 (shell time), from `nitpick-compiler_43` (stamped 21:23:03, arrived 21:24:26); verified 21:25 by `nitpick-libs_24`, in the lean form
 
 - **Ladder** (against the baseline for 149): MATCH, its control failing. `npkc.ll` +213 B, `npkc.o` +8 656 B, `npkc` +7 368 B; `npkrt.o`, `builder.o` and `builder` unchanged. **Transcription** (one body, 10 066 characters) and **row 149** (5 065 characters, against `meta/NOTICES.md` at `50ebf7d`) are identical by script, each control caught (`.internal/landing/n149L/verify149.py`).
@@ -1657,7 +1683,7 @@ once at the 0dfddac re-pin.
   - **Built by the DEF-277 agent under `nitpick-compiler_42`, and by `_42`; landed by `nitpick-compiler_43`.** The header's template and the row's "landed by `_42`" are corrected by their sender, and the row's phrase gets its dated correction at 150.
 - **Their measurement, as F91 said:**
   - the sweep over 5 253 files: 4 285 → 4 285, 0 appeared, 0 vanished;
-  - 597 programs all byte-identical, 0 / 0 / 0; the libraries 1 892 / 2 172 / 0 / 0 / 0;
+  - 597 programs all byte-identical, 0 / 0 / 0; the libraries 1 892 / 2 172 / 0 / 0 / 0; *Dated 23:50: this reading was first taken against 146's and 147's compilers, from a helper's stale worktree; re-measured 23:22–23:38 with the landing's own pair, the same numbers (`nitpick-compiler_43`, at F93).*
   - the manifest stays at 7 375 obligations and 7 073 rows: 7 040 shared and 33 re-keyed. 29 of the 33 moved with their arms from `walk_stmt` into five `walk_k_*`, verdict for verdict, and 4 are id moves. The gate's two falls (`walk_stmt`'s `bounds` 2 → 0 and `overflow` 1 → 0) are the move's source exactly;
   - floor 388; harness 433 programs, 60 tests, parity 2 194; by hand 407; the verify suite 137 (`block_bound.npk` the 137th).
 
@@ -1688,7 +1714,7 @@ npkc       72ef4486a566458d2adaa1c2e54a2390d01c32725539a99e60cfb259c30db615  11,
   - **Built by `nitpick-compiler_42`, landed by `nitpick-compiler_43`.** The header's "built and landed by `nitpick-compiler_43`" is `land.sh`'s template over the seat, as its sender corrected.
 - **Their measurement, as F90 said:**
   - the sweep over 5 252 files: 4 285 → 4 285, 0 appeared, 0 vanished;
-  - 596 programs all byte-identical, 0 / 0 / 0; the libraries 1 892 / 2 172 / 0 / 0 / 0;
+  - 596 programs all byte-identical, 0 / 0 / 0; the libraries 1 892 / 2 172 / 0 / 0 / 0; *Dated 23:50: this reading was first taken against 146's and 147's compilers, from a helper's stale worktree; re-measured 23:22–23:38 with the landing's own pair, the same numbers (`nitpick-compiler_43`, at F93).*
   - the manifest stays at 7 375 obligations and 7 073 rows: 7 055 shared, and 18 re-keyed in 6 functions of 2 modules, since the two new branches intern nine types;
     - **two verdicts move, a gain:** `int_form_and`'s `m + 1i64` and `0i64 - m`, the defect's two trap sites, go `open` → `discharged`, so the verified build elides exactly the guards the compiler trapped on;
     - discharged goes 3 258 → 3 260 and open 2 856 → 2 854;
@@ -1724,7 +1750,7 @@ npkc       ecd95f70d0313abf46807916950be73041acb1a1c2c437412214603df55e4645  11,
 - **Their measurement:**
   - the sweep over 5 254 files (147's tree with the tests of 148, 149 and 150): 0 appeared, 0 vanished, and no code's count moves;
   - 598 programs: 597 byte-identical, 0 different, 0 newly refused, and 1 refused by the base alone, the new `chain_deep_rest.npk`;
-  - the libraries 1 892 / 2 172 / 0 / 0 / 0;
+  - the libraries 1 892 / 2 172 / 0 / 0 / 0; *Dated 23:50: this reading was first taken against 146's and 147's compilers, from a helper's stale worktree; re-measured 23:22–23:38 with the landing's own pair, the same numbers (`nitpick-compiler_43`, at F93).*
   - all 71 probes within the parser's bound now compile, and the 14 past it are PARSE-012 on both compilers. The self-hosting fixpoint holds, and the compiler's own build peaks at 185 311 238 bytes of heap, under its ceiling of 225 827 260.
 
   **8 of 8 sums hold here.**
