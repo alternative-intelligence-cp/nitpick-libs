@@ -16455,3 +16455,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **The rest of this week stays as planned at `2e1cb4a`:** parse's fix round and sockets' T7c4 on the Team, from Sat 03:00:30.
   - **The final go is the author's** at next week's planning (the author approved the last re-pin, Q54). Management puts it to them with this seat's figures, an estimate of each library's adoption at the new pin, which goes next.
 - The board's regex row says so.
+
+### The adoption estimates at the new pin, sent to `management_2` — 2026-10-23 20:37 (shell time)
+
+- **Sent at 20:37:32,** from this week's measured chains. Time 0.4.0a cost about 4–5 points, mostly its `opus` planner. On the Team, the T7a and T12 planners took 0.69 M and 0.88 M tokens and T11v 0.69 M.
+- **The new pin carries for us:** no program moves across 141 … 156 by our censuses, two text lines (144, 146), and 154 … 156 retire the five PLAYBOOK §2 rules. A second adoption reuses the first's tools and table.
+- **The Max:** time 2–3 points, regex 4–6 (from `c9baa9e`, carrying 119 … 156 over 188 files, with CI's rows), posix and tui about 0.5 together, and this seat's re-pin and re-reads about 1–1.5. In all about 8–11 points.
+- **The Team:** parse and sockets, a lean planner and a verifier each, about 0.5–0.7 M and 0.5 M tokens a chain.
+- **A timing point for the author:** DEF-286 renames every emission's drop bodies once. Pinned after it, one adoption absorbs it through `tidnorm.py`; pinned before, the next re-pin pays it again.
