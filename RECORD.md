@@ -16463,3 +16463,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The Max:** time 2–3 points, regex 4–6 (from `c9baa9e`, carrying 119 … 156 over 188 files, with CI's rows), posix and tui about 0.5 together, and this seat's re-pin and re-reads about 1–1.5. In all about 8–11 points.
 - **The Team:** parse and sockets, a lean planner and a verifier each, about 0.5–0.7 M and 0.5 M tokens a chain.
 - **A timing point for the author:** DEF-286 renames every emission's drop bodies once. Pinned after it, one adoption absorbs it through `tidnorm.py`; pinned before, the next re-pin pays it again.
+
+### The re-pin's timing amended: after DEF-286 lands — 2026-10-23 20:38 (shell time)
+
+- **From `management_2`** (stamped 20:38:01, arrived 20:38:08): this seat's timing point decides it. The recommendation to the author is now the first quiet point **after DEF-286 lands**, not after 156, so one adoption absorbs the drop-body renames. DEF-286 is queued right after DEF-296 and DEF-289.
+- The figures (the Max about 8–11 points, the Team two lean chains) go to the author with it at next week's planning. Nothing more is needed from this seat now. The board's regex row is amended.
