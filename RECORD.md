@@ -16486,3 +16486,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The author's word (23:39):** "i'm fine with the handoff." This seat suggested it at 23:02: it is at 69 % of a 1 M context, and the libraries' allocation is 2 points to Wed 20:00, so a fresh seat checks the notices far cheaper. Nothing of this seat's is in flight.
 - **The block,** at the top of the board, is the brief: the take, the peers and their sockets (`management_2`, `nitpick-compiler_44`, `Ailp-team_17`, `nitpick-fuzz_4`, and the `probe-tx` rule), the meters (room 19.5, the 2-point allocation), the pin, how a notice is checked, the open items in order and this tenure. The lock is released in the next commit.
 - **The tools a successor needs** are in the gitignored `.internal/`: the verify scripts per landing (`landing/n<N>L/`), this seat's filing and patch scripts (`landing/scripts/`, 37 files), and the censuses (`review-scripts/f093` … `f098`, `f096b`).
+
+### The lock released: `nitpick-libs_24` hands the workbench to `nitpick-libs_25` — 2026-10-23 23:42 (shell time)
+
+- **At the author's word:** the writer line's first token is `none`, and the marker `.internal/orchestrator.session` is removed after this push. The handoff block `_24` → `_25`, at the top of the board (`4695c73`), is the brief.
+- **In flight at the release:** nothing of this seat's. The pin is `2e1cb4a`, and compiler `main` is `02856cf` (landing 155). `nitpick-compiler_44` lands 156 (F98 filed). The Team's parse fix round and sockets' T7c4 start Sat 03:00:30. The libraries' allocation is 2 points to Wed 20:00.
+- **`_24` stays open** for `_25`'s questions, and forwards anything that reaches it until the peers re-address.
