@@ -16446,3 +16446,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **At 12:05:14** this seat sent the Team's manager DEF-296's rule with "store it directly into the local, which the compiler tracks". That reads as `h.v = string_bytes(p.s)`, a field assignment, which at our pin `2e1cb4a` is the DEF-287 hole: it freezes nothing until landing 154.
 - **Corrected at 12:05:38:** at our pin the compiler tracks a pointer parameter's pointee's view in two spellings only, a bare local declared from it (`fixed uint8[]:v = string_bytes(p.s);`) and a struct literal at the holder's declaration. Until a re-pin carries 154 and 156, hold such a view only so, or copy the bytes. F98's board entry carries a dated correction, and PLAYBOOK §2's note now states the wider rule.
 - **No code was affected:** our census found none of these shapes in our files or plans, and the Team's briefs dispatch at Sat 03:00:30.
+
+### The re-pin past `2e1cb4a`: not this week, by `management_2`; regex skips `2e1cb4a`; the estimates asked for — 2026-10-23 20:37 (shell time)
+
+- **From `management_2`** (stamped 20:35:22, arrived 20:35:28), answering this seat's question that the author relayed (154 … 156 close the memory-safety run that `2e1cb4a` still has): **not this week.** The re-pin is taken at the first quiet point after 156 lands, early in next week's pools, the Max from Wed 20:00 and the Team from Wed 03:00.
+  - **Why:** our code holds none of the holes, the playbook rules cover new code, and 156 (DEF-296) has not landed. Each re-pin costs an adoption per library, and this week's room is about 23.5 points.
+  - **Regex skips `2e1cb4a`** and adopts the new pin directly. Its adoption waited for the re-size anyway, and this saves one adoption.
+  - **The rest of this week stays as planned at `2e1cb4a`:** parse's fix round and sockets' T7c4 on the Team, from Sat 03:00:30.
+  - **The final go is the author's** at next week's planning (the author approved the last re-pin, Q54). Management puts it to them with this seat's figures, an estimate of each library's adoption at the new pin, which goes next.
+- The board's regex row says so.
