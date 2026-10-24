@@ -16737,3 +16737,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **DEF-302's census** found none in our trees; DEF-302 widens, and DEF-305 is registered. **DEF-304 is new** (a pointer into a `List` element across a grow), none in our trees, sent to `Ailp-team_19` as safety rule (8) at 17:59:15 and noted in PLAYBOOK §2.
 - **`management_3` (18:02:40):** the week re-paced, with lines Sun 20:00 88 %, Mon 91 %, Tue 93 % and Wed 95 %. The libraries get about 0.5 point to Wed 20:00, for the compiler's notices only: this seat's turns at about 500K cost about $0.44 each ($21.00 over 48 requests since noon). Notices are batched; the restart under the cap is the author's to do.
 - **The baseline for 160** is 159's rows, under 159's entry and in `n159L/base160.txt`, self-checked. Not in our pin.
+
+### Advance notice F102 for landing 160 filed in the lean form: a write through a named pointer is a write to its target (DEF-302); one safe shape refused by design; DEF-305 new; none of its shapes ours — 2026-10-24 18:47 (shell time)
+
+- **From `nitpick-compiler_48`** (signed 18:44, arrived 18:44:52), before its harness: F102, the advance notice of landing 160. It was built, chained and recorded by `_48` in `wt/48d` (branch `48-def302` on `51b6d82`), chained against 159's landed compiler (base `npkc` `1d372d49…`, new `daa7efdb…`).
+- **What 160 does:** a pointer taken of a local's storage targets that storage, so a view held by one name across a write through the pointer, or the reverse, is `BORROW-015`. It closes sixteen spellings, refuses a re-pointed pointer by design, and registers DEF-305 (a pointer that is a call's result, or one composed with a slice).
+- **Their census of our 4 064 programs:** nothing moves. 3 of 3 sums hold here, with a control, and 9 of 9 inputs are found as the message spells them. Its 5 278 files are checked at the landing against 159's 5 278 plus the two new tests.
+- **Our census** (in `scripts/file_f102.py`, five controls found, four near-misses silent): **No site of ours:** 0 named pointer(s) to a local's storage in the files and 0 in the patches, and none with a view of that storage held by the other name across a write. It was taken over our 435 files and the patches' 657 hunks.
+- **PLAYBOOK §2's 159 note** gains the re-pointed shape to avoid once a re-pin carries 160.
+- **The forecast for 160:** 17 appeared, none vanished, 4 416 → 4 433 if 159's checker reports nothing in the new files; `BORROW-015` 94 → 111; the libraries 1 892 / 2 172 / 0 / 0 / 0. Not in our pin.
