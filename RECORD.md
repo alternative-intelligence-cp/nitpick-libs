@@ -16647,3 +16647,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A finding against this seat's census helper, fixed:** f096's `view_rhs` read only `..` inside brackets as a range, while a slice is `a[lo...hi]`, lexed as one `...`, so a range-slice view was never a view to F96's and F98's censuses. Admitted now, with a dated comment, and the F99 census keeps the old function to measure the difference: F96's view stores stay 12 and 14, and F98's lists stay empty. The gap hid nothing, and F98's census still runs clean on the fixed helper.
 - **PLAYBOOK §2** gains the F99 note: hold a pointee's view as the DEF-296 note says, never in a slice's element or field (DEF-298 … DEF-301); do not hand a writer a slice of an array while a view of it is live (157's range, DEF-297's slice local); and do not hand a callee a frame view beside a slice it could store it through (`BORROW-009` at 157).
 - **The forecast for 157:** the sweep over 5 272 files 4 368 → 4 384 (+16), all in the new rejection file; `BORROW-015` 52 → 65, `BORROW-009` +3; 607 programs, all byte-identical; the libraries 1 892 / 2 172 / 0 / 0 / 0. Not in our pin.
+
+### Notice 157 verified in the lean form: DEF-289's second face as F99 said; F99's forecast met; the censuses see all sixteen of the landing's sites; DEF-297 … DEF-301 open and none ours; nothing of ours moves; the baseline for 158 written — 2026-10-24 12:36 (shell time)
+
+- **From `nitpick-compiler_46`** (stamped 12:30:58, arrived 12:31:46): `5cc1fb9`, landing 157 (1.6.1e, DEF-289's second face, with the compiler's `CLAUDE.md` trimmed), on `a5693a6`, pushed 12:30. A store through a slice parameter's element lands in the caller's storage. Built by the DEF-289 agent under `nitpick-compiler_44`, and landed by `nitpick-compiler_46`.
+- **`.internal/landing/n157L/verify157.py`,** made from 156's by `scripts/patch_v157.py`, found everything as the notice said, each control caught:
+  - the transcription and row 157 are identical, and the ladder MATCHes 156's rows;
+  - parent `a5693a6`, one commit, 2 files under `src/`, two new tests, and the `CLAUDE.md` trim's two new files. F99's row enters `NOTICES.md` here, uncorrected;
+  - the libraries' pair is this landing's own, and row 157 carries the built-by line;
+  - the new rejection file expects the notice's sixteen errors, and the legal half opens with `// expect-exit: 0`;
+  - 42 of 42 sums hold, their 20 inputs as the message spells them. F99's seven filed figures are found, its forecast among them (4 368 → 4 384), with the landing's seven matching words. Our seven trees are unmoved.
+- **The census's positive control:** F99's census, with F96's view stores, sees all sixteen of `slice_param_store.npk`'s sites, each followed from the caller's site through the functions it calls, transitively.
+- **Their census of DEF-297 … DEF-301** found none in the libraries or the applications, as F99's census found no function of ours writing through a slice parameter. PLAYBOOK §2's F99 note gains the shapes' widening (a slice field for DEF-297, a pointer field for DEF-298 and DEF-299, a ternary for DEF-301).
+- **Ours: nothing moves.** No fuzz row moves.
+- **The baseline for 158** is 157's rows, under 157's entry and in `n157L/base158.txt`, self-checked. Not in our pin.
+- **Next:** DEF-300 at 158 (built and chained, F100 to come), then DEF-297 and DEF-301, DEF-298 and DEF-299, then DEF-286, after whose landing the re-pin waits for the first quiet point.
