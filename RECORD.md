@@ -16714,3 +16714,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
   Also sent: DEF-297 … DEF-301's widening, and a request that its clone pull PLAYBOOK §2 from `main` at `e0018e8` before the briefs are cut.
 - **The writer line names `_19`.**
+
+### Advance notice F101 for landing 159 filed in the lean form: a slice's storage read off its refs, a range's element its storage's (DEF-297, DEF-301, DEF-303); none of its shapes ours; three safe shapes to avoid before the re-pin in PLAYBOOK §2 — 2026-10-24 16:01 (shell time)
+
+- **From `nitpick-compiler_48`** (stamped 15:58:00, arrived 15:58:19): F101, the advance notice of landing 159, sent before its harness. Built, chained and recorded by `_48` in `wt/48a` (branch `48-def297` on `8e33737`, WIP `de9d3ff`), chained against 158's landed compiler.
+- **What 159 does:** the storage a slice views when no range names it is read off the slice's own refs, so a write through a slice local, a slice field, a call's result or a ternary under a live view of that storage is refused (DEF-297, DEF-301), and a range's element is its storage's element (DEF-303). It closes twenty-four spellings, removes one refusal (a write to another element through a range), and refuses three safe shapes by design. Its chain's first build refused five legal sites in `nitpick-time`'s core, fixed before the notice.
+- **Their census of our 4 064 programs:** nothing moves. 5 of 5 sums hold here, with a control.
+- **Our census:** F99's already showed no function of ours writing through a slice parameter, so the callee roads cannot occur. `.internal/review-scripts/f101-census.py` (three controls found, near-misses silent, after one near-miss was split in two because the census cannot tell storages apart) finds no range's element handed by `@`. It lists 4 direct writes through a slice local or a field's element with another view before them in the files and 1 in the patches. Each was read by eye: `bytes_reserve`'s copy between two buffers and its patch copy, a test's `wild` memory, and a probe's whole-struct copy whose "view" is an enum scalar. None is a hazard.
+- **PLAYBOOK §2** gains a note: once a re-pin carries 159, hand a writer the original slice, not a copy, and the range of the elements it writes when a view of another element or field is live.
+- **The forecast for 159:** the sweep over 5 278 files, 24 appeared and 3 vanished, all in the four new tests; the libraries 1 892 / 2 172 / 0 / 0 / 0. Not in our pin.
