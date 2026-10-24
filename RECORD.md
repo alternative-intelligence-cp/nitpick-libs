@@ -16468,3 +16468,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `management_2`** (stamped 20:38:01, arrived 20:38:08): this seat's timing point decides it. The recommendation to the author is now the first quiet point **after DEF-286 lands**, not after 156, so one adoption absorbs the drop-body renames. DEF-286 is queued right after DEF-296 and DEF-289.
 - The figures (the Max about 8–11 points, the Team two lean chains) go to the author with it at next week's planning. Nothing more is needed from this seat now. The board's regex row is amended.
+
+### The re-size at Fable's cap: the libraries get 2 points to Wed 20:00; `nitpick-compiler_44` is the compiler seat; no message to `probe-tx` — 2026-10-23 23:02 (shell time)
+
+- **From `management_2`** (stamped 23:00:26, arrived 23:01:02): **the libraries get 2 points from now to Wed 10-28 20:00,** for the compiler's notices (156 onward, F98 first) and their re-reads. Regex's adoption moves to the re-pin, as agreed.
+- **`nitpick-compiler_44` (Opus) is the compiler seat now;** `nitpick-compiler_43` is out of context.
+- **One rule, from Sat ~12:10 until the Team seat's "may close" on Sunday:** nobody messages `probe-tx`, the Diogenes gate's overnight probe.
+- **What it means here:** this seat's context reads 69 % of 1 M, so each turn costs several times a fresh seat's. With 2 points for 4.5 days, the notice checks are cheapest from a fresh successor, `nitpick-libs_25`, and the handoff is suggested to the author. Meanwhile this seat's session-scoped filing and patch scripts (36 files) are copied into the gitignored `.internal/landing/scripts/`, so a successor can reuse them.
