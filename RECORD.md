@@ -16677,3 +16677,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Their census of our 4 064 programs:** nothing moves. 5 of 5 sums hold here, with a control.
 - **Our census, `.internal/review-scripts/f100-census.py`** (five controls found, near-misses silent): no assignment in our 435 files or the plan patches' 657 hunks steps on past a range. So none of 158's refusals, and not its removed one, touches us. The Team branches are unmoved (`a64d3ae`, `128a03c`).
 - **The forecast for 158:** the sweep over 5 274 files, 8 appeared and 4 vanished, all in the two new tests; `BORROW-015` 65 → 72; 607 of 608 programs byte-identical, the new program test refused by the base alone; the libraries 1 892 / 2 172 / 0 / 0 / 0. Not in our pin.
+
+### A restart planned to put this seat under the 400K cap; `management_3` is the management seat — 2026-10-24 12:54 (shell time)
+
+- **This seat's finding** (sent 12:49:57): it never compacted. It read 50 % of 1M (about 500K) at 12:49 with its conversation whole, so the 400K cap of 12:36 does not reach sessions started before it. It went to `management_3` (`uds:/run/user/1000/cc-socks/3197250.sock`), since `management_2`'s socket was gone (ENOENT at 12:49:42); `ListAgents` showed `management_3` busy and `_4` and `_5` idle.
+- **From `management_3`** (stamped 12:53:17): the finding is new, and is in its memory and STATE. No handoff: `nitpick-libs_26` stays parked. It asks the author to restart this seat while idle: exit, `CLAUDE_CODE_AUTO_COMPACT_WINDOW=400000 claude <its flags> --resume=nitpick-libs_25` in `nitpick-libs`, then `/compact`. That is this tenure's first compaction, inside the author's rule. A notice that comes first is filed as usual.
+- **Before the restart:** this seat holds no background task (no agent, background shell, monitor, cron or wakeup), and everything is committed and pushed (`c94e405`), so no reply was owed.
+- **After it, before any write:**
+  - check that `CLAUDE_CODE_SESSION_ID` still equals the writer line's first token and `.internal/orchestrator.session` (`568059ad-…`). `--resume` should keep the id, since `--fork-session` exists to change it. If it changed, re-take the lock by orchestrate §2 as a takeover from the old id, and record it;
+  - re-read the board's live parts and this record's last entries. The compaction count is then 1.
+- **Peers seen at 12:49:** the compiler's writer `nitpick-compiler_48`, with `_49` and `_50` parked; `nitpick-libs_26` and `_27`, both idle and parked, of which `_27` needs nothing from this seat.
