@@ -16704,3 +16704,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: nothing moves.** No fuzz row moves.
 - **The baseline for 159** is 158's rows, under 158's entry and in `n158L/base159.txt`, self-checked. Not in our pin.
 - **Next:** 159 (DEF-297 and DEF-301 with DEF-303, F101 to come), then DEF-302, DEF-298 and DEF-299, then DEF-286.
+
+### The Team manager is `Ailp-team_19`; safety rules (6) and (7) sent for the Sunday briefs — 2026-10-24 15:01 (shell time)
+
+- **`Ailp-team_18`'s socket was gone** (ENOENT at 15:00:37), the Team seat's second rotation since this seat's take. **`management_3`** (stamped 15:01:01): the Team manager is `Ailp-team_19`, since 12:32 from `_18`, at `uds:/run/user/1000/cc-socks/1841651.sock`, live at 15:01:01. Send rules (6) and (7) directly, so T7c4b's brief carries them at Sun 03:00:30 and its clone pulls PLAYBOOK §2 first. Nobody messages `probe-tx`.
+- **Sent at 15:01:10, delivered:** this seat's introduction, asking for chain reports here (T7c4b, T7c5 and T7v, then parse 0.0.1a's work), and the two rules beside the briefs' five:
+  - **(6) DEF-302:** while a view of some storage is live, write that storage through no other name: a pointer to it, the pointee's own name when the view came through a pointer, a second pointer, a pointer at an element or field, or a pointer held in a struct field, returned by a callee or copied. End the view's block first, or take the view as a copy;
+  - **(7) DEF-300 and DEF-303:** never store or write through a range of an array or a `List`, and never hand a range's element by `@`. Index the storage directly.
+
+  Also sent: DEF-297 … DEF-301's widening, and a request that its clone pull PLAYBOOK §2 from `main` at `e0018e8` before the briefs are cut.
+- **The writer line names `_19`.**
