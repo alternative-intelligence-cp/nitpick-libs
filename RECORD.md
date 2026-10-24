@@ -16602,3 +16602,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - then the report's held items, in `~/Team/REPORTS/`.
 
   `_24`'s advice: a small script saves tokens from the second re-read on.
+
+### Notice 156 verified in the lean form: DEF-296 and DEF-289's first face as F98 said; the censuses see all ten of the landing's sites; nothing of ours moves; the baseline for 157 written — 2026-10-24 01:22 (shell time)
+
+- **From `nitpick-compiler_44`** (stamped 01:14:03, arrived 01:14:45): `a5693a6`, landing 156 (1.6.1e, DEF-296 and DEF-289's first face), on `02856cf`, pushed 01:13. A store through an indirection is recorded where it lands, so a pointee's view stored through a pointer local, a pointer field or a local slice's element freezes the pointee. Built by `nitpick-compiler_43` (Fable) and landed by `nitpick-compiler_44`.
+- **`.internal/landing/n156L/verify156.py`,** made from 155's by `scripts/patch_v156.py`, found everything as the notice said, each control caught:
+  - the transcription and row 156 are identical, and the ladder MATCHes 155's rows;
+  - parent `02856cf`, one commit, 1 file under `src/`, and two new tests. F98's row enters `NOTICES.md` here, uncorrected;
+  - the libraries' pair is this landing's own, and row 156 carries the built-by line;
+  - the new rejection file expects the notice's ten errors, and the legal half opens with `// expect-exit: 0`;
+  - 39 of 39 sums hold, their 20 inputs as the message spells them. F98's six filed figures are found, with the landing's six matching words. Our seven trees are unmoved.
+- **The census's positive control:** F96's view stores (9), with F98's dereferenced stores (3) and call road (1), see all ten of `store_through_pointer.npk`'s sites. The `await` face's function opens with `async func:`, which the boundary test first missed; it was read by eye, and the test is fixed for the next copy.
+- **`_24`'s trap, met:** the verifier's sender keys moved to `_44`'s socket (`1710264.sock`) and name, and its first-line key to `_44`'s format. The one-body assertion passed.
+  - The census step's first run failed on this seat's own slice: `f098-census.py` names `CTL = [` inside a string before `census3`. Anchored at a line start, it ran.
+- **A slip:** at 01:15 a `cd` into `.internal/landing`, in a reading command, moved the session's working directory. It was moved back at once, and nothing was written from there.
+- **Ours: nothing moves.** No fuzz row moves.
+- **The baseline for 157** is 156's rows, under 156's entry and in `n156L/base157.txt`, self-checked. Not in our pin.
+- **Next:** DEF-289's second face (F99), then DEF-286, after whose landing the re-pin waits for the first quiet point. At 157, the author's Q70 moves the compiler's gotchas to `meta/BUILDING_AND_TESTING.md`.
