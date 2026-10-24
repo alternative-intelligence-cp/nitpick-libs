@@ -15,6 +15,50 @@ blocked, what is done. The durable plan is
 
 
 
+> **🔁 HANDOFF — `nitpick-libs_24` → `nitpick-libs_25`, 2026-10-23 23:42 (shell time), at the author's word (*"i'm fine with the handoff."*, 23:39), at a quiet point: nothing of this seat's is in flight. This seat is at 69 % of a 1 M context, and the libraries' allocation is 2 points to Wed 20:00, so a fresh seat checks the notices far cheaper.**
+>
+> **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes and `_23`'s repeats:
+> - your id, from your transcript and your scratchpad, cross-checked with `~/.claude/context/<id>.json`'s `session_name`;
+> - a nonce typed into the search command and found in your transcript alone, plus a control generated at run time and never printed;
+> - the 37-byte marker `.internal/orchestrator.session`, removed by `_24` at this release;
+> - the token as the writer line's first backticked token, then push, then re-read it with hazard (5)'s command;
+> - **`check_refs` exits 1 whenever it reports findings, the two known `[leak]` lines (`tools/guard_domains.py`) included.** Read its count after staging, against the 2 known, and never chain on its exit code.
+>
+> **Hazard 3:** ask `nitpick-libs_24` (`[4ba56a]`). **Hazard 4:** ask `nitpick-libs_26` (`[acff58]` in `ListAgents` at 23:40), the next spare. Your own ref there is `[027bc7]`.
+>
+> **Read the board's live parts** (orchestrate §2 step 2): lines 1–14; the newest entries (`grep -n '^### ' BOARD.md | head -10`); and `## Outside the streams` to the end, each in-flight row up to its first `*Before:*`. `BOARD.md` (1.9 MB) and `RECORD.md` (2.0 MB) are read by line and by search, never whole. New board entries go above the newest `### ` entry, F98's 📋 at line 1650 now.
+>
+> **WHO** (at 23:40; re-derive each from `ListAgents` or its next message):
+> - **`management_2`** (`uds:/run/user/1000/cc-socks/1668145.sock`, `[abdc11]`): **the libraries get 2 points from 23:00 Fri to Wed 10-28 20:00,** for the compiler's notices (156 onward) and their re-reads. **Send it one line when you have taken over.** Its rulings tonight: the re-pin past `2e1cb4a` comes at the first quiet point after DEF-286 lands, early in next week's pools, with the author's go at next week's planning; regex skips `2e1cb4a`; this seat's estimates (the Max about 8–11 points, the Team two lean chains) go to the author with it.
+> - **The compiler seat: `nitpick-compiler_44`** (Opus, `[0478c3]`), from 23:00 Fri by management's word. `_43` (`uds:/run/user/1000/cc-socks/229881.sock`) is out of context, and `_45` (`[c87c03]`) is parked. `_44` lands 156; take its socket from its first message.
+> - **The Team seat's manager, `Ailp-team_17`** (`uds:/run/user/1000/cc-socks/1627195.sock`). It is a `claude-team` session, not in `ListAgents`. `Ailp-team_16` handed over at 04:29 Fri; its `2497939.sock` and the older `1624703.sock` are frozen copies, never to be written. From Sat 03:00:30 it runs parse's fix round (T11f1 `opus`, then T11v2 `sonnet`) and sockets' T7c4, with this seat's rulings and the five safety rules in their briefs.
+> - **The fuzzer's manager, `nitpick-fuzz_4`** (`uds:/run/user/1000/cc-socks/1672401.sock`, `[516d46]`), from 23:05 Fri after `nitpick-fuzz_3`. A copy goes to it after filing whenever a fuzz row moves (W-30); none has moved since 148.
+> - **A rule from Sat ~12:10 until the Team seat's "may close" on Sunday: nobody messages `probe-tx`,** the Diogenes gate's overnight probe.
+> - **None of them knows of this handoff yet.** Introduce yourself to each after the take. Until they re-address, `_24` forwards anything that reaches it, verbatim and with its arrival time.
+>
+> **THE METERS** (`~/Workspace/MANAGEMENT/meters/usage-log.csv`, read at 23:40): the week 71 %, Fable 91 %. Room = 95 − the week − 0.5 × (100 − Fable %) = 19.5, under 20, so ask management before any dispatch. The libraries' own allocation is 2 points to Wed 20:00; keep notice checks lean. Context drives cost: per turn, a seat at 69 % of 1 M pays several times what a fresh seat pays.
+>
+> **THE PIN: `2e1cb4a`** (landing 140). Compiler `main` is `02856cf` (landing 155). Landings 154 … 156 close memory-safety holes that `2e1cb4a` still has. None of our code spells them (the censuses below), and PLAYBOOK §2's D-004 bullet carries five rules until a re-pin carries them.
+>
+> **HOW A NOTICE IS CHECKED** (the lean form, 141 … 155):
+> - **A landing:** make `.internal/landing/n<N>L/` and transcribe the six ladder rows by hand into `notice<N>.txt`.
+>   - Copy the last `verify<N-1>.py` with a patch script. The models are `.internal/landing/scripts/patch_v150.py` … `patch_v155.py`, which change the NEED keys, the first-line key, the control digest, the baseline file and the board's "THE BASELINE NOTICE <N> MUST QUOTE" block, the row and F numbers, the parent sha, the 5b and 5c checks, and the sums with the message's own substrings and the F-notice's figures as filed.
+>   - Run it, then file with a `file_n<N>.py` (models in the same folder): the ✅ entry above the newest `### ` entry, the baseline for <N+1> under it, and a record entry. Commit, push, and confirm `HEAD` = `ls-remote` and porcelain 0.
+> - **An advance notice F<n>:** census our 435 files (each tree's `main`, and parse's Team branch at `619fc4e`) and the `.npk` parts of every plan patch (sockets' branch at `b5999c8`, parse's at `d78dac1` and its `main`, regex's and time's `main`) for the shapes it moves, with planted controls and near-misses (`.internal/review-scripts/f093-census.py` … `f098-census.py` and `f096b-census.py`). Check its sums, file the 📋 entry and a record entry, and forecast the landing's sweep totals.
+> - **Test a census against the landing's own rejection test** when one lands: F96's census found only six of 155's nine shapes until it was widened (`f096b`).
+> - **The baseline for 156** is under 155's entry and in `.internal/landing/n155L/base156.txt`, and 156's parent is `02856cf`. Its sweep should move by the landing's own files alone; F98's census found none of its faces in ours.
+>
+> **OPEN, IN ORDER:**
+> 1. **Landing 156** (DEF-296 with DEF-289's first face, F98), from `nitpick-compiler_44`.
+> 2. **The next F-notices:** DEF-286 (function types keyed by content, so every emission's drop-body names move once), then DEF-292, DEF-293, DEF-294, DEF-291, DEF-295, D-358, step 3d's rest (DEF-239) and step 4.
+> 3. **The Team's Sat 03:00:30 chains:** parse's fix round, T11f1 then T11v2 (a second FAIL on one point is a §8 stop to the author through this seat), and sockets' T7c4. Re-read what each reports (`ls-remote`, the commits, the files, the trailers, CI) and rule what it holds for you by PLAYBOOK §7's dated-line convention.
+> 4. **The re-pin after DEF-286,** at the author's go next week. Then regex adopts from `c9baa9e`, time adopts again, and posix and tui adopt at their next dispatch. Owed before regex's 0.3.0: `0.3.0.md` §9 items 3–5, the carried texts, F3's keyword hand-on, the `ci.yml` LLVM pin and `vec_unit.npk:167`'s 110.
+> 5. **At that re-pin,** PLAYBOOK §2's open-defect notes retire for the rows it carries.
+>
+> **THIS SEAT'S TENURE** (taken 2026-10-22 05:23, after `56d5de1`): time 0.4.0a planned, verified and DONE at `74b6ee1`; landings 141 … 155 verified in the lean form; advance notices F84 … F98 filed with censuses; sockets' and parse's adoptions (T7a, T12) re-read and their questions ruled; PLAYBOOK §7's dated-line convention and §2's open-defect rules written. Its corrections against itself are in the record: the 04:25 sockets ruling (06:08), "copying a value out is fine" (09:15), rule 5 of 12:05:14 (12:05:38), and F96's census gaps (at 155).
+>
+> **OPEN WITH THE AUTHOR:** the re-pin's go at next week's planning, which management carries.
+
 > **🔁 HANDOFF — `nitpick-libs_23` → `nitpick-libs_24`, 2026-10-22 05:15 (shell time), at the author's word (*"I'm fine with you handing off whenever you think it is a good point."*, 05:11:30), at a quiet point: nothing of this seat's is in flight, the re-pin to `2e1cb4a` is taken, and time's adoption is the next heavy item.** This seat is at 42 % context, about 421 k tokens a turn, and context per turn drives Max cost (`management_1`, 2026-10-16), so a fresh seat runs time's adoption chain cheaper. `_22` handed off at 44 % for the same reason.
 >
 > **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes:

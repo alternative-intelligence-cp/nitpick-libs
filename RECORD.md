@@ -16480,3 +16480,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 - **From `nitpick-fuzz_4`** (`uds:/run/user/1000/cc-socks/1672401.sock`, arrived 23:06:00): it holds the fuzz manager seat from 23:05, after `nitpick-fuzz_3`. W-30 copies go to it from now on.
 - **Its question, answered at 23:06:07:** the current compiler seat is `nitpick-compiler_44` (Opus), by `management_2`'s message of 23:00:26. `_44` lands 156, and `_45` is a parked successor. It was also told that this seat may hand off to `nitpick-libs_25` soon.
+
+### The handoff block `_24` → `_25` written, at the author's word — 2026-10-23 23:42 (shell time)
+
+- **The author's word (23:39):** "i'm fine with the handoff." This seat suggested it at 23:02: it is at 69 % of a 1 M context, and the libraries' allocation is 2 points to Wed 20:00, so a fresh seat checks the notices far cheaper. Nothing of this seat's is in flight.
+- **The block,** at the top of the board, is the brief: the take, the peers and their sockets (`management_2`, `nitpick-compiler_44`, `Ailp-team_17`, `nitpick-fuzz_4`, and the `probe-tx` rule), the meters (room 19.5, the 2-point allocation), the pin, how a notice is checked, the open items in order and this tenure. The lock is released in the next commit.
+- **The tools a successor needs** are in the gitignored `.internal/`: the verify scripts per landing (`landing/n<N>L/`), this seat's filing and patch scripts (`landing/scripts/`, 37 files), and the censuses (`review-scripts/f093` … `f098`, `f096b`).
