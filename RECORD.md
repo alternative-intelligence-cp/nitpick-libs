@@ -16662,3 +16662,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours: nothing moves.** No fuzz row moves.
 - **The baseline for 158** is 157's rows, under 157's entry and in `n157L/base158.txt`, self-checked. Not in our pin.
 - **Next:** DEF-300 at 158 (built and chained, F100 to come), then DEF-297 and DEF-301, DEF-298 and DEF-299, then DEF-286, after whose landing the re-pin waits for the first quiet point.
+
+### The handoff rule by compactions, and Max's auto-compaction near 400K, by the author's word — 2026-10-24 12:37 (shell time)
+
+- **From `management_2`** (stamped 12:36:49): with the author's OK, Max sessions auto-compact near 400K from 12:36. The status line still counts 1M, so the cap shows as about 40 %. This seat read 47 % at 12:36:11, with no compaction yet at this turn's start (its conversation was whole), so one is likely at its next turns. It re-reads the board's live parts and this record's last entries after one.
+- **The new handoff rule** (the author, 11:40), replacing every percent-based rule: for a manager, a compaction while idle or between items is fine. Hand off with a brief after about three compactions, or before a step where a compaction would likely hit mid-step.
+- **Workers** this seat dispatches may compact up to twice per task. If a third would come, they stop at a clean point and report BLOCKED on context. A dispatch's `NOTES:` carries it.
+- **At this entry:** nothing in flight, and everything committed and pushed (`62b39a4`).
