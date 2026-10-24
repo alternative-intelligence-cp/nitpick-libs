@@ -16687,3 +16687,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - check that `CLAUDE_CODE_SESSION_ID` still equals the writer line's first token and `.internal/orchestrator.session` (`568059ad-…`). `--resume` should keep the id, since `--fork-session` exists to change it. If it changed, re-take the lock by orchestrate §2 as a takeover from the old id, and record it;
   - re-read the board's live parts and this record's last entries. The compaction count is then 1.
 - **Peers seen at 12:49:** the compiler's writer `nitpick-compiler_48`, with `_49` and `_50` parked; `nitpick-libs_26` and `_27`, both idle and parked, of which `_27` needs nothing from this seat.
+
+### Notice 158 verified in the lean form: DEF-300 as F100 said; F100's forecast met; the censuses see all eight of the landing's sites; DEF-302 open and DEF-303 fixed at 159, both in PLAYBOOK §2; nothing of ours moves; the baseline for 159 written — 2026-10-24 15:00 (shell time)
+
+- **From `nitpick-compiler_48`** (stamped 14:55:11, arrived 14:55:57): `8e33737`, landing 158 (1.6.1e, DEF-300), on `5cc1fb9`, pushed 14:54. A store through a range of named storage is a store into that storage. Built, chained and recorded by `nitpick-compiler_46`, and landed by `nitpick-compiler_48`.
+- **`.internal/landing/n158L/verify158.py`,** made from 157's by `scripts/patch_v158.py`, found everything as the notice said, each control caught:
+  - the transcription and row 158 are identical, and the ladder MATCHes 157's rows;
+  - parent `5cc1fb9`, one commit, 1 file under `src/`, and two new tests. F100's row enters `NOTICES.md` here, uncorrected;
+  - the libraries' pair is the chained compiler (`aaa80b76…`) against 157's row, the landed `npkc` being `bd5b7f80…`. `src/` from F100's WIP `cfc87c4` to `8e33737` changes 9 lines, every one a comment or blank, as their message says;
+  - the new rejection file expects the notice's eight errors, and the legal half opens with `// expect-exit: 0`;
+  - 32 of 32 sums hold, their 22 inputs as the message spells them. F100's seven filed figures are found, its forecast among them, with the landing's seven matching words. Our seven trees are unmoved.
+  - A sum written first and dropped before the run: 157's `BORROW-002` count, inferred from 158's own base, would have checked nothing.
+- **The census's positive control:** F100's census, with F96's view stores, sees all eight of `range_store.npk`'s sites.
+- **New from the closing lines:** DEF-302 (HIGH, open in every compiler, ours included): a view through one name and a write through a pointer alias, in fourteen shapes. The compiler's census of our trees for them runs in 159's harness window. DEF-303 (HIGH, fixed at 159): a range's element compared one position off. **PLAYBOOK §2 gains a note for both:** write viewed storage through no other name while the view lives, and never store or write through a range until a re-pin carries 159. The Team's chains get both as safety rules 6 and 7.
+- **From 159's chain:** our `nitpick-time` core (`vec.npk`, `bytes.npk`) was the instrument that caught five legal sites its first build refused. Fixed before any notice, and nothing to do here.
+- **Ours: nothing moves.** No fuzz row moves.
+- **The baseline for 159** is 158's rows, under 158's entry and in `n158L/base159.txt`, self-checked. Not in our pin.
+- **Next:** 159 (DEF-297 and DEF-301 with DEF-303, F101 to come), then DEF-302, DEF-298 and DEF-299, then DEF-286.
