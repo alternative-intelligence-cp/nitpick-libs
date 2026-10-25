@@ -1492,6 +1492,13 @@ per-repository numbers collide.
     copied and never typed, and a block the run finds SAME throughout is left whole.
   *(The libraries' seat's rulings for `nitpick-parse` of 2026-10-21 and 10-22, and for sockets' and parse's adoptions of
   `2e1cb4a` on 2026-10-23, consolidated after parse's T11v found two of them in conflict; landed 2026-10-23.)*
+- **A push's time is the pusher's `date` and its CI run's `createdAt`, never GitHub's events feed.** The feed can omit a
+  push, or list it more than an hour late: at 10:27:17 on 2026-10-25 it listed the first and last of `nitpick-parse`
+  0.0.1a's five pushes and not the three between. *(`nitpick-parse` 0.0.1a, its steps 2–4 and its work verifier's finding
+  2, 2026-10-25; landed 2026-10-25.)*
+- **A record that quotes a CI log line masks the runner's path.** `sha256sum -c` prints the asset's path under the runner's
+  home directory, and `check_refs`' leak scan flags any home-directory path, the runner's included. *(`nitpick-parse`
+  0.0.1a, its step 1, 2026-10-25; landed 2026-10-25.)*
 
 ---
 
