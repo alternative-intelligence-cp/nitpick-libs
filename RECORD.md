@@ -16746,3 +16746,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Our census** (in `scripts/file_f102.py`, five controls found, four near-misses silent): **No site of ours:** 0 named pointer(s) to a local's storage in the files and 0 in the patches, and none with a view of that storage held by the other name across a write. It was taken over our 435 files and the patches' 657 hunks.
 - **PLAYBOOK §2's 159 note** gains the re-pointed shape to avoid once a re-pin carries 160.
 - **The forecast for 160:** 17 appeared, none vanished, 4 416 → 4 433 if 159's checker reports nothing in the new files; `BORROW-015` 94 → 111; the libraries 1 892 / 2 172 / 0 / 0 / 0. Not in our pin.
+
+### Notice 160 verified in the lean form, from one message and the compiler's ladder file: DEF-302 as F102 said; F102's forecast met; the sweep's file count asked; four gaps in our census found by the landing's own test and measured on our files and plans; DEF-304's plan done for Q75 — 2026-10-24 20:59 (shell time)
+
+- **From `nitpick-compiler_48`** (stamped 20:42, arrived 20:42:55), from `1628922.sock` since its restart: `954c21a`, landing 160, on `51b6d82`, authored 18:40:42, the cloud2 harness 18:45:29–20:36:20 (60 of 60, parity 2 248). Built, chained, recorded and landed by `_48` in `wt/48d`.
+- **The rows:** the notice named `ladder_954c21a.txt` as the next baseline and carried no rows, so they were read from that file and transcribed by hand. Its sibling `ladder_51b6d82.txt` equals the six rows sent on request at 159, with a control, and F102 had named the new `npkc` `daa7efdb…`.
+- **`.internal/landing/n160L/verify160.py`,** made from 159's by `scripts/patch_v160.py`, found everything as the notice said, each control caught:
+  - the transcription is identical to the file, and the ladder MATCHes 159's rows;
+  - row 160 was read from the tree: 29 of 29 figures there, and 6 of 6 in the message's spelling;
+  - parent `51b6d82`, one commit, 2 files under `src/`, two new tests; F102's row enters here, uncorrected;
+  - the rejection file expects 17 `BORROW-015` as the notice counts them, each place in the row's list;
+  - 33 of 33 sums hold, and F102's seven filed figures and its forecast are met. Our seven trees are unmoved.
+- **Asked:** the sweep's "5 278 files" at 160, where 159's 5 278 and the two new tests make 5 280 (the tree's `.npk` files 1 173 → 1 175, ours unmoved). No figure of ours rests on it.
+- **The positive control found four gaps in F102's census:** it sees 12 of the 17 sites, and our older censuses add none. Unseen: two pointers to one target, a method call inside a statement (`drop hp.set()`), a pointer held in a struct's field or reached through one, and a `List` of pointers. **Measured on our files and plans at this filing, and read by eye where the scan found candidates, the four gaps hold nothing hazardous.** Named pointers to a local's storage, which the first two need: 0 in the files and 0 in the patches. An address of a local's storage stored into a struct's field: 6 in the files and 2 in the patches, in four test files. They are regex's iterator probe (`Matches{ re: @p, … }`, three sites), its refused twin `probe12b`, time's refused escape probe (`pass Keeper{ p: @x }`) and time's `double_readings.npk` (`SuspendOnce{ runs: @runs }`); the two in the patches are the twin's and that test's own. Each pointee is a struct of scalars or an `int64`, so no view of its storage can be held, and the landing's sweep compiles all four as before. A `List`, `Vec`, array or other generic of pointers: 0 in the files and 0 in the patches, once the scan's 105 casts to a wild pointer (`=>! wild T->`, 73 in the files and 32 in the patches), which are expressions outside the safe analysis, are set aside. All of this is over our 435 files and the plan patches' 657 hunks.
+- **DEF-304's plan and census are done** (freeze the `List` while a pointer into one of its elements is live, as for a view; none in our trees). Q75 is the author's.
+- **This seat's restart:** the author restarted it (the same session resumed; its id, the marker and the writer token are equal; `CLAUDE_CODE_AUTO_COMPACT_WINDOW` is 400000), and it compacted once, its first. Its `ListAgents` ref is now `[fce812]`.
+- **The baseline for 161** is 160's rows, under 160's entry and in `n160L/base161.txt`, self-checked. Not in our pin.
+
+- **The gap scan's eight candidates, read by eye, none hazardous:**
+  - nitpick-regex/tests/probe/probe12_iterator_borrowing.npk:109 [main] `re: @p`
+  - nitpick-regex/tests/probe/probe12_iterator_borrowing.npk:141 [main] `re: @p`
+  - nitpick-regex/tests/probe/probe12_iterator_borrowing.npk:156 [main] `re: @p`
+  - nitpick-regex/tests/probe/refused/probe12b_for_over_borrow_refused.npk:54 [main] `re: @p`
+  - nitpick-time/tests/probe/defect/view_escape/case2_borrow_in_struct.npk:17 [esc] `p: @x`
+  - nitpick-time/tests/unit/double_readings.npk:356 [main] `runs: @runs`
+  - regex/meta/roadmap/done/0.2/0.2.1a_tools/step1.patch::tests/probe/refused/probe12b_for_over_borrow_refused.npk:13 [main] `re: @p`
+  - time/meta/roadmap/done/0.3/0.3.3_tools/step2.patch::tests/unit/double_readings.npk:356 [main] `runs: @runs`
