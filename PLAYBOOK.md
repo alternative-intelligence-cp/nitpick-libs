@@ -1499,6 +1499,12 @@ per-repository numbers collide.
 - **A record that quotes a CI log line masks the runner's path.** `sha256sum -c` prints the asset's path under the runner's
   home directory, and `check_refs`' leak scan flags any home-directory path, the runner's included. *(`nitpick-parse`
   0.0.1a, its step 1, 2026-10-25; landed 2026-10-25.)*
+- **A plan's check exits non-zero on everything it reports as wrong.** A check that prints a finding and exits 0 is safe
+  only inside a block whose Expect the comparator holds. Run by hand, or by a later pass, it passes. Two of the libraries'
+  plan tools did this on 2026-10-25: `nitpick-parse` 0.0.1a's `across.py` exits 0 on an emission diff, and
+  `nitpick-sockets` cycle 0.0's `tools/twins.py` exits 0 on a restored stale text, with STALE 8. Each such check carries a
+  control that plants the finding and proves the exit, and its README says what each exit means. *(`nitpick-parse` 0.0.1a's
+  work verifier, its finding 3, and `nitpick-sockets` cycle 0.0's T7v4, its finding 4, 2026-10-25; landed 2026-10-25.)*
 
 ---
 

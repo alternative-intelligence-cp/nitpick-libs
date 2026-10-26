@@ -16816,3 +16816,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **PLAYBOOK §7** takes the chain's two findings: a push's time is the pusher's `date` and the run's `createdAt`; and a record that quotes a CI log line masks the runner's path.
 - **0.0.2's go** was given at 10:48; its slot is management's.
 - **Sockets:** T7c4b DONE at `d7f44e1` (09:21:58); T7c5 from 12:50:30, then T7v. The chain is re-read at T7v's PASS.
+
+### Sockets cycle 0.0's plan CHAIN PASS at `5862558`, re-read and merged; the deferred findings ruled; O-N42 registered and sent; one PLAYBOOK §7 note — 2026-10-25 22:38 (shell time)
+
+- **The chain line** (`Ailp-team_23`, the Team seat's manager from 20:44, at `uds:/run/user/1000/cc-socks/3871783.sock`; stamped 22:24:12): `nitpick-sockets 0.0 PLAN CHAIN PASS branch team/sockets-0.0-plan commit 586255803fa1…`, with the reports T7v4, T7fix2 and T7v3, and the earlier ones in the same folder. T7v4 (`sonnet`) PASSED at 22:20 with nine findings, none blocking, after T7v3's FAIL at `fd47ba3` (17:47:00) and T7fix2's four commits. There is no CI on the plan branch.
+- **Read here** by `team_reread.sh` at 22:25:12: 23 commits after `d385991`, each with `Co-Authored-By`. All but `84d165d` and `7379ca1` (10-18) carry one `Claude-Session`. 69 files, +23 409/−737, all under `meta/roadmap/0.0/`; no added line names `/home/`.
+- **Merged:** `main` fast-forwarded `d385991` → `5862558` and pushed at 22:27:18. `ls-remote` reads `5862558`, and the checkout is clean and `0/0`. `CLAIMED s3` stays. `LIBRARIES.md`'s sockets row now names the merge, and 36 decisions where it said 35.
+- **Ruled**, as the board entry gives in full:
+  - `management_3`'s three recommendations (T7v4's 4, 1 and 2) are accepted and go first in T7fix3, a lean round before 0.0.0's execution, its slot management's. T7v4's 4 is a must-fix before check (b) runs again;
+  - the tool items that can pass a wrong answer silently, and the one-line texts, go in the same round. T7v3's 8, 15 n1 and n3 and T7v4's 9 stand as they are;
+  - the author item stands, for the author through `management_3`;
+  - T7c4b's false sentence in `e861387`'s pushed message, corrected by `d7f44e1`, is accepted with history kept, and the other disclosures are accepted.
+- **O-N42** (sockets' own question N-5: name `EINPROGRESS`, `EALREADY`, `ECONNABORTED`, `EMFILE` and `ENFILE`) is registered in `meta/OPEN_QUESTIONS.md` and sent to `nitpick-compiler_48`.
+- **The in-flight rows** for sockets and parse are brought up to date. Parse's had lagged at `1da6c65`.
+- **PLAYBOOK §7** takes a note: a plan's check exits non-zero on everything it reports as wrong.

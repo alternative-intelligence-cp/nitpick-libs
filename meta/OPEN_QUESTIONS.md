@@ -318,6 +318,41 @@ repository's local id beside it. A new ecosystem-wide request takes the next
 free number here, from `O-N8` on. Found by `check_refs.py` the moment this
 file existed — the check works.
 
+- **O-N42 — AN ERRNO THE PRELUDE DOES NOT NAME CAN BE FORWARDED BUT NEITHER NAMED NOR COMPARED, SO A SOCKET LIBRARY CANNOT TELL
+  `EINPROGRESS`, `EALREADY`, `ECONNABORTED`, `EMFILE` OR `ENFILE` FROM ANY OTHER FAILURE.** Raised by `nitpick-sockets` cycle
+  0.0's plan (T7, 2026-10-18, at the pin of the day `c9baa9e`) as its own question N-5. Cycle 0.0.0's step 4
+  (`meta/roadmap/0.0/0.0.0_tools/step4.patch`) writes its entry into
+  [`nitpick-sockets/meta/OPEN_QUESTIONS.md`](../nitpick-sockets/meta/OPEN_QUESTIONS.md), with a note that this registry
+  assigns its id (the early audit's ED2). Registered here 2026-10-25 under the next free number. **Not in the library's way
+  today:** sockets has no `src/` yet.
+  - **The refusal, re-measured at `2e1cb4a` by sockets' T7v3 (2026-10-25):** `error:EInProgress = 115i32;` is
+    `NITPICK-RESOLVE-010` at 15:1 (*"an explicit error code is the prelude's alone (D-179)"*), and `r.err =>! int32` is
+    `NITPICK-TYPE-032` at 17:24. By D-179 an error is nominal: it compares only with an identity the prelude declares, or with
+    another error. The prelude names five errnos beside `IoEof` (4096): `WouldBlock` 11, `Interrupted` 4, `NotFound` 2,
+    `Exists` 17 and `CrossDevice` 18. Its source says *"Naming more of the errno space is a decision for the code that needs
+    it"*. The compiler's `src/prelude`, `lib`, `runtime` and `sdk` are unchanged from `2e1cb4a` to `249eae9` (checked here
+    2026-10-25).
+  - **The ask:** the prelude names `EINPROGRESS` 115, `EALREADY` 114, `ECONNABORTED` 103, `EMFILE` 24 and `ENFILE` 23, as it
+    names `WouldBlock` and `Interrupted`.
+  - **What it blocks (W-27):**
+    - **Blocked, when sockets reaches them:** `SOCKET_MODEL.md` K-19's `ECONNABORTED` and `EMFILE`/`ENFILE` rows and K-19.1, and
+      cycle 0.8.2's back-off wait (sockets' SK-104 and PD-162). Without the names, an accept loop cannot tell an aborted peer,
+      which it skips, from descriptor exhaustion, which it backs off from.
+    - **Inconvenienced:** cycle 0.3.1's `connect` is spelled without `EINPROGRESS`, by a second `connect` after the wait
+      (probe 08).
+    - **Unaffected:** every errno is forwarded to the caller verbatim at no cost (sockets' `SAFETY.md` S-6).
+  - **For the compiler's planning, the tradeoffs:**
+    - The change is five constants in the prelude, with no new rule. D-179's model stands, and the codes stay the prelude's. No
+      wrapper `fail`s one by name, so no `failsafe` gains an arm.
+    - The numbers come from Linux's generic table (`asm-generic/errno.h` and `errno-base.h`, read on this machine), the same
+      table as the five the prelude already names. Other kernels number both sets differently, so a port maps ten where it
+      maps five.
+    - **The trap** is a partial set: an application that decides on another errno, such as `ECONNREFUSED`, meets the same
+      refusal. The prelude's own rule, to name what code needs, takes each as it comes.
+    - **Unknown here:** whether the compiler would name these one by one, as the prelude does now, or as a set for the network
+      calls. Either serves the library.
+  - **Sent to `nitpick-compiler_48` with this registration, 2026-10-25.**
+
 - ~~**O-N41 — `exit` OF A FALLIBLE CALL COMPILES, AND `llc` REFUSES ITS IR.**~~ — **DISCHARGED — an `exit` operand is held to `int32`, `NITPICK-TYPE-007` at the operand, at the pin `c9baa9e`** (DEF-249, landing 104, `085bc01`, 2026-10-09; verified here 2026-10-09 05:17; in the pin 2026-10-16). The entry as it stood follows, kept. Found 2026-10-08 by `nitpick-time` 0.3.2's planner
   (`s2-ntime-0.3.2-1146`) at pin `5fbaf4a`. **Not in the library's way, and not worked around.** The reproduction is written by
   `nitpick-time/meta/roadmap/0.3/0.3.2_tools/facts.sh` §1.7 at `fdbb19a`: `sh_exit.npk`, and its control `sh_exitv.npk`.
