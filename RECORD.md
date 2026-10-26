@@ -16847,3 +16847,43 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **By the author's rule of 2026-10-24,** confirmed by `management_3` at 22:39:20, the writer line's first token is `none`. The marker `.internal/orchestrator.session` is removed after this push. The handoff block `_25` → `_27`, at the top of the board, is the brief.
 - **In flight at the release:** nothing of this seat's. The pin is `2e1cb4a`, and compiler `main` is `249eae9` (landing 161). `nitpick-compiler_48` builds 162 (DEF-304), with F104 to come. Sockets' T7fix3 and T7v5 and parse's 0.0.2 wait for management's Team slots. The libraries' allocation is about 0.5 point to Wed 20:00, for notices only.
 - **`_25` stays open** for `_27`'s questions, and forwards anything that reaches it until the peers re-address.
+
+### Handover — `nitpick-libs_27` takes the workbench lock on `nitpick-libs_25`'s briefed handoff — 2026-10-25 22:50 (shell time)
+
+**Handover.** `nitpick-libs_27` (`cebaf5da-8b39-4d5a-a689-7f790dcb93a0`) takes the writer lock that `nitpick-libs_25` released at `b5950c5` (22:43), by the author's rule of 2026-10-24 (a managing seat hands off after about three compactions). `management_3` confirmed it at 22:39:20 and chose `_27`, skipping `_26` for cost. `_25` briefed this seat by message (22:45:04) and by the board's handoff block (`4dc0e4b`). It stays open until this seat says it is done with it.
+
+- **The account, checked first:** this session's status-line file `~/.claude/context/cebaf5da-….json` carries rate limits (the five-hour window 4 %, resetting 2026-10-26 00:40; the week 90 %, resetting 2026-10-28 20:00), so this seat is on Max. The meters file's last row (22:47:49, from `_25`'s status line) reads the week 90 %, the five-hour 4 % and Fable 96 % (fetched 19:56:49). **The room is 95 − 90 − 0.5 × (100 − 96) = 3,** one point under the brief's 4, because the week rose from 89 % to 90 %. Dispatch nothing.
+- **The id, from values:** `CLAUDE_CODE_SESSION_ID`, the transcript `cebaf5da-….jsonl` (written live), the scratchpad path, `~/.claude/context/cebaf5da-….json` (`session_name` `nitpick-libs_27`) and the session registry's `~/.claude/sessions/1372012.json` all agree. `ListAgents` names this session `nitpick-libs_27` (`[cddd19]`), the ref the handoff block gave it, and its socket is `uds:/run/user/1000/cc-socks/1372012.sock`. `CLAUDE_SESSION_ID` is empty here, so the marker was written from the id (hazard 2): 37 bytes.
+  - **By content:** a nonce (`npk27-take-Qv8tR2wLz5`), typed into the search command, is found in that one transcript only: at 22:47:07 across `~/.claude/projects`, and at 22:48:09 across it (1.5 G, 315 files) and `~/.claude-team/projects` (649 M, 168 files).
+  - A control generated at run time, and never printed, is found in none, on both runs.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main` after a fetch, at 22:46:48 and again at 22:50:59, just before the marker and the edit;
+  - `HEAD` = `origin/main` = `ls-remote` = `b5950c5`, with porcelain 0, both times;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed, found **9 trees, every one `dirty=0`**, at 22:47: the workbench `b5950c5`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `1dd6f77`, regex `14817a1`, sockets `5862558`, time `74b6ee1` and tui `e5439ee`. Eight read `0/0`. Fuzz reads `0/19`: its local `origin/main` is `e289864`, fetched 2026-10-22 02:46:14 under `_23`, and its `main` stays at `d44dfe3`, the corpus our censuses cite, since the repository is its own manager's (W-30). `_24`'s and `_25`'s takes recorded the same;
+  - the pin `2e1cb4a`'s `sha256sum -c` read OK for `npkc` and `npkrt.o`;
+  - the compiler's `main` is `249eae9` (landing 161), clean, `HEAD` its `origin/main`, so 162 has not landed;
+  - the Team branches by `ls-remote`: `team/parse-0.0-plan` at `1dd6f77` and `team/sockets-0.0-plan` at `5862558`, each its `main`.
+- **Hazard 3, asked and answered:** `_25` measured by command at 22:47:51 (sent 22:48): porcelain 0; `HEAD` and `ls-remote` `b5950c5`; no marker. It will make no further write to the workbench or any library repository. Its one later write was the gitignored `.internal/landing/carry_next.txt`, item 10, at 22:44, before its release message.
+- **Hazard 4:** `nitpick-libs_26` (`[644099]`), the parked spare, answered in one line (22:47:49): idle, no task, nothing written in `nitpick-libs` (its only actions were `date` twice, loading the messaging tool, and its hazard-4 replies), and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`, 22:46:42):**
+  - the seat's own: `nitpick-libs_25` (`[fce812]`) and `_26` (`[644099]`), both idle;
+  - the compiler's: `nitpick-compiler_48` (`[94d8f2]`, background), `_49` (`[2e8deb]`) and `_50` (`[12895f]`), all idle;
+  - management's: `management_3` (`[62cd46]`, busy), `_4` (`[4c80b3]`) and `_5` (`[e50452]`), both idle;
+  - the fuzzer's: `nitpick-fuzz_4` (`[0f1b83]`), `_5` (`[5efaef]`) and `_6` (`[f37579]`), all idle;
+  - `diogenes_3` … `_5`, `probe-mk` (Remote Control, offline), and the fuzz cloud session (`[169d76]`, milestone M11).
+
+  The Team's `claude-team` sessions are not listed.
+- **Read before the take, within `management_3`'s ≤ 50 K:**
+  - the board's lines 1–89: the header, the toolchain, the writer and the handoff block `_25` → `_27`;
+  - `_17`'s take section, with the heads of hazards (7)–(13) on the board;
+  - hazards (1)–(6) at this record's 2026-09-26 07:01 entry;
+  - orchestrate's `SKILL.md` §1–§2;
+  - this record's take entry of 2026-10-23 23:49 (`75db701`) and its last two entries.
+
+  The board's newest entries, its in-flight rows and the carry list come after the take, then `WORKSTREAMS.md` §3 and §5, `LIBRARIES.md` and `APPS.md` by search.
+- **Next:**
+  1. the rest of orchestrate §2: recovery for each `CLAIMED` row, and the picture to the author;
+  2. one line to `management_3` with this seat's socket (its ask), and an introduction to `nitpick-compiler_48` and `Ailp-team_23` (by socket);
+  3. the spellings for O-N42, which `nitpick-compiler_48` asked of `_25` at 22:41 and `_25` forwarded;
+  4. F104 and landing 162 when `_48` sends them, against `n161L/base162.txt`.
