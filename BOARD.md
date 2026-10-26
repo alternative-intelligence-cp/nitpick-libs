@@ -15,6 +15,78 @@ blocked, what is done. The durable plan is
 
 
 
+> **🔁 HANDOFF — `nitpick-libs_25` → `nitpick-libs_27`, 2026-10-25 22:43 (shell time), by the author's rule of 2026-10-24 11:40 (a managing seat hands off with a brief after about three compactions, at a clean point; relayed by `management_2` at 12:36:49), which `management_3` confirmed at 22:39:20 needs no fresh word. Nothing of this seat's is in flight. This seat is past its third compaction, and landing 162's advance notice (F104) has not come yet, so the fresh seat checks it.**
+>
+> **`_26` is skipped, by `management_3`'s word of 22:39:20.** `nitpick-libs_26` (`[644099]`) carries about 66 K of an earlier context, and `_27` is idle and fresh. The author's rotation hands to the session one number up, so this is an exception, made for cost. `_26` stays parked.
+>
+> **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes and `_24`'s repeats:
+> - your id, from your transcript and your scratchpad, cross-checked with `~/.claude/context/<id>.json`'s `session_name`;
+> - a nonce typed into the search command and found in your transcript alone, plus a control generated at run time and never printed;
+> - the 37-byte marker `.internal/orchestrator.session`, which `_25` removes at this release;
+> - the token as the writer line's first backticked token, then push, then re-read it with hazard (5)'s command: `git show origin/main:BOARD.md | sed -n '14p' | sed -n 's/^\*\*Workbench writer:\*\* `\([^`]*\)`.*/\1/p'`;
+> - **`check_refs` exits 1 whenever it reports findings,** the two known `[leak] tools/guard_domains.py` lines included. Its finding lines are indented: after staging, count them with `grep -c '\[[a-z-]*\]'` against the 2 known, and never chain on its exit code.
+>
+> **Hazard 3:** ask `nitpick-libs_25` (`[fce812]`). **Hazard 4:** ask `nitpick-libs_26` (`[644099]` in `ListAgents` at 22:40), the parked spare. Your own ref there is `[cddd19]`.
+>
+> **Read in small** (`management_3`'s ask, ≤ 50 K: the Team seat's ≈ 190 K read-ins cost it three handoffs in an hour). Read:
+> - lines 1–14 and this block;
+> - the newest entries (`grep -n '^### ' BOARD.md | head -6`), each by its line range;
+> - the `## In flight` table's rows, each up to its first `*Before:*`;
+> - the carry list `.internal/landing/carry_next.txt`, 40 lines.
+>
+> `BOARD.md` and `RECORD.md` are read by line and by search, never whole. New board entries go above the newest `### ` entry.
+>
+> **WHO** (at 22:40; re-derive each from `ListAgents` or its next message):
+> - **`management_3`** (`uds:/run/user/1000/cc-socks/3197250.sock`, `[62cd46]`) oversees and allocates. The libraries get about 0.5 point to Wed 10-28 20:00, for the compiler's notices only, batched. **Send it one line with your socket once you have taken over** (its ask). It holds sockets 0.0.5 §14's author item, batched for the author. The author's rulings live in its session (`MANAGEMENT/STATE.md`), so check there before calling a question the author's to decide.
+> - **The compiler seat, `nitpick-compiler_48`** (`[94d8f2]`, `uds:/run/user/1000/cc-socks/1628922.sock`), lands 162: DEF-304's build, under the Q75 freeze the author ruled at ≈ 19:55 on 10-24. Its F-notice, F104, is still to come. O-N42 was sent to it at 22:38:34.
+> - **The Team seat's manager, `Ailp-team_23`** (`uds:/run/user/1000/cc-socks/3871783.sock`, from 20:44, after `_19` … `_22`), is a `claude-team` session, so it is not in `ListAgents`. Sockets' rulings and the fast-forward went to it at 22:38:17. Read the Team's clones only with `git --no-optional-locks -C ~/Team/REPOS/nitpick-libs/<repo>`.
+> - **The fuzzer's manager, `nitpick-fuzz_4`** (`[0f1b83]`, `uds:/run/user/1000/cc-socks/1268635.sock`), gets a W-30 copy only when a fuzz row moves.
+> - **Nobody messages `probe-tx`** until the Team seat's "may close", which has not been heard here.
+> - **Only `management_3` knows of this handoff,** since it chose you. Introduce yourself to the compiler seat and the Team seat after the take. Until they re-address, `_25` forwards anything that reaches it, verbatim and with its arrival time.
+>
+> **THE METERS** (`~/Workspace/MANAGEMENT/meters/usage-log.csv`, 22:37:49): the week 89 %, Fable 96 %. Room = 95 − the week − 0.5 × (100 − Fable %) = 4, so **dispatch nothing.** The bar lines are Mon 91 %, Tue 93 % and Wed 95 %.
+>
+> **THE PIN: `2e1cb4a`** (landing 140). Compiler `main` is `249eae9` (landing 161). DEF-302 and DEF-305 are fixed there but not in our pin, so PLAYBOOK §2's notes from 158, 159 and F103 stand.
+>
+> **HOW A NOTICE IS CHECKED** (the lean form, as for 156 … 161):
+> - **Landing 162:**
+>   1. Make `.internal/landing/n162L/`.
+>   2. Transcribe the six ladder rows by hand into `notice162.txt`, from the message and from the compiler's ladder file, `ladder_<sha>.txt` in `../nitpick/.internal/handoff_s11/`. That tree is read-only: never use `../nitpick/build/`, and never fetch there.
+>   3. Write `scripts/patch_v162.py` from `patch_v161.py`, to make `verify162.py` from `n161L/verify161.py`. The baseline is `n161L/base162.txt`, the parent is `249eae9`, and section 7's EXP reads parse `1dd6f77` and sockets `5862558`.
+>   4. Count both manifests from the tree. Count the runtime's by every symbol, `model:` rows included (161's lesson: 90, not 84).
+>   5. File with `scripts/file_n162.py`, made from `file_n161.py`.
+> - **Advance notice F104 (DEF-304):** census our files and the `.npk` parts of every plan patch. The censuses live in the F-filers: census7 in `scripts/file_f102.py`, and census8 in `scripts/file_f103.py`, which execs census7. First update their sources (carry items 3–4): sockets' `main` is `5862558`, whose patches add `.npk` text, and parse's `main` is `1dd6f77`. Plant controls and near-misses, test the census against the landing's own rejection test, check the notice's sums, and forecast the sweep.
+> - **Commit flow:**
+>   1. Run the script first. A non-zero exit means write nothing.
+>   2. `git add` each file by name.
+>   3. Check that `check_refs` counts 2.
+>   4. Commit with the two trailers, `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` and `Claude-Session:` with your session's URL.
+>   5. Push, then confirm `HEAD` = `ls-remote`, porcelain 0 and the token yours.
+>
+>   In every text: no home-directory path (write `~/Team/...`) and no link with empty text. `RECORD.md` ends with exactly one newline. Numbers on the board take plain spaces ("4 433").
+>
+> **OPEN, IN ORDER:**
+> 1. **F104 and landing 162** (DEF-304's build, from Sun 20:00 by management's order). Then DEF-298 and DEF-299 (M3), DEF-306, DEF-286 (our re-pin waits for it), DEF-292, DEF-293, DEF-294, DEF-291, DEF-295, D-358, step 3d's rest and step 4.
+> 2. **Sockets T7fix3, then T7v5,** in next week's Team slot (management's), before 0.0.0's execution. The ruled list is in the board entry at `733d6d6`. At its PASS, run `team_reread.sh`, then fast-forward `main` from `5862558`.
+> 3. **Parse 0.0.2** on the Team seat. This seat's go was given at 10:48, and the slot is management's. PD-140 and PD-144 come here at 0.0.3's and 0.0.4's step cuts.
+> 4. **O-N42** is with `nitpick-compiler_48`: add a dated line to its entry when the compiler registers it. Write it as O-N42 or "sockets' own question N-5", **never "O-N5"**: the registry's O-N5 is `npkg` multi-artifact.
+> 5. **F-053** (a wild-NULL load whose value decides nothing is deleted at -O2) is with the compiler seat, and with the author through management (§27's "USES"). No fuzz row moves until the compiler answers.
+> 6. **The re-pin after DEF-286,** at the author's go at next week's planning, which management carries.
+>
+> **THIS SEAT'S TENURE** (taken 2026-10-23 23:49, after `f7c6ab9`):
+> - landings 156 … 161 verified in the lean form, and advance notices F99 … F103 filed with their censuses;
+> - the Team's chains re-read and ruled: parse's plan PASS (T11v2), parse 0.0.1a merged at `1dd6f77`, and sockets cycle 0.0's plan merged at `5862558`;
+> - O-N42 registered, and PLAYBOOK §7's notes on push times, CI-log paths and checks that fail open.
+>
+> **Its corrections against itself are in the record:**
+> - the census helper's range-slice gap (F99);
+> - the census gaps that 159's and 160's tests found;
+> - Q75 called open after the author had ruled it, and `5bab11d`'s message (`e2eb044`);
+> - 161's runtime manifest counted by `@` names only (84, not 90);
+> - parse's in-flight row, left stale at `1da6c65` and corrected at `733d6d6`.
+>
+> **OPEN WITH THE AUTHOR,** through management: the re-pin's go, F-053's §27 question and sockets 0.0.5 §14's item.
+
 > **🔁 HANDOFF — `nitpick-libs_24` → `nitpick-libs_25`, 2026-10-23 23:42 (shell time), at the author's word (*"i'm fine with the handoff."*, 23:39), at a quiet point: nothing of this seat's is in flight. This seat is at 69 % of a 1 M context, and the libraries' allocation is 2 points to Wed 20:00, so a fresh seat checks the notices far cheaper.**
 >
 > **Take the lock** by orchestrate §2 and the take hazards (1)–(13), as `_17`'s block below describes and `_23`'s repeats:

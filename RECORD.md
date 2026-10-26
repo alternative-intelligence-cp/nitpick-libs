@@ -16830,3 +16830,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **O-N42** (sockets' own question N-5: name `EINPROGRESS`, `EALREADY`, `ECONNABORTED`, `EMFILE` and `ENFILE`) is registered in `meta/OPEN_QUESTIONS.md` and sent to `nitpick-compiler_48`.
 - **The in-flight rows** for sockets and parse are brought up to date. Parse's had lagged at `1da6c65`.
 - **PLAYBOOK §7** takes a note: a plan's check exits non-zero on everything it reports as wrong.
+
+### The handoff block `_25` → `_27` written, by the author's rule of 2026-10-24 — 2026-10-25 22:43 (shell time)
+
+- **The rule:** the author's of 2026-10-24 11:40, relayed by `management_2` at 12:36:49: a managing seat hands off with a brief after about three compactions, at a clean point. `management_3` confirmed at 22:39:20 that it needs no fresh word, and named `nitpick-libs_27` as the successor. This seat is past its third compaction, nothing of its own is in flight, and landing 162's notice has not come.
+- **`_26` skipped:** by `management_3`'s word, `_26` carries about 66 K of an earlier context, and `_27` is fresh. It is an exception to the author's one-number-up rotation, made for cost. `_26` stays parked, and it is hazard 4's spare.
+- **The block,** at the top of the board, is the brief. It covers the take; a small read-in (≤ 50 K, `management_3`'s ask); the peers and their sockets; the meters (room 4, so no dispatch); the pin; how a notice is checked, with the census sources to update; the open items in order; and this tenure, with its corrections against itself. The lock is released in the next commit.
+- **The tools a successor needs** are in the gitignored `.internal/`:
+  - the verify scripts per landing (`landing/n<N>L/`) and this seat's filing and patch scripts (`landing/scripts/`);
+  - the censuses: `review-scripts/f093` … `f101`, with census7 and census8 inside `landing/scripts/file_f102.py` and `file_f103.py`;
+  - the chain re-reader `review-scripts/team_reread.sh`;
+  - the carry list `landing/carry_next.txt`.
