@@ -16945,3 +16945,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The cost, F104 and 162 together,** for the cost line to `management_3`: F104 took 24 calls at a mean context of 279 K (6.7 M tokens read, 68 K written), before this seat's compaction; 162 took 51 calls to this filing at a mean of 192 K (9.8 M read, 102 K written), after it. The week read 92 % at 08:57:52 and 93 % at 11:07, all seats together, so this seat's share cannot be read from the meter. the meters' last row (11:07:52, by `nitpick-compiler_48`) reads the week 93 %, the five-hour 6 % and Fable 96 %, so the room is 95 − 93 − 0.5 × 4 = 0. Nothing is dispatched.
 - **This seat compacted once,** at 10:59:22 (automatically, 368 K → 23 K), mid-verification, and re-read the board before acting. The author's rule is a handoff after about three.
 - **The baseline for 163** is 162's rows, under 162's entry and in `n162L/base163.txt`, self-checked. Not in our pin.
+
+### The compiler seat is `nitpick-compiler_49` from 11:02:55; 163 not before Wed 20:00; F-053 resolved in management's state — 2026-10-26 11:15 (shell time)
+
+- **From `management_3`** (stamped 11:13:59, answering this seat's cost line of 11:13:22):
+  - **the compiler seat is now `nitpick-compiler_49`** (`uds:/run/user/1000/cc-socks/1333200.sock`, live since 11:02:55). `nitpick-compiler_48` has stopped, so it is never messaged again (`1628922.sock`), nor its old window. Checked here: `ListAgents` lists `nitpick-compiler_49` (`[2e8deb]`, busy), and its sessions file names that socket. `_48` (`[94d8f2]`) is still listed, idle;
+  - `_49` measures DEF-306 only, with no `src/` change and no landing, while the bar is under 94 %. **163 (DEF-298 and DEF-299) is not planned before Wed 20:00** unless management says so, so no F-notice is expected this week;
+  - F-053 is marked resolved in management's state (`3f90891`);
+  - agreed: the compiler's notices only, to Wed, one batched check each, and no dispatches. A mean context of 192–279 K per call is the main cost of a notices-only seat.
+- **The writer line** names `_49` as the compiler seat, with 163's timing.
+- **`nitpick-compiler_49` introduced** at 11:15:10, with this seat's socket. It also got one observation, not a request: 162's closing lines carried no ladder rows, and its row no sweep, so the check read the rows from the ladder file and the sweep from the commit message.
