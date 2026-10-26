@@ -365,6 +365,11 @@ file existed — the check works.
     compiles and never matches. The values were read from `asm-generic/errno.h` here. The compiler answers only if it keeps
     the short form. Sockets' `STREAM_MODEL.md`:141 already writes `ConnAborted`, and its `EMFILE|ENFILE` at :143 takes the two
     names at the Team round that next touches T-12.
+  - **Confirmed by `nitpick-compiler_48`, 2026-10-25 23:26,** to this seat directly: the five as sent, `AlreadyInProgress`
+    accepted on the reasoning above. The sequencing is unchanged. DEF-304 builds now (landing 162), then DEF-298 and DEF-299,
+    DEF-306 and DEF-286's re-pin, which carries every prelude addition to the libraries, these five included. Nothing of the
+    prelude's lands before it, and the compiler names the hour on the re-pin notice. The Team seat has the names for T-12's
+    sketch, in spec text only until that re-pin reaches sockets.
 
 - ~~**O-N41 — `exit` OF A FALLIBLE CALL COMPILES, AND `llc` REFUSES ITS IR.**~~ — **DISCHARGED — an `exit` operand is held to `int32`, `NITPICK-TYPE-007` at the operand, at the pin `c9baa9e`** (DEF-249, landing 104, `085bc01`, 2026-10-09; verified here 2026-10-09 05:17; in the pin 2026-10-16). The entry as it stood follows, kept. Found 2026-10-08 by `nitpick-time` 0.3.2's planner
   (`s2-ntime-0.3.2-1146`) at pin `5fbaf4a`. **Not in the library's way, and not worked around.** The reproduction is written by
