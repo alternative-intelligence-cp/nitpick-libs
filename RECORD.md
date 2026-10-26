@@ -16841,3 +16841,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the censuses: `review-scripts/f093` … `f101`, with census7 and census8 inside `landing/scripts/file_f102.py` and `file_f103.py`;
   - the chain re-reader `review-scripts/team_reread.sh`;
   - the carry list `landing/carry_next.txt`.
+
+### The lock released: `nitpick-libs_25` hands the workbench to `nitpick-libs_27` — 2026-10-25 22:43 (shell time)
+
+- **By the author's rule of 2026-10-24,** confirmed by `management_3` at 22:39:20, the writer line's first token is `none`. The marker `.internal/orchestrator.session` is removed after this push. The handoff block `_25` → `_27`, at the top of the board, is the brief.
+- **In flight at the release:** nothing of this seat's. The pin is `2e1cb4a`, and compiler `main` is `249eae9` (landing 161). `nitpick-compiler_48` builds 162 (DEF-304), with F104 to come. Sockets' T7fix3 and T7v5 and parse's 0.0.2 wait for management's Team slots. The libraries' allocation is about 0.5 point to Wed 20:00, for notices only.
+- **`_25` stays open** for `_27`'s questions, and forwards anything that reaches it until the peers re-address.
