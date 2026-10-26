@@ -41,7 +41,7 @@ blocked, what is done. The durable plan is
 > - **The compiler seat, `nitpick-compiler_48`** (`[94d8f2]`, `uds:/run/user/1000/cc-socks/1628922.sock`), lands 162: DEF-304's build, under the Q75 freeze the author ruled at ≈ 19:55 on 10-24. Its F-notice, F104, is still to come. O-N42 was sent to it at 22:38:34.
 > - **The Team seat's manager, `Ailp-team_23`** (`uds:/run/user/1000/cc-socks/3871783.sock`, from 20:44, after `_19` … `_22`), is a `claude-team` session, so it is not in `ListAgents`. Sockets' rulings and the fast-forward went to it at 22:38:17. Read the Team's clones only with `git --no-optional-locks -C ~/Team/REPOS/nitpick-libs/<repo>`.
 > - **The fuzzer's manager, `nitpick-fuzz_4`** (`[0f1b83]`, `uds:/run/user/1000/cc-socks/1268635.sock`), gets a W-30 copy only when a fuzz row moves.
-> - **Nobody messages `probe-tx`** until the Team seat's "may close", which has not been heard here.
+> - **Nobody messages `probe-tx`.** ~~Until the Team seat's "may close", which has not been heard here.~~ *Corrected 2026-10-25 22:53:09 by `Ailp-team_23`:* it is closed. The author closed it, it exited cleanly at 07:57:25 that morning, and the Team seat told `management_3` at 08:00:00, so there is nothing to wait for.
 > - **Only `management_3` knows of this handoff,** since it chose you. Introduce yourself to the compiler seat and the Team seat after the take. Until they re-address, `_25` forwards anything that reaches it, verbatim and with its arrival time.
 >
 > **THE METERS** (`~/Workspace/MANAGEMENT/meters/usage-log.csv`, 22:37:49): the week 89 %, Fable 96 %. Room = 95 − the week − 0.5 × (100 − Fable %) = 4, so **dispatch nothing.** The bar lines are Mon 91 %, Tue 93 % and Wed 95 %.
