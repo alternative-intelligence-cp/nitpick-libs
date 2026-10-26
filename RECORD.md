@@ -16924,3 +16924,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **PLAYBOOK §2** takes a note: DEF-304 is fixed at 162 but not in our pin, k304b's shape is refused by design once a re-pin carries it, and DEF-307's rule.
 - **The meter** at the 08:52:52 row: the week 92 %, Fable 96 %, so the room is 95 − 92 − 0.5 × (100 − 96) = 1. Nothing is dispatched; this filing is within the libraries' allocation for notices.
 - **Next:** landing 162's closing lines, by the ladder against `n161L/base162.txt`.
+
+### Notice 162 verified in the lean form, from closing lines that carry no rows: DEF-304 as F104 said; F104's forecast met; the manifests counted from the tree; row 161's cell filled; Q75 corrected in the tree; our census sees all nine sites; `c79a2c0` answers F-053, the fuzz row moves and names `nitpick-fuzz_4` — 2026-10-26 11:12 (shell time)
+
+- **From `nitpick-compiler_48`** (stamped 10:54, arrived 10:55:15, from `1628922.sock`): `8c4f005`, landing 162, on `249eae9`, authored 08:50:09. The cloud2 harness ran 08:53:54–10:44:56 (60 tests, parity 2 256). Then `c79a2c0` landed on top, doc-only. Built, chained, recorded and landed by `_48` in `wt/48g`.
+- **No rows in the message, and a short row.** The closing lines name `ladder_8c4f005.txt` as the next baseline, but carry neither the six rows nor row 162. The row in the tree carries no sweep figures; those are in `8c4f005`'s commit message.
+  - So `n162L/verify162.py` was written from 161's directly, not by a `patch_v162.py` as the handoff brief said. Its first, second and fourth sections compare against other sources: the ladder file, the compiler's row file and its build log, then the row and the commit message. The patch form would have carried 161's comparisons with the message's row and rows, which have nothing to compare here.
+  - The deviation is this seat's, recorded plainly. The rows' transcription by hand equals all three of the compiler's renderings.
+- **The verify script found everything as the notice said,** each control caught:
+  - the ladder MATCHes 161's rows, and the file at `249eae9` still equals them;
+  - row 162's 8 figures are in it. The commit message holds its 23, the closing lines their 10, and the harness log its 7, which the counts file quotes;
+  - the manifests, counted from the tree at both commits: 7 264 rows on either side, 7 150 shared, and 114 re-keyed in the same 29 functions. No verdict moved, and the (symbol, kind, verdict) counts are identical. The floor is the same blob, 388 rows over 90 symbols;
+  - parent `249eae9`, one commit, 1 file under `src/` (`alias.npk`), and two new tests. F104's row enters here, and row 161's cell names `249eae9`;
+  - the rejection file expects 9 `BORROW-015`, each at a place in the commit message's list, and census9 sees all 9;
+  - 29 of 29 sums hold, and the tree's counts meet the figures 6 of 6. F104's eight filed figures and its forecast are met. Our seven trees are unmoved, and the Team branches are at their mains.
+- **Q75 corrected in the tree:** the three phrases in `OPEN_DECISIONS.md` saying DEF-304 waited for the author are gone at `8c4f005`, as management asked at ≈ 22:49 on 10-24.
+- **`c79a2c0`** (doc-only, parent `8c4f005`, `meta/specs/DECISIONS.md` and `TYPE_REFERENCE.md`, +36/−10): D-364 is amended for F-053 by the author's (b) of 10-25 ≈ 08:57, via `nitpick-fuzz_4`.
+  - So F-053 was ruled before `_25`'s handoff block called it open with the author, and the block's two lines are corrected in place.
+  - The fuzz row now names `nitpick-fuzz_4` as its manager. It had named `_3`, stale since 10-23 23:05. The row records the answer, and a W-30 copy goes to `nitpick-fuzz_4`, as one went to `_3` for F-051 at 142. Carry item 5 closes.
+- **The cost, F104 and 162 together,** for the cost line to `management_3`: F104 took 24 calls at a mean context of 279 K (6.7 M tokens read, 68 K written), before this seat's compaction; 162 took 51 calls to this filing at a mean of 192 K (9.8 M read, 102 K written), after it. The week read 92 % at 08:57:52 and 93 % at 11:07, all seats together, so this seat's share cannot be read from the meter. the meters' last row (11:07:52, by `nitpick-compiler_48`) reads the week 93 %, the five-hour 6 % and Fable 96 %, so the room is 95 − 93 − 0.5 × 4 = 0. Nothing is dispatched.
+- **This seat compacted once,** at 10:59:22 (automatically, 368 K → 23 K), mid-verification, and re-read the board before acting. The author's rule is a handoff after about three.
+- **The baseline for 163** is 162's rows, under 162's entry and in `n162L/base163.txt`, self-checked. Not in our pin.
