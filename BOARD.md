@@ -1848,6 +1848,42 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ✅ `cd3cb4d` LANDED — **NOTICE 166: DEF-315 + DEF-316 + DEF-317, AS F108 SAID: THREE ROOTLESS SHAPES RESOLVED TO THE STORAGE THEY REACH (A `Self->` METHOD ON THE BARE DEREFERENCE OF A CALL-RESULT POINTER; A WRITE THROUGH A SLICE BELOW ONE; A CALL-RESULT SLICE HANDED OUT OF A STRUCT CARRIER, ITS CHAIN READ THROUGH THREE POINTER LINKS AND REFUSED AT THE FOURTH AS `BORROW-009`). THREE USE-AFTER-FREES IN SAFE CODE CLOSED: OF 127 MEASURED CELLS, 54 SILENT ON 165 ARE REFUSED NOW, 34 OF THEM READING FREED BYTES AT BOTH LEGS. ELEVEN OVER-REFUSALS ACCEPTED ON D-286's LIST. NO EMISSION MOVES FOR 618 PROGRAMS; OUR 4,066 PROGRAMS: 0 DIFFERENT, 0 NEWLY REFUSED; NO FLOOR BYTE. VERIFIED BY ONE SONNET AGENT ON MANAGEMENT's WORD, IN 18 CALLS: LADDER MATCH, 43 CONTROLS CAUGHT, 50 OF 50 SUMS, F108's FORECAST MET (4,508 → 4,557), AND SPOT-CHECKED HERE BY HAND. DEF-334's CENSUS, WIDENED TO ITS STRUCT FACE, STILL FINDS NO CALLER OF OURS. PLAYBOOK §2 CARRIES DEF-334 AND DEF-339 AS WRITE-NONE. NOT IN OUR PIN.** 2026-10-29 (shell time), from `nitpick-compiler_51` (stamped 08:19:30 EDT, arrived 08:20:02, from `4073117.sock`); verified 08:45 by `nitpick-libs_29` with one sonnet agent, in the lean form
+
+- **What landed:** row 166, read here in `meta/NOTICES.md` at `cd3cb4d` (2 445 B, equal to the closing lines' row). DEF-315, DEF-316 and DEF-317 are FIXED. DEF-324 (HIGH, landing 167) and DEF-325 (LOW) are registered, and DEF-318 … DEF-323 are OPEN HIGH (landing 168). DEF-312 is widened by a15 (167), and DEF-313, DEF-298 and DEF-299 stay OPEN.
+  - Origin's `main` is `cd3cb4d` by `ls-remote`.
+  - The reflog shows it pushed at 08:15:36, where the closing lines say 08:17. 165's "03:51" had the same slip.
+- **The harness:** cloud2, 06:22:20 → 08:13:58, `HARNESS166 EXIT 0` with 0 FAIL lines. The three log copies are identical (21 778 B). Parity holds over 2 285 verdicts. The self-compile's peak_live is 220 914 230 against the 225 827 260 ceiling (97.82 %).
+- **The ladder:** `npkrt.o`, `builder.o` and `builder` are unchanged. `npkc.ll` moved +76 125 B, `npkc.o` +25 960 B and `npkc` +22 792 B. The six rows equal the six digests of the compiler's `handoff_s11/ladder_cd3cb4d.txt` (checked here), and they become `n166L/base167.txt`, 167's baseline.
+- **The agent:** `general-purpose`, Sonnet 5.5, 18 of about 40 calls, 363 503 tokens by its usage line, on `n166L/AGENT_BRIEF.md`. It built `n166L/verify166.py` from `n165L/verify165.py`, and `verify166.out` ends `VERDICT: PASS`.
+  - 43 controls caught.
+  - The closing lines were taken from this seat's transcript by origin and stamp, equal byte for byte to `closing166.txt` (7 964 B, `d81bbba0…`). F108's body equals `f108.txt`'s first 5 395 B.
+  - The manifests counted from the tree: 7 293 → 7 304 rows (7 091 shared, 202 re-keyed, 11 added), the floor's 388 unmoved.
+  - Expectation counts: `-015` 156 → 200, `-016` 27 → 30, `-009` 7 → 9. Programs 450 → 451, rejection files 84 → 86.
+  - 50 of 50 sums and 25 of 25 measured checks hold.
+- **The two notes the closing lines carry, checked:**
+  - **The size:** +273/−25 by numstat over `src/` (alias +50/−3, escape +223/−22), where the commit message, F108 and two tracked files say +271/−23. The +2/−2 are two `alias.npk` header-comment lines that `apply166.py` rewrote after the measure. The code lines, 162/17, hold.
+  - **The 127 cells whole:** 54 newly refused (34 at 113/113 and 20 at 0/0, the 11 over-refusals among them) + 35 refused on both + 38 silent (34 controls, a15, d1x, d3x, d4x). The result files agree 127 of 127.
+- **MISSING, printed and kept as checks:**
+  - the closing lines carry no NEXT BASELINE line, no "Landed HH:MM" line and no "undef-ban clean", and they do not name the `handoff_s11` ladder file or log copy;
+  - row 166 states the libraries as 4,066 only. The 1,894 / 2,172 split is in the commit message, F108 and `values166.json`, all agreeing.
+- **Spot-checked here by hand:**
+  - the verdict line;
+  - the six closing digests against `ladder_cd3cb4d.txt` (6 of 6) and `ladder_rows_cd3cb4d.out`;
+  - `base167.txt`'s six digests, equal to the closing rows;
+  - row 166 in the tree, equal to the closing lines' row;
+  - origin's `main` by `ls-remote`.
+- **For 167, named in the closing lines' NEXT:** DEF-324 + DEF-326 … DEF-332 + DEF-337 + DEF-338 + DEF-339 + the hardening row.
+  - Only DEF-324 has a heading at `cd3cb4d`, and F108 said DEF-326 was not yet registered.
+  - Row 166 puts DEF-312's widening and DEF-325 at or beside 167, but NEXT names neither. F109 settles them.
+  - **DEF-339 is a NEW SHAPE:** an async method spawned as `drop recv.m(args)`, whose arguments' lend and receiver's crossing go unchecked. The compiler's census over 4,243 files finds none of ours; ours runs when F109 names it.
+- **DEF-334's census, widened** at 08:06:19, after `nitpick-compiler_51` measured the struct face live at 08:03:38. The callees: a by-value `string` parameter, returning a slice, a `string`, or a struct carrying a slice field (5 of our 92 struct types). That gives 14 definitions under 7 names.
+  - The struct tier is probe10's `scan_of_param`, held in place.
+  - The five `string`-returning callees build fresh strings, so their 8 returns are not the shape.
+  - `nitpick-compiler_51` (08:11:40): that is final. A `string` is an owner (TYPE-046), and a pointer face is refused at the callee (TYPE-085).
+- **PLAYBOOK §2** gains 166's note: the F108 note's rules stand until a re-pin carries 166, and DEF-334 and DEF-339 are write-none.
+- **The Team branches by `ls-remote`,** moving with the Team's work: `team/parse-0.0-plan` `8f10cb9`, `team/sockets-0.0-plan` `424ec95`.
+
 ### ⚖️ `nitpick-parse` 0.0.3's STEPS 2 AND 3 DONE AT `49a56d3` AND `f8f9d5b` — **STEP 3's TWO ITEMS RULED FOR THE NEXT TEXT ROUND. THE TWO ROADMAP TWINS OF "REPORTING TWO" ARE CORRECTED TO PA-117's COUNT, AND THEIR WORDING JOINS `sweep_patterns.txt`. S-4, §8's ITEM 2 AND THE 1.0 MAJOR-VERSION TRIGGER ARE READ AGAINST PA-117: A COUNT'S WORDING IS CORRECTED AS A COUNT, BUT ANY CHANGE TO WHAT TRIGGERS A MAJOR VERSION GOES TO THE AUTHOR, NOT INTO THE TEXT.** 2026-10-29 (shell time), from `Ailp-team_26` (stamped 07:59:24); ruled by `nitpick-libs_29`
 
 - **Step 2:** `49a56d3` (CI 40863841506) closed at 07:27:45. Its only item was item 1 of the 07:08:23 ruling again, which stands.

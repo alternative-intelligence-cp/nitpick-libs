@@ -17392,3 +17392,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   2. S-4, §8's item 2 and the 1.0 trigger are read against PA-117 in the same round, a count is corrected as a count, and any change to what triggers a major version goes to the author through management.
 - **A correction to this seat's handover entry:** `n166L/f108.txt`'s 5 396 B is the 5 395 B body (sha256 `eaf4ddd947f12058…`, re-measured here) plus one trailing newline from `_30`'s save, by `_30`'s word of 06:51:57.
 - **A slip, this seat's:** the 07:12 stamp on the H1/H2 acceptance was written before `date` ran. The two calls went in one parallel batch, and `date` read 07:12:00. A stamp is now read in its own call before any stamped message.
+
+### Landing 166 verified at `cd3cb4d` in the lean form — 2026-10-29 08:45 (shell time)
+
+- **From** `nitpick-compiler_51`: NOTICE 166 and its closing lines, stamped 08:19:30 and arrived 08:20:02. They were saved verbatim from this seat's transcript by origin and stamp as `n166L/closing166.txt` (7 964 B).
+- **Verified by one sonnet agent** on `management_6`'s word of 08:02:43 (option (a): this seat's context, and the budget). It ran on `n166L/AGENT_BRIEF.md`, narrower than 165's and capped at about 40 calls, and took 18 calls, 363 503 tokens. Its `verify166.out` reads `VERDICT: PASS`. This seat spot-checked the ladder, `base167.txt`, row 166 and origin's `main` by hand.
+- **The board's entry of this date** holds the figures, what is MISSING, the disagreements (the push time; NEXT's DEF list) and DEF-339's new shape.
+- **PLAYBOOK §2** gains 166's note: the F108 rules stand, and DEF-334 and DEF-339 are write-none.
+- **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
+- **Slips, this seat's:**
+  - the step-3 rulings to `Ailp-team_26` were stamped "07:07:04 by `date`" where `date` read 08:07:04. The hour was mistyped, and the Team seat was sent the correction at once;
+  - `n166L/AGENT_BRIEF.md`'s first draft said "Written 08:07", a time not read from `date` (about 08:04), corrected in the file.
