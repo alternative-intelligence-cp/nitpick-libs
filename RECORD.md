@@ -17110,3 +17110,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **This seat compacted once,** automatically, at 22:59:01 (313 730 → 21 412 tokens), while idle after F106, and re-read the board before acting. The author's rule is a handoff after about three.
 - **Slips, completed:** F106's entry recorded two `cd`s into `.internal/landing`. A third, a `cd` into `../nitpick` for a read-only `git grep` during F106's census, is recorded here. Each was undone at once, and nothing was written.
 - **The baseline for 165** is 164's rows, under 164's entry and in `n164L/base165.txt`, self-checked. Not in our pin.
+
+### `nitpick-sockets` cycle 0.0's fix round 3 CHAIN PASS, re-read and merged at `af50100`; T7v5's findings and 0.0.0's execution ruled — 2026-10-29 01:52 (shell time)
+
+- **The chain line** (`Ailp-team_25`, stamped 01:45:53, at `uds:/run/user/1000/cc-socks/3494668.sock`): `nitpick-sockets 0.0 PLAN FIX ROUND 3 CHAIN PASS: branch team/sockets-0.0-plan, commit af501004…`. T7v5 (`npk:verifier`, Sonnet 5.5, 23:45:25 → 01:43:09) PASSED with eight findings, none blocking: 46 of 46 blocks SAME, and checks (a) and (b) equal to T7fix3's output but one label.
+- **Read here** by `team_reread.sh` at 01:47:49, with two controls (the reversed ancestry reads NO; a planted `/home/` line counts 1): four commits after `5862558`, each with its brief's two trailer lines once; 31 files, +763/−222, all under `meta/roadmap/0.0/`; no added line names `/home/`; no CI. T7v5's report was read whole (28 295 B, `b42afd5b…`).
+- **Merged:** `main` fast-forwarded `5862558` → `af50100` (the fetched tip's tree equal to the Team clone's) and pushed at 01:48:49. `ls-remote` reads `af50100`, the checkout is clean and `0/0`, and `check_refs` on it is clean. `CLAIMED s3` stays, and `LIBRARIES.md`'s sockets row names the merge.
+- **Ruled,** as the board entry says:
+  - T7v5's findings go to the rounds that next touch each tool, and (1) to round (i)'s exit commit.
+  - 0.0.0's execution opens with one planner round. It holds ruling (1)'s exit commit, moved there from 0.0.0's first commit on the Team's proposal; O-N42's rename with its Expects; and the step cut on parse's model.
+  - Then a scoped verifier, and this seat's re-read and fast-forward.
+  - The research gate runs from the Team, and its digests are read here before step 0. Then the runs and the work verifier.
+  - The chain's size comes to this seat and management before dispatch.
+- **A slip of this seat's:** at 01:47 a read-only `cd` into `~/Team/REPORTS` (a `wc`, a `sha256sum` and a `grep` of the two reports). It is the fourth `cd` of this seat's tenure; the first three were recorded at 164. The harness reset the working directory, and nothing was written. The rule stands: absolute paths only.
+- **The cost, sockets' fix round 3 on this seat,** for the cost line to `management_4`:
+  - T7fix3's line and its rulings (23:44–23:51): 13 calls, mean context 216 K, 2.80 M read;
+  - this review, from the chain line's arrival (01:45:53) to the filing script's run: calls 24; mean context 123 K; read 2.95 M; written 40 K; max context 169 K.
+- **Next:** F107 (landing 165) when it comes; parse T14v's verified amendment, before T14w0; sockets' round (i) chain line.
