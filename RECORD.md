@@ -17403,3 +17403,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Slips, this seat's:**
   - the step-3 rulings to `Ailp-team_26` were stamped "07:07:04 by `date`" where `date` read 08:07:04. The hour was mistyped, and the Team seat was sent the correction at once;
   - `n166L/AGENT_BRIEF.md`'s first draft said "Written 08:07", a time not read from `date` (about 08:04), corrected in the file.
+
+### `nitpick-parse` 0.0.3 CHAIN PASS, re-read and merged at `8f10cb9`; T14vw's three findings ruled — 2026-10-29 09:39 (shell time)
+
+- **The chain line** (`Ailp-team_26`, stamped 09:33:09, at `uds:/run/user/1000/cc-socks/829040.sock`): `nitpick-parse 0.0.3 CHAIN PASS branch team/parse-0.0-plan commit 8f10cb9…`, with the reports T14w0 … T14w5 and T14vw. T14vw (sonnet) passed at 09:27:52 with three findings, none blocking.
+- **Read here** by `team_reread.sh` at 09:34:54:
+  - nine commits after `f6e8118`, each with its two trailers once;
+  - 26 files, +1 563/−112, with no `.npk` file and no `/home/` in an added line;
+  - the nine CI runs and their jobs, by `gh run view`, each a push `success`, and the CI pin ours;
+  - H1 and H2 exit 1 at the tip. As controls, their patterns hit real imports and real `+=` lines elsewhere.
+- **Merged:** `main` fast-forwarded `f6e8118` → `8f10cb9` and pushed at 09:35:53. `ls-remote` reads `8f10cb9` for both refs. The checkout is clean, and `check_refs` and `check_record` are clean on it.
+- **Ruled:**
+  1. a throwaway clone goes under `.internal/w00/` in the Team's template, and the gate's wording is unchanged;
+  2. the CI-wait rule stands, and the disclosed waiter is accepted with no trace;
+  3. a stand-in clone is named for its repository, and `check_record`'s name mismatch gets its own code at the next tools round.
+- **Also brought up to date:** the writer line, the parse and sockets in-flight rows, and LIBRARIES.md's parse row.
+- **A correction:** the 166 entry's agent figure was its final context, not its spend. Its transcript shows 11 model calls and 2.16 M read. The entry is corrected, and `management_6` was told at 08:48:20.
+- **Next for parse:** 0.0.4's amendments, with the three harness fixes ruled at `002a53e` first and the text round after them, in a slot management assigns.
+- **The cost** of this re-read and merge goes in the parse chain's line to `management_6`.
