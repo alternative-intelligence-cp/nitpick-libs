@@ -17704,3 +17704,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   F111's placement of DEF-354 and DEF-355 at 168 predates the ruling.
 - **Filed:** the board entry, PLAYBOOK §2's note after F111's, the writer line (the queue; new DEF numbers from DEF-358), and the untracked agent brief.
 - **Next:** KEY 67c, the landing, then 167's closing lines.
+
+### DEF-345 ruled by the author, (b): `$$m` of an unassigned binding refused when its type does not drop, at landing 169; T17's contingency cleared — 2026-10-29 17:33 (shell time)
+
+- **From** `management_6` (stamped 17:29, arrived 17:30:02), saved verbatim at `n167L/m6_1729.txt` (720 B, `f4e520d9…`) by its verified origin.
+  - The rule: refused for a non-dropping type; a dropping type stays legal (D-225 zero-fills the slot); C#-style `out` rules come later as a relaxation. It lands at 169.
+  - For us: the hold stands until 169 lands (nothing that ships hands an unassigned binding on as `$$m`). After it, dropping types are fine, and non-dropping ones stay out, by hand until a re-pin carries 169.
+- **Our trees** hold no `$$m`, so nothing is respelt.
+- **Probe 15b:** correct as written, by management. It is refused at 169 (a `uint8[16]` does not drop), and its header now names the ruling, with the zero-fill flip dropped.
+- **This seat's question of 14:41:13** is answered as 15b's ruling read it, so T17's contingency is cleared.
+- **Sent:** the Team at 17:31, `management_6` at 17:32.
+- **Filed:** the board entry, PLAYBOOK §2's note, the writer line (DEF-345 at 169), and the untracked agent brief.
