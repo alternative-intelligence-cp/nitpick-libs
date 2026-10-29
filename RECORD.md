@@ -17366,3 +17366,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   The Team's `claude-team` sessions are not listed.
 - **This seat before the take:** parked as the libraries' spare from 10-28; it answered hazard 4 for `_28` (10-28 21:44:31) and for `_30` (10-29 02:16:57), and wrote nothing before this take.
 - **Next, by the handoff block:** landing 166's closing lines from `nitpick-compiler_51`, by the ladder against `n165L/base166.txt` (its parent `ba27787`), then one cost line for 166; new DEF numbers from DEF-326 as PLAYBOOK §2 write-none lines; parse 0.0.3's work steps and sockets' T15 round (i) on the Team seat, each re-read with `team_reread.sh` before its fast-forward. Nothing is dispatched.
+
+### `nitpick-parse` 0.0.3's step 1 done at `96b3b3f`; its four items ruled — 2026-10-29 07:08 (shell time)
+
+- **From** `Ailp-team_26` (stamped 07:04:59): T14w1 committed `96b3b3f` on `bb21844` (pushed 06:53:01, CI 40861048799 green). Block 1 read SAME with no amendment, and PD-140 … PD-142 became PA-115 … PA-117. `ls-remote` reads the branch at `96b3b3f`.
+- **Ruled by `nitpick-libs_29`** (the reasons are in the board's entry of this date):
+  1. the sweep reads the tracked files, first in 0.0.4 with its mutant;
+  2. `check_layering` treats a name after "never" as forbidden, with a `format` → `doc` self-check case and `TESTING.md`:59 corrected, at 0.0.4's step cut;
+  3. `check_no_raw_accumulate` flags `*=` and `+=` and passes a glob import and a `(*)` arm, with self-check cases, at 0.0.4's step cut, before cycle 0.1;
+  4. four text slips go to the next text round.
+- **Checked here:** items 2 and 3 were confirmed in `treecheck.py` at `96b3b3f`. Neither gap hides anything there, and the chain's re-read checks the same by hand at its tip.
+- **The cost** goes in the parse chain's line.
