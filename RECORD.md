@@ -17533,3 +17533,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the writer line: 167 filed, 168 … 171 in order, new DEF numbers from DEF-346, and the successor `nitpick-libs_31` (`_32` the spare), by `management_6` at 13:16.
 - **Asked back** of `nitpick-compiler_51`: whether its sweep read sockets' twenty probes, merged at `049afd0` (13:12:28) after it ran; and DEF-327's absence from F109's list. Nothing else is asked before the harness.
 - **Next:** 167's closing lines and their verification, with our census of the plan patches.
+
+### `nitpick-parse` 0.0.4's amendments and step cut: T16v FAIL on one wrong citation; this seat's (F) 2 relay corrected; the fix round's scope ruled — 2026-10-29 14:00 (shell time)
+
+- **From** `Ailp-team_28` (stamped 13:56:51): T16v FAILED T16's round (`8f10cb9` → `50696a5`) on one blocking finding.
+  - 0.0.4.md:981–982 cites "S-6 and B-18" for each format module declaring its own `EParseState`. B-18 only bars `format` → `doc`, and the rule is S-6. Confirmed here at `50696a5`.
+  - Every other check passes.
+- **This seat's errors:**
+  - its relay of (F) 2 to `management_6` at 13:00:39 carried the same pair, though management's own text to the author at 13:01 never cited B-18;
+  - it left out PA-009's dated note of 0.0.3, accepted here at 0.0.3's merge, which already reads the first major-version trigger as "adding an identity a reachable `fail` raises", option 2.
+
+  Both were corrected with `management_6` at 13:58:33. Management withdrew (F) 2 from the author at 13:59: PA-009's note stands, and S-4 and the 1.0 trigger are aligned in parse's next round, worded by the REACH probe's answer.
+- **Ruled:**
+  - the fix round's scope: findings 1, 5 (to the withdrawal), 2 and 3;
+  - (4), (6), (7) and (8) are information or accepted, and the disclosed fence slips are accepted;
+  - by `management_6`'s order, lane 2 from Sat 03:00 runs the fix round, then T16v2, then the re-read here, the PD rulings and the merge, then parse's next round with the REACH probe.
+- **Sent** to the Team and to `management_6` at 13:58:33. Not merged, and `CLAIMED s2` carries.
