@@ -17462,3 +17462,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - run 3's round-trip item goes to the same round, which meets A-4 or narrows it by a decision.
 - **Asked** of `nitpick-compiler_51`, copied to `management_6`.
 - **Corrected:** the board entry of 10:19, heading and bullet, said that PD-159 … PD-163 become SK numbers "as run 1 applies them". Steps 1 … 4 apply them, in runs 2 … 5, by the Team's word of 10:28:23. The record entry of 10:19 said the same ("at run 1"), and so did this seat's line to `management_6` at 10:20:16.
+
+### DEF-345 registered (the `$$m` face, OPEN HIGH); landing 167 moves `nitpick-time`'s probe 10 at :151 by parity; PLAYBOOK §2 gains DEF-345 — 2026-10-29 11:57 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 11:54, copied to `management_6`): the `$$m` face asked at 11:34:37 is real.
+  - Measured on `cd3cb4d` at both legs: 85/85 for a scalar and for an array's unwritten tail, while a `string` reads as empty.
+  - It is DEF-345, OPEN HIGH, numbered by `management_6` at 11:53:32.
+  - The rule questions are the author's, through management, and the placement follows his ruling: 168 if small.
+  - The compiler seat runs the census.
+- **Landing 167** moves one file of ours by parity: `nitpick-time`'s `probe10_view_edges.npk`:151 becomes `BORROW-015`, to be respelt at the re-pin that carries 167. `management_6` accepted it at 11:53:32.
+- **Filed:**
+  - the board's entry;
+  - PLAYBOOK §2's note for DEF-345, write-none;
+  - the writer line: the Team seat is `Ailp-team_28` at `3546383.sock`, and DEF-345 stands beside 168.
+- **This seat's hold stands** until the ruling and its landing.
