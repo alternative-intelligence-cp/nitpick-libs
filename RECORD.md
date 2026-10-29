@@ -17489,3 +17489,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - run 6 goes as built;
   - run 4's header item (T-6 for T-3), run 5's three text items (the OPEN_QUESTIONS header's "one cycle", probe 13b's header, the T-8 note) and the worker's `:1548` slip go to the next text round;
   - the T-8 note's second-connect answer is one that cycle 0.3.1's plan must identify without naming the errno (PD-162).
+
+### `nitpick-sockets` 0.0.0 CHAIN PASS, re-read and merged at `049afd0`; T15vw's findings and run 6's items ruled — 2026-10-29 13:14 (shell time)
+
+- **The chain line** (`Ailp-team_28`, stamped 13:09:27): `nitpick-sockets 0.0.0 CHAIN PASS branch team/sockets-0.0-plan commit 049afd0`, with the reports T15w1 … T15w6 and T15vw.
+  - The six runs made eight commits, `33cb686` … `049afd0`, declaring `SK-101` … `SK-105`.
+  - T15vw (sonnet) passed at 13:07:43 with six findings, none blocking.
+- **Read here** by `team_reread.sh` at 13:10:32:
+  - eight commits after `424ec95`, each with its two trailers once;
+  - 48 files, +3268/−143, no `/home/` in an added line, and no CI, by design;
+  - outside `meta/`: four top-level texts, `src/addr/README.md` and `tests/probe/` (its README and 20 probes), with no library code.
+
+  T15vw's report was read whole. At the tip there is no `$$` in any `.npk`, every pointer cast of 17 is a `wild` crossing, and no view is returned through an explicit dereference.
+- **Merged:** `main` fast-forwarded `424ec95` → `049afd0` (tree `45f2c4d`, the Team clone's) and pushed at 13:12:28. `check_refs` and `check_record` are clean.
+- **Ruled:**
+  - the README's pin sentence (`c9baa9e` for `2e1cb4a`) is corrected in place at 0.0.1's re-cut;
+  - run 6's DEF-345 in the A-22 item stands;
+  - run 6's two for-the-author items are this seat's, and are ruled;
+  - T15vw's findings (1), (3), (5) and (6) go to the re-cut, and (2) was the Team's to correct, which it did;
+  - the disclosures are accepted.
+- **Brought up to date:**
+  - both sockets rows;
+  - the writer line's Team clause, which now has parse's T16 at `50696a5` with T16v running, and sockets' re-cut next;
+  - LIBRARIES.md's sockets row.
+- **Next for sockets:** 0.0.1's re-cut on the Team seat, after Sat 03:00 at management's slot. The chain's cost line goes to `management_6`.
