@@ -1848,6 +1848,33 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚖️ `nitpick-parse` 0.0.3's STEPS 2 AND 3 DONE AT `49a56d3` AND `f8f9d5b` — **STEP 3's TWO ITEMS RULED FOR THE NEXT TEXT ROUND. THE TWO ROADMAP TWINS OF "REPORTING TWO" ARE CORRECTED TO PA-117's COUNT, AND THEIR WORDING JOINS `sweep_patterns.txt`. S-4, §8's ITEM 2 AND THE 1.0 MAJOR-VERSION TRIGGER ARE READ AGAINST PA-117: A COUNT'S WORDING IS CORRECTED AS A COUNT, BUT ANY CHANGE TO WHAT TRIGGERS A MAJOR VERSION GOES TO THE AUTHOR, NOT INTO THE TEXT.** 2026-10-29 (shell time), from `Ailp-team_26` (stamped 07:59:24); ruled by `nitpick-libs_29`
+
+- **Step 2:** `49a56d3` (CI 40863841506) closed at 07:27:45. Its only item was item 1 of the 07:08:23 ruling again, which stands.
+- **Step 3:** `f8f9d5b` ("an error identity is a module and a name", PA-117), with CI 40867661396 green, block 3 SAME and no amendment. The report is `~/Team/REPORTS/T14w3-parse-0.0.3-step3.md`. The worker measured at the pin that a public raised error is named by its module, as a private one is (`jsonm.EParseState`, `docm.EParseState`), so the patch's claim holds.
+- **(1) Two twins outside `step3.patch`, read here at `f8f9d5b`:** `meta/roadmap/0.13/README.md`:45 ("`check_error_budget` reporting exactly two") and `meta/roadmap/0.12/README.md`:84 ("… still reporting two"). Under PA-117 the check keys identities by (module, name), so its count is more than two. **Ruled:** both are corrected at the next text round, and their wording is added to `sweep_patterns.txt`'s "the public error count".
+- **(2) Three sentences that count identities as "the two", read here:**
+  - `SAFETY.md`:104, Rule S-4: "differently from the two, and it is a **major** version change under PA-009";
+  - `SAFETY.md`:317, §8's item 2: "identities at most `EParseState` and `EParseEncode`";
+  - the 1.0 roadmap's first major-version trigger, PA-009's twin, which the worker quotes as "a new `error:` identity". That spelling is not in `meta/` here outside `0.0.3.md`'s own note, so the round finds it by its meaning.
+
+  **Ruled:** the same round reads all three against PA-117, and §8's count is corrected as a count. S-4's and the 1.0 trigger's wording may be aligned with PA-117. But if PA-117's reading changes what triggers a major version (an existing name raised from a new module, say), that is a question for the author, batched through management, and the text keeps its meaning until he answers.
+- None of the five changes a run, and §6's sweep patterns match none of them. Step 4 (the mutants) runs from 07:59:12, and T15c is still running.
+
+### 🔎 DEF-334's CENSUS — **NO CALLER OF OURS. THE ONE SLICE-RETURNING FUNCTION WITH A BY-VALUE `string` PARAMETER IN OUR TRACKED TREES IS `nitpick-time`'s PROBE `view_of_param`, AND ITS ONE CALL HOLDS THE VIEW IN PLACE IN `main`. THE COMPILER'S "232" IS A WHOLE-DIRECTORY FILE COUNT, 229 OF IT UNTRACKED WORKER SCRATCH UNDER `nitpick-time/.internal/`. DEF-334 (OPEN HIGH, FIXED IN 168) IS WRITE-NONE FOR US.** 2026-10-29 (shell time), asked by `management_6` (stamped 07:52:26); census14 run by `nitpick-libs_29` and reported at 08:01:00 to `management_6` and `nitpick-compiler_51`
+
+- **The shape, in `management_6`'s words:** a user function that returns a view of a by-value `string` parameter is legal. A caller that returns the view out of the frame owning the argument, or carries it out of a block in a holder, compiles silently and reads freed memory (113/113 at both legs on 165 and 166).
+- **Read:** every repository at `main`; parse's and sockets' Team branches at their clones' heads (parse `f8f9d5b`; sockets `799ddd7`, origin `c2585b1`); and the `.npk` parts of every plan patch. That is 400 files, 577 hunks and 3 013 functions, read by `.internal/landing/scripts/census14.py` on census13's loader, with no agent.
+- **Callees by signature:** one, `view_of_param`, which returns a `fixed uint8` slice from a by-value `string:s`, at `nitpick-time` `tests/probe/probe10_view_edges.npk`:78 and in its copy in the done 0.3.2a `step2.patch`. Beside it is probe10c's `view_of_move_param(move string:s)`, a refusal probe. No `src/` file holds one, and `nitpick-apps` holds none.
+- **Its one call:** `probe10_view_edges.npk`:164, in `main`: `fixed uint8[]:pb = raw view_of_param(s);`, with `s` a local. `pb` is then read in place (its length and two bytes), never returned or stored.
+- **The 232 reconciled:** 232 `.npk` files under the workbench match a search for a slice return with a `string` parameter.
+  - 229 are untracked worker scratch under `nitpick-time/.internal/`: w021 64, w013c 40, p014b 32, w020 28, w014b 24, w015 12, w020b 10, p013 10, scratch 5 and w020a 4.
+  - One is untracked scratch in `nitpick-regex/.internal/d4e/`.
+  - Two are the tracked probes above.
+- **Controls:** all 7 planted faces were found, and none of the 4 near-misses was flagged. The faces: `pass raw f(tmp)`; the view held and then passed; through `?!`; two levels deep; `VB{}` into an outer holder; a temporary; returned in a struct literal. The scalar-return rule was corrected once, on a failed control (c5), before the census ran.
+- **Asked of `nitpick-compiler_51`:** the same probe's section 3 has `Scan:sc = raw scan_of_param(s);`, a struct whose `src` reads as a view of `s`, also held in place. Does 168 cover a struct-returning face? The census does not cover struct-returning callees.
+- **The cost:** 18 calls, 4.58 M read (mean context 255 K), no agent. It was not asked first against management's ≈ 0.2-point line, and was sent for its tally.
+
 ### ⚖️ `nitpick-parse` 0.0.3's STEP 1 DONE AT `96b3b3f` — **FOUR ITEMS RULED, NONE BLOCKING. CI'S SWEEP WALKS THE COMPILER'S CHECKOUT, SO IT READS THE TRACKED FILES INSTEAD. `check_layering` READS B-17'S "NEVER `doc`" AS AN ALLOWED NAME, SO B-18 IS NOT ENFORCED WHERE `TESTING.md` SAYS IT IS. `check_no_raw_accumulate` LETS `*=` AND `+=` THROUGH AND WOULD FLAG A GLOB IMPORT OR A `(*)` ARM. THE THREE FIXES GO FIRST IN 0.0.4, EACH WITH ITS MUTANT OR SELF-CHECK CASES, BEFORE CYCLE 0.1 WRITES SCANNER CODE. THE TWO CHECKER GAPS, CONFIRMED HERE, HIDE NOTHING AT `96b3b3f`, AND THE CHAIN'S RE-READ CHECKS BY HAND THAT THEY HIDE NOTHING AT ITS TIP. FOUR TEXT SLIPS FOR THE NEXT TEXT ROUND.** 2026-10-29 (shell time), from `Ailp-team_26` (stamped 07:04:59); ruled by `nitpick-libs_29`
 
 - **Step 1:** T14w1 committed `96b3b3f` on `bb21844` (pushed 06:53:01, CI run 40861048799 green, by the Team seat's word). Block 1 read SAME, with no amendment, and PD-140 … PD-142 became PA-115 … PA-117. `ls-remote` reads `team/parse-0.0-plan` at `96b3b3f` here. The report is `~/Team/REPORTS/T14w1-parse-0.0.3-step1.md`. T14w2 runs from 07:04:45.

@@ -17377,3 +17377,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   4. four text slips go to the next text round.
 - **Checked here:** items 2 and 3 were confirmed in `treecheck.py` at `96b3b3f`. Neither gap hides anything there, and the chain's re-read checks the same by hand at its tip.
 - **The cost** goes in the parse chain's line.
+
+### DEF-334's census: no caller of ours — 2026-10-29 08:03 (shell time)
+
+- **Asked** by `management_6` at 07:52:26. census14 is scripted, with no agent. It found one callee by signature in our tracked trees, `nitpick-time`'s probe `view_of_param` (`probe10_view_edges.npk`:78), whose one call holds the view in place in `main`. The compiler's 232 is a whole-directory file count, 229 of it untracked scratch under `nitpick-time/.internal/`. All 7 controls were found, and none of the 4 near-misses was flagged.
+- **Reported** at 08:01:00 to `management_6` and `nitpick-compiler_51`, with a question on the struct face (`scan_of_param`). DEF-334's PLAYBOOK §2 line is write-none when the notices name it.
+- **The cost:** 18 calls, 4.58 M read (mean context 255 K), no agent, sent for management's tally.
+
+### `nitpick-parse` 0.0.3's steps 2 and 3 done; step 3's two items ruled — 2026-10-29 08:03 (shell time)
+
+- **The steps,** by `Ailp-team_26`'s word of 07:59:24: step 2 at `49a56d3` (CI 40863841506) and step 3 at `f8f9d5b` (CI 40867661396).
+- **Ruled:**
+  1. the two roadmap twins are corrected at the next text round, and their wording joins `sweep_patterns.txt`;
+  2. S-4, §8's item 2 and the 1.0 trigger are read against PA-117 in the same round, a count is corrected as a count, and any change to what triggers a major version goes to the author through management.
+- **A correction to this seat's handover entry:** `n166L/f108.txt`'s 5 396 B is the 5 395 B body (sha256 `eaf4ddd947f12058…`, re-measured here) plus one trailing newline from `_30`'s save, by `_30`'s word of 06:51:57.
+- **A slip, this seat's:** the 07:12 stamp on the H1/H2 acceptance was written before `date` ran. The two calls went in one parallel batch, and `date` read 07:12:00. A stamp is now read in its own call before any stamped message.
