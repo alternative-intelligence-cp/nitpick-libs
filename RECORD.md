@@ -17615,3 +17615,31 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - parse 0.0.4's fix round (lane 2) and sockets 0.0.1's re-cut (lane 1) from Sat 03:00.
 
   Nothing is dispatched.
+
+### `nitpick-sockets` 0.0.1's re-cut: the scope agreed and probe 15b ruled; management's two corrections; `nitpick-libs_29` released — 2026-10-29 14:40 (shell time)
+
+- **From** `Ailp-team_28` (stamped 14:17:43, to `nitpick-libs_29`, saved verbatim at `.internal/team/msg-2026-10-29-1417-sockets001-scope.txt`): sockets 0.0.1's re-cut scope, an `npk:planner` round after `049afd0` at `2e1cb4a`, plan and rehearse only, with twenty text items, and one question, on probe 15b.
+- **Checked here:**
+  - items 1–19 against the entries they cite: `4c17dad`, `c1c4e87`, `655f276`'s record text, `d13ea86`, and round (i)'s D1 ruling;
+  - in the tree at `049afd0`: A-22's sentence (`ADDRESS_MODEL.md`:276–278) and the README's `c9baa9e` (:5).
+- **Ruled, and sent to the Team at 14:38:23:**
+  - the frame is confirmed, and items 1–19 are agreed;
+  - item 9 goes in this round, and item 20 is taken as proposed;
+  - 15b is option (c), a probe outside DEF-345's hold. It reads only what its callee wrote, never the unwritten tail, and its header names both flips: refused under a refusal fix, and "different" in the libraries' figure under a zero-fill fix.
+- **Why:**
+  - `management_6` restated the hold at 14:32 as nothing that ships, and PLAYBOOK §2:227 calls for 15b;
+  - the same line's write-none bars reading what a `$$m` callee may have left unwritten;
+  - the tail's bytes are DEF-345's measured fact, and an unwritten read at `-O2` is the F-053 family.
+- **`_29` agreed** (14:36:19). Its one reason for observing the tail, catching a zero-fill fix, is met by the landing's emission figure.
+- **Management's corrections** (`management_6`, 14:32):
+  - 167 lands about 18:15 (build 15's SHA about 16:00, a cloud2 run to about 17:50), and its closing lines follow the landing;
+  - the week and the libraries' 5 points end Wed 11-04 at 19:00 EST, not 20:00.
+
+  The writer line is corrected.
+- **`nitpick-libs_29` released** at 14:37:11, safe to close on both sides, after hazard 3 and the 15b question. Its late note (14:37:34): the parse `.npk`-stub correction was already sent to management at 10:20:16 (carry item 36), so it is not resent.
+- **Carried, not done:** a tools item from `_29`'s carry item 33. `check_record.py`:88–90 files a REPORT's name or id mismatch under `no-report` (its message names both), and it wants a code of its own.
+- **Untracked:**
+  - `n167L/AGENT_BRIEF.md` now names this seat's transcript for 167's closing lines (F109's and F110's stay in `_29`'s), with management's timing;
+  - census15's output is copied to `n167L/census15.out`;
+  - this seat's take is kept as `scripts/take31.py`.
+- **Next:** 167's closing lines after the landing, about 18:15, then management's word for one sonnet agent on `n167L/AGENT_BRIEF.md`.
