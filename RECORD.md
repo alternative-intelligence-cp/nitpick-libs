@@ -17174,3 +17174,66 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Slips:** five read-only `cd`s in all, none writing anything: the three recorded at 164; one into `~/Team/REPORTS` at 01:47, recorded with the sockets merge; and one at 02:10 into `~/.claude/context`, to read the two spares' status files for their context sizes, returning within the same command. A filter in `file_f107.py` let an empty line read as a changed line, so its comment-only check failed closed; it was fixed and re-run before anything was written.
 - **The cost, F107 on this seat,** for the F107 + 165 line: 01:58 to 02:10, calls 28; mean context 278 K; read 7.77 M; written 74 K; max context 324 K. The handoff itself, from 02:10 to this script's run: calls 14; mean context 341 K; read 4.77 M; written 22 K; max context 355 K.
 - **The handoff block** above `_27`'s on the board is the brief. `_30` is briefed by message too, with the standing security rule first, and `_28` stays open until `_30` confirms the take. The marker `.internal/orchestrator.session` is removed at this release.
+
+### Handover — `nitpick-libs_30` takes the workbench lock on `nitpick-libs_28`'s briefed handoff — 2026-10-29 02:23 (shell time)
+
+**Handover.** `nitpick-libs_30` (`5f913f78-8140-4c76-9b8b-83e352679d96`) takes the writer lock that `nitpick-libs_28` released at `4f0a173` (02:13, pushed 02:14:01), by the author's rule of 2026-10-24 (hand off before a step a compaction would likely hit mid-step) and `management_4`'s word of 02:11:38, which chose the fresh `_30` over `_29`. `_28` briefed this seat by message (02:14:18, the standing security rule first) and by the board's handoff block `_28` → `_30`.
+
+- **The account, checked first:** this session's status-line file `~/.claude/context/5f913f78-….json` carries rate limits (the five-hour window 15 %, resetting Thu 05:50; the week 16 %, resetting Wed 11-04 19:00), so this seat is on Max; the model `claude-opus-5-5`, the context 13 % (130 K) at 02:17:24. `CLAUDE_CONFIG_DIR` is unset, read by its exact name.
+- **The allocation** stands as `_28` recorded it: 5 Max points from 2026-10-28 21:42:56 to Wed 11-04 20:00, by `management_3`, whose seat `management_4` holds. This seat tells management before passing 5, dispatches no agent without asking it, and sends one cost line per chain.
+- **The id, from five values:** `CLAUDE_CODE_SESSION_ID`, the transcript `5f913f78-….jsonl` (written live, 02:17:07), the scratchpad path, `~/.claude/context/5f913f78-….json` (`session_name` `nitpick-libs_30`) and the session registry's `~/.claude/sessions/180160.json` (`sessionId` and `name` `nitpick-libs_30`) all agree. `ListAgents` names this session `nitpick-libs_30` (`[224edb]`), and its socket is `uds:/run/user/1000/cc-socks/180160.sock`.
+  - **By content:** a nonce (`libs30-take-h8v2-qp47-x9dn`), typed into the search command, is found in that one transcript only, at 02:17:28, across this project's transcripts and across `~/.claude/projects` (1.3 G) and `~/.claude-team/projects` (738 M).
+  - A control generated at run time, and never printed, is found in none, on both runs.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 02:18:01, and the take script re-read it at 02:23:02, just before the marker and the edit, refusing otherwise;
+  - `HEAD` = `origin/main` = `ls-remote` = `4f0a173`, with porcelain 0, both times;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed and run with `git --no-optional-locks`, found **9 trees, every one `dirty=0`**, at 02:18: the workbench `4f0a173`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `ab927c8`, regex `14817a1`, sockets `af50100`, time `74b6ee1` and tui `e5439ee`. Eight read `0/0`. Fuzz reads `0/19` against its tracking ref `e289864` (fetched 10-22 02:46; origin's `main` is now `5e33d87`, M15's merge at 02:07), the standing state recorded at the last takes: its `main` stays at `d44dfe3`, the corpus our censuses cite;
+  - the pin `2e1cb4a`'s `sha256sum -c` read OK for `npkc` and `npkrt.o`;
+  - the compiler's `main` is `3adfc05` (landing 164), clean, `0/0` against its local `origin/main` (read with `--no-optional-locks`, no fetch), so 165 has not landed;
+  - the Team branches by `ls-remote`: `team/parse-0.0-plan` at `ab927c8` and `team/sockets-0.0-plan` at `af50100`, each equal to its `main`;
+  - `check_refs` on the workbench before the edit: exit 1, the 2 known `[leak] tools/guard_domains.py` lines and nothing else.
+- **Hazard 3, asked and answered:** `_28` answered from git at 02:19:26. The workbench was clean and level with origin at `4f0a173` (porcelain v2 at 02:17:20: `+0 -0`, no change lines; `ls-remote` `4f0a173`; the stash list empty; line 14 `none` and no marker at 02:16:31). Its last write was the release commit, pushed 02:14:01, and it has only read since. Its own sweep at 02:18:02 agrees tree by tree. It dispatched no agent in its tenure and runs no background shell. Its one owed item is this seat's: the workbench's two "56"s (F107's entry at `6a1d089` and the handoff block's "the kept result files hold 56") are amended at 165's filing. Every other recipient of the "56" (`nitpick-compiler_51`, `management_4`) had the correction by 02:15:06.
+- **Hazard 4:** `nitpick-libs_29` (`[c662f1]`), the parked spare, answered in one line (02:16:57): idle, no task, nothing written in `nitpick-libs` or any library repository (its only actions since its answer to `_28` at 10-28 21:44:31 reading `date`), and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`, 02:16):**
+  - the seat's own: `nitpick-libs_28` (`[2233d4]`, busy) and `_29` (`[c662f1]`, idle);
+  - the compiler's: `nitpick-compiler_51` (`[e3c2a1]`, busy), `_50` (`[12895f]`) and `_52` (`[a67bc0]`), both idle; `_49` is not listed;
+  - management's: `management_4` (`[4c80b3]`, in a shell), `_5` (`[e50452]`) and `_6` (`[f74768]`, opened about 3 h before, new since `_28`'s take), both idle; `_3` is not listed;
+  - the fuzzer's: `nitpick-fuzz_5` (`[5efaef]`), `_6` (`[f37579]`) and `_7` (`[0e1de9]`), all idle;
+  - `diogenes_4` … `_6`, `probe-mk` (Remote Control, offline), and the fuzz cloud session (`[169d76]`, milestone M11).
+
+  The Team's `claude-team` sessions are not listed.
+- **Received after the release, so not on the board at `4f0a173`:**
+  - **`nitpick-compiler_51`'s answers to the three items asked at 02:09:38,** in its line stamped 02:13, sent to `_28` because the compiler did not yet know the seat had moved, and relayed by `_28` at 02:15:06. All three are to be read in 165's closing lines:
+    - **F107's "57 cells" is right.** The 57th is k22 (`k22_mixed_holder_list_ptr_and_other_ptr`, `management_4`'s control of 00:58:57), added to elem3 after the result files were written; `nitpick-compiler_51` has appended its line in `wt/51a` and in the kept copy `nitpick/.internal/def306_matrix_kept/t165/`. `_28` read at 02:15: `elem3_164.txt` and `elem3_165c.txt` hold 14 lines each, k22 `silent O0=0 O2=0` under 164 and `REFUSED NITPICK-BORROW-015` under 165, and the kept files under 165 hold 29 + 14 + 14 = 57 (35 refused, 22 silent). The split: 23 open-now-refused + 22 controls + 11 already refused + 1 accepted false positive (k22) = 57.
+    - **The two comment-only edits:** `call_result_deref_write.npk` lines 39–44 and `call_result_param_root.npk` line 24. Stale function names are corrected (`steps_below` / `check_rootless_pointer_targets` → `path_steps` / `check_pointer_targets`'s call-result arm), with the "no ref, no target" wording. No expectation moves, and the headers were re-checked against 165's checker (9/9, 8/8).
+    - **§7.1's `object` row** is in 165's docs, present at `ba27787`.
+  - **DEF-318 … DEF-323,** from `management_4`'s diff review of 165, relayed in the same message: five pre-existing faces of DEF-307/314's party raising, plus one plausible. Each answers alike on 164 and 165, so there is no regression and 165 is not held. They register in 166's docs, the grouping for management to confirm. A further plausible face (an element address pushed into another `List`) is closed by 165. **Until fixed, write none of these:**
+    - a getter returning an element address of a `List` held inside a struct, array or aggregate;
+    - a call-result or struct-literal element address handed straight to a call that grows the `List`;
+    - a `List` of a recursive type whose inner `List` is pointed at;
+    - a pointer into an inner `List` held across a replacement or growth of that inner `List` through the outer `List`;
+    - a holder declared without an initialiser, then assigned an element address.
+
+    We hold no `List`, so these cost nothing today. PLAYBOOK §2 takes the line at 165's filing.
+  - **Harness 165** runs on cloud2 from 01:56:59, expected about 03:50. The closing lines and the ladder rows follow on green, and `nitpick-compiler_51` sends them to this seat once it is announced.
+  - **T15r2's digest** (sockets 0.0.0's research request 2, current guidance), from `Ailp-team_25` at 02:17:54 copying `management_4`, sent to `_28` and relayed by it at 02:19:26: "yours to rule first". Its would-change-the-plan-if came true in one respect, conditionally on A-19's text, and one part is open:
+    - POSIX.1-2024's `inet_pton` allows leading zeros in IPv4 octets (Austin Group Defect 1573), where RFC 3986's grammar refuses them, so an A-19 refusal citing POSIX would be wrong;
+    - RFC 5952 §4 says implementations MUST accept every RFC 4291 text form (upper-case hex, in-field leading zeros, the uncompressed form, `::` at either end, the d.d.d.d tail), so an A-19 refusal of any of these would contradict it; `::a.b.c.d` is a reading call;
+    - open: RFC 5952's status page returned 502;
+    - nothing it read contradicts SK-032 or SK-037.
+
+    The digest is `~/Team/META/nitpick-sockets/briefs/T15r2-security-guidance-digest.md` (23 979 B, 203 lines, sha256 `06902ea26c79a492ee9e02b1fc02917a0dbc71e736370c8dcaf0e44b7ff930e3`, `_28`'s measure); the Team's filed copy is `~/Team/REPORTS/T15r2-sockets-0.0.0-research-guidance.md`. T15r1 and T15r3 were still running.
+  - **What `_28` did with it:** at 02:19:26 it told `Ailp-team_25` that the lock had gone to this seat, that r2's ruling is this seat's and nothing is ruled, and to send T15r1's and T15r3's paths here. It began comparing the digest against A-19, SK-032 and SK-037 as input, and stopped at this seat's word (02:21, confirmed 02:22:06): by ruling (ii) this seat reads the digests itself before step 0, and at `_28`'s context (355 K at the handoff) a comparison costs nearly three times a fresh turn and risks a third compaction. So r2's ruling comes from this seat alone. **Two facts `_28` had already measured, which this seat re-checks before ruling:**
+    - glibc 2.39's `inet_pton` (Python's `socket.inet_pton`, run with `-I`) refuses `010.0.0.1`, `00.0.0.0` and `1.2.3.04` and accepts `10.0.0.1`. It accepts `::13.1.68.3` and refuses `::ffff:010.0.0.1` and `fe80::1%1`. So `ADDRESS_MODEL.md`:230's "This is the `inet_pton` behaviour" holds for glibc, but not for POSIX.1-2024's text;
+    - A-19's leading-zero row (`ADDRESS_MODEL.md`:225) is `0177.0.0.1`, four digits, which POSIX refuses for length alone, and `010.0.0.1` is only in its Because column. So A-19's table never tests the one case where A-19 and POSIX differ, and a parser that followed POSIX exactly would pass it.
+- **Read before the take, within `management_3`'s ≤ 50 K:**
+  - the board's lines 1–14 and the handoff block `_28` → `_30` (18–53);
+  - `_25`'s take section (69–90) and `_17`'s (563–572), with the take hazards' continuation (927–1030) and (1)–(6) at this record's 2026-09-26 07:01 entry;
+  - orchestrate's `SKILL.md` §1–§2;
+  - `_28`'s take entry (at `f8f2c0a`) and its handoff entry, this record's last.
+- **Next:**
+  1. "live" lines to `management_4`, `nitpick-compiler_51`, `nitpick-fuzz_5` and `diogenes_4`, and to `Ailp-team_25` by its socket;
+  2. T15r2's ruling, against A-19, SK-032 and SK-037, before step 0;
+  3. 165's closing lines by the ladder against `n164L/base165.txt`, its parent `3adfc05`: `n165L/verify165.py` from `n164L/verify164.py`, `scripts/file_n165.py` from `scripts/file_n164.py`, the three answers read in the closing lines, the two "56"s amended, the write-none list to PLAYBOOK §2; then one cost line to `management_4` for F107 + 165, and a W-30 copy to `nitpick-fuzz_5` only if a fuzz row moves;
+  4. parse T14v's amendment against `cbf911a`'s three rulings, when it comes.
