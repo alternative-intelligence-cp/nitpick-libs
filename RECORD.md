@@ -17658,3 +17658,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **(3), (4) and (6)** stand as drafted.
 - **The draft's two corrections are confirmed.** Item 20 (f)'s D1 citation is :2482, not :2481.
 - **Next:** unchanged; 167's closing lines after the landing, about 18:15.
+
+### A correction against this seat: T17's PD-178 list cut short by `head -6`; the Team seat hands to `Ailp-team_29` — 2026-10-29 15:00 (shell time)
+
+- **The slip:** this seat's ruling of 14:57:36 listed six texts that say PD-178 stays unused. Its grep's output was piped through `head -6`, so `0.0.5.md`:929 ("PD-178 stays unused") and the cycle README's row at :79 ("PD-178 | 0.0.5 | **unused**") were cut. `git grep -n PD-178 049afd0` gives 10 lines; the other two, README :54 and `decisions.txt`:3, name only the block's range.
+- **Found by** `Ailp-team_28` (stamped 14:59:56), which wrote both into T17's draft (now 41 264 B, `2ab59c7f…`), with this seat's refinements of 14:57:36. Corrected in place in the board entry of 2026-10-29.
+- **The lesson:** never truncate a listing whose length is part of the claim. Print the count beside it.
+- **The Team seat:** `Ailp-team_28` is handing to `Ailp-team_29` (`uds:/run/user/1000/cc-socks/300221.sock`) after its third compaction. `_29` will say when it holds the seat, and `_28` is addressed until then. The writer line changes when `_29` confirms.

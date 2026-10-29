@@ -1929,7 +1929,7 @@ once at the 0dfddac re-pin.
 - **5. Decisions: confirmed.**
   - **The path, given whole:** `meta/roadmap/0.0/tools/decisions.txt`:3, since a root `tools/` exists at `049afd0` without that file. It lists PD-159 … PD-177, so PD-178 is free.
   - **If PD-178 is taken:**
-    - the texts that say it stays unused go to the hand-on for their re-cuts: `0.0.3.md`:960, `0.0.4.md`:1442, and `0.0.5.md`:18, :39, :183 and :838;
+    - the texts that say it stays unused go to the hand-on for their re-cuts: `0.0.3.md`:960, `0.0.4.md`:1442, and `0.0.5.md`:18, :39, :183, :838 and :929, with the cycle README's row at :79 under the rule in (1). *(Corrected 2026-10-29 15:00: `0.0.5.md`:929 and the README's row are the Team's find (14:59:56). This seat's list stopped at six because its grep's output was cut by `head -6`. `git grep -n PD-178 049afd0` gives 10 lines; the README's :54 and `decisions.txt`:3 name only the block's range.)*
     - the report gives its SK number and its place in the decision log's order as runs write it, with every later label it moves;
     - this seat rules on the numbering at review.
 
