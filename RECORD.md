@@ -17549,3 +17549,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - (4), (6), (7) and (8) are information or accepted, and the disclosed fence slips are accepted;
   - by `management_6`'s order, lane 2 from Sat 03:00 runs the fix round, then T16v2, then the re-read here, the PD rulings and the merge, then parse's next round with the REACH probe.
 - **Sent** to the Team and to `management_6` at 13:58:33. Not merged, and `CLAIMED s2` carries.
+
+### F110 filed: F109's addendum, build 15 replacing build 14 (`fb0f3d3`, which did not land); DEF-346's fix; DEF-347 … DEF-353 registered and placed; probe 10 at :151 read as DEF-351 — 2026-10-29 14:12 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 14:09): F110, the addendum to F109.
+  - Build 15 is build 14 plus one fix, for DEF-346, a regression management's review found in build 14. A callee writing through a cast to another pointee type, handed a viewed address, was refused on 166 and silent on build 14. Its named-pointer twin was silent on 166 too.
+  - One more refusal kind for us (`BORROW-015` at such a call), with no site in our trees.
+  - Build 15's sweep (13:53:40, 5,327 files, sockets' twenty probes among them) moves one file of ours, `nitpick-time`'s probe 10 at :151.
+  - DEF-347 … DEF-350 (HIGH) and DEF-353 (MEDIUM) are registered. DEF-351 (the probe 10 artefact) and DEF-352 are LOW.
+  - Placements by `management_6` at 13:55: 168 gains DEF-347, DEF-349 and DEF-353; 170 gains DEF-348 and DEF-350.
+- **Filed:**
+  - the board's entry;
+  - PLAYBOOK §2's note for F110, write-none;
+  - the F109 note's probe-10 clause, which now names DEF-351;
+  - the F109 entry's `fb0f3d3` claim, corrected in place;
+  - the writer line: F110, build 15, the order to 171, and new DEF numbers from DEF-354.
+- **Next:** the harness from about 16:00, then the landing notice, then this seat's verification with census15.
