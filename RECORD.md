@@ -17445,3 +17445,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A slip, this seat's:** sockets' in-flight row, filed at `746b56c`, said round (i) was on the branch "in three commits". A `log -3` read had left out `d73de03`, and there are four. The row is corrected.
 - **Next for sockets:** runs 1 … 6, then T15vw, on the Team seat within `management_6`'s bounds.
 - **The cost** goes in the sockets chain's line to `management_6`, together with `_30`'s gate-ruling cost that the chain owes.
+
+### Sockets 0.0.0's runs 1–3 done; run 3's `$$m` item ruled without a hold and asked of the compiler; the PD wording corrected — 2026-10-29 11:34 (shell time)
+
+- **From** `Ailp-team_27` (stamped 11:31:08): runs 1–3 are done, each block SAME:
+  - run 1: `33cb686` and `fac47af`;
+  - run 2: `3dc14e8`, with `SK-101`;
+  - run 3: `1f4eca8`, with `SK-102`.
+
+  Run 4 went out at 11:30:19.
+- **Run 3's author item:** A-22's dated note claims that no parser's result can carry a byte its path never wrote. Read here at `2e1cb4a` and at `cd3cb4d`: a `$$m` handoff assigns an unassigned binding with no write required, and a local whose type does not drop is not zeroed. Our trees hold no `$$m` in any `.npk` or plan patch.
+- **Ruled, with no hold:**
+  - run 6's REPORT carries the item;
+  - the two sentences are corrected at 0.0.1's re-cut, with a probe 15b;
+  - any step that would hand an unassigned binding on as `$$m` waits for the compiler's answer, and the house rule is a belt only;
+  - run 3's round-trip item goes to the same round, which meets A-4 or narrows it by a decision.
+- **Asked** of `nitpick-compiler_51`, copied to `management_6`.
+- **Corrected:** the board entry of 10:19, heading and bullet, said that PD-159 … PD-163 become SK numbers "as run 1 applies them". Steps 1 … 4 apply them, in runs 2 … 5, by the Team's word of 10:28:23. The record entry of 10:19 said the same ("at run 1"), and so did this seat's line to `management_6` at 10:20:16.

@@ -1848,7 +1848,40 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
-### ✅ `nitpick-sockets` 0.0.0's ROUND (i) MERGED at `424ec95` — **THE AMENDMENTS AND STEP CUT, WORKED ON THE TEAM SEAT: CHAIN PASS (T15v, SONNET, 10:08:20, TEN FINDINGS, NONE BLOCKING). RE-READ HERE: FOUR COMMITS AFTER `af50100`, EACH WITH ITS TWO TRAILERS ONCE, ALL IN `meta/`; NO CI, BY DESIGN. `main` FAST-FORWARDED AND PUSHED AT 10:17:53. PD-159 … PD-163 ACCEPTED HERE, AS THE PLAN PROCEDURE GIVES THE DISPATCHING SEAT, EACH READ WHOLE: EACH A MEASUREMENT WITH ITS REASONS AND ITS REVERSAL. THEY BECOME `SK-101` … `SK-105` AS RUN 1 APPLIES THEM. `shapes.py`'s FOUR LISTED SHAPES STAY INFORMATION, THEIR EXPECT LINES THE CHECK. NEXT: RUNS 1 … 6, THEN T15vw.** 2026-10-29 (shell time), from `Ailp-team_27` (stamped 10:15:04); re-read, merged and ruled by `nitpick-libs_29`
+### ⚠ SOCKETS 0.0.0's RUN 3 FINDS THE LANGUAGE DOES NOT CLOSE D3 WHOLE — **A `$$m` HANDOFF ASSIGNS AN UNASSIGNED BINDING WITHOUT THE CALLEE HAVING TO WRITE IT, AND A LOCAL WHOSE TYPE DOES NOT DROP IS NOT ZEROED, SO A RESULT CAN CARRY BYTES ITS PATH NEVER WROTE. READ HERE AT `2e1cb4a` AND AT THE COMPILER's `main` `cd3cb4d`: THE SAME. OUR TREES HOLD NO `$$m` IN ANY `.npk` OR PLAN PATCH. NO HOLD: RUNS 4 … 6 GO ON, RUN 6's REPORT CARRIES THE ITEM, AND THE TWO SENTENCES THAT OVERSTATE PROBE 15 ARE CORRECTED AT 0.0.1's RE-CUT, WITH A PROBE 15b. ASKED OF `nitpick-compiler_51`. ANY STEP THAT WOULD HAND AN UNASSIGNED BINDING ON AS `$$m` WAITS FOR ITS ANSWER.** 2026-10-29 (shell time), from `Ailp-team_27` (stamped 11:31:08); ruled by `nitpick-libs_29`
+
+- **Sockets 0.0.0's runs,** on `team/sockets-0.0-plan`, each block SAME with no amendment:
+  - run 1: `33cb686` and `fac47af`, pushed at 10:32:38;
+  - run 2: `3dc14e8`, step 1 (`SK-101`), pushed at 10:46:31;
+  - run 3: `1f4eca8`, step 2 (`SK-102`), pushed at 11:27:55.
+
+  Run 4 (step 3) went out at 11:30:19.
+- **The item, run 3's first author item:** A-22's dated note at `ADDRESS_MODEL.md`:269–273 (at `1f4eca8`, written by step 2's patch) reads: "So no parser's result can carry a byte its path never wrote, and the research gate's D3 … is closed by the language." Probe 15 shows only that a plain read before a write is `NITPICK-ASSIGN-001`. Step 5's patch, which run 6 applies, repeats the claim in `tests/probe/README.md`.
+- **Read here** at `2e1cb4a` and at `cd3cb4d` by `git show`, with no program run:
+  - `bindings.npk` (:1324–1333 at the pin, :1355 at `cd3cb4d`): `$$m x` on an unassigned binding assigns it, since the callee is handed it to write, as D-004 endorses;
+  - `tests/accept/definite_assignment.npk`:45–49, `out_parameter`: `int32:x; drop sink($$m x); pass x;` is accepted;
+  - `ir_stmt.npk`:813–833 at the pin: a declaration with no initialiser is zero-filled only when its type drops (D-225's vacant value). An `int32` or a `uint8[16]` keeps "whatever the frame or the stack last had".
+
+  Nothing read here binds the callee to write a `$$m` parameter. So a callee that writes part of a `uint8[16]`, or none of an `int32`, leaves stale stack bytes in a binding the caller then reads as assigned. That is a silent wrong answer in safe code, and a leak of an earlier frame's bytes.
+- **Our exposure: none today.** No `.npk` file and no plan patch in our seven trees at `main` holds a `$$m`. The sockets Team branch's only four lines with one are this item's own entry.
+- **Ruled: no hold.** 0.0.0 writes no library code, and the plan's text cannot change mid-chain without a planner round.
+  - Runs 4 … 6 go on. Run 6's REPORT names the item under its open questions, so 0.0.0's DONE record carries it.
+  - The two sentences, A-22's note and step 5's README line, are corrected as dated notes at the next sockets round, 0.0.1's re-cut. A probe 15b measures the face there: a `$$m` handoff that writes part of a `uint8[16]`, then a read.
+  - D3 stands closed for a direct read (probe 15, `ASSIGN-001`), and open for the `$$m` face until the compiler answers.
+  - The libraries' rule applies to a compiler that under-enforces a safety rule. So any library step that would hand an unassigned binding, a result's storage among them, on as `$$m` waits for that answer.
+  - The house rule, "never `$$m` an unassigned binding", and its grep are a belt kept after any fix, never the guarantee.
+- **Run 3's other items, ruled:**
+  - **"Round-trip" says more than probes 02 and 03 do.** `sockaddr_storage`, `cmsghdr` and `ucred` are sized by `#size_of` only, where A-4 asks for a fill, a kernel round trip and a sentinel. The same round meets A-4 with the three round trips, or narrows A-4 by a decision with its reason. Every size is as specified meanwhile.
+  - **The loose code ranges** in probes 02's and 03's headers go to the next text round.
+- **The owed observations go to a later text round:** block 0a's `this file:` line on the RUNNING title (run 1), and probe 10's header codes and `SK-013`'s marker rendering (run 2).
+- **Asked of `nitpick-compiler_51`,** copied to `management_6`:
+  - Is the face known or registered?
+  - Is a callee meant to be bound to write a `$$m` parameter, and does a part-write of an array count?
+  - If it is a defect, what is its number and its landing?
+
+  If the compiler holds it by design, the question is D-004's, and so the author's, through management.
+
+### ✅ `nitpick-sockets` 0.0.0's ROUND (i) MERGED at `424ec95` — **THE AMENDMENTS AND STEP CUT, WORKED ON THE TEAM SEAT: CHAIN PASS (T15v, SONNET, 10:08:20, TEN FINDINGS, NONE BLOCKING). RE-READ HERE: FOUR COMMITS AFTER `af50100`, EACH WITH ITS TWO TRAILERS ONCE, ALL IN `meta/`; NO CI, BY DESIGN. `main` FAST-FORWARDED AND PUSHED AT 10:17:53. PD-159 … PD-163 ACCEPTED HERE, AS THE PLAN PROCEDURE GIVES THE DISPATCHING SEAT, EACH READ WHOLE: EACH A MEASUREMENT WITH ITS REASONS AND ITS REVERSAL. THEY BECOME `SK-101` … `SK-105` AS STEPS 1 … 4 APPLY THEM, IN RUNS 2 … 5. `shapes.py`'s FOUR LISTED SHAPES STAY INFORMATION, THEIR EXPECT LINES THE CHECK. NEXT: RUNS 1 … 6, THEN T15vw.** 2026-10-29 (shell time), from `Ailp-team_27` (stamped 10:15:04); re-read, merged and ruled by `nitpick-libs_29`
 
 - **The chain line:** round (i) of 0.0.0, in four commits on `af50100`:
   - `d73de03`, item 1: the seven checks exit non-zero on what they report as wrong, each with a planted control;
@@ -1880,7 +1913,7 @@ once at the 0dfddac re-pin.
     - **PD-162:** an errno is compared only with a prelude identity or another error. `SK-014`'s mechanism changes, and what needs more waits on O-N5 (step 4).
     - **PD-163:** what a consumer of each module shape owes, measured: an identity qualified by its module, as parse's PA-117 found. It also sets the arm codes 111 and 112, beyond PLAYBOOK §3 item 8 (step 4).
   - None of the five changes what triggers a major version, the language or an outside commitment, so none waits on the author.
-  - They become `SK-101` … `SK-105` as run 1 applies them (the log's highest is `SK-100`). PD-164 … PD-168 are 0.0.1's, accepted at its review.
+  - They become `SK-101` … `SK-105` as steps 1 … 4 apply the patches that declare them, in runs 2 … 5 (the log's highest is `SK-100`). Corrected at 11:34: this line said "as run 1 applies them", and the Team's word of 10:28:23 put it right. PD-164 … PD-168 are 0.0.1's, accepted at its review.
 - **T15v's finding 3, ruled: `shapes.py`'s four listed shapes stay information.** They are an attribute by name, an `exit` operand by form, a plain `uint8[]` and `#ptr_add`.
   - Gate item 5's rules for them cannot be told from the shape alone, as the tip's docstring says, so `shapes.py` lists each with its site and exits 0.
   - The block's Expect holds that listing, so a new site changes the printed lines and the block reads DIFF. No mask covers those lines.
