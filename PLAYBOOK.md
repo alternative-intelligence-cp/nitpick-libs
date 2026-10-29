@@ -806,12 +806,17 @@ and `src/driver/pipeline.npk` at the pin:
 | `0` | success |
 | `1` | **REFUSED**, with diagnostics — the compiler judged the program and said no |
 | `2` | the driver **could not proceed and judged nothing** |
-
-A `2` also arrives with an **empty stderr** — silent by construction. So a
-runner that logs only what the compiler said shows *no reason at all* for a
-failing test, which is the worst possible presentation of the one code that
-means the run is broken. Print the code itself, always.
 | `3` | a `failsafe` trap |
+
+A `2` for a missing or directory root arrives with an **empty stderr**, silent by
+construction, and a malformed command line prints only the usage there. So a runner
+that logs only what the compiler said shows *no reason at all* for a failing test,
+which is the worst possible presentation of the one code that means the run is broken.
+Print the code itself, always. *(Corrected 2026-10-28 from `nitpick-sockets`' T7fix3,
+measured at the pin `2e1cb4a`: an unknown argument exits `2` with the usage on stderr
+(162 B), as does no argument (129 B); a missing root and a directory root exit `2` with
+nothing on either stream. The `3` row had stood after this paragraph, where it rendered
+outside the table.)*
 
 **`2` IS NOT A REFUSAL.** A test that expects `1` and receives `2` was never
 compiled at all — nothing was judged, so it proved nothing while reporting that
