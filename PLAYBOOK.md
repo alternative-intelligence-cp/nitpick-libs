@@ -1724,6 +1724,11 @@ repositories reads one thing.
   when the stand-in holds every path the tools read: both pins, the private LLVM, the board's documents, a `--shared
   --no-checkout` clone of the compiler, and `.internal/toolchain/950bb1d`, which `rx120.sh`'s control reads. Find the set by
   reading the tools, not from a brief. *(`s1-nregex-0.2.1a-verify`, 2026-10-09; landed 2026-10-09.)*
+- **A runner's marker set is read from what the compiler's reader tests, never from the shape of its strings.** A grep
+  of `npkg/expect.npk` for quoted `name:` strings found eleven of its twelve markers and missed `expect-no-parse-error`,
+  which has no colon, and `nitpick-parse`'s `harness/expect.py` then neither judged nor refused it: a file carrying it
+  would read as prose, its expectation unchecked. List each `text_starts_with(body, …)` the reader runs, and have the
+  runner judge or refuse every one by name. *(`nitpick-parse` 0.0.2, its step 1, 2026-10-28; landed 2026-10-28.)*
 
 ---
 
