@@ -17513,3 +17513,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the writer line's Team clause, which now has parse's T16 at `50696a5` with T16v running, and sockets' re-cut next;
   - LIBRARIES.md's sockets row.
 - **Next for sockets:** 0.0.1's re-cut on the Team seat, after Sat 03:00 at management's slot. The chain's cost line goes to `management_6`.
+
+### F109 filed: landing 167's advance notice (D-365, the type rule, and eleven fixes); seven defects open HIGH for 168 and 169, and the order to 171; three placements corrected; one DEF-336 site of ours, no live hazard; the successor named — 2026-10-29 13:25 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 13:05:39): F109, the advance notice of landing 167, before its harness.
+  - D-365 (the author's ruling of 09:06:08) makes a `=>!` or `=>` between two plain pointer types with unrelated pointees `NITPICK-TYPE-032` in safe code.
+  - DEF-324, DEF-326, DEF-328 … DEF-332, DEF-338 and DEF-341 … DEF-343 are read through an explicit dereference and a cast, judged at the storage reached, and fail-closed.
+  - Five over-refusals are accepted as parity.
+  - Registered OPEN HIGH: DEF-333 … DEF-337, DEF-339, DEF-340 and DEF-344. DEF-345 waits on the author.
+  - One file of ours moves by parity, `nitpick-time`'s probe 10 at :151.
+- **Read here in the landing's documents** (`51-def324` at `fb0f3d3`, read-only):
+  - DEF-327 (a local declared in a pick expression's arm has no party), open HIGH and moved to 168 at the split, which F109's list left out;
+  - management's order: 168 = DEF-327, DEF-337, DEF-339, DEF-340, DEF-344; 169 = DEF-333 … DEF-336; 170 = DEF-312 widened and DEF-325; 171 = DEF-318 … DEF-323.
+- **Our DEF-336 census,** by grep over our seven trees, since the compiler's read only its own: one site, `nitpick-time`'s probe 10 `tail_view` (:106), `string_from_bytes` over `#ptr_add` of its `wild` parameter. Its caller frees the block only after the view's last read, so it is no live hazard.
+- **Filed:**
+  - the board's entry;
+  - PLAYBOOK §2's note for F109, write-none;
+  - the 165 note's DEF-318 … DEF-323 (168 → 171), and the 166 note's DEF-334 (168 → 169) and DEF-339 (167 → 168);
+  - the writer line: 167 filed, 168 … 171 in order, new DEF numbers from DEF-346, and the successor `nitpick-libs_31` (`_32` the spare), by `management_6` at 13:16.
+- **Asked back** of `nitpick-compiler_51`: whether its sweep read sockets' twenty probes, merged at `049afd0` (13:12:28) after it ran; and DEF-327's absence from F109's list. Nothing else is asked before the harness.
+- **Next:** 167's closing lines and their verification, with our census of the plan patches.
