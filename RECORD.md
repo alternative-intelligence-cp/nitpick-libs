@@ -16999,3 +16999,41 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Compactions: two,** 10-26 10:59:22 (368 K → 23 K) and 14:15:44 (368 K → 19 K), each followed by a re-read of the board. The context read 326 K at 21:40 when F106 arrived, so its filing (a census, a filer, a commit) would likely hit the third mid-step. By the author's rule the seat hands off before it.
 - **Slips:** six message stamps sent beside their `date` reads, recorded at the time; one `cd` into `~/Workspace/MANAGEMENT` (not a library checkout), which the harness reset at once.
 - **The handoff block** above `_25`'s on the board is the brief, with F106's message id, its forecast, and the patterns to follow. `_28` is briefed by message too, and `_27` stays open for its questions. The marker `.internal/orchestrator.session` is removed at this release.
+
+### Handover — `nitpick-libs_28` takes the workbench lock on `nitpick-libs_27`'s briefed handoff — 2026-10-28 21:46 (shell time)
+
+**Handover.** `nitpick-libs_28` (`498b9c4c-3c91-499d-8820-6f38e755b9c0`) takes the writer lock that `nitpick-libs_27` released at `acc2f17` (21:42:28), by the author's rule of 2026-10-24 (hand off before a step a compaction would likely hit mid-step). `management_3` confirmed it at 21:42:56: no author word is needed. `_27` briefed this seat by message (21:42:31) and by the board's handoff block (`acc2f17`). It stays open until this seat says it is done with it.
+
+- **The account, checked first:** this session's status-line file `~/.claude/context/498b9c4c-….json` carries rate limits (the five-hour window 22 %, resetting Thu 00:50; the week 6 %, resetting Wed 11-04 19:00), so this seat is on Max. The meters file's last row (21:43:08, from this seat's status line) reads the week 6 % and the five-hour 22 %; its Fable column is blank in the new week (the last fetch 19:49:09, before the reset).
+- **The allocation,** `management_3`'s at 21:42:56: 5 Max points to Wed 11-04 20:00, for the compiler's notices and re-reads (164, then DEF-307 and v309p before M3) and the Team's chains for the libraries to rule on and merge (sockets' T7fix3, then T7v5, then 0.0.0's first execution; parse 0.0.2, its step 1 out at 21:03). This seat tells management before passing 5, and dispatches no agent without asking it. The week read 6 % at the take.
+- **The id, from five values:** `CLAUDE_CODE_SESSION_ID`, the transcript `498b9c4c-….jsonl` (written live), the scratchpad path, `~/.claude/context/498b9c4c-….json` (`session_name` `nitpick-libs_28`) and the session registry's `~/.claude/sessions/3492905.json` (`sessionId` and `name` `nitpick-libs_28`) all agree. `ListAgents` names this session `nitpick-libs_28` (`[2233d4]`), and its socket is `uds:/run/user/1000/cc-socks/3492905.sock`. `CLAUDE_SESSION_ID` is empty here, so the marker was written from the id (hazard 2): 37 bytes.
+  - **By content:** a nonce (`libs28-take-k4q9-zw31-r7m2`), typed into the search command, is found in that one transcript only: at 21:43 across this project's transcripts, and at 21:45:47 across `~/.claude/projects` (1.2 G) and `~/.claude-team/projects` (674 M).
+  - A control generated at run time, and never printed, is found in none, on both runs.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main` after a fetch, at 21:42:46 and again at 21:46, just before the marker and the edit;
+  - `HEAD` = `origin/main` = `ls-remote` = `acc2f17`, with porcelain 0, both times;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep, discovered rather than listed, found **9 trees, every one `dirty=0`**, at 21:44: the workbench `acc2f17`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `1dd6f77`, regex `14817a1`, sockets `5862558`, time `74b6ee1` and tui `e5439ee`. Eight read `0/0`. Fuzz reads `0/19`, as at `_24`'s, `_25`'s and `_27`'s takes: its `main` stays at `d44dfe3`, the corpus our censuses cite, since the repository is its own manager's (W-30);
+  - the pin `2e1cb4a`'s `sha256sum -c` read OK for `npkc` and `npkrt.o`;
+  - the compiler's `main` is `1480ca8` (landing 163), clean, `HEAD` its local `origin/main`, so 164 has not landed;
+  - the Team branches by `ls-remote`: `team/parse-0.0-plan` at `9a2c02f` (parse 0.0.2, its step 1 out at 21:03) and `team/sockets-0.0-plan` at `dd38034` (T7fix3, `Ailp-team_23`), each past its `main` (`1dd6f77` and `5862558`), which is where the Team's work runs.
+- **Hazard 3, asked and answered:** `_27` measured by command at 21:44:18: porcelain 0; `HEAD` and `ls-remote` `acc2f17`; no marker. It made no write after `acc2f17` (`find .internal -newermt 21:42:00` finds none; the carry list was last written at 21:09:19, item 15), and it will make no further write to the workbench or any library repository. It did not acknowledge F106 to `nitpick-compiler_51` or tell it of the handoff. Its last cost line to management (Mon 16:12:16) covered F105 + 163, so this seat's line for F106 + 164 starts at F106's arrival, 21:40:19.
+- **Hazard 4:** `nitpick-libs_29` (`[c662f1]`), the parked spare, answered in one line (21:44:31): idle, no task, nothing written in `nitpick-libs` or any library repository (its only actions one `date` and its reply), and it will message this seat before any write there.
+- **The peers before the take (`ListAgents`, 21:43):**
+  - the seat's own: `nitpick-libs_27` (`[cddd19]`) and `_29` (`[c662f1]`), both idle;
+  - the compiler's: `nitpick-compiler_51` (`[e3c2a1]`, busy), `_50` (`[12895f]`) and `_52` (`[a67bc0]`), both idle; `_49` is not listed;
+  - management's: `management_3` (`[62cd46]`), `_4` (`[4c80b3]`) and `_5` (`[e50452]`);
+  - the fuzzer's: `nitpick-fuzz_5` (`[5efaef]`, busy), `_6` (`[f37579]`) and `_7` (`[0e1de9]`), both idle;
+  - `diogenes_3` … `_5`, `probe-mk` (Remote Control, offline), and the fuzz cloud session (`[169d76]`, milestone M11).
+
+  The Team's `claude-team` sessions are not listed.
+- **Read before the take, within `management_3`'s ≤ 50 K:**
+  - the board's lines 1–31: the header, the toolchain, the writer and the handoff block `_27` → `_28`;
+  - `_17`'s take section, with hazards (12) and (13) on the board;
+  - orchestrate's `SKILL.md` §1–§2;
+  - this record's take entry at `d1c4be2` and its last entry.
+- **Next:**
+  1. a "live" line to `management_3`, and an introduction to `nitpick-compiler_51` and `Ailp-team_24` by socket;
+  2. F106: the census over our files and the plan patches for the widened faces, the whitelist by eye, the sums, PLAYBOOK §2's note, the board's entry and this record;
+  3. landing 164's closing lines by the ladder against `n163L/base164.txt`, its parent `1480ca8`;
+  4. one cost line to `management_3` for F106 + 164 together.
