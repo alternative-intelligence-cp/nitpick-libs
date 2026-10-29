@@ -17061,3 +17061,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A correction to this seat's own word:** at about 22:05 this seat told the author that two of the Team's items were his, to go through management. Step 1's report (its `for-the-author` block, which names "the libraries' seat") and T13vw both put them to this seat, and they are ruled here; nothing goes to the author.
 - **The cost, parse 0.0.2's review,** for the cost line to `management_4`, from the chain line's arrival (23:14:07) to the filing script's run: calls 42; mean context 132 K; read 5.54 M; written 44 K; max context 179 K. The week read 10 % and the five-hour 36 % at 23:21, all seats together, so this seat's share cannot be read from the meter.
 - **Next:** landing 164's closing lines, by the ladder against `n163L/base164.txt`, its parent `1480ca8`; then one cost line to `management_4` for F106 + 164 together.
+
+### `management_4`'s call on parse 0.0.3: lane 2 after M15, step 0 the three harness gaps — 2026-10-28 23:23 (shell time)
+
+- **`management_4`** (stamped 23:23:23) verified parse 0.0.2's merge by `ls-remote` (`ab927c8`, 23:23), and this seat's rulings on the three harness gaps stand.
+- **Its call on 0.0.3:**
+  - the slot is the Team's lane 2, after M15. The Team read the week at 10 % at 23:14, far under its line of about 45 % for Sat 03:00;
+  - the cut is as 0.0.2's was: a fresh worker per step, then the work verifier;
+  - step 0 is the three gaps, each in its own commit with its own mutant that the fixed harness refuses, so each fails closed. No unit takes `pending-until` before the second gap is fixed;
+  - the plan's size estimate comes to this seat and management before dispatch. `CLAIMED s2` carries into 0.0.3.
+- **Recorded** on parse's stream row and the writer line. `management_4` tells `Ailp-team_24`, and the F106 + 164 cost line after 164 stands; 164's harness ends around 00:15.
