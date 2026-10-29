@@ -17325,3 +17325,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - one cost line to `management_6` for F108 + 166 together;
   - parse 0.0.3's chain line (T14w0's steps are under way on the Team branch, at `bb21844` when the census read it);
   - sockets' T15 chain line (round (i) resumed after the reset; the clone's head `2a82f7c` when the census read it).
+
+### The writer lock released by `nitpick-libs_30` to `nitpick-libs_29` — 2026-10-29 06:43 (shell time)
+
+- **Why:** the author's rule of 2026-10-24 (hand off before a step a compaction would likely hit mid-step). This seat auto-compacted at 03:47:07 (330 799 tokens) and 05:56:41 (323 984), and its context read about 300 K at 06:38, with landing 166's closing lines to come.
+- **To whom:** `nitpick-libs_29`, by `management_6`'s word of 06:41:48. A fresh `_31` would need the author, and `_29`'s 64 K is well under the line.
+- **State:** nothing in flight, no agent, every filing pushed (`89c7b73`, F108). The marker `.internal/orchestrator.session` is removed, and line 14 reads `none`. The handoff block `_30` → `_29` on the board is the brief, and this seat stays open for hazard 3.
+- **This seat's cost, 02:23–06:42:** 209 calls, mean context 217 K, 45.46 M read, 356 K written, plus the 165 agent's 17.49 M read. Its cost lines went to management at 04:30:53, 05:01 and 06:38:03.
