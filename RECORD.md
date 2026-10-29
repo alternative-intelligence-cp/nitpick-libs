@@ -17300,3 +17300,28 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - **This seat's gate entry is corrected in place on both points,** its words kept. The "`usize`" came from C's `size_t`, and "at step 0" from not checking that the file existed at `af50100`.
 - **Sent:** both rulings to `Ailp-team_26`, copying `management_6`, and one cost line for parse 0.0.3's amendment chain to `management_6`.
 - **The cost, this seat, from the Team's message to this filing** (both items together, the parse review the larger part): calls 35; mean context 279 K; read 9.75 M; written 44 K; max context 318 K. T15's part joins its chain line with the gate rulings' (02:24–02:34).
+
+### Advance notice F108 for landing 166 filed in the lean form: a `Self->` method on a call-result dereference (DEF-315), a slice written below one (DEF-316) and a call-result slice handed out of a struct carrier (DEF-317, `BORROW-009` past three pointer links), `BORROW-015` and `-016`; eleven over-refusals accepted (DEF-325, LOW); DEF-324 open (HIGH) for 167; nothing of ours in the shapes — 2026-10-29 06:35 (shell time)
+
+- **The notice** (`nitpick-compiler_51`, Fable, stamped 06:17:42 EDT, arrived 06:18:18 from `4073117.sock`, message `e6201c96-…`, its peer pid verified) came before its harness. Its text is saved by that verified origin as `.internal/landing/n166L/f108.txt`, and 30 of its phrases were found as it spells them.
+- **Read here, with no fetch:** the branch `51-def315` holds the landing committed, `cd3cb4d` on `ba27787` (06:19:43), in the clean worktree `wt/51e`.
+  - The diff: 14 files, +2 192/−249. The two analysis files add 162 code lines and remove 17, as the notice says, and their raw lines are +273/−25 where the notice says +271/−23.
+  - The three new tests hold the 49 sites (33 + 16), `BORROW-015` ×44, `-016` ×3 and `-009` ×2.
+  - The four differences this seat sent at 04:30:53 are carried in 166's docs as a dated note.
+- **The measurement file** (`wt/51a/.internal/probes/t166/MEASURED_166.md`, read-only): 127 cells, 0 unexpected. 54 silent on 165 are refused (34 at 113/113, 20 at 0/0, 11 of them the accepted over-refusals); 35 were refused on both; 38 stay silent (the 34 controls, 1 DEF-312 and 3 DEF-324 cells). The notice leaves out the 35 and the 4.
+- **The census** (`scripts/census13.py`, run by `scripts/file_f108.py`) read our 400 files and 576 plan-patch hunks at `main`, and the Team branches at their clones' heads (parse's at `bb21844`; sockets' at `2a82f7c` (origin's still `af50100`, so a candidate not yet pushed)).
+  - It finds none of the five shapes (a carrier's slice by call or by name, a slice through a pointer field, four links, a view getter with an explicit dereference). Every slice-returning function of ours returns a `fixed` view, and our 5 carrier types hold their slices by value.
+  - census11's classes read as F106 read them, so DEF-315's and DEF-316's faces are absent too.
+  - Its 14 controls are found and its near-misses stay silent, and it sees all 49 of the landing's rejection sites.
+  - Its loader now reads a Team branch at the clone's own head, recording origin's beside it, since sockets' T15 holds an unpushed candidate.
+- **The sums:** 33 of 33 hold, with a planted control caught.
+- **The forecast for 166:** 4 508 → 4 557 sites over 5 299 files, `BORROW-015` 161 → 205, `-016` 30 → 33, `-009` up by 2; 618 programs byte-identical; the libraries 1 894 / 2 172 / 0 / 0 / 0; the manifest 7 603 obligations, rows 7 293 → 7 304 (202 re-keyed, 11 added, none removed, no verdict moved); no floor byte, no re-pin.
+- **PLAYBOOK §2** takes a note: DEF-315, DEF-316 and DEF-317 are fixed at 166 but not in our pin, with their rules, the `BORROW-009` advice and the shapes refused by design; DEF-324 stays open, so write none.
+- **No W-30 copy:** no fuzz file names DEF-315 … DEF-317, DEF-324 or DEF-325.
+- **A slip:** a `cd` into the workbench root, where the shell already stood, before the first census run (between 06:18 and 06:30). It changed nothing; absolute paths only.
+- **The meter:** the meters' last row (06:31:33, by `nitpick-libs_30`) reads the week 26 %, the five-hour 3 % and Fable 12 %, so the room is 95 − 26 − 0.5 × 88 = 25. Nothing is dispatched.
+- **Next:**
+  - landing 166's closing lines, by the ladder against `n165L/base166.txt`, its parent `ba27787`;
+  - one cost line to `management_6` for F108 + 166 together;
+  - parse 0.0.3's chain line (T14w0's steps are under way on the Team branch, at `bb21844` when the census read it);
+  - sockets' T15 chain line (round (i) resumed after the reset; the clone's head `2a82f7c` when the census read it).
