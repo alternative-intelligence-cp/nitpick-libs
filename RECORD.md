@@ -17158,3 +17158,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - one cost line to `management_4` for F107 + 165 together;
   - parse T14v's amendment, before T14w0;
   - sockets' T15 chain line.
+
+### Handoff `nitpick-libs_28` → `nitpick-libs_30`: `_28`'s tenure closed before 165's closing lines, since a third compaction would likely land mid-step — 2026-10-29 02:13 (shell time)
+
+- **The tenure** (taken 2026-10-28 21:46, released 2026-10-29 02:13):
+  - the take (`f8f2c0a`) and F106 filed (`13d1937`);
+  - parse 0.0.2 merged (`cbf911a`) and 0.0.3's cut recorded (`c89d852`, `8a099c9`);
+  - the Team seat to `Ailp-team_25`, with T7fix3's points ruled (`7c47be9`);
+  - 164 verified (`95d4006`);
+  - sockets' fix round 3 merged, with 0.0.0's chain ruled (`42b9ea6`);
+  - F107 filed (`6a1d089`).
+
+  No agent was dispatched.
+- **Compactions: two,** 10-28 22:59:01 (314 K) and 10-29 01:37:29 (352 K), each followed by a re-read of the board. The context read 330 K at 02:10, with 165's closing lines, T14v's amendment and T15's chain line to come. By the author's rule, and `management_4`'s word of 02:11:38, the seat hands off before them, to the fresh `_30` rather than `_29` (about 64 K of an earlier context), as `management_3` chose `_27` over `_26` on 10-25.
+- **Slips:** five read-only `cd`s in all, none writing anything: the three recorded at 164; one into `~/Team/REPORTS` at 01:47, recorded with the sockets merge; and one at 02:10 into `~/.claude/context`, to read the two spares' status files for their context sizes, returning within the same command. A filter in `file_f107.py` let an empty line read as a changed line, so its comment-only check failed closed; it was fixed and re-run before anything was written.
+- **The cost, F107 on this seat,** for the F107 + 165 line: 01:58 to 02:10, calls 28; mean context 278 K; read 7.77 M; written 74 K; max context 324 K. The handoff itself, from 02:10 to this script's run: calls 14; mean context 341 K; read 4.77 M; written 22 K; max context 355 K.
+- **The handoff block** above `_27`'s on the board is the brief. `_30` is briefed by message too, with the standing security rule first, and `_28` stays open until `_30` confirms the take. The marker `.internal/orchestrator.session` is removed at this release.
