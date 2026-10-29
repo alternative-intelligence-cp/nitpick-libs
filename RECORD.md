@@ -17071,3 +17071,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - step 0 is the three gaps, each in its own commit with its own mutant that the fixed harness refuses, so each fails closed. No unit takes `pending-until` before the second gap is fixed;
   - the plan's size estimate comes to this seat and management before dispatch. `CLAIMED s2` carries into 0.0.3.
 - **Recorded** on parse's stream row and the writer line. `management_4` tells `Ailp-team_24`, and the F106 + 164 cost line after 164 stands; 164's harness ends around 00:15.
+- **Corrected by `management_4` at 23:23:59,** after `Ailp-team_24` pointed out that 0.0.3's plan already holds steps 0–5 (608 lines at `ab927c8`). The approved cut:
+  1. one planner round folds this seat's three items into that plan as amendments, first in the order, each with its mutant, and a verifier checks the round;
+  2. then T14w0–T14w5, then the work verifier, about 7–9 Team points.
+
+  The verified amendment comes to this seat, copying management, before T14w0. The slot, the rule on `pending-until` and `CLAIMED s2` are unchanged. Above, the two lines saying the cut is as 0.0.2's was and the size estimate comes before dispatch are superseded, and parse's row and the writer line now carry the corrected cut.
