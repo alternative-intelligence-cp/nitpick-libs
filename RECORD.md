@@ -17687,3 +17687,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed:** the board entry, PLAYBOOK §2's note after F110's, the writer line (new DEF numbers from DEF-356), and the untracked agent brief.
 - **A stamp slip against this seat:** `db7da4a`'s record heading says 15:06, typed without a `date` call. That commit was pushed at 15:05:58, so its time is 15:05.
 - **Next:** build 16's SHA to management, KEY 67c, the landing, then 167's closing lines.
+
+### F111's correction filed: build 16 is `49754e4`; DEF-356 and DEF-357 (HIGH, 169), two roads the callee summary misreads in every compiler; the queue re-split by management's ruling of 16:48; no site of ours — 2026-10-29 17:15 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 16:59, arrived 17:00:20), saved verbatim at `n167L/f111c.txt` (2 519 B, `38628861…`) by its verified origin.
+  - F111 overstated two sentences: that every writer of the callee summary truncates at a pointee-changing cast, and that the named spelling rests on summaries true on every road.
+  - Management's delta review of build 16 (16:55) found two roads, silent on 166 and on build 16 alike: (A) DEF-356, a view handed on through a callee's cast value; (B) DEF-357, a typed pointer local made by a pointee-changing cast, then written through under a view.
+  - F111's caller rule holds as stated. Build 16 is `49754e4`, and KEY 67c runs on it.
+- **Census here:** census16 (controls 8 of 8; 420 files and 578 hunks) finds no cast of an address, so no root of either road. Every one of the 240 pointer casts is on a `wild` value, and no view is handed on or stored through a cast value. 0 sites, as the compiler found.
+- **The queue,** asked at 17:10 and answered at 17:11 (`n167L/c51_1711.txt`, 1 060 B, `33ee14f6…`): `management_6`'s split ruling of 16:48, made after 168 as placed measured about 300 code lines.
+  - 168: DEF-327, DEF-337, DEF-339 and DEF-340;
+  - 169: DEF-344, DEF-347, DEF-349, DEF-353 and DEF-354 … DEF-357, and DEF-345 if the author approves the middle road;
+  - 170: DEF-333 … DEF-336; 171: DEF-312 widened, DEF-325, DEF-348 and DEF-350; 172: DEF-318 … DEF-323;
+  - DEF-351 and DEF-352 (LOW) after 172; then M3 and DEF-286.
+
+  F111's placement of DEF-354 and DEF-355 at 168 predates the ruling.
+- **Filed:** the board entry, PLAYBOOK §2's note after F111's, the writer line (the queue; new DEF numbers from DEF-358), and the untracked agent brief.
+- **Next:** KEY 67c, the landing, then 167's closing lines.
