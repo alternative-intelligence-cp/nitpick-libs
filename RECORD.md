@@ -17671,3 +17671,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **From** `Ailp-team_29` (stamped 15:05:17, from `uds:/run/user/1000/cc-socks/300221.sock`, the socket `Ailp-team_28` named at 14:59:56): it holds the Team seat from 15:01:43, after `_28`'s third compaction. Address it there. `_28` relays anything sent to it until the coordination service's `team-seat` moves.
 - **Its state:** nothing runs before Sat 03:00. T17's draft carries this seat's rulings of 14:57:36, and waits if `management_6` reads "outside the tree" as anything but "outside what ships". Lane 2's T16fix1 runs from Sat 03:00 to `nitpick-libs_29`'s scope of 13:58:33 and 14:00:47. The Team's week read 55 % at 15:05:15.
 - **The writer line's** Team clause now names `Ailp-team_29` and its socket.
+
+### F111 filed: F109's second addendum, build 16 replacing build 15 (`491ae09`, which did not land); the caller rule; DEF-354 and DEF-355 registered for 168; no site of ours — 2026-10-29 16:15 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 16:10:57, arrived 16:11:34): F111, saved verbatim at `n167L/f111.txt` (3 636 B, `391df225…`) by its verified origin.
+  - Build 15 did not land. Management's delta review found that DEF-346's fix reached one writer of the callee summary, and four inline cells refused on 166 were silent on it.
+  - Build 16 adds the caller rule: a plain address under a pointee-changing cast, handed to a callee, is judged whole at the call. The summary's other writers truncate at such a cast.
+- **For us:**
+  - `BORROW-015`/`-016` at a call handed `(@place) =>! any->`, or a cast to another pointee type, while the place is viewed, lent or element-addressed;
+  - our `wild` value casts stay on the summary road;
+  - the D-021 round trip is an accepted over-refusal.
+- **Build 16's sweep** (15:35:40, 5,327 files): 66 sites appeared, 65 of them the landing's own plus `nitpick-time`'s probe 10 at :151. 6 vanished, all the landing's own. Nothing else of ours moves.
+- **Census here:** census15 stands, since no tree has moved since it read them. Its 240 casts are all `wild`, so no new kind has a site of ours, and no reply is owed.
+- **Registered for 168:** DEF-354 and DEF-355, OPEN HIGH, write-none.
+- **Filed:** the board entry, PLAYBOOK §2's note after F110's, the writer line (new DEF numbers from DEF-356), and the untracked agent brief.
+- **A stamp slip against this seat:** `db7da4a`'s record heading says 15:06, typed without a `date` call. That commit was pushed at 15:05:58, so its time is 15:05.
+- **Next:** build 16's SHA to management, KEY 67c, the landing, then 167's closing lines.
