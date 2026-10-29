@@ -17476,3 +17476,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - PLAYBOOK §2's note for DEF-345, write-none;
   - the writer line: the Team seat is `Ailp-team_28` at `3546383.sock`, and DEF-345 stands beside 168.
 - **This seat's hold stands** until the ruling and its landing.
+
+### Sockets 0.0.0's runs 4 and 5 done; PLAYBOOK §2's F106 note corrected on a pointer return — 2026-10-29 12:08 (shell time)
+
+- **From** `Ailp-team_28` (11:48:33 and 12:06:58):
+  - run 4 is `66a78fd` (step 3, PD-161 as `SK-103`);
+  - run 5 is `be48f70` (step 4, PD-162 and PD-163 as `SK-104` and `SK-105`, and no `$$m` in its patch).
+
+  Each block was SAME, with no amendment. Run 6, the chain's last, went out at 12:06:44, with DEF-345's note in its SAFETY.
+- **PLAYBOOK §2, F106's note (:222),** said "our code returns a pointer from one function only, in a refused probe". Sockets' probe 08, which runs, returns one too: `loopback`, a `wild int8->` from its own `calloc`, rooted at no parameter. It was read here at `be48f70`, and no rule of the note reaches it. The note is corrected in place, dated. Later censuses count every function that returns a pointer, plain or `wild`, and classify each by its root.
+- **Ruled:**
+  - run 6 goes as built;
+  - run 4's header item (T-6 for T-3), run 5's three text items (the OPEN_QUESTIONS header's "one cycle", probe 13b's header, the T-8 note) and the worker's `:1548` slip go to the next text round;
+  - the T-8 note's second-connect answer is one that cycle 0.3.1's plan must identify without naming the errno (PD-162).
