@@ -17421,3 +17421,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A correction:** the 166 entry's agent figure was its final context, not its spend. Its transcript shows 11 model calls and 2.16 M read. The entry is corrected, and `management_6` was told at 08:48:20.
 - **Next for parse:** 0.0.4's amendments, with the three harness fixes ruled at `002a53e` first and the text round after them, in a slot management assigns.
 - **The cost** of this re-read and merge goes in the parse chain's line to `management_6`.
+
+### `nitpick-sockets` 0.0.0's round (i) CHAIN PASS, re-read and merged at `424ec95`; PD-159 … PD-163 accepted; T15v's findings ruled — 2026-10-29 10:19 (shell time)
+
+- **The chain line** (`Ailp-team_27`, stamped 10:15:04, at `uds:/run/user/1000/cc-socks/942055.sock`): `nitpick-sockets 0.0.0 CHAIN PASS branch team/sockets-0.0-plan commit 424ec95…`, with the reports T15, T15c and T15v.
+  - T15v (sonnet) passed at 10:08:20 with ten findings, none blocking.
+  - The Team seat passed from `Ailp-team_26` to `Ailp-team_27` at 09:43:21, while T15v ran.
+- **Read here** by `team_reread.sh` at 10:15:35:
+  - four commits after `af50100`, each with its two trailers once;
+  - 37 files, +845/−351, all in `meta/`, with no `/home/` in an added line;
+  - no CI, by design.
+
+  T15v's report (39 407 B, `3a740c4e…`) was read whole, and so were the five PD blocks in their patches.
+- **Merged:** `main` fast-forwarded `af50100` → `424ec95` and pushed at 10:17:53. `ls-remote` reads `424ec95` for both refs. The checkout is clean, and `check_refs` is clean on it.
+- **Ruled:**
+  1. **gate point 3:** PD-159 … PD-163 are accepted here by the plan procedure, each read whole, and they become `SK-101` … `SK-105` at run 1. This seat's note of 2026-10-21, sending PD-159 … PD-168 to the author, is withdrawn: none of them touches what the author reserves;
+  2. **T15v's finding 3:** `shapes.py`'s four listed shapes stay information, their Expect lines the check, and README :599 gains the exception at the next text round;
+  3. **the other findings and the carried items** go to the rounds the board's entry names.
+- **Also brought up to date:**
+  - the writer line: the Team seat is `Ailp-team_27` at `942055.sock`, and sockets' runs are next;
+  - the parse and sockets in-flight rows: parse 0.0.4's amendments are in lane 2, by `management_6`'s word of 09:47:07;
+  - LIBRARIES.md's sockets row.
+- **A slip, this seat's:** sockets' in-flight row, filed at `746b56c`, said round (i) was on the branch "in three commits". A `log -3` read had left out `d73de03`, and there are four. The row is corrected.
+- **Next for sockets:** runs 1 … 6, then T15vw, on the Team seat within `management_6`'s bounds.
+- **The cost** goes in the sockets chain's line to `management_6`, together with `_30`'s gate-ruling cost that the chain owes.
