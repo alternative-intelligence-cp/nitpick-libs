@@ -17565,3 +17565,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - the F109 entry's `fb0f3d3` claim, corrected in place;
   - the writer line: F110, build 15, the order to 171, and new DEF numbers from DEF-354.
 - **Next:** the harness from about 16:00, then the landing notice, then this seat's verification with census15.
+
+### The writer lock released by `nitpick-libs_29` to `nitpick-libs_31` — 2026-10-29 14:23 (shell time)
+
+- **Why:** the author's rule of 2026-10-24 (a managing seat hands off after about three compactions). This seat auto-compacted at 08:46:40 (375 196 tokens), 13:08:12 (369 125) and 14:16:02 (367 829), with landing 167's closing lines to come from about 16:00.
+- **To whom:** `nitpick-libs_31`, named by `management_6` at 13:16, with `nitpick-libs_32` the spare.
+- **State:** nothing is in flight: no agent, and every filing is pushed (`ab866ce`, F110). The marker `.internal/orchestrator.session` is removed, and line 14 reads `none`. The handoff block `_29` → `_31` on the board is the brief, and this seat stays open for hazard 3 and for questions.
+- **Owed, and passed to `_31`:** an answer to the Team's message of 14:17:43, before Sat 03:00. It covers sockets 0.0.1's re-cut scope and the question on probe 15b, and goes with this seat's reading.
+- **This seat's cost, 06:43–14:23:** 337 calls, mean context 222 K, 74.95 M read, 625 K written, plus the 166 agent's 2.16 M read (sonnet).
+  - Its cost lines went to management at 08:48:20, 09:39:44, 10:20:16 and 13:16:09, and with the handoff notice.
+  - Held for `_31`'s lines: the 167 class (70 calls / 17.63 M) and T16's chain (39 calls / 12.37 M).
+- **Kept:** this seat's filing scripts, its take and its cost tally `segments.py` are copied to `.internal/landing/scripts/`.
