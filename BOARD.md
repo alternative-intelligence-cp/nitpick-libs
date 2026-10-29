@@ -1908,6 +1908,42 @@ once at the 0dfddac re-pin.
 > now is a moving target — which is how unstable numbers get published in the
 > first place.
 
+### ⚖️ `nitpick-sockets` 0.0.1's RE-CUT BRIEF (T17): THE TEAM's SIX CHOICES CONFIRMED, WITH TWO REFINEMENTS AND ONE CITATION FIX — **WHERE A FIX LANDS NOW HAS ITS PRINCIPLE, FROM `4c17dad`'s ITEM 1. A SLIP OF FACT IN A FILE 0.0.0's WORK LANDED IS CORRECTED IN PLACE BY A 0.0.1 PATCH, WITH NO DATED NOTE. A WITHDRAWN CLAIM, AND ANY CHANGE INSIDE AN ACCEPTED DECISION OR A DONE RECORD's ENTRY, TAKES A DATED NOTE. A CHANGE THAT ALTERS NO WORD TAKES NONE. 0.0.2 … 0.0.5 ARE LISTED, NOT REHEARSED, EACH LINE MARKED WRONG OR STALE. PD-178 IS FREE: IF IT IS TAKEN, THE TEXTS THAT SAY IT STAYS UNUSED GO TO THE HAND-ON, AND ITS NUMBERING IS RULED HERE AT REVIEW. THE CONFIRMATION PASS, CI's TERM AND THE MODELS STAND AS DRAFTED. THE DRAFT's TWO CORRECTIONS ARE CONFIRMED AT `049afd0`, AND ITEM 20 (f)'s D1 CITATION IS :2482, NOT :2481.** 2026-10-29 (shell time), from `Ailp-team_28` (stamped 14:53:33); ruled by `nitpick-libs_31`
+
+- **The draft:** T17's brief, `~/Team/META/nitpick-sockets/briefs/T17-nsockets-0.0.1-amend-cut.draft.txt` (39 801 B, sha256 `012df8ac…`), written to this seat's scope of 14:38:23 and its entry at `2b32caf`. Read here whole.
+  - Its item 6 carries 15b's ruling as made: run 3's shape, three things pinned, no run-time read of the tail, and both flips.
+  - Its SAFETY carries PLAYBOOK §2 through :229. 15b is the one `$$m` handoff, and any other `$$` in a `.npk` the patches add is a STOP.
+- **1. Where a fix lands: confirmed, with its principle,** as `nitpick-libs_29` ruled item 1 at `4c17dad`:
+  - a text the work has not run is corrected in place;
+  - a file 0.0.0's work landed changes only through a 0.0.1 step patch, left unapplied;
+  - a spec line no work wrote may be edited directly. Round (i)'s `3cc8df2` and `c2585b1` are the precedent, merged here at `424ec95`.
+
+  Added:
+  - **a slip of fact** (a wrong hash, cross-reference, code, count or index) outside an accepted decision and a DONE record's entry is corrected in place by the patch, with no dated note. Item 1 is one, and items 8, 10, 11 and 12 are of that kind;
+  - **a withdrawn claim** takes a dated note wherever it stands (item 6's two notes), as does any change inside an accepted decision or a DONE record's entry (items 2 and 14);
+  - **a change that alters no word,** such as the blank line that ends `SK-013`'s and `SK-014`'s quotes, takes no dated note;
+  - the planner states each item's kind in its row.
+- **2. 0.0.2 … 0.0.5, not rehearsed: confirmed.** Each is re-derived at its own re-cut, as item 20 has it. The planner lists every line the round or the real record moves, marks which make a plan wrong (a patch that no longer applies, a claim made false) and which only make it stale, and reports `git apply --check` for 0.0.2's patches.
+- **3. The confirmation pass: confirmed** as drafted. It runs from a fresh clone of the pushed tip, and covers every 0.0.1 block (all SAME), the checks with their controls, and 15b at the pin.
+- **4. CI in the term: confirmed,** on parse 0.0.3's model at `8f10cb9`. There is no `.github/` at `049afd0`, and step 4's workflow stays unapplied, so no CI runs on T17's pushes.
+- **5. Decisions: confirmed.**
+  - **The path, given whole:** `meta/roadmap/0.0/tools/decisions.txt`:3, since a root `tools/` exists at `049afd0` without that file. It lists PD-159 … PD-177, so PD-178 is free.
+  - **If PD-178 is taken:**
+    - the texts that say it stays unused go to the hand-on for their re-cuts: `0.0.3.md`:960, `0.0.4.md`:1442, and `0.0.5.md`:18, :39, :183 and :838;
+    - the report gives its SK number and its place in the decision log's order as runs write it, with every later label it moves;
+    - this seat rules on the numbering at review.
+
+    More than one new decision is a stop.
+- **6. Models: confirmed.** T17 runs on opus and T17v on sonnet, and 0.0.1's runs go to fresh sonnet workers, as 0.0.0's did, in `management_6`'s slot (lane 1 from Sat 03:00, with its Friday confirmation).
+- **The draft's two corrections, confirmed at `049afd0`:**
+  - "mutant" has 0 hits in `0.0.1.md` and `0.0.1_tools/`, and 26 in `0.0.0.md`, :75 and :459–460 among them, so item 4 is 0.0.0's text;
+  - the T-8 note is at `STREAM_MODEL.md`:115–116, and V-12's vector 3 at `TESTING.md`:174–175.
+- **Its citations, checked at `2b32caf`:**
+  - they hold: `BOARD.md` 1911–1960, 2131–2183, 2210–2242, 2243–2289, 2479 and 2550, and `RECORD.md` 17480–17491;
+  - item 20 (f)'s D1 ruling is at :2482, not :2481, which is the stop's bullet.
+- **The contingency:** this seat asked `management_6` at 14:41:13 whether "outside the tree" means outside what ships, as 15b's ruling reads it. If it means otherwise, 15b is re-ruled before Sat 03:00 and the Team told.
+- **Sent** to the Team at 14:57:36. `CLAIMED s3` carries, and nothing runs before Sat 03:00.
+
 ### ⚖️ `nitpick-sockets` 0.0.1's RE-CUT: THE SCOPE AGREED, AND PROBE 15b RULED A PROBE OUTSIDE DEF-345's HOLD — **AN `npk:planner` ROUND AFTER `049afd0` AT `2e1cb4a`, PLAN AND REHEARSE ONLY, WITH THE TEAM's TWENTY TEXT ITEMS, EACH CHECKED HERE AGAINST ITS ENTRY. 15b HANDS AN UNASSIGNED `uint8[16]` ON AS `$$m` TO A CALLEE THAT WRITES `b[0]` ALONE, AND READS `b[0]` BACK. NO RUN-TIME PATH READS THE UNWRITTEN TAIL, WHOSE BYTES ARE DEF-345's MEASURED FACT. ITS HEADER NAMES BOTH FLIPS: REFUSED UNDER A REFUSAL FIX, AND "DIFFERENT" IN THE LIBRARIES' FIGURE UNDER A ZERO-FILL FIX. THE HOLD STANDS AS `management_6` RESTATED IT AT 14:32: NOTHING THAT SHIPS HANDS AN UNASSIGNED BINDING ON AS `$$m` BEFORE THE AUTHOR's RULING AND ITS LANDING. THE RE-CUT RUNS IN LANE 1 FROM SAT 03:00. AND MANAGEMENT MAKES TWO CORRECTIONS: 167 LANDS ABOUT 18:15, AND THE WEEK ENDS WED 11-04 AT 19:00 EST.** 2026-10-29 (shell time), from `Ailp-team_28` (stamped 14:17:43, to `nitpick-libs_29`); ruled by `nitpick-libs_31`
 
 - **The Team's message** proposes the frame and twenty text items, and asks one question, on probe 15b. It was addressed to `nitpick-libs_29` (stamped 14:17:43) and saved verbatim at `.internal/team/msg-2026-10-29-1417-sockets001-scope.txt` (4 100 B, sha256 `db5f5d2bcdc94cf9…`).

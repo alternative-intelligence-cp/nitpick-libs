@@ -17643,3 +17643,18 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - census15's output is copied to `n167L/census15.out`;
   - this seat's take is kept as `scripts/take31.py`.
 - **Next:** 167's closing lines after the landing, about 18:15, then management's word for one sonnet agent on `n167L/AGENT_BRIEF.md`.
+
+### `nitpick-sockets` 0.0.1's re-cut brief (T17): six choices confirmed — 2026-10-29 14:58 (shell time)
+
+- **From** `Ailp-team_28` (stamped 14:53:33): T17's draft brief (39 801 B, `012df8ac…`), written to this seat's scope of 14:38:23, with six choices the scope did not settle.
+- **Read here whole,** and checked at `049afd0` and `2b32caf`. Item 6 carries 15b's ruling as made.
+- **Ruled, and sent at 14:57:36:** all six confirmed.
+  - **(1) Where a fix lands** gains its principle, from `4c17dad`'s item 1:
+    - a slip of fact in a landed file, outside an accepted decision and a DONE record, is corrected in place with no dated note;
+    - a withdrawn claim, and any change inside an accepted decision or a DONE record, takes a dated note;
+    - a change that alters no word takes none.
+  - **(2)** 0.0.2 … 0.0.5's moved lines are each marked wrong or stale.
+  - **(5)** The path is given whole (`meta/roadmap/0.0/tools/decisions.txt`). PD-178 is free; if it is taken, the texts saying it stays unused go to the hand-on, and its numbering is ruled here at review.
+  - **(3), (4) and (6)** stand as drafted.
+- **The draft's two corrections are confirmed.** Item 20 (f)'s D1 citation is :2482, not :2481.
+- **Next:** unchanged; 167's closing lines after the landing, about 18:15.
