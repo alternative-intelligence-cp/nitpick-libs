@@ -17913,3 +17913,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed:** the board entry above 170's, PLAYBOOK §2's note at :243, the addendum entry's two corrections, and the writer line.
 - **A slip:** at 08:41, after this seat's third compaction, a reading command began with a `cd` into the workbench root, where the shell already stood. Nothing moved; absolute paths only.
 - **Next:** 171's harness and landing, then its closing lines; `n171L/AGENT_BRIEF.md` from 170's, and the agent asked of `management_7`.
+
+### The writer lock released by `nitpick-libs_32` to `nitpick-libs_33`, by the author's rule of 2026-10-24 (three compactions) — 2026-10-30 08:50 (shell time)
+
+- **Why now:** this seat auto-compacted three times after its take at 00:34: at 02:53:39 (367 562 tokens), 06:50:49 (366 749) and 08:41:04 (384 339). The author's rule of 2026-10-24 hands a managing seat off after about three. `management_6` named `nitpick-libs_33` the next spare at 00:20, and `management_7` confirmed the plan at 07:10:14.
+- **At the release:** nothing of this seat's is in flight, and no agent is running. The workbench is at `f93d3c9` (F118 filed), pushed. On the compiler's side 171's harness is next (`nitpick-compiler_50`, `50-def364`). The Team folded PLAYBOOK §2 :243 into both Saturday drafts at 08:46, checked here: T16fix1 44 310 B, `c224ca71…`, 218 lines; T17 56 492 B, `ca69e995…`, 390 lines; its clone at `f93d3c9`. Nothing runs there before Sat 03:00.
+- **The brief** is the handoff block `_32` → `_33` on the board: the take; 171's verification, with the checks F118 leaves for it and the fuzz rows' routing; parse 0.0.4 and sockets 0.0.1 from Sat 03:00; the queue; the budget; and who is who.
+- **The lock:** line 14 reads `none`, and its held text is in history at `f93d3c9`. The marker `.internal/orchestrator.session` is removed.
+- **Cost:** this seat, 00:34 to the release, 268 calls / 59.12 M read on Opus, plus its two sonnet agents' 86 / 0.34 M. Lines sent: 169 with F116 at 02:49:54, 170 with F117's addendum at 07:01, and this handoff with the release notice. Held for `_33`: 171's chain so far, 62 / 15.15 M, and T16's 39 / 12.37 M.
+- **`_32` stays open** for hazard 3 and for questions, and forwards verbatim, with arrival times, anything that reaches it.
