@@ -324,6 +324,8 @@ bind the workers dispatched from here, and the fuzzer's sessions build their
 compilers in its own `.work/` (`nitpick-fuzz/CLAUDE.md:27-28`). *Described
 2026-10-16, from practice the author approved 2026-10-15.*
 
+*(Note 2026-10-30, the author's exception to W-30 for the libraries' fuzz copy, asked as option (a) of management's question of 11:46 and answered by the author at about 13:55 ("i am fine with your recommendation on that one"), relayed by `management_7` at 13:57:00. **This workbench may fast-forward its own clone `nitpick-libs/nitpick-fuzz`, and nothing else of a tool repository:** `git fetch`, then `git merge --ff-only` to the fuzz repository's `main`, with no commit in the fuzz repository and nothing else touched in the clone; if the merge is not a fast-forward, stop and report. **Each move is one workbench commit recording a base change:** the old and new sha, the `.npk` delta, the reason and this authority. **A move is made only at a quiet point,** after the compiler seat confirms that no sweep reads the copy: after a landing's verification is filed and before the next landing's sweep starts, never mid-chain. The first move, `d44dfe3` → `d096b82`, comes after landing 172's verification is filed and before 173's sweep. Later moves are proposed to management at a quiet point, and a small one may be made on its word. The rest of W-30 stands: the fuzz repository is its own manager's, its sessions follow its own `CLAUDE.md`, and this workbench claims and dispatches nothing there.)*
+
 **Rule W-31 — a re-pin is taken with every claim at rest, and each library
 adopts it in a lettered subcycle.** Refines W-18, which still holds for who
 pins and records. A re-pin is taken by the orchestrator when no claim is in
