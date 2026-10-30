@@ -17862,3 +17862,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The control:** `test_check_record.py` gains two planted cases, `report-other-sub` and `report-other-name`. All 15 cases are correct, and it now prints distinct classes: 11 fault classes over 13 planted cases, and 2 clean cases. `test_check_refs.py` is unchanged, 16 of 16.
 - **The skill:** `skills/check/SKILL.md`'s table splits the row. Its count of the record control, "ten classes and one clean case", stale since `archived-clean` joined at `adeaa6b` on 2026-09-06, is corrected in place with a dated note.
 - **The plugin's copies:** the Team clone is at `b232be7`, one commit behind. `Ailp-team_29` is told to fast-forward before Sat 03:00.
+
+### F117 filed: the advance notice of landing 170 (DEF-366 + DEF-367 + DEF-368 + DEF-363 with DEF-360 relaxed, on `50-def366`), before its harness; DEF-369 and DEF-370 registered LOW; no site of ours — 2026-10-30 04:17 (shell time)
+
+- **From** `nitpick-compiler_50` (stamped 04:04:55, arrived 04:05:23): F117, saved verbatim at `n170L/f117.txt` (8 309 B, `0b13fe63…`) by its verified origin.
+  - **170** closes three pre-existing double frees, each `TYPE-046` at a move slot: DEF-366 (an owner copied into a `move Self:self` receiver), DEF-367 (an owner copied through `??`, `?|`, `?!`, `??!`, `relay`, a cast, a ternary's arm or `?.`) and DEF-368 (an owning part of a temporary). It also lands DEF-363's emitter fix: an awaited by-value method through a pointer reads the pointee, and a spawn through a pointer is judged by the pointee's type (DEF-360 relaxed). Five `src/` files, +168/−13; an emission change.
+  - **Registered:** DEF-366 … DEF-368 OPEN HIGH, fixed here; DEF-369 and DEF-370 LOW over-refusals, unplaced.
+- **For us:** the sweep over 5,335 files moves no file of ours; our 4,086 programs are 1,905/2,181/0/0; and no floor byte moves, so no re-pin. census17g, new, answers the claims with its controls 5 of 5: 0 sites of each.
+- **Asked:** nothing before the harness. After the landing, the usual verification.
+- **Sent** to `nitpick-compiler_50` at 04:15:50: census17g's result; the manifest's +13 obligations and +13 discharged against 12 rows added, for the closing lines; and the old landing numbers in `OPEN_DECISIONS.md`'s open rows, for information.
+- **Filed:** the board entry above 169's, PLAYBOOK §2's note at :240, and the writer line.
+- **Next:** 170's harness and landing, then its closing lines; `n170L/AGENT_BRIEF.md` from 169's, and the agent asked of `management_7`.
