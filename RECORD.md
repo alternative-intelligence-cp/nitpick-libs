@@ -17715,3 +17715,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **This seat's question of 14:41:13** is answered as 15b's ruling read it, so T17's contingency is cleared.
 - **Sent:** the Team at 17:31, `management_6` at 17:32.
 - **Filed:** the board entry, PLAYBOOK §2's note, the writer line (DEF-345 at 169), and the untracked agent brief.
+
+### Landing 167 verified at `49754e4` (`main` `baebe12`): one failing line, the notice's stale manifest figures; sent for a dated note — 2026-10-29 20:14 (shell time)
+
+- **From** `nitpick-compiler_51`: NOTICE 167 and its closing lines, stamped 19:00 and arrived 19:02:03, saved verbatim from this seat's transcript by origin as `n167L/closing167.txt` (17 278 B, `c3b1df25…`).
+  - `49754e4` (build 16) landed on `cd3cb4d`, and `baebe12` (docs only: D-366, DEF-356 and DEF-357, the 16:48 queue, the seventh over-refusal) is `main`.
+  - Our 4,086 programs: 0 different, and 1 newly refused (`nitpick-time`'s probe 10 at :151:36, as forecast). No floor byte moved.
+- **Verified by one sonnet agent** on `management_6`'s word of 19:04 (capped at 40 calls, from this seat's 5 points), on `n167L/AGENT_BRIEF.md`: 34 calls, 351 902 tokens, about 65 minutes.
+  - `verify167.out` ends `VERDICT: FAIL` on one line: the stated manifest figures (7,082 shared, 221 re-keyed, 45 functions, 41 identical) are builds 14's and 15's, and build 16 measures 7,078, 225, 47 and 43. This seat confirmed it by exact-line comparison. The totals hold.
+  - Row 167's main text carries build 14's figures, and there are smaller disagreements. All were sent to `nitpick-compiler_51` at 20:11, by management's word, for a dated note in 168's record.
+  - This seat spot-checked the ladder (6 of 6 against `ladder_49754e4.txt`), `base168.txt`, row 167 and origin's `main` by hand.
+- **The board's entry of this date** holds the figures, what is MISSING, the disagreements and the seventh over-refusal (a NEW SHAPE with no site of ours).
+- **PLAYBOOK §2** gains 167's note at :233. The F109 … F111 rules stand until a re-pin carries 167, and the seventh over-refusal is named.
+- **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
+- **A slip of this seat's:** `6974dad`'s DEF-345 entry said T17 "drops its contingency paragraph". There was none; the contingency lived only in the Team seat's state (`Ailp-team_29`, 17:35:12). The entry is corrected in place.
