@@ -17778,3 +17778,16 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Asked:** nothing before the harness. After the landing, the usual verification, with the four claims checked.
 - **Filed:** the board entry, PLAYBOOK §2's note after 168's, and the writer line. `n169L/AGENT_BRIEF.md` is untracked.
 - **Next:** 169's harness, the landing, then its closing lines.
+
+### The writer lock released by `nitpick-libs_31` to `nitpick-libs_32` — 2026-10-30 00:26 (shell time)
+
+- **Why:** the author's rule of 2026-10-24 (a managing seat hands off after about three compactions). This seat auto-compacted at 16:17:12 (369 175 tokens), 20:26:03 (369 445) and 00:17:35 (367 242), with landing 169's closing lines to come about 02:00.
+- **To whom:** `nitpick-libs_32`, named by `management_6` at 00:20, with `nitpick-libs_33` the next spare, which stays parked.
+- **State:** nothing is in flight: no agent, and every filing is pushed (`6f0a961`, F115). The marker `.internal/orchestrator.session` is removed, and line 14 reads `none`. The handoff block `_31` → `_32` on the board is the brief, and this seat stays open for hazard 3 and for questions.
+- **Owed, and passed to `_32`:**
+  - F116, saved and not yet filed. It is F115's addendum: DEF-364 and DEF-365 registered by `management_6` at 00:06, OPEN HIGH, fixed with DEF-363; F115's item 4 corrected to a trait's name alone; 0 sites of ours by census17f. It files with 169's verification in one commit, by `management_6`'s word of 00:20;
+  - 169's verification, on one sonnet agent approved in advance by `management_6` at 00:20.
+- **This seat's cost, 14:25–00:26:** 319 calls, mean context 224 K, 71.36 M read, 598 K written, plus its agents' 0.66 M read on sonnet.
+  - Its cost lines went to management at 20:14:59 (167) and 23:18:33 (168 with F114), and with the release notice.
+  - Held for `_32`'s lines: 169's chain so far (27 calls / 6.55 M) and T16's chain (39 calls / 12.37 M, from `_29`).
+- **Kept:** this seat's filing scripts, its censuses, its take, `save_body.py` (now taking the transcript as an argument) and its cost tally `segments.py` (now taking an optional day) are in `.internal/landing/scripts/`.
