@@ -17873,3 +17873,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Sent** to `nitpick-compiler_50` at 04:15:50: census17g's result; the manifest's +13 obligations and +13 discharged against 12 rows added, for the closing lines; and the old landing numbers in `OPEN_DECISIONS.md`'s open rows, for information.
 - **Filed:** the board entry above 169's, PLAYBOOK §2's note at :240, and the writer line.
 - **Next:** 170's harness and landing, then its closing lines; `n170L/AGENT_BRIEF.md` from 169's, and the agent asked of `management_7`.
+
+### F117's addendum filed: DEF-371 and DEF-372 OPEN HIGH, DEF-373's both form retired, all leading 171; no site of ours — 2026-10-30 06:59 (shell time)
+
+- **From** `management_7`'s diff review of `b122540` (written 04:19:48, ruled 04:29; DEF-371's direction corrected at 04:59 and widened at 06:03; DEF-373 the author's ruling of about 05:18, relayed at 06:03), carried in `nitpick-compiler_50`'s closing lines of 170.
+  - DEF-371: a `Result{value: v}` literal copies an owner at a `return` or any other move slot, and at a `return` asks none of `pass`'s other rules: a double free, 95/95 on 169 and 170.
+  - DEF-372: a function with a `move` parameter, named as a value and called through it, drops its argument twice.
+  - DEF-373: the both form `Result{err: E, value: v}` leaks the owner on every error road; from 171 a `Result` literal writes `err` or `value`, never both.
+- **For us:** census17h (controls 3 of 3) finds no `Result{` literal and no function type in our trees, and the compiler's census by a scratch refusal build finds 0 sites over 5,335 and 23,898 files.
+- **Filed:** the board entry, and PLAYBOOK §2's note at :241 (write none of the three), by `management_7`'s word of 06:13.
+
+### Landing 170 verified at `b122540`: `VERDICT: PASS`, the counts the agent left unchecked checked by hand; 169's missing clause carried late; no file of ours moves — 2026-10-30 06:59 (shell time)
+
+- **From** `nitpick-compiler_50`: NOTICE 170 (`b122540`'s commit message) and its closing lines, stamped 06:07:21 and arrived 06:10:30, saved verbatim from this seat's transcript by origin as `n170L/closing170.txt` (41 872 B, `753aef6f…`).
+  - `b122540` landed on `214a692`, origin's `main` from 06:04:55, with no commit after it; `nitpick-compiler_50` built and landed it. DEF-363, DEF-366, DEF-367 and DEF-368 are fixed and DEF-360 relaxed to the pointee's type: an emission change, with no floor byte moved.
+  - Our 4,086 programs: 1,905 identical, 2,181 refused by both, 0 different, 0 newly refused. The sweep over 5,335 files moves no file of ours.
+- **Verified by one sonnet agent** on `management_7`'s word of 06:13 (its cap of 40 a hard stop), on `n170L/AGENT_BRIEF.md`: 31 tool uses, 118 850 tokens, about 35 minutes; it compacted once, though the brief said not to. `verify170.out` ends `VERDICT: PASS`, with 42 controls caught and 18 items noted.
+  - This seat checked by hand what it left unchecked: the legal halves' controls from the source (32 and 19), the sweep's totals and per-code moves, the emission figures, the verify suite's 138, the planted 83, and the six rows (`n170L/base171.txt`, 171's baseline). The fuzz census, the units and the in-process checks need a build and stay unchecked.
+  - 169's failing item is closed: `OPEN_DECISIONS.md` carries the late clause under DEF-340's row.
+- **The queue,** by `management_7`'s ruling of 04:29: 171's first group is DEF-364 + DEF-365 + DEF-371 + DEF-372 with DEF-362's hardening note, then DEF-344's group. New DEF numbers start at DEF-374.
+- **Two slips of this seat's, at F117's filing:** the Team message of 04:17:41 cited the F114 and F115 notes as ":234, :237", but F114's is :235 (:234 is F113's). It was corrected to the Team at about 04:18 (msg `4c6b9144`), and the Team's drafts carry ":235 and :237" (checked at 04:20). That correction was stamped "04:19" without a `date` read, and the clock read 04:18:10 just after it: a stamp a minute ahead, not re-sent.
+- **Filed:** the board entry, PLAYBOOK §2's note at :242, and the writer line. **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
