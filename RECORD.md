@@ -18002,3 +18002,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - The copy stays at `d44dfe3`, and verify172 expects it there. `nitpick-compiler_50` covers the delta by exporting fuzz `d096b82`'s tracked tree with `git archive` into its own scratch and sweeping the 76 changed or added `.npk` there on both sides of 172, recorded in 172's notice.
 - **Slips of this seat's:** at 11:33:07 and 11:45:21 it ran a script after a `cd` to the workbench root, its own directory, though the house rule says never `cd`. The directory did not change, and each script read what it would have read without the `cd`.
 - **Filed:** PLAYBOOK §2's note at :246, and line 14. **The Team** is sent :246 for T17's and T16fix1's SAFETY.
+
+### DEF-388 filed: `management_7`'s interim rule in PLAYBOOK §2 :247, no site of ours — 2026-10-30 12:07 (shell time)
+
+- **From** `management_7` at 12:05:42: DEF-388 (HIGH, pre-existing on 170, 171 and 172, numbered at 12:05). A `Result` literal outside a `return` is typed by the enclosing function's success type and wild context, not by its slot.
+  - In a function returning `wild T->`, a plain `Result<T->>` slot takes `Result{value: NULL}` or a wild value unrefused, at an initialiser, a call argument, a struct field or an assignment. Unwrapped and dereferenced, it is a MachineFault (107/107).
+  - Elsewhere the same literal is over-refused with `TYPE-007` whenever the function's `T` differs from the slot's.
+- **The rule,** write none: no `Result{…}` literal anywhere but as a `return`'s direct operand. Write the value or the error at the `return`, or bind the result of a call. The notes at :241 and :244 still govern a `return`'s own literal.
+- **For us:** census17j, re-run just before this filing with its output identical to the saved one, finds no `Result` literal at all in our trees or the Team branches. `nitpick-compiler_50`'s textual census finds none off a `return` line in the libraries proper, the applications, `src/`, `lib/`, `npkg/` and `tools/`. Our fuzz copy's one, `as0307.npk`, is the fuzz seat's, and 171 refuses it as `TYPE-101`.
+- **Filed:** PLAYBOOK §2's note at :247, and line 14. **The Team** is sent :247 for T17's and T16fix1's SAFETY.
