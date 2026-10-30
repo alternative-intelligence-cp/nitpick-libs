@@ -17768,3 +17768,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Sent** to `nitpick-compiler_51` at 23:15: the failing line and four small disagreements, for a dated note in 169's record, with census17e for its DEF-363 census.
 - **The board's entry of this date** holds the figures, what is MISSING and the disagreements. PLAYBOOK §2 gains 168's note at :236, after F114's at :235.
 - **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
+
+### F115 filed: the advance notice of landing 169 (DEF-359 + DEF-360 + DEF-361 + DEF-362, on `51-def359`), before its harness; DEF-363 registered; no site of ours — 2026-10-29 23:55 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 23:51:38, arrived 23:52:19): F115, saved verbatim at `n169L/f115.txt` (7 085 B, `59a7e76e…`) by its verified origin.
+  - **169** closes F114's four spawn holes in `escape.npk` alone (+39/−4), and removes one refusal, f4d, 168's over-refusal. A by-value `self` method spawned through a pointer is refused whatever the pointee until DEF-363's fix, and every generic `T` spawned by value is an owner.
+  - **DEF-363** (OPEN HIGH, its fix the landing after 169): the child-frame builder stores a pointer receiver's address into a by-value `self` slot. The spawn face is refused at 169, and the await face by nothing until its fix. The compiler's census finds 0 sites of either face outside its own tests.
+- **For us:** the sweep over 5,333 files moves no file of ours; our 4,086 programs are 1,905/2,181/0/0; and no floor byte moves, so no re-pin. census17, census17d and census17e already answer the four claims: 0 sites of each.
+- **Asked:** nothing before the harness. After the landing, the usual verification, with the four claims checked.
+- **Filed:** the board entry, PLAYBOOK §2's note after 168's, and the writer line. `n169L/AGENT_BRIEF.md` is untracked.
+- **Next:** 169's harness, the landing, then its closing lines.
