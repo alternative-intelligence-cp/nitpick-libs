@@ -17791,3 +17791,42 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Its cost lines went to management at 20:14:59 (167) and 23:18:33 (168 with F114), and with the release notice.
   - Held for `_32`'s lines: 169's chain so far (27 calls / 6.55 M) and T16's chain (39 calls / 12.37 M, from `_29`).
 - **Kept:** this seat's filing scripts, its censuses, its take, `save_body.py` (now taking the transcript as an argument) and its cost tally `segments.py` (now taking an optional day) are in `.internal/landing/scripts/`.
+
+### Handover — `nitpick-libs_32` takes the workbench lock on `nitpick-libs_31`'s briefed handoff — 2026-10-30 00:34 (shell time)
+
+- **Handover.** `nitpick-libs_32` (`4d5f5a0b-631e-4dd1-a862-2996b81936e1`) takes the writer lock that `nitpick-libs_31` released at `f5e8399` (00:26:42), by the author's rule of 2026-10-24 (a managing seat hands off after about three compactions) and `management_6`'s word of 00:20, which named `_32` with `_33` the next spare. `_31` briefed this seat by message (stamped 00:27, the standing security rule restated) and by the board's handoff block `_31` → `_32`.
+- **The account, checked first:** this session's status-line file `~/.claude/context/4d5f5a0b-….json` (written 00:29:26) carries rate limits (the five-hour window 25 %, resetting Fri 01:50; the week 62 %, resetting Wed 11-04 19:00 EST), so this seat is on Max. The model is `claude-opus-5-5`, and the context read 11 % at 00:29. `CLAUDE_CONFIG_DIR` is unset, read by its exact name.
+- **The allocation** stands as `_31` recorded it: 5 Max points from 2026-10-28 21:42:56 to Wed 11-04 19:00 EST, the tally held by `management_6`. This seat tells management before passing 5, dispatches no agent without asking it (169's verifier is asked: one sonnet agent, capped at 40 calls, approved at 00:20), and sends one cost line per chain.
+- **The id, from five values,** all agreeing: `CLAUDE_CODE_SESSION_ID`; the transcript `4d5f5a0b-….jsonl` (written live, 00:29:30); the scratchpad path; `~/.claude/context/4d5f5a0b-….json` (`session_name` `nitpick-libs_32`); and the session registry's `~/.claude/sessions/3564450.json` (`sessionId` and `name` `nitpick-libs_32`). `ListAgents` names this session `nitpick-libs_32` (`[39e66e]`), and its socket is `uds:/run/user/1000/cc-socks/3564450.sock`.
+  - **By content:** a nonce (`libs32-take-v4kd-m8sq-z2rt`), typed into a search command at 00:30:48, was found in no file then, because a call reaches the transcript only after it runs. Searched again at 00:31:13, it is found in this seat's transcript only, the search ending 00:31:14, across `~/.claude/projects` and `~/.claude-team/projects`.
+  - A control generated at run time, and never printed, is found in neither.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 00:30:57, and the take script re-read it at 00:34:34, just before the marker and the edit, refusing otherwise;
+  - `HEAD` = `origin/main` = `ls-remote` = `f5e8399`, with porcelain 0 and the stash list empty, both times;
+  - `.internal/` held no `orchestrator.session`;
+  - the sweep at 00:30:57, discovered rather than listed and run with `git --no-optional-locks`, found **9 trees, every one `dirty=0`**: the workbench `f5e8399`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `8f10cb9`, regex `14817a1`, sockets `049afd0`, time `74b6ee1` and tui `e5439ee`. Eight read `0/0`; fuzz reads `0/19` against its tracking ref, the standing state recorded at the last takes;
+  - the pin `2e1cb4a`'s two digests match its `SHA256SUMS`, read by script: `npkc` 11 562 976 B and `npkrt.o` 72 656 B;
+  - the compiler's `main` is `68f05a9` (168's record corrected after management's diff review), clean, `0/0` against its local `origin/main` (read with `--no-optional-locks`, no fetch), so 169 has not landed;
+  - the Team branches by `ls-remote` (00:30:57): `team/parse-0.0-plan` at `50696a5` (parse's `main` `8f10cb9`) and `team/sockets-0.0-plan` at `049afd0`, equal to its `main`;
+  - `check_refs` on the workbench before the edit (00:31): exit 1, the 2 known `[leak] tools/guard_domains.py` lines and nothing else.
+- **Hazard 3, asked at 00:31:23 and answered at 00:32 (its stamp), checked against its transcript, git and file mtimes:** `f5e8399` (00:26:42) is `_31`'s last write to the tracked tree. After the push it made exactly one write, removing the marker once it had confirmed the marker held its id (`.internal`'s mtime 00:26:50), and nothing since.
+  - Its writes since midnight, all before that commit: `n169L/f116.txt`, `scripts/census17f.py` and `n169L/census17f.out` (00:16); carry item 73 (00:18:24); `n169L/AGENT_BRIEF.md` (00:19:22); `scripts/save_body.py` and `scripts/segments.py` (00:24:51); `scripts/file_handoff_31_32.py`, `BOARD.md` and `RECORD.md` (00:26:20). Outside the workbench, only a test copy of F116 and the `check_refs` output, in its own scratchpad and temporary directory.
+  - The workbench root's and `.claude/`'s directory mtimes move with every sandboxed command: they are the sandbox's mount points, not content, and porcelain stays 0.
+  - Nothing of its is running. Over the session it used no background shell, no cron or remote trigger, no wakeup and no Monitor, and both its agents finished and reported (167's verifier at 19:0x; 168's, dispatched 22:37:22, reported about 23:13).
+  - It writes nothing more in the workbench, any library repository or `nitpick-apps`, and only sends messages. Nothing is owed beyond the block and its 00:27 message. Anything for the seat that reaches it goes back to its sender to resend here, so that no body is relayed.
+- **Hazard 4, asked at 00:31:23 and answered at 00:32:20 (its stamp):** `nitpick-libs_33` (`[a10d30]`, socket `1912208.sock`), the parked spare, is idle, with no task, no agent, no background shell, no cron and no wakeup. Before this seat's question it had only been renamed. It has made no Write, Edit or commit: a search of all refs in the workbench and its six library checkouts for its session id finds no commit, and the workbench reads `f5e8399`, clean. It will message this seat before any write, and stays parked until this seat or the author briefs it.
+- **The peers before the take (`ListAgents`, 00:29):**
+  - the seat's own: `nitpick-libs_31` (`[a2b6c4]`) and `_33` (`[a10d30]`), both idle;
+  - the compiler's: `nitpick-compiler_50` (`[12895f]`, busy), `_51` (`[e3c2a1]`) and `_52` (`[a67bc0]`), both idle; `_48` and `_49` are not listed;
+  - management's: `management_6` (`[f74768]`, in a shell), `_7` (`[0022fc]`) and `_5` (`[e50452]`), both idle;
+  - the fuzzer's: `nitpick-fuzz_5` (`[5efaef]`), `_6` (`[f37579]`) and `_7` (`[0e1de9]`), all idle;
+  - `diogenes_4` … `_6`, `probe-mk` (Remote Control, offline), and the fuzz cloud session (`[169d76]`, milestone M11).
+
+  The Team's `claude-team` sessions are not listed.
+- **This seat before the take:** opened by the author at 08:57 on 10-29 (the registry's `startedAt`) and parked under the name `nitpick-libs_32`. It answered `_31`'s hazard 4 at 14:28:57 with no write anywhere (its git search covered the workbench and its six library checkouts, not `nitpick-apps` or posix), and in that answer it gave `_31`'s ref `[a2b6c4]` as if its own, a slip `_31` recorded. It was idle until `_31`'s brief at 00:27 and wrote nothing before this take.
+- **Next, by the handoff block:**
+  - landing 169's closing lines about 02:00 from `nitpick-compiler_50`, saved by origin with `save_body.py` as `n169L/closing169.txt`;
+  - one sonnet agent capped at 40 calls on `n169L/AGENT_BRIEF.md`, then `file_n169.py`, filing 169 and F116 in one commit, and 169's cost line;
+  - parse 0.0.4's fix round (lane 2) and sockets 0.0.1's re-cut (lane 1) from Sat 03:00.
+
+  Nothing is dispatched.
