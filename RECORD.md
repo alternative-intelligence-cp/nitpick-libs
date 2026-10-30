@@ -17901,3 +17901,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Why a correction:** this seat's filing of 170 (`d3a0b0b`, written at 06:59, pushed at 07:00:22) gave the 04:29 placement, which the 06:59 ruling had replaced a minute before. Corrected in place, each with a dated note: line 14's queue, the sentence of PLAYBOOK §2 :242 that placed 171, the 170 entry's queue bullet and the addendum entry's heading. The record entries of 06:59 stay as written.
 - **For us:** no rule changes. Every write-none rule in §2 stands until a re-pin, which waits for DEF-286. DEF-374 … DEF-378 are censused and given their §2 lines when a notice announces them, by `management_7`'s word ("171's notice when it lands").
 - **The Team** is sent the corrected queue for both drafts' SAFETY header and T17's queue bullet.
+
+### F118 filed: the advance notice of landing 171 (DEF-371 + DEF-373 + DEF-372 + DEF-374, on `50-def364`), before its harness; DEF-375 … DEF-378 registered; no site of ours; census17h's scope stated — 2026-10-30 08:43 (shell time)
+
+- **From** `nitpick-compiler_50` (stamped 08:33:23, arrived 08:33:59): F118, saved verbatim at `n171L/f118.txt` (8 946 B, `53e5da96…`) by its verified origin.
+  - **171:** `return Result{value: v};` takes `pass`'s road (DEF-371); a both-form literal is `TYPE-101` (DEF-373); a function with a `move` parameter named as a value is `TYPE-100` (DEF-372, plain `move` parameters included: a known over-refusal); and TAINT-001's messages are reworded (DEF-374). Nine `src/` files, +198/−56; an emission change.
+  - **Registered:** DEF-371 … DEF-374, fixed here; DEF-375 … DEF-377, build-time faces, unplaced; DEF-378, leading the spawn group after 171.
+- **For us:** the six sites the rules find are all in the nitpick-fuzz copy (the both form in five programs, two newly refused), the fuzz seat's. census17i (controls 7 of 7) finds no site of any of these in our trees or in `lib/`, prints its scope, and reports the fuzz copy separately.
+- **census17h's scope,** on `management_7`'s item of 07:45: census17h read census9's repositories and never the nitpick-fuzz copy. `python3 -I -B .internal/landing/scripts/census17h_fuzz.py`, from the workbench root, runs its own pattern over the copy and finds the six sites, 6 of 6, none extra (`n171L/census17h_fuzz.out`, 1 032 B, `1bfd1f5f…`; controls 6 of 6). The miss was scope, not pattern; the addendum entry is corrected in place.
+- **Sent** to `nitpick-compiler_50` at 08:38: census17i's result. No reply owed.
+- **Filed:** the board entry above 170's, PLAYBOOK §2's note at :243, the addendum entry's two corrections, and the writer line.
+- **A slip:** at 08:41, after this seat's third compaction, a reading command began with a `cd` into the workbench root, where the shell already stood. Nothing moved; absolute paths only.
+- **Next:** 171's harness and landing, then its closing lines; `n171L/AGENT_BRIEF.md` from 170's, and the agent asked of `management_7`.
