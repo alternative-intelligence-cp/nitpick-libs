@@ -86,7 +86,12 @@ def check(repo: Path, sid: str):
         return findings
     name, rid, fields = rep
     if name != repo.name or rid != sid:
-        findings.append(("no-report", f"last REPORT names {name} {rid}, expected {repo.name} {sid}"))
+        # A REPORT is there but names another repository or subcycle -- not
+        # `no-report`, which read as "missing" to a reader who had one. The
+        # expected name is the checkout's directory, so a clone in a directory
+        # not named for its repository lands here with the right id.
+        why = " (the expected name is this checkout's directory name)" if rid == sid else ""
+        findings.append(("report-mismatch", f"last REPORT names {name} {rid}, expected {repo.name} {sid}{why}"))
         return findings
     for key in KEYS:
         if key not in fields:

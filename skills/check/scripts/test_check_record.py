@@ -94,6 +94,8 @@ CASES = [
     ("no-file", lambda r: None, "0.0.9", {"no-file"}),
     ("bad-status", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "— DONE (2026-09-03)", "— WIP"), commit(r)), "0.0.0", {"bad-status"}),
     ("no-report", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", REPORT, ""), commit(r)), "0.0.0", {"no-report"}),
+    ("report-other-sub", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "REPORT nitpick-fixture 0.0.0", "REPORT nitpick-fixture 0.0.1"), commit(r)), "0.0.0", {"report-mismatch"}),
+    ("report-other-name", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "REPORT nitpick-fixture 0.0.0", "REPORT nitpick-other 0.0.0"), commit(r)), "0.0.0", {"report-mismatch"}),
     ("missing-field", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "model: test-model\n", ""), commit(r)), "0.0.0", {"missing-field"}),
     ("bad-report-status", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "status: DONE", "status: FINISHED"), commit(r)), "0.0.0", {"bad-report-status"}),
     ("status-mismatch", lambda r: (edit(r, "meta/roadmap/0.0/0.0.0.md", "status: DONE", "status: BLOCKED"), commit(r)), "0.0.0", {"status-mismatch"}),
@@ -129,7 +131,8 @@ def main():
         print(f"{len(fails)} FAILURE(S): {', '.join(fails)}")
         return 1
     neg = sum(1 for c in CASES if not c[-1])
-    print(f"All {len(CASES)} cases correct ({len(CASES) - neg} fault classes, "
+    classes = set().union(*(c[-1] for c in CASES))
+    print(f"All {len(CASES)} cases correct ({len(classes)} fault classes over {len(CASES) - neg} planted cases, "
           f"{neg} false-positive control{'' if neg == 1 else 's'}).")
     return 0
 

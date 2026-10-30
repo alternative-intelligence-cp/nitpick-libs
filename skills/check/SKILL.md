@@ -64,7 +64,8 @@ Exit 0 clean, 1 findings, 2 could not run. The findings:
 |---|---|
 | `no-file` | the subcycle file does not exist |
 | `bad-status` | the title line's status is not `PLANNED`, `RUNNING (…)` or `DONE (…)` |
-| `no-report` | no `REPORT <repo> <id>` block under `## Execution record`, or the last one names another subcycle |
+| `no-report` | no `REPORT <repo> <id>` block under `## Execution record` |
+| `report-mismatch` | the last `REPORT` block names another repository or subcycle; the repository's name is read from the checkout's directory, so a clone in a directory not named for its repository reads this with its id right |
 | `missing-field` | a required key of the block is absent |
 | `bad-report-status` | the status is not one of the six |
 | `status-mismatch` | `DONE`/`READY-TO-CLOSE` with a title not `DONE`, or a stopped status with a title `DONE` |
@@ -78,7 +79,9 @@ Exit 0 clean, 1 findings, 2 could not run. The findings:
 Both scripts have a negative control beside them, and each runs first in a
 dry run: `scripts/test_check_refs.py` plants one fault per class and requires
 exactly that class back (it prints its own count of fault classes and false-positive controls; `no-markdown` has no planted case. *Corrected 2026-10-09, E2-15: this said "six classes and one clean case"*);
-`scripts/test_check_record.py` does the same for the record check (ten
-classes and one clean case). If you extend a script, extend its control. A
+`scripts/test_check_record.py` does the same for the record check (it prints
+its count of fault classes, planted cases and clean cases: eleven, thirteen and
+two. *Corrected 2026-10-30, with `report-mismatch` split from `no-report`: this
+said "ten classes and one clean case"*). If you extend a script, extend its control. A
 check that has never failed has not been shown to work — which is how the
 first of these controls came to exist: the skill promised it before it did.
