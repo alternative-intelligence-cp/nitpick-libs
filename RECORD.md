@@ -18055,3 +18055,45 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - lines sent: 171's at 11:34:41, and this handoff's with the release notice;
   - held for `_34`: 172's chain so far, 102 / 25.09 M, and T16's, 39 / 12.37 M.
 - **`_33` stays open** for hazard 3 and for questions, and forwards verbatim, with arrival times, anything that reaches it.
+
+### Handover — `nitpick-libs_34` takes the workbench lock on `nitpick-libs_33`'s briefed handoff — 2026-10-30 13:48 (shell time)
+
+- **Handover.** `nitpick-libs_34` (`f9971b9d-279a-4831-8843-78a3969f038a`) takes the writer lock that `nitpick-libs_33` released at `9c41bc5` (13:43:39), by the author's rule of 2026-10-24 (a managing seat hands off after about three compactions, or before a step where one would land mid-step: `_33` compacted at 11:25:22 and 13:34:11, with landing 172's verification to come) and `management_7`'s word of 13:37:39, which named `_34` the successor and `_35` the spare. `_33` briefed this seat by message (stamped 13:43:52, the standing security rule restated) and by the board's handoff block `_33` → `_34`.
+- **The effort, for the trial's ledger:** this seat runs **Opus 5.5 at xhigh, not max**, the effort trial's first libs seat (`management_7`, 13:37:39).
+- **The account, checked first:** this session's status-line file `~/.claude/context/f9971b9d-….json` (written 13:44:43) carries rate limits (the five-hour window 8 %, resetting Fri 16:50; the week 77 %, resetting Wed 11-04 19:00 EST), so this seat is on Max. The model is `claude-opus-5-5`, and the context read 10 % of 1 M at 13:44. `CLAUDE_CONFIG_DIR` is unset, read by its exact name.
+- **The allocation** stands as `_33` recorded it: 5 Max points from 2026-10-28 21:42:56 to Wed 11-04 19:00 EST, the tally held by `management_7`. This seat tells management before passing 5, dispatches no agent without asking it (172's verifier is pre-approved), and sends one cost line per chain. Held for its lines: 172's chain so far, `_33`'s 102 calls / 25.09 M, with 172's; T16's, 39 / 12.37 M, with parse 0.0.4's merge.
+- **The id, from five values,** all agreeing: `CLAUDE_CODE_SESSION_ID`, read by its exact name; the transcript `f9971b9d-….jsonl` (written live, 13:44:44); the scratchpad path; `~/.claude/context/f9971b9d-….json` (`session_name` `nitpick-libs_34`); and the session registry's `~/.claude/sessions/3820726.json` (`sessionId` and `name` `nitpick-libs_34`, `startedAt` 2026-10-30 08:58:26), found by its `.json` name alone. `ListAgents` names this session `nitpick-libs_34` (`[f17407]`), and its socket, by the registry, is `uds:/run/user/1000/cc-socks/3820726.sock`.
+  - **By content:** a nonce (`libs34-take-m6ra-z2vu-h8pc`), typed into a search command at 13:45:23, was found by that same search in this seat's transcript only, the search ending 13:45:25, across `~/.claude/projects` and `~/.claude-team/projects`.
+  - A control generated at run time, and never printed, is found in neither.
+- **Freedom from values, before any write (hazard 13):**
+  - hazard (5)'s literal command read `none` on line 14, locally and on `origin/main`, at 13:45:51, and the take script re-read it at 13:48:10, just before the marker and the edit, refusing otherwise;
+  - `HEAD` = `origin/main` = `ls-remote` = `9c41bc5`, with porcelain 0 and the stash list empty, both times;
+  - `.internal/` held no `orchestrator.session` (its mtime 13:43:23, the marker's removal by `_33`'s release);
+  - the sweep at 13:45:51, discovered rather than listed (orchestrate §2.3's `find`) and run with `git --no-optional-locks`, found **9 trees, every one `dirty=0`**: the workbench `9c41bc5`, `nitpick-apps` `03c24a7`, posix `1e9a8b3`, fuzz `d44dfe3`, parse `8f10cb9`, regex `14817a1`, sockets `049afd0`, time `74b6ee1` and tui `e5439ee`. Eight read `0/0`; fuzz reads `0/19` against its tracking ref, the standing state recorded at the last takes (never fetched). No commit in any of the nine, over all refs, carries this session's id or its `Claude-Session` id;
+  - the pin `2e1cb4a`'s two digests match its `SHA256SUMS`, read by script: `npkc` 11 562 976 B and `npkrt.o` 72 656 B;
+  - the compiler's `main` is `b554096` (171's docs-only correction on `224d907`), clean, `0/0` against its local `origin/main` (read with `--no-optional-locks`, no fetch), so 172 has not landed;
+  - the Team branches by `ls-remote` (13:45:52): `team/parse-0.0-plan` at `50696a5` (parse's `main` `8f10cb9`) and `team/sockets-0.0-plan` at `049afd0`, equal to its `main`;
+  - `check_refs` on the workbench before the edit (13:45:59): exit 1, the 2 known `[leak] tools/guard_domains.py` lines and nothing else.
+- **Hazard 3, asked at 13:45:14 and answered at 13:46:41 (its stamp), from git, mtimes and its transcript, and checked here:** `9c41bc5` (13:43:39, pushed in the same call) is `_33`'s last write to the tracked tree; its reflog reads 13:43:39, 13:36:06 (`216d95d`), 12:07:11, 11:48:09, 11:33:39 and 08:59:53 (its take), the same here.
+  - Its writes since `216d95d`, in order: carry item 107 (13:37:32); `save_body.py`'s save of `management_7`'s ruling of 13:37:39 as `n172L/m7_handoff_1337.txt` (13:38:14, 1 557 B); `scripts/release33.py` (13:43:06, edited to 13:43:18), whose run at 13:43:23 wrote `BOARD.md` and `RECORD.md` and removed the marker; the commit and the push (13:43:39); then carry item 108 (13:44:18), untracked, after the release commit, its last write anywhere.
+  - Checked here: `find -newermt 13:36:06` over the workbench (`.git` pruned) lists exactly those five files at those times, and the six library trees, `nitpick-apps` (posix within it) and `META/NITPICK-LIBS` list none.
+  - Nothing of its is running. Counted by name over its whole transcript (from 10-29 16:58:48): one agent, 171's verifier (dispatched 10:46:08, reported `VERDICT: PASS` at 11:23:01); no background shell, Monitor, cron, remote trigger, wakeup, workflow or task stop; `CronList` at 13:46 reads no scheduled jobs.
+  - It writes nothing more in the workbench (`.internal/` included), any library repository, `nitpick-apps` or `META/NITPICK-LIBS`, and only sends messages: anything that reaches it, it forwards here verbatim with its arrival time. It told `management_7` the release sha at 13:45:05, `nitpick-compiler_50` at 13:44:19 (send 172's notice to `_34`), `Ailp-team_29` by its socket at 13:44:25 and `nitpick-fuzz_5` at 13:44:34 (no action), each that this seat confirms the lock itself; `nitpick-libs_35` was not told.
+- **Hazard 4:** no unknown libs peer. `ListAgents` at 13:45 lists, of this seat's line, only `nitpick-libs_33` (`[a10d30]`, the releaser) and `nitpick-libs_35` (`[a775cf]`, idle, started about four hours before). `_35` is the parked spare and has never held the lock; it is management's, so it is noted here and not woken, by `_33`'s brief and the block. `_31` and `_32` are not listed.
+- **The peers before the take (`ListAgents`, 13:45):**
+  - the seat's own: `nitpick-libs_33` (`[a10d30]`, busy) and `_35` (`[a775cf]`, idle);
+  - the compiler's: `nitpick-compiler_50` (`[12895f]`, busy), `_52` (`[a67bc0]`) and `_53` (`[97150a]`), both idle; `_48`, `_49` and `_51` are not listed;
+  - management's: `management_7` (`[0022fc]`, busy) and `_5` (`[e50452]`, idle);
+  - the fuzzer's: `nitpick-fuzz_5` (`[5efaef]`, busy) and `_7` (`[0e1de9]`, idle);
+  - `diogenes_4` and `_6`, `probe-mk` (Remote Control, offline), and the fuzz cloud session (`[169d76]`, milestone M11).
+
+  The Team's `claude-team` sessions are not listed.
+- **This seat before the take:** opened by the author at 08:58:26 (the registry's `startedAt`; the transcript's first entry 08:58:37) under the name `nitpick-libs_34`, and parked: its transcript holds no assistant turn and no tool call before `_33`'s brief arrived at 13:44:09. Before this take it wrote only scratch files in its own scratchpad (its pre-take check, `pretake34.py`, read-only, and this take script), and copied the script to `scripts/take34.py` after the hazard-3 answer.
+- **Read at the take**, in small, by the block: the board's lines 1–14 and the block `_33` → `_34`; `_25`'s take paragraph; orchestrate §2; hazards (1)–(6) at the 2026-09-26 07:01 entry and (12)–(13) on the board; `take33.py`; `216d95d`'s line 14; the carry list's items 107 and 108. §2.2's `WORKSTREAMS.md`, `LIBRARIES.md` and `APPS.md` were not re-read, since nothing is dispatched on a stream.
+- **Next, by the handoff block:**
+  - the take's sha to `management_7`, which checks it by `ls-remote`; then word to `nitpick-compiler_50` and `Ailp-team_29` (by its socket) that the lock is this seat's, so that 172's notice comes here;
+  - landing 172's notice from `nitpick-compiler_50` (after about 15:30), saved by origin with `save_body.py` as `n172L/notice172.txt`;
+  - `n172L/AGENT_BRIEF.md` from `n171L`'s, with F119's checks; the pre-approved Sonnet agent, its cap of 40 a hard stop; then the hand checks, `file_n172.py` from `file_n171.py` with PLAYBOOK §2 :249, and 172's cost line;
+  - parse 0.0.4's fix round (lane 2) and sockets 0.0.1's re-cut (lane 1) from Sat 03:00.
+
+  Nothing is dispatched.
