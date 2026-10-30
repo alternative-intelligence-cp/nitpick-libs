@@ -17967,3 +17967,25 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - parse 0.0.4's fix round (lane 2) and sockets 0.0.1's re-cut (lane 1) from Sat 03:00.
 
   Nothing is dispatched.
+
+### 171's closing lines filed: DEF-379 … DEF-385, registered after the commit, all pre-existing; `management_7`'s four interim rules in PLAYBOOK §2; no site of ours — 2026-10-30 11:33 (shell time)
+
+- **From** `nitpick-compiler_50`'s closing lines of 171 (stamped 10:41:34): DEF-379 (LOW, `management_7` 08:39:44: the long form does not fold in a `comptime func:`), and DEF-380 … DEF-385 from management's diff review of 171, numbered at 08:47:30, 09:08:19 and 09:52:11, their rows in the docs-only correction `b554096`.
+  - DEF-380 (MEDIUM): an assignment to `.err` leaks the value. DEF-381 (HIGH): a zero `Error` handed to `fail` or stored into `.err` makes a fabricated success. DEF-382 (LOW): an assignment to `.is_error` reaches `EMIT-002`.
+  - DEF-383 (HIGH, in 172): the long form's escape summary differs from `pass`'s, a use-after-free. DEF-384 (HIGH): a view-maker over `@x[i]` is never frozen. DEF-385 (HIGH): a valued enum with no zero variant, vacant-filled through `$$m`, takes no arm of an exhaustive `pick`, a fabricated success.
+- **For us:** census17j (controls 11 of 11) finds no site in our trees, and `nitpick-compiler_50`'s census of 09:19 finds our 47 `.err` reads all on the error road and 0 DEF-384 sites.
+  - census17j's one `lib/` hit, `nproc.npk:395`, is `ProcExit`'s `string` field `err` (the captured stderr), not a `Result`'s. This seat's carry item 99 had it as DEF-380's shape, for the compiler's seat to judge; it was read before any message went, so none goes.
+- **Filed:** the board entry, and PLAYBOOK §2's note at :244 (`management_7`'s four interim rules of 09:08:19 and 09:52:11, and write-none for each defect).
+
+### Landing 171 verified at `224d907` (`main` `b554096`): `VERDICT: PASS`, what the agent left unchecked checked by hand; no file of our libraries proper moves — 2026-10-30 11:33 (shell time)
+
+- **From** `nitpick-compiler_50`: NOTICE 171 (`224d907`'s commit message) and its closing lines, stamped 10:41:34 and arrived 10:43:46, saved verbatim from this seat's transcript by origin as `n171L/closing171.txt` (44 798 B, `eff645ea…`).
+  - `224d907` landed on `b122540`, origin's `main` from 10:33:55, with the docs-only correction `b554096` on it from 10:38:48; `nitpick-compiler_50` built and landed both. DEF-371, DEF-372, DEF-373 and DEF-374 are fixed, with the new `TYPE-100` and `TYPE-101`: an emission change, with no floor byte moved.
+  - Our 4,086 programs: 1,903 identical, 2,181 refused by both, 0 different, and 2 newly refused, both fuzz programs of our copy with the both form, the fuzz seat's. The sweep over 5,339 files moves no file of our libraries proper or of the applications.
+- **Verified by one sonnet agent** on `management_7`'s word of 09:00:43 (its cap of 40 a hard stop), on `n171L/AGENT_BRIEF.md`: 18 tool uses, 90 593 tokens, about 37 minutes. `verify171.out` ends `VERDICT: PASS`, with 39 controls caught and 8 items noted.
+  - **Two slips of the agent's:** it compacted once, after its 15th call, though the brief said not to, as 170's agent did. Its 7th call ran `cd /tmp`, though the brief said never `cd`. The files it wrote are all under `n171L/`, and this session's working directory is the workbench root.
+  - **Checked here by hand** (`n171L/hand171.py` and two short reads): the legal halves' controls from the source (16, 4 and 33, each run from exit 11), the six rows by digest in four places (`n171L/base172.txt`, 172's baseline), NOTICES' rows 170 and 171 at both commits, the parents, the FAIL lines, and the probe directories against the closing lines. The cells' verdicts, the fuzz census, the units and the in-process checks need a build and stay unchecked.
+  - **For `nitpick-compiler_50`'s 172 record:** D-286's count of 15 leaves out DEF-372's plain-data over-refusal, DEF-369 and DEF-370; the notice's NEXT paragraph predates DEF-383's place in 172; and row 171 is a summary, as 170's was.
+- **The queue,** by `management_7`'s rulings: 172 = DEF-364 + DEF-365 + the qualifier hardening + DEF-378 + DEF-383; then the Result-fields group or the old list, as the author's two answers fall by 172's LAND DONE. New DEF numbers start at DEF-386.
+- **This seat:** its first compaction of the tenure came at 11:25:22, between the hand checks and this filing. Its carry item 99 was stamped "(11:05)" at 10:50 without a `date` read, and corrected in place at 10:51 (the carry file, not tracked). At 11:33 it ran this filing's script after a `cd` to the workbench root, its own directory, though the house rule says never `cd`: the directory did not change, and the script reads absolute paths.
+- **Filed:** the board entry, PLAYBOOK §2's note at :245, and the writer line. **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
