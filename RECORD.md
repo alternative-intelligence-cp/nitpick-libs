@@ -18021,3 +18021,37 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Our 11:34:14 notes on 171** are carried in 172's record. D-286 counts 16 with d5m, and DEF-369, DEF-370, site 9's `T: Copy` and DEF-372's plain-data `TYPE-100` stay off it by design (`management_7`'s ruling (3) of 11:42:38).
 - **This seat** compacted for the second time at 13:34:11, between writing this filing's script and running it. The script was checked again against the saved notice, the census outputs and the board's anchors before it ran.
 - **Filed:** the board entry, PLAYBOOK §2's note at :248, and the writer line (F119 filed, the harness next). **The Team** is sent :248.
+
+### The writer lock released by `nitpick-libs_33` to `nitpick-libs_34`, by the author's rule of 2026-10-24 (before a step where a compaction would land mid-step) — 2026-10-30 13:43 (shell time)
+
+- **Why now:** this seat auto-compacted twice after its take at 08:59, at 11:25:22 (369 127 tokens) and 13:34:11 (372 046).
+  - Between them its context grew from 22 K to 372 K in about 2 h 10 m of filings. A third compaction would very likely land inside landing 172's verification, the largest step this seat takes.
+  - The author's rule of 2026-10-24 hands a managing seat off after about three compactions, or before a step where one would land mid-step.
+  - This seat proposed the handoff at 13:37:11. `management_7` ruled at 13:37:39: hand off now, while HARNESS172 runs, to `nitpick-libs_34` (Opus at xhigh, the effort trial's first libs seat), with `nitpick-libs_35` the spare. The ruling is saved by origin as `n172L/m7_handoff_1337.txt` (1 557 B, `96ce2b80…`).
+- **At the release:** nothing of this seat's is in flight, and no agent is running. The workbench is at `216d95d` (F119 filed), pushed. HARNESS172 started on cloud2 at 13:36:48 and is due around 15:29. LAND DONE follows `management_7`'s go, so 172's notice reaches the successor after about 15:30.
+- **The Team's drafts** have cited PLAYBOOK §2 through :248 since 13:39:23, checked here by hand after the Team's correction of 13:39:38:
+  - T16fix1: 50 389 B, `b81a5113…`, 223 lines (SAFETY :123, the :248 line :150);
+  - T17: 63 462 B, `cb1999af…`, 422 lines (SAFETY :236, the :248 line :338, its bullets :339–:343 and closing paragraph :345). Its queue bullet :28 carries the board's placements of DEF-386 … DEF-389;
+  - the Team's clone is at `216d95d` with porcelain 0, and its PLAYBOOK is `a673fbdf…`, ours.
+- **The tenure:**
+  - the take (`6d35481`);
+  - landing 171 verified at `224d907`, with its closing lines' DEF-379 … DEF-385 (`ef04276`);
+  - DEF-386 and DEF-387's interim rule at :246, with the fuzz copy's re-pin declined (`fb9600d`);
+  - DEF-388's at :247 (`d3a5949`);
+  - F119 filed at :248 (`216d95d`).
+
+  One Sonnet agent ran, 171's verifier (18 calls / 0.09 M).
+- **Slips of this seat's:** two `cd` into the workbench root (11:33:07 and 11:45:21), recorded at `fb9600d`. One filing script's run died on an f-string with literal braces and wrote nothing (12:07). Recorded at `ef04276`: the 171 agent compacted once and ran `cd /tmp` against its brief.
+- **The brief** is the handoff block `_33` → `_34` on the board. It carries:
+  - the take;
+  - 172's verification, with F119's checks, its two bases and the pre-approved agent;
+  - the open author question on the fuzz copy;
+  - PLAYBOOK §2 :246–:248;
+  - parse 0.0.4 and sockets 0.0.1 from Sat 03:00;
+  - the queue, the budget, and who is who.
+- **The lock:** line 14 reads `none`, and its held text is in history at `216d95d`. The marker `.internal/orchestrator.session` is removed.
+- **Cost:**
+  - this seat, from `_32`'s brief at 08:51 to the release: 224 calls / 49.37 M read on Opus, plus its Sonnet agent's 18 / 0.09 M;
+  - lines sent: 171's at 11:34:41, and this handoff's with the release notice;
+  - held for `_34`: 172's chain so far, 102 / 25.09 M, and T16's, 39 / 12.37 M.
+- **`_33` stays open** for hazard 3 and for questions, and forwards verbatim, with arrival times, anything that reaches it.
