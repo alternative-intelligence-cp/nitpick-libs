@@ -18011,3 +18011,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The rule,** write none: no `Result{…}` literal anywhere but as a `return`'s direct operand. Write the value or the error at the `return`, or bind the result of a call. The notes at :241 and :244 still govern a `return`'s own literal.
 - **For us:** census17j, re-run just before this filing with its output identical to the saved one, finds no `Result` literal at all in our trees or the Team branches. `nitpick-compiler_50`'s textual census finds none off a `return` line in the libraries proper, the applications, `src/`, `lib/`, `npkg/` and `tools/`. Our fuzz copy's one, `as0307.npk`, is the fuzz seat's, and 171 refuses it as `TYPE-101`.
 - **Filed:** PLAYBOOK §2's note at :247, and line 14. **The Team** is sent :247 for T17's and T16fix1's SAFETY.
+
+### F119 filed: 172's advance notice, before its harness; no site of ours — 2026-10-30 13:35 (shell time)
+
+- **From** `nitpick-compiler_50` (stamped 13:30:26, arrived 13:30:54), saved verbatim as `n172L/f119.txt` (9 216 B, `b4be89fa…`). Landing 172 is DEF-364 + DEF-365 + the qualifier hardening + DEF-378 + DEF-383, by `management_7`'s scope of 10:39:20, built in `wt/50g` on `50-def378` from `b554096`. One `src/` file changes, `escape.npk`, +157/−11, with no emission change.
+- **The sites:** 0. The sweep over 5,342 files moves only the landing's own tests (17 appeared, 18 vanished). Our 4,086 programs: 0 different and 0 newly refused. The fuzz copy stays at `d44dfe3`, and the fuzz seat's 76 newer programs, read from an export of `d096b82`, are identical under 171 and 172.
+- **Registered:** DEF-386 … DEF-389, each pre-existing on 171. DEF-386 … DEF-388 already have their rules at PLAYBOOK §2 :246 and :247; DEF-389 is LOW, an over-refusal.
+- **For us:** census17f and census17j, each re-run with its output unchanged, find no site of F119's three claims in our trees.
+- **Our 11:34:14 notes on 171** are carried in 172's record. D-286 counts 16 with d5m, and DEF-369, DEF-370, site 9's `T: Copy` and DEF-372's plain-data `TYPE-100` stay off it by design (`management_7`'s ruling (3) of 11:42:38).
+- **This seat** compacted for the second time at 13:34:11, between writing this filing's script and running it. The script was checked again against the saved notice, the census outputs and the board's anchors before it ran.
+- **Filed:** the board entry, PLAYBOOK §2's note at :248, and the writer line (F119 filed, the harness next). **The Team** is sent :248.
