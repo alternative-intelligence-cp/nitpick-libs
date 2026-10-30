@@ -17729,3 +17729,17 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **PLAYBOOK §2** gains 167's note at :233. The F109 … F111 rules stand until a re-pin carries 167, and the seventh over-refusal is named.
 - **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
 - **A slip of this seat's:** `6974dad`'s DEF-345 entry said T17 "drops its contingency paragraph". There was none; the contingency lived only in the Team seat's state (`Ailp-team_29`, 17:35:12). The entry is corrected in place.
+
+### F113 filed: the advance notice of landing 168 (DEF-327 + DEF-337 + DEF-339 + DEF-340, on `51-def327`), before its harness; DEF-358 registered LOW; census17 finds no site of ours — 2026-10-29 20:33 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 20:21, arrived 20:23:14): F113, saved verbatim at `n168L/f113.txt` (9 111 B, `2ad232d5…`) by its verified origin.
+  - **168** is the pick and spawn groups, refusals only, in `alias.npk` and `escape.npk` (+285/−20), on `baebe12`. They are a holder in a pick expression's arm (DEF-327), a `give` nested in such an arm (DEF-337), `drop recv.m(…)` and `drop mod.f(…)` as spawns (DEF-339), and a by-value owner handed to a spawn (DEF-340, direction (A)).
+  - **Five over-refusals** are accepted by (A)'s design. DEF-358 (LOW, after 172) is registered.
+- **For us:**
+  - the sweep over 5,331 files moves no file of ours (49 appeared, all the landing's own; 0 vanished);
+  - our 4,086 programs: 1,905 identical, 2,181 refused by both, 0 different, 0 newly refused;
+  - no floor byte moves, so no re-pin.
+- **census17, here** (controls 5 of 5; 420 files, 578 plan-patch hunks): no `pick` used as an expression; two spawns, both of plain functions in sockets' probes; no by-value owner handed to a spawn; and no async name of the compiler's `lib/` called anywhere of ours. So 0 sites of each claim, as the compiler's censuses found.
+- **Asked:** nothing before the harness. After the landing, the usual verification, with the four claims checked.
+- **Filed:** the board entry, PLAYBOOK §2's note after 167's, and the writer line (new DEF numbers from DEF-359). `n168L/AGENT_BRIEF.md` is untracked.
+- **Next:** 168's harness, the landing, then its closing lines.
