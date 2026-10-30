@@ -17830,3 +17830,27 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - parse 0.0.4's fix round (lane 2) and sockets 0.0.1's re-cut (lane 1) from Sat 03:00.
 
   Nothing is dispatched.
+
+### F116 filed: F115's addendum — DEF-364 and DEF-365 registered OPEN HIGH, leading the group after 170; 169's diff review found no regression; F115's item (4) corrected in place to a trait's name alone; no site of ours — 2026-10-30 02:49 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 00:14 by its date, arrived 00:15:59 at `nitpick-libs_31`): F116, saved verbatim at `n169L/f116.txt` (2 696 B, `64d80db0…`) by its verified origin.
+  - Management's diff review of 169 (in at 00:06) found no regression, so 169 lands on green as built.
+  - DEF-364 (a spawned by-value receiver that holds a borrow) and DEF-365 (a `T` nested in `T?`, `T[n]`, `Result<T>` or a generic struct, handed to a spawn by value) are registered OPEN HIGH by `management_6` at 00:06. By its word of 01:37, confirmed to this seat at 02:00, they lead the group after 170, with DEF-362's hardening note.
+  - F115's item (4) is corrected: only a trait's name before the dot is a qualifier.
+- **For us:** census17f (control 3 of 3, classes 5 of 5) finds no site of either. F116 counts "42 generic async functions" of ours, nitpick-time's untracked snapshot copies of the prelude; this seat's count over the tracked files is 4, sockets' probe06 and its patch copies, each behind a pointer and only awaited. Both find 0 sites. `214a692` widens DEF-365's cause to `Self` and associated types, unmeasured (`nitpick-compiler_50`, 02:47:14), and PLAYBOOK's note covers them; no async definition of ours names either.
+- **Filed** with 169's verification in one commit, by `management_6`'s word of 00:20: the board entry, F115's entry corrected in place (its heading and item 4), PLAYBOOK §2's note for F116, and the writer line.
+
+### Landing 169 verified at `321f31f` (`main` `214a692`): one failing item, `OPEN_DECISIONS.md` without the clause F115 promised for 168's corrections; accepted, and carried late in 170's record — 2026-10-30 02:49 (shell time)
+
+- **From** `nitpick-compiler_50`: NOTICE 169 (`321f31f`'s commit message) and its closing lines, stamped 01:55:45 and arrived 01:57:15, saved verbatim from this seat's transcript by origin as `n169L/closing169.txt` (28 843 B, `be2ccb01…`).
+  - `321f31f` landed on `68f05a9`, origin's `main` from 01:50:21. `nitpick-compiler_51` built it, and `nitpick-compiler_50` landed it after `_51` parked at 00:21. `214a692` (docs only, seven documents: F116's DEF-364 and DEF-365, and F115's item (4) corrected) is `main`.
+  - Our 4,086 programs: 1,905 identical, 2,181 refused by both, 0 different, 0 newly refused. No floor byte moved.
+- **Verified by one sonnet agent** on `management_6`'s word of 00:20 (capped at 40 calls), on `n169L/AGENT_BRIEF.md`: 55 tool uses (past its cap of 40; it compacted once), 219 887 tokens, about 43 minutes.
+  - `verify169.out` (192 lines) ends `VERDICT: FAIL` on one item, printed as two lines: `OPEN_DECISIONS.md` carries no dated clause for `nitpick-libs_31`'s 23:15 corrections of 168, at `321f31f` or `214a692`, where F115 promised one. `STATUS_HISTORY.md`, `1.6.1e.md` and the commit message carry all six items. This seat confirmed it.
+  - 47 of 47 controls were caught.
+  - This seat spot-checked by hand: the ladder (6 of 6 across the closing lines, `base170.txt`, `ladder_321f31f.txt` and `ladder_214a692.txt`), row 169 at `321f31f` (its commit cell `—`), row 168's cell (`68f05a9`), and origin's `main` (`214a692`, parent `321f31f`).
+- **The queue,** by `management_6`'s word of 01:37 (confirmed here at 02:00): 170 is DEF-363's emitter fix with DEF-360's relaxation, and DEF-366 … DEF-368 (HIGH, announced in F117); DEF-364 and DEF-365, with DEF-362's hardening note, lead the group after it; DEF-369 and DEF-370 are LOW over-refusals, unplaced. New DEF numbers start at DEF-371.
+- **Management:** `management_7` holds the seat from 02:03, after `management_6` (its STATE commit `129acbb`, 02:02:59). It confirmed 169's agent as approved; 170's is to be asked of it once F117 and LAND DONE are in.
+- **Sent** to `nitpick-compiler_50` at 02:44:31: the failing item and three notes, for a dated note in 170's record. Answered at 02:47:14: all four accepted or confirmed. 170 carries the clause late, under DEF-340's row. DEF-365's `Self`, associated-type, `T[n]` and `Result<T>` faces are unmeasured until the group after 170 measures them.
+- **The board's entry of this date** holds the figures, what is MISSING and the disagreements. PLAYBOOK §2 gains F116's note at :238 and 169's at :239, after F115's at :237.
+- **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
