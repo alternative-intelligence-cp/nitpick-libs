@@ -17743,3 +17743,28 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Asked:** nothing before the harness. After the landing, the usual verification, with the four claims checked.
 - **Filed:** the board entry, PLAYBOOK §2's note after 167's, and the writer line (new DEF numbers from DEF-359). `n168L/AGENT_BRIEF.md` is untracked.
 - **Next:** 168's harness, the landing, then its closing lines.
+
+### F114 filed: F113's correction and addendum — DEF-359 … DEF-362 registered OPEN HIGH for 169, now alone, and DEF-363 by management; the `.clone()` remedy corrected; three more accepted over-refusals; the queue cited by DEF numbers; no site of ours — 2026-10-29 23:17 (shell time)
+
+- **From** `nitpick-compiler_51` (stamped 22:30:41, arrived 22:32:11): F114, saved verbatim at `n168L/f114.txt` (3 591 B, `0f6cb55d…`) by its verified origin.
+  - Management's diff review of `1143343` found four spawn holes on 167's and 168's compilers alike: DEF-359 (a pick expression in a spawn's receiver or sanctioned pointer argument), DEF-360 (a by-value `self` method spawned through a pointer), DEF-361 (a generic `T` at `string` by value) and DEF-362 (the trait-qualified spawn, also 168's one over-refusal, a known bug).
+  - F113's "`.clone()` first" is wrong: a clone crosses only into a `move` parameter.
+  - Three more refusals of run-time-clean programs are accepted on D-286's list.
+- **DEF-363,** registered by `management_6` at 23:02, OPEN HIGH and pre-existing: an async method with a by-value `self`, reached through a pointer, gets the pointer's words in its child frame, at the spawn and the await.
+- **The queue,** re-split by `management_6` at 22:35, 22:38 and 23:02 (saved as `n168L/m6_2235.txt`, `m6_2238.txt` and `m6_2302.txt`): the next landing, 169, is DEF-359 … DEF-362 alone. After it, in order, come DEF-363 (the emitter's fix); then DEF-344, DEF-345 (D-366), DEF-347, DEF-349, DEF-353 and DEF-354 … DEF-357; then DEF-333 … DEF-336; then DEF-312 widened, DEF-325, DEF-348 and DEF-350; then DEF-318 … DEF-323; and then DEF-351, DEF-352 and DEF-358 (LOW).
+  - By its rule of 23:02, our texts give a landing number only for the next landing, and cite every later group by its DEF numbers.
+- **For us:** census17, census17d (control 3 of 3) and census17e (control 3 of 3; 38 async definitions, 0 taking `self` by value) find no site of any shape.
+- **Filed:** the board entry, PLAYBOOK §2's :234 corrected in place and F114's note after it, and the writer line. The Team is told after the commit.
+
+### Landing 168 verified at `1143343` (`main` `68f05a9`): one failing line, the closing lines' multiplicities for the 47 cells; sent for a dated note — 2026-10-29 23:17 (shell time)
+
+- **From** `nitpick-compiler_51`: NOTICE 168 and its closing lines, stamped 22:30:12 and arrived 22:31:44, saved verbatim from this seat's transcript by origin as `n168L/closing168.txt` (11 783 B, `54849eff…`).
+  - `1143343` landed on `baebe12`, and `68f05a9` (docs only, seven documents: F114's DEF-359 … DEF-362, the `.clone()` correction, three more accepted over-refusals) is `main`.
+  - Our 4,086 programs: 1,905 identical, 2,181 refused by both, 0 different, 0 newly refused. No floor byte moved.
+- **Verified by one sonnet agent** on `management_6`'s word of 22:35 (capped at 40 calls, from this seat's 5 points), on `n168L/AGENT_BRIEF.md`: 32 tool uses, 313 701 tokens, about 36 minutes, one compaction.
+  - `verify168.out` (191 lines) ends `VERDICT: FAIL` on one line. The closing lines' multiplicities for the 47 non-zero cells sum to 51; the matrix gives 113/113 ×25 and 107/107 ×8 for their ×28 and ×9, so 47 cells over 48 rows. This seat confirmed it by its own count. The totals hold.
+  - 46 of 46 controls were caught. Its 17 notes are none of them a failure.
+  - This seat spot-checked by hand: the ladder (6 of 6 across the closing lines, `base169.txt` and `ladder_1143343.txt`), row 168 at `1143343` (equal to the closing lines' row), row 167's cell (`baebe12`), and origin's `main` (`68f05a9`, parent `1143343`).
+- **Sent** to `nitpick-compiler_51` at 23:15: the failing line and four small disagreements, for a dated note in 169's record, with census17e for its DEF-363 census.
+- **The board's entry of this date** holds the figures, what is MISSING and the disagreements. PLAYBOOK §2 gains 168's note at :236, after F114's at :235.
+- **Not in our pin.** The re-pin waits for DEF-286 and the author's go, which management carries.
