@@ -18371,3 +18371,8 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ruled here:** the amendment cleared at 07:34:33 with one required edit (`sockaddr_un`'s 64-byte block, its two reads, its untouched check inside the structure) and a nit; me0394's three `||` reads at 174 as an explained disagreement by S91 and S96; this seat's five points on region exclusions, for the census brief.
 - **Owned:** the brief's `0.0.0.md` :1307 and :1311 "at 989cead" were cleared here at 06:22 without measurement; :1311 is probe 03's account. Told to the Team seat at 07:34:33.
 - **Filed:** the warning entry on sockets' `main` with the ruling, and the verdicts' entry, above F123's; sockets' row; line 14's sockets and compiler clauses; PLAYBOOK §2 :262. Nothing dispatched by this seat.
+
+### The Team seat changes hands: Ailp-team_31 from 07:40:11; management_10 agrees the five census points — 2026-10-31 07:42 (shell time)
+
+- **What arrived:** `management_10`'s agreement to this seat's five region points (07:40:19, `n174L/m10_agree_0740.txt`, 896 B, `3e459b47…`): the census brief after the reset carries eight conditions, its three and these five, and me0394's three `||` reads count as the expected new refusals under its 07:33 ruling to `nitpick-compiler_53` (174's verification reads them by that class); `Ailp-team_31`'s line (07:40:59, `n174L/team31_0740.txt`, 896 B, `68502028…`, origin pid 3827994 verified); `management_10`'s word that the seat has moved (07:41:45, `n174L/m10_teamseat_0741.txt`, 531 B, `c5e50a66…`).
+- **Filed:** line 14's Team clause. Team matters go to `Ailp-team_31`; T18v's and part 1's reports may come from `_32` until `management_10` says it is closed.
