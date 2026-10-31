@@ -18454,3 +18454,20 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **DEF-403** (LOW, F-4's messages say "parameter" for a slot-less root) **and DEF-404** (LOW, a non-`return` `Result` literal typed plain, a wild slot over-refused, no site) numbered by `management_10`; DEF-399 widened. The next free DEF is DEF-405.
 - **Filed:** PLAYBOOK §2 :264; line 14 (174's review; the next DEF); line 52 (the next note :265, the next DEF, §12's twins bullet now :2240, tightened at :2248–2257 and :2258–2267).
 - **Told:** `management_10` (the census's answer and the forms' check).
+
+### DEF-405 and DEF-406 filed at PLAYBOOK §2 :265 and :266, with census17v (no site of ours) — 2026-10-31 11:55 (shell time)
+
+- **From** `management_10` at 11:49:56 (saved as `n174L/mgmt_def405_406_1149.txt`, 1 736 B, `71c643fd…`): DEF-405 and DEF-406 registered, both HIGH, pre-existing on 173 and 174, at landing 175's head beside DEF-402. Neither blocks 174. S2 is closed (TYPE-047), and R4 is not a regression. The next free DEF is DEF-407.
+- **census17v** (`.internal/landing/scripts/census17v.py`, new, `b2c6775f…`; census17u's scope and census17r's lexer; writes nothing). Its controls ran as planted, after two of its own plants were corrected before any census line was read: a body's write to a local passed after was re-planted as one only read after, a `pass` of a used name being flagged (a hand check by its type), and the root count's 7 reads were first miscounted as 6.
+  - **DEF-405:** every `defer` body is checked for a `move(` (M), and for each name it uses being moved out, reassigned or re-tested in the rest of the enclosing block (U).
+    - Ours (420 files, 598 plan-patch hunks, the Team branches): 0 bodies.
+    - `lib/` at `3b0043e`: 25 bodies, 0 hits.
+    - The fuzz copy at `d096b82`: 28 bodies, U 3 in 2 programs, read here whole. `m10/programs/w04_defer_lifo.npk` lines 14 and 15 write the `int32` `log`, which line 16 reassigns; the test checks LIFO order (521). `w05_pass_value_before_defer.npk` line 12's body writes the `int32` `x` after line 13's `pass x` (D-136). None has a `checked` state or a move: the letter of the rule, not its reason.
+  - **DEF-406:** every `.value`/`.err` read whose root is a `)` (C; a `(<-p)` dereference apart, D) or a `]` (E). There are 0 in every scope.
+    - Reconciled by root against the raw count (a range's `..r` counts as bare):
+      - Ours: 529 = 521 bare + 8 field paths (sockets' probe 06 `self.descr.value` and its `step3.patch` copy, an `OwnedFd`).
+      - `lib/`: 90 = 69 + 21 `OwnedFd` fields.
+      - Fuzz: 116 = 114 + 2.
+    - Every field path was listed here by hand. :264's forms (a bare local or parameter) already exclude a call's temporary.
+- **Filed:** PLAYBOOK §2 :265 (DEF-405) and :266 (DEF-406). Line 14: the filing, 175's head, and the next DEF, DEF-407. Line 52: the next note :267, the next DEF, and §12's twins bullet now at :2242, tightened at :2250–2259 and :2260–2269.
+- **Told:** `management_10` (the filing line, including w04's letter-not-reason hit in the fuzz seat's copy).
