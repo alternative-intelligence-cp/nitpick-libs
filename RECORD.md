@@ -18384,3 +18384,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Measured here:** `management_10`'s citation floor re-counted over `405df34..46464ba`'s diff of `0.0.4_tools/step*.patch`: 79 lines and 96 hits, exactly; of them the patches' own added lines 54 and 70; the forms its regex misses, `O-N1` (3), § citations (8 lines) and the error codes `RESOLVE-010` and `REACH-003` (3).
 - **Ruled here:** §8 read NEW (07:52:04), (b) declined for this seat's write scope, (a) recommended with its scope; then C1 and C2, the census's scope, sent to `Ailp-team_31` and `management_10` (07:55:11).
 - **Filed:** the Team-lanes entry above the sockets warning; parse's and sockets' rows; line 14's parse and sockets clauses. Nothing dispatched by this seat.
+
+### T18fix's draft cleared with two edits; a line pointer of this seat's corrected — 2026-10-31 08:01 (shell time)
+
+- **What arrived:** `Ailp-team_31`'s T18fix draft for clearance (08:00:16, `n174L/team31_t18fix_0800.txt`, 3 237 B, `dfa024c1…`; the draft 239 lines, 75 915 B, `0e655f13…`).
+- **Read here:** the draft's :1–121, :162–163 and :166–239 whole; in the Team clone at `46464ba`, read-only, step0g.patch :216–223, :235–241, :280–284 and :416–424, `src/lib.npk` :1–10 and `facts.sh` :1–4.
+- **Ruled here (08:01:09):** cleared with E1 (the re-export attributed to B-16's rule, not stated as done; the two leaning arguments said under that condition or measured) and E2 (the citing sentence read whole; a PD supports only by what it measured; the positive control at :220 and :418), and N1, a nit on the exclusion's extent.
+- **Corrected:** the entry of 07:56 and this seat's message of 07:52:04 gave `src/lib.npk`'s "RE-EXPORTS NOTHING YET" as :5; it is :6 (T18v's report and the draft were right).
+- **Filed:** the lanes entry's clearance line and correction; line 14's parse clause.
