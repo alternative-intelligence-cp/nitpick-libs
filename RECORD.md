@@ -18266,3 +18266,40 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ours:** 0 files move. The trees at their expected HEADs (parse `405df34`), the Team branches moved (`team/parse-0.0-plan` `3085f93`, `team/sockets-0.0-plan` `989cead`), the workbench at `a734ad2`. The fuzz copy's hold at `d096b82` ends with this filing.
 - **The Team's lanes,** in the board entry of 2026-10-31: T17fix1's brief cleared with the subject check's scope (04:40:20) and `management_10`'s addition (04:41), dispatched 04:42:11, DONE at `989cead` (05:44); `sockaddr_un`'s 110 round trip ruled handed to cycle 0.1.2 on three conditions (05:45:44); T18's brief cleared (04:51:28), dispatched 04:53:14, NEEDS-DECISION at `3085f93`, ruled (a) by `management_10` (05:24), this seat's three points agreed (05:25) with the name probe added; T18b's brief cleared with two clarifications (05:29:05), dispatched 05:29:46. The messages are saved by origin under `n173L/` (`team32_*`, `m10_*`).
 - **The cost line,** to `management_10` with this filing: this seat's 233 calls / 56.10 M from 00:59 to the filing, and the agent's 26 calls / 0.37 M on Sonnet.
+
+### The writer lock released by `nitpick-libs_34` to `nitpick-libs_35`, by the author's rule of 2026-10-24 (about three compactions; four here) — 2026-10-31 05:57 (shell time)
+
+- **Why now:** this seat auto-compacted four times after its take at 13:48 on 10-30: at 15:42:25 (375 176 tokens), and on 10-31 at 00:34:03 (367 134), 04:29:06 (372 767) and 05:50:13 (374 286). The last cycle ran 1 h 21 m.
+  - This seat proposed the handoff at 05:51:31, saying "at least twice". `management_10` approved it at 05:52: `nitpick-libs_35` the successor, `nitpick-libs_36` the spare, after T17v2's dispatch and T18b's report (`n173L/m10_handoff_0552.txt`, 1 166 B, `2b5f4f61…`).
+  - This seat corrected the count to four at 05:54:07 and proposed releasing once T17v2 was dispatched. `management_10` approved at 05:54 (`n173L/m10_release_0554.txt`, 438 B, `f22d47ee…`). The understatement is this seat's slip.
+- **At the release:** nothing of this seat's is in flight, and no agent of its own runs. The workbench is at `efe08f1` (173 verified), pushed.
+  - T17v2 (`npk:verifier`, sonnet) was dispatched at 05:54:16 with this seat's three edits (`n173L/team32_0554.txt`; brief 71 983 B, `ee3529e6…`).
+  - T18b (`npk:planner`, opus) has run since 05:29:46.
+  - The compiler's `main` is `3b0043e` by `ls-remote`, a second docs-only correction on `77ffefb` (05:54:38; five files in `CLAUDE.md` and `meta/`, read here by `git diff --stat`). `nitpick-compiler_53` answered 173's five notes at 05:55:19 (`n173L/c53_ack_0556.txt`) and is building 174.
+- **The tenure:**
+  - the take (`952b377`);
+  - W-30's exception for the fuzz clone (`aab1219`);
+  - DEF-390 (`ddb38af`) and DEF-391 (`6252fcb`);
+  - F120 (`2aaf759`), DEF-392 (`d043c09`) and F121 (`6fde432`);
+  - the author's two standing changes, via management (`9a123e3`);
+  - DEF-393 … DEF-395 (`61a333d`);
+  - landing 172 verified (`898cdc0`), then the fuzz copy's base change to `d096b82` (`917536d`);
+  - DEF-396 (`a633841`) and F122 (`a8e6bee`);
+  - parse 0.0.4's merge, T17v's FAIL ruled and DEF-397 (`a734ad2`);
+  - landing 173 verified (`efe08f1`).
+
+  Two Sonnet agents ran: 172's verifier (20 calls / 0.36 M) and 173's (26 / 0.37 M).
+- **Slips of this seat's:** three `cd` into the workbench root on 10-31 (00:31, 00:34 and 04:29), recorded with their filings; the compaction count understated at 05:51 and corrected at 05:54:07, in a message stamped "05:56" without a `date` read before it (the transcript gives 09:54:07Z); and those recorded with each filing.
+- **The brief** is the handoff block `_34` → `_35` on the board. It carries:
+  - the take;
+  - T17v2's report and the sockets merge, with the `sockaddr_un` hand-on's three conditions;
+  - T18b's report, T18v's draft and the parse merge under PD-191;
+  - landing 174;
+  - PLAYBOOK §2 :254–:260;
+  - the queue, the budget, and who is who.
+- **The lock:** line 14 reads `none`, and its held text is in history at `efe08f1`. The marker `.internal/orchestrator.session` is removed.
+- **Cost:**
+  - this seat from 173's filing at 05:51 to the release: 37 calls / 5.15 M read on Opus;
+  - lines sent: 172's at 00:59 and 173's at 05:51, each with its filing, and this tail with the release notice;
+  - nothing is held for `_35`.
+- **`_34` stays open** for hazard 3 and for questions, and forwards verbatim, with arrival times, anything that reaches it.
