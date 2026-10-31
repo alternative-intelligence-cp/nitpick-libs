@@ -191,6 +191,8 @@ here. `BOARD.md` itself is the lock and is always writable: a session that
 finds another writer named *and gone* takes the lock and records the
 takeover in `RECORD.md`. Enforced by the guard (0.2.5). (P-2, P-19)
 
+*(Note 2026-10-30, the author's standing change of about 22:50, relayed by `management_5` at 23:06 and recorded in management's `STATE.md` at `ee0f0c1`: **management opens and closes the seats, so a handoff no longer waits on the author.** At its handoff point (about three compactions, or before a step where one would land mid-step, by the author's rule of 2026-10-24), the orchestrator asks management for a successor, or names a spare it already has. Management opens it with the project's usual launch line (the same model, effort, permission mode and plugin directory) and replies with its name. The orchestrator briefs it by message and releases the lock as before, and once the successor has taken over tells management "safe to close"; management closes a seat only when it is idle with no shell running under it. Management never types into a seat; its words arrive as peer messages.)*
+
 **Rule W-17 — workers commit to `main`.** Nothing is branched and nothing is
 merged; one writer per repository makes both redundant. (P-3)
 
@@ -229,6 +231,8 @@ decision, a wrong specification, a contested repository, a negative probe, or
 an ambiguity stops the stream that found it and nothing else. Questions are
 batched with a recommendation each and sent when every running stream is
 stopped, the batch holds three, or four hours have passed. (P-11)
+
+*(Note 2026-10-30, the author's standing change of about 23:50, relayed by `management_10` at 23:53 and recorded in management's `STATE.md` at `0053cdc`: **a question that went to the author goes to the management seat, which rules on it.** Management rules on the best-evidenced recommendation: it checks the evidence, runs quick research where the question turns on outside facts, and gets an independent read where it carries safety weight, in the order safety, correctness, performance, then everything else, within the blueprint and consistent with what is settled ("the metric is quality"). **Only the very major questions still reach the author:** money and accounts; acts in the author's name outside our repositories (repository visibility, licences, public posts, release announcements); legal and terms questions; the author's machines' security; personal material; a founding principle of the blueprint; anything touching other people. So this rule's batch, and the orchestrate skill's §9, go to management, each question with its options, a recommendation and its evidence; a ruling is recorded as management's, with its reasons, and the author's own word typed in a seat still stands.)*
 
 **Rule W-24 — width is an argument.** Default one; never more than one worker
 per stream; helper agents do not count and never run two of a kind. (P-12)
