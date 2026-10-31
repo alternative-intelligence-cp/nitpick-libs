@@ -18214,3 +18214,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The authority:** W-30's dated note (the author's answer of about 13:55 on 10-30, relayed by `management_7` at 13:57:00): this workbench may fast-forward its own clone at a quiet point, after a landing's verification is filed and before the next landing's sweep, the compiler seat confirming that no sweep reads the copy; the first move `d44dfe3` → `d096b82`. 172's verification was filed at `898cdc0`.
 - **For us:** census17p and census17q re-run with the clone at `d096b82` (their controls 4 of 4 each): the fuzz copy's 15 spawns of a frame address still pass nothing of the kind, and its 20 templates with items are all in plain bodies; ours and `lib/` unchanged, 0 sites. The fuzz programs are the fuzz seat's.
 - **Next move:** proposed to management at a quiet point; the clone is untouched until 173's verification is filed.
+
+### DEF-396 filed: `management_10`'s interim rule in PLAYBOOK §2 :257, no site of ours; in landing 173 — 2026-10-31 00:58 (shell time)
+
+- **From** `management_10` at 00:57 (saved by origin as `n172L/m10_def396_0057.txt`, 695 B): DEF-396, HIGH, pre-existing. A `for` over an `Iterator` whose `next` is not `pure`, in a `pure` body, is silent on 171, 172 and the 173 build so far, while the explicit `cc.next()` is `TYPE-061`; the verifier then encodes a body that runs an effectful `next` as pure. It goes in landing 173.
+- **The rule,** filed at :257: write no `for` over an `Iterator` in a `pure` body; a range, a slice or an array is fine. :255's sibling, the language's other implicit call.
+- **For us:** census17q's class F (a `pure` body's `for` over anything but a range), as management said: 0 in our trees, the Team branches and `lib/`, and 0 in the nitpick-fuzz copy at `d44dfe3` and, re-run at 00:57, at `d096b82`.
+- **Filed** in the commit after 172's verification, which was already pushed (`898cdc0`) when the rule arrived; line 14's 173 now lists DEF-396, and new DEF numbers start after it. **The Team** is sent :256 and :257 for T17's and T16fix1's SAFETY.
