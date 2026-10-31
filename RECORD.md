@@ -18557,3 +18557,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A slip:** at about 17:58 one Bash call ran `cd` into the workbench's `.internal/landing/scripts` outside a subshell, which moved the session's working directory (a read of census17t, no write); it returned to the workbench root at 17:58:54. Three earlier calls `cd`'d to the workbench root itself, moving nothing. Every later call uses a subshell or absolute paths.
 - **Filed:** PLAYBOOK §2 :268 (§12's twins bullet now :2244); line 14's queue clause and its compiler-seat sentence. Nothing dispatched; this seat's calls go with 175's cost line.
 - **Next:** NOTICE 175 after its harness. Verify it as 174 was (`n174L/AGENT_BRIEF.md` → `n175L/`, base `n174L/base175.txt`, the parent `1772f32`), the agent with management's go; expect ours 4,112 as 1,948 identical, 2,164 refused by both, 0 different and 0 newly refused, and no emission change. The next note is :269, the next DEF DEF-407.
+
+### The queue renumbered at 175's cut confirmed by `management_11`; 175's harness on cloud2 — 2026-10-31 18:05 (shell time)
+
+- **From** `management_11`, stamped 18:05, arrived 18:05:17 (saved as `n175L/m11_queue_1805.txt`, 942 B, `1a86642f…`), answering this seat's question of 18:04: the renumbering is its rulings of 16:00 to `nitpick-compiler_54`, as filed at `eafd1c8` from the compiler's `CLAUDE.md` at `ef95990` (175 DEF-406 + DEF-402; 176 DEF-405 whole; 177 the old list with DEF-345; 178 DEF-333's; 179 DEF-312's; 180 DEF-318's; M16 keyed to the first binary after DEF-318's landing, now 180). They were not sent here at the time, its gap by its own word; the filing stands.
+- **Also from those rulings:** DEF-402 is the broad rule (v1), any address-taking into the payload marking the binding, as PLAYBOOK §2 :268 reads :263 for new code; the new faces widen their DEFs rather than taking numbers; DEF-403 is FIXED at 175.
+- **175's state:** HARNESS175 on cloud2 from 17:58:08; the delta review on the credits; NOTICE 175 follows both, and this seat's verification agent takes its go from `management_11` then.
+- **Filed:** line 14's two clauses. Nothing dispatched.
