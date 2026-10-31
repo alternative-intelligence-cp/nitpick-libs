@@ -2251,6 +2251,16 @@ and *"a sweep's recorded counts must come from the command the record prints."*
   (finding 1, its FAIL: SK-102's *What was measured* kept three sizes measured by `#size_of` alone as round-tripping
   through the kernel, in words neither the round's subject pattern nor `twins.tsv` held; and finding 3, its word
   patterns missing 2 of T17v's 7 planted twins).
+  *Tightened again 2026-10-31, by `management_10`'s ruling of 06:15, on a third instance:* rows keyed on a subject's
+  words are still word lists. A claim-correction round's census reads by hand every hit of a broad grep for the
+  subject (its referents as well as its claim words, this seat's point of 06:16:58, over every region: fences, tables,
+  a source's comments and the cycle's own folder), and commits the grep command, the hit count and each hit's class.
+  Its verifier re-runs the grep and matches the count, and re-reads every hit the census classes accurate, not a
+  sample. A tool's exclusions are listed with their reasons, and each is tested by a planted twin the tool must find;
+  a subject tool is a floor, not a completeness check. The instance: `nitpick-sockets` 0.0.1's T17v2 (its FAIL: the
+  ten subject rows of `tools/subjects.py` caught 21 of the verifier's 32 plants; the cycle README's stale D3 closure
+  stood in a region both tools skip; and probe 02's header, crediting `sockaddr_un` with a sentinel round trip its
+  code does not make, was hit and passed as accurate).
 - **When a check widens, sweep for the sentences that say what it could NOT see**, not only for its rule.
 - **Emphasis splits a phrase in joined text.** A sweep's joined reading strips a line's leading comment marker and nothing
   else, so `CLAUDE.md`'s "checked **before** the trap" passed a pattern for "checked before the trap". Strip emphasis before

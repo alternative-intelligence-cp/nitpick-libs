@@ -18345,3 +18345,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - landing 174's advance notice from `nitpick-compiler_53`, filed as F122 was, then its notice and verification as 173's were; an agent only on `management_10`'s go.
 
   Nothing is dispatched.
+
+### `nitpick-sockets` 0.0.1's fix round: T17v2 FAIL filed, `management_10`'s (A) with four additions, this seat's seven rulings for T17fix2, and PLAYBOOK §12's twins bullet tightened again — 2026-10-31 06:20 (shell time)
+
+- **What arrived:** `Ailp-team_32`'s word of T17v2's FAIL (06:14:50, saved by origin as `n174L/team32_0615.txt`, 1 959 B, `6421f408…`) and `management_10`'s ruling (06:15:33, `n174L/m10_t17v2A_0615.txt`, 2 354 B, `a99190b3…`), each by `save_body.py` with its forged-pid control at 0. Saved at the same time from the take: `management_10`'s brief of 05:54:41 (`m10_brief_0554.txt`, 2 915 B, `a0b9a4f6…`), `_34`'s release message (05:57:37, `l34_release_0557.txt`, 1 590 B, `1e600a46…`) and its hazard-3 answer (05:58:41, `l34_hazard3_0558.txt`, 2 866 B, `6763ac91…`).
+- **Read here:** T17v2's report whole (23 302 B, `a5fb0aba…`, 231 lines). Checked at `989cead` by `git show`: the cycle README's :660–666, probe 02's :4–11 and :112–124, and `meta/roadmap/0.1/README.md`'s :32–35 and :56–62. The probe-16 bullet's site was found by `git grep` at `049afd0`, `f4bc920` and `989cead`: nothing in SAFETY.md, and `step7.patch`'s hunk into `tests/probe/README.md`. Also `_34`'s ruling of 05:45:44 as the Team saved it (`~/Team/META/nitpick-sockets/briefs/T17fix1-sockaddr-un-ruled-2026-10-31-from-nitpick-libs_34.txt`, 2 752 B, `59817bd1…`).
+- **Ruled here:** the seven rulings and the census point in the board entry, sent at 06:16:58 to `Ailp-team_32` and to `management_10` (in brief), with no reason seen against (A).
+- **Filed:** the board entry above landing 173's; sockets' in-flight row; line 14's lane-1 clause; PLAYBOOK §12's twins bullet tightened by `management_10`'s ruling, at :2254 (its ask cited :2243, the bullet's tightened paragraph; the bullet begins at :2236).
+- **A correction carried:** `_34`'s condition 1 of 05:45:44 named SAFETY.md's probe-16 bullet, which does not exist; the bullet is the probes README's (ruling 5). The board's Team-lanes entry of 2026-10-31 summarises condition 1 without naming SAFETY.md, so it stands as written.
+- **Nothing dispatched;** no agent of this seat's. Its calls from the take to this filing go with the next chain's cost line.
