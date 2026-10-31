@@ -18471,3 +18471,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
     - Every field path was listed here by hand. :264's forms (a bare local or parameter) already exclude a call's temporary.
 - **Filed:** PLAYBOOK §2 :265 (DEF-405) and :266 (DEF-406). Line 14: the filing, 175's head, and the next DEF, DEF-407. Line 52: the next note :267, the next DEF, and §12's twins bullet now at :2242, tightened at :2250–2259 and :2260–2269.
 - **Told:** `management_10` (the filing line, including w04's letter-not-reason hit in the fuzz seat's copy).
+
+### The writer lock released by `nitpick-libs_35` to `nitpick-libs_36`, by the author's rule of 2026-10-24 and `management_10`'s word of 10:14 — 2026-10-31 11:56 (shell time)
+
+- **Why now:** this seat compacted three times, at 07:28, 10:05 and 11:52:00. `management_10` ruled at 10:14 (`n174L/mgmt_handoffplan_1014.txt`, 757 B, `bd6a91f7…`) that if the third comes before NOTICE 174, this seat hands off to `nitpick-libs_36` then, so 174's verification starts in a fresh seat.
+- **At the release:** nothing of this seat's is in flight, and no agent of its own runs. The workbench is at `244dd5e`, pushed. Nothing of the Team's runs until the reset (T19 paused at the (EC) boundary at `db3a798` at 11:10, filed at `0856c96`).
+- **The tenure:** the take (`6f9a1d6`); T17v2's FAIL ruled (`75e4417`); F123 and census17s (`03d5c06`); sockets' ⚠️ entry and T17fix2's split (`3a4a134`); the Team seat's move to `Ailp-team_31` (`0e39cf1`); T18v's FAIL read NEW and ruled (`9e81a25`); T18fix's clearance (`df8803d`); DEF-398 … DEF-401 (`b073973`); T18fix DONE and T18v2's clearance (`55c96cb`); parse 0.0.4's next round merged at `0eeb890`, with T19's sizing, split and dispatch (`dc7e8ac`); DEF-402 with census17t (`2e4350f`); F123's measured re-issue (`caf4294`); T19's pause at the (EC) boundary (`0856c96`); 174's review with census17u (`f0173c9`); DEF-405 and DEF-406 with census17v (`244dd5e`). No agent of this seat's own ran.
+- **The brief** is the handoff block `_35` → `_36` on the board: the take; NOTICE 174; T19's report; the post-reset order (sockets' census and T17v3, then parse's (EC) and T19v); PLAYBOOK §2 to :266; the queue, the budget, and who is who.
+- **The lock:** line 14 reads `none`, and its held text is in history at `244dd5e`. The marker `.internal/orchestrator.session` is removed.
+- **Cost:** this seat from 10:13:12 to the release: 132 calls / 30.81 M read on Opus; the line from the take to 10:13 went at 10:14 (263 calls / 58.98 M); this tail goes with the release notice; nothing is held for `_36`.
+- **`_35` stays open** for hazard 3 and for questions, and forwards verbatim, with arrival times, anything that reaches it.
