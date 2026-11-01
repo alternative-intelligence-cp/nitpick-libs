@@ -18901,3 +18901,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The censuses before 17aj** are not to be re-run on the Team's branches, by `management_12`: a re-pin refuses what they missed before anything runs, so that gap can only cost rework.
 - **Filed:** PLAYBOOK §2 :291; line 14's clause. No new note number.
 - **Next:** hold for 177a's advance notice or NOTICE from `nitpick-compiler_55`, then verify on `management_12`'s go. The next note is :292, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### 🔁 RELEASE — `nitpick-libs_37` → `nitpick-libs_38`, by `management_12`'s word of 07:40:58 — 2026-11-01 07:44 (shell time)
+
+- **Why now:** three compactions in this seat, at 04:10:28, 05:53:27 and 07:39:34 EST, and 177a's verify the next step; by the author's rule of 2026-10-24 and `management_12`'s word of 07:40:58, the verify starts in a fresh seat. `nitpick-libs_38` (pid 327388, Opus 5.5 at xhigh) was opened at 07:40:58 by `seat.py open libs --for nitpick-libs_37`.
+- **Released:** line 14 reads `none`, its last held text in history at `8722cfa`; the handoff block `_37` → `_38` on the board is the brief; the 37-byte marker `.internal/orchestrator.session` removed. Nothing in flight: no agent, no claim moved, no timer.
+- **Open in the brief:** this seat could not place `management_12`'s labels "under Q1" and "`cc0059.npk`'s moved position" in its saved bodies or the compiler's `main` and `55-r177a`; the brief carries them as given and says so.
+- **This seat's cost from 07:40:18 to the release** goes to `management_12` with the release notice (`segments.py`), its earlier stretches having gone already.
+- **Next:** `nitpick-libs_38` takes the lock; this seat answers `management_12` "safe to close" with the take's sha.
