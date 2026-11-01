@@ -18996,3 +18996,21 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **F127 and :292** stand as written until S1's fit decides; a corrected notice comes from `nitpick-compiler_55` if it changes them.
 - **Filed:** PLAYBOOK §2 :294; :293's end and census clauses, in place; line 14's F127 clause and next-note figure.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :295, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### N, V and K, DEF-418 widened to the read and view faces, their interim rules; census17am finds no real site of ours, one shape put to `management_12` — 2026-11-01 10:42 (shell time)
+
+- **From `management_12`,** stamped 10:31:01, arrived 10:31:37 (saved as `n177aL/m12_n4_1031.txt`, 2,381 B, `4d5e3c4e…`). The cells are `MANAGEMENT/probes/177-n4/`; its README was read here and the cells not run. The whole of it is PLAYBOOK §2 :295. No GO changes.
+- **census17am,** on that word: script `.internal/landing/scripts/census17am.py`, output `n177aL/census17am.out` (8,427 B, `2bbbcbfa…`), no agent.
+  - **Calls:** 10 Bash calls of the 10 allowed, one more read past them for the last hit's body and the reach line, and one `Read` and one `Write` beside them.
+  - **Controls, before any figure counted:** 19 of class A and one or two of each other class, 12 negatives, all caught in the final run; `management_12`'s cells `a1` to `a4` read as class A and `a5` as none, as named.
+  - **What the controls and the first runs corrected in the reader, each fixed before a figure counted:** the chain's `strip` moves offsets, so the script blanks comments and strings in place; a bare pointer as a whole argument was unseen (a control caught it); untyped members and scalars bound from a call over-reported (a first listing of A 8, N 132 and NN 38 in our trees), so members and locals are now judged by type; a store into a pointer's own field added false ways (A 171), so such a store adds none.
+  - **The limit that typing brings:** a local of a type with no definition read here is not followed as a holder (`Result` 333 judgments in our trees and 244 in the plan hunks, a generic `T` 17 and 18, `dyn`, `Handle`, `OwnedFd`, `fd`; `n177aL/census17am.out` lists them per population). So a way carried in a `Result<T->>` local is unread. Lexical otherwise: local copies within a function and the one call.
+  - **Reach, per tree:** the rows in :295 and the output. tui tracks no `.npk`, checked by the filing. **The Team's copies are skipped, by the word,** with the 16 inherited items among them; N, V and K were not read.
+- **Classes, read by hand:** 0 of class A in ours and `lib/`.
+  - **Read-only:** `bytes_get(@b, (raw bytes_len(@b)) + past - 1i64)`, both bodies read; `sset_insert(@s, (raw sset_capacity(@s)) + past - 1i64)`, `sset_capacity`'s body read, returning a scalar.
+  - **Neither read-only nor a sibling, put to `management_12`, nothing changed:** `adopt(t, n, raw gen(t, g, …))`, 4 in `hir_normalise_gate.npk` and 4 in its plan copy. `adopt`'s body and `gen`'s signature read, `gen`'s body not. Each call is handed one way and `gen` returns `int64`, so this seat reads no site.
+  - **Siblings:** time's `wild_slice<uint8>(b.body.ptr, b.body.cap)` (2 and a plan copy), `lib/nbridge.npk:755` (3 pairs); neither is a site.
+  - **The fuzz copy, unchanged:** `vf0200` and `vf0216` expected refused; `vf0253.npk:19` a real site by the letter (its body read, expected `run:0`, on a `Pt` of one `int32`, nothing freed), the one `management_12`'s regex found.
+- **Not proposed, offered:** a census of N, V and K. The word asks this one under DEF-418's rule. Their sweep shows sites if they land in 177a; if one goes to DEF-420 instead, the sweep will not show it. Put to `management_12`.
+- **Filed:** PLAYBOOK §2 :295; line 14's F127 clause and next-note figure.
+- **Next:** hold for `management_12`'s word on `adopt`, then NOTICE 177a and its GO. The next note is :296, the next DEF DEF-420, the next TYPE TYPE-106.
