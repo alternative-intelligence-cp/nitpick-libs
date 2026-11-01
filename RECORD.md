@@ -18969,3 +18969,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The harness,** by the same word: KEY 77a on `dde7657` from 09:40:00, two independent reviews beside it.
 - **Filed:** PLAYBOOK §2 :292, in place; line 14's F127 clause. No new note number.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :293, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### `dde7657` is not 177a's landing commit; one more face of E-d, a cast hiding the by-value read, with an interim rule — 2026-11-01 09:54 (shell time)
+
+- **From `management_12`,** stamped 09:53:22, arrived 09:53:42 (saved as `n177aL/m12_dsnap_0953.txt`, 1,069 B, `bb217155…`), on Finding 1 of review A of 177a (graded PLAUSIBLE there), which it measured. The cells are `MANAGEMENT/probes/177-cast-snapshot/`; its README was read here and the cells not run.
+- **The face:** `fs((<-(@s)) => string, (raw take(move(s))))` reads freed bytes, 140 on 176b and `dde7657`'s build, with `=>!`, two casts, a part and a receiver alike; `wr(@s, (<-(@s)) => string)` is 83 on both. No new number; it stays on E-d's clause and closes inside 177a.
+- **The interim rule, PLAYBOOK §2 :293:** never pass a cast of a dereference by value beside a move, free or reallocation of the same owner in one call; bind it first.
+- **Its end, as filed here:** `management_12`'s word says "until 177a lands". Its ruling of 05:11:52 (:285) is that an interim rule covers what the pinned compiler will not refuse, and our pin stays `2e1cb4a`, so a landing alone changes nothing here. This seat files it as until a re-pin carries 177a, and told `management_12` so with this filing.
+- **No census, by its word:** the shape is not censused here. `nitpick-compiler_55`'s sweep on the new build covers ours and the Team's copies and will show any site, and this seat reads that at the verify.
+- **F127 and :292** stand as written until `nitpick-compiler_55` says its wording needs a correction, through `management_12`. Line 14's queue item says `dde7657` is not the landing commit. Review B is still out, and the new sha comes after both.
+- **Filed:** PLAYBOOK §2 :293; line 14's queue item, F127 clause and next-note figure.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :294, the next DEF DEF-420, the next TYPE TYPE-106.
