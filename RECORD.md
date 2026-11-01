@@ -18845,3 +18845,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A correction sent with it:** the message of 05:54:03 named `probe07:132` among the census's 4 derefs; they are `civil_to_utc_edges.npk:130` and `:139` and their copies in `0.2.2_tools/step3.patch`, `probe07:132` coming from the text search. All calm, the verdict unchanged.
 - **Filed:** PLAYBOOK §2 :287; line 14's lead, queue item 177a, the unplaced list and the next-note figures.
 - **Next:** hold for 177a's advance notice or NOTICE from `nitpick-compiler_55`, then verify on `management_12`'s go. The next note is :288, the next DEF DEF-419, the next TYPE TYPE-104.
+
+### E-c's face under `give`, closing in 177a; census17aj3 finds no site — 2026-11-01 06:41 (shell time)
+
+- **From `management_12`,** stamped 06:39:25, arrived 06:39:38 (saved as `n176L/m12_give_0639.txt`, 758 B, `41274df4…`): a literal under `give` holding an `@` (60, a fabricated length, measured by `nitpick-compiler_55` on 176b). E-c's rule covers it until a re-pin carries 177a. `nitpick-compiler_55` is listing every expression form that can yield a nested value, so more may come.
+- **census17aj3.** Script `.internal/landing/scripts/census17aj3.py`, output `n176L/census17aj3.out` (564 B, `18ec8286…`); no agent, 5 calls of 5, the send and this filing apart. The controls were caught: LIT 9 (plain, generic, cast-wrapped, nested, an array, multi-line, `??`, an array of literals, parenthesised), LIT-CALL 1 and AT 1, with a literal without `@`, a `pass`, a comment and a bare `give` not read.
+  - **Figures:** ours, 420 files and 598 plan-patch hunks: 0 `give` statements. `lib/` at `ba82c55`, 9 files: 0. The fuzz copy at `d096b82`, 3,868 files, the fuzz seat's: 22, none with an `@`.
+  - **The zero checked:** a plain text search finds the word in plan-patch prose and comments only, in the lines read, the first 6 of each tree, and `lib/nbridge.npk:286`, a comment. The Team branches: 0.
+  - **Two slips in the script, neither touching a figure:** a variable clobbered by the census heads, and a planted count of 14 where the controls hold 13 statements; the reader's classes were right in both runs.
+  - Sent to `management_12` at 06:40:56.
+- **Filed:** PLAYBOOK §2 :288; line 14's lead and the next-note figure.
+- **Next:** hold for 177a's advance notice or NOTICE from `nitpick-compiler_55`, then verify on `management_12`'s go. The next note is :289, the next DEF DEF-419, the next TYPE TYPE-104.
