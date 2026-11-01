@@ -18856,3 +18856,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Sent to `management_12` at 06:40:56.
 - **Filed:** PLAYBOOK §2 :288; line 14's lead and the next-note figure.
 - **Next:** hold for 177a's advance notice or NOTICE from `nitpick-compiler_55`, then verify on `management_12`'s go. The next note is :289, the next DEF DEF-419, the next TYPE TYPE-104.
+
+### DEF-419 registered, E-c's class widened; census17ak finds no DEF-419 site of ours, one hit put to `management_12` — 2026-11-01 07:11 (shell time)
+
+- **From `management_12`,** stamped 07:00:46, arrived 07:01:09 (saved as `n176L/m12_def419_0700.txt`, 2,569 B, `f2da321f…`). The rules are PLAYBOOK §2 :289. E-d's row is corrected there: its 74 was DEF-419's double free, never a freed read.
+- **census17ak.** Script `.internal/landing/scripts/census17ak.py`, output `n176L/census17ak.out` (12,910 B, `c4e3a829…`); no agent, 15 calls of 20, the send and this filing apart. One early run stopped on a control, my expected `A1` being wrong and the view reader counting `move(h.s)` as a view, fixed; one stopped on a table print; and the first full run's `A1` counted a `$$m` as its own effect, fixed. All before the figures sent.
+  - **Reach:** ours and the Team branches, 420 files and 598 plan-patch hunks, 485 operators; `lib/` at `ba82c55`, 9 files, no operator; the fuzz copy at `d096b82`, 3,868 files, 744 operators.
+  - **Ours:** DEF-419 0, rule 1 0, a bare `@` beside a move or free 0, rule 3 0 and its held form 0, `raw`, `relay` or `give` of a named place 0. Rule 2's reader 2, one site and its plan copy.
+  - **The hit, put to `management_12`:** regex's `tests/unit/hir_props_frozen_set.npk:16` and `0.2.4_tools/step1.patch`, `drop hir_set(@h, 0i64, raw hir_get(h, 0i64));`. `Hir` drops and goes by value to `hir_get`, in a call nested beside `@h`; `hir_get` returns a plain `HirNode` before `hir_set` runs, and the test expects exit 94. Read here as not rule 2's site and not E-a's "same call". If 177a's fix reads the nested form as a refusal, the test becomes newly refused, so a legal cell may be wanted. Untouched.
+  - **Listed and read by hand, none a site:** 10 of time's `self.*_refusal ?? Unreachable` with plan copies, `Error?`, `Error` a 4-byte code word by `types.npk:115` and `type_layout.npk:293` (the start of `type_drops_recorded` read, not all of it); 2 plan hunks in binds; 8 literals with `@` and no effect; 31 calls whose other argument is scalar or a plain field; unbound arms `y` (int64) and `mr` (a bind).
+  - **The fuzz copy, the fuzz seat's:** `cc0059.npk:15` a bind behind `await`, mislabelled a value by the reader; `vf0200.npk:14` on int32; 3 derefs with no effect on int32; `bi0058.npk:13` a function-pointer field call.
+  - **The cells:** every `cells_dd` cell and the `a_`, `l_`, `s_deref` and `v_` cells of `cells_t` read as named, except `a_ok_lit_write` and `a_recv_tern_ok` over-reported and `a_deref_addr`, `a_deref_lit`, `a_safe_nav` and `a_dyn_cast` listed only, a holder across statements or `@q` of a holder.
+  - **Limit:** lexical; Team branches and plan patches read as text.
+  - **Passed to `management_12` for `nitpick-compiler_55`, a reading and not a measurement:** `temp_producer` also counts `raw`, `relay` and `pick` as producers, with no `dd_` cell for a named arm under them.
+  - Sent to `management_12` at 07:10:03.
+- **Filed:** PLAYBOOK §2 :289; line 14's lead, queue item 177a and next-note figures.
+- **Next:** `management_12`'s word on the hit, then 177a's advance notice or NOTICE. The next note is :290, the next DEF DEF-420, the next TYPE TYPE-104.
