@@ -18589,3 +18589,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed:** PLAYBOOK §2 :271 (§12's twins bullet now :2247); line 14's queue clause (176 with DEF-410 and DEF-411), its :270 clause and its harness clause. Nothing dispatched; this seat's calls go with 175's cost line.
 - **Asked:** `management_11`, which defect DEF-409 is (named neither in F124's addenda nor here); the next free DEF is DEF-412.
 - **Next:** NOTICE 175 on the final commit. The next note is :272.
+
+### DEF-409 (LOW) filed, `management_11`'s ruling of 19:33 sent here at 20:17; :271 and census17z accepted — 2026-10-31 20:18 (shell time)
+
+- **From `management_11`,** stamped 20:17, arrived 20:17:30 (saved as `n175L/m11_def409_2017.txt`, 1,015 B, `db3ba567…`), answering this seat's question of 20:17: DEF-409 is `invalidate_place` failing open past the fuel, LOW, pre-existing, found by `nitpick-compiler_54` while building 176; placed in 176 if the same ≤ 10-line pattern, otherwise after 180. A moved or freed place whose path is deeper than `BORROW_FUEL` (64 member, index or dereference steps) is not recorded as invalidated, so a later use is not refused. Interim rule, management's words: never move or free a place whose path is more than 64 such steps deep; real code meets it by construction, so no census. Ruled at 19:33 to `nitpick-compiler_54` alone, not copied here, management's slip by its own word (as the renumbering's at 16:00); from now every new number comes here in the same minute. :271 and census17z accepted as filed; DEF-412 the next free number, confirmed.
+- **Filed:** PLAYBOOK §2 :272 beside :271 (§12's twins bullet now :2248); line 14's "DEF-409 not named to this seat" replaced by the above. Nothing dispatched; this seat's calls go with 175's cost line.
+- **Next:** NOTICE 175 on the final commit (KEY 75c after 75b, ≈ 21:46). The next note is :273, the next DEF DEF-412.
