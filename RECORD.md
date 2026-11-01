@@ -19014,3 +19014,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Not proposed, offered:** a census of N, V and K. The word asks this one under DEF-418's rule. Their sweep shows sites if they land in 177a; if one goes to DEF-420 instead, the sweep will not show it. Put to `management_12`.
 - **Filed:** PLAYBOOK §2 :295; line 14's F127 clause and next-note figure.
 - **Next:** hold for `management_12`'s word on `adopt`, then NOTICE 177a and its GO. The next note is :296, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### `adopt(t, n, raw gen(t, g, …))` ruled no site; census17am stands with no real site of ours; the reading of DEF-418's rule filed in :295 — 2026-11-01 10:44 (shell time)
+
+- **From `management_12`,** stamped 10:43:24 (saved as `n177aL/m12_adopt_1043.txt`, 1,513 B, `29fbb04f…`). Nothing changes in regex.
+- **The ruling's reasons:** `gen` has finished before `adopt`'s body starts, so no one callee holds two ways; `gen` returns `int64`, so it cannot hand `adopt` a pointer, and if it kept `t` only `g` could carry that, which `adopt` is not handed, so `gen`'s body need not be read; `t` is a pointer value, with no by-value read or view through `<-t` formed before `gen` runs. `adopt(<-t, n, raw gen(t, …))`, or a view of `<-t` there, would be the real shape.
+- **The reading, added to :295 as it asks:** a nested call that returns no pointer, with no copy or view of the owner formed before it in the outer call, is not a second way.
+- **A sentence of this seat's beside it, marked as such in :295 and told to `management_12`:** an `@` of an element or a part reached through the owner's heap, formed before such a nested call, counts as a view formed before it, E-e's reason (:283). The words "copy or view" do not name it, and census17am's hits hand only the whole owner, so they do not test it.
+- **Also accepted:** `vf0253.npk:19`, no site in effect, real by the letter in the census, the fuzz seat's and untouched; the `Result<T->>` limit, the census being re-run at DEF-418's ruling with whatever reader that rule needs; N, V and K, no census now, and a small one only of whichever face moves to DEF-420, at that moment.
+- **Filed:** PLAYBOOK §2 :295, in place. No new note number.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :296, the next DEF DEF-420, the next TYPE TYPE-106.
