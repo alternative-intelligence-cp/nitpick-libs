@@ -19135,3 +19135,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A third compaction:** if one looks likely before the verify, this seat tells `management_12` early, so a successor can be opened at a clean point.
 - **Filed:** PLAYBOOK §2 :298 and :294, in place, no new note number; line 14.
 - **Next:** census17ao, then hold for NOTICE 177a and the GO. The next note is :299, the next DEF DEF-421, the next TYPE TYPE-106.
+
+### DEF-421 (HIGH), a `for` over a named array of owners with no party; rows added to DEF-418 and DEF-298's writer face — 2026-11-01 13:33 (shell time)
+
+- **From `management_12`,** stamped 13:31, arrived 13:31:28 (saved as `n177aL/m12_def421_1331.txt`, 1,780 B, `71fd82c2…`), with the cells `MANAGEMENT/probes/177-review-c/`; the README was read here and the cells not run.
+- **DEF-421:** `for (string:x in a) { a[0] = …; read x }` reads freed bytes (83) on 176b and `dee24fe`, and so over a field or a deref, for any write road, and for struct elements holding a `string`. Plain elements stay legal; a slice local and a slice parameter are already refused. 177b's first item. **`dee24fe` stands.**
+- **The rule, filed before its census, PLAYBOOK §2 :299:** until a re-pin carries DEF-421's build, the body of a `for` whose element type drops doesn't write the array it iterates, by any road.
+- **Row additions, no new number:** DEF-418 adds `p_held_wrap_param` (97) and `n_sib_self_hazard` (83); DEF-298's writer face adds `n_self_write_ptr` and `n_self_write_val` (83).
+- **This seat's filing, told to `management_12`, which can correct it:** K's rule for a part now stands until a re-pin carries DEF-418's build, as `n_sib_self_hazard` stores such an address and stays 83 on `dee24fe`; N's rule stands for a holder that itself holds the view until a re-pin carries DEF-298's writer face at 179. :297 points to it in place.
+- **census17ao:** its first run (call 4 of its 10) passed its 5-minute limit in the foreground and was stopped here at about 13:33, with no output and no figure read. The reader is to be corrected, and DEF-421's census shares its next run.
+- **Filed:** PLAYBOOK §2 :299; :297 in place; line 14, with 177b's queue item.
+- **Next:** census17ao and DEF-421's census, hits to `management_12` first; then hold for NOTICE 177a and the GO. The next note is :300, the next DEF DEF-422, the next TYPE TYPE-106.
