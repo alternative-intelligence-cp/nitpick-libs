@@ -19146,3 +19146,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **census17ao:** its first run (call 4 of its 10) passed its 5-minute limit in the foreground and was stopped here at about 13:33, with no output and no figure read. The reader is to be corrected, and DEF-421's census shares its next run.
 - **Filed:** PLAYBOOK §2 :299; :297 in place; line 14, with 177b's queue item.
 - **Next:** census17ao and DEF-421's census, hits to `management_12` first; then hold for NOTICE 177a and the GO. The next note is :300, the next DEF DEF-422, the next TYPE TYPE-106.
+
+### census17ao and DEF-421's census: no site in any population; the 35 hits ruled no site — 2026-11-01 13:49 (shell time)
+
+- **The result went to `management_12` first,** at 13:46, nothing changed. **Its ruling,** stamped 13:47, arrived 13:48:03 (saved as `n177aL/m12_ruled_1347.txt`, 1,309 B, `7eaa1cca…`).
+- **The output:** `n177aL/census17ao.out` (14,536 B, `e1ec5796…`) and `n177aL/census17ao_bind.out` (2,849 B, `8545aefb…`); the reader `scripts/census17ao.py`. No agent; 10 calls of 10.
+- **The reader's faults, each caught by a control or the stall, none reaching a figure:** a first run past its limit, stopped with no output, the cause regular expressions running over blanked text (the struct recursion was remembered as well, which was not what stalled it); a ternary of holders missed; plain-element arrays wrongly hit; a parenthesised literal receiver and a direct write through a holder missed.
+- **Filed at PLAYBOOK §2 :300:** every population with its size; the controls; the two ways to count, by loop and by type, as `management_12` meant them; the 35 hits by class; the reader's limits; `c_la4_table_field`'s road with no extra pass.
+- **Rulings:** a non-dropping by-value argument stays legal under the wider holder; the loop's own binding is not DEF-421's, being refused already (`TYPE-085`, `TYPE-047`); :299's two ends are right, :298 and :299 corrected in place.
+- **One thing this seat told `management_12` beside the filing:** its word says this seat holds until the re-pin, which is so for this seat. A hunk worked at the pin before that re-pin, such as parse's 0.0.4 steps if they come first, has only :295's hand rule on `c_la4_table_field`'s road, so :300 says that and asks nothing.
+- **For 177a's verify:** read the expected lines of the fuzz copy's 53 loops writing through a binding (`census17ao_bind.out` lists 14); any that is not a refusal cell goes to `management_12`.
+- **Filed:** PLAYBOOK §2 :300; :298 and :299 in place; line 14.
+- **Next:** hold for NOTICE 177a and the GO. The next note is :301, the next DEF DEF-422, the next TYPE TYPE-106.
