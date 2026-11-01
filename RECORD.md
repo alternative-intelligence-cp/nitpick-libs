@@ -18872,3 +18872,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
   - Sent to `management_12` at 07:10:03.
 - **Filed:** PLAYBOOK §2 :289; line 14's lead, queue item 177a and next-note figures.
 - **Next:** `management_12`'s word on the hit, then 177a's advance notice or NOTICE. The next note is :290, the next DEF DEF-420, the next TYPE TYPE-104.
+
+### `hir_props_frozen_set.npk:16` ruled to stand; DEF-419's rule covers `relay`, measured by `management_12`; `raw` and `pick` add nothing — 2026-11-01 07:14 (shell time)
+
+- **From `management_12`,** stamped 07:12:59, arrived 07:13:16 (saved as `n176L/m12_rule_hir_0712.txt`, 1,720 B, `a11e381f…`).
+- **The hit stands:** `HirNode` is `#[derive(Copy)]` by `management_12`'s reading of `src/hir/repr.npk`, so this seat's reading holds. `nitpick-compiler_55` keeps the shape accepted with a legal cell, and a refusal of the line goes to `management_12` first. Nothing changes here.
+- **The measurement, `management_12`'s, not this seat's** (-O0, 176b and 175, `MANAGEMENT/probes/177-double-free/`, `f43d7d1`): `fs(relay r, 0i64)` and `(relay r).len` 74; `fs(relay move(r), 0i64)` 67; `string:v = relay r;` `TYPE-046`; `fs(raw r, 0i64)` `TYPE-042`; `pick … give s` as an argument or with `.len` `TYPE-046`.
+- **A correction:** this seat's message of 07:10:03 said `raw`, `relay` and `pick` over a named owner "look like the same double free", from reading `temp_producer`. `relay` is. `raw` and `pick` are refused, so they add nothing. census17ak's figures stand: no such site of ours, `lib/` none, the fuzz copy none that drops.
+- **DEF-419's rule extended:** never `relay` over a named `Result` of a dropping type, by value, outside a bind; `relay move(r)` or relay a call, until a re-pin carries 177a.
+- **Filed:** PLAYBOOK §2 :290 and two pointers in :289; line 14's lead and next-note figure. `management_12` confirmed `81ca009` = origin's `main` by its `ls-remote` and noted the cost line.
+- **Next:** hold for 177a's advance notice or NOTICE from `nitpick-compiler_55`, then verify on `management_12`'s go. The next note is :291, the next DEF DEF-420, the next TYPE TYPE-104.
