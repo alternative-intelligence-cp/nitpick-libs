@@ -18735,3 +18735,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **No census yet,** by management's word: one scan over any confirmed shapes. census17ah read face (f) in its later order only, so E-a's reverse order and the `Self->` receiver handed itself by value are not yet read.
 - **Filed:** PLAYBOOK §2 :283; line 14's compiler-seat clause and next-note figure. Nothing dispatched; this seat's calls go with 176's cost line.
 - **Next:** the probes' outcome, then NOTICE 176(b) after GREEN and verify176 on management's go. The next note is :284, the next DEF DEF-418, the next TYPE TYPE-104.
+
+### 🔁 RELEASE — `nitpick-libs_36` → `nitpick-libs_37`, by `management_12`'s word of 02:58:28 — 2026-11-01 03:00 (shell time)
+
+- **Why now:** four compactions in this seat, the latest at 01:35 EST, and NOTICE 176(b) due about 04:35, so a fifth would likely land mid-verification; by the author's rule of 2026-10-24 and `management_12`'s word of 02:58:28, the verification starts in a fresh seat. `nitpick-libs_37` (pid 3432791, Opus 5.5 at xhigh) was opened at 02:58:28 by `seat.py open libs --for nitpick-libs_36`.
+- **Released:** line 14 reads `none`, its last held text in history at `31a5eba`; the handoff block `_36` → `_37` on the board is the brief; the 37-byte marker `.internal/orchestrator.session` removed. Nothing in flight: no agent, no claim moved, no timer.
+- **This seat's cost from F125's arrival (00:47:47 EDT) to the release:** 138 calls, 29.57 M read (`segments.py`), sent to `management_12` with the release notice for 176's chain line.
+- **Next:** `nitpick-libs_37` takes the lock; this seat answers `management_12` "safe to close" with the take's sha.
