@@ -19124,3 +19124,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **This seat's count:** its second compaction came at 13:07. `management_12` is told.
 - **Filed:** PLAYBOOK §2 :298; :294 and :296 in place; line 14.
 - **Next:** hold for `management_12`'s word on the census, NOTICE 177a and its GO. The next note is :299, the next DEF DEF-421, the next TYPE TYPE-106.
+
+### S1's wider holder ruled; a census of the plan hunks goes ahead — 2026-11-01 13:15 (shell time)
+
+- **From `management_12`,** stamped 13:14, arrived 13:14:05 (saved as `n177aL/m12_holder_1314.txt`, 1,114 B, `8ee994eb…`), on this seat's two asks of 13:13:42.
+- **The rule, ruled and no longer this seat's reading:** "holder" means any by-value value carrying a way to the owner: a struct, array or slice, an enum, an Optional, a `List` moved in, a ternary of holders, and a pointer to a holder. Filed before the census it asks for, at PLAYBOOK §2 :298, with :294's pointer to it.
+- **The census, census17ao:** one reader over plan hunks only, our 582 and the 5 differing sockets patches, for S1, N, V, F and P with the wider holder, no agent, at most 10 calls. Each hit read by hand and any hit to `management_12` first; each population named with its size; a planted positive control per shape; the cast and K left to their own text checks.
+- **The correction** to :294 and :296 is confirmed.
+- **NOTICE 177a** will carry the sentence on the sweep's reach, `.npk` files under the named roots only, no plan hunks and no Team copies; `management_12` puts that in `nitpick-compiler_55`'s GO.
+- **A third compaction:** if one looks likely before the verify, this seat tells `management_12` early, so a successor can be opened at a clean point.
+- **Filed:** PLAYBOOK §2 :298 and :294, in place, no new note number; line 14.
+- **Next:** census17ao, then hold for NOTICE 177a and the GO. The next note is :299, the next DEF DEF-421, the next TYPE TYPE-106.
