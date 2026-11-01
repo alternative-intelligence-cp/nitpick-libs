@@ -18980,3 +18980,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **F127 and :292** stand as written until `nitpick-compiler_55` says its wording needs a correction, through `management_12`. Line 14's queue item says `dde7657` is not the landing commit. Review B is still out, and the new sha comes after both.
 - **Filed:** PLAYBOOK §2 :293; line 14's queue item, F127 clause and next-note figure.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :294, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### Review B's S1, S2 and S3 with their interim rules; :293's end confirmed and the sweep's reach corrected — 2026-11-01 09:59 (shell time)
+
+- **From `management_12`,** stamped 09:57:54, arrived 09:58:20 (saved as `n177aL/m12_revb_0957.txt`, 2,433 B, `7eb1a856…`). The cells are `MANAGEMENT/probes/177-review-b/`; its README was read here and the cells not run.
+- **:293's end confirmed:** "until a re-pin carries 177a" is right, as filed.
+- **A correction of the 09:53 word, and so of the entry above and :293:** `nitpick-compiler_55`'s sweep does not cover the Team's copies; its roots are `wt/55a`, `nitpick-libs/*` and `nitpick-apps/nitpick-posix`. `management_12` then ran a text census of the cast face itself across the Team, the libraries and the applications: `<-(@` in one program per tree (`nitpick-fuzz/m11/programs/vf0210.npk`, the Team's copy and ours), never under a cast, 0 sites by text. :293 is corrected in place, being minutes old and read as a rule.
+  - **Spot-checked here,** one `git grep` per head over `.npk` and plan patches (`.patch`), a check of its claim and not a new census: parse, regex, sockets, time, tui, the applications and posix 0 files; the fuzz copy 1, `m11/programs/vf0210.npk:12`, `int32:y = (<-(@x)) + 1i32;`; the Team's parse `db3a798` and sockets `6257b3e` 0. The Team's fuzz copy was not read here. The text search reads that one spelling only.
+- **The three shapes, PLAYBOOK §2 :294, each accepted on 176b and `dde7657`'s build:**
+  - **S1** (83, freed bytes): an aggregate holding `@s` beside `s` by value. Into 177a if it fits its cap, otherwise DEF-420, told here in the same minute. Rule until a re-pin carries the fix.
+  - **S2** (140, poison): a ternary of ranges beside the element. Into 177a on E-a's slice line. Rule until a re-pin carries 177a.
+  - **S3** (67, a store into freed memory): a store target with no named root. Not in 177a; on DEF-418's row, closed by the emitter order. Rule with no end date until that landing is placed and carried.
+- **Over-refusals at the re-pin,** failing closed, on the post-180 list unless the sweep shows sites: `l[0].v[(raw rd(@l))]`, `o.binds[0] = raw rd(o)` where `o` also holds a pointer, and S1's read-only twins.
+- **No census from this seat, by its word.** The sweep on the new build shows any S1 or S2 site of ours, which the verify reads. **The gap, kept in view:** it reaches no Team copy, the Team's seat is paused, and `management_12` leaves that for 177a's notice, so the verify's brief reads what that notice says of the Team. A re-pin refuses what a census missed before anything runs (:291), so the gap can cost rework and not a wrong program.
+- **F127 and :292** stand as written until S1's fit decides; a corrected notice comes from `nitpick-compiler_55` if it changes them.
+- **Filed:** PLAYBOOK §2 :294; :293's end and census clauses, in place; line 14's F127 clause and next-note figure.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :295, the next DEF DEF-420, the next TYPE TYPE-106.
