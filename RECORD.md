@@ -19045,3 +19045,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Put to `management_12` with this filing, nothing assumed in :296:** the word names neither a direct write or `@m` in an arm (`p1_write`, `p2_call`) nor the defer cells beside them (`d1_defer_view`, `d2_defer_lit`), and with no README their exits are not read here.
 - **Filed:** PLAYBOOK §2 :296; line 14's clause and next-note figure.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :297, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### DEF-418's rule accepted by the author, not built and not placed; the interim rule stands unchanged — 2026-11-01 11:08 (shell time)
+
+- **From `management_12`,** stamped 11:07, arrived 11:07:08 (saved as `n177aL/m12_def418_1107.txt`, 827 B, `b91a2cb1…`). The author's acceptance at 11:05 is its report; the author said nothing to this seat. No new numbers.
+- **The rule:** inside a function, a copy or view through a pointer root is frozen against a write-capable access through another root whose reachable types include the owner's; the summary is unread; `dyn`, unbounded generics and unknown callees reach everything. It amends D-325 and D-286 (6)'s stated limit. Not built and not placed.
+- **Before it is placed:** a warning-only census by tree on the compiler seat after 177a, which reads our trees too. census17am's `Result<T->>` limit is re-run at DEF-418's build, as planned.
+- **The compiler's next seat:** a fresh Fable seat from 177b, after 177a lands.
+- **The ends, as filed here:** :295's rule said "until that ruling", its element sentence "until DEF-418 is ruled", and its census limit "at DEF-418's ruling"; each would read as expired now, though the word is that the rule stands unchanged. By the ruling of 05:11:52 (:285), an interim rule covers what the pinned compiler will not refuse, so this seat files the two rules as until a re-pin carries DEF-418's build, and told `management_12` so with this filing. :287's and :294's "no end date until its landing is placed and carried" still read true and are untouched.
+- **A reading of this seat's, put to `management_12` and not filed as a rule:** with the summary unread, a plain pointer handed to a read-only callee would count as write-capable, so the interim rule's "unless the callee only reads" may be wider than the built rule. The warning-only census is where that shows.
+- **Filed:** PLAYBOOK §2 :295, in place, no new note number; line 14's DEF-418 and closing clauses.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :297, the next DEF DEF-420, the next TYPE TYPE-106.
