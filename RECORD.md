@@ -19059,7 +19059,7 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 
 ### P stays in 177a, one road of it on DEF-298's writer face; K's whole-self residue on DEF-418's row, a HIGH hand rule — 2026-11-01 11:49 (shell time)
 
-- **From `management_12`,** stamped 11:18, arrived 11:18:56 (saved as `n177aL/m12_kwhole_1118.txt`, 976 B, `1dae24fc…`), and stamped 11:39, arrived 11:39:58 (saved as `n177aL/m12_w31_1139.txt`, 895 B, `21bff89a…`). Filed together, at 11:47, because this seat was building the census the first asks for when the second came; the first's rule waited about half an hour on that, and nothing ran on it in between.
+- **From `management_12`,** stamped 11:18, arrived 11:18:56 (saved as `n177aL/m12_kwhole_1118.txt`, 976 B, `1dae24fc…`), and stamped 11:39, arrived 11:39:58 (saved as `n177aL/m12_w31_1139.txt`, 895 B, `21bff89a…`). Filed together, at 11:49, because this seat was building the census the first asks for when the second came; the first's rule waited about half an hour on that, and nothing ran on it in between.
 - **P** stays in 177a, its cap raised, and DEF-420 stays unused, so :296's move clause and its small census are gone.
 - **The road that stays open,** `w31_param_helper`: `pick (<-q)` with `q` a pointer parameter, an arm that binds a name calling a callee that hands `q` to a helper inside a struct, the helper writing; 97 on 176b and the scratch build with P. On the parameter road P reads the callee's summary, which misses a write handed through a struct. It goes on DEF-298's writer-face row, placed at 179. **The part of P's rule covering a write through a pointer parameter in the arm now holds until a re-pin carries that face; the rest ends at 177a's re-pin as filed.** The cell was read and not run.
 - **K's whole-self residue:** `o.me = @o; selfw(o)`, 83 on 176b and the current build, on DEF-418's row with no new number. **The rule, HIGH, a hand rule since nothing refuses it, until a re-pin carries DEF-418's build: no struct holding the address of the whole struct it sits in is handed by value.** PLAYBOOK §2 :297.
@@ -19067,3 +19067,23 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **census17an,** asked for by the 11:18 word, is running with no agent, and its result is filed after this.
 - **Filed:** PLAYBOOK §2 :296, in place, and :297; line 14's clause and next-note figure.
 - **Next:** read census17an by hand and send any hit to `management_12` first; then hold for NOTICE 177a and its GO. The next note is :298, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### census17an: no store of `@x` into a field of `x` itself in any population — 2026-11-01 11:53 (shell time)
+
+- **On `management_12`'s word of 11:18,** no agent, script `census17an.py`, output `n177aL/census17an.out` (8,351 B, `ebb6288c…`), cross-check `n177aL/census17an_check.out` (4,224 B, `55f8f15b…`). No hit, so nothing went to `management_12` ahead of this.
+- **Controls before any figure:** 28 planted positives and 11 negatives caught, `k_self` read as a part (`P`) as named. No whole-self cell was in `MANAGEMENT/probes/` to read as named, so `o.me = @o` is this seat's own control.
+- **Rows (items, functions, statements, stores, stores with an address in the value; W, W-lit, W-call, DEREF?, P, P-lit and LHS? are 0 in every row):**
+  - **Our trees:** 420 files, 1,699, 47,735, 1,980, 345. By tree, files and stores: parse 39 and 99, posix 8 and 0, regex 188 and 1,277, sockets 20 and 47, time 165 and 557. tui tracks no `.npk`.
+  - **Our plan hunks:** 582, 1,360, 39,902, 1,677, 490.
+  - **The Team's parse `db3a798`:** 39 files, 122, 2,527, 99, 3; its hunks 89, 224, 5,200, 144, 12.
+  - **The Team's sockets `6257b3e`:** 20 files, 69, 2,188, 47, 3; its hunks 92, 180, 5,017, 110, 7.
+  - **`lib/` at `ba82c55`:** 9 files, 181, 2,540, 230, 11.
+  - **The fuzz copy `d096b82`, the fuzz seat's, reported and unchanged:** 3,868 files, 16,320, 428,009, 1,000, 160.
+- **Read by hand, no site:** `W-calls` 2 in our trees and 2 in the hunks, `cf.expr` and `cf.first = raw class_fold(out, cf, flags)` (`nitpick-regex/src/syntax/parse.npk:1217`, `:1242`), which returns `int64`. `P-call` 1 and 4, `p.f = raw vec_pop(@p.frames)` (`:717`), `vec_pop<T: Copy>` returning a `Frame` by value. The second net's 11 unclassed lines are conditions, its `=` being that of `!=` or `>=`, with no store among them.
+- **The cross-check, line-based over tracked `.npk`, independent of the reader:** a field or element store whose value starts with an address, 0 in each of parse, regex, sockets, time, tui and posix; any `= @`, 0 in those with `.npk`. **This seat's first plain-text pattern was wrong, a bracket that matched only `]`-ended targets; its control showed that, its zeros were discarded, and the figures here come from the fixed pattern, whose controls read 4 of 4 and 3 of 3.**
+- **By type, the same answer from another side:** our struct definitions hold 9 distinct fields of a pointer type: `Vec.items`, `Matches.re` (`Prog->`), `SteppedHost.fake` (`FakeHost->`), `Keeper.p` and `SuspendOnce.runs` (`int64->`), and `MsgHdr.name`, `MsgHdr.iov`, `MsgHdr.control` and `IoVec.base` (`wild`). By name, none is a typed pointer to its own struct; a `wild` field could hold one only by a cast, which the reader would have read as a same-root address. No struct definition's field list was read past that.
+- **Its limits:** lexical, within one function and in text order; a store a callee makes between two parameters, `link(@o, @o)`, is census17am's class A, not read here; a way through a holder's field is followed only when the target dereferences that field; a `Result<T->>` return is read as holding no address, re-run at DEF-418's build with the rest; line-based for the cross-check.
+- **The reader was slow on one file** (`nitpick-regex/src/core/vec.npk`, a long blanked comment under a lazy pattern), three runs timing out before the fix; the figures are the fourth run's, whole.
+- **Also corrected:** the stamp in the entry above, 11:49 where it said 11:47.
+- **Filed:** PLAYBOOK §2 :297, in place, no new note number; line 14's census clause.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :298, the next DEF DEF-420, the next TYPE TYPE-106.
