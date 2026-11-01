@@ -19099,3 +19099,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The order for next time, `management_12`'s:** a HIGH hand rule is filed first, then the census. Half an hour unfiled is too long, even with no site found. On the board's census method.
 - **Filed:** PLAYBOOK §2 :297, in place, no new note number; the board's census method.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :298, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### DEF-420 is used, LOW and compiler-internal; the next free is DEF-421; the faces' fallback now says a new number — 2026-11-01 12:12 (shell time)
+
+- **From `management_12`,** stamped 12:11, arrived 12:11:20 (saved as `n177aL/m12_def420_1211.txt`, 520 B, `d9c28157…`).
+- **DEF-420:** LOW and compiler-internal. `struct_field_bound` grows the compiler's own `ast.ids` list on every query, already in 176b; it costs the compiler memory and has no effect on programs. No interim rule and nothing to census.
+- **Its 11:18 line** that DEF-420 stays unused is superseded only in the number. P still stays in 177a.
+- **A change of words this seat made, told to `management_12`:** line 14, :294 and :295 named DEF-420 as where S1, N, V and K would go if one did not fit its cap, and :296 said P does not take it. That number now means something else, so each says a new number, and :295's small census is of whichever face moves out of 177a. None of those faces is reported as having moved. Older notes' dated next-free tails stay as written; line 14 is the live figure.
+- **Filed:** PLAYBOOK §2 :294, :295, :296 and :297, in place, no new note number; line 14.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :298, the next DEF DEF-421, the next TYPE TYPE-106.
