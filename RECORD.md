@@ -19056,3 +19056,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A reading of this seat's, put to `management_12` and not filed as a rule:** with the summary unread, a plain pointer handed to a read-only callee would count as write-capable, so the interim rule's "unless the callee only reads" may be wider than the built rule. The warning-only census is where that shows.
 - **Filed:** PLAYBOOK §2 :295, in place, no new note number; line 14's DEF-418 and closing clauses.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :297, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### P stays in 177a, one road of it on DEF-298's writer face; K's whole-self residue on DEF-418's row, a HIGH hand rule — 2026-11-01 11:49 (shell time)
+
+- **From `management_12`,** stamped 11:18, arrived 11:18:56 (saved as `n177aL/m12_kwhole_1118.txt`, 976 B, `1dae24fc…`), and stamped 11:39, arrived 11:39:58 (saved as `n177aL/m12_w31_1139.txt`, 895 B, `21bff89a…`). Filed together, at 11:47, because this seat was building the census the first asks for when the second came; the first's rule waited about half an hour on that, and nothing ran on it in between.
+- **P** stays in 177a, its cap raised, and DEF-420 stays unused, so :296's move clause and its small census are gone.
+- **The road that stays open,** `w31_param_helper`: `pick (<-q)` with `q` a pointer parameter, an arm that binds a name calling a callee that hands `q` to a helper inside a struct, the helper writing; 97 on 176b and the scratch build with P. On the parameter road P reads the callee's summary, which misses a write handed through a struct. It goes on DEF-298's writer-face row, placed at 179. **The part of P's rule covering a write through a pointer parameter in the arm now holds until a re-pin carries that face; the rest ends at 177a's re-pin as filed.** The cell was read and not run.
+- **K's whole-self residue:** `o.me = @o; selfw(o)`, 83 on 176b and the current build, on DEF-418's row with no new number. **The rule, HIGH, a hand rule since nothing refuses it, until a re-pin carries DEF-418's build: no struct holding the address of the whole struct it sits in is handed by value.** PLAYBOOK §2 :297.
+- **This seat's question of 10:56:55 is answered by its README,** read at 11:46, with no reply needed: `p1_write` and `p2_call` are `TYPE-067`, `d1_defer_view` is `BORROW-015`, `d2_defer_lit` is `MOVE-001` from 176b on. Nothing open there, so :296's rule did not need extending for them.
+- **census17an,** asked for by the 11:18 word, is running with no agent, and its result is filed after this.
+- **Filed:** PLAYBOOK §2 :296, in place, and :297; line 14's clause and next-note figure.
+- **Next:** read census17an by hand and send any hit to `management_12` first; then hold for NOTICE 177a and its GO. The next note is :298, the next DEF DEF-420, the next TYPE TYPE-106.
