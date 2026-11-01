@@ -19087,3 +19087,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Also corrected:** the stamp in the entry above, 11:49 where it said 11:47.
 - **Filed:** PLAYBOOK §2 :297, in place, no new note number; line 14's census clause.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :298, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### The whole-self cell read as named; `T->?` confirmed, absent from every population; :297's zero stands — 2026-11-01 11:55 (shell time)
+
+- **From `management_12`,** stamped 11:53, arrived 11:53:47 (saved as `n177aL/m12_k2_1153.txt`, 786 B, `93494e0a…`). This corrects nothing in census17an's figures. The entry above's "no whole-self cell was in `MANAGEMENT/probes/`" stays true: the cell is under the compiler's git-ignored `.internal/probes177/cells_new/k2_whole.npk`, read here (`889b0dae…`) and not run.
+- **Its field is an optional pointer,** `struct:O = { string:s; O->?:me; };`, with `o.me = @o` and the callee unwrapping `v2.me ??! Unreachable`. Its ask: :297's zero stands only if the reader and the by-type count both include `T->?` fields.
+- **The reader includes them.** `k2_whole` reads as `W` at `o.me = @o`. Planted `T->?` controls read as asked: a direct store and a pointer parameter's as `W`, a local `O->?:q = @o` held and stored as `W`, a literal's as `W-lit`. `structs_of` keeps `O->?`, `O?->` and `Vec<O->?>` as written.
+- **The by-type count includes them.** It takes any field with `->` in its type, so `O->?` would be counted. Of the fields it counted, none is `->?`.
+- **`->?` appears nowhere,** by `structs_of`, by a text search of struct bodies and by a text search of the whole stripped text: 0 in our trees, our plan hunks, `lib/` and the fuzz copy; and 0 by `git grep`, its control reading 2 of 2, in the Team's parse `db3a798` and sockets `6257b3e`, `.npk` and plan patches alike. So :297's zero stands, and the 9 fields stand. Output `n177aL/census17an_k2.out` (1,461 B, `6ef7c1a8…`).
+- **A limit this turned up, for the re-run at DEF-418's build:** `am_holds`, which census17am and census17an both use, reads `T->?` by its base type, so `string->?` reads as holding no address where `O->?` happens to read as holding one. It decides a call's return (`W-call` or `W-calls`), a local's alias, and census17am's holders. It touches no figure today because `->?` appears nowhere, but a reader that relies on it would miss one once it does. Told to `management_12`.
+- **The order for next time, `management_12`'s:** a HIGH hand rule is filed first, then the census. Half an hour unfiled is too long, even with no site found. On the board's census method.
+- **Filed:** PLAYBOOK §2 :297, in place, no new note number; the board's census method.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :298, the next DEF DEF-420, the next TYPE TYPE-106.
