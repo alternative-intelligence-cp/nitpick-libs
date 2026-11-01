@@ -19158,3 +19158,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **For 177a's verify:** read the expected lines of the fuzz copy's 53 loops writing through a binding (`census17ao_bind.out` lists 14); any that is not a refusal cell goes to `management_12`.
 - **Filed:** PLAYBOOK §2 :300; :298 and :299 in place; line 14.
 - **Next:** hold for NOTICE 177a and the GO. The next note is :301, the next DEF DEF-422, the next TYPE TYPE-106.
+
+### 🔁 RELEASE — `nitpick-libs_38` → `nitpick-libs_39`, by `management_12`'s word of 15:11:41 — 2026-11-01 15:16 (shell time)
+
+- **Why now:** three compactions in this seat, at 10:45:09, 13:07:05 and 14:44:15 EST, with 177a's verify the next step. This seat told `management_12` at its resume, about 15:11, correcting its last word that none was near, and recommended a handoff at this clean point; `management_12` agreed at 15:11:41, arrived 15:11:45 (saved as `n177aL/m12_handoff_1511.txt`, 729 B, `3859f7f8…`). `nitpick-libs_39` (pid 3322839, Opus at xhigh) is open, listed by `ListAgents` as `[4bb2b2]`.
+- **Also from `management_12`,** stamped 15:10:29, arrived 15:10:47 (saved as `n177aL/m12_k77b_1510.txt`, 354 B, `6a742c4f…`): 177a's harness KEY 77b is GREEN on `dee24fe` (60 ok, `HARNESS177a EXIT 0`) and `nitpick-compiler_55` has the GO to land it; verify177a waits for its GO, which follows its `ls-remote` check of the landed sha; the pin stays `2e1cb4a`; no new numbers, the next free still DEF-422.
+- **Read here at 15:16:57:** `ls-remote` gives the compiler's `main` at `dee24fe`, so the landing is pushed. NOTICE 177a has not reached this seat. `nitpick-compiler_55` is told to send it to both seats.
+- **Released:** line 14 reads `none`, its last held text in history at `3c90374`; the handoff block `_38` → `_39` on the board is the brief, with the verify's read list and :299's and :300's holds; the 37-byte marker `.internal/orchestrator.session` removed. Nothing in flight: no agent, no claim moved, no timer.
+- **This seat's cost from its take to the release** goes to `management_12` with the release notice (`segments.py`).
+- **Next, in `management_12`'s order:** this seat sends `nitpick-libs_39` the block's place and this release's sha, then says "safe to close" with that sha, and `management_12` closes it. So hazard 3 is answered by the block and that message, not by a seat kept open. `nitpick-libs_39` takes the lock; verify177a starts only on `management_12`'s GO. The next note is :301, the next DEF DEF-422, the next TYPE TYPE-106.
