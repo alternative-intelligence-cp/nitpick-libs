@@ -19024,3 +19024,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Also accepted:** `vf0253.npk:19`, no site in effect, real by the letter in the census, the fuzz seat's and untouched; the `Result<T->>` limit, the census being re-run at DEF-418's ruling with whatever reader that rule needs; N, V and K, no census now, and a small one only of whichever face moves to DEF-420, at that moment.
 - **Filed:** PLAYBOOK §2 :295, in place. No new note number.
 - **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :296, the next DEF DEF-420, the next TYPE TYPE-106.
+
+### This seat's sentence in :295 made a ruling, with the case it guards; `f(@l[0], raw g(l))` measured safe, no finding — 2026-11-01 10:47 (shell time)
+
+- **From `management_12`,** stamped 10:45:44 (saved as `n177aL/m12_elem_1045.txt`, 1,111 B, `cac1b14b…`), on this seat's note of 10:45:19. Its three cells are in `MANAGEMENT/probes/177-n4/`; the cells and the README's row were read here and none run.
+- **The measure,** 176b and build n4 alike: `e3_elem_ptr`, `g(@l, @l)` with `fe(@(<-p)[0], (raw grow(r)))` inside, **230, a read of freed memory, the poison**, DEF-418's interior-address face; `e1_elem_grow`, `fe(@l[0], (raw grow(@l)))`, `BORROW-015`; `e2_elem_val`, `fe(@l[0], (raw rdv(l)))`, 67 and legal, a by-value `l` being unable to grow the list.
+- **The ruling:** the sentence stands as an interim rule, stricter than `e2` needs, until DEF-418 is ruled. `e3`'s is the case it guards. A site like `f(@l[0], raw g(l))` is no finding.
+- **This seat's error, and where it reached:** its note of 10:45:19 offered `f(@l[0], raw g(l))` as what the ruling's words might wrongly pass, with no cell run and `l` by value not thought through; that is the safe case. The example was in that message only, never in :295 or the record, so nothing there needed replacing, and `management_12` was told so. :295 now carries `e3`'s shape.
+- **A correction to the entry above:** "census17am's hits hand only the whole owner, so they do not test it" undersold the reader. Handed the three cells here (its controls caught; a read of the cells and no re-census, no tree re-read), it reads `e3` as `A` at the outer `g(@l, @l)`, `e1` as `N` (`l[0]`, `l` by address, the callee growing) and `e2` not at all, with `a1` as `A` and `a5` as none beside them, as census17am named. So the guarded shape is reached at its outer call, and census17am's no real site of ours needs no re-run for it. Its limit stands, a way carried in a `Result<T->>` local unread.
+- **Filed:** PLAYBOOK §2 :295, in place, the sentence replaced. No new note number.
+- **Next:** hold for NOTICE 177a and `management_12`'s GO. The next note is :296, the next DEF DEF-420, the next TYPE TYPE-106.
