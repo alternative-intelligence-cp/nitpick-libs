@@ -19724,3 +19724,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed before any word on the result, as a no-site census.** The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library.
 - **The cost line** goes to `management_15` with this filing's sha.
 - **Next:** this filing's sha and the report to `management_15`, then the wait on the block's list. The next note is :322, the next DEF DEF-453, the next TYPE TYPE-107.
+
+### `management_15`'s word of 10:29: census17ba accepted, rules 33 and 34 as written, rule 34's `g3d` shape; PLAYBOOK §2 :322 — 2026-11-02 10:30 (shell time)
+
+- **The word** (`n177bL/m15_c17ba_1029.txt`, 1052 B, `2a4a945b…`): census17ba accepted at `53a0dfb`, and both points on the letters answered, word for word at PLAYBOOK §2 :322. Its cells at `probes/types-audit/mgmt-cells/never-fails/` were not run here.
+- **A correction to this seat's filing:** `n177bL/report17ba.txt` as filed (`b4b05db4…`, the sha :321 cites) cuts fuzz's `Req` to `struct:Req = {`, because the filer read one line of a four-line struct. The struct is `struct:Req = { int32:add; Channel<int32, 5i32, 1i64>:reply; }` (`m11/programs/cc0518.npk:13`), as sent to `management_15` at 10:27 with the cut named. The file is left as filed.
+- **No census owed, and no site moves:** the pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
+- **Next:** the wait on the block's list, with 177c from `nitpick-compiler_60`. The next note is :323, the next DEF DEF-453, the next TYPE TYPE-107.
