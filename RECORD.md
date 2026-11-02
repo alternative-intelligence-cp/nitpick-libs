@@ -19559,3 +19559,29 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Rules:** none lifts, and no PLAYBOOK note, until `management_14`'s word. The hold stands until the DEF-423 ruling, and the pin stays `2e1cb4a`. Ours: nothing written.
 - **The cost line,** to `management_14` with the report: 24 calls / 4.41 M from its word of 06:50:47 to this filing, both words' filing among them, no agent.
 - **Next:** `management_14`'s word on the three points; its DEF-418 and DEF-423 rulings; 177c. The next note is :314, the next DEF DEF-432, the next TYPE TYPE-106.
+
+### `management_14`'s word of 07:20:01: DEF-432 … DEF-440, rules 15 to 22, census17av's three points; PLAYBOOK §2 :314 — 2026-11-02 07:37 (shell time)
+
+- **The word,** saved as `n177bL/m14_def432_0720.txt`, 3770 B, `bfefc64a…`: census17av accepted; its go for census17aw, one report, up to 15 calls.
+- **Measured by it on `baeb7a29`, not run here:** tables in `MANAGEMENT/probes/emitter-guards/README.md` and `MANAGEMENT/probes/exemptions-audit-2/README.md`.
+- **Its rulings:** a later `@x` counts as a read (`y7a` 67 and 67, `y7b` 67 and 60), so sockets' probe 06's two aren't sites and nothing there is re-spelled; rules 9 to 14 on shipped `.npk` are this seat's; the awaited-method class is real (`y7e` 67 and 60) and rule 22 names it; time's rule 7 row and the census17aq and census17ar re-runs accepted.
+- **Rules 15 to 22, DEF-439, DEF-440,** word for word at PLAYBOOK §2 :314, all unplaced, next DEF DEF-441. The Team hears them through `management_14`.
+- **Filed:** PLAYBOOK §2 :314; line 14's census, unplaced, Team and next-number clauses. The pin stays `2e1cb4a`. Ours: nothing written.
+
+### census17aw (DEF-431 wider, DEF-432 … DEF-440): rules 9 to 22 read against every population the word named — 2026-11-02 07:37 (shell time)
+
+- **On** `management_14`'s word of 07:20:01, reads only, nothing compiled or run: `.internal/landing/scripts/census17aw.py` (`n177bL/census17aw.out`, 78,251 B, `62424e9f…`) and `census17aw_hand.py`, `_hand2.py`, `_hand3.py`. The report is `n177bL/report17aw.txt`. Controls before any figure, predicted per rule, from census17av's 73 and `MANAGEMENT/probes/emitter-guards/` and `exemptions-audit-2/`: 140 read, 0 failing.
+- **Populations, each its own row:** our parse, regex, sockets and time plan hunks; the Team's parse `db3a798` and sockets `6257b3e`, hunks and `.npk` apart, both read as those shas by `ls-remote` at this filing; our regex, time, posix and tui `.npk`; the apps; the fuzz copy's m11, m10, findings, known and commission. `nitpick-tui` tracks no `.npk`, and `nitpick-apps` holds only `nitpick-posix`'s 8.
+- **The libraries:**
+  - **Rule 12: 1 by the letter:** `await borrow_across_await(@x)`, regex's `tests/probe/probe07_string_bytes_edges.npk:181`, `x` unread after. `x2d`'s shape, but `step` is only `pass v + 1i64`, so by this seat's reading nothing parks: `x2a`'s case. Not run. The probe's §2 and §4 comments are wrong now: `x2d` reads 60 at -O2 once a park is real.
+  - **Rules 15, 16, 20:** no `fall` and no `where` in code in any library row, by a separate count on the comment-stripped text. **Rules 15, 16, 17:** no `pick (move(…))`; 37 shipped picks have a call as selector, none falling, guarded or handing on `@` of a binding.
+  - **Rule 18:** no pick binding holds a pointer; 2 `for` bindings in regex hold one by type, with no store or hand-off. **Rule 19:** no labelled loop. **Rule 21:** no `Guard<`. **Rule 22:** 3 awaited methods, all sockets, all through a pointer.
+  - **Rules 9, 10, 11, 13, 14:** no site. Regex's 3 `@x[i]` go to sync calls and aren't kept, none over a re-assigned `buffer`. The one `for` over a user iterator is `refused/probe12b`, which must not compile.
+  - **DEF-439:** 2 `next` impls, both probe 12's, declared `never fails`; no `func:to_string` in any row. **DEF-440:** no hit in 614 shipped indexes or the hunks. An index holding a call isn't followed: 6 in regex, not read. **DEF-430:** neither shape seen.
+- **Whether an impl can declare these `never fails`,** asked by the word: seen yes, not measured here: regex's probe 12, fuzz's ct0184, the `h*` cells.
+- **The fuzz copy, report-only (S45 and S91), distinct statements:** rule 22, 55 unread after and 85 read after, 49 of the 55 a builtin's or unread receiver (`Channel` 30, `Mutex` 11), unmeasured; rule 12, 8 `await f(@x)`, 3 calls and 1 held, not read for a park; rule 14, 2 with the type unread; both `fall`s in a pick and all 4 arm `where`s lending.
+- **The reach,** by separate counts: `fall` 4 in code against 2 read, the other 2 outside any pick; `where` 5 against 4, the fifth an `impl` bound; `@x[i]` 7 against 7; one narrow-name lead, parse's `v.items[v.count]`, there an `int64`. The new cells passed on their first run, so these counts, not the controls, test the reach.
+- **With `management_14`:** probe 07's `@x`, `$$m x` and its comments corrected when regex is next touched recommended; one cell recommended, `y7e`'s shape with a `Channel` receiver over a real park and a contended `Mutex`, this seat compiling nothing.
+- **Rules:** nothing is re-spelled until `management_14`'s word. The hold stands until the DEF-423 ruling, and the pin stays `2e1cb4a`. Ours: nothing written.
+- **The cost line,** to `management_14` with the report: 12 calls / 2.13 M from its word of 07:20:01 to this filing, the word's filing among them, no agent.
+- **Next:** `management_14`'s word on the two points; its DEF-418 and DEF-423 rulings; 177c. The next note is :315, the next DEF DEF-441, the next TYPE TYPE-106.
