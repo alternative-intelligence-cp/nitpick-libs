@@ -19748,3 +19748,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The word** (`n177bL/m15_c17bb_1040.txt`, 428 B, `57ccbc06…`): census17bb accepted at `9e11bc7`, and this seat's reading stands: `string` doesn't count as holding a plain pointer. Word for word at PLAYBOOK §2 :324.
 - **No census owed, and no site moves:** a struct holding `string->` and a `fixed uint8[]` count, and census17bb's reader already flags both by the `->` and the `[]`. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
 - **Next:** the wait on the block's list, with 177c from `nitpick-compiler_60`. The next note is :325, the next DEF DEF-453, the next TYPE TYPE-108.
+
+### `management_15`'s word of 10:53: DEF-453 and note 36, no census; PLAYBOOK §2 :325 — 2026-11-02 10:54 (shell time)
+
+- **The word** (`n177bL/m15_def453_1053.txt`, 984 B, `4ae5aa76…`): DEF-453 MEDIUM, fails closed, in 177e if small and right after if not; note 36; no census, because no application combines two libraries yet. Word for word at PLAYBOOK §2 :325; its cells `x4a` and `x5a` not run here.
+- **The block's watch list** gains note 36, at the end of its item on time's `NTIME_DURATION_NS_MAX`, so that no later line moves: a re-pin that combines libraries would meet it.
+- **Nothing owed:** the pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
+- **Next:** the wait on the block's list, with 177c from `nitpick-compiler_60`. The next note is :326, the next DEF DEF-454, the next TYPE TYPE-108.
