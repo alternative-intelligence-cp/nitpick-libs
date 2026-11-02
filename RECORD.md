@@ -19897,3 +19897,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The controls:** predicted before any tree was read, 0 failing on the first run: a 16-mention plant, a hunk and a fence plant, 11 of the audit's cells. The census ran once.
 - **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library.
 - **Next:** both shas and the cost line to `management_16`. The next note is :337, the next DEF DEF-472, the next TYPE TYPE-111.
+
+### `management_16`'s word of 14:12:42: census17bg and census17bh accepted, DEF-470's closed list ruled, rule 45's letter changed; PLAYBOOK §2 :337 — 2026-11-02 14:13 (shell time)
+
+- **The word** (`n177bL/m16_list_1412.txt`, 1550 B, `e14a10f4…`): both censuses accepted, their limits standing as written; the closed list ruled, word for word at PLAYBOOK §2 :337, replacing :334's letter of rule 45, and on the board's block, since every brief carries it. `Result<T>` for every T is off the list.
+- **No new census, by the word:** census17bg read no `$$m` in the four libraries, so the list re-spells nothing there. Its class (c) was provisional and held nothing, so no figure of its moves. `probe15b_unassigned_handoff.npk:24` stays as the Team's plan says.
+- **Rule 46 stands,** its concern on the move road being the drop, since MOVE-001 refuses a read of a vacated slot.
+- **The Team seat's socket:** `management_16` gives `Ailp-team_31` this seat's at its Tue 03:01 check-in. This seat sends nothing there.
+- **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library. The word asks no reply; this filing's cost line is held for this seat's next report.
+- **Next:** the wait. The next note is :338, the next DEF DEF-472, the next TYPE TYPE-111.
