@@ -19290,3 +19290,22 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Next, by the block:** the take's sha to `management_13`, which checks it by `ls-remote`, with "holding"; word to `nitpick-compiler_56` that the lock is this seat's. Then hold: verify177b starts only on `management_13`'s GO, the pin stays `2e1cb4a`.
 
   Nothing is dispatched. The next note is :304, the next DEF DEF-423, the next TYPE TYPE-106.
+
+### F129 filed, the F128 addendum for 177b's build 8; DEF-423's and DEF-424's rules; PLAYBOOK §2 :304 — 2026-11-01 23:08 (shell time)
+
+- **From** `nitpick-compiler_57`: F129, sent 23:03:21, arrived 23:03:55 (`n177bL/f129.txt`, 5,157 B, `8989480f…`), asking nothing before the harness. From `management_13`: the two numbers and their rules at 20:24:11 (`n177bL/m13_def423_2024.txt`, 1,404 B, `ea37be1e…`), and F1, the seat and `u1`–`u3` at 21:24:09 (`n177bL/m13_f1_2124.txt`, 1,568 B, `20f4ceb8…`). It said nothing was due at either time; this is filed because `_39`'s block says an addendum before a harness is filed as F128 was.
+- **F129, as read here:** the branch reads `8548052` (22:57:16) on `10cf2fb`, F129 naming no sha; `src/` +276/−25 raw lines against its +192/−21 code lines, not re-counted. Its file figures sum to its total, with F128's +5/−5 re-spellings. Its sweep's parts give 272 appeared against F128's 257, the 15 all in the compiler's tests, 114 against 99; tracked `.npk` read 1,300 at both commits, 20 modified and none added, so the same 5,453 can stand. The rows DEF-423 and DEF-424 and the part of DEF-416's that names `i4` are read at `8548052`. The diff, the reviews and the cells are not read or run: the verify's, and the census's.
+- **Not checked against our trees:** DEF-423's and DEF-424's rules. `management_13` sends DEF-423's census by its own message. A plain lexical count at 23:06:55, not a census, of declarations with a `wild` pointer parameter on one line: time 191, regex 24, sockets 4, posix, parse and tui 0. It reads no caller, no multi-line signature and no plan hunk, so it says only that the census has something to read.
+- **Two points to `management_13` with this filing, both its to rule:**
+  - F129's clause on DEF-423's rule, a callee that moves out through its pointer parameter says so in its header, is not in the word of 20:24:11. :304 files it as asked, not as a rule. This seat recommends taking it, since the sibling road through a plain pointer parameter is otherwise under no rule, and the census reading that road too.
+  - The rule's letter reaches any `@local` handed to a `wild` parameter, a non-dropping out-parameter among them, where the row's fault is a vacated dropping owner. This seat recommends narrowing it to a pointee of a type that drops, as E-a's rule was at :284. Until then it stands as worded.
+- **The verify's list, changed from the block `_39` → `_40`:**
+  - Off "expected still accepted": `lie` over this frame's own pointer, now `TYPE-104`. The trust left is over an argument from outside (`rc3h`, `rc3i`, `u4`, `i4`).
+  - Onto it: DEF-423's `ra6a`, `ra6c`, `rc2b`, its cast control `ra6b` and the sibling road's `ra5a`, `ra5b`, `rc1b`; DEF-424's `rc8e`, `rc8f`, `rc8g`, `rb2a`; `o1_two_params`.
+  - Onto "expected over-refusals": the chain of about six (`rc3j`, `rc3k`, `rc3l`), and a `for` over a place whose type the pass cannot read.
+  - `management_13`'s ask of 21:24:09: confirm against our copy that F1's dropped string exemption moves no site of ours. It names `lib/nfs.npk:61` and `std_fds_closed.npk:21` as the only such functions in the tree, neither on a move path.
+  - The sha and the chain together: F129 dates `CHAIN177b DONE` 22:31:09 "on the final tree", and the branch's commit is 22:57:16.
+  - The rows: `meta/NOTICES.md` at `8548052` holds 5 `FILL` tokens over rows F128, F129 and 177b, none to be left at the landing. F128's three wording points are in the meta commit by `nitpick-compiler_56` at 20:12, and `nitpick-compiler_57` said at 20:19 they carry over; F129 does not mention them.
+- **Filed:** PLAYBOOK §2 :304; line 14's cost clause, 177b clause, unplaced list, seat clause, closed clause, compiler clause and next numbers. Nothing else moves; the pin stays `2e1cb4a`.
+- **The cost line,** to `management_13` with this filing: 26 calls / 3.61 M from this seat's opening at 20:14:41 to this filing, the take among them, no agent.
+- **Next:** hold for NOTICE 177b and `management_13`'s GO, and for DEF-423's census message. The next note is :305, the next DEF DEF-425, the next TYPE TYPE-106.
