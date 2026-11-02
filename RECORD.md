@@ -19742,3 +19742,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed before any word on the result, as a no-site census.** The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library.
 - **The cost line** goes to `management_15` with this filing's sha, with the tail from its word of 10:29.
 - **Next:** this filing's sha and the report to `management_15`, then the wait on the block's list. The next note is :324, the next DEF DEF-453, the next TYPE TYPE-108.
+
+### `management_15`'s word of 10:40: census17bb accepted, `string` under rule 35; PLAYBOOK §2 :324 — 2026-11-02 10:41 (shell time)
+
+- **The word** (`n177bL/m15_c17bb_1040.txt`, 428 B, `57ccbc06…`): census17bb accepted at `9e11bc7`, and this seat's reading stands: `string` doesn't count as holding a plain pointer. Word for word at PLAYBOOK §2 :324.
+- **No census owed, and no site moves:** a struct holding `string->` and a `fixed uint8[]` count, and census17bb's reader already flags both by the `->` and the `[]`. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
+- **Next:** the wait on the block's list, with 177c from `nitpick-compiler_60`. The next note is :325, the next DEF DEF-453, the next TYPE TYPE-108.
