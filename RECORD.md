@@ -19913,3 +19913,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Nothing moves:** still 0 `$$m` in the four tips. No reply asked, and no census owed. The cost line for this filing and the one before it is held for this seat's next report.
 - **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library.
 - **Next:** the wait. The next note is :339, the next DEF DEF-472, the next TYPE TYPE-111.
+
+### `management_16`'s word of 14:23:00: DEF-472, DEF-473, DEF-474 and rule 47; PLAYBOOK §2 :339 — 2026-11-02 14:23 (shell time)
+
+- **The word** (`n177bL/m16_rule47_1422.txt`, 787 B, `a8e4f333…`): DEF-472 MEDIUM in 177d, refused PICK-001 from it; rule 47, a writing rule; DEF-473 LOW in 177e; DEF-474 LOW, hygiene. Word for word at PLAYBOOK §2 :339.
+- **No census, by the word:** 177d's population run counts any new PICK-001 in our tips, and it comes in the notice. No reply asked. The cost line for this filing and the two before it is held for this seat's next report.
+- **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library.
+- **Next:** the wait. The next note is :340, the next DEF DEF-475, the next TYPE TYPE-111.
