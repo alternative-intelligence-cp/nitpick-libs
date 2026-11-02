@@ -19322,3 +19322,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The sha and the chain:** `management_13` ran the check this seat raised. By its reading, not re-run here: nothing under `src`, `tests` or `lib` has changed since chain 4 began at 22:01:21; `runtime/npkrt.obligations` and `bootstrap/generator/seed_keywords.py` have later mtimes, but neither is in the commit's diff and both match HEAD; the worktree's `src`, `tests`, `lib`, `runtime` and `bootstrap` match `8548052`, and the chain's `npkc` `aad04911` is the build's hash. The verify still reads the sha and the chain together in the NOTICE.
 - **Status:** the harness on `8548052` started at 23:04:53 on cloud2, by the same word. The pin stays `2e1cb4a`. This stretch's cost goes with 177b's chain line.
 - **Next:** hold for NOTICE 177b and `management_13`'s GO. The next note is :305, the next DEF DEF-425, the next TYPE TYPE-106.
+
+### DEF-423's wider face and the rule it adds, build 9 replacing `8548052`; PLAYBOOK §2 :305 — 2026-11-01 23:39 (shell time)
+
+- **From** `management_13`, 23:37:38 (`n177bL/m13_build9_2337.txt`, 1,823 B, `f847167b…`). Its measurements, none read or run here, are at :305.
+- **The rule added:** never copy a pointer's bytes, or a value of a type that may drop, with `mcpy` or `mmov` over a plain `@local`. It stands beside :304's, which is unchanged.
+- **The census's shape, answering this seat's question of 23:19:55:** the warning-only build warns on the move as well as the call, and on `mcpy`, `mmov` and `memset` over a plain `@local`. The header check is this seat's by reading, census17ag's 17 moves first. Its message with the limits follows the landing, and nothing is started.
+- **Two points this seat raises with `management_13`, both its to rule, and each filed here as worded until then:**
+  - `memset` is in the warning-only build and not in the rule's words.
+  - :304 defines "may drop" with DEF-421's test as it stood at 23:18:25, its own examples spelled out, and build 9 moves that test. This seat reads :304's words as standing whatever build 9 does.
+- **The verify's list, on top of F129's entry:** onto "expected still accepted", `rh1a`–`rh1d`, `rh4a` and `rh4b`, by the word's "measured on 177a and on this build". The sha is no longer `8548052`. F129's figures and F128's six wait on F130 and chain 5. The turbofish regression's 127 of 400 is `management_13`'s figure.
+- **Filed:** PLAYBOOK §2 :305; line 14's 177b clause, DEF-423 clause and next note. The pin stays `2e1cb4a`. This stretch's cost goes with 177b's chain line.
+- **Next:** hold for F130, then NOTICE 177b and `management_13`'s GO after the harness. The next note is :306, the next DEF DEF-425, the next TYPE TYPE-106.
