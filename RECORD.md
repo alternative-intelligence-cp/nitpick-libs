@@ -19538,3 +19538,24 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Owed, in census17av's chain:** census17aq and census17ar through the fixed reader, a row reported only if it moves; time's rule 7 row, read and named in the next report; a word to it early if the chain will pass 15 calls.
 - **Filed:** PLAYBOOK §2 :313; line 14's census clause; BOARD block :52. The pin stays `2e1cb4a`. Ours: nothing written.
 - **Next:** census17av. The next note is :314, the next DEF DEF-432, the next TYPE TYPE-106.
+
+### census17av (DEF-427 … DEF-431, DEF-392 and DEF-418 wider): rules 9 to 14 read against the plan hunks and the Team's tips; census17aq and census17ar re-run — 2026-11-02 07:10 (shell time)
+
+- **On** `management_14`'s words of 06:50:47 and 06:57:52 (its go for up to 30 calls), reads only, nothing compiled or run: `.internal/landing/scripts/census17av.py` (`n177bL/census17av.out`, 26,103 B, `525cc050…`) and `census17av_hand.py`. The report is `n177bL/report17av.txt`. Controls before any figure, predicted per rule, from `MANAGEMENT/probes/exemptions-audit/` and `def418-attack/` and one planted unit: 73 read, 0 failing.
+- **Populations, each its own row:** our parse, regex, sockets and time plan hunks; the Team's parse `db3a798` and sockets `6257b3e`, hunks and `.npk` apart, both read as those shas by `ls-remote` at this filing.
+- **Found:**
+  - **Rule 12 (DEF-431): 2 by the letter:** `await pull(@rd, dest)` in sockets' `tests/probe/probe06_reader_writer.npk` :101 and :113, `rd` a local of `async main` with no read by name after, only the second `@rd`. `x2d`'s shape. The probe's exit 0 through `opt -O2` says nothing either way, because each `pull` follows a `push`, so its first `recvfrom` doesn't park. `@wr` at :96 is read later by `move(wr)`. Probe 07's 5 `send_one(@a)` and `recv_one(@b)` are sync calls that return, so nothing crosses.
+  - **Rule 13 (DEF-392): no site:** no `next` or `to_string` body, no `for` over a user iterator, no template part. The only such impls in tracked `.npk` and patches are regex's `probe12_iterator_borrowing.npk` and `refused/probe12b`; probe 12's `next` writes through its held pointer but is called by name, a call node, with no view of `p` live.
+  - **Rule 9 (DEF-427): no site:** no `.ptr` of a `List` element. 33 distinct `.ptr` through an index, all in time, all `env`, `env2` or `argv`.
+  - **Rule 10 (DEF-428): no site:** no `@x[i]` of any type, and no getter road by census17au. 3 distinct `buffer` re-assignments, each `= move(…)` in a growth path, nothing held.
+  - **Rule 11 (DEF-429): no site:** 9 distinct `move`s in a loop, none of those loops with a `break` or `continue`.
+  - **Rule 14 (DEF-418): no site:** 425 picks, none through a pointer; 6 distinct arms bind, storing only locals or returning.
+  - **DEF-430:** neither shape seen: deepest call nesting 4, most pointer levels spelled 2.
+- **Time's rule 7 row, asked at 06:52:09:** `<-self.runs = <-self.runs + 1i64;` in `SuspendOnce.between`, `tests/unit/double_readings.npk:194`, from the applied `done/0.3/0.3.3_tools/step2.patch`: a pointer to the test's own counter, with no view or by-value read of it in that call. Not a site.
+- **census17aq and census17ar through the fixed reader:** no row moved; each output byte-identical to an unfixed run today and to the kept output.
+- **A road the controls hadn't asked,** found reading probe 06 by hand: an awaited method on a by-value local would take the address with no `@` in the source. Class and planted positive added, re-run: 3 awaited methods, all through a pointer, no hit. That the language takes the address there is this seat's reading of the cells, not a measurement.
+- **With `management_14`:** whether a later `@` counts as a read by name, one cell settling it; probe 06's re-spelling if its sites stay, `$$m rd` recommended; who covers rules 9 to 14 on shipped `.npk`, this reader offered, not run because not owed.
+- **Limits,** in the report: lexical; "after" textual; `.npk`-target hunks only; our regex, time, posix and tui `.npk`, the apps and the fuzz copy not read.
+- **Rules:** none lifts, and no PLAYBOOK note, until `management_14`'s word. The hold stands until the DEF-423 ruling, and the pin stays `2e1cb4a`. Ours: nothing written.
+- **The cost line,** to `management_14` with the report: 24 calls / 4.41 M from its word of 06:50:47 to this filing, both words' filing among them, no agent.
+- **Next:** `management_14`'s word on the three points; its DEF-418 and DEF-423 rulings; 177c. The next note is :314, the next DEF DEF-432, the next TYPE TYPE-106.
