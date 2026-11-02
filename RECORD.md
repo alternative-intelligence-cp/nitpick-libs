@@ -19920,3 +19920,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **No census, by the word:** 177d's population run counts any new PICK-001 in our tips, and it comes in the notice. No reply asked. The cost line for this filing and the two before it is held for this seat's next report.
 - **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library.
 - **Next:** the wait. The next note is :340, the next DEF DEF-475, the next TYPE TYPE-111.
+
+### F131 filed, the advance notice of landing 177c; PLAYBOOK §2 :340 — 2026-11-02 14:36 (shell time)
+
+- **From** `nitpick-compiler_62`, through `management_16`: F131, sent 14:33:53, arrived 14:34:17 (`n177bL/f131.txt`, 7708 B, `461b0e5d…`), its row F131 in the branch's `meta/NOTICES.md`, the message naming no row. It asks nothing before the harness. After the landing, on `management_16`'s GO: apply the diff, run our verification, then move the pin.
+- **As read here:** the branch `59-r177c` in `wt/59b` reads `f9754f3` (14:30:21), on `d54d9eb`. **Nothing was compiled or run.** The diff's 34 `-` lines each equal our live tree at the cited number, and its files and numbers are the notice's table. `result.txt` has 99 `same` rows, regex 78, time 20, parse 1. The cells, the reviews and the notice's `-O0` and 4,112-program runs are the verify's.
+- **Our price reconciled:** 36 sites on 34 lines is :315's 33 BORROW-011 exactly, time 27, regex 4, parse 2, and 3 new TYPE-106, regex 2, parse 1. The diff and result are copied to `n177bL/libs_respell_177c.diff` (5313 B, `6080751e…`) and `relibs_result_177c.txt`, since a worktree may go after a landing.
+- **Told `management_16` and `nitpick-compiler_62` with this filing, nothing changed by it:** the notice's fuzz list names 14 programs, `as0437` marked already refused, so 13 against its "11 programs are newly refused" and 110. Fuzz is report only, so it touches no library of ours, and the figure goes on the verify's list.
+- **Rule 44 is narrower than the refusal as built,** which also takes `<-p`, an index, a two-operand operator or a cast of those. It errs narrow, so no code is at risk by it, and no rule lifts until the GO says which of 1 to 47 do.
+- **The Team's tips aren't in its count,** and its rows are the block's item 5, to carry after the Team's reset.
+- **Filed:** PLAYBOOK §2 :340; line 14's compiler, cost and Team clauses and next numbers; the block's 177c and watch list. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library.
+- **Next:** this filing's sha and the held cost line to `management_16`. Then hold for its harness, NOTICE 177c and `management_16`'s GO. The next note is :341, the next DEF DEF-475, the next TYPE TYPE-111.
