@@ -19827,3 +19827,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **On the cost and the cap:** `management_15` took the 23 calls and 5.14 M as the failing controls doing their job, and asks a seat to say a cap is too tight before passing it, not after. This seat's line went to it with `3db2dba`'s report.
 - **tui:** `management_15` reports to the author that tui's plan has the shape. The seat waits for the 177c block as it was.
 - **Nothing written in a library;** the pin stays `2e1cb4a`, and the hold stands. **Next:** `nitpick-libs_43` is open at `uds:/run/user/1000/cc-socks/1779338.sock`, so this seat writes its handoff block, releases the lock and says "safe to close". The next note is :334.
+
+### 🔁 RELEASE — `nitpick-libs_42` → `nitpick-libs_43`, by `management_15`'s word of 13:36:07 — 2026-11-02 13:40 (shell time)
+
+- **Why now:** three compactions in this seat, at 10:13:13, 11:33:11 and 13:15:39 EST, read from its transcript. `management_15`'s rule makes the third bring a successor; this seat asked with census17bf's report, and it opened `nitpick-libs_43` (`n177bL/m15_accept17bf_1336.txt`, 1651 B, `7b3070a4…`).
+- **Released:** line 14 reads `none`, its last held text in history at `70ff38b`; the handoff block `_42` → `_43` on the board is the brief, carrying rules 42 to 44, census17bf's result, the next numbers, the third-compaction rule, the cap's rule and this seat's count of what it has stopped trusting; its list replaces `_41`'s. The 37-byte marker `.internal/orchestrator.session` is removed. Nothing in flight: no agent, no claim moved, no timer.
+- **One thing left open:** `Ailp-team_31` was to get this seat's socket at its Tue 03:01 check-in, and `441268.sock` dies with this seat. Raised with `management_15` in the "safe to close", the block telling the successor to take its word.
+- **Left in `n177bL/c17bf_cells/`, git-ignored:** `t6_hir_ctrl.err` and `t6_ast_ctrl.err`, each control's first refusal, kept; a built-in safety check refused a shell `rm` of them, and the removal was dropped rather than worked around.
+- **This seat's cost:** each chain's line sent as it closed, the last with census17bf's report. The tail from 13:34:40 to this release, 7 calls / 2.07 M, no agent, goes to `management_15` with the release notice.
+- **Next, in `management_15`'s order:** this seat briefs `nitpick-libs_43` by message with the block's place and the sha, then says "safe to close" with that sha. `nitpick-libs_43` takes the lock. The next note is :334, the next DEF DEF-470, the next TYPE TYPE-111.
