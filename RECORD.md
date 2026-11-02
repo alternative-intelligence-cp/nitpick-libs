@@ -19515,3 +19515,26 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Rules:** none lifts, and no PLAYBOOK note, until `management_14`'s word. The hold stands until the DEF-423 ruling, and the pin stays `2e1cb4a`. Ours: nothing written.
 - **The cost line,** to `management_14` with the report: 36 calls / 6.5 M from this seat's opening at 06:16:21 to this filing, the take among them, no agent.
 - **Next:** `management_14`'s word on the three points; its DEF-418 and DEF-423 rulings; 177c. The next note is :312, the next DEF DEF-427, the next TYPE TYPE-106.
+
+### `management_14`'s word of 06:50:47: DEF-427 … DEF-431, rules 9 to 14; PLAYBOOK §2 :312 — 2026-11-02 06:54 (shell time)
+
+- **From** `management_14`, 06:50:47 (`n177bL/m14_def427_0650.txt`, 2,843 B, `32223d98…`), the compiler seat having the same rows in the same minute. Measured on `baeb7a29` with no `=>!` in the program, not run here: `MANAGEMENT/probes/exemptions-audit/README.md` and the new section of `def418-attack/README.md`. All unplaced, not ruled; nothing lifts.
+- **The numbers:** DEF-427 (HIGH: a view through an element's `.ptr` survives a removal from the list), DEF-428 (HIGH: an element address into a `buffer` freezes nothing), DEF-429 (HIGH: a move on a `break` or `continue` arm is lost to the loop), DEF-430 (MEDIUM: two fuels answer "safe" when they run out; no rule, tell it if seen), DEF-431 (HIGH: a plain `@x` in an `async` function leaves `x` on the stack). Two wider rows: DEF-392 (an implicit `next` or `to_string` is no call node) and DEF-418 (a lending `pick` under a second pointer's write: an integer read as a pointer).
+- **Rules 9 to 14,** word for word at PLAYBOOK §2 :312, add to :310's six and :311's two. Every brief carries them.
+- **DEF-418:** narrowings B and C refuted again, no narrowing by parameter shape expected, its count unruled until `nitpick-compiler_58`'s extended report.
+- **Asked of this seat:** read the six over the plan hunks and the Team's two tips, per row how far the reader can tell, DEF-431 and rule 13 first; re-spell nothing; a note rather than an edit for anything filed; one report. This seat runs it as census17av, on census17au's reader.
+- **Filed:** PLAYBOOK §2 :312; line 14's census, unplaced, Team and next-note clauses. The pin stays `2e1cb4a`. Ours: nothing written.
+- **Next:** census17av.
+
+### `management_14`'s word of 06:52:09: census17au accepted, its three points ruled; PLAYBOOK §2 :313 — 2026-11-02 06:54 (shell time)
+
+- **From** `management_14`, 06:52:09 (`n177bL/m14_c17au_0652.txt`, 3,069 B, `c8c3653e…`), crossing this seat's report of 06:50:20. Its `hb_*` cells were measured by it on `baeb7a29`, not run here.
+- **Rule 6 covers `.ptr[i]`:** parse's 3 in `0.0.4_tools/step3.patch` re-spelled `b.buf[…]` when the Team reaches them, the stale reason corrected when the plan is next touched; probe 11's 2 stay, on the watch list.
+- **Sockets' literal 0:** `string:s = ""` with `b.len` when the Team reaches it, compiled first.
+- **Rule 2 is wider than the five:** any builtin or `sys` call that takes an address and a byte count, on either side, and `string_from_bytes`. census17au's 26 and 14 accepted as read.
+- **census17as's correction accepted,** in the note, :309 not edited.
+- **Shipped hits,** not to change now, read here by a word search of tracked `.npk` with comments dropped and listed at BOARD block :52 as expected DEF-425 sites: regex 3, parse's probe 11 2, time's probes 03 and 08, 12 lines, every base a `buffer` by its declaration. Index-0 lines aren't sites by rule 6's letter: regex's `tests/rejection/bytes_buf_ptr_write.npk:24`, parse's probe 11 :51, time's probe 03 :61, :74, probe 08 :78, :102, :184, `probe16i_bytes_body_write_refused.npk:30`. Sockets 0; tui and posix hold no tracked `.npk`.
+- **Who covers regex, time, posix, tui, the apps and the fuzz copy for rules 6 and 7:** `nitpick-compiler_58`'s census, by this word; it tells this seat if its report shows otherwise.
+- **Owed, in census17av's chain:** census17aq and census17ar through the fixed reader, a row reported only if it moves; time's rule 7 row, read and named in the next report; a word to it early if the chain will pass 15 calls.
+- **Filed:** PLAYBOOK §2 :313; line 14's census clause; BOARD block :52. The pin stays `2e1cb4a`. Ours: nothing written.
+- **Next:** census17av. The next note is :314, the next DEF DEF-432, the next TYPE TYPE-106.
