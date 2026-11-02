@@ -19344,3 +19344,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Verify's list, onto "expected still accepted":** `rh4c`, `rh4d`, `rh4e` and `rh5a`–`rh5d` (the entry before this one holds `rh1a`–`rh1d`, `rh4a`, `rh4b`).
 - **Filed:** :304 and :305 edited in place, as the word says; line 14's DEF-423 clause. Neither rule is checked against our trees; the census follows the landing. The pin stays `2e1cb4a`. This stretch's cost goes with 177b's chain line.
 - **Next:** hold for F130, then NOTICE 177b and `management_13`'s GO. The next note is :306, the next DEF DEF-425, the next TYPE TYPE-106.
+
+### F130 filed, the F129 addendum for 177b's build 9; PLAYBOOK §2 :306 — 2026-11-02 01:19 (shell time)
+
+- **From** `nitpick-compiler_57`: F130, sent 01:15:04, arrived 01:15:53 (`n177bL/f130.txt`, 5,150 B, `0239c802…`), headed "The F129 ADDENDUM" and row F130 on its branch. It asks nothing before the harness.
+- **As read here:** the branch reads `9fe39f7` (01:02:40), one commit on `10cf2fb`, `56-r177b` in `wt/56a`, F130 naming no sha. `src/` is +299/−25 raw lines against its +204/−21 code lines, not re-counted; its file figures sum to its total with the re-spellings' +5/−5. The branch's record gives build 9's `npkc` as `baeb7a29`. The diff, the five reviews and the cells are not read or run: the verify's.
+- **The changes** are at :306, and none lifts a rule. F128's six, which :305 left unmeasured, read the same on chain 5 by its count.
+- **A wording point, told `management_13` and `nitpick-compiler_57` with this filing, nothing changed by it:** F130 restates the first half of the rule without "of a type that may drop", the letter of 20:24:11 that 23:18:25 narrowed. `meta/roadmap/OPEN_DECISIONS.md` (citing 20:24:11), `meta/specs/MEMORY_REFERENCE.md` and `CLAUDE.md` at `9fe39f7` carry the same. It errs wide, so no code is at risk by it. The rule here stays :304's.
+- **`rh2c`:** F130 calls it "an over-refusal of build 8's by-argument rule, closed", under its head "POST-180". `meta/roadmap/OPEN_DECISIONS.md` at `9fe39f7` lists `rh2c_mcpy_store_field_taint` as post-180, so "closed" is read here as the rule's hole closed, with the over-refusal standing.
+- **The verify's list, on top of the entries before:**
+  - The sha and the chain together: `9fe39f7`, `npkc` `baeb7a29`; `CHAIN177b DONE` 00:30:35 precedes the commit at 01:02:40, as it did at build 8. The NOTICE names both.
+  - The figures are F130's (6), replacing F128's and F129's, the compiler's tests at 119.
+  - Build 9's rows: legal `rh3a`, `rh3d`, `rh3e`, `rg2a`; `TYPE-104` `rc3f4`, `rc3f5`; `BORROW-015` `re1x_generic_array_17`, `rg3_concrete_array_65`, `rg1c`, `rg1f`. The moved element test is `elem_may_drop`.
+  - Onto "expected over-refusals": `rh2c`.
+  - The rows: 6 FILL tokens at `9fe39f7`, row F128 1 (GRID), row F130 2 (SENT, MSGID), row 177b 3 (SHA, GRID, PEAK-HARNESS), none to be left at the landing. Row F130 joins the rows the list reads.
+- **Filed:** PLAYBOOK §2 :306; line 14's 177b clause, compiler clause and next note. Nothing else moves; the pin stays `2e1cb4a`. This stretch's cost goes with 177b's chain line.
+- **Next:** hold for its harness, NOTICE 177b and `management_13`'s GO; DEF-423's census follows the landing. The next note is :307, the next DEF DEF-425, the next TYPE TYPE-106.
