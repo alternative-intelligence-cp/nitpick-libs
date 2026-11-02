@@ -19776,3 +19776,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A condition on the block's item 3:** parse's probe12 byte table already spells `CLASS[(b => int64)]`, and `SCAN_MODEL.md` C-8's `uint8[256]` for cycle 0.1 is unwritten; it meets rule 38 when written.
 - **Nothing owed:** the pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. Shipped code is left alone by the word: the Team's audit seat counts it for `management_15`, whose rows come here, and the Team seat isn't woken from here.
 - **Next:** the wait on the block's list, with 177c from `nitpick-compiler_61`. The next note is :328, the next DEF DEF-460, the next TYPE TYPE-108.
+
+### `management_15`'s word of 12:08:29: census17bd accepted, DEF-460, rule 37 wider, the shipped counts; PLAYBOOK §2 :328 — 2026-11-02 12:09 (shell time)
+
+- **The word** (`n177bL/m15_def460_1208.txt`, 1572 B, `d6e5e263…`): census17bd accepted at `67e9832` with the limits its report states; DEF-460 HIGH in 177d, verified build only; rule 37 widened to a function that reads a `pick` arm's destructured `.len`; `management_15`'s own count of rule 37 in shipped code, 0 sites, by text, not covering DEF-460's shape; the audit seat's typed counts for rules 38 and 39, with their limits. Word for word at PLAYBOOK §2 :328; none of those counts run here.
+- **A correction of this seat's:** `report17bd.txt` and its message called regex's `impl:Matches:Iterator` shipped. It's in tracked `.npk` under `tests/probe/` only, as `management_15`'s word says, read here by `git grep`; its question to `management_15` rested on that word. The report stands as accepted, and this line corrects it.
+- **Nothing owed:** no census and no reply, by the word; parse's planned `uint8[256]` stays on the block as a condition. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
+- **Next:** the wait on the block's list, with 177c from `nitpick-compiler_61`. The next note is :329, the next DEF DEF-461, the next TYPE TYPE-108.
