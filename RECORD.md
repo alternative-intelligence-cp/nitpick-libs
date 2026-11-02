@@ -19783,3 +19783,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **A correction of this seat's:** `report17bd.txt` and its message called regex's `impl:Matches:Iterator` shipped. It's in tracked `.npk` under `tests/probe/` only, as `management_15`'s word says, read here by `git grep`; its question to `management_15` rested on that word. The report stands as accepted, and this line corrects it.
 - **Nothing owed:** no census and no reply, by the word; parse's planned `uint8[256]` stays on the block as a condition. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
 - **Next:** the wait on the block's list, with 177c from `nitpick-compiler_61`. The next note is :329, the next DEF DEF-461, the next TYPE TYPE-108.
+
+### `management_15`'s word of 12:20:59: DEF-461 and rule 40, no census; PLAYBOOK §2 :329 — 2026-11-02 12:21 (shell time)
+
+- **The word** (`n177bL/m15_rule40_1220.txt`, 726 B, `87e59855…`): DEF-461 HIGH in 177d, refused there as TYPE-108; rule 40. Word for word at PLAYBOOK §2 :329. No census and no reply: its own text census of tracked `.npk` finds no such `for` in time, parse or sockets, and regex has no range `for` at all; that count isn't run here.
+- **A planned hunk** that writes a range `for`'s binding is changed when it's reached. None is looked for now, by the word.
+- **Nothing owed:** the pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
+- **Next:** the wait on the block's list, with 177c from `nitpick-compiler_61`. The next note is :330, the next DEF DEF-462, the next TYPE TYPE-109.
