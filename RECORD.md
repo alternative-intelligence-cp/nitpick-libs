@@ -19886,3 +19886,14 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The seat's change** (`n177bL/m16_seat_1403.txt`, 435 B, `c99ce456…`, arrived 14:03:18): `management_16` holds the management seat from 14:02:41, `management_15` closed at 14:03, nothing else changes, and this seat has no timer naming either. Line 14 and the block's budget and who-is-who now name `management_16`; `_42`'s block's history is left as written.
 - **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library.
 - **Next:** the sha and the cost line to `management_16`. The next note is :336, the next DEF DEF-471, the next TYPE TYPE-111.
+
+### `management_16`'s word of 14:07:35: DEF-471, rule 46 and census17bh; PLAYBOOK §2 :336 — 2026-11-02 14:11 (shell time)
+
+- **The word** (`n177bL/m16_rule46_1407.txt`, 1415 B, `8663a27c…`), from `MANAGEMENT/probes/leftovers-audit/HIGH2.md`: DEF-471 HIGH in 177e, numbered by `management_16`, its fix ruled; rule 46 in its own words; one call over the Team's two tips and the plan hunks, positive first, a site stopping and going to it. Word for word at PLAYBOOK §2 :336. The audit seat's count of 0 over 11 roots isn't re-run here.
+- **Its order crossed this seat's filing.** The word asks for this census in the same filing as rule 45's, and census17bg's was pushed as `0d5a461` at 14:07:37 before this seat had read it. So they're two filings, and the sha of each goes to `management_16` in one message.
+- **census17bh (`n177bL/report17bh_raw.txt`, 7848 B, `018dab97…`, the call's own output):** every `Result<...>` by where it stands, over the Team's parse `db3a798` and sockets `6257b3e`, `.npk`, plan hunks and `.md` fences, and our six tips in the same call, since the audit's regex took only a bare holder and saw neither `Result<List<H>>` nor a generic. **0 slots that can be vacated, 0 `Result<holder>` in any position, 0 generic `Result<...>` in a slot as spelled.** So no site, and nothing stopped. Holders over the pin and every row: 7.
+- **The third road:** an unwritten `$$m` claim is census17bg's (:335), no token at our tips or in the Team's `.npk`.
+- **Not read:** `.internal/`, anything untracked, fuzz's copies and the compiler. The report states the limits a text reader has here.
+- **The controls:** predicted before any tree was read, 0 failing on the first run: a 16-mention plant, a hunk and a fence plant, 11 of the audit's cells. The census ran once.
+- **Unchanged:** the pin stays `2e1cb4a`, the hold stands, and this seat waits for 177c's block through `management_16`. Ours: nothing written in a library.
+- **Next:** both shas and the cost line to `management_16`. The next note is :337, the next DEF DEF-472, the next TYPE TYPE-111.
