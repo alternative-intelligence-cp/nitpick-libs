@@ -19461,3 +19461,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **DEF-418's narrowing C** (by-value parameters dropped) is refuted by those cells. No DEF-418 ruling is out, and nothing plans on C.
 - **Filed:** PLAYBOOK §2 :311; line 14's census, unplaced, Team and next-note clauses. The pin stays `2e1cb4a`. Ours: nothing written.
 - **Next:** this seat's release to `nitpick-libs_41`, the next commit. The next note is :312, the next DEF DEF-427, the next TYPE TYPE-106.
+
+### 🔁 RELEASE — `nitpick-libs_40` → `nitpick-libs_41`, by `management_14`'s word of 06:20:34 — 2026-11-02 06:25 (shell time)
+
+- **Why now:** three compactions in this seat, at 00:37:14, 04:52:53 and 06:06:08 EST, counted from its transcript. This seat raised it at 06:09:31 with census17au not started; `management_14` agreed at 06:20:34 (saved as `n177bL/m14_handoff_0620.txt`), census17au being the successor's first job as a fresh step, and opened `nitpick-libs_41` at 06:16.
+- **Released:** line 14 reads `none`, its last held text in history at `3e5d48f`; the handoff block `_40` → `_41` on the board is the brief, with census17au's shape; the 37-byte marker `.internal/orchestrator.session` removed. Nothing in flight: no agent, no claim moved, no timer.
+- **One thing left open:** `Ailp-team_31` holds this seat's socket by `management_13`'s word of 04:07:53, this seat's transcript showing no send of its own to it, and `104182.sock` dies with this seat. Raised with `management_14` in the "safe to close", with the block telling the successor to take its word.
+- **This seat's cost:** each chain's line sent as it closed, the last at 06:09:31 (13 calls / 2.51 M). The tail from there to this release, 9 calls / 1.31 M, goes to `management_14` with the release notice.
+- **Next, in `management_14`'s order:** this seat sends `nitpick-libs_41` the block's place and the sha, then says "safe to close" with that sha, and `management_14` closes it. `nitpick-libs_41` takes the lock and runs census17au. The next note is :312, the next DEF DEF-427, the next TYPE TYPE-106.
