@@ -19755,3 +19755,15 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The block's watch list** gains note 36, at the end of its item on time's `NTIME_DURATION_NS_MAX`, so that no later line moves: a re-pin that combines libraries would meet it.
 - **Nothing owed:** the pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
 - **Next:** the wait on the block's list, with 177c from `nitpick-compiler_60`. The next note is :326, the next DEF DEF-454, the next TYPE TYPE-108.
+
+### census17bc: DEF-454, DEF-455 and rule 35 wider, `management_15`'s words of 11:03 and 11:06; PLAYBOOK §2 :326 — 2026-11-02 11:12 (shell time)
+
+- **The words** (`n177bL/m15_def455_1103.txt`, 526 B, `a85252f2…`, held for this note by its own instruction, and `n177bL/m15_type107_1106.txt`, 1585 B, `9333d8a1…`): DEF-455 LOW; DEF-454 LOW, the later relaxation; TYPE-107 built in 177c, wider than rule 35; rule 35 widened to match; the compiler seat `nitpick-compiler_61`; `tools/check`'s gap; one census of at most 3 calls. Word for word at PLAYBOOK §2 :326 or in those files.
+- **census17bc,** `.internal/landing/scripts/census17bc.py`, a new reader with census17bb's helpers and census17ax's populations by exec; output `n177bL/census17bc.out` (11243 B, `8ea9c507…`); the report as filed `n177bL/report17bc.txt` (3817 B, `eac38724…`), which carries every row's denominator. Lexical, nothing compiled or run. Controls 3 read, 0 failing: `t23`, `t37` and 1 planted unit.
+- **The result:** no site of the wider letter in the plan hunks or the Team's parse `db3a798` and sockets `6257b3e`. 21 distinct non-primitive arguments, each read: 20 plain data and `Owning`, `{ string:text; uint32:n; }`, not a site by `management_15`'s word of 10:40. census17bb's "holds" already met a `wild T->` field by its `->`, and this reader's controls prove it.
+- **Nesting:** regex's and time's shipped `Vec<T: Copy>` already refuses it with TYPE-017; parse's and sockets' plans show none; tui's unwritten plan does, an unbounded `Vec<T>` and `Vec<Text>` at 0.11.4, and that `Text` holds a container is this seat's reading of one sentence. The block's item 3 carries it as a condition, and its watch list carries `tools/check`'s gap.
+- **A slip of this seat's, no figure from it:** the first prose search left `*.md` unquoted, so the shell expanded it against the workbench and four libraries read empty, which contradicted the reader's own counts. It was re-run quoted with a control. The census took 3 reads of prose past the reader, over the cap of 3.
+- **The board's compiler seat:** line 14, the block's item 2 and its who-is-who read `nitpick-compiler_61`.
+- **Filed before any word on the result, as a no-site census.** The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library.
+- **The cost line** goes to `management_15` with this filing's sha, with the tail from its word of 10:40.
+- **Next:** this filing's sha and the report to `management_15`, then the wait on the block's list. The next note is :327, the next DEF DEF-456, the next TYPE TYPE-108.
