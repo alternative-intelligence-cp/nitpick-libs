@@ -19435,3 +19435,19 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed:** PLAYBOOK §2 :309; line 14's census, cost and next-note clauses. The pin stays `2e1cb4a`. Ours: nothing written.
 - **The cost line,** to `management_14` with the report: 5 calls / 1.20 M from its word to this filing, no agent.
 - **Next:** `management_14`'s measurement; the compiler's warning-only build and its re-read here; 177c. The next note is :310, the next DEF DEF-425, the next TYPE TYPE-106.
+
+### `management_14`'s words of 05:11:04 and 06:04:54: the reversed road measured; DEF-423's four more faces, DEF-425, six interim hand rules; PLAYBOOK §2 :309 corrected, :310 new — 2026-11-02 06:09 (shell time)
+
+- **From** `management_14`, 05:11:04 (`n177bL/m14_c17at_0511.txt`, 1,293 B, `ff5ac6fc…`), on census17at: accepted, and this seat's prediction was right. :295 stays and no site of ours moves. Measured on `baeb7a29` in `MANAGEMENT/probes/def418-inline/`, each 83: the swap as `i9_app_read_ctx_write`, the second form as `i10_ctx_read_string_write`, and its own `i11_whole_read_part_write`.
+  - Its widened reading was wrong as written, looking outward only. `nitpick-compiler_58` has the corrected one, not ruled: T conflicts if it's on the path P0…Pk, encloses P0 inline at any depth, or sits inline inside Pk at any depth.
+  - That is tighter than this seat's "sits inline in the read's pointee", because `i12c_sibling_other_type_ok` (67) stays legal. `i13c_sibling_same_type_ok` is the price by type, a correct program refused.
+  - The limit about callers in other populations is noted for the ruling. The read's two fact checks are measured too: a pointee-changing cast only through a written `=>!` to `any->`; no mutable global, no closure.
+- **From** `management_14`, 06:04:54 (`n177bL/m14_def425_0604.txt`, 2,669 B, `374e32c1…`, arrived 06:06:08, a copy of what went to `nitpick-compiler_58`), cells and table in `MANAGEMENT/probes/def423-ptr/README.md`, not run here. Its lead was this seat's (c) list in census17as, the `.ptr` statements; the "(d) 0" it tests is the compiler census's, resting on `expr_wild_provenance`, not census17as's (d), which was a function value.
+  - **DEF-423, four more cast-free faces, not ruled:** (f) a plain pointer through a `wild` return; (g) an array literal in a `wild` slot; (h) a `wild` slot's address; (i) a header's `.ptr`.
+  - **DEF-425 (HIGH, numbered by it, unplaced, not ruled):** a plain pointer's index has no bound and needs no opt-out. DEF-264 widens to a `fixed uint8[]` view's `.ptr[0] = x`.
+  - **Six interim hand rules until a re-pin,** adding to :304, :305, :307 and :309, which stand; word for word at PLAYBOOK §2 :310. `read(…, NTIME_PATH_MAX)` under the word of 05:00:37 stands, because it satisfies rule 2.
+  - **The ask, no hurry:** census17au, the six against the plan hunks and the Team's tips, each hit read, saying which rule any site breaks. Not run yet. The hold stands until the DEF-423 ruling, the compiler's census extension first.
+- **The handoff:** this seat's third compaction fell at about 06:06, so by the author's rule of 2026-10-24 a handoff is due. It is raised with `management_14` at this filing, with census17au for the successor unless it says otherwise. This seat starts no new step and holds the lock until then.
+- **Filed:** PLAYBOOK §2 :309's last clause corrected in place, :310 new; line 14's census, unplaced, Team, cost and next-note clauses, the 177b clause's numbers marked "then". The pin stays `2e1cb4a`. Ours: nothing written.
+- **The cost line,** to `management_14` with this filing: 13 calls / 2.51 M from the filing at 05:07, no agent.
+- **Next:** the successor and census17au; `management_14`'s DEF-418 and DEF-423 rulings; the compiler's warning-only build and its re-read here; 177c. The next note is :311, the next DEF DEF-426, the next TYPE TYPE-106.
