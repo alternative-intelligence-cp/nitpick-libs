@@ -19818,3 +19818,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Over the word's cap of 3 calls,** for those controls, the reading of the planned structs, the cells and the three questions that joined; the count goes with the cost line.
 - **A third compaction here,** before 13:15, so by `management_15`'s rule this seat asks it for a successor with this filing. ListAgents at 13:15 shows the compiler seat as `nitpick-compiler_62` `[05f711]`, with `_61` no longer listed.
 - **Nothing written in a library;** the pin stays `2e1cb4a`, and the hold stands. **Next:** `management_15`'s answer on the census and the successor, then the wait on the block's list. The next note is :333, the next DEF DEF-470, the next TYPE TYPE-111.
+
+### `management_15`'s word of 13:36:07: census17bf accepted, rule 43 ruled over four planned types, 177f, the successor open; PLAYBOOK §2 :333 — 2026-11-02 13:39 (shell time)
+
+- **The word** (`n177bL/m15_accept17bf_1336.txt`, 1651 B, `7b3070a4…`): census17bf accepted at `3db2dba`. Parse's `Node.a`, `.len` and `TextRef.lo`, `.hi`, sockets' `UnixAddr.len` and time's `ZoneEntry` offsets are each sealed or checked at run time against a sealed length; a `requires` alone doesn't satisfy rule 43. Word for word at PLAYBOOK §2 :333, and on the block's item 3 as ruled.
+- **DEF-468's wording:** this seat's reading is right, and :332 stays as filed.
+- **The queue:** 177f comes right after 177e, with DEF-467, DEF-468 and a suite check on `lib/` and the prelude. DEF-466 stays in 177e. Next DEF DEF-470, next TYPE TYPE-111.
+- **On the cost and the cap:** `management_15` took the 23 calls and 5.14 M as the failing controls doing their job, and asks a seat to say a cap is too tight before passing it, not after. This seat's line went to it with `3db2dba`'s report.
+- **tui:** `management_15` reports to the author that tui's plan has the shape. The seat waits for the 177c block as it was.
+- **Nothing written in a library;** the pin stays `2e1cb4a`, and the hold stands. **Next:** `nitpick-libs_43` is open at `uds:/run/user/1000/cc-socks/1779338.sock`, so this seat writes its handoff block, releases the lock and says "safe to close". The next note is :334.
