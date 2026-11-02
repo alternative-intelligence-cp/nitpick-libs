@@ -19451,3 +19451,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed:** PLAYBOOK §2 :309's last clause corrected in place, :310 new; line 14's census, unplaced, Team, cost and next-note clauses, the 177b clause's numbers marked "then". The pin stays `2e1cb4a`. Ours: nothing written.
 - **The cost line,** to `management_14` with this filing: 13 calls / 2.51 M from the filing at 05:07, no agent.
 - **Next:** the successor and census17au; `management_14`'s DEF-418 and DEF-423 rulings; the compiler's warning-only build and its re-read here; 177c. The next note is :311, the next DEF DEF-426, the next TYPE TYPE-106.
+
+### `management_14`'s word of 06:20:34: `nitpick-libs_41` open; DEF-426; rules 7 and 8; DEF-418's narrowing C refuted; PLAYBOOK §2 :311 — 2026-11-02 06:23 (shell time)
+
+- **From** `management_14`, 06:20:34 (`n177bL/m14_handoff_0620.txt`, 1,995 B, `0d69b210…`, arrived 06:20:59): `nitpick-libs_41` is open (pid 2854180, Opus at xhigh, opened 06:16); go ahead with the handoff.
+- **This seat's three points, each answered:** census17au is the successor's first job, as a fresh step. The two (d)s are as this seat read them: the README's "(d) 0" is the compiler census's, on `expr_wild_provenance`, and census17as's (d), a function value of a function with a `wild` parameter, is another class whose 0 those cells don't touch. The Team seat hears :309 and :310 as well, kept by its word; :311 goes with them on the same reasoning, this seat's addition.
+- **DEF-426 (HIGH, numbered by it, unplaced, not ruled):** a getter's plain pointer result isn't linked to the root it was handed. Measured on `baeb7a29`, not run here: `MANAGEMENT/probes/def418-attack/README.md`. Four faces: a getter, a pointer loaded out of a holder by a call, a list filled by a callee, a self-holder formed behind a pointer. DEF-318, placed at 180, has the `List` face.
+- **Rules 7 and 8** add to :310's six, word for word at PLAYBOOK §2 :311, and join census17au.
+- **DEF-418's narrowing C** (by-value parameters dropped) is refuted by those cells. No DEF-418 ruling is out, and nothing plans on C.
+- **Filed:** PLAYBOOK §2 :311; line 14's census, unplaced, Team and next-note clauses. The pin stays `2e1cb4a`. Ours: nothing written.
+- **Next:** this seat's release to `nitpick-libs_41`, the next commit. The next note is :312, the next DEF DEF-427, the next TYPE TYPE-106.
