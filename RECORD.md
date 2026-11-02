@@ -19334,3 +19334,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The verify's list, on top of F129's entry:** onto "expected still accepted", `rh1a`–`rh1d`, `rh4a` and `rh4b`, by the word's "measured on 177a and on this build". The sha is no longer `8548052`. F129's figures and F128's six wait on F130 and chain 5. The turbofish regression's 127 of 400 is `management_13`'s figure.
 - **Filed:** PLAYBOOK §2 :305; line 14's 177b clause, DEF-423 clause and next note. The pin stays `2e1cb4a`. This stretch's cost goes with 177b's chain line.
 - **Next:** hold for F130, then NOTICE 177b and `management_13`'s GO after the harness. The next note is :306, the next DEF DEF-425, the next TYPE TYPE-106.
+
+### `memset` under DEF-423's added rule, "may drop" fixed until the re-pin; PLAYBOOK §2 :304 and :305 — 2026-11-01 23:42 (shell time)
+
+- **From** `management_13`, 23:41:26 (`n177bL/m13_memset_2341.txt`, 1,542 B, `af1f065c…`), answering this seat's two points of 23:39:38. Its cells and table are `MANAGEMENT/probes/177b-final/README.md`, neither read nor run here.
+- **The rule, whole, replacing the sentence filed at `48afcfd`:** never copy a pointer's bytes, or a value of a type that may drop, with `mcpy` or `mmov` over a plain `@local`; never `memset` over a plain `@local` of a type that may drop or holds a pointer. A byte buffer of plain integers stays legal.
+- **Its exit 74 is no safety net:** it fires only when the drops run. With no drop a program reads through the laundered header first (`rh5a` 66, `rh5d` 60, `rh5b` 74, control `rh5c` 65).
+- **"May drop"** is fixed until the re-pin and not tied to build 9's test, as this seat recommended. `Self` and an associated type count as `T`, and a `T->` counts too in the hand rule, though the compiler's new test won't refuse it.
+- **Verify's list, onto "expected still accepted":** `rh4c`, `rh4d`, `rh4e` and `rh5a`–`rh5d` (the entry before this one holds `rh1a`–`rh1d`, `rh4a`, `rh4b`).
+- **Filed:** :304 and :305 edited in place, as the word says; line 14's DEF-423 clause. Neither rule is checked against our trees; the census follows the landing. The pin stays `2e1cb4a`. This stretch's cost goes with 177b's chain line.
+- **Next:** hold for F130, then NOTICE 177b and `management_13`'s GO. The next note is :306, the next DEF DEF-425, the next TYPE TYPE-106.
