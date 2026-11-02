@@ -19796,3 +19796,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The word** (`n177bL/m15_def462_1230.txt`, 540 B, `f764f35a…`): two LOW rows, each failing closed: DEF-462 in 177d, DEF-463 unplaced. DEF-430 gains one fuel from 177c's diff, which 177d closes with the others. Word for word at PLAYBOOK §2 :330.
 - **Nothing owed:** no rule, no action and no reply, by the word. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
 - **Next:** the wait on the block's list, with 177c from `nitpick-compiler_61`. The next note is :331, the next DEF DEF-464, the next TYPE TYPE-109.
+
+### `management_15`'s word of 12:54:44: DEF-464, DEF-465 and rule 41; PLAYBOOK §2 :331 — 2026-11-02 12:56 (shell time)
+
+- **The word** (`n177bL/m15_rule41_1254.txt`, 1767 B, `b2a6fa12…`), from `MANAGEMENT/probes/author-break/README.md`, found by the author on their VM: DEF-464 LOW in 177d, failing closed; DEF-465 MEDIUM, ruled, TYPE-110 from 177d; rule 41. Word for word at PLAYBOOK §2 :331. Its count of 0 sites in shipped code and both fuzz copies isn't run here.
+- **A job on the block, not run now:** rule 41 over the plan hunks at this seat's next census, one call, by the word's scanner; a reply only if it hits.
+- **The word's two planned sites, read here:** parse's `meta/specs/EVENT_MODEL.md:27-28` and `WRITER_MODEL.md:146-147` hold a `break` at those lines, and those lines are the same at the Team's `db3a798`, which the word said only as far as it read. They're on the block's item 5 for when parse is next touched; the Team hears from `management_15`, and that seat isn't woken from here.
+- **Nothing owed now:** no reply needed unless a census hits. The pin stays `2e1cb4a`, and the hold stands. Ours: nothing written in a library. The cost line is held for this seat's next report.
+- **Next:** the wait on the block's list, with 177c from `nitpick-compiler_61`. The next note is :332, the next DEF DEF-466, the next TYPE TYPE-111.
