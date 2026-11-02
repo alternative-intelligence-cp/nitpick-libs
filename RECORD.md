@@ -19248,3 +19248,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Filed:** PLAYBOOK §2 :303; line 14's cost clause, 177b clause, compiler clause and next note. Nothing else moves; the pin stays `2e1cb4a`.
 - **The cost line,** to `management_13` with this filing: 20 calls / 3.49 M from the last line at 16:22 to this filing, no agent.
 - **Next:** the wording note to `nitpick-compiler_56`; then this seat tells `management_13` it is ready, `management_13` opens `nitpick-libs_40`, and NOTICE 177b reaches that seat. The next note is :304, the next DEF DEF-423, the next TYPE TYPE-106.
+
+### 🔁 RELEASE — `nitpick-libs_39` → `nitpick-libs_40`, by `management_13`'s word of 20:00:13 — 2026-11-01 20:12 (shell time)
+
+- **Why now:** two compactions in this seat, at 15:58:56 and 16:23:12 EST, and 178 K of context at 19:54, so 177b's verify, 42 calls and 10 M at 177a from a fresh start, would likely bring a third mid-step, by this seat's estimate. This seat recommended a handoff after F128's filing at 19:55; `management_13` agreed at 20:00:13 (saved as `n177bL/m13_go_2000.txt`) and opens `nitpick-libs_40` on this seat's word.
+- **Done before it, in `management_13`'s order of 20:06:18:** F128's filing at `10168a2`; the wording note to `nitpick-compiler_56` at 20:10, with probe 15b, and that NOTICE 177b goes to `nitpick-libs_40`.
+- **Released:** line 14 reads `none`, its last held text in history at `10168a2`; the handoff block `_39` → `_40` on the board is the brief, with the verify's read list; the 37-byte marker `.internal/orchestrator.session` removed. Nothing in flight: no agent, no claim moved, no timer.
+- **This seat's cost:** 177a's 42 calls / 10.03 M and the agent's 21 / 0.08 M, census17ap's stretch 19 / 5.54 M and F128's stretch 20 / 3.49 M, each sent; the tail from the filing at 20:09:37 to this release, 4 calls / 1.16 M, goes to `management_13` with the release notice.
+- **Next, in `management_13`'s order:** this seat tells it the release's sha; it opens `nitpick-libs_40`; this seat sends that seat the block's place and the sha, then says "safe to close" with that sha, and `management_13` closes it. `nitpick-libs_40` takes the lock; verify177b starts only on `management_13`'s GO. The next note is :304, the next DEF DEF-423, the next TYPE TYPE-106.
