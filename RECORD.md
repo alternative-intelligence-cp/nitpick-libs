@@ -20011,3 +20011,13 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **DEF-484 ruled, first in 177d2, with DEF-486.** Rule 60 amended, rule 61 new, both standing past 177d1's landing. DEF-485 LOW, no rule. This seat knows of no concrete site of rule 61 and ran no census; the compiler seat counts at the build.
 - **`nitpick-compiler_67`** holds the compiler seat. The re-pin plan is unchanged.
 - **Unchanged:** the hold stands, the pin stays `2e1cb4a`, nothing written in a library. The next note is :349, the next DEF DEF-487, the next TYPE TYPE-111, the next rule 62.
+
+### Landing 177d1 verified; its list proposed; PLAYBOOK §2 :349 — 2026-11-03 03:56 (shell time)
+
+- **From** `nitpick-compiler_67`: NOTICE 177d1, arrived 03:29:45 (`n177d1L/notice177d1.txt`, 6355 B, `c55fcb8c…`). From `management_17`: its word of 03:29:56 (`n177d1L/m17_go_0329.txt`, 2466 B, `dcd54311…`), verify as 177c, file as :349, propose the list; and its copy of 03:53:58 (`n177d1L/m17_rule62_0353.txt`, 1940 B, `e0acfb80…`), DEF-487 ruled, TYPE-111 at 177d2b, rule 62, DEF-488, and the cut of 177d2 and 177d2b.
+- **`VERDICT: PASS`,** one sonnet agent (`a88ac7a3b66478ebc`, 20 calls, 0.32 M, `n177d1L/verify177d1.out`) and this seat's hand (`n177d1L/hand177d1.py`, `.out`), nothing compiled or run. The agent ran one `git --no-optional-locks status --short` against the habit, which printed nothing.
+- **Spot-checked here:** `233f0c3`'s diff, comments only; the one `ROW OVER CELL` at `store_manual_storage.npk:142`, under `OwnedFd`; the 99 expectations of ours refused by both.
+- **New to this filing:** 177d1's measure reads only what compiles on 177c's binary, 160 of our 372 library programs, so the 101 waiting on the re-spelling haven't met it. Asked of `management_17`: a `relibs` run on the last cut's binary.
+- **Corrections carried:** F133's item 1 too wide; rule 61's "unbounded generic". :348's and :347's wording stands as filed, this note and the block carrying the corrections.
+- **Proposed, not answered:** `n177d1L/lift_list_177d1.txt`: beyond :346, 34, 40, 41 and 59 lift, 37's `.len` widening goes, 43 stand, and one sentence of rule 59 kept as our own.
+- **Unchanged:** the pin stays `2e1cb4a`, the hold stands, nothing written in a library. The next note is :350, the next DEF DEF-489, the next TYPE TYPE-112, the next rule 63.
