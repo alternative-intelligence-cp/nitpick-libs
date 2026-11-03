@@ -19995,3 +19995,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **The re-pin:** none for 177c alone. Time, parse and sockets after 177d's last cut, regex after DEF-418's rule, DEF-286 no longer a condition. This seat reports the measured Max points after time's adoption, before regex is priced for real.
 - **The hold stands;** no library cycle before the re-pin. Interim rules for anything new come from `management_17` in the same minute the compiler hears; DEF-483's count is on a Team seat.
 - **Next:** idle. A third compaction brings a successor. The next note is :347, the next DEF DEF-484, the next TYPE TYPE-111, the next rule 60.
+
+### DEF-483 ruled; DEF-484 and interim rule 60; 177d's cut; PLAYBOOK §2 :347 — 2026-11-02 23:04 (shell time)
+
+- **From** `management_17`: its word of 23:03:01 (`n177cL/m17_def484_2303.txt`, 1633 B, `86797866…`), with its letter `MANAGEMENT/briefs/def483-ruling-2026-11-02.md` read here, and its word of 22:46:08 on the cut (`n177cL/m17_cut177d_2246.txt`, 812 B, `a85e5094…`), held for this note by that word. No agent, no census.
+- **DEF-483, RULED N, 177d1:** a store inside manual storage never drops the old value; a live owner is replaced by an assertion. 0 sites in our libraries by `Ailp-team_39`'s count, re-run by `management_17`, not here. Rule 59 stands until the re-pin that carries 177d1.
+- **DEF-484, new, HIGH, unplaced until a count, its direction not ruled:** a plain address of a place inside an unwritten `wild` block, so a store through it drops over the block's bytes. **Interim rule 60** holds it; a Team seat's count will name the sites.
+- **177d is six landings,** 177d1 to 177d6, the rows unchanged and the order past 177d3 provisional; rules placed at 177d stay in force until the re-pin after the last cut.
+- **Unchanged:** the hold stands, the pin stays `2e1cb4a`, nothing written in a library. The next note is :348, the next DEF DEF-485, the next TYPE TYPE-111, the next rule 61.
