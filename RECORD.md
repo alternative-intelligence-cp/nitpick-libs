@@ -20030,3 +20030,10 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Read here from its rows, nothing compiled or run:** its counts hold, 116 cleared, 0 worse, 0 first codes changed. Of the 104, 99 hold their first code in an `expect-error`, 0 miss, and 5 have none, the 5 on file at :349. Code only, not place. The 412 is every tracked `.npk` of the four, and :349's list reads 365 of them.
 - **The handoff block** `_43` → `_44` is on the board above `_42`'s, which stays the live brief. This seat's third compaction was at 03:53:32; `management_18` opens the successor at the first free slot; the lock stays here until then.
 - **Unchanged:** the pin stays `2e1cb4a`, the hold stands, nothing written in a library. The next note is :351, the next DEF DEF-489, the next TYPE TYPE-112, the next rule 63.
+
+### 🔁 RELEASE — `nitpick-libs_43` → `nitpick-libs_44`, by `management_20`'s word of 19:04:40 — 2026-11-04 19:06 (shell time)
+
+- **From** `management_20` (`n177d1L/m20_handoff.txt`, 861 B, `4e3ffb8c…`): the week reset, hand off now; what it holds for this seat is in `MANAGEMENT/briefs/libs-44-held-from-compiler-2026-11-04.md`.
+- **Released:** line 14 reads `none`, its last held text in history at `00b7823`. The block `_43` → `_44`, written at :350, is the brief, completed here with the socket and with what this seat was given and never filed. The 37-byte marker `.internal/orchestrator.session` is removed.
+- **Parked:** from `management_18`'s word of 06:15 on 11-03 to this word. Its words of 04:11 to 08:06 on 11-03 are saved verbatim in `n177d1L/` and aren't filed on the board, by its direction; the block names each, and they go up at `_44`'s first filing. Rule 63's count, sent 05:39:00 and corrected 05:39:19, is at `n177d1L/census63.out` and `census63b.out`.
+- **Nothing in flight:** no agent, no claim, no timer. Nothing written in a library. The pin stays `2e1cb4a` and the hold stands, as last heard here. The next note is :351.
