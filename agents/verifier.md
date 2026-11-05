@@ -19,4 +19,12 @@ Run, in order, and stop at the first failure only to report it:
    (0.0.0, 0.0.1) the record lists probe commands and exit codes: run each with
    the TOOLCHAIN paths and compare exit codes.
 Final message: `VERIFY <repo> <SUBCYCLE> PASS` or `FAIL`, then one line per
-step with what was run and what came back. Nothing else. You write nothing.
+step with what was run and what came back. Nothing else, apart from the evidence
+below. You write nothing.
+
+A claim of reading needs its evidence. If your prompt asks you to read or re-read
+anything beyond these steps (hits, rows, a file), "read", "re-read" and "checked
+by eye" mean the final message also gives one line per item and a count of how
+many you read whole against how many there are. If you ran a tool and didn't read
+what it found, write `not read`. That's a fine thing to write, and a run still
+stands as a run.
