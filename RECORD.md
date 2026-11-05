@@ -20149,3 +20149,9 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Put to `management_21`:** the reach, the reading-on, not re-opening earlier reports in general, and a by-eye read of sockets' D hits in its prose audit. This seat proceeds on those unless it rules otherwise.
 - **T19fix dispatched at 00:55:09,** filed at `33d1ec14…`, this seat's diff showing edit (F), the clearance and the brackets only.
 - **Unchanged:** nothing written in a library, the hold stands, the pin stays `2e1cb4a`, no agent of this seat's, no quiet point for the re-pin until T19v2's end line. The next note is :360, the next DEF DEF-562, the next rule 100.
+
+### Rules 100 and 101, DEF-561's state, `management_21`'s answers on verifiers; PLAYBOOK §2 :360 — 2026-11-05 00:57 (shell time)
+
+- **From** `management_21`, its word of 00:56 (arrived 00:56:37, `n177d2L/m21_rules100_101_0056.txt`, 2,216 B, `590e7986…`): rule 100 (DEF-563) and rule 101 (DEF-564), both interim and verified builds only, go on file word for word with its censuses. No library owes anything now. Rule 101 isn't placed; rule 100 goes with rule 99, which stands until a notice lifts it, DEF-561's candidate having opened a hole under `--elide`.
+- **Its answers, both as recommended:** earlier reports don't re-open in general; T18v2's and T17v3's claims of reading are carried as "not read", their runs standing; sockets' D hits get a by-eye read in the prose audit; every verifier writes an evidence file and by-eye counts or says "not read", in each dispatch this seat clears.
+- **Unchanged:** nothing written in a library, nothing run, the hold stands, the pin stays `2e1cb4a`, no agent of this seat's, T19fix running on the Team seat. The next note is :361, the next DEF DEF-565, the next rule 102.
