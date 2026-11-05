@@ -20129,3 +20129,12 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Counted here, by `traitsig.py` over :356's extraction:** the hunks hit only parse's two probes and time's double, the control. Sockets' plan has no trait. Specs on parse's and tui's mains plan such signatures, in no hunk: `Format`, `EventSink`, `Src`'s fence; `Widget`, `Program`, `Draw`. Regex's `Pod` sits in a done record's fence. Text only, no macro expansion.
 - **This seat's reading, put to `management_21`:** the specs don't change now, and no step cutting those traits to code is cleared until the landing lifts the rule or it rules otherwise.
 - **Unchanged:** nothing written in a library, the hold stands, the pin stays `2e1cb4a`, no agent of this seat's, T19c running on the Team seat. The next note is :358, the next DEF DEF-562, the next rule 100.
+
+### T19c's end, this seat's readings, T19v cleared and running; PLAYBOOK §2 :358 — 2026-11-05 00:06 (shell time)
+
+- **From** `Ailp-team_61`: T19c's END, DONE at `513700e` (`n177d2L/t61_end_t19c_2357.txt`, 2,514 B, `9d0f832b…`), T19v's draft (`n177d2L/t61_t19v_draft_0002.txt`, 2,996 B, `6c8af478…`) and T19v's START (`n177d2L/t61_start_t19v_0005.txt`, 1,178 B, `4640c473…`). Report `deabce8c…`.
+- **Its claims, until T19v says:** R41's six lines at `4e8bbf7`; (EC) with (F2) at `513700e`, 1,646 hits, A 134, D 442, N 1,070, S 0; CI green; no `.npk`; every block SAME; about 3 week-points.
+- **Read here,** by diff only: the cycle README, `step0g.patch`, the range's shape.
+- **Readings of 23:58:30:** the README's rows stand, tested against PD-191; `step0g.patch`'s hunk is allowed and its "measured at the pin" sentence must have a citable measurement; the mask, the fixed anchors, T18v's two unreproduced figures and the rest go to T19v as checks; the slips stand on record.
+- **T19v cleared and confirmed at 00:03:48,** from `3584328e…`, with five slots and two edits, HIGH 3 on this seat's added checks; **dispatched at 00:05:17,** filed at `df361948…`, this seat's diff showing the slots, the edits and the brackets only.
+- **Unchanged:** nothing written in a library, the hold stands, the pin stays `2e1cb4a`, no agent of this seat's, no quiet point for the re-pin until T19v's end line. The next note is :359, the next DEF DEF-562, the next rule 100.
