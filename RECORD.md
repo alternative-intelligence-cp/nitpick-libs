@@ -20264,3 +20264,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **Ruled:** the prose audits run at each cycle's close, after the re-pin and the steps. Rule 105 lifts at 177d2b3, DEF-573 heading that cut, by `MANAGEMENT/briefs/libs-44-held-from-compiler-2026-11-04.md`, 15,788 B, `7363ad4a…`, :89.
 - **Asked whether the compaction took anything a successor would need:** none known; what was decided is in the notes, the saved bodies, the scripts and the evidence file. Two small things go on file at :370: `segments.py`'s clock is EST plus one hour, and a parked Team seat needs no word at a take.
 - **Unchanged:** nothing written in a library, the hold stands, the pin stays `2e1cb4a`, no `.npk` moved, no agent of this seat's. The next note is :371, the next DEF DEF-574, the next rule 106.
+
+### DEF-574, rule 106, what 177d2b2 will refuse; PLAYBOOK §2 :371 — 2026-11-05 06:49 (shell time)
+
+- **From** `management_22`: DEF-574, HIGH by kind, unplaced, `wild` only, on main; rule 106; and the rule 177d2b2 will enforce in place of how rule 104 reads, with NITPICK-ASSIGN-005 (`n177d2L/m22_def574_0647.txt`, 993 B, `10211cb8…`). This seat's own line of 05:34:50: `n177d2L/l45_report_0534.txt`, 840 B, `5b08a67d…`.
+- **Corrected:** :369's "assigning a kept name with no move or free stays accepted" no longer holds at 177d2b2: a kept scalar or pointer assigned in the value is refused, the remedy being to bind the value first, and an inline array or struct is exempt. Rule 104 stands word for word until that landing's notice.
+- **Read here,** `MANAGEMENT/briefs/177d-held-rulings-2026-11-02.md`, 295,664 B, `8810b970…`, :1535–:1549, as management's account, not run here. Of 412 on its scratch, 412 are the same and 307 compile, so the other 105 stop at a refusal of their own, and what sits past it isn't measured.
+- **Asked of this seat:** check them at the next code round. No census is run now, and each brief from here carries rule 106, and rule 104 as it stands.
+- **Unchanged:** nothing written in a library, this seat keeps the lock, parked, the hold stands, the pin stays `2e1cb4a`, no `.npk` moved, no agent of this seat's. The next note is :372, the next DEF DEF-575, the next rule 107.
