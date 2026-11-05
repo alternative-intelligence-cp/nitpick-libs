@@ -20121,3 +20121,11 @@ From `nitpick-compiler_32`. Landing 96 adds `NITPICK-TYPE-018` for a direct self
 - **This seat's second compaction** at 22:07:55; the third brings a successor.
 - **A slip of this seat's:** one top-level `cd` into `.internal/landing/scripts`, undone in the next call; nothing ran there.
 - **Unchanged:** nothing written in a library, the hold stands, the pin stays `2e1cb4a`, no agent of this seat's. The next note is :357, the next DEF DEF-562, the next rule 100.
+
+### Rule 99's wider words and their reach in plan text; PLAYBOOK §2 :357 — 2026-11-04 22:38 (shell time)
+
+- **From** `management_21`, its word of 22:35:25 (arrived 22:35:33, `n177d2L/m21_rule99_wider_2235.txt`, 1,980 B, `af9de17e…`): DEF-561 reaches a trait member's signature, default or not; the rule's new words go on file word for word, with its measured cells and its reach in tracked code.
+- **Asked here:** no plan this seat drafts or clears adds such a signature; nothing changes in T19c.
+- **Counted here, by `traitsig.py` over :356's extraction:** the hunks hit only parse's two probes and time's double, the control. Sockets' plan has no trait. Specs on parse's and tui's mains plan such signatures, in no hunk: `Format`, `EventSink`, `Src`'s fence; `Widget`, `Program`, `Draw`. Regex's `Pod` sits in a done record's fence. Text only, no macro expansion.
+- **This seat's reading, put to `management_21`:** the specs don't change now, and no step cutting those traits to code is cleared until the landing lifts the rule or it rules otherwise.
+- **Unchanged:** nothing written in a library, the hold stands, the pin stays `2e1cb4a`, no agent of this seat's, T19c running on the Team seat. The next note is :358, the next DEF DEF-562, the next rule 100.
